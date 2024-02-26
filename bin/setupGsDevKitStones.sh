@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
 PROGNAME=$0
+set -e
+
 . private/shFeedback
 start_banner
 
