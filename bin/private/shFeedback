@@ -47,5 +47,7 @@ error() {
 	exit_1_banner "Error on or near line ${lineno} :: $(basename "$0") $theArgs"
 }
 
+set -e
+
 trap 'interrupted ${LINENO}' INT
 trap 'error ${LINENO}' ERR
