@@ -1,0 +1,334 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "pictureSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T20:57:08.370024+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-24T22:51:23.720175+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "go4Iox3SDQC+VSgeD+ZOBw=="
+				},
+				"url" : "attachments/5ekwubvtjwkyu7y21ardx85t8/CatalystLogos.png",
+				"caption" : "",
+				"previewHeight" : 300
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:35:36.623009+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T19:11:41.818441+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "uCNP0hrSDQCeDNprBnqtiQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The rapidly evolving digital gaming sector demands innovative tools and platforms that not only push the boundaries of creativity but also set new standards for gameplay and graphics. In response to this, our new project, code-named “That Game : Catalyst”, emerges as a pioneering endeavour. A synergy between groundbreaking technology and imaginative gameplay, this initiative aims to not merely entertain but to provide a comprehensive set of development tools that allow developers to realise their ideas faster."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:44:39.753802+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T19:14:52.552443+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kaKu8hrSDQCn9lgUD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "These documents typically abbreviate “That Game : Catalyst” as TGC, and BenjaVision Catalyst Plugins as BVC."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:56:43.245983+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T18:57:25.769507+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "L0POHRvSDQCrSvXHD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "BVC and TGC are designed and written by Jupiter Jones, and sponsored by BenjaVision, the entertainment division of Benjability Pty Limited."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:47:14.213077+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:47:37.147669+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sn/j+xrSDQCol1PAD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "#Objective"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:45:56.552565+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:46:04.924459+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xX9C9xrSDQCoXBMVD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The core objective of this venture is to develop a state-of-the-art game client, complemented by a game that stands as an exemplar, exhibiting the limitless potentials of the BenjaVision Catalyst Plugins for Unreal Engine. "
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:46:06.928183+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-11T11:00:48.598377+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ydDg9xrSDQCoZ2gCD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "The choice of name, \"That Game : Catalyst\", is symbolic. It not only accentuates That Games' collaboration with BenjaVision Catalyst Plugins but also encapsulates the essence of this partnership – a mutual catalyst, propelling both the game and the plugins towards unparalleled success. Beyond these meanings, That Game also uses the idea of catalysts with it’s story. See the TGC Story & Characters document for more information."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:46:58.666317+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-04-10T17:46:59.13279+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Mkf2+hrSDQCogfbcD+ZOBw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Central to the development approach is the intertwined progression of That Game and the BenjaVision Catalyst Plugins. By designing them in tandem, we aim to foster a seamless integration, encouraging swift iterations, prompt troubleshooting, and a clear distinction of roles and functionalities. The intent is to create an ecosystem where the game and plugins evolve symbiotically, each enhancing the other."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-05T19:14:33.555655+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-04-05T19:14:33.555655+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Introduction"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "4ba274c7-b6d1-0d00-b9a7-7d8d0ab7a977"
+	}
+}
