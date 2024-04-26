@@ -5,7 +5,7 @@ start_banner
 
 registryName=bvc
 stoneName=$registryName
-gemstoneVersion="3.7.0"
+gemstoneVersion="3.7.1"
 
 # Save current directory
 workingDirectory=`PWD`

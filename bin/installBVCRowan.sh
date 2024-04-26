@@ -5,7 +5,7 @@ start_banner
 
 registryName=bvc_rowan
 stoneName=$registryName
-gemstoneVersion="3.7.0"
+gemstoneVersion="3.7.1"
 
 # Save current directory
 workingDirectory=`PWD`
@@ -62,7 +62,7 @@ registerStonesDirectory.solo --registry=$registryName \
                              --stonesDirectory=$projectPath/stones
 
 information_banner "Creating Stone $stoneName"
-createStone.solo --registry=$registryName --template=minimal_rowan $stoneName $gemstoneVersion
+createStone.solo --registry=$registryName --template=default_rowan3 $stoneName $gemstoneVersion
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	# possible native code generation issues on mac and github, disable native code
@@ -91,6 +91,7 @@ cd $projectPath/stones/$stoneName
 # turn on unicodeComparisonMode required by Jadeite
 enableUnicodeCompares.topaz -lq
 information_banner "installing GsCommands"
+
 installProject.stone file:product/examples/GsCommands/projectsHome/GsCommands/rowan/specs/GsCommands.ston \
 	--projectsHome=product/examples/GsCommands/projectsHome $*
 

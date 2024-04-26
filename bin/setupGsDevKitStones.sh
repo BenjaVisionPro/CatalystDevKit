@@ -57,7 +57,7 @@ fi
 
 # Parent directory in which to install everything. Defaults to /opt, override with -d <dir>
 parentDirectory=/opt
-installDirectoryName=stones
+installDirectoryName=GsDevKit
 
 # How much feedback to provide
 export verbose_level=0
@@ -152,8 +152,8 @@ cd "$stonesGitRoot"
 info "Cloning GsDevKit_stones in $stonesGitInstall" 1
 git clone git@github.com:GsDevKit/GsDevKit_stones.git
 cd "$stonesGitInstall"
-info "Switching to v2.1 of GsDevKit_stones" 2
-git checkout v2.1
+info "Switching to cf28c96b7 of GsDevKit_stones" 2
+git checkout cf28c96b7
 cd "$stonesGitInstall/bin"
 info "Installing GsDevKit_stones and superDoit" 1
 ./install.sh
@@ -171,8 +171,8 @@ $superDoitRoot/dev/setSharedMemory.sh
 cd $workingDirectory
 
 # Setup BVC
-./installBVC.sh
-./installBVCRowan.sh
+#./installBVC.sh
+#./installBVCRowan.sh
 
 
 
