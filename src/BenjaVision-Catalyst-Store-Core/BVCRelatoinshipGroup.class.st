@@ -5,5 +5,5 @@ Class {
 		'title',
 		'members'
 	],
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BenjaVision-Catalyst-Store-Core'
 }

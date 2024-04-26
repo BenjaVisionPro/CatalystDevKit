@@ -6,5 +6,5 @@ Class {
 		'target',
 		'eventLog'
 	],
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BenjaVision-Catalyst-Store-Core'
 }

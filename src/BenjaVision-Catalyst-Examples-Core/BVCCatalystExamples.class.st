@@ -1,11 +1,11 @@
 Class {
-	#name : #BVCInfrastructureExamples,
+	#name : #BVCCatalystExamples,
 	#superclass : #Object,
-	#category : #'BenjaVision-Catalyst-Examples-Core-BenjaVision-Catalyst-Examples-Core'
+	#category : #'BenjaVision-Catalyst-Examples-Core'
 }
 
-{ #category : #example }
-BVCInfrastructureExamples >> umlClasses [
+{ #category : #accessing }
+BVCCatalystExamples >> umlClasses [
 	<gtExample>
 	| view |
 	view := GtMondrian new.
