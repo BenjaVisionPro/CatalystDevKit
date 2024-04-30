@@ -11,7 +11,7 @@ Usage: $PROGNAME [-v[v]] [-p <parent_dir>] [-n <devKit_root_directory_name>]
 
  -p <dir>		the parent directory inside which the dev kit will be installed. Default /opt
  -n <subDir>	the name of the devKit root directory inside the <dir> directory. Default stones
- -v				verbose output
+ -v[vv]			verbose output
 
 If no options are specified the devKit will be installed in /opt/stones
 EOF
