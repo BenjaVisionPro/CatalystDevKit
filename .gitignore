@@ -32,3 +32,6 @@ github-*.zip
 
 # mac
 .DS_Store
+
+# GT
+/bin/gt

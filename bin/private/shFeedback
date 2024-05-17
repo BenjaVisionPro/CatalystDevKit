@@ -7,23 +7,33 @@ ANSI_YELLOW="\033[93;1m"
 ANSI_BLUE="\033[96;1m"
 ANSI_RESET="\033[0m"
 
+start=$(date +%s.%N)
+duration=
+execution_time=
+calc_time() {
+	duration=$(echo "$(date +%s.%N) - $start" | bc)
+	execution_time=`printf "%.2f seconds" $duration`
+}
+
 exit_1_banner() {
-	printf "${ANSI_RED}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\n" "$1" 1>&2
+	calc_time
+	printf "${ANSI_RED}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
 	exit 1
 }
 
 exit_0_banner() {
-	printf "${ANSI_GREEN}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\n" "$1" 1>&2
+	calc_time
+	printf "${ANSI_GREEN}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
 	exit 0
 }
 
 start_banner() {
-	printf "${ANSI_BLUE}==================${ANSI_RESET}\n" 1>&2
-	printf "${ANSI_YELLOW}BenjaVision DevKit  ${ANSI_RESET}\n" 1>&2
-	printf "${ANSI_BLUE}            script: $(basename "$0") ${theArgs}${ANSI_RESET}\n" 1>&2
-	printf "${ANSI_BLUE}              path: $0${ANSI_RESET}\n" 1>&2
-	printf "${ANSI_BLUE}  Send feedback to: jupiter@benjavision.com${ANSI_RESET}\n" 1>&2
-	printf "${ANSI_BLUE}==================${ANSI_RESET}\n" 1>&2
+	printf   "${ANSI_BLUE}===========================${ANSI_RESET}\n" 1>&2
+	printf "${ANSI_YELLOW}BenjaVision Catalyst DevKit  ${ANSI_RESET}\n" 1>&2
+	printf   "${ANSI_BLUE}                     script: $(basename "$0") ${theArgs}${ANSI_RESET}\n" 1>&2
+	printf   "${ANSI_BLUE}                       path: $0${ANSI_RESET}\n" 1>&2
+	printf   "${ANSI_BLUE}           Send feedback to: jupiter@benjavision.com${ANSI_RESET}\n" 1>&2
+	printf   "${ANSI_BLUE}===========================${ANSI_RESET}\n" 1>&2
 }
 
 information_banner() {
@@ -49,3 +59,28 @@ error() {
 
 trap 'interrupted ${LINENO}' INT
 trap 'error ${LINENO}' ERR
+
+#===============================================
+# Spinner
+#===============================================
+spinner_pid=
+
+spinner_start() {
+	local LC_CTYPE=C
+	local spin='⣾⣽⣻⢿⡿⣟⣯⣷'
+	local charwidth=3
+	local i=0
+	tput civis # cursor invisible
+
+	{ while : ; do i=$(((i + $charwidth) % ${#spin})) ; printf "%s" "$1 ${spin:$i:$charwidth}" ; echo "\r\c" ; sleep 0.1 ; done  & } 2>/dev/null
+	spinner_pid=$!
+}
+
+spinner_stop() {
+{ 
+	kill -9 $spinner_pid && wait; } 2>/dev/null
+	set -m
+	echo -en "\033[2K\r"
+	tput cnorm # reset cursor
+}
+trap spinner_stop EXIT
