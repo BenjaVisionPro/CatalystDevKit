@@ -4,5 +4,5 @@ Class {
 	#instVars : [
 		'hosts'
 	],
-	#category : #'BenjaVision-Catalyst-Connect-Core'
+	#category : #'BV-Catalyst-Connect-Core'
 }

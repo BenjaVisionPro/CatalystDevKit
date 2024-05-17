@@ -1,7 +1,7 @@
 Class {
 	#name : #BVCCatalystExamples,
 	#superclass : #Object,
-	#category : #'BenjaVision-Catalyst-Examples-Core'
+	#category : #'BV-Catalyst-Examples-Core'
 }
 
 { #category : #accessing }

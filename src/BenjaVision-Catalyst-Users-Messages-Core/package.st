@@ -1,1 +1,1 @@
-Package { #name : #'BenjaVision-Catalyst-Users-Messages-Core' }
+Package { #name : #'BV-Catalyst-Users-Messages-Core' }

@@ -8,5 +8,5 @@ My concrete subclasses represent a managed instance of a ZeroMQ server configure
 Class {
 	#name : #BVCMessageServerComponent,
 	#superclass : #BVCApplicationComponent,
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BV-Catalyst-Core'
 }

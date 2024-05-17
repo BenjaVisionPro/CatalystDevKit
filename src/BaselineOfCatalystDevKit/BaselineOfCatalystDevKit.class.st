@@ -10,23 +10,23 @@ BaselineOfCatalystDevKit >> baseline: spec [
 	^ spec
 		for: #common
 		do: [ spec
-				package: 'BenjaVision-Catalyst-Core';
-				package: 'BenjaVision-Catalyst-Connect-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Core') ];
-				package: 'BenjaVision-Catalyst-Store-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Connect-Core') ];
-				package: 'BenjaVision-Catalyst-Users-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
-				package: 'BenjaVision-Catalyst-Users-Messages-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Users-Core') ];
-				package: 'BenjaVision-Catalyst-Groups-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
-				package: 'BenjaVision-Catalyst-Currency-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
-				package: 'BenjaVision-Catalyst-Landform-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
-				package: 'BenjaVision-Catalyst-Architect-Core'
-					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
-				package: 'BenjaVision-Catalyst-Examples-Core';
-				package: 'BenjaVision-Catalyst-Setup-Core' ]
+				package: 'BV-Catalyst-Core';
+				package: 'BV-Catalyst-Connect-Core'
+					with: [ spec requires: #('BV-Catalyst-Core') ];
+				package: 'BV-Catalyst-Store-Core'
+					with: [ spec requires: #('BV-Catalyst-Connect-Core') ];
+				package: 'BV-Catalyst-Users-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
+				package: 'BV-Catalyst-Users-Messages-Core'
+					with: [ spec requires: #('BV-Catalyst-Users-Core') ];
+				package: 'BV-Catalyst-Groups-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
+				package: 'BV-Catalyst-Currency-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
+				package: 'BV-Catalyst-Landform-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
+				package: 'BV-Catalyst-Architect-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
+				package: 'BV-Catalyst-Examples-Core';
+				package: 'BV-Catalyst-Setup-Core' ]
 ]

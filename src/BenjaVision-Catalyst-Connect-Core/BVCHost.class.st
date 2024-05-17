@@ -5,5 +5,5 @@ Class {
 		'hostname',
 		'key'
 	],
-	#category : #'BenjaVision-Catalyst-Connect-Core'
+	#category : #'BV-Catalyst-Connect-Core'
 }

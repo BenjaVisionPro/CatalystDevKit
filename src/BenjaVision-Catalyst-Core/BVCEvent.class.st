@@ -5,5 +5,5 @@ Class {
 		'createdDateAndTime',
 		'completedDateAndTime'
 	],
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BV-Catalyst-Core'
 }

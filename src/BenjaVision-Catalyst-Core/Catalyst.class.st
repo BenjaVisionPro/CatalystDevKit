@@ -12,7 +12,7 @@ Class {
 		'licence',
 		'instance'
 	],
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BV-Catalyst-Core'
 }
 
 { #category : #accessing }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'installRoot'
 	],
-	#category : #'BenjaVision-Catalyst-Setup-Core'
+	#category : #'BV-Catalyst-Setup-Core'
 }
 
 { #category : #installation }

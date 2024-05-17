@@ -4,5 +4,5 @@ Class {
 	#instVars : [
 		'user'
 	],
-	#category : #'BenjaVision-Catalyst-Users-Core'
+	#category : #'BV-Catalyst-Users-Core'
 }

@@ -1,1 +1,1 @@
-Package { #name : #'BenjaVision-Catalyst-Core' }
+Package { #name : #'BV-Catalyst-Core' }

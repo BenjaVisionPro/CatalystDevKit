@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCArchitect,
 	#superclass : #BVCPlugin,
-	#category : #'BenjaVision-Catalyst-Architect-Core'
+	#category : #'BV-Catalyst-Architect-Core'
 }

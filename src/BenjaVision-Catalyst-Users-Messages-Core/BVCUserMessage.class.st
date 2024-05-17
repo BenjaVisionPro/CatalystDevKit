@@ -8,5 +8,5 @@ Class {
 		'content',
 		'inReplyTo'
 	],
-	#category : #'BenjaVision-Catalyst-Users-Messages-Core'
+	#category : #'BV-Catalyst-Users-Messages-Core'
 }

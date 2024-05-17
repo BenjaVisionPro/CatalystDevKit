@@ -6,7 +6,7 @@ Class {
 		'friends',
 		'messages'
 	],
-	#category : #'BenjaVision-Catalyst-Users-Core'
+	#category : #'BV-Catalyst-Users-Core'
 }
 
 { #category : #accessing }

@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCCurrency,
 	#superclass : #BVCPlugin,
-	#category : #'BenjaVision-Catalyst-Currency-Core'
+	#category : #'BV-Catalyst-Currency-Core'
 }

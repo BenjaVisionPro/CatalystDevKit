@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCFriend,
 	#superclass : #BVCUserRelationship,
-	#category : #'BenjaVision-Catalyst-Users-Core'
+	#category : #'BV-Catalyst-Users-Core'
 }

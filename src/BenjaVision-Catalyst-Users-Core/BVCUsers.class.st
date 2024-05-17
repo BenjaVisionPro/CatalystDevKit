@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCUsers,
 	#superclass : #BVCPlugin,
-	#category : #'BenjaVision-Catalyst-Users-Core'
+	#category : #'BV-Catalyst-Users-Core'
 }

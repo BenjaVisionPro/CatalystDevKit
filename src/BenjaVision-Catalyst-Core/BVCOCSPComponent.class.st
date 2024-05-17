@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCOCSPComponent,
 	#superclass : #BVCApplicationComponent,
-	#category : #'BenjaVision-Catalyst-Core'
+	#category : #'BV-Catalyst-Core'
 }

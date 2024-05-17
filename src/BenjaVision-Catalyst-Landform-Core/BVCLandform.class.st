@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCLandform,
 	#superclass : #BVCPlugin,
-	#category : #'BenjaVision-Catalyst-Landform-Core'
+	#category : #'BV-Catalyst-Landform-Core'
 }

@@ -1,1 +1,1 @@
-Package { #name : #'BenjaVision-Catalyst-Landform-Core' }
+Package { #name : #'BV-Catalyst-Landform-Core' }
