@@ -9,12 +9,10 @@ Metacello new
 	baseline: 'Falcon4Seaside';
 	load.
 	
-"
 Metacello new
 	repository: 'gitlocal:///opt/git/BenjaVision/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
 	load.
-"
 
 Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
