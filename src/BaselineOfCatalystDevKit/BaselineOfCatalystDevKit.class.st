@@ -15,9 +15,10 @@ BaselineOfCatalystDevKit >> baseline: spec [
 					with: [ spec requires: #('BenjaVision-Catalyst-Core') ];
 				package: 'BenjaVision-Catalyst-Store-Core'
 					with: [ spec requires: #('BenjaVision-Catalyst-Connect-Core') ];
-				package: 'BenjaVision-Catalyst-Users-Messages-Core';
 				package: 'BenjaVision-Catalyst-Users-Core'
 					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
+				package: 'BenjaVision-Catalyst-Users-Messages-Core'
+					with: [ spec requires: #('BenjaVision-Catalyst-Users-Core') ];;
 				package: 'BenjaVision-Catalyst-Groups-Core'
 					with: [ spec requires: #('BenjaVision-Catalyst-Store-Core') ];
 				package: 'BenjaVision-Catalyst-Currency-Core'
