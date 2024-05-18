@@ -4,6 +4,21 @@ Class {
 	#category : #BaselineOfCatalystDevKit
 }
 
+{ #category : #knowledge }
+BaselineOfCatalystDevKit class >> loadLepiter [
+	IceRepository registry  
+		detect: [ :aRepository |
+			aRepository name = 'CatalystDevKit' ]
+		ifFound: [ :aRepository | 
+			| defaultDatabase currentProperties |
+			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+			currentProperties := defaultDatabase properties.
+			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'docs'.
+			defaultDatabase reload ]
+		ifNone: [
+			self inform: 'Repository not found.' ]
+]
+
 { #category : #baseline }
 BaselineOfCatalystDevKit >> baseline: spec [
 	<baseline>
