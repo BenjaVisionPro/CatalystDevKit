@@ -464,5 +464,15 @@ BVCDevKitVectorIcons class >> gray: aSelectorSymbol [
 										g: 0
 										b: 0
 										alpha: 0.05))) ].
+	^ [ icon ] asStencil
+]
+
+{ #category : #converting }
+BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize [
+	"Answer an icon at aSize"
+
+	| icon |
+	icon := icon := self perform: (aSelectorSymbol , 'Source') asSymbol.
+	icon size: aSize.
 	^ icon
 ]
