@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #defaults }
+BVCDevKitWorldElement >> defaultHomeElement [
+	^ BVCDevKitHome new
+]
+
+{ #category : #defaults }
 BVCDevKitWorldElement >> defaultHomeTabIcon [
 	^ BVCDevKitVectorIcons icon: #bvcServer size: 32 @ 32
 ]
