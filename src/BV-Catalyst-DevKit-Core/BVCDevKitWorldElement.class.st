@@ -6,5 +6,5 @@ Class {
 
 { #category : #defaults }
 BVCDevKitWorldElement >> defaultHomeTabIcon [
-	^ BVCDevKitVectorIcons bvcServerSource asResizableElement
+	^ BVCDevKitVectorIcons icon: #bvcServer size: 32 @ 32
 ]
