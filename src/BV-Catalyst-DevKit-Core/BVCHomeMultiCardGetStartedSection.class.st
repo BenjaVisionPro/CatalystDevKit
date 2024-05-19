@@ -67,5 +67,5 @@ BVCHomeMultiCardGetStartedSection >> gtTourCard [
 
 { #category : #accessing }
 BVCHomeMultiCardGetStartedSection >> sectionTitle [
-	^ 'Start'
+	^ 'Getting Started'
 ]
