@@ -34,6 +34,14 @@ BVCDevKitHome >> createVersionLabel [
 				from: button ]
 ]
 
+{ #category : #building }
+BVCDevKitHome >> getStartedSection [
+	<gtHomeSection>
+	<gtExample>
+	<noTest>
+	^ BVCHomeMultiCardGetStartedSection new
+]
+
 { #category : #initialization }
 BVCDevKitHome >> initialize [
 	super initialize.
