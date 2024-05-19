@@ -453,13 +453,8 @@ BVCDevKitVectorIcons class >> gray: aSelectorSymbol [
 	^ [ icon ] asStencil
 ]
 
-{ #category : #converting }
-BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize [
-	^ (self perform: aSelectorSymbol) value asElement asScalableElement size: aSize
-]
-
 { #category : #'gt-inspector' }
-BVCDevKitVectorIcons >> gtIconsFor: aView [
+BVCDevKitVectorIcons class >> gtIconsFor: aView [
 	<gtView>
 	<gtClassView>
 	^ aView list
@@ -491,7 +486,7 @@ BVCDevKitVectorIcons >> gtIconsFor: aView [
 ]
 
 { #category : #'gt-spotter' }
-BVCDevKitVectorIcons >> gtSpotterForVectorIconFor: aSearch [
+BVCDevKitVectorIcons class >> gtSpotterForVectorIconFor: aSearch [
 	<gtSearch>
 	^ aSearch list
 		title: 'Vector Icons';
@@ -501,4 +496,9 @@ BVCDevKitVectorIcons >> gtSpotterForVectorIconFor: aSearch [
 				allIcons: BrGlamorousVectorIcons allIcons ];
 		itemName: #iconSelector;
 		filterBySubstring
+]
+
+{ #category : #converting }
+BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize [
+	^ (self perform: aSelectorSymbol) value asElement asScalableElement size: aSize
 ]
