@@ -499,7 +499,7 @@ BVCDevKitVectorIcons class >> checkCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : #'icons-bug' }
 BVCDevKitVectorIcons class >> cog [
 	"<script: 'self cog inspect'>
 	^ [ BlElement new
@@ -604,6 +604,19 @@ BVCDevKitVectorIcons class >> minusCircle [
 ]
 
 { #category : #icons }
+BVCDevKitVectorIcons class >> networkWired [
+	<script: 'self networkWired inspect'>
+	^ [ BlElement new
+		size: 640 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M632 240H336v-80h80c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32H224c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h80v80H8c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h120v80H64c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h160c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32h-64v-80h320v80h-64c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h160c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32h-64v-80h120c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM224 384v96H64v-96h160zm0-256V32h192v96H224zm352 256v96H416v-96h160z'
+						viewbox: (0 @ 0 extent: 640 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #icons }
 BVCDevKitVectorIcons class >> plusCircle [
 	<script: 'self plusCircle inspect'>
 	^ [ BlElement new
@@ -611,6 +624,19 @@ BVCDevKitVectorIcons class >> plusCircle [
 		addChild: (BlElement new
 				geometry: (BlSvgPath new
 						svg: 'M384 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12zm120 6c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-32 0c0-119.9-97.3-216-216-216-119.9 0-216 97.3-216 216 0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #icons }
+BVCDevKitVectorIcons class >> server [
+	<script: 'self server inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M376 256c0-13.255 10.745-24 24-24s24 10.745 24 24-10.745 24-24 24-24-10.745-24-24zm-40 24c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm176-128c0 12.296-4.629 23.507-12.232 32 7.603 8.493 12.232 19.704 12.232 32v80c0 12.296-4.629 23.507-12.232 32 7.603 8.493 12.232 19.704 12.232 32v80c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-80c0-12.296 4.629-23.507 12.232-32C4.629 319.507 0 308.296 0 296v-80c0-12.296 4.629-23.507 12.232-32C4.629 175.507 0 164.296 0 152V72c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v80zm-480 0c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16V72c0-8.822-7.178-16-16-16H48c-8.822 0-16 7.178-16 16v80zm432 48H48c-8.822 0-16 7.178-16 16v80c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16v-80c0-8.822-7.178-16-16-16zm16 160c0-8.822-7.178-16-16-16H48c-8.822 0-16 7.178-16 16v80c0 8.822 7.178 16 16 16h416c8.822 0 16-7.178 16-16v-80zm-80-224c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm-64 0c13.255 0 24-10.745 24-24s-10.745-24-24-24-24 10.745-24 24 10.745 24 24 24zm64 240c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24zm-64 0c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24z'
 						viewbox: (0 @ 0 extent: 512 @ 512));
 				background: self iconColor);
 		yourself ] asStencil
