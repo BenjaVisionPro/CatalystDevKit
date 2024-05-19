@@ -16,13 +16,8 @@ BVCHomeMultiCardGetStartedSection >> aboutThisBookCard [
 		yourself
 ]
 
-{ #category : #initialization }
-BVCHomeMultiCardGetStartedSection >> defaultPriority [
-	^ 30
-]
-
 { #category : #example }
-BVCHomeMultiCardGetStartedSection >> gtBookCard [
+BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 	<gtSectionCard>
 	<gtExample>
 	<notest>
@@ -40,6 +35,11 @@ BVCHomeMultiCardGetStartedSection >> gtBookCard [
 				, snippets size asString , ' snippets of '
 				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
 				yourself
+]
+
+{ #category : #initialization }
+BVCHomeMultiCardGetStartedSection >> defaultPriority [
+	^ 30
 ]
 
 { #category : #example }

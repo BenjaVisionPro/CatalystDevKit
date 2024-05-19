@@ -526,6 +526,32 @@ BVCDevKitVectorIcons class >> cog [
 ]
 
 { #category : #icons }
+BVCDevKitVectorIcons class >> file [
+	<script: 'self file inspect'>
+	^ [ BlElement new
+		size: 384 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16z'
+						viewbox: (0 @ 0 extent: 384 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #icons }
+BVCDevKitVectorIcons class >> folder [
+	<script: 'self folder inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M194.74 96l54.63 54.63c6 6 14.14 9.37 22.63 9.37h192c8.84 0 16 7.16 16 16v224c0 8.84-7.16 16-16 16H48c-8.84 0-16-7.16-16-16V112c0-8.84 7.16-16 16-16h146.74M48 64C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #icons }
 BVCDevKitVectorIcons class >> gem [
 	<script: 'self gem inspect'>
 	^ [ BlElement new
@@ -614,6 +640,45 @@ BVCDevKitVectorIcons class >> iconColor [
 		g: 0.25
 		b: 0.5
 		alpha: 0.95
+]
+
+{ #category : #icons }
+BVCDevKitVectorIcons class >> infoCircle [
+	<script: 'self list inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-36 344h12V232h-12c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12h48c6.627 0 12 5.373 12 12v140h12c6.627 0 12 5.373 12 12v8c0 6.627-5.373 12-12 12h-72c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12zm36-240c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #'icons-bug' }
+BVCDevKitVectorIcons class >> key [
+	<script: 'self key inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M336 32c79.529 0 144 64.471 144 144s-64.471 144-144 144c-18.968 0-37.076-3.675-53.661-10.339L240 352h-48v64h-64v64H32v-80l170.339-170.339C195.675 213.076 192 194.968 192 176c0-79.529 64.471-144 144-144m0-32c-97.184 0-176 78.769-176 176 0 15.307 1.945 30.352 5.798 44.947L7.029 379.716A24.003 24.003 0 0 0 0 396.686V488c0 13.255 10.745 24 24 24h112c13.255 0 24-10.745 24-24v-40h40c13.255 0 24-10.745 24-24v-40h19.314c6.365 0 12.47-2.529 16.971-7.029l30.769-30.769C305.648 350.055 320.693 352 336 352c97.184 0 176-78.769 176-176C512 78.816 433.231 0 336 0zm48 108c11.028 0 20 8.972 20 20s-8.972 20-20 20-20-8.972-20-20 8.972-20 20-20m0-28c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : #'icons-bug' }
+BVCDevKitVectorIcons class >> list [
+	<script: 'self list inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M88 56H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16zm0 160H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16zm0 160H40a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h48a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16zm416 24H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8zm0-320H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8V88a8 8 0 0 0-8-8zm0 160H168a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h336a8 8 0 0 0 8-8v-16a8 8 0 0 0-8-8z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
 ]
 
 { #category : #icons }
