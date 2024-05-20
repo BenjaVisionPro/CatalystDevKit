@@ -47,24 +47,6 @@ BVCHomeMultiCardGetStartedSection >> defaultPriority [
 	^ 30
 ]
 
-{ #category : #example }
-BVCHomeMultiCardGetStartedSection >> gtBookCardSection [
-	<gtExample>
-	<notest>
-	^ self
-]
-
-{ #category : #example }
-BVCHomeMultiCardGetStartedSection >> gtTourCard [
-	<gtExample>
-	^ GtHomeCard job
-		title: 'GtTour';
-		description: 'Open the GtTour slideshow';
-		priority: 20;
-		block: [ GtPresenterSlideShow openInSpace: GtTour ];
-		yourself
-]
-
 { #category : #accessing }
 BVCHomeMultiCardGetStartedSection >> sectionTitle [
 	^ 'Getting Started'
