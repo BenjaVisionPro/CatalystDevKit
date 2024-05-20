@@ -22,19 +22,24 @@ BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 	<gtExample>
 	<notest>
 	^ GtHomeCard lepiterBase
-		title: 'BenjaVision Catalyst DevKit';
+		title: self bvcDevKitBookName;
 		description: 'RTFM';
 		priority: 10;
-		pageName: 'Glamorous Toolkit';
-		databaseName: self gtBookName;
+		pageName: self bvcDevKitBookName;
+		databaseName: self bvcDevKitBookName;
 		details: [ :db | 
 			| snippets |
 			snippets := db pages flatCollect: #allChildrenDepthFirst.
-			'The book is expressed as a knowledge base. It documents the environment in '
+			'The documentation is expressed as a knowledge base. It documents the devKit in '
 				, db pages size asString , ' lovely pages containing '
 				, snippets size asString , ' snippets of '
 				, (snippets groupedBy: #class) size asString , ' different kinds.' ]
 				yourself
+]
+
+{ #category : #accessing }
+BVCHomeMultiCardGetStartedSection >> bvcDevKitBookName [
+	^ 'BenjaVision Catalyst DevKit'
 ]
 
 { #category : #initialization }
@@ -47,11 +52,6 @@ BVCHomeMultiCardGetStartedSection >> gtBookCardSection [
 	<gtExample>
 	<notest>
 	^ self
-]
-
-{ #category : #accessing }
-BVCHomeMultiCardGetStartedSection >> gtBookName [
-	^ 'Glamorous Toolkit Book'
 ]
 
 { #category : #example }

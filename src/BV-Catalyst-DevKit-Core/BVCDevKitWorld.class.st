@@ -4,6 +4,11 @@ Class {
 	#category : #'BV-Catalyst-DevKit-Core'
 }
 
+{ #category : #accessing }
+BVCDevKitWorld class >> defaultTitle [
+	^ 'BenjaVision Catalyst DevKit'
+]
+
 { #category : #initialization }
 BVCDevKitWorld >> defaultWorldElement [
 	^ BVCDevKitWorldElement new
