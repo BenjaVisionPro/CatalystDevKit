@@ -5,18 +5,6 @@ Class {
 }
 
 { #category : #example }
-BVCHomeMultiCardGetStartedSection >> aboutThisBookCard [
-	"<gtSectionCard>"
-	<gtExample>
-	<notest>
-	^ GtHomeCard page
-		priority: 20;
-		pageName: 'About this book';
-		databaseName: self gtBookName;
-		yourself
-]
-
-{ #category : #example }
 BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 	<gtSectionCard>
 	<gtExample>

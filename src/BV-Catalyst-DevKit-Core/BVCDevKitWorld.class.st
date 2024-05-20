@@ -9,6 +9,12 @@ BVCDevKitWorld class >> defaultTitle [
 	^ 'BenjaVision Catalyst DevKit'
 ]
 
+{ #category : #accessing }
+BVCDevKitWorld class >> initialize [
+	GtWorld allInstances first close.
+	self open.
+]
+
 { #category : #initialization }
 BVCDevKitWorld >> defaultWorldElement [
 	^ BVCDevKitWorldElement new

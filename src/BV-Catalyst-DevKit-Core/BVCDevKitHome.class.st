@@ -17,7 +17,7 @@ BVCDevKitHome >> backgroundIcon [
 { #category : #building }
 BVCDevKitHome >> createVersionLabel [
 	^ BrButton new 
-		label: 'BenjaVision Catalyst DevKit ', GtImage instance version versionString; 
+		label: 'BVC DevKit ', GtImage instance version versionString; 
 		beSmallSize;
 		aptitude: (BrGlamorousButtonWithLabelAptitude new + (BrGlamorousButtonExteriorAptitude new borderPaint: Color transparent; backgroundPaint: Color transparent));
 		margin: (BlInsets all: 5);
