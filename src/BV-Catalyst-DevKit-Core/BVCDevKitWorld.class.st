@@ -19,6 +19,7 @@ BVCDevKitWorld >> initialize [
 	super initialize.
 	self markAsDefault.
 	self initializeKnowledgeBase.
+	self updateWorldContent
 ]
 
 { #category : #initialization }
@@ -33,4 +34,10 @@ BVCDevKitWorld >> initializeKnowledgeBase [
 				addRegisteredDirectory: aRepository repositoryDirectory / 'docs'.
 			defaultDatabase reload ]
 		ifNone: [ self inform: 'Repository not found.' ]
+]
+
+{ #category : #initialization }
+BVCDevKitWorld >> updateWorldContent [
+	GtWorld allInstances
+		do: [ :aGtWorld | aGtWorld root children first home updateWidget ]
 ]
