@@ -25,4 +25,6 @@ Metacello new
 	baseline: 'Gt4OpenAI';
 	load.
 
+10 seconds wait.
+
 (Smalltalk at: #BVCDevKitWorld) openDefault
