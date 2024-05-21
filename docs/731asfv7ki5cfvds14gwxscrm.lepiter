@@ -175,7 +175,7 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-21T12:25:41.121886+10:00"
+												"dateAndTimeString" : "2024-05-21T14:02:33.440119+10:00"
 											}
 										},
 										"editEmail" : {
@@ -186,17 +186,92 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
-												"dateAndTimeString" : "2024-05-21T12:25:42.087845+10:00"
+												"dateAndTimeString" : "2024-05-21T14:02:35.822296+10:00"
 											}
 										},
 										"uid" : {
 											"__type" : "uid",
-											"uidString" : "kI9sRU/VDQCcbV34BmEjdQ=="
+											"uidString" : "bZzdn1DVDQCpepiyBmEjdQ=="
 										},
 										"paragraphStyle" : {
 											"__type" : "textStyle"
 										},
-										"string" : "{{gtPage:Installing GsDevKit_stones|db=731asfxqhyhdr96k6wo9yxnzv}}"
+										"string" : "{{gtPage:Managed Installation|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [
+												{
+													"__type" : "textSnippet",
+													"children" : {
+														"__type" : "snippets",
+														"items" : [ ]
+													},
+													"createEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"createTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2024-05-21T12:25:41.121886+10:00"
+														}
+													},
+													"editEmail" : {
+														"__type" : "email",
+														"emailString" : "<unknown>"
+													},
+													"editTime" : {
+														"__type" : "time",
+														"time" : {
+															"__type" : "dateAndTime",
+															"dateAndTimeString" : "2024-05-21T14:09:33.244517+10:00"
+														}
+													},
+													"uid" : {
+														"__type" : "uid",
+														"uidString" : "kI9sRU/VDQCcbV34BmEjdQ=="
+													},
+													"paragraphStyle" : {
+														"__type" : "textStyle"
+													},
+													"string" : "{{gtPage:Installing GsDevKit_stones|db=731asfxqhyhdr96k6wo9yxnzv}}"
+												}
+											]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-21T14:04:08.095362+10:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-21T14:04:09.33346+10:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "F+yBpVDVDQCpoc8NBmEjdQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtPage:External Installation|db=731asfxqhyhdr96k6wo9yxnzv}}"
 									}
 								]
 							},
@@ -230,43 +305,6 @@
 								"__type" : "textStyle"
 							},
 							"string" : "{{gtPage:GemStone|db=731asfxqhyhdr96k6wo9yxnzv}}"
-						},
-						{
-							"__type" : "textSnippet",
-							"children" : {
-								"__type" : "snippets",
-								"items" : [ ]
-							},
-							"createEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"createTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-11T13:48:50.008376+10:00"
-								}
-							},
-							"editEmail" : {
-								"__type" : "email",
-								"emailString" : "<unknown>"
-							},
-							"editTime" : {
-								"__type" : "time",
-								"time" : {
-									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-11T22:32:56.229926+10:00"
-								}
-							},
-							"uid" : {
-								"__type" : "uid",
-								"uidString" : "0AgixSvSDQCpYw/2CTBNGw=="
-							},
-							"paragraphStyle" : {
-								"__type" : "textStyle"
-							},
-							"string" : "{{gtPage:Installing the BVCToolKit|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},

@@ -18,6 +18,43 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T13:20:17.390823+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T13:22:00.826146+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "L5W0CFDVDQCmi/fpBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "**NOTE: If you are using the BVC DevKit to manage the installer (highly recommended), you do not need to perform this setup.**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-05-21T12:25:11.318215+10:00"
 					}
 				},
@@ -943,7 +980,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:30:18.781977+10:00"
+						"dateAndTimeString" : "2024-05-21T12:56:31.672602+10:00"
 					}
 				},
 				"editEmail" : {
@@ -954,17 +991,165 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:56:26.654409+10:00"
+						"dateAndTimeString" : "2024-05-21T12:56:31.672602+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "HWv5VU/VDQCddS25BmEjdQ=="
+					"uidString" : "qNG5s0/VDQCe873ABmEjdQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Close your terminal and open a new one. Enter...\n```\nversionReport.solo\n```\n\nYou should get back something like...\n```\n--------------------\nGem Version Report for 'gs64stone'\n--------------------\nnodeName\n\t = jupiter.local\nosName\n\t = Darwin\nprocessId\n\t = 5196\nprocessorCount\n\t = 16\ngsBuildSerialNum\n\t = 2023-08-24T14:12:58-07:00 87d4894f48fb88b6589e392e200ea1a60e1a143b\ngsRelease\n\t = 3.7.0\nosRelease\n\t = 23.4.0\ncpuKind\n\t = arm64\ngsBuildArchitecture\n\t = Darwin (macOS)\ngsVersion\n\t = 3.7.0\nosVersion\n\t = Darwin Kernel Version 23.4.0: Wed Feb 21 21:44:54 PST 2024; root:xnu-10063.101.15~2/RELEASE_ARM64_T6031\ngsBuildDate\n\t = Thu Aug 24 14:21:20 2023 (branch 3.7.0)\ngsBuildType\n\t = FAST\ncpuArchitecture\n\t = arm64\nrowanVersion\n\t = 2.5.0\nrowanLoadedCommitId\n\t = 2997fe3fc\n--------------------\n```\n\nEverything is up and running! If you don't get this, review the steps to identify any missed actions.\n\nIt's time to start [using GsDevKit_stones](usage.md)"
+				"string" : "Close your terminal and open a new one. Enter..."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:35.420484+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:35.420484+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "swHzs0/VDQCe+teqBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\nversionReport.solo\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:38.142367+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:38.142367+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "soUctE/VDQCfAbbJBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You should get back something like..."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:42.714383+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:42.714383+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "QE1itE/VDQCfCjI0BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\n--------------------\nGem Version Report for 'gs64stone'\n--------------------\nnodeName\n\t = jupiter.local\nosName\n\t = Darwin\nprocessId\n\t = 5196\nprocessorCount\n\t = 16\ngsBuildSerialNum\n\t = 2023-08-24T14:12:58-07:00 87d4894f48fb88b6589e392e200ea1a60e1a143b\ngsRelease\n\t = 3.7.0\nosRelease\n\t = 23.4.0\ncpuKind\n\t = arm64\ngsBuildArchitecture\n\t = Darwin (macOS)\ngsVersion\n\t = 3.7.0\nosVersion\n\t = Darwin Kernel Version 23.4.0: Wed Feb 21 21:44:54 PST 2024; root:xnu-10063.101.15~2/RELEASE_ARM64_T6031\ngsBuildDate\n\t = Thu Aug 24 14:21:20 2023 (branch 3.7.0)\ngsBuildType\n\t = FAST\ncpuArchitecture\n\t = arm64\nrowanVersion\n\t = 2.5.0\nrowanLoadedCommitId\n\t = 2997fe3fc\n--------------------\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:45.831053+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:57.410403+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sNKRtE/VDQCfEyI6BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Everything is up and running! If you don't get this, review the steps to identify any missed actions."
 			}
 		]
 	},

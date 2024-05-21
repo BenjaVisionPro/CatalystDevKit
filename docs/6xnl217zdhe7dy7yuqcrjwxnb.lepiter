@@ -66,7 +66,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T13:01:13.612754+10:00"
+						"dateAndTimeString" : "2024-05-21T14:04:55.213371+10:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Alternatively, you can install and manage GemStone completely independently from BVC DevKit by following the directions below."
+				"string" : "Alternatively, you can install and manage GemStone externally from BVC DevKit by following the directions below."
 			},
 			{
 				"__type" : "textSnippet",
@@ -166,7 +166,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:24:58.635601+10:00"
+						"dateAndTimeString" : "2024-05-21T14:05:25.193591+10:00"
 					}
 				},
 				"editEmail" : {
@@ -177,17 +177,92 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:25:25.774506+10:00"
+						"dateAndTimeString" : "2024-05-21T14:05:26.179341+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "CJXkQU/VDQCbzjn5BmEjdQ=="
+					"uidString" : "j1kaqlDVDQCp8P7EBmEjdQ=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "{{gtPage:Installing GsDevKit_stones|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string" : "{{gtPage:Managed Installation|db=731asfxqhyhdr96k6wo9yxnzv}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-05-21T12:24:58.635601+10:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2024-05-21T12:25:25.774506+10:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "CJXkQU/VDQCbzjn5BmEjdQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "{{gtPage:Installing GsDevKit_stones|db=731asfxqhyhdr96k6wo9yxnzv}}"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T14:05:26.933552+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T14:05:39.457975+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Vec0qlDVDQCp/CLkBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtPage:External Installation|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			}
 		]
 	},
