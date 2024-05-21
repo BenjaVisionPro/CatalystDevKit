@@ -277,43 +277,6 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T11:24:34.040157+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T11:28:49.031955+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "a3XZak7VDQC+eOUwBmEjdQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "To manage the GemStone installation we install a project called [GsDevKit_stones](https://github.com/GsDevKit/GsDevKit_stones)"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
 						"dateAndTimeString" : "2024-05-21T12:16:47.400795+10:00"
 					}
 				},

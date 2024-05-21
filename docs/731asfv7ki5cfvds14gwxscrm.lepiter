@@ -138,6 +138,43 @@
 											"__type" : "time",
 											"time" : {
 												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-21T12:48:40.28931+10:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2024-05-21T12:48:41.184935+10:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "mRWhl0/VDQCd/D7TBmEjdQ=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "{{gtPage:GemStone Prerequisites|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
 												"dateAndTimeString" : "2024-05-21T12:25:41.121886+10:00"
 											}
 										},

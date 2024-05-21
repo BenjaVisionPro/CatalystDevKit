@@ -40,6 +40,931 @@
 					"__type" : "textStyle"
 				},
 				"string" : "To manage the GemStone installation we install a project called [GsDevKit_stones](https://github.com/GsDevKit/GsDevKit_stones)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:18.368443+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:18.368443+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "icLHq0/VDQCeSyPLBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Summary / TLDR;"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:25.266793+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:25.266793+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WwYxrE/VDQCeUpHMBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "1. [Create the install location](#create-the-install-location)\n2. [Clone the project from GitHub](#clone-the-project-from-github)\n3. [Run the install script](#run-the-install-script)\n4. [Add environment variables to your profile](#add-environment-variables-to-your-profile)\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:40.785024+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:40.785024+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+8sdrU/VDQCeWYdIBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Commands used in this section (for those who don't like to read)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:46.218353+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:54:46.218353+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "TLRwrU/VDQCeYCYeBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\nexport STONES_HOME=/opt/GsDevKit\nsudo mkdir -p $STONES_HOME/git\nsudo chown -R $USER $STONES_HOME\ncd $STONES_HOME/git\ngit clone git@github.com:GsDevKit/GsDevKit_stones.git\ncd $STONES_HOME/git/GsDevKit_stones/bin\n./install.sh\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:01.022866+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:01.022866+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "QZ5Srk/VDQCeZ63/BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "NOTE: The above commands don't include how to [add environment variables to your profile](#add-environment-variables-to-your-profile)\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:04.726878+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:04.726878+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oSOLrk/VDQCebgj9BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Step by Step / RTFM"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:08.296945+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:08.296945+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "5pPBrk/VDQCedUC2BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Create the install location"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:13.668168+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:13.668168+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "rYcTr0/VDQCefIr8BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Decide where you are going to install GsDevKit_stones."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:17.10229+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:17.10229+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "J/dHr0/VDQCeg/OmBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "When you install GsDevKit_stones, it will also install another project called superDoit. For those familiar with Smalltalk, \"DoIt\" is typically how you tell your Smalltalk IDE to execute code. superDoit extends this concept to the command line allowing you to write and run shell scripts in GemStone Smalltalk… amazing."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:20.087838+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:20.087838+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yoV1r0/VDQCeihKTBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "I like to install projects in the same location on my development machine as they will be installed on my production server. This consistency ensures my production machines work  the same as my development machine. Also, just in case I’m lazy and hard code path names into code, they wont break when moved into production."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:22.908817+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:22.908817+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "q4egr0/VDQCekQ1/BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Since the GsDevKit_stones and superDoit projects will be cloned from Github, we need a place to put them. I like to put them in a “git” directory. Naming the directory “git” directory reminds me that everything in it is a git project."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:28.41137+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:28.41137+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yov0r0/VDQCemPf4BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "For these reasons, I typically install all things GsDevKit in the directory `/opt/GsDevKit`, and clone GsDevKit_stones in the directory `/opt/GsDevKit/git`"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:32.314839+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:32.314839+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "0BYwsE/VDQCen3HJBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In a terminal..."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:36.442357+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:36.442357+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8hFvsE/VDQCepkVPBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\nexport STONES_HOME=/opt/GsDevKit\n\nsudo mkdir -p $STONES_HOME/git\nsudo chown -R $USER $STONES_HOME\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:40.667989+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:40.667989+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "3YyvsE/VDQCerYd/BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Clone the project from GitHub"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:46.595579+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:46.595579+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Hf8JsU/VDQCetAe6BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In the same terminal...\n```\ncd $STONES_HOME/git\ngit clone git@github.com:GsDevKit/GsDevKit_stones.git\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:57.105336+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:55:57.105336+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "RV2qsU/VDQCeu2o+BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Run the install script"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:04.376004+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:04.376004+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DU4Zsk/VDQCewpSGBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In the same terminal..."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:07.465703+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:07.465703+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "dnRIsk/VDQCeyVySBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\ncd $STONES_HOME/git/GsDevKit_stones/bin\n./install.sh\n\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:09.92357+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:09.92357+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nultsk/VDQCe0Ef9BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Add environment variables to your profile"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:14.750592+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:14.750592+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lp63sk/VDQCe11YeBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "- For Bash (common on Ubuntu and macOS 13 or earlier), use ~/.bash_profile.\n- For Zsh (common on macOS 14 or later), use ~/.zprofile."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:18.863816+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:18.863816+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LV/2sk/VDQCe3l2cBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "In the same terminal..."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:22.125997+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:22.125997+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LSUos0/VDQCe5UQABmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "```\nexport MY_PROFILE=~/.zprofile\ntouch $MY_PROFILE\ncat - >> $MY_PROFILE << EOF\n# GsDevKit_stones\nexport STONES_HOME=\"$STONES_HOME\"\nexport STONES_DATA_HOME=\"\\$STONES_HOME/data\"\nexport PATH=\"\\$STONES_HOME/git/superDoit/bin:\\$STONES_HOME/git/GsDevKit_stones/bin:\\$PATH\"\nEOF\n```"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:26.643367+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:26.643367+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sQtts0/VDQCe7D6wBmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You may have noticed that we snuck in another environment variable `STONES_DATA_HOME`. This is where GsDevKit_stones will keep it's registry information (more on the registry later). You can put it anywhere you like, but as I mentioned, I'm putting ALL GsDevKit_stones related stuff in one place. Once you have a better understanding of the [Registry](using.md#registry), it may make more sense to you to locate `STONES_DATA_HOME` somewhere else."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:30:18.781977+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-05-21T12:56:26.654409+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "HWv5VU/VDQCddS25BmEjdQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Close your terminal and open a new one. Enter...\n```\nversionReport.solo\n```\n\nYou should get back something like...\n```\n--------------------\nGem Version Report for 'gs64stone'\n--------------------\nnodeName\n\t = jupiter.local\nosName\n\t = Darwin\nprocessId\n\t = 5196\nprocessorCount\n\t = 16\ngsBuildSerialNum\n\t = 2023-08-24T14:12:58-07:00 87d4894f48fb88b6589e392e200ea1a60e1a143b\ngsRelease\n\t = 3.7.0\nosRelease\n\t = 23.4.0\ncpuKind\n\t = arm64\ngsBuildArchitecture\n\t = Darwin (macOS)\ngsVersion\n\t = 3.7.0\nosVersion\n\t = Darwin Kernel Version 23.4.0: Wed Feb 21 21:44:54 PST 2024; root:xnu-10063.101.15~2/RELEASE_ARM64_T6031\ngsBuildDate\n\t = Thu Aug 24 14:21:20 2023 (branch 3.7.0)\ngsBuildType\n\t = FAST\ncpuArchitecture\n\t = arm64\nrowanVersion\n\t = 2.5.0\nrowanLoadedCommitId\n\t = 2997fe3fc\n--------------------\n```\n\nEverything is up and running! If you don't get this, review the steps to identify any missed actions.\n\nIt's time to start [using GsDevKit_stones](usage.md)"
 			}
 		]
 	},
