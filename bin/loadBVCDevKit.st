@@ -3,12 +3,12 @@
 "Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
- load: #('CI' 'Zinc' 'Development' 'JQuery')."
+ load: #('CI' 'Zinc' 'Development' 'JQuery').
 
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
 	baseline: 'Falcon4Seaside';
-	load.
+	load."
 	
 Metacello new
 	repository: 'gitlocal:///opt/git/BenjaVision/CatalystDevKit/src';
