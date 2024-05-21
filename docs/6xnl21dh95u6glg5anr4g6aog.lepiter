@@ -5,7 +5,7 @@
 		"__type" : "snippets",
 		"items" : [
 			{
-				"__type" : "pharoSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-14T13:29:20.741045+10:00"
+						"dateAndTimeString" : "2024-05-21T12:25:11.318215+10:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,20 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-25T13:54:53.128926+10:00"
+						"dateAndTimeString" : "2024-05-21T12:29:54.312299+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "kIv22GfSDQCYgT/RDdHqmQ=="
+					"uidString" : "2uqlQ0/VDQCcXTLDBmEjdQ=="
 				},
-				"code" : "CatalystInstaller instance"
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "To manage the GemStone installation we install a project called [GsDevKit_stones](https://github.com/GsDevKit/GsDevKit_stones)"
 			},
 			{
-				"__type" : "shellCommandSnippet",
+				"__type" : "textSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -52,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T10:45:06.609091+10:00"
+						"dateAndTimeString" : "2024-05-21T12:30:18.781977+10:00"
 					}
 				},
 				"editEmail" : {
@@ -63,14 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T10:49:42.62205+10:00"
+						"dateAndTimeString" : "2024-05-21T12:30:18.781977+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "WkG93U3VDQC8AlSSBmEjdQ=="
+					"uidString" : "HWv5VU/VDQCddS25BmEjdQ=="
 				},
-				"code" : "cd .. && ./setupGsDevKitStones.sh"
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			}
 		]
 	},
@@ -82,7 +88,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-11T13:48:35.580049+10:00"
+			"dateAndTimeString" : "2024-05-21T12:25:15.216655+10:00"
 		}
 	},
 	"editEmail" : {
@@ -93,15 +99,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-11T22:32:56.223769+10:00"
+			"dateAndTimeString" : "2024-05-21T12:25:15.216655+10:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Installing the BVCToolKit"
+		"title" : "Installing GsDevKit_stones"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "5cec14c3-2bd2-0d00-a95c-64e809304d1b"
+		"uuid" : "908ba543-4fd5-0d00-9c5c-68bc06612375"
 	}
 }
