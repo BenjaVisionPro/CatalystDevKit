@@ -24,3 +24,5 @@ Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
 	baseline: 'Gt4OpenAI';
 	load.
+
+(Smalltalk at: #BVCDevKitWorld) openDefault
