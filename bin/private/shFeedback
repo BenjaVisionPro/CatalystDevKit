@@ -59,6 +59,7 @@ error() {
 
 trap 'interrupted ${LINENO}' INT
 trap 'error ${LINENO}' ERR
+trap exit_0_banner EXIT
 
 #===============================================
 # Spinner
