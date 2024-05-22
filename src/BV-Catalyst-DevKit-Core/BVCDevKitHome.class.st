@@ -25,8 +25,8 @@ BVCDevKitHome >> createVersionLabel [
 		action: [ :button | 
 			| database startPage |
 			database := LeDatabasesRegistry default currentLoadedDefaultLogicalDatabase 
-				databaseNamed: 'Glamorous Toolkit Book'.
-			startPage := database pageNamed: 'About this version of Glamorous Toolkit'.
+				databaseNamed: 'BenjaVision Catalyst DevKit'.
+			startPage := database pageNamed: 'About BVC DevKit'.
 			GtWorldUtility 
 				showSpaceWithTitle: startPage title
 				inPagerWith: [ startPage
