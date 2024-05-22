@@ -1,5 +1,7 @@
-"Load projects"
+"Close world"
+(Smalltalk at: #GtWorld) allInstances root children first close.
 
+"Load projects"
 "Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
@@ -25,6 +27,8 @@ Metacello new
 	baseline: 'Gt4OpenAI';
 	load.
 
+"Open BVC Dev kit World"
 10 seconds wait.
-
+(Smalltalk at: #BVCDevKitWorld) initializeKnowledgeBase.
+10 seconds wait.
 (Smalltalk at: #BVCDevKitWorld) openDefault
