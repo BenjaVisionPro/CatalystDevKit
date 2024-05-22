@@ -23,7 +23,7 @@ curl -LO "${downloadLink:-}" \
 # install stuff in gt
 information_banner "Starting installation"
 spinner_start "Installing Projects... "
-$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --interactive --save --quit
+$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --save --quit
 spinner_stop
 
 exit_0_banner
