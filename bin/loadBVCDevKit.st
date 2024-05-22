@@ -1,6 +1,3 @@
-"Close world"
-(Smalltalk at: #GtWorld) allInstances first close.
-
 "Load projects"
 "Metacello new
  baseline:'Seaside3';
@@ -31,4 +28,6 @@ Metacello new
 5 seconds wait.
 (Smalltalk at: #BVCDevKitWorld) initializeKnowledgeBase.
 5 seconds wait.
-(Smalltalk at: #BVCDevKitWorld) openDefault
+(Smalltalk at: #BVCDevKitWorld) openDefault.
+5 seconds wait.
+(Smalltalk at: #GtWorld) allInstances first close.
