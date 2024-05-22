@@ -28,6 +28,7 @@ Metacello new
 	load.
 
 "Open BVC Dev kit World"
+5 seconds wait.
 (Smalltalk at: #BVCDevKitWorld) initializeKnowledgeBase.
-10 seconds wait.
+5 seconds wait.
 (Smalltalk at: #BVCDevKitWorld) openDefault
