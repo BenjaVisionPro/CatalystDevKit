@@ -1,5 +1,5 @@
 "Close world"
-(Smalltalk at: #GtWorld) allInstances root children first close.
+(Smalltalk at: #GtWorld) allInstances first close.
 
 "Load projects"
 "Metacello new
