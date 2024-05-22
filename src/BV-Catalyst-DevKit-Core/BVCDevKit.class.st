@@ -33,9 +33,3 @@ BVCDevKit class >> installDirectory [
 BVCDevKit class >> repoName [
 	^ 'CatalystDevKit'
 ]
-
-{ #category : #accessing }
-BVCDevKit class >> updateWorldContent [
-	BVCDevKitWorld allInstances
-		do: [ :aGtWorld | aGtWorld root children first home updateWidget ]
-]

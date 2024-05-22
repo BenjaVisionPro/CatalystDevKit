@@ -20,3 +20,9 @@ BVCDevKitWorld >> initialize [
 	self markAsDefault.
 	self updateWorldContent
 ]
+
+{ #category : #initialization }
+BVCDevKitWorld >> updateWorldContent [
+	BVCDevKitWorld allInstances
+		do: [ :aGtWorld | aGtWorld root children first home updateWidget ]
+]
