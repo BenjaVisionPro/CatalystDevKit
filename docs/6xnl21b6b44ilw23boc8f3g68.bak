@@ -3,45 +3,7 @@
 	"__type" : "page",
 	"children" : {
 		"__type" : "snippets",
-		"items" : [
-			{
-				"__type" : "elementSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-22T11:24:51.326452+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-22T11:25:05.819258+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "RJq4iWLVDQCthz17BdHMKg=="
-				},
-				"code" : "BVCManagedInstaller new",
-				"elementHeight" : 437,
-				"codeHeight" : 25,
-				"codeVisible" : true
-			}
-		]
+		"items" : [ ]
 	},
 	"createEmail" : {
 		"__type" : "email",

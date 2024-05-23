@@ -85,3 +85,47 @@ spinner_stop() {
 	tput cnorm # reset cursor
 }
 trap spinner_stop EXIT
+
+
+#===============================================
+# Architecture
+#===============================================
+architecture=""
+set_architecture() {
+	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+		arch_name="$(uname -m)"
+		if [ "${arch_name}" = "x86_64" ]; then
+			architecture="Linux64"
+		elif [ "${arch_name}" = "aarch64" ]; then
+			architecture="LinuxArm64"
+		else
+			warning_banner "$arch_name architecture is unsupported."
+			exit 1
+			fi
+		fi
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		arch_name="$(uname -m)"
+		is_m1=false
+		if [ "${arch_name}" = "x86_64" ]; then
+			if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+				is_m1=true
+			fi
+			elif [ "${arch_name}" = "arm64" ]; then
+				is_m1=true
+			fi
+			
+			if [[ "$is_m1" == true ]]; then
+				architecture="OSX64"
+			else
+				architecture="OSXM1"
+			fi
+		fi
+	elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+		architecture="Win64"
+		#TODO: WinArm64
+		fi
+	else
+		warning_banner "$OSTYPE is unsupported."
+		exit 1
+	fi
+}
