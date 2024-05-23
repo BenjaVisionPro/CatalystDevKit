@@ -26,6 +26,8 @@ spinner_start "Installing Projects... "
 
 if [ "${platform}" = "Mac" ]; then
 	$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --interactive --save --quit
+elif [  "${platform}" = "Win" ]; then
+	$installLocation/GlamorousToolkit.exe $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --interactive --save --quit
 fi
 spinner_stop
 
