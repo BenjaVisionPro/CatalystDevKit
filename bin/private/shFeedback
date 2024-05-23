@@ -78,8 +78,7 @@ spinner_start() {
 }
 
 spinner_stop() {
-{ 
-	kill -9 $spinner_pid && wait; } 2>/dev/null
+	{ kill -9 $spinner_pid && wait; } 2>/dev/null
 	set -m
 	echo -en "\033[2K\r"
 	tput cnorm # reset cursor
@@ -90,10 +89,13 @@ trap spinner_stop EXIT
 #===============================================
 # Architecture
 #===============================================
-architecture=""
-set_architecture() {
+platform=
+architecture=
+
+set_platform_and_architecture() {
 	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		arch_name="$(uname -m)"
+		platform="Linux"
 		if [ "${arch_name}" = "x86_64" ]; then
 			architecture="Linux64"
 		elif [ "${arch_name}" = "aarch64" ]; then
@@ -101,29 +103,28 @@ set_architecture() {
 		else
 			warning_banner "$arch_name architecture is unsupported."
 			exit 1
-			fi
 		fi
 	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		platform="Mac"
 		arch_name="$(uname -m)"
 		is_m1=false
 		if [ "${arch_name}" = "x86_64" ]; then
 			if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
 				is_m1=true
 			fi
-			elif [ "${arch_name}" = "arm64" ]; then
-				is_m1=true
-			fi
+		elif [ "${arch_name}" = "arm64" ]; then
+			is_m1=true
+		fi
 			
-			if [[ "$is_m1" == true ]]; then
-				architecture="OSX64"
-			else
-				architecture="OSXM1"
-			fi
+		if [[ "$is_m1" == true ]]; then
+			architecture="OSXM1"
+		else
+			architecture="OSX64"
 		fi
 	elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+		platform="Win"
 		architecture="Win64"
 		#TODO: WinArm64
-		fi
 	else
 		warning_banner "$OSTYPE is unsupported."
 		exit 1
