@@ -5,5 +5,5 @@ Class {
 		'hostname',
 		'key'
 	],
-	#category : #'BV-Catalyst-Connect-Core'
+	#category : #'BV-Catalyst-Core'
 }
