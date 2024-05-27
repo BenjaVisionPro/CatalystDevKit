@@ -24,6 +24,11 @@ Metacello new
 	baseline: 'Gt4OpenAI';
 	load.
 
+Metacello new
+   baseline: 'Futures';
+   repository: 'github://feenkcom/pharo-futures:main/src';
+   load.
+
 "Open BVC Dev kit World"
 5 seconds wait.
 (Smalltalk at: #BVCDevKit) initializeKnowledgeBase.

@@ -45,16 +45,12 @@ BVCDevKitManagedInstaller >> baseDirectoryName [
 
 { #category : #accessing }
 BVCDevKitManagedInstaller >> gsDevKitDirectory [
-	^ gsDevKitDirectory ifNil: [ self rootDirectory / self gsDevKitName ]
+	^ gsDevKitDirectory ifNil: [ self baseDirectory / self gsDevKitName ]
 ]
 
 { #category : #accessing }
 BVCDevKitManagedInstaller >> gsDevKitName [
 	^ 'gsDevKit'
-]
-
-{ #category : #'gt-extensions' }
-BVCDevKitManagedInstaller >> gtDirectoryStructureFor: aView [
 ]
 
 { #category : #accessing }
