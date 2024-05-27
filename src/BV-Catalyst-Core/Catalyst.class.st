@@ -41,6 +41,13 @@ Catalyst class >> validateLicence: aString [
 	"Connect to BenjaVision Licensing Server (BVLS) to validate the licence - throw an error if there is a problem"	
 ]
 
+{ #category : #accessing }
+Catalyst >> gtOverviewFor: aView [
+	<gtView>
+	
+	
+]
+
 { #category : #initalization }
 Catalyst >> initialize [
 	plugins := IdentityDictionary new
