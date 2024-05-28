@@ -32,7 +32,7 @@ Metacello new
 Metacello new
 	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
 	baseline: 'Boundless';
-	load
+	load.
 
 "Open BVC Dev kit World"
 5 seconds wait.
