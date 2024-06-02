@@ -1,10 +1,10 @@
 "Load projects"
-"Metacello new
+Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
  load: #('CI' 'Zinc' 'Development' 'JQuery').
 
-Metacello new
+"Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
 	baseline: 'Falcon4Seaside';
 	load."
@@ -28,11 +28,6 @@ Metacello new
    baseline: 'Futures';
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
-
-Metacello new
-	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
-	baseline: 'Boundless';
-	load.
 
 "Open BVC Dev kit World"
 5 seconds wait.
