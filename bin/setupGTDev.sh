@@ -26,9 +26,9 @@ information_banner "Configure GT for BenjaVision Catalyst DevKit"
 if [ "${platform}" = "Mac" ]; then
 	executable=GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli
 elif [  "${platform}" = "Linux" ]; then
-	GlamorousToolkit-cli
+	executable=bin/GlamorousToolkit-cli
 elif [  "${platform}" = "Win" ]; then
-	GlamorousToolkit.exe
+	executable=bin/GlamorousToolkit-cli
 fi
 
 spinner_start "Installing Projects... "
