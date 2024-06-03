@@ -55,7 +55,7 @@ Metacello new
 
 "Open BVC Dev kit World"
 15 seconds wait.
-(Smalltalk at: #BVCDevKit) initializeKnowledgeBase.
+"(Smalltalk at: #BVCDevKit) initializeKnowledgeBase."
 5 seconds wait.
 (Smalltalk at: #BVCDevKitWorld) openDefault.
 5 seconds wait.
