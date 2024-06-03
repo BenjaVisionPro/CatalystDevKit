@@ -17,6 +17,7 @@ BVCDevKitWorld >> defaultWorldElement [
 { #category : #initialization }
 BVCDevKitWorld >> initialize [
 	super initialize.
+	self addShutdownListener.
 	self markAsDefault.
 	self updateWorldContent
 ]
