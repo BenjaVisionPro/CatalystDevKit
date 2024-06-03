@@ -22,13 +22,20 @@ curl -LO "${downloadLink:-}" \
 
 # install stuff in gt
 information_banner "Configure GT for BenjaVision Catalyst DevKit"
-spinner_start "Installing Projects... "
 
 if [ "${platform}" = "Mac" ]; then
-	$installLocation/GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --interactive --save --quit
+	executable=GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli
+elif [  "${platform}" = "Linux" ]; then
+	GlamorousToolkit-cli
 elif [  "${platform}" = "Win" ]; then
-	$installLocation/GlamorousToolkit.exe $installLocation/GlamorousToolkit.image st "loadBVCDevKit.st" --interactive --save --quit
+	GlamorousToolkit.exe
 fi
+
+spinner_start "Installing Projects... "
+
+$installLocation/$executable $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --save --quit
+$installLocation/$executable $installLocation/GlamorousToolkit.image st "st/postLoad.st"   --interactive --save --quit
+
 spinner_stop
 
 information_banner "Setup complete"
