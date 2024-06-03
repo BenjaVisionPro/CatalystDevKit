@@ -29,6 +29,17 @@ Metacello new
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
 
+Metacello new
+	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
+	baseline: 'Boundless';
+	load.
+	
+Metacello new
+	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
+	baseline: 'ECharts';
+	load.
+
+
 "Open BVC Dev kit World"
 5 seconds wait.
 (Smalltalk at: #BVCDevKit) initializeKnowledgeBase.
