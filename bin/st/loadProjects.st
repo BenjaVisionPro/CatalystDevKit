@@ -1,3 +1,5 @@
+GtWorld allInstances first removeShutdownListener; close.
+
 "Load projects"
 Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
@@ -34,7 +36,8 @@ Metacello new
 	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
 	baseline: 'ECharts';
 	load.
-
+	
+"
 Metacello new
 	repository: 'github://BenjaVision/CatalystDevKit:main/src';
 	baseline: 'CatalystDevKit';
@@ -45,5 +48,6 @@ Metacello new
 	repository: 'gitlocal:///opt/git/BenjaVision/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
 	load.
+"
 
 10 seconds wait

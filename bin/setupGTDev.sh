@@ -1,6 +1,7 @@
 #! /usr/bin/env sh
 PROGNAME=$0
 . private/shFeedback
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 start_banner
 
 # download platform specific GT
@@ -10,7 +11,7 @@ downloadLink=https://dl.feenk.com/gt/${downloadFile}
 
 # install location
 information_banner "Creating Install Location: ${installLocation}"
-installLocation=$(PWD)/gt
+installLocation=$SCRIPT_DIR/../IDE
 mkdir -p $installLocation
 
 # download and unzip
@@ -24,18 +25,25 @@ curl -LO "${downloadLink:-}" \
 information_banner "Configure GT for BenjaVision Catalyst DevKit"
 
 if [ "${platform}" = "Mac" ]; then
-	executable=GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli
+	cli=GlamorousToolkit.app/Contents/MacOS/GlamorousToolkit-cli
+	executable=GlamorousToolkit.app
+	bvc=BVCDevKit.app
 elif [  "${platform}" = "Linux" ]; then
-	executable=bin/GlamorousToolkit-cli
+	cli=bin/GlamorousToolkit-cli
+	executable=bin/GlamorousToolkit
+	bvc==bin/BVCDevKit
 elif [  "${platform}" = "Win" ]; then
-	executable=bin/GlamorousToolkit-cli
+	cli=bin/GlamorousToolkit-cli
+	executable=bin/GlamorousToolkit.exe
+	bvc==bin/BVCDevKit.exe
 fi
 
 spinner_start "Installing Projects... "
 
-$installLocation/$executable $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --save --quit
-$installLocation/$executable $installLocation/GlamorousToolkit.image st "st/postLoad.st"   --interactive --save --quit
-
+$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --interactive --save --quit
+$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/postLoad.st"  --interactive --save --quit
+rm "$installLocation/GlamorousToolkit.image" "$installLocation/GlamorousToolkit.changes"
+mv "$installLocation/$executable" "$installLocation/$bvc"
 spinner_stop
 
 information_banner "Setup complete"
