@@ -13,8 +13,8 @@ ANSI_YELLOW="\033[93;1m"
 ANSI_BLUE="\033[96;1m"
 ANSI_RESET="\033[0m"
 
-start=$(date +%s.%N)
-duration=
+#start=$(date +%s.%N)
+#duration=
 #execution_time=
 #calc_time() {
 #	duration=$(echo "$(date +%s.%N) - $start" | bc)
