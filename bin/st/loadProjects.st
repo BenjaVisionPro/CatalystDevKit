@@ -19,6 +19,7 @@ Metacello new
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
 
+
 Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
@@ -28,19 +29,20 @@ Metacello new
   baseline: 'RenoirSt';
   repository: 'github://ba-st/RenoirSt:release-candidate';
   onConflictUseLoaded;
-  load: 'Development'.
+  load: #('Development' 'Development-Seaside-Extensions').
 
 "
-Metacello new
-	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
-	baseline: 'Falcon4Seaside';
-	load.
-
 Metacello new
 	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
 	baseline: 'Boundless';
 	load.
 	
+
+Metacello new
+	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
+	baseline: 'Falcon4Seaside';
+	load.
+
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
 	baseline: 'ECharts';

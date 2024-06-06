@@ -1,7 +1,6 @@
 #! /usr/bin/env sh
 PROGNAME=$0
 . private/shFeedback
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 start_banner
 
 # download platform specific GT
@@ -11,7 +10,7 @@ downloadLink=https://dl.feenk.com/gt/${downloadFile}
 
 # install location
 information_banner "Creating Install Location: ${installLocation}"
-installLocation=$SCRIPT_DIR/../IDE
+installLocation=../IDE
 mkdir -p $installLocation
 
 # download and unzip
