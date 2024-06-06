@@ -42,10 +42,10 @@ Metacello new
 	repository: 'github://BenjaVision/CatalystDevKit:main/src';
 	baseline: 'CatalystDevKit';
 	load.
-"
+
 
 Metacello new
-	repository: 'gitlocal:///opt/git/BenjaVision/CatalystDevKit/src';
+	repository: 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'CatalystDevKit') fullName, '/src';
 	baseline: 'CatalystDevKit';
 	load.
 "

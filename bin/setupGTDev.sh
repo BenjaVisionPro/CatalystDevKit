@@ -6,7 +6,7 @@ start_banner
 
 # download platform specific GT
 set_platform_and_architecture
-downloadFile=`curl -s https://dl.feenk.com/gt/GlamorousToolkit${architecture}-release`
+downloadFile=$(curl -s https://dl.feenk.com/gt/GlamorousToolkit${architecture}-release 2> /dev/null)
 downloadLink=https://dl.feenk.com/gt/${downloadFile}
 
 # install location
