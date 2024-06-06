@@ -1,4 +1,7 @@
+| localRepoPath |
+
 GtWorld allInstances first removeShutdownListener; close.
+localRepoPath := 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'CatalystDevKit') fullName, '/src'.
 
 "Load projects"
 Metacello new
@@ -16,12 +19,18 @@ Metacello new
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
 
-"
 Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
  load: #('CI' 'Zinc' 'Development' 'JQuery').
 
+Metacello new
+  baseline: 'RenoirSt';
+  repository: 'github://ba-st/RenoirSt:release-candidate';
+  onConflictUseLoaded;
+  load: 'Development'.
+
+"
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
 	baseline: 'Falcon4Seaside';
@@ -36,18 +45,11 @@ Metacello new
 	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
 	baseline: 'ECharts';
 	load.
-	
 "
-Metacello new
-	repository: 'github://BenjaVision/CatalystDevKit:main/src';
-	baseline: 'CatalystDevKit';
-	load.
-
 
 Metacello new
-	repository: 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'CatalystDevKit') fullName, '/src';
+	repository: localRepoPath;
 	baseline: 'CatalystDevKit';
 	load.
-"
 
 10 seconds wait

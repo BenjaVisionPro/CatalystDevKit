@@ -69,7 +69,7 @@ spinner_start() {
 	local i=0
 	tput civis # cursor invisible
 
-	{ while : ; do i=$(((i + $charwidth) % ${#spin})) ; printf "%s" "$1 ${spin:$i:$charwidth}" ; echo "\r\c" ; sleep 0.1 ; done  & } 2>/dev/null
+	{ while : ; do i=$(((i + $charwidth) % ${#spin})) ; printf "%s" "$1 ${spin:$i:$charwidth}" ; printf "\r" ; sleep 0.1 ; done  & } 2>/dev/null
 	spinner_pid=$!
 }
 
