@@ -15,21 +15,23 @@ ANSI_RESET="\033[0m"
 
 start=$(date +%s.%N)
 duration=
-execution_time=
-calc_time() {
-	duration=$(echo "$(date +%s.%N) - $start" | bc)
-	execution_time=`printf "%.2f seconds" $duration`
-}
+#execution_time=
+#calc_time() {
+#	duration=$(echo "$(date +%s.%N) - $start" | bc)
+#	execution_time=`printf "%.2f seconds" $duration`
+#}
 
 exit_1_banner() {
-	calc_time
-	printf "${ANSI_RED}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
+#	calc_time
+#	printf "${ANSI_RED}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
+	printf "${ANSI_RED}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\n" "$1" 1>&2
 	exit 1
 }
 
 exit_0_banner() {
-	calc_time
-	printf "${ANSI_GREEN}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
+#	calc_time
+#	printf "${ANSI_GREEN}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\nCompleted in: ${execution_time}\n" "$1" 1>&2
+	printf "${ANSI_GREEN}%s :: $(basename "$0") ${theArgs}${ANSI_RESET}\n" "$1" 1>&2
 	exit 0
 }
 
