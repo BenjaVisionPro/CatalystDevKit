@@ -39,7 +39,7 @@ fi
 
 spinner_start "Installing Projects... "
 
-$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --interactive --save --quit
+$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --save --quit
 $installLocation/$cli $installLocation/GlamorousToolkit.image st "st/postLoad.st"  --interactive --save --quit
 rm "$installLocation/GlamorousToolkit.image" "$installLocation/GlamorousToolkit.changes"
 mv "$installLocation/$executable" "$installLocation/$bvc"

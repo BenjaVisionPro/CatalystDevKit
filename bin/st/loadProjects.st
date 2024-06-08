@@ -1,6 +1,5 @@
 | localRepoPath |
 
-GtWorld allInstances first removeShutdownListener; close.
 localRepoPath := 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'CatalystDevKit') fullName, '/src'.
 
 "Load projects"
@@ -19,7 +18,6 @@ Metacello new
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
 
-
 Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
@@ -37,7 +35,6 @@ Metacello new
 	baseline: 'Boundless';
 	load.
 	
-
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
 	baseline: 'Falcon4Seaside';
