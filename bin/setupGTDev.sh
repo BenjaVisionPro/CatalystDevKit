@@ -30,11 +30,11 @@ if [ "${platform}" = "Mac" ]; then
 elif [  "${platform}" = "Linux" ]; then
 	cli=bin/GlamorousToolkit-cli
 	executable=bin/GlamorousToolkit
-	bvc==bin/BVCDevKit
+	bvc=bin/BVCDevKit
 elif [  "${platform}" = "Win" ]; then
 	cli=bin/GlamorousToolkit-cli
 	executable=bin/GlamorousToolkit.exe
-	bvc==bin/BVCDevKit.exe
+	bvc=bin/BVCDevKit.exe
 fi
 
 spinner_start "Installing Projects... "
