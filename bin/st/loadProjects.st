@@ -33,7 +33,8 @@ Metacello new
 	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
 	baseline: 'Boundless';
 	load.
-	
+
+
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
 	baseline: 'Falcon4Seaside';
