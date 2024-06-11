@@ -22,3 +22,25 @@ int main(int argc, char **argv)
       printf("%s:%s:%d\n",[OwnerName UTF8String],[WindowName UTF8String],WindowNum);
    }
 }
+
+
+void test() {
+	NSArray* windowList = (__bridge NSArray*)CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+	uint32_t maxDisplayCount = 10;
+	CGDirectDisplayID onlineDisplayIDs[maxDisplayCount];
+	uint32_t displayCount;
+	CGGetOnlineDisplayList(maxDisplayCount, (CGDirectDisplayID*)&onlineDisplayIDs, &displayCount);
+	for(uint32_t i = 0; i < displayCount; ++i)
+	{
+		CGRect dspyRect = CGDisplayBounds(onlineDisplayIDs[i]);
+		for(NSDictionary* windowDict in windowList)
+		{
+			CGRect windowRect;
+			CGRectMakeWithDictionaryRepresentation((__bridge CFDictionaryRef)(windowDict[(id)kCGWindowBounds]), &windowRect);
+			if(CGRectContainsRect(dspyRect, windowRect))
+			{
+				NSLog(@"window %@ is on screen with ID:%d", windowDict[(id)kCGWindowName], onlineDisplayIDs[i]);
+			}
+		}
+	}
+}

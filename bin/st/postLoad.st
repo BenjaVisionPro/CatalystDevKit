@@ -1,10 +1,15 @@
-(BlParallelUniverse all detect: [ :u | u hostClass == BlMorphicWindowHost ]) 
-	ifNotNil: [ :pu |
-		pu spaces do: #close.
-		pu
-			tryToRunDeferredActions;
-			stopUniverse.
-	].
+5 second wait.
+GtWorld allInstances first removeShutdownListener.
 
+BlParallelUniverse all do: [ :universe | 
+	universe spaces do: #close.
+	universe tryToRunDeferredActions.
+	1 second wait.
+	universe hostClass == BIMorphicWindowHost ifTrue: [ universe stopUniverse ].
+].
+
+5 second wait.
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
+5 second wait.
+SmalltalkImage current saveAs: 'BVCDevKit'.
