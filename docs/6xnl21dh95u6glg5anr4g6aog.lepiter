@@ -190,7 +190,7 @@
 				"string" : "Commands used in this section (for those who don't like to read)"
 			},
 			{
-				"__type" : "textSnippet",
+				"__type" : "shellCommandSnippet",
 				"children" : {
 					"__type" : "snippets",
 					"items" : [ ]
@@ -203,7 +203,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:54:46.218353+10:00"
+						"dateAndTimeString" : "2024-06-15T07:26:56.883636+10:00"
 					}
 				},
 				"editEmail" : {
@@ -214,17 +214,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:54:46.218353+10:00"
+						"dateAndTimeString" : "2024-06-15T07:27:07.89511+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "TLRwrU/VDQCeYCYeBmEjdQ=="
+					"uidString" : "dtAWA0LXDQCurkL0DmTzGg=="
 				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "```\nexport STONES_HOME=/opt/GsDevKit\nsudo mkdir -p $STONES_HOME/git\nsudo chown -R $USER $STONES_HOME\ncd $STONES_HOME/git\ngit clone git@github.com:GsDevKit/GsDevKit_stones.git\ncd $STONES_HOME/git/GsDevKit_stones/bin\n./install.sh\n```"
+				"code" : "export STONES_HOME=/opt/GsDevKit\nsudo mkdir -p $STONES_HOME/git\nsudo chown -R $USER $STONES_HOME\ncd $STONES_HOME/git\ngit clone git@github.com:GsDevKit/GsDevKit_stones.git\ncd $STONES_HOME/git/GsDevKit_stones/bin\n./install.sh"
 			},
 			{
 				"__type" : "textSnippet",

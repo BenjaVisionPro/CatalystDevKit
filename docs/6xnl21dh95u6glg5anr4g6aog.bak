@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T13:22:00.826146+10:00"
+						"dateAndTimeString" : "2024-05-21T13:22:05.046531+10:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "**NOTE: If you are using the BVC DevKit to manage the installer (highly recommended), you do not need to perform this setup.**"
+				"string" : "**NOTE: If you are using the BVC DevKit to manage the installation (highly recommended), you do not need to perform this setup.**"
 			},
 			{
 				"__type" : "textSnippet",
@@ -188,6 +188,40 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Commands used in this section (for those who don't like to read)"
+			},
+			{
+				"__type" : "shellCommandSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-15T07:26:56.883636+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-06-15T07:26:56.883636+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "dtAWA0LXDQCurkL0DmTzGg=="
+				},
+				"code" : ""
 			},
 			{
 				"__type" : "textSnippet",
