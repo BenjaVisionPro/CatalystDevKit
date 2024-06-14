@@ -152,8 +152,10 @@ cd "$stonesGitRoot"
 info "Cloning GsDevKit_stones in $stonesGitInstall" 1
 git clone git@github.com:GsDevKit/GsDevKit_stones.git
 cd "$stonesGitInstall"
+#info "Switching to cf28c96b7 of GsDevKit_stones" 2
+#git checkout cf28c96b7
 info "Switching to cf28c96b7 of GsDevKit_stones" 2
-git checkout cf28c96b7
+git checkout v2.1
 cd "$stonesGitInstall/bin"
 info "Installing GsDevKit_stones and superDoit" 1
 ./install.sh
@@ -172,7 +174,7 @@ cd $workingDirectory
 
 # Setup BVC
 #./installBVC.sh
-#./installBVCRowan.sh
+./installBVCRowan.sh
 
 
 
