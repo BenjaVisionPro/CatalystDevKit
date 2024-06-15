@@ -8,7 +8,6 @@ BlParallelUniverse all do: [ :universe |
 ].
 5 second wait.
 
-
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
 5 second wait.
