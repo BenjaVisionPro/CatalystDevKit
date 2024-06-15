@@ -14,6 +14,14 @@ BVCDevKitHome >> backgroundIcon [
 		yourself
 ]
 
+{ #category : #accessing }
+BVCDevKitHome >> collectHomeSectionStencils [
+	^ self homeSectionCollector
+		fromObject: self;
+		to: self class;
+		collect
+]
+
 { #category : #building }
 BVCDevKitHome >> createVersionLabel [
 	^ BrButton new 
