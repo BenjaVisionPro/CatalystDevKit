@@ -10,6 +10,6 @@ BlParallelUniverse all do: [ :universe |
 
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
-30 second wait.
+60 second wait.
 SmalltalkImage current saveAs: 'BVCDevKit'.
-30 second wait.
+60 second wait.
