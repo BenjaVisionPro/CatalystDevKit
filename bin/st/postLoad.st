@@ -6,10 +6,13 @@ BlParallelUniverse all do: [ :universe |
 	1 second wait.
 	universe hostClass == BIMorphicWindowHost ifTrue: [ universe stopUniverse ].
 ].
-20 second wait.
+5 second wait.
 
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
-60 second wait.
+5 second wait.
+
+"
 SmalltalkImage current saveAs: 'BVCDevKit'.
 60 second wait.
+"
