@@ -6,7 +6,7 @@ Metacello new
    baseline: 'Futures';
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
-
+"
 Metacello new
  baseline:'Seaside3';
  repository: 'github://SeasideSt/Seaside:master/repository';
@@ -18,7 +18,7 @@ Metacello new
   onConflictUseLoaded;
   load: #('Development' 'Development-Seaside-Extensions').
 
-"
+
 Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
 	baseline: 'Gt4Llm';
