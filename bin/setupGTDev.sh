@@ -16,8 +16,8 @@ mkdir -p $installLocation
 # download and unzip
 downloadLink=https://dl.feenk.com/gt/${downloadFile}
 information_banner "Downloading from: ${downloadLink}"
-#curl -LO "${downloadLink:-}" \
-cp ../$downloadFile . \
+#cp ../$downloadFile . \
+curl -LO "${downloadLink:-}" \
 && unzip -qq -d "${installLocation}" "${downloadFile}" \
 && rm "${downloadFile}"
 
@@ -40,8 +40,9 @@ fi
 
 spinner_start "Installing Projects... "
 
-$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --save --quit
-$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/postLoad.st"  --interactive --save --quit
+$installLocation/$cli $installLocation/GlamorousToolkit.image st "st/preLoad.st"  --interactive --save --quit
+$installLocation/$cli $installLocation/BVCDevKit.image st "st/loadProjects.st" --save --quit
+$installLocation/$cli $installLocation/BVCDevKit.image st "st/postLoad.st"  --interactive --save --quit
 rm "$installLocation/GlamorousToolkit.image" "$installLocation/GlamorousToolkit.changes"
 mv "$installLocation/$executable" "$installLocation/$bvc"
 
