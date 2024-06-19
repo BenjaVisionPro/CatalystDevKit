@@ -16,7 +16,8 @@ mkdir -p $installLocation
 # download and unzip
 downloadLink=https://dl.feenk.com/gt/${downloadFile}
 information_banner "Downloading from: ${downloadLink}"
-curl -LO "${downloadLink:-}" \
+#curl -LO "${downloadLink:-}" \
+cp ../$downloadFile . \
 && unzip -qq -d "${installLocation}" "${downloadFile}" \
 && rm "${downloadFile}"
 
@@ -41,7 +42,7 @@ spinner_start "Installing Projects... "
 
 $installLocation/$cli $installLocation/GlamorousToolkit.image st "st/loadProjects.st"  --save --quit
 $installLocation/$cli $installLocation/GlamorousToolkit.image st "st/postLoad.st"  --interactive --save --quit
-#rm "$installLocation/GlamorousToolkit.image" "$installLocation/GlamorousToolkit.changes"
+rm "$installLocation/GlamorousToolkit.image" "$installLocation/GlamorousToolkit.changes"
 mv "$installLocation/$executable" "$installLocation/$bvc"
 
 if [ "${platform}" = "Win" ]; then

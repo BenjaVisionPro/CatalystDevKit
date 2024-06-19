@@ -51,4 +51,4 @@ Metacello new
 	baseline: 'CatalystDevKit';
 	load.
 
-30 seconds wait
+2 seconds wait

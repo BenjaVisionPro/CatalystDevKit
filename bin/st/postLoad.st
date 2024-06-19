@@ -1,18 +1,14 @@
 5 second wait.
 GtWorld allInstances first removeShutdownListener.
 BlParallelUniverse all do: [ :universe | 
-	universe spaces do: #close.
-	universe tryToRunDeferredActions.
-	1 second wait.
-	universe hostClass == BIMorphicWindowHost ifTrue: [ universe stopUniverse ].
+	universe spaces ifNotEmpty: [ 
+		universe spaces do: [ :space | universe closeSpaceSynchronously: space].
+	].
+	universe hostClass == BIMorphicWindowHost ifTrue: [ 
+		universe stopUniverse
+	].
 ].
-5 second wait.
-
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
-5 second wait.
-
-"
+2 second wait.
 SmalltalkImage current saveAs: 'BVCDevKit'.
-60 second wait.
-"
