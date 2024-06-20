@@ -1,4 +1,4 @@
 1 second wait.
 BVCDevKit initializeKnowledgeBase.
-BVCDevKitWorld openDefault addShutdownListener.
+BVCDevKitWorld openDefault.
 Smalltalk garbageCollect; garbageCollect; garbageCollect.
