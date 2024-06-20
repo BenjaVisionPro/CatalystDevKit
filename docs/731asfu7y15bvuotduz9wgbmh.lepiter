@@ -287,14 +287,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-28T11:27:52.044204+10:00"
+									"dateAndTimeString" : "2024-06-21T08:42:55.827706+10:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "QY5xH8LRDQCsG/OKDRCEhA=="
 							},
-							"code" : "connector := GtGemStoneSessionRegistry default propertiesFile addNewConnector.\rconnector\r\tname: 'CatalystDevKit-Local';\r\thost: 'jupiter.local';\n\tlibraryPath: '/opt/GsDevKit/gtDev/clientlibs' asFileReference;\r\tgemstoneVersion: '3.7.1';\r\tstone: 'gt';\r\tnetldi: 'gt_ldi';\r\tusername: 'SystemUser';\r\tpassword: 'swordfish';\r\thostUsername: 'jupiter';\r\thostPassword: 'c0nf0und'.\rconnector notifyUpdated."
+							"code" : "connector := GtGemStoneSessionRegistry default propertiesFile addNewConnector.\rconnector\r\tname: 'CatalystDevKit-Local';\r\thost: 'jupiter.local';\n\tlibraryPath: '/opt/GsDevKit/gtDev/clientlibs' asFileReference;\r\tgemstoneVersion: '3.7.1';\r\tstone: 'gt';\r\tnetldi: 'gt_ldi';\r\tusername: 'SystemUser';\r\tpassword: 'swordfish';\r\thostUsername: 'jupiter';\r\thostPassword: '<PASSWORD>'.\rconnector notifyUpdated."
 						},
 						{
 							"__type" : "textSnippet",
