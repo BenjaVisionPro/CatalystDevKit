@@ -15,6 +15,7 @@ BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 		priority: 10;
 		pageName: self bvcDevKitBookName;
 		databaseName: self bvcDevKitBookName;
+		readMoreToolbar;
 		details: [ :db | 
 			| snippets |
 			snippets := db pages flatCollect: #allChildrenDepthFirst.
