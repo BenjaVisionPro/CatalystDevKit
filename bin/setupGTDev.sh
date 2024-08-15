@@ -47,9 +47,9 @@ $installLocation/$cli $installLocation/BVCDevKit.image st "st/loadProjects.st" -
 $installLocation/$cli $installLocation/BVCDevKit.image st "st/postLoad.st"  --interactive --save --quit
 mv "$installLocation/$executable" "$installLocation/$bvc"
 
-if [ "${platform}" = "Win" ]; then
-	#ln -s "$installLocation/$bvc" "$installLocation/BVCDevKit.exe"
-fi
+#if [ "${platform}" = "Win" ]; then
+#	ln -s "$installLocation/$bvc" "$installLocation/BVCDevKit.exe"
+#fi
 
 spinner_stop
 
