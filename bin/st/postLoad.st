@@ -2,4 +2,4 @@
 BVCDevKit initializeKnowledgeBase.
 BVCDevKitWorld openDefault.
 Smalltalk garbageCollect; garbageCollect; garbageCollect.
-10 seconds wait.
+5 seconds wait.
