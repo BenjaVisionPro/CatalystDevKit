@@ -1,3 +1,6 @@
+"
+I am responsible for generating and authenticating license certificates.
+"
 Class {
 	#name : #BVCLicenseTool,
 	#superclass : #Object,
