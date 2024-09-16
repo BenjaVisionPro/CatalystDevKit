@@ -33,6 +33,7 @@ github-*.zip
 # mac
 .DS_Store
 
-# GT
-/IDE
+# BenjaVision Catalyst
+IDE
+UE/*
 *.zip

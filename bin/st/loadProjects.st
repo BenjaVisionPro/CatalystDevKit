@@ -2,10 +2,23 @@
 localRepoPath := 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'CatalystDevKit') fullName, '/src'.
 
 "Load projects"
+
+"
 Metacello new
    baseline: 'Futures';
    repository: 'github://feenkcom/pharo-futures:main/src';
    load.
+
+Metacello new
+	repository: 'github://feenkcom/gt4llm:main/src';
+	baseline: 'Gt4Llm';
+	load.
+
+Metacello new
+	repository: 'github://feenkcom/gt4llm:main/src';
+	baseline: 'Gt4OpenAI';
+	load.
+"
 
 Metacello new
  baseline:'Seaside3';
@@ -18,23 +31,10 @@ Metacello new
   onConflictUseLoaded;
   load: #('Development' 'Development-Seaside-Extensions').
 
-"
-Metacello new
-	repository: 'github://feenkcom/gt4llm:main/src';
-	baseline: 'Gt4Llm';
-	load.
-
-Metacello new
-	repository: 'github://feenkcom/gt4llm:main/src';
-	baseline: 'Gt4OpenAI';
-	load.
-
-
 Metacello new
 	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';
 	baseline: 'Boundless';
 	load.
-
 
 Metacello new
 	repository: 'gitlocal:///opt/git/JupiterJones/Falcon4Seaside/src';
@@ -45,7 +45,7 @@ Metacello new
 	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
 	baseline: 'ECharts';
 	load.
-"
+
 
 Metacello new
 	repository: localRepoPath;
