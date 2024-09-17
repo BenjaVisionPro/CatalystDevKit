@@ -287,14 +287,14 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-28T11:27:52.044204+10:00"
+									"dateAndTimeString" : "2024-06-21T08:42:55.827706+10:00"
 								}
 							},
 							"uid" : {
 								"__type" : "uid",
 								"uidString" : "QY5xH8LRDQCsG/OKDRCEhA=="
 							},
-							"code" : "connector := GtGemStoneSessionRegistry default propertiesFile addNewConnector.\rconnector\r\tname: 'CatalystDevKit-Local';\r\thost: 'jupiter.local';\n\tlibraryPath: '/opt/GsDevKit/gtDev/clientlibs' asFileReference;\r\tgemstoneVersion: '3.7.1';\r\tstone: 'gt';\r\tnetldi: 'gt_ldi';\r\tusername: 'SystemUser';\r\tpassword: 'swordfish';\r\thostUsername: 'jupiter';\r\thostPassword: 'c0nf0und'.\rconnector notifyUpdated."
+							"code" : "connector := GtGemStoneSessionRegistry default propertiesFile addNewConnector.\rconnector\r\tname: 'CatalystDevKit-Local';\r\thost: 'jupiter.local';\n\tlibraryPath: '/opt/GsDevKit/gtDev/clientlibs' asFileReference;\r\tgemstoneVersion: '3.7.1';\r\tstone: 'gt';\r\tnetldi: 'gt_ldi';\r\tusername: 'SystemUser';\r\tpassword: 'swordfish';\r\thostUsername: 'jupiter';\r\thostPassword: '<PASSWORD>'.\rconnector notifyUpdated."
 						},
 						{
 							"__type" : "textSnippet",
@@ -463,7 +463,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2024-04-06T10:11:57.159489+11:00"
+									"dateAndTimeString" : "2024-09-18T05:21:36.171812+10:00"
 								}
 							},
 							"uid" : {
@@ -473,7 +473,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "Let's test the connection. At the top, right of the snippet below there is a gemstone popup where you can select the session you want to use when running this snippet, or create a new session based on one of your connections."
+							"string" : "Let's test the connection. At the top, right of the snippet below there is a gemstone popup where you can select the session you want to use when running this snippet, or create a new session based on one of your connections. If you're interacting with a single server there will be one connection, however, you can connect to as many servers as you want and interact with each of them independently."
 						},
 						{
 							"__type" : "gemstoneSnippet",
@@ -642,14 +642,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-05T22:55:40.44211+11:00"
+						"dateAndTimeString" : "2024-09-18T05:20:11.867487+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "OJTZLLnRDQCQzd2UCrepdw=="
 				},
-				"code" : "Catalyst validateAndInstallLicence: '<paste you license in here>'"
+				"code" : "Catalyst validateAndInstallLicence: '<paste your license in here>'"
 			}
 		]
 	},

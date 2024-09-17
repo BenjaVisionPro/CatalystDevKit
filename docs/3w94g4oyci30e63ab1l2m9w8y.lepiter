@@ -224,7 +224,7 @@
 				"exampleSelector" : "umlClasses",
 				"previewHeight" : 500,
 				"previewShowSelector" : "gtLiveFor:",
-				"exampleBehaviorName" : "BVCInfrastructureExamples",
+				"exampleBehaviorName" : "BVCCatalystExamples",
 				"codeExpanded" : true,
 				"previewExpanded" : true,
 				"noCode" : true

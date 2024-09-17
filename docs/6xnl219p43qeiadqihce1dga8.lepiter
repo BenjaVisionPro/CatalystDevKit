@@ -214,7 +214,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:28:19.370521+10:00"
+						"dateAndTimeString" : "2024-09-18T05:34:51.163387+10:00"
 					}
 				},
 				"uid" : {
@@ -224,7 +224,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "That covers about 95% of what we developers will need when working with GemStone. So for most of us, GsDevKit_stones gives us the power and commercial advantage that GemStone offers, without the need for a bunch of highly skilled hardware, deployment, and data experts on hand."
+				"string" : "That covers about 95% of what we developers will need when working with GemStone. So for most of us, GsDevKit_stones gives us the power and commercial advantage that GemStone offers, without the need for a bunch of highly skilled hardware, deployment, and distributed data experts on hand."
 			},
 			{
 				"__type" : "textSnippet",
@@ -362,7 +362,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:15:49.208878+10:00"
+						"dateAndTimeString" : "2024-09-18T05:43:52.071737+10:00"
 					}
 				},
 				"uid" : {
@@ -372,7 +372,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "You can kinda think of a “stone” like you think of a database, although it’s far more powerful than that."
+				"string" : "If the above doesn't open your mind to the infinite possibilities, then you can kinda think of GemStone like you think of an old-school database like Oracle, PostgreSQL, Couchbase, or pretty much any other database. It's not a good analogy since GemStone far more capable than that, but it's an adequate first step to understanding the full power of GemStone."
 			},
 			{
 				"__type" : "textSnippet",
@@ -499,7 +499,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:15:43.337677+10:00"
+						"dateAndTimeString" : "2024-09-18T05:30:24.052124+10:00"
 					}
 				},
 				"editEmail" : {
@@ -510,7 +510,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-05-21T12:16:07.869226+10:00"
+						"dateAndTimeString" : "2024-09-18T05:31:47.245349+10:00"
 					}
 				},
 				"uid" : {
@@ -520,7 +520,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "You can rest assured that once your machine is “stoned”, everything will be smooth sailing."
+				"string" : "This is  one of the objective examples where something being stoned makes it substantailly more powerful and amazing."
 			}
 		]
 	},
