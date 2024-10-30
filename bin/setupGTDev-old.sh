@@ -22,12 +22,11 @@ curl -LO "${downloadLink:-}" \
 && rm "${downloadFile}"
 
 # download and unzip image
-#information_banner "Downloading Base Image"
-#curl -LO "https://github.com/feenkcom/gtoolkit/releases/latest/download/GlamorousToolkit-image-without-world.zip" \
-#&& unzip -qq -d "./image-without-world" "GlamorousToolkit-image-without-world"
-#&& unzip -qq -d "${installLocation}" "GlamorousToolkit-image-without-world"
+information_banner "Downloading GlamorousToolkit-image-without-world.zip"
+curl -LO "https://github.com/feenkcom/gtoolkit/releases/latest/download/GlamorousToolkit-image-without-world.zip" \
+&& unzip -qq -d "${installLocation}" "GlamorousToolkit-image-without-world"
 
- 
+
 # install stuff in gt
 information_banner "Configure GT for BenjaVision Catalyst DevKit"
 
