@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T07:26:59.427165+11:00"
+						"dateAndTimeString" : "2024-11-11T09:23:44.999148+11:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "We want to have planets, then a solar system (multiple planets orbiting a star), then a star system (multiple solar systems)"
+				"string" : "We want to have planets, then a solar system (multiple planets orbiting a star), then a star system (multiple solar systems), the galaxies (multiple star systems)"
 			},
 			{
 				"__type" : "textSnippet",
@@ -111,6 +111,219 @@
 					"uidString" : "UyZtjvbiDQCzPsqFBqNyQw=="
 				},
 				"code" : "universe := BVCUniverse new"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:17:57.733346+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:18:13.890971+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4pniF/jiDQCKQ5eRDY7sxQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Give it some labelling"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:18:19.621686+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:19:38.029908+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vJcwGfjiDQCKt5CADY7sxQ=="
+				},
+				"code" : "universe\r\ttitle: 'DevUniverse';\r\tcomment: 'A universe for development and testing'"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:22:55.583831+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:24:17.625673+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "RPr1KPjiDQCNbxcnDY7sxQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "add a Galaxy"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:25:57.079945+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T09:32:40.688132+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "N9t0NPjiDQCPZEzHDY7sxQ=="
+				},
+				"code" : "galaxy := BVCGalaxy new\r\t\ttitle: 'Milky Way';\r\t\tcomment: 'The galaxy that contains Earth and the star systems of the game';\r\t\tyourself.\runiverse galaxies add: galaxy"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T10:40:55.559446+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T10:41:06.780335+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4TCWQPniDQCTZMe/DY7sxQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "now for a star system"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T10:41:11.512575+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-11-11T10:52:09.606194+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "aJyJQfniDQCULUSbDY7sxQ=="
+				},
+				"code" : "starSystem := BVCStarSystem new\r\t\ttitle: '';\r\t\tcomment: 'The star system that contains Earth';\r\t\tyourself.\rgalaxy starSystems add: starSystem"
 			}
 		]
 	},

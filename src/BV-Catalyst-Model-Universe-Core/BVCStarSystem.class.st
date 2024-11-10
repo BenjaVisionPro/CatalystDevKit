@@ -1,19 +1,14 @@
 Class {
-	#name : #BVCUniverse,
+	#name : #BVCStarSystem,
 	#superclass : #BVCCelestialBody,
 	#instVars : [
-		'galaxies'
+		'bodies'
 	],
 	#category : #'BV-Catalyst-Model-Universe-Core'
 }
 
-{ #category : #accessing }
-BVCUniverse >> galaxies [
-	^ galaxies
-]
-
 { #category : #'as yet unclassified' }
-BVCUniverse >> initialize [
+BVCStarSystem >> initialize [
 	super initialize.
-	galaxies := OrderedCollection new.
+	bodies := OrderedCollection new.
 ]
