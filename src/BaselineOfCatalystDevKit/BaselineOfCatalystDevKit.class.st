@@ -43,7 +43,9 @@ BaselineOfCatalystDevKit >> baseline: spec [
 				package: 'BV-Catalyst-Architect-Core'
 					with: [ spec requires: #('BV-Catalyst-Store-Core') ];
 				package: 'BV-Catalyst-Examples-Core';
-				package: 'BV-Catalyst-Setup-Core' ].
+				package: 'BV-Catalyst-Setup-Core';
+				package: 'BV-Catalyst-Model-Universe-Core'
+					with: [ spec requires: #('BV-Catalyst-Store-Core') ] ].
 	spec for: #pharo do: [ spec package: 'BV-Catalyst-DevKit-Core' ].
 	^ spec
 ]
