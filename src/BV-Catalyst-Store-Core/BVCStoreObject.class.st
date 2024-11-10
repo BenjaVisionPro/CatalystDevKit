@@ -1,3 +1,6 @@
+"
+I am the root of all objects that support storage in Catalyst:Store and transport via Catalyst:Connect
+"
 Class {
 	#name : #BVCStoreObject,
 	#superclass : #Object,

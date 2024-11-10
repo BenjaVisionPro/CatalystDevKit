@@ -735,7 +735,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-25T09:35:00.452797+10:00"
+						"dateAndTimeString" : "2024-11-11T07:25:00.969868+11:00"
 					}
 				},
 				"uid" : {
@@ -745,7 +745,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : ""
+				"string" : "{{gtPage:Building a Universe|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type" : "textSnippet",
