@@ -18,7 +18,7 @@ Metacello new
 	repository: 'github://feenkcom/gt4llm:main/src';
 	baseline: 'Gt4OpenAI';
 	load.
-"
+
 
 Metacello new
  baseline:'Seaside3';
@@ -45,7 +45,7 @@ Metacello new
 	repository: 'gitlocal:///opt/git/JupiterSmalltalk/echarts4seaside/src';
 	baseline: 'ECharts';
 	load.
-
+"
 
 Metacello new
 	repository: localRepoPath;
