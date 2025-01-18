@@ -74,13 +74,4 @@ information_banner "Starting Stone $stoneName"
 startStone.solo --registry=$registryName $stoneName -b
 gslist.solo -l
 
-information_banner "Installing tODE in stone $stoneName"
-cd $projectPath/stones/$stoneName
-loadTode.stone --projectDirectory=$projectPath/git
-# todeIt.stone --file=$STONES_HOME/git/GsDevKit_stones/tode/setUpSys_1
-# validateStoneSysNodes.stone --todeHome=$todeHome --stoneName=$stoneName \
-#	--files --repair $*
-# todeIt.stone --file=$STONES_HOME/git/GsDevKit_stones/tode/setUpSys_2
-
-# Restore working directory
 cd $workingDirectory

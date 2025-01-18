@@ -154,14 +154,16 @@ git clone git@github.com:GsDevKit/GsDevKit_stones.git
 cd "$stonesGitInstall"
 #info "Switching to cf28c96b7 of GsDevKit_stones" 2
 #git checkout cf28c96b7
+info "Switching to cf28c96b7 of GsDevKit_stones" 2
+git checkout v2.1
 cd "$stonesGitInstall/bin"
 info "Installing GsDevKit_stones and superDoit" 1
 ./install.sh
 
 # Switch to superDoit v4.2
-#info "Switching to v4.2 of superDoit" 2
-#cd "$superDoitRoot"
-#git checkout v4.2
+info "Switching to v4.2 of superDoit" 2
+cd "$superDoitRoot"
+git checkout v4.2
 
 # Configure Shared Memory
 info "Configure Shared Memory" 2
