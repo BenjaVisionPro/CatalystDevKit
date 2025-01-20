@@ -236,14 +236,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:46.064057+11:00"
+						"dateAndTimeString" : "2025-01-21T06:44:54.851461+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: true."
+				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: false."
 			},
 			{
 				"__type" : "pharoSnippet",

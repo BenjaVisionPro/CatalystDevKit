@@ -236,14 +236,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:46.064057+11:00"
+						"dateAndTimeString" : "2025-01-21T06:44:54.68236+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: true."
+				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: fals."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -474,14 +474,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T15:11:41.319373+11:00"
+						"dateAndTimeString" : "2025-01-20T15:12:02.352503+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "qY+VeXjoDQCUR4aBCzyDUw=="
 				},
-				"code" : "import unreal\r.get_game_name();\rversion = unreal.SystemLibrary.get_engine_version();"
+				"code" : "import unreal\rgameName = sysLib.get_game_name();\rversion = sysLib.get_engine_version();"
 			},
 			{
 				"__type" : "pythonSnippet",
