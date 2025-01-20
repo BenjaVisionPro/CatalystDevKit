@@ -251,14 +251,88 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-08-06T16:01:02.628916+10:00"
+						"dateAndTimeString" : "2024-08-06T16:03:26.96804+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "v6Lc9QPXDQCwKjhiCq4TKw=="
 				},
-				"code" : "BVCDevKitWorld\n\tspaceWithId: BVCDevKitWorld defaultId\n\tdo: [ :theWorld | theWorld root properties fontSizeEm: 1.08 ]"
+				"code" : "BVCDevKitWorld\n\tspaceWithId: BVCDevKitWorld defaultId\n\tdo: [ :theWorld | theWorld root properties fontSizeEm: 1.05 ]"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-19T11:12:41.478242+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-19T11:13:32.243316+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yIoWvWXoDQCl5FpgCtgiWA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Classes that start with BVC are generic to any game using the BenjaVisionCatalyst DevKit"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-19T11:12:55.843424+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-19T11:13:13.981719+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "l0cYvmXoDQCm/bORCtgiWA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Classes that start with TGC are specific to ThatGameCatalyst"
 			}
 		]
 	},
