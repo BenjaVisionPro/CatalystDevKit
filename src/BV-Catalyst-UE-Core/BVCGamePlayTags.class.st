@@ -139,17 +139,7 @@ BVCGamePlayTags class >> attributesUtilityAssistTagRoot [
 
 { #category : #examples }
 BVCGamePlayTags class >> attributesUtilityElectronicsTagRoot [
-	^ (BVCGamePlayTag tag: 'Electronics')
-		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
-		addChild: (BVCGamePlayTag tag: 'ChemLauncherSkillPower');
-		addChild: (BVCGamePlayTag tag: 'DroneSkillPower');
-		addChild: (BVCGamePlayTag tag: 'FireflySkillPower');
-		addChild: (BVCGamePlayTag tag: 'HiveSkillPower');
-		addChild: (BVCGamePlayTag tag: 'PulseSkillPower');
-		addChild: (BVCGamePlayTag tag: 'SeekerSkillPower');
-		addChild: (BVCGamePlayTag tag: 'ShieldSkillPower');
-		addChild: (BVCGamePlayTag tag: 'TurretSkillPower');
-		yourself
+	^ self templateElectronicsTagRoot
 ]
 
 { #category : #examples }
@@ -475,17 +465,7 @@ BVCGamePlayTags class >> coreUtilityAssistTagRoot [
 
 { #category : #examples }
 BVCGamePlayTags class >> coreUtilityElectronicsTagRoot [
-	^ (BVCGamePlayTag tag: 'Electronics')
-		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
-		addChild: (BVCGamePlayTag tag: 'ChemLauncherSkillPower');
-		addChild: (BVCGamePlayTag tag: 'DroneSkillPower');
-		addChild: (BVCGamePlayTag tag: 'FireflySkillPower');
-		addChild: (BVCGamePlayTag tag: 'HiveSkillPower');
-		addChild: (BVCGamePlayTag tag: 'PulseSkillPower');
-		addChild: (BVCGamePlayTag tag: 'SeekerSkillPower');
-		addChild: (BVCGamePlayTag tag: 'ShieldSkillPower');
-		addChild: (BVCGamePlayTag tag: 'TurretSkillPower');
-		yourself
+	^ self templateElectronicsTagRoot
 ]
 
 { #category : #examples }
@@ -537,5 +517,20 @@ BVCGamePlayTags class >> tagRoot [
 		addChild: self coreTagRoot;
 		addChild: self attributesTagRoot;
 		addChild: (BVCGamePlayTag tag: 'Statistics');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateElectronicsTagRoot [
+	^ (BVCGamePlayTag tag: 'Electronics')
+		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
+		addChild: (BVCGamePlayTag tag: 'LauncherSkillPower');
+		addChild: (BVCGamePlayTag tag: 'DroneSkillPower');
+		addChild: (BVCGamePlayTag tag: 'FireflySkillPower');
+		addChild: (BVCGamePlayTag tag: 'HiveSkillPower');
+		addChild: (BVCGamePlayTag tag: 'PulseSkillPower');
+		addChild: (BVCGamePlayTag tag: 'SeekerSkillPower');
+		addChild: (BVCGamePlayTag tag: 'ShieldSkillPower');
+		addChild: (BVCGamePlayTag tag: 'TurretSkillPower');
 		yourself
 ]
