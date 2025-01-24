@@ -134,14 +134,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:14:56.79896+11:00"
+						"dateAndTimeString" : "2025-01-21T09:00:24.518102+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
 				},
-				"code" : "FileLocator imageDirectory parent / 'ueBridge'"
+				"code" : "BVCDevKitWorld open"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -168,14 +168,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:15:52.515297+11:00"
+						"dateAndTimeString" : "2025-01-21T10:06:27.001426+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "QGbySG3oDQCslKjYD/Mc5w=="
 				},
-				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory parent / 'ueBridge') ensureCreateDirectory"
+				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory / 'bvcUEBridge') ensureCreateDirectory"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -236,14 +236,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T06:44:54.68236+11:00"
+						"dateAndTimeString" : "2025-01-21T06:44:54.851461+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: fals."
+				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: false."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -440,7 +440,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T15:11:36.844242+11:00"
+						"dateAndTimeString" : "2025-01-21T09:53:27.830974+11:00"
 					}
 				},
 				"uid" : {

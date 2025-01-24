@@ -14,7 +14,7 @@ Class {
 		'parent',
 		'children'
 	],
-	#category : #'BV-Catalyst-ACF-Core'
+	#category : #'BV-Catalyst-UE-Core'
 }
 
 { #category : #'instance creation' }

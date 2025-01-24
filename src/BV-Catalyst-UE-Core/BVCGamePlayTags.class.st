@@ -4,7 +4,7 @@ I am just a convenience class for creating an example of a full set of gameplay 
 Class {
 	#name : #BVCGamePlayTags,
 	#superclass : #Object,
-	#category : #'BV-Catalyst-ACF-Core'
+	#category : #'BV-Catalyst-UE-Core'
 }
 
 { #category : #examples }

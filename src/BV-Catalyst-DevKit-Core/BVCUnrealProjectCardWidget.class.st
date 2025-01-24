@@ -1,0 +1,503 @@
+Class {
+	#name : #BVCUnrealProjectCardWidget,
+	#superclass : #BrVerticalPane,
+	#instVars : [
+		'registry',
+		'sessionList',
+		'elementUpdater'
+	],
+	#category : #'BV-Catalyst-DevKit-Core-UI'
+}
+
+{ #category : #'instance creation' }
+BVCUnrealProjectCardWidget class >> addToHomeSectionCardsContainer: cardsContainer in: aGtHomeSection [
+
+	cardsContainer
+		addChild: (BrFrame new
+			background: Color white;
+			aptitude: BrShadowAptitude new beLarge;
+			geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
+			padding: (BlInsets top: 0 bottom: 10 left: 10 right: 10);
+			margin: (BlInsets
+				top: aGtHomeSection spaceGap
+				left: 2 * aGtHomeSection spaceGap
+				bottom: 2 * aGtHomeSection spaceGap
+				right: 2 * aGtHomeSection spaceGap);
+			size: 325 @ 150;
+			addChild: (self new
+				matchParent;
+				constraintsDo: [ :c | 
+					c frame horizontal alignLeft.
+					c frame vertical alignCenter ]))
+]
+
+{ #category : #callbacks }
+BVCUnrealProjectCardWidget >> actOnGemStoneSessionAnnouncement [
+	self requestContentUpdate
+]
+
+{ #category : #private }
+BVCUnrealProjectCardWidget >> activeMark [
+
+	^ BlElement new
+		layout: BlLinearLayout horizontal alignCenter;
+		constraintsDo: [ :c |
+			c horizontal matchParent.
+			c vertical fitContent ];
+		addChild: (BrGlamorousVectorIcons accept asElement)
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> buildContent [
+	self
+		addChild: (sessionList := self createListWithItems) as: #sessionList;
+		addChild: self createToolbar.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> createAddNewDefaultSessionButton [
+	| selectionButton |
+	
+	selectionButton := BrButton new.
+	selectionButton 
+		icon: BrGlamorousVectorIcons add;
+		label: 'Add a new default session';
+		id: GtGemStoneSessionsCardWidgetAddSessionButtonId;
+		aptitude: BrGlamorousButtonWithIconAptitude;
+		addAptitude: ((BrGlamorousWithDropdownAptitude 
+			handle:[ 
+				BrButton new
+					icon: BrGlamorousVectorIcons add;
+					aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonExteriorAptitude ]
+			content: [
+				| connectorsList |
+				connectorsList := self createConnectorList.
+				connectorsList padding: (BlInsets left: 10 right: 10).
+				connectorsList items: (self registry connectors
+					sorted: #name ascending) ] )
+			preferredExtent: 380 @250).
+	
+	^ selectionButton
+]
+
+{ #category : #'private - children' }
+BVCUnrealProjectCardWidget >> createConnectorList [
+	| newList |
+	newList := BrColumnedList new.
+	newList 
+		rowStencil: (BrGlamorousColumnedListSelectableRowElementStencilBuilder new);
+		matchParent.
+
+	newList column
+		title: 'Name';
+		width: 130;
+		cellStencil: [ 
+			GtPhlowLabelWithIcon new ];
+		dataBinder: [ :anElement :eachItem | 
+			anElement 
+				initializeWithIcon: (self 
+					iconForSymbol: eachItem iconName)
+				label: eachItem name ].
+	newList column 
+		title: 'Username';
+		width: 120;
+		cellStencil: [ :each | 
+			BrLabel new 
+				aptitude: BrGlamorousLabelAptitude new ];
+		dataBinder: [ :aLabel :eachItem |
+			aLabel text: eachItem username ].
+	newList column 
+		title: 'Stone';
+		width: 120;
+		cellStencil: [ :each | 
+			BrLabel new 
+				aptitude: BrGlamorousLabelAptitude new ];
+		dataBinder: [ :aLabel :eachItem |
+			aLabel text: eachItem stoneName ].
+	newList column 
+		title: 'Version';
+		width: 60;
+		cellStencil: [ :each | 
+			BrLabel new 
+				aptitude: BrGlamorousLabelAptitude new ];
+		dataBinder: [ :aLabel :eachItem |
+			aLabel text: (eachItem versionString ifNil: [ '-' ]) ].
+
+	newList
+		when: BrSelectionDoubleClicked
+		do: [ :anEvent | 
+			anEvent selection ifNotEmpty: [ :theIndices | 
+				| aWidgetElement selectedConnector newSession |
+				aWidgetElement := anEvent currentTarget.
+				selectedConnector := aWidgetElement viewModel
+					itemAt: theIndices first.
+				newSession := self registry 
+					newConnectedDefaultSessionWithReusageWithConnector: selectedConnector.
+				self updateContent.
+				
+				self selectSession: newSession.
+				
+				anEvent target fireEvent: BrDropdownHideWish new] ].
+
+	newList addAptitude: BrColumnedListHeaderAptitude.
+
+	^ newList
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> createInspectButton [
+
+	^ BrButton new 
+			aptitude: BrGlamorousButtonWithIconAptitude new;
+			icon: BrGlamorousVectorIcons inspect;
+			id: GtGemStoneSessionsCardWidgetInspectButtonId ;
+			label: 'Inspect registry';
+			action: [ :aButton | self inspectRegistryFrom: aButton ];
+			yourself.
+]
+
+{ #category : #'private - children' }
+BVCUnrealProjectCardWidget >> createList [
+	| newList |
+
+	newList := BrColumnedList new.
+	
+	newList column
+		title: 'Name';
+		width: 130;
+		cellStencil: [ 
+			GtPhlowLabelWithIcon new
+				withSmallSize ];
+		dataBinder: [ :anElement :aSession | 
+			anElement 
+				initializeWithIcon: (self 
+					iconForSymbol: aSession iconName)
+				label: (aSession formatBasedOnStatusText: aSession displayName) ].
+			
+	newList column
+		title: 'Status';
+		width: 125;
+		cellStencil:[ 
+			self createStatusLabel ];
+		dataBinder: [ :aLabel :aSession |
+			aLabel text: (aSession formatBasedOnStatusText: aSession statusDescription) ].
+	
+	newList column
+		title: 'Default';
+		width: 50;
+		stencil: [ :aSession |
+			aSession isDefaultSession
+				ifTrue: [ self activeMark ]
+				ifFalse: [ BlElement new size: 0@0 ] ].
+				
+	newList
+		when: BrSelectionDoubleClicked
+		do: [ :anEvent | self doDoubleClicked: anEvent ].
+	
+	newList
+		rowStencil: self createRowStencil;
+		padding: (BlInsets top: 5);
+		matchParent.
+	
+	newList addAptitude: BrColumnedListHeaderAptitude.
+	
+	^ newList.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> createListWithItems [
+	| newList |
+	newList := self createList.
+	newList items: self sessionsToDisplay.
+	^ newList
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> createRefreshButton [
+
+	^ BrButton new 
+			aptitude: BrGlamorousButtonWithIconAptitude new;
+			icon: BrGlamorousVectorIcons refresh;
+			id: GtGemStoneSessionsCardWidgetRefreshButtonId;
+			label: 'Refresh sessions list';
+			action: [ :aButton | self requestContentUpdate ];
+			yourself.
+]
+
+{ #category : #'private - children' }
+BVCUnrealProjectCardWidget >> createRowStencil [
+	^ BrColumnedListItemElementWithContextMenuDecorator new
+		stencilBuilder: BrGlamorousColumnedListSelectableRowElementStencilBuilder new;
+		contextMenuStencil: [ :anElement :aSession | 
+			self sessionActionsFor: aSession ] 
+]
+
+{ #category : #'private - children' }
+BVCUnrealProjectCardWidget >> createStatusLabel [
+	^ BrLabel new
+		aptitude: BrGlamorousLabelAptitude new;
+		hMatchParent;
+		vFitContent
+]
+
+{ #category : #'private - children' }
+BVCUnrealProjectCardWidget >> createTitleLabel [
+
+	^ BrLabel new
+		aptitude: BrGlamorousLabelAptitude new;
+		hMatchParent;
+		vFitContent;
+		text: 'Unreal Engine Project' asRopedText bold.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> createToolbar [
+
+	^ BrHorizontalPane new
+		hMatchParent;
+		vFitContent;
+		layout: BlLinearLayout horizontal alignTopRight;
+		addChild: self createTitleLabel;
+		addChild: (self createAddNewDefaultSessionButton 
+			margin: (BlInsets right: 5));
+		addChild: (self createRefreshButton 
+			margin: (BlInsets right: 5));
+		addChild: self createInspectButton;
+		yourself.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> doDoubleClicked: anEvent [ 
+	| session |
+
+	session := anEvent currentTarget items at: anEvent selection first.
+	session class = GtGemStoneCardWidgetNoSessions ifTrue: [ ^ self ].
+	session isDefaultSession ifFalse: [ 
+		self informCannotOpenSnippetOnNonDefaultSession.
+		^ self  ].
+
+	self 
+		openPlaygroundWithDefaultSessionIdentifierNamed: session name
+		from: anEvent currentTarget.
+]
+
+{ #category : #utils }
+BVCUnrealProjectCardWidget >> iconForSymbol: anIconName [ 
+	
+	^ [ 
+		anIconName 
+			ifNil: [ BrGlamorousVectorIcons gemStone ]
+			ifNotNil: [ (BrGlamorousVectorIcons classSide 
+			includesSelector: anIconName asSymbol)
+				ifTrue: [ BrGlamorousVectorIcons perform: anIconName asSymbol ]
+				ifFalse:  [ 
+					self gtSafeIconNamed: anIconName ] ]
+	] on: Error do: [ :error | 
+		Smalltalk ui icons iconNamed: #smallWarningIcon ]
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> informCannotOpenSnippetOnNonDefaultSession [
+	self
+		showNotification: (GtNotificationMessage
+				message: 'Cannot create a GemStone snippet on a session that is not default using double click. Make the session default, or create an explicit GemStone snippet.')
+				showNotifications
+]
+
+{ #category : #'initialization ' }
+BVCUnrealProjectCardWidget >> initialize [
+	super initialize.
+	
+	self buildContent.
+	elementUpdater := BrElementUpdater new 
+		element: self
+		selector: #updateContent.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> inspectRegistryFrom: aButton [ 
+
+	GtPager
+		openWrappedOn: (GtInspector newOn: self registry)
+		title: 'GemStone Registry'
+		from: aButton.
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> inspectSession: aSession from: anElement [
+
+	GtPager
+		openWrappedOn: (GtInspector newOn: aSession)
+		title: aSession name
+		from: anElement.
+]
+
+{ #category : #'private - hooks' }
+BVCUnrealProjectCardWidget >> onAddedToSceneGraph [
+	super onAddedToSceneGraph.
+	
+	self requestContentUpdate
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> openPlaygroundOnSessionNamed: aSessionName withSnippet: aGemStoneSnippet from: anElement [
+	| page |
+	page := LePage unnamedPage.
+	page addSnippet: aGemStoneSnippet.
+	LeDatabasesRegistry default defaultLogicalDatabase playgroundDB addPage: page.
+	
+	BlSpace new
+		title: aSessionName;
+		inPager: [ 
+			page asLepiterPagePhlowTool 
+				asElementDo: [ :e | e ] ] asStencil;
+		withSceneDriller;
+		showFrom: anElement
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> openPlaygroundWithDefaultSessionIdentifierNamed: aSessionName from: anElement [
+	^ self 
+		openPlaygroundOnSessionNamed: aSessionName
+		withSnippet: LeGemStoneSnippet withDefaultSessionIdentifier 
+		from: anElement
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> openPlaygroundWithExplicitSessionIdentifierNamed: aSessionName from: anElement [
+	^ self 
+		openPlaygroundOnSessionNamed: aSessionName
+		withSnippet: (LeGemStoneSnippet sessionName: aSessionName)
+		from: anElement
+]
+
+{ #category : #accessing }
+BVCUnrealProjectCardWidget >> registry [
+	^ registry ifNil: [ 
+		"Initialize the registry with the default one"
+		self registry: GtGemStoneSessionRegistry default.
+		registry ]
+]
+
+{ #category : #accessing }
+BVCUnrealProjectCardWidget >> registry: aGtGemStoneSessionRegistry [
+
+	registry ifNotNil: [ registry unsubscribe: self ].
+	registry := aGtGemStoneSessionRegistry.
+	registry announcer weak
+		when: GtGemStoneSessionAnnouncement
+		send: #actOnGemStoneSessionAnnouncement
+		to: self.
+]
+
+{ #category : #updating }
+BVCUnrealProjectCardWidget >> requestContentUpdate [
+	elementUpdater ifNil: [ ^ self ].
+	elementUpdater requestUpdate
+]
+
+{ #category : #'actions - ui' }
+BVCUnrealProjectCardWidget >> selectSession: aSession [ 
+	| sessionIndex |
+	sessionIndex := self sessionList items indexOf:  aSession.
+	sessionIndex > 0 ifTrue: [
+		self sessionList selectOne: sessionIndex ].
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> sessionActionsFor: aGtGemStoneSession [
+	| actions |
+	
+	aGtGemStoneSession class = GtGemStoneCardWidgetNoSessions
+		ifTrue: [ ^ BrGlamorousSimpleContextMenuContent new].
+	
+	actions := OrderedCollection new.
+	
+	aGtGemStoneSession isDefaultSession 
+		ifTrue: [
+			actions addAll: {'Playground (default snippet)' -> [ :aStatusLineElement | 
+				self 
+					openPlaygroundWithDefaultSessionIdentifierNamed: aGtGemStoneSession name
+					from: aStatusLineElement ]} ].
+	actions addAll: {
+		'Playground (explicit snippet)' -> [ :aStatusLineElement | 
+				self 
+					openPlaygroundWithExplicitSessionIdentifierNamed: aGtGemStoneSession name
+					from: aStatusLineElement]}.
+	
+	aGtGemStoneSession isRunning 
+		ifTrue: [
+			actions addAll: {
+				'Commit' -> [ :aStatusLineElement |
+					aGtGemStoneSession commitTransactionWithErrorChecking.
+					self updateContent].
+				'Abort' -> [ :aStatusLineElement |
+					aGtGemStoneSession abortTransaction.
+					self updateContent].
+				'Disconnect' -> [ :aStatusLineElement |
+					| newDefaultSession |
+					aGtGemStoneSession close.
+					
+					newDefaultSession := self registry ensureDefaultSession.
+					
+					self updateContent.
+					newDefaultSession ifNotNil: [
+						self selectSession: newDefaultSession ] ]} ]
+		ifFalse: [
+			actions addAll: {
+				'Connect' -> [ :aStatusLineElement |
+					aGtGemStoneSession connect.
+					self updateContent] } ].
+					
+	aGtGemStoneSession isDefaultSession 
+		ifFalse: [
+			actions addAll: {
+				'Be Default' -> [ :aStatusLineElement |
+					aGtGemStoneSession beDefaultSession.
+					self updateContent]} ].
+					
+	actions addAll: {
+		'Toggle AutoCommit' -> [:aStatusLineElement |
+			aGtGemStoneSession toggleAutoCommit.
+			self updateContent].
+		'Toggle CodeSync' -> [:aStatusLineElement |
+			aGtGemStoneSession toggleCodeSync.
+			self updateContent].
+		'Toggle CodeSync & AutoCommit' -> [:aStatusLineElement |
+			aGtGemStoneSession toggleCodeSyncAndAutoCommit.
+			self updateContent ].
+		'Inspect' -> [:aStatusLineElement | 
+			self inspectSession: aGtGemStoneSession from: aStatusLineElement]}.
+				
+	^ BrGlamorousSimpleContextMenuContent new 
+		items: actions
+]
+
+{ #category : #accessing }
+BVCUnrealProjectCardWidget >> sessionList [
+	^self childNamed: #sessionList
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> sessionsToDisplay [
+	^ ((self registry sessionsToDisplay 
+		sorted: #name ascending) ifEmpty:[ 
+			{ GtGemStoneCardWidgetNoSessions new } ])
+]
+
+{ #category : #'private - ui' }
+BVCUnrealProjectCardWidget >> updateContent [
+	| selectedSession|
+	
+	selectedSession := self sessionList selectedItems
+		ifEmpty: [ nil ] 
+		ifNotEmpty: [ :aList | aList first ].
+	
+	self 
+		replaceChild: self sessionList 
+		with: self createListWithItems
+		as: #sessionList.
+		
+	selectedSession ifNotNil: [
+		self selectSession: selectedSession ]
+]
