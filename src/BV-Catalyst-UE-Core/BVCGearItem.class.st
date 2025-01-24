@@ -1,5 +1,5 @@
 Class {
 	#name : #BVCGearItem,
-	#superclass : #Object,
+	#superclass : #BVCObjectWithTitleAndComment,
 	#category : #'BV-Catalyst-UE-Core'
 }
