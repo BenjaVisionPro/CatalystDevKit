@@ -8,42 +8,60 @@ Class {
 }
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesDefensiveResistanceTagRoot [
-	^ (BVCGamePlayTag tag: 'Resistance')
-		addChild: (BVCGamePlayTag tag: 'BleedResistance');
-		addChild: (BVCGamePlayTag tag: 'BlindDeafResistance');
-		addChild: (BVCGamePlayTag tag: 'BurnResistance');
-		addChild: (BVCGamePlayTag tag: 'CriticalChanceResistance');
-		addChild: (BVCGamePlayTag tag: 'DisorientResistance');
-		addChild: (BVCGamePlayTag tag: 'DisruptResistance');
-		addChild: (BVCGamePlayTag tag: 'EnsnareResistance');
-		addChild: (BVCGamePlayTag tag: 'PoisonResistance');
-		addChild: (BVCGamePlayTag tag: 'ShockResistance');
+BVCGamePlayTags class >> statisticsTagRoot [
+	^ (BVCGamePlayTag tag: 'Statistics') 
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesDefensiveStaminaTagRoot [
-	^ (BVCGamePlayTag tag: 'Stamina')
-		addChild: (BVCGamePlayTag tag: 'ArmourPerSecondRegeneration');
-		addChild: (BVCGamePlayTag tag: 'ArmourOnKill');
-		addChild: (BVCGamePlayTag tag: 'HealthRegen');
-		addChild: (BVCGamePlayTag tag: 'ExtraIncomingHealth');
-		addChild: (BVCGamePlayTag tag: 'SkillHealth');
+BVCGamePlayTags class >> tagRoot [
+	<gtExample>
+	^ (BVCGamePlayTag tag: 'TGC')
+		addChild: ((BVCGamePlayTag tag: 'Core')
+				addChild: self templatePhysical;
+				addChild: self templateOffensiveCore;
+				addChild: self templateDefensive;
+				addChild: self templateUtility;
+				yourself);
+		addChild: ((BVCGamePlayTag tag: 'Attributes')
+				addChild: self templateOffensive;
+				addChild: self templateDefensive;
+				addChild: self templateUtility;
+				addChild: self templateReputation;
+				"addChild: self attributesFarmTagRoot;
+				addChild: self attributesCraftTagRoot;
+				addChild: self attributesManufactureTagRoot;
+				addChild: self attributesBuildTagRoot;"
+				yourself);
+		addChild: ((BVCGamePlayTag tag: 'Statistics')
+				addChild: (BVCGamePlayTag tag: 'Health');
+				addChild: (BVCGamePlayTag tag: 'Armor');
+				addChild: (BVCGamePlayTag tag: 'Stamina');
+				addChild: (BVCGamePlayTag tag: 'Hunger');
+				addChild: (BVCGamePlayTag tag: 'Thirst');
+				addChild: (BVCGamePlayTag tag: 'Oxygen'));
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesDefensiveTagRoot [
-	^ (BVCGamePlayTag tag: 'Defensive')
-		addChild: self coreDefensiveStaminaTagRoot;
-		addChild: self coreDefensiveResistanceTagRoot;
-		addChild: self coreDefensiveMendingTagRoot;
+BVCGamePlayTags class >> templateAssist [
+	^ (BVCGamePlayTag tag: 'Assist')
+		addChild: (BVCGamePlayTag tag: 'ReloadSpeed');
+		addChild: (BVCGamePlayTag tag: 'IncreasedKillXP');
+		addChild: (BVCGamePlayTag tag: 'HeadshotKillXP');
+		addChild: (BVCGamePlayTag tag: 'WeakspotKillXP');
+		addChild: (BVCGamePlayTag tag: 'BleedDuration');
+		addChild: (BVCGamePlayTag tag: 'BlindDuration');
+		addChild: (BVCGamePlayTag tag: 'BurnDuration');
+		addChild: (BVCGamePlayTag tag: 'ConfuseDuration');
+		addChild: (BVCGamePlayTag tag: 'DisruptDuration');
+		addChild: (BVCGamePlayTag tag: 'EnsnareDuration');
+		addChild: (BVCGamePlayTag tag: 'ShockDuration');
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesOffensiveCriticalTagRoot [
+BVCGamePlayTags class >> templateCritical [
 	^ (BVCGamePlayTag tag: 'Critical')
 		addChild: (BVCGamePlayTag tag: 'AssaultRifleCriticalHitChance');
 		addChild: (BVCGamePlayTag tag: 'AssaultRifleCriticalHitDamage');
@@ -65,7 +83,26 @@ BVCGamePlayTags class >> attributesOffensiveCriticalTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesOffensiveDexterityTagRoot [
+BVCGamePlayTags class >> templateCriticalCore [
+	^ (BVCGamePlayTag tag: 'Critical')
+		addChild: (BVCGamePlayTag tag: 'CriticalHitChance');
+		addChild: (BVCGamePlayTag tag: 'CriticalHitDamage');
+		addChild: (BVCGamePlayTag tag: 'CriticalRange');
+		addChild: (BVCGamePlayTag tag: 'OptimalRange');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateDefensive [
+	^ (BVCGamePlayTag tag: 'Defensive')
+		addChild: self templateStamina;
+		addChild: self templateResistance;
+		addChild: self templateMending;
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateDexterity [
 	^ (BVCGamePlayTag tag: 'Dexterity')
 		addChild: (BVCGamePlayTag tag: 'WeaponHandling');
 		addChild: (BVCGamePlayTag tag: 'CriticalRange');
@@ -74,7 +111,22 @@ BVCGamePlayTags class >> attributesOffensiveDexterityTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesOffensiveFirearmsTagRoot [
+BVCGamePlayTags class >> templateElectronics [
+	^ (BVCGamePlayTag tag: 'Electronics')
+		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
+		addChild: (BVCGamePlayTag tag: 'LauncherSkillPower');
+		addChild: (BVCGamePlayTag tag: 'DroneSkillPower');
+		addChild: (BVCGamePlayTag tag: 'FireflySkillPower');
+		addChild: (BVCGamePlayTag tag: 'HiveSkillPower');
+		addChild: (BVCGamePlayTag tag: 'PulseSkillPower');
+		addChild: (BVCGamePlayTag tag: 'SeekerSkillPower');
+		addChild: (BVCGamePlayTag tag: 'ShieldSkillPower');
+		addChild: (BVCGamePlayTag tag: 'TurretSkillPower');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateFirearms [
 	^ (BVCGamePlayTag tag: 'Firearms')
 		addChild: (BVCGamePlayTag tag: 'AssaultRifleDamage');
 		addChild: (BVCGamePlayTag tag: 'SubmachineGunDamage');
@@ -89,61 +141,15 @@ BVCGamePlayTags class >> attributesOffensiveFirearmsTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesOffensivePrecisionTagRoot [
-	^ (BVCGamePlayTag tag: 'Precision')
-		addChild: (BVCGamePlayTag tag: 'HeadshotDamage');
-		addChild: (BVCGamePlayTag tag: 'OptimalRange');
+BVCGamePlayTags class >> templateFirearmsCore [
+	^ (BVCGamePlayTag tag: 'Firearms')
+		addChild: (BVCGamePlayTag tag: 'DamageToArmor');
+		addChild: (BVCGamePlayTag tag: 'DamageToHealth');
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesOffensiveTagRoot [
-	^ (BVCGamePlayTag tag: 'Offensive')
-		addChild: self attributesOffensiveCriticalTagRoot;
-		addChild: self attributesOffensiveFirearmsTagRoot;
-		addChild: self attributesOffensivePrecisionTagRoot;
-		addChild: self attributesOffensiveDexterityTagRoot;
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> attributesTagRoot [
-	^ (BVCGamePlayTag tag: 'Attributes')
-		addChild: self attributesOffensiveTagRoot;
-		addChild: self attributesDefensiveTagRoot;
-		"addChild: self attributesUtilityTagRoot;
-		addChild: self attributesReputationTagRoot;
-		addChild: self attributesFarmTagRoot;
-		addChild: self attributesCraftTagRoot;
-		addChild: self attributesManufactureTagRoot;
-		addChild: self attributesBuildTagRoot;"
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> attributesUtilityAssistTagRoot [
-	^ (BVCGamePlayTag tag: 'Assist')
-		addChild: (BVCGamePlayTag tag: 'ReloadSpeed');
-		addChild: (BVCGamePlayTag tag: 'IncreasedKillXP');
-		addChild: (BVCGamePlayTag tag: 'HeadshotKillXP');
-		addChild: (BVCGamePlayTag tag: 'WeakspotKillXP');
-		addChild: (BVCGamePlayTag tag: 'BleedDuration');
-		addChild: (BVCGamePlayTag tag: 'BlindDuration');
-		addChild: (BVCGamePlayTag tag: 'BurnDuration');
-		addChild: (BVCGamePlayTag tag: 'ConfuseDuration');
-		addChild: (BVCGamePlayTag tag: 'DisruptDuration');
-		addChild: (BVCGamePlayTag tag: 'EnsnareDuration');
-		addChild: (BVCGamePlayTag tag: 'ShockDuration');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> attributesUtilityElectronicsTagRoot [
-	^ self templateElectronicsTagRoot
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> attributesUtilityIntensityTagRoot [
+BVCGamePlayTags class >> templateIntensity [
 	^ (BVCGamePlayTag tag: 'Intensity')
 		addChild: (BVCGamePlayTag tag: 'BleedDamage');
 		addChild: (BVCGamePlayTag tag: 'BurnDamage');
@@ -158,28 +164,7 @@ BVCGamePlayTags class >> attributesUtilityIntensityTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> attributesUtilityRepositoryTagRoot [
-	^ (BVCGamePlayTag tag: 'Repository')
-		addChild: (BVCGamePlayTag tag: 'ExplosivesDamage');
-		addChild: (BVCGamePlayTag tag: 'GrenadeDamage');
-		addChild: (BVCGamePlayTag tag: 'IncreasedKillXP');
-		addChild: (BVCGamePlayTag tag: 'HeadshotKillXP');
-		addChild: (BVCGamePlayTag tag: 'WeakspotKillXP');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> attributesUtilityTagRoot [
-	^ (BVCGamePlayTag tag: 'Utility')
-		addChild: self attributesUtilityRepositoryTagRoot;
-		addChild: self attributesUtilityIntensityTagRoot;
-		addChild: self attributesUtilityElectronicsTagRoot;
-		addChild: self attributesUtilityAssistTagRoot;
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreDefensiveMendingTagRoot [
+BVCGamePlayTags class >> templateMending [
 	^ (BVCGamePlayTag tag: 'Mending')
 		addChild: (BVCGamePlayTag tag: 'BonusArmor');
 		addChild: (BVCGamePlayTag tag: 'TotalArmor');
@@ -192,87 +177,40 @@ BVCGamePlayTags class >> coreDefensiveMendingTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> coreDefensiveResistanceTagRoot [
-	^ (BVCGamePlayTag tag: 'Resistance')
-		addChild: (BVCGamePlayTag tag: 'BleedResistance');
-		addChild: (BVCGamePlayTag tag: 'BlindDeafResistance');
-		addChild: (BVCGamePlayTag tag: 'BurnResistance');
-		addChild: (BVCGamePlayTag tag: 'CriticalChanceResistance');
-		addChild: (BVCGamePlayTag tag: 'DisorientResistance');
-		addChild: (BVCGamePlayTag tag: 'DisruptResistance');
-		addChild: (BVCGamePlayTag tag: 'EnsnareResistance');
-		addChild: (BVCGamePlayTag tag: 'PoisonResistance');
-		addChild: (BVCGamePlayTag tag: 'ShockResistance');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreDefensiveStaminaTagRoot [
-	^ (BVCGamePlayTag tag: 'Stamina')
-		addChild: (BVCGamePlayTag tag: 'ArmourPerSecondRegeneration');
-		addChild: (BVCGamePlayTag tag: 'ArmourOnKill');
-		addChild: (BVCGamePlayTag tag: 'HealthRegen');
-		addChild: (BVCGamePlayTag tag: 'ExtraIncomingHealth');
-		addChild: (BVCGamePlayTag tag: 'SkillHealth');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreDefensiveTagRoot [
-	^ (BVCGamePlayTag tag: 'Defensive')
-		addChild: self coreDefensiveStaminaTagRoot;
-		addChild: self coreDefensiveResistanceTagRoot;
-		addChild: self coreDefensiveMendingTagRoot;
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreOffensiveCriticalTagRoot [
-	^ (BVCGamePlayTag tag: 'Critical')
-		addChild: (BVCGamePlayTag tag: 'CriticalHitChance');
-		addChild: (BVCGamePlayTag tag: 'CriticalHitDamage');
-		addChild: (BVCGamePlayTag tag: 'CriticalRange');
-		addChild: (BVCGamePlayTag tag: 'OptimalRange');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreOffensiveDexterityTagRoot [
-	^ (BVCGamePlayTag tag: 'Dexterity')
-		addChild: (BVCGamePlayTag tag: 'WeaponHandling');
-		addChild: (BVCGamePlayTag tag: 'CriticalRange');
-		addChild: (BVCGamePlayTag tag: 'OptimalRange');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreOffensiveFirearmsTagRoot [
-	^ (BVCGamePlayTag tag: 'Firearms')
-		addChild: (BVCGamePlayTag tag: 'DamageToArmor');
-		addChild: (BVCGamePlayTag tag: 'DamageToHealth');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreOffensivePrecisionTagRoot [
-	^ (BVCGamePlayTag tag: 'Precision')
-		addChild: (BVCGamePlayTag tag: 'HeadshotDamage');
-		addChild: (BVCGamePlayTag tag: 'OptimalRange');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreOffensiveTagRoot [
+BVCGamePlayTags class >> templateOffensive [
 	^ (BVCGamePlayTag tag: 'Offensive')
-		addChild: self coreOffensiveCriticalTagRoot;
-		addChild: self coreOffensiveFirearmsTagRoot;
-		addChild: self coreOffensivePrecisionTagRoot;
-		addChild: self coreOffensiveDexterityTagRoot;
+		addChild: self templateCritical;
+		addChild: self templateFirearms;
+		addChild: self templatePrecision;
+		addChild: self templateDexterity;
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalAdaptabilityTagRoot [
+BVCGamePlayTags class >> templateOffensiveCore [
+	^ (BVCGamePlayTag tag: 'Offensive')
+		addChild: self templateCriticalCore;
+		addChild: self templateFirearmsCore;
+		addChild: self templatePrecision;
+		addChild: self templateDexterity;
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templatePhysical [
+	^ (BVCGamePlayTag tag: 'Physical')
+		addChild: self templatePhysicalBase;
+		addChild: self templatePhysicalPresence;
+		addChild: self templatePhysicalSkills;
+		addChild: self templatePhysicalFitness;
+		addChild: self templatePhysicalSensory;
+		addChild: self templatePhysicalAdaptability;
+		addChild: self templatePhysicalDynamics;
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templatePhysicalAdaptability [
 	^ (BVCGamePlayTag tag: 'Adaptability')
 		addChild: (BVCGamePlayTag
 				tag: 'TemperatureTolerance'
@@ -290,7 +228,7 @@ BVCGamePlayTags class >> corePhysicalAdaptabilityTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalBaseTagRoot [
+BVCGamePlayTags class >> templatePhysicalBase [
 	^ (BVCGamePlayTag tag: 'Base')
 		addChild: (BVCGamePlayTag
 				tag: 'Strength'
@@ -315,7 +253,7 @@ BVCGamePlayTags class >> corePhysicalBaseTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalDynamicsTagRoot [
+BVCGamePlayTags class >> templatePhysicalDynamics [
 	^ (BVCGamePlayTag tag: 'Dynamics')
 		addChild: (BVCGamePlayTag
 				tag: 'Reflexes'
@@ -336,7 +274,7 @@ BVCGamePlayTags class >> corePhysicalDynamicsTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalFitnessTagRoot [
+BVCGamePlayTags class >> templatePhysicalFitness [
 	^ (BVCGamePlayTag tag: 'Fitness')
 		addChild: (BVCGamePlayTag
 				tag: 'Vitality'
@@ -357,7 +295,7 @@ BVCGamePlayTags class >> corePhysicalFitnessTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalPresenceTagRoot [
+BVCGamePlayTags class >> templatePhysicalPresence [
 	^ (BVCGamePlayTag tag: 'Presence')
 		addChild: (BVCGamePlayTag
 				tag: 'Height'
@@ -381,7 +319,7 @@ BVCGamePlayTags class >> corePhysicalPresenceTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalSensoryTagRoot [
+BVCGamePlayTags class >> templatePhysicalSensory [
 	^ (BVCGamePlayTag tag: 'Sensory')
 		addChild: (BVCGamePlayTag
 				tag: 'Vision'
@@ -402,7 +340,7 @@ BVCGamePlayTags class >> corePhysicalSensoryTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalSkillsTagRoot [
+BVCGamePlayTags class >> templatePhysicalSkills [
 	^ (BVCGamePlayTag tag: 'Skills')
 		addChild: (BVCGamePlayTag
 				tag: 'HandEyeCoordination'
@@ -424,67 +362,15 @@ BVCGamePlayTags class >> corePhysicalSkillsTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> corePhysicalTagRoot [
-	^ (BVCGamePlayTag tag: 'Physical')
-		addChild: self corePhysicalBaseTagRoot;
-		addChild: self corePhysicalPresenceTagRoot;
-		addChild: self corePhysicalSkillsTagRoot;
-		addChild: self corePhysicalFitnessTagRoot;
-		addChild: self corePhysicalSensoryTagRoot;
-		addChild: self corePhysicalAdaptabilityTagRoot;
-		addChild: self corePhysicalDynamicsTagRoot;
+BVCGamePlayTags class >> templatePrecision [
+	^ (BVCGamePlayTag tag: 'Precision')
+		addChild: (BVCGamePlayTag tag: 'HeadshotDamage');
+		addChild: (BVCGamePlayTag tag: 'OptimalRange');
 		yourself
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> coreTagRoot [
-	^ (BVCGamePlayTag tag: 'Core')
-		addChild: self corePhysicalTagRoot;
-		addChild: self coreOffensiveTagRoot;
-		addChild: self coreDefensiveTagRoot;
-		addChild: self coreUtilityTagRoot;
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreUtilityAssistTagRoot [
-	^ (BVCGamePlayTag tag: 'Assist')
-		addChild: (BVCGamePlayTag tag: 'ReloadSpeed');
-		addChild: (BVCGamePlayTag tag: 'IncreasedKillXP');
-		addChild: (BVCGamePlayTag tag: 'HeadshotKillXP');
-		addChild: (BVCGamePlayTag tag: 'WeakspotKillXP');
-		addChild: (BVCGamePlayTag tag: 'BleedDuration');
-		addChild: (BVCGamePlayTag tag: 'BlindDuration');
-		addChild: (BVCGamePlayTag tag: 'BurnDuration');
-		addChild: (BVCGamePlayTag tag: 'ConfuseDuration');
-		addChild: (BVCGamePlayTag tag: 'DisruptDuration');
-		addChild: (BVCGamePlayTag tag: 'EnsnareDuration');
-		addChild: (BVCGamePlayTag tag: 'ShockDuration');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreUtilityElectronicsTagRoot [
-	^ self templateElectronicsTagRoot
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreUtilityIntensityTagRoot [
-	^ (BVCGamePlayTag tag: 'Intensity')
-		addChild: (BVCGamePlayTag tag: 'BleedDamage');
-		addChild: (BVCGamePlayTag tag: 'BurnDamage');
-		addChild: (BVCGamePlayTag tag: 'BleedDuration');
-		addChild: (BVCGamePlayTag tag: 'BlindDuration');
-		addChild: (BVCGamePlayTag tag: 'BurnDuration');
-		addChild: (BVCGamePlayTag tag: 'ConfuseDuration');
-		addChild: (BVCGamePlayTag tag: 'DisruptDuration');
-		addChild: (BVCGamePlayTag tag: 'EnsnareDuration');
-		addChild: (BVCGamePlayTag tag: 'ShockDuration');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> coreUtilityRepositoryTagRoot [
+BVCGamePlayTags class >> templateRepository [
 	^ (BVCGamePlayTag tag: 'Repository')
 		addChild: (BVCGamePlayTag tag: 'ExplosivesDamage');
 		addChild: (BVCGamePlayTag tag: 'GrenadeDamage');
@@ -495,42 +381,46 @@ BVCGamePlayTags class >> coreUtilityRepositoryTagRoot [
 ]
 
 { #category : #examples }
-BVCGamePlayTags class >> coreUtilityTagRoot [
+BVCGamePlayTags class >> templateReputation [
+	^ (BVCGamePlayTag tag: 'Reputation')
+		addChild: (BVCGamePlayTag tag: 'Honour');
+		addChild: (BVCGamePlayTag tag: 'Dishonour');
+		addChild: (BVCGamePlayTag tag: 'PolarisingDeviation');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateResistance [
+	^ (BVCGamePlayTag tag: 'Resistance')
+		addChild: (BVCGamePlayTag tag: 'BleedResistance');
+		addChild: (BVCGamePlayTag tag: 'BlindDeafResistance');
+		addChild: (BVCGamePlayTag tag: 'BurnResistance');
+		addChild: (BVCGamePlayTag tag: 'CriticalChanceResistance');
+		addChild: (BVCGamePlayTag tag: 'DisorientResistance');
+		addChild: (BVCGamePlayTag tag: 'DisruptResistance');
+		addChild: (BVCGamePlayTag tag: 'EnsnareResistance');
+		addChild: (BVCGamePlayTag tag: 'PoisonResistance');
+		addChild: (BVCGamePlayTag tag: 'ShockResistance');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateStamina [
+	^ (BVCGamePlayTag tag: 'Stamina')
+		addChild: (BVCGamePlayTag tag: 'ArmourPerSecondRegeneration');
+		addChild: (BVCGamePlayTag tag: 'ArmourOnKill');
+		addChild: (BVCGamePlayTag tag: 'HealthRegen');
+		addChild: (BVCGamePlayTag tag: 'ExtraIncomingHealth');
+		addChild: (BVCGamePlayTag tag: 'SkillHealth');
+		yourself
+]
+
+{ #category : #examples }
+BVCGamePlayTags class >> templateUtility [
 	^ (BVCGamePlayTag tag: 'Utility')
-		addChild: self coreUtilityRepositoryTagRoot;
-		addChild: self coreUtilityIntensityTagRoot;
-		addChild: self coreUtilityElectronicsTagRoot;
-		addChild: self coreUtilityAssistTagRoot;
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> statisticsTagRoot [
-	^ (BVCGamePlayTag tag: 'Statistics') 
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> tagRoot [
-	<gtExample>
-	^ (BVCGamePlayTag tag: 'TGC')
-		addChild: self coreTagRoot;
-		addChild: self attributesTagRoot;
-		addChild: (BVCGamePlayTag tag: 'Statistics');
-		yourself
-]
-
-{ #category : #examples }
-BVCGamePlayTags class >> templateElectronicsTagRoot [
-	^ (BVCGamePlayTag tag: 'Electronics')
-		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
-		addChild: (BVCGamePlayTag tag: 'LauncherSkillPower');
-		addChild: (BVCGamePlayTag tag: 'DroneSkillPower');
-		addChild: (BVCGamePlayTag tag: 'FireflySkillPower');
-		addChild: (BVCGamePlayTag tag: 'HiveSkillPower');
-		addChild: (BVCGamePlayTag tag: 'PulseSkillPower');
-		addChild: (BVCGamePlayTag tag: 'SeekerSkillPower');
-		addChild: (BVCGamePlayTag tag: 'ShieldSkillPower');
-		addChild: (BVCGamePlayTag tag: 'TurretSkillPower');
+		addChild: self templateRepository;
+		addChild: self templateIntensity;
+		addChild: self templateElectronics;
+		addChild: self templateAssist;
 		yourself
 ]

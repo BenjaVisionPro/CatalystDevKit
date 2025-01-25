@@ -3,22 +3,15 @@ localRepoPath := 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'Cataly
 
 "Load projects"
 
-"
 Metacello new
-   baseline: 'Futures';
-   repository: 'github://feenkcom/pharo-futures:main/src';
-   load.
+  repository: 'github://svenvc/NeoCSV/repository';
+  baseline: 'NeoCSV';
+  load.
 
 Metacello new
-	repository: 'github://feenkcom/gt4llm:main/src';
-	baseline: 'Gt4Llm';
-	load.
-
-Metacello new
-	repository: 'github://feenkcom/gt4llm:main/src';
-	baseline: 'Gt4OpenAI';
-	load.
-"
+  repository: 'github://svenvc/NeoJSON/repository';
+  baseline: 'NeoJSON';
+  load.
 
 Metacello new
  baseline:'Seaside3';
