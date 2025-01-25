@@ -6,3 +6,9 @@ Class {
 	#superclass : #BVCObjectWithTitleAndComment,
 	#category : #'BV-Catalyst-UE-Core'
 }
+
+{ #category : #sockets }
+BVCGearItem >> sockets [
+	"Which sockets can this gear item be attached to"
+	^ self subclassResponsibility
+]

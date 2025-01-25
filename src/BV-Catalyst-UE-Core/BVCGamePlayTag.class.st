@@ -45,6 +45,11 @@ BVCGamePlayTag >> addChild: aBVCACFGamePlayTag [
 	children add: aBVCACFGamePlayTag
 ]
 
+{ #category : #accessing }
+BVCGamePlayTag >> children [
+	^ children
+]
+
 { #category : #exporting }
 BVCGamePlayTag >> dataTableRows [
 	"Add myself and my children as rows"
@@ -66,6 +71,29 @@ BVCGamePlayTag >> devComment: aString [
 	devComment := aString
 ]
 
+{ #category : #exporting }
+BVCGamePlayTag >> export [
+	self
+		exportCSVOnPath: (String
+				streamContents: [ :stream | 
+					stream
+						nextPutAll: '/Users/jupiter/Documents/Unreal Projects/ThatGameCatalyst/Content/GamePlayTags/';
+						nextPutAll: tag;
+						nextPutAll: '.csv' ])
+]
+
+{ #category : #exporting }
+BVCGamePlayTag >> exportCSVOnPath: aPath [
+	| fileStream csvWriter |
+	fileStream := File openForWriteFileNamed: aPath.
+	csvWriter := NeoCSVWriter on: fileStream.
+	csvWriter
+		addFields: #(#exportRowName #exportTag #exportDevComment);
+		writeHeader: #('RowName' 'Tag' 'DevComment');
+		nextPutAll: self dataTableRows.
+	fileStream close
+]
+
 { #category : #accessing }
 BVCGamePlayTag >> exportDevComment [
 	^ devComment
@@ -84,6 +112,41 @@ BVCGamePlayTag >> exportDevComment [
 { #category : #accessing }
 BVCGamePlayTag >> exportRowName [
 	^ rowName ifNil: [ self tagPathString ]
+]
+
+{ #category : #accessing }
+BVCGamePlayTag >> exportTag [
+	^ rowName ifNil: [ self tagPathString ]
+]
+
+{ #category : #'gt - views' }
+BVCGamePlayTag >> graph [
+	<gtExample>
+	| m |
+	m := GtMondrian new.
+	m nodes
+		stencil: [ :nodeTag | 
+			BlElement new
+				border: (BlBorder paint: Color black width: 0.8);
+				geometry: BlRoundedRectangleGeometry new;
+				size: 10 @ 3;
+				when: BlMouseEnterEvent
+					do: [ :anEvent | 
+						anEvent currentTarget graph connectedEdges
+							do: [ :inner | inner element border: (BlBorder paint: (Color red alpha: 0.5)) ] ];
+				when: BlMouseLeaveEvent
+					do: [ :anEvent | 
+						anEvent currentTarget graph connectedEdges
+							do: [ :inner | inner element border: (BlBorder paint: (Color blue alpha: 0.5)) ] ] ];
+		with: self dataTableRows.
+	m edges
+		stencil: [ :nodeTag | 
+			BlLineElement new
+				zIndex: -1;
+				border: (BlBorder paint: (Color blue alpha: 0.5)) ];
+		connectFrom: [ :nodeTag | nodeTag parent ].
+	m layout force.
+	^ m
 ]
 
 { #category : #'gt - views' }
@@ -107,6 +170,15 @@ BVCGamePlayTag >> gtDataTableFor: aView [
 			action: [ :aButton :aTab | aButton phlow spawnObject: self ]
 ]
 
+{ #category : #'gt - views' }
+BVCGamePlayTag >> gtVisualisationFor: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Graph';
+		priority: 5;
+		stencil: [ self graph ]
+]
+
 { #category : #initalization }
 BVCGamePlayTag >> initialize [
 	super initialize.
@@ -114,8 +186,13 @@ BVCGamePlayTag >> initialize [
 ]
 
 { #category : #accessing }
-BVCGamePlayTag >> parent: aParentTag [
-	parent := aParentTag
+BVCGamePlayTag >> parent [
+	^ parent
+]
+
+{ #category : #accessing }
+BVCGamePlayTag >> parent: anObject [
+	parent := anObject
 ]
 
 { #category : #accessing }

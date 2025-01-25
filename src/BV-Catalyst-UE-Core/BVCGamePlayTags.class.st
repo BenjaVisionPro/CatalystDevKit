@@ -8,12 +8,6 @@ Class {
 }
 
 { #category : #examples }
-BVCGamePlayTags class >> statisticsTagRoot [
-	^ (BVCGamePlayTag tag: 'Statistics') 
-		yourself
-]
-
-{ #category : #examples }
 BVCGamePlayTags class >> tagRoot [
 	<gtExample>
 	^ (BVCGamePlayTag tag: 'TGC')
@@ -36,6 +30,7 @@ BVCGamePlayTags class >> tagRoot [
 		addChild: ((BVCGamePlayTag tag: 'Statistics')
 				addChild: (BVCGamePlayTag tag: 'Health');
 				addChild: (BVCGamePlayTag tag: 'Armor');
+				addChild: (BVCGamePlayTag tag: 'Shield');
 				addChild: (BVCGamePlayTag tag: 'Stamina');
 				addChild: (BVCGamePlayTag tag: 'Hunger');
 				addChild: (BVCGamePlayTag tag: 'Thirst');
@@ -43,7 +38,7 @@ BVCGamePlayTags class >> tagRoot [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateAssist [
 	^ (BVCGamePlayTag tag: 'Assist')
 		addChild: (BVCGamePlayTag tag: 'ReloadSpeed');
@@ -60,7 +55,7 @@ BVCGamePlayTags class >> templateAssist [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateCritical [
 	^ (BVCGamePlayTag tag: 'Critical')
 		addChild: (BVCGamePlayTag tag: 'AssaultRifleCriticalHitChance');
@@ -82,7 +77,7 @@ BVCGamePlayTags class >> templateCritical [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateCriticalCore [
 	^ (BVCGamePlayTag tag: 'Critical')
 		addChild: (BVCGamePlayTag tag: 'CriticalHitChance');
@@ -92,7 +87,7 @@ BVCGamePlayTags class >> templateCriticalCore [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateDefensive [
 	^ (BVCGamePlayTag tag: 'Defensive')
 		addChild: self templateStamina;
@@ -101,7 +96,7 @@ BVCGamePlayTags class >> templateDefensive [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateDexterity [
 	^ (BVCGamePlayTag tag: 'Dexterity')
 		addChild: (BVCGamePlayTag tag: 'WeaponHandling');
@@ -110,7 +105,7 @@ BVCGamePlayTags class >> templateDexterity [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateElectronics [
 	^ (BVCGamePlayTag tag: 'Electronics')
 		addChild: (BVCGamePlayTag tag: 'ExtraOutgoingHealing');
@@ -125,7 +120,7 @@ BVCGamePlayTags class >> templateElectronics [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateFirearms [
 	^ (BVCGamePlayTag tag: 'Firearms')
 		addChild: (BVCGamePlayTag tag: 'AssaultRifleDamage');
@@ -140,7 +135,7 @@ BVCGamePlayTags class >> templateFirearms [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateFirearmsCore [
 	^ (BVCGamePlayTag tag: 'Firearms')
 		addChild: (BVCGamePlayTag tag: 'DamageToArmor');
@@ -148,7 +143,7 @@ BVCGamePlayTags class >> templateFirearmsCore [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateIntensity [
 	^ (BVCGamePlayTag tag: 'Intensity')
 		addChild: (BVCGamePlayTag tag: 'BleedDamage');
@@ -163,7 +158,7 @@ BVCGamePlayTags class >> templateIntensity [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateMending [
 	^ (BVCGamePlayTag tag: 'Mending')
 		addChild: (BVCGamePlayTag tag: 'BonusArmor');
@@ -176,7 +171,7 @@ BVCGamePlayTags class >> templateMending [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateOffensive [
 	^ (BVCGamePlayTag tag: 'Offensive')
 		addChild: self templateCritical;
@@ -186,7 +181,7 @@ BVCGamePlayTags class >> templateOffensive [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateOffensiveCore [
 	^ (BVCGamePlayTag tag: 'Offensive')
 		addChild: self templateCriticalCore;
@@ -196,7 +191,7 @@ BVCGamePlayTags class >> templateOffensiveCore [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysical [
 	^ (BVCGamePlayTag tag: 'Physical')
 		addChild: self templatePhysicalBase;
@@ -209,7 +204,7 @@ BVCGamePlayTags class >> templatePhysical [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalAdaptability [
 	^ (BVCGamePlayTag tag: 'Adaptability')
 		addChild: (BVCGamePlayTag
@@ -227,7 +222,7 @@ BVCGamePlayTags class >> templatePhysicalAdaptability [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalBase [
 	^ (BVCGamePlayTag tag: 'Base')
 		addChild: (BVCGamePlayTag
@@ -252,7 +247,7 @@ BVCGamePlayTags class >> templatePhysicalBase [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalDynamics [
 	^ (BVCGamePlayTag tag: 'Dynamics')
 		addChild: (BVCGamePlayTag
@@ -273,7 +268,7 @@ BVCGamePlayTags class >> templatePhysicalDynamics [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalFitness [
 	^ (BVCGamePlayTag tag: 'Fitness')
 		addChild: (BVCGamePlayTag
@@ -294,7 +289,7 @@ BVCGamePlayTags class >> templatePhysicalFitness [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalPresence [
 	^ (BVCGamePlayTag tag: 'Presence')
 		addChild: (BVCGamePlayTag
@@ -318,7 +313,7 @@ BVCGamePlayTags class >> templatePhysicalPresence [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalSensory [
 	^ (BVCGamePlayTag tag: 'Sensory')
 		addChild: (BVCGamePlayTag
@@ -339,7 +334,7 @@ BVCGamePlayTags class >> templatePhysicalSensory [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePhysicalSkills [
 	^ (BVCGamePlayTag tag: 'Skills')
 		addChild: (BVCGamePlayTag
@@ -361,7 +356,7 @@ BVCGamePlayTags class >> templatePhysicalSkills [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templatePrecision [
 	^ (BVCGamePlayTag tag: 'Precision')
 		addChild: (BVCGamePlayTag tag: 'HeadshotDamage');
@@ -369,7 +364,7 @@ BVCGamePlayTags class >> templatePrecision [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateRepository [
 	^ (BVCGamePlayTag tag: 'Repository')
 		addChild: (BVCGamePlayTag tag: 'ExplosivesDamage');
@@ -380,7 +375,7 @@ BVCGamePlayTags class >> templateRepository [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateReputation [
 	^ (BVCGamePlayTag tag: 'Reputation')
 		addChild: (BVCGamePlayTag tag: 'Honour');
@@ -389,7 +384,7 @@ BVCGamePlayTags class >> templateReputation [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateResistance [
 	^ (BVCGamePlayTag tag: 'Resistance')
 		addChild: (BVCGamePlayTag tag: 'BleedResistance');
@@ -404,7 +399,7 @@ BVCGamePlayTags class >> templateResistance [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateStamina [
 	^ (BVCGamePlayTag tag: 'Stamina')
 		addChild: (BVCGamePlayTag tag: 'ArmourPerSecondRegeneration');
@@ -415,7 +410,7 @@ BVCGamePlayTags class >> templateStamina [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : #templates }
 BVCGamePlayTags class >> templateUtility [
 	^ (BVCGamePlayTag tag: 'Utility')
 		addChild: self templateRepository;
