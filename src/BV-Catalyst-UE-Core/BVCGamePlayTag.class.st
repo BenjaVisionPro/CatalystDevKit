@@ -126,26 +126,26 @@ BVCGamePlayTag >> graph [
 	m := GtMondrian new.
 	m nodes
 		stencil: [ :nodeTag | 
-			BlElement new
-				border: (BlBorder paint: Color black width: 0.8);
-				geometry: BlRoundedRectangleGeometry new;
-				size: 10 @ 3;
+			BrLabel new
+				aptitude: BrGlamorousLabelAptitude;
+				text: nodeTag tag;
+				beMiniSize;
 				when: BlMouseEnterEvent
 					do: [ :anEvent | 
 						anEvent currentTarget graph connectedEdges
-							do: [ :inner | inner element border: (BlBorder paint: (Color red alpha: 0.5)) ] ];
+							do: [ :inner | inner element border: (BlBorder paint: (Color red alpha: 0.8) width: 0.2) ] ];
 				when: BlMouseLeaveEvent
 					do: [ :anEvent | 
 						anEvent currentTarget graph connectedEdges
-							do: [ :inner | inner element border: (BlBorder paint: (Color blue alpha: 0.5)) ] ] ];
+							do: [ :inner | inner element border: (BlBorder paint: (Color blue alpha: 0.8) width: 0.2) ] ] ];
 		with: self dataTableRows.
 	m edges
 		stencil: [ :nodeTag | 
 			BlLineElement new
 				zIndex: -1;
-				border: (BlBorder paint: (Color blue alpha: 0.5)) ];
+				border: (BlBorder paint: (Color blue alpha: 0.5) width: 0.8) ];
 		connectFrom: [ :nodeTag | nodeTag parent ].
-	m layout force.
+	m layout radialTree.
 	^ m
 ]
 
@@ -213,6 +213,12 @@ BVCGamePlayTag >> tag [
 { #category : #accessing }
 BVCGamePlayTag >> tag: aString [
 	tag := aString
+]
+
+{ #category : #searching }
+BVCGamePlayTag >> tagAtPath: aPath [
+	aPath ifEmpty: [ ^ nil ].
+	children detect: [ :t | t tag = aPath removeFirst]
 ]
 
 { #category : #accessing }
