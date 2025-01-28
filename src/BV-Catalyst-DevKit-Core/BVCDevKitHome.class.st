@@ -42,6 +42,13 @@ BVCDevKitHome >> createVersionLabel [
 				from: button ]
 ]
 
+{ #category : #'as yet unclassified' }
+BVCDevKitHome >> dynabookDomainSection [
+	<gtHomeSection>
+	
+	^ DbGtHomeDomainSection new
+]
+
 { #category : #building }
 BVCDevKitHome >> getStartedSection [
 	<gtHomeSection>

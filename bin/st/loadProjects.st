@@ -4,25 +4,33 @@ localRepoPath := 'gitlocal://',  (FileLocator image fullPath parentUpTo: 'Cataly
 "Load projects"
 
 Metacello new
-  repository: 'github://svenvc/NeoCSV/repository';
-  baseline: 'NeoCSV';
-  load.
+	repository: 'github://svenvc/NeoCSV/repository';
+	baseline: 'NeoCSV';
+	load.
 
 Metacello new
-  repository: 'github://svenvc/NeoJSON/repository';
-  baseline: 'NeoJSON';
-  load.
+	repository: 'github://svenvc/NeoJSON/repository';
+	baseline: 'NeoJSON';
+	load.
 
 Metacello new
- baseline:'Seaside3';
- repository: 'github://SeasideSt/Seaside:master/repository';
- load: #('CI' 'Zinc' 'Development' 'JQuery').
+	baseline: 'Dynabook';
+	repository: 'github://seandenigris/Dynabook';
+	onConflictUseIncoming;
+	load.
+
+"
+Metacello new
+	baseline:'Seaside3';
+	repository: 'github://SeasideSt/Seaside:master/repository';
+	load: #('CI' 'Zinc' 'Development' 'JQuery').
+"
 
 Metacello new
-  baseline: 'RenoirSt';
-  repository: 'github://ba-st/RenoirSt:release-candidate';
-  onConflictUseLoaded;
-  load: #('Development' 'Development-Seaside-Extensions').
+	baseline: 'RenoirSt';
+	repository: 'github://ba-st/RenoirSt:release-candidate';
+	onConflictUseLoaded;
+	load: #('Development' 'Development-Seaside-Extensions').
 
 Metacello new
 	repository: 'gitlocal:///Users/jupiter/Documents/Projects/Boundless/src';

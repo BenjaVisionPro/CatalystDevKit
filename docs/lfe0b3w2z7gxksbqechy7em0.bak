@@ -3,11 +3,11 @@
 	"__type" : "page",
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "7807d67c-59e8-0d00-91b0-b8220ad82258"
+		"uuid" : "b8cbb3c6-0ae9-0d00-a9a7-e68407c40d0a"
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "ACF"
+		"title" : "GeoNames"
 	},
 	"children" : {
 		"__type" : "snippets",
@@ -26,7 +26,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-18T20:36:05.746171+11:00"
+						"dateAndTimeString" : "2025-01-27T16:09:31.690327+11:00"
 					}
 				},
 				"editEmail" : {
@@ -37,17 +37,54 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-22T07:53:10.767281+11:00"
+						"dateAndTimeString" : "2025-01-27T16:09:31.690327+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "Hu5JflnoDQCRsp33CtgiWA=="
+					"uidString" : "4p0jxwrpDQCpqkT6B8QNCg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "GamePlay Tags"
+				"string" : ""
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T16:06:35.49814+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T16:06:35.49814+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "w+YJxwrpDQCpqYJ+B8QNCg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -63,7 +100,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-18T20:37:50.07566+11:00"
+						"dateAndTimeString" : "2025-01-27T19:57:28.930335+11:00"
 					}
 				},
 				"editEmail" : {
@@ -74,14 +111,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T12:17:47.745213+11:00"
+						"dateAndTimeString" : "2025-01-27T19:57:54.510979+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "O9mBhFnoDQCSai7uCtgiWA=="
+					"uidString" : "n3vEAA7pDQCz9dp0B8QNCg=="
 				},
-				"code" : "BVCGamePlayTags tagRoot"
+				"code" : "url := 'http://api.geonames.org/searchJSON?username=jupiterjones&country=AU&style=LONG'"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -97,7 +134,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T08:19:16.819398+11:00"
+						"dateAndTimeString" : "2025-01-27T16:09:35.064191+11:00"
 					}
 				},
 				"editEmail" : {
@@ -108,14 +145,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T21:09:26.166586+11:00"
+						"dateAndTimeString" : "2025-01-27T19:42:57.145139+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "k5MSUWPoDQCkE5ZMCtgiWA=="
+					"uidString" : "0Ne90QrpDQCqwmpUB8QNCg=="
 				},
-				"code" : "#gtView gtPragmas & #mondrian gtReferences"
+				"code" : "url := 'http://api.geonames.org/searchJSON?username=jupiterjones&country=USA&style=LONG'"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -131,7 +168,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T19:50:09.469057+11:00"
+						"dateAndTimeString" : "2025-01-27T16:09:51.949828+11:00"
 					}
 				},
 				"editEmail" : {
@@ -142,14 +179,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-27T09:57:19.262059+11:00"
+						"dateAndTimeString" : "2025-01-27T19:20:07.587784+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
+					"uidString" : "NYC/0grpDQCqzSR1B8QNCg=="
 				},
-				"code" : "#(1 2 3) "
+				"code" : "jsonData := ZnClient new  forJsonREST get: url"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -165,7 +202,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:12:50.163898+11:00"
+						"dateAndTimeString" : "2025-01-27T19:22:00.250086+11:00"
 					}
 				},
 				"editEmail" : {
@@ -176,14 +213,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T14:03:09.355155+11:00"
+						"dateAndTimeString" : "2025-01-27T19:22:05.852199+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "QGbySG3oDQCslKjYD/Mc5w=="
+					"uidString" : "J2njgQ3pDQCvmLi7B8QNCg=="
 				},
-				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory / 'bvcUEBridge') ensureCreateDirectory"
+				"code" : "jsonData"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -199,7 +236,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:11:43.77065+11:00"
+						"dateAndTimeString" : "2025-01-27T19:13:25.734135+11:00"
 					}
 				},
 				"editEmail" : {
@@ -210,14 +247,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:11:51.960657+11:00"
+						"dateAndTimeString" : "2025-01-27T19:14:53.458286+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "OVH9RG3oDQCsXC3GD/Mc5w=="
+					"uidString" : "Unw4Yw3pDQCtaif+B8QNCg=="
 				},
-				"code" : "ueBridgeApplication := PBApplication new"
+				"code" : "states := (jsonData at: 'geonames') select: [ :i | (i at: 'fcode') = 'ADM1' ]"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -233,7 +270,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:16:22.626317+11:00"
+						"dateAndTimeString" : "2025-01-27T19:15:07.707108+11:00"
 					}
 				},
 				"editEmail" : {
@@ -244,14 +281,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T06:44:54.851461+11:00"
+						"dateAndTimeString" : "2025-01-27T19:16:58.154148+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
+					"uidString" : "rHxMaQ3pDQCtxYmKB8QNCg=="
 				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: false."
+				"code" : "capitalCities := (jsonData at: 'geonames') select: [ :i | (i at: 'fcode') = 'PPLA' ]"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -267,7 +304,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:49.028091+11:00"
+						"dateAndTimeString" : "2025-01-27T19:17:28.925553+11:00"
 					}
 				},
 				"editEmail" : {
@@ -278,14 +315,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:50.436328+11:00"
+						"dateAndTimeString" : "2025-01-27T19:18:35.769025+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "CQugyW3oDQCToLX9CzyDUw=="
+					"uidString" : "alC3cQ3pDQCutt1QB8QNCg=="
 				},
-				"code" : "ueBridgeApplication settings\r\tserverSocketAddress: (LanguageLinkSocketAddress ipOrName: 'localhost' port: 10500)"
+				"code" : "largestCities := (jsonData at: 'geonames') select: [ :i | (i at: 'fcode') = 'PPLA2' ]"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -301,7 +338,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:18.245693+11:00"
+						"dateAndTimeString" : "2025-01-27T19:24:43.50304+11:00"
 					}
 				},
 				"editEmail" : {
@@ -312,14 +349,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:26.36291+11:00"
+						"dateAndTimeString" : "2025-01-27T19:35:52.806277+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "+ADtWG3oDQCt7gebD/Mc5w=="
+					"uidString" : "NnOeiw3pDQCv7vYRB8QNCg=="
 				},
-				"code" : "ueBridgeApplication start"
+				"code" : "(jsonData at: 'geonames') select: [ :i | (i at: 'adminName1') = 'California' ]"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T16:06:29.879028+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-01-27T16:06:29.879028+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CCm0xgrpDQCpqAQDB8QNCg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : ""
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -335,7 +409,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:49:04.50655+11:00"
+						"dateAndTimeString" : "2025-01-28T13:25:47.048633+11:00"
 					}
 				},
 				"editEmail" : {
@@ -346,14 +420,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:49:11.820156+11:00"
+						"dateAndTimeString" : "2025-01-28T13:28:32.870167+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "PzyMym3oDQCTq//iCzyDUw=="
+					"uidString" : "sJzJpRzpDQCCyRtcDCHeRg=="
 				},
-				"code" : "ueBridgeApplication stop"
+				"code" : "[\nEpMonitor current disable.\n[ Metacello new\n\tbaseline: 'Dynabook';\n\trepository: 'github://seandenigris/Dynabook';\n\tonConflictUseLoaded;\n\tload ] ensure: [ EpMonitor current enable ].\n\n] fork."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -369,7 +443,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:42.636919+11:00"
+						"dateAndTimeString" : "2025-01-28T14:14:23.288505+11:00"
 					}
 				},
 				"editEmail" : {
@@ -380,184 +454,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:51.197026+11:00"
+						"dateAndTimeString" : "2025-01-28T14:14:23.288505+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "DS1hWm3oDQCuA0BbD/Mc5w=="
+					"uidString" : "pOObUx3pDQCDDmKXDCHeRg=="
 				},
-				"code" : "PBApplication uniqueInstance: ueBridgeApplication"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:20:51.423297+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T14:35:46.366397+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "pdWhZW3oDQCuJFHdD/Mc5w=="
-				},
-				"code" : "ueBridgeApplication newCommandStringFactory\n\tresultExpression: 'unreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
-			},
-			{
-				"__type" : "pythonSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T08:54:04.147198+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T09:53:27.830974+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "phBU63foDQCT7AkwCzyDUw=="
-				},
-				"code" : "import unreal\nsysLib = unreal.SystemLibrary;"
-			},
-			{
-				"__type" : "pythonSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T09:33:50.804224+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T15:12:02.352503+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "qY+VeXjoDQCUR4aBCzyDUw=="
-				},
-				"code" : "import unreal\rgameName = sysLib.get_game_name();\rversion = sysLib.get_engine_version();"
-			},
-			{
-				"__type" : "pythonSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T14:48:46.689536+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T14:50:20.934731+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "Y+Td33zoDQCWLOhbCzyDUw=="
-				},
-				"code" : "import unreal\rproject_directory = unreal.SystemLibrary.get_project_directory()"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T09:22:04.671117+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T09:22:06.804203+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "oLaz5NzoDQCGICydDu0oRQ=="
-				},
-				"code" : "Metacello new\n        repository: 'github://cormas/cormas/';\n        baseline: 'Cormas';\n        load."
+				"code" : ""
 			}
 		]
 	},
@@ -569,7 +473,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-01-18T20:36:05.738024+11:00"
+			"dateAndTimeString" : "2025-01-27T16:06:35.487935+11:00"
 		}
 	},
 	"editEmail" : {
@@ -580,7 +484,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-01-18T20:36:05.738024+11:00"
+			"dateAndTimeString" : "2025-01-27T16:06:35.487935+11:00"
 		}
 	}
 }

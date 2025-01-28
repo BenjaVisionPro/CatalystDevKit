@@ -1,6 +1,14 @@
 {
 	"__schema" : "4.1",
 	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "7807d67c-59e8-0d00-91b0-b8220ad82258"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "ACF"
+	},
 	"children" : {
 		"__type" : "snippets",
 		"items" : [
@@ -100,14 +108,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T21:09:26.166586+11:00"
+						"dateAndTimeString" : "2025-01-27T09:54:50.13042+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "k5MSUWPoDQCkE5ZMCtgiWA=="
 				},
-				"code" : "#gtView gtPragmas & #mondrian gtReferences"
+				"code" : "[\nEpMonitor current disable.\n[ Metacello new\n\tbaseline: 'MyPeople';\n\trepository: 'github://seandenigris/My-People';\n\tonConflict: [ :ex | ex allow ];\n\tload ] ensure: [ EpMonitor current enable ].\n\n] fork."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -134,14 +142,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-26T10:21:08.421165+11:00"
+						"dateAndTimeString" : "2025-01-26T10:21:29.688369+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
 				},
-				"code" : "#(1 2 3) removeFirst"
+				"code" : "#(1 2 3) "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -574,13 +582,5 @@
 			"__type" : "dateAndTime",
 			"dateAndTimeString" : "2025-01-18T20:36:05.738024+11:00"
 		}
-	},
-	"pageType" : {
-		"__type" : "namedPage",
-		"title" : "ACF"
-	},
-	"uid" : {
-		"__type" : "uuid",
-		"uuid" : "7807d67c-59e8-0d00-91b0-b8220ad82258"
 	}
 }
