@@ -14,17 +14,15 @@ Metacello new
 	load.
 
 Metacello new
-	baseline: 'Dynabook';
-	repository: 'github://seandenigris/Dynabook';
-	onConflictUseIncoming;
-	load.
-
-"
-Metacello new
 	baseline:'Seaside3';
 	repository: 'github://SeasideSt/Seaside:master/repository';
 	load: #('CI' 'Zinc' 'Development' 'JQuery').
-"
+
+Metacello new
+	baseline: 'Dynabook';
+	repository: 'github://seandenigris/Dynabook';
+	onConflictUseLoaded;
+	load.
 
 Metacello new
 	baseline: 'RenoirSt';

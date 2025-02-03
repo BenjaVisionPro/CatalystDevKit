@@ -133,17 +133,17 @@ BVCGamePlayTag >> graph [
 				when: BlMouseEnterEvent
 					do: [ :anEvent | 
 						anEvent currentTarget graph connectedEdges
-							do: [ :inner | inner element border: (BlBorder paint: (Color red alpha: 0.8) width: 0.2) ] ];
+							do: [ :inner | inner element border: (BlBorder paint: (Color red alpha: 0.6) width: 1.2) ] ];
 				when: BlMouseLeaveEvent
 					do: [ :anEvent | 
 						anEvent currentTarget graph connectedEdges
-							do: [ :inner | inner element border: (BlBorder paint: (Color blue alpha: 0.8) width: 0.2) ] ] ];
+							do: [ :inner | inner element border: (BlBorder paint: (Color blue alpha: 0.4) width: 1.2) ] ] ];
 		with: self dataTableRows.
 	m edges
 		stencil: [ :nodeTag | 
 			BlLineElement new
 				zIndex: -1;
-				border: (BlBorder paint: (Color blue alpha: 0.5) width: 0.8) ];
+				border: (BlBorder paint: (Color blue alpha: 0.4) width: 1.2) ];
 		connectFrom: [ :nodeTag | nodeTag parent ].
 	m layout radialTree.
 	^ m

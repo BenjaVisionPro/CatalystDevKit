@@ -142,14 +142,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-27T09:57:19.262059+11:00"
+						"dateAndTimeString" : "2025-02-02T21:27:41.011117+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
 				},
-				"code" : "#(1 2 3) "
+				"code" : "(ByteArray new: 16 streamContents: [ :stream |\n  16 timesRepeat: [ stream nextPut: 256 atRandom - 1 ] ]) "
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-02T21:26:57.197843+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-02-02T21:27:12.427442+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "AAHK84fpDQC13K/6DjoIqg=="
+				},
+				"code" : "(2 raisedTo: 16) atRandom"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -176,14 +210,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T14:03:09.355155+11:00"
+						"dateAndTimeString" : "2025-01-31T07:36:21.471956+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "QGbySG3oDQCslKjYD/Mc5w=="
 				},
-				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory / 'bvcUEBridge') ensureCreateDirectory"
+				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory / 'ue_bridge') ensureCreateDirectory"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -244,14 +278,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T06:44:54.851461+11:00"
+						"dateAndTimeString" : "2025-01-31T08:12:58.599933+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: false."
+				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: true."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -414,14 +448,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T14:35:46.366397+11:00"
+						"dateAndTimeString" : "2025-02-03T16:18:14.224582+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "pdWhZW3oDQCuJFHdD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication newCommandStringFactory\n\tresultExpression: 'unreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
+				"code" : "ueBridgeApplication newCommandStringFactory\n\tresultExpression: 'import unreal\runreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
 			},
 			{
 				"__type" : "pythonSnippet",
@@ -448,14 +482,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-21T09:53:27.830974+11:00"
+						"dateAndTimeString" : "2025-01-31T19:23:23.569249+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "phBU63foDQCT7AkwCzyDUw=="
 				},
-				"code" : "import unreal\nsysLib = unreal.SystemLibrary;"
+				"code" : "import unreal\nsysLib = unreal.SystemLibrary\rsysLib.get_game_name()"
 			},
 			{
 				"__type" : "pythonSnippet",
@@ -482,14 +516,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T15:12:02.352503+11:00"
+						"dateAndTimeString" : "2025-02-01T10:23:02.177819+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "qY+VeXjoDQCUR4aBCzyDUw=="
 				},
-				"code" : "import unreal\rgameName = sysLib.get_game_name();\rversion = sysLib.get_engine_version();"
+				"code" : "import unreal\runreal.SystemLibrary.get_game_name()"
 			},
 			{
 				"__type" : "pythonSnippet",
@@ -516,14 +550,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T14:50:20.934731+11:00"
+						"dateAndTimeString" : "2025-02-01T10:27:35.557778+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "Y+Td33zoDQCWLOhbCzyDUw=="
 				},
-				"code" : "import unreal\rproject_directory = unreal.SystemLibrary.get_project_directory()"
+				"code" : "import unreal\runreal.SystemLibrary.get_project_directory()"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -550,14 +584,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T09:22:06.804203+11:00"
+						"dateAndTimeString" : "2025-01-30T08:37:05.052119+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "oLaz5NzoDQCGICydDu0oRQ=="
 				},
-				"code" : "Metacello new\n        repository: 'github://cormas/cormas/';\n        baseline: 'Cormas';\n        load."
+				"code" : "'aView mondrian' gtSubstringMatch"
 			}
 		]
 	},
