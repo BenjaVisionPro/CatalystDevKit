@@ -142,184 +142,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-02T21:27:41.011117+11:00"
+						"dateAndTimeString" : "2025-02-04T09:06:50.653539+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
 				},
-				"code" : "(ByteArray new: 16 streamContents: [ :stream |\n  16 timesRepeat: [ stream nextPut: 256 atRandom - 1 ] ]) "
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-02T21:26:57.197843+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-02T21:27:12.427442+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "AAHK84fpDQC13K/6DjoIqg=="
-				},
-				"code" : "(2 raisedTo: 16) atRandom"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:12:50.163898+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-31T07:36:21.471956+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "QGbySG3oDQCslKjYD/Mc5w=="
-				},
-				"code" : "ueBridgeWorkingDirectory := (FileLocator imageDirectory / 'ue_bridge') ensureCreateDirectory"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:11:43.77065+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:11:51.960657+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "OVH9RG3oDQCsXC3GD/Mc5w=="
-				},
-				"code" : "ueBridgeApplication := PBApplication new"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:16:22.626317+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-31T08:12:58.599933+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "3FCcVW3oDQCtz7SlD/Mc5w=="
-				},
-				"code" : "ueBridgeApplication settings workingDirectory: ueBridgeWorkingDirectory.\rueBridgeApplication debugMode: true."
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:49.028091+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:48:50.436328+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "CQugyW3oDQCToLX9CzyDUw=="
-				},
-				"code" : "ueBridgeApplication settings\r\tserverSocketAddress: (LanguageLinkSocketAddress ipOrName: 'localhost' port: 10500)"
+				"code" : "ueBridge := PBApplication new.\rueBridge settings\r\tworkingDirectory: (FileLocator imageDirectory / 'ue_bridge') ensureCreateDirectory;\r\tserverSocketAddress: (LanguageLinkSocketAddress ipOrName: 'localhost' port: 10500);\r\tserverDebugMode: true.\rueBridge debugMode: true.\rueBridge start.\rPBApplication uniqueInstance: ueBridge"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -346,14 +176,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:26.36291+11:00"
+						"dateAndTimeString" : "2025-02-04T09:07:11.802273+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "+ADtWG3oDQCt7gebD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication start"
+				"code" : "ueBridge start"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -380,48 +210,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:49:11.820156+11:00"
+						"dateAndTimeString" : "2025-02-04T09:07:14.08138+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "PzyMym3oDQCTq//iCzyDUw=="
 				},
-				"code" : "ueBridgeApplication stop"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:42.636919+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T20:17:51.197026+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "DS1hWm3oDQCuA0BbD/Mc5w=="
-				},
-				"code" : "PBApplication uniqueInstance: ueBridgeApplication"
+				"code" : "ueBridge stop"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -448,14 +244,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-03T16:18:14.224582+11:00"
+						"dateAndTimeString" : "2025-02-04T09:07:45.939041+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "pdWhZW3oDQCuJFHdD/Mc5w=="
 				},
-				"code" : "ueBridgeApplication newCommandStringFactory\n\tresultExpression: 'import unreal\runreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
+				"code" : "ueBridge newCommandStringFactory\n\tresultExpression: 'import unreal\runreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
 			},
 			{
 				"__type" : "pythonSnippet",
@@ -558,40 +354,6 @@
 					"uidString" : "Y+Td33zoDQCWLOhbCzyDUw=="
 				},
 				"code" : "import unreal\runreal.SystemLibrary.get_project_directory()"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-25T09:22:04.671117+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-30T08:37:05.052119+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "oLaz5NzoDQCGICydDu0oRQ=="
-				},
-				"code" : "'aView mondrian' gtSubstringMatch"
 			}
 		]
 	},
