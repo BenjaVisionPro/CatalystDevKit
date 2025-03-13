@@ -1,6 +1,14 @@
 {
 	"__schema" : "4.1",
 	"__type" : "page",
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "947a6582-f6e2-0d00-afa9-1bb606a37243"
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Building a Universe"
+	},
 	"children" : {
 		"__type" : "snippets",
 		"items" : [
@@ -66,7 +74,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T07:27:49.396362+11:00"
+						"dateAndTimeString" : "2025-03-10T05:40:33.001099+11:00"
 					}
 				},
 				"uid" : {
@@ -76,7 +84,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Let's start with something to represent the universe."
+				"string" : "Let's start by creating a universe for development."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -103,85 +111,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T07:28:56.825556+11:00"
+						"dateAndTimeString" : "2025-03-10T05:40:01.150622+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "UyZtjvbiDQCzPsqFBqNyQw=="
 				},
-				"code" : "universe := BVCUniverse new"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T09:17:57.733346+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T09:18:13.890971+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "4pniF/jiDQCKQ5eRDY7sxQ=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Give it some labelling"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T09:18:19.621686+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T10:59:28.230119+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "vJcwGfjiDQCKt5CADY7sxQ=="
-				},
-				"code" : "universe\r\ttitle: 'Dev1Universe';\r\tcomment: 'A universe for development and testing'"
+				"code" : "universe := BVCUniverse new\r\t\ttitle: 'Dev Universe';\r\t\tcomment: 'A universe for development and testing';\r\t\tyourself"
 			},
 			{
 				"__type" : "textSnippet",
@@ -245,14 +182,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T09:32:40.688132+11:00"
+						"dateAndTimeString" : "2025-03-10T05:35:42.706615+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "N9t0NPjiDQCPZEzHDY7sxQ=="
 				},
-				"code" : "galaxy := BVCGalaxy new\r\t\ttitle: 'Milky Way';\r\t\tcomment: 'The galaxy that contains Earth and the star systems of the game';\r\t\tyourself.\runiverse galaxies add: galaxy"
+				"code" : "universe galaxies\r\tadd: (galaxy := BVCGalaxy new\r\t\t\t\ttitle: 'Milky Way';\r\t\t\t\tcomment: 'The galaxy that contains Earth and the star systems of the game';\r\t\t\t\tyourself)"
 			},
 			{
 				"__type" : "textSnippet",
@@ -316,14 +253,51 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T10:52:09.606194+11:00"
+						"dateAndTimeString" : "2025-03-10T05:37:17.444525+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "aJyJQfniDQCULUSbDY7sxQ=="
 				},
-				"code" : "starSystem := BVCStarSystem new\r\t\ttitle: '';\r\t\tcomment: 'The star system that contains Earth';\r\t\tyourself.\rgalaxy starSystems add: starSystem"
+				"code" : "galaxy starSystems\r\tadd: (starSystem := BVCStarSystem new\r\t\t\t\ttitle: 'Novus Astra';\r\t\t\t\tcomment: 'The initial star system of That Game : Catalyst';\r\t\t\t\tyourself)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-10T05:47:02.405856+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-03-10T05:47:55.868833+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lkSvBE/sDQC/fdzBAlIj2w=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "There's no need to specify positioning since "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -350,14 +324,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-11-11T10:59:11.702521+11:00"
+						"dateAndTimeString" : "2025-03-12T12:39:47.77546+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "mQ6mfvniDQCYPL+2DY7sxQ=="
 				},
-				"code" : "BVCUniverse soleInstance"
+				"code" : "universe"
 			}
 		]
 	},
@@ -382,13 +356,5 @@
 			"__type" : "dateAndTime",
 			"dateAndTimeString" : "2024-11-11T07:24:47.187925+11:00"
 		}
-	},
-	"pageType" : {
-		"__type" : "namedPage",
-		"title" : "Building a Universe"
-	},
-	"uid" : {
-		"__type" : "uuid",
-		"uuid" : "947a6582-f6e2-0d00-afa9-1bb606a37243"
 	}
 }
