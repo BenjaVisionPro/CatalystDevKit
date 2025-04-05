@@ -18,11 +18,13 @@ Metacello new
 	repository: 'github://SeasideSt/Seaside:master/repository';
 	load: #('CI' 'Zinc' 'Development' 'JQuery').
 
+"
 Metacello new
 	baseline: 'Dynabook';
 	repository: 'github://seandenigris/Dynabook';
 	onConflictUseLoaded;
 	load.
+"
 
 Metacello new
 	baseline: 'RenoirSt';
