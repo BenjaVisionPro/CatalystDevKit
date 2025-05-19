@@ -172,7 +172,7 @@ cd $workingDirectory
 
 # Setup BVC
 #./installBVC.sh
-./installGT4Gemstone.sh
+#./installGT4Gemstone.sh
 
 
 
