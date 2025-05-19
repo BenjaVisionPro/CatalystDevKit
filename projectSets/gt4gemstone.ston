@@ -1,0 +1,39 @@
+GDKProjectSet {
+	#name : 'gt4gemstone',
+	#parentRegistryName : 'gt',
+	#parentRegistryPath : '$STONES_DATA_HOME/gsdevkit_stones/registry.ston',
+	#comment : 'The gt4gemstone repositories are currently managed independently of the rowanV3_pharo repositories.',
+	#loadSpecs : {
+		'Sparkle' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:GemTalk/Sparkle.git'
+			}
+		},
+		'RemoteServiceReplication' : {
+			'revision' : 'martin-136PortRange',
+			'gitUrls' : {
+				'origin' : 'git@github.com:GemTalk/RemoteServiceReplication.git'
+			}
+		},
+		'PharoGemStoneFFI' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:GemTalk/PharoGemStoneFFI.git'
+			}
+		},
+		'gt4gemstone' : {
+			'revision' : 'issue_5',
+			'gitUrls' : {
+				'origin' : 'git@github.com:dalehenrich/gt4gemstone.git'
+			}
+		},
+		'Announcements' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:GemTalk/Announcements.git'
+			}
+		}
+	},
+	#projectDirectory : '/opt/GsDevKit/gt/git'
+}
