@@ -1,14 +1,6 @@
 {
 	"__schema" : "4.1",
 	"__type" : "page",
-	"uid" : {
-		"__type" : "uuid",
-		"uuid" : "7807d67c-59e8-0d00-91b0-b8220ad82258"
-	},
-	"pageType" : {
-		"__type" : "namedPage",
-		"title" : "ACF"
-	},
 	"children" : {
 		"__type" : "snippets",
 		"items" : [
@@ -142,14 +134,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-04T09:06:50.653539+11:00"
+						"dateAndTimeString" : "2025-04-24T11:52:26.19062+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "kdjX92zoDQCryK0UD/Mc5w=="
 				},
-				"code" : "ueBridge := PBApplication new.\rueBridge settings\r\tworkingDirectory: (FileLocator imageDirectory / 'ue_bridge') ensureCreateDirectory;\r\tserverSocketAddress: (LanguageLinkSocketAddress ipOrName: 'localhost' port: 10500);\r\tserverDebugMode: true.\rueBridge debugMode: true.\rueBridge start.\rPBApplication uniqueInstance: ueBridge"
+				"code" : "ueBridge := PBApplication new.\rueBridge settings\r\tworkingDirectory: (FileLocator imageDirectory / 'ue_bridge') ensureCreateDirectory;\r\tserverSocketAddress: (LanguageLinkSocketAddress ipOrName: 'localhost' port: 10500);\r\tserverDebugMode: true.\rueBridge debugMode: true.\rueBridge start."
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -176,14 +168,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-04T09:07:11.802273+11:00"
+						"dateAndTimeString" : "2025-04-24T11:52:22.627727+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "+ADtWG3oDQCt7gebD/Mc5w=="
 				},
-				"code" : "ueBridge start"
+				"code" : "\rPBApplication uniqueInstance: ueBridge"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -244,7 +236,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-02-04T09:07:45.939041+11:00"
+						"dateAndTimeString" : "2025-04-24T09:50:56.860093+10:00"
 					}
 				},
 				"uid" : {
@@ -252,40 +244,6 @@
 					"uidString" : "pdWhZW3oDQCuJFHdD/Mc5w=="
 				},
 				"code" : "ueBridge newCommandStringFactory\n\tresultExpression: 'import unreal\runreal.SystemLibrary.get_game_name()';\n\tsendAndWait"
-			},
-			{
-				"__type" : "pythonSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-20T08:54:04.147198+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-31T19:23:23.569249+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "phBU63foDQCT7AkwCzyDUw=="
-				},
-				"code" : "import unreal\nsysLib = unreal.SystemLibrary\rsysLib.get_game_name()"
 			},
 			{
 				"__type" : "pythonSnippet",
@@ -378,5 +336,13 @@
 			"__type" : "dateAndTime",
 			"dateAndTimeString" : "2025-01-18T20:36:05.738024+11:00"
 		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "ACF"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "7807d67c-59e8-0d00-91b0-b8220ad82258"
 	}
 }
