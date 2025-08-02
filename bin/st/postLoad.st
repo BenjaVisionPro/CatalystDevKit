@@ -1,5 +1,7 @@
 [
+	5 seconds wait.
 	BVCDevKit initializeKnowledgeBase.
+	5 seconds wait.
 	space := BVCDevKitWorld openDefault. 
 	5 seconds wait
 ] on: Error do: [ :e | 

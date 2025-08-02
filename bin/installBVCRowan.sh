@@ -1,11 +1,14 @@
 #! /usr/bin/env sh
+set -e
+set -x
+
 PROGNAME=$0
 . private/shFeedback
 start_banner
 
 registryName=bvc_rowan
 stoneName=$registryName
-gemstoneVersion="3.7.1"
+gemstoneVersion="3.7.4.1"
 
 # Save current directory
 workingDirectory=`PWD`

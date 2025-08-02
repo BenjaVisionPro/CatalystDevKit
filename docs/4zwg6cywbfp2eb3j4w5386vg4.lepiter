@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:01:44.925086+10:00"
+						"dateAndTimeString" : "2025-06-12T09:30:10.391931+10:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-12T05:26:34.818678+10:00"
+						"dateAndTimeString" : "2025-06-12T09:30:10.391931+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "ri/I+jDSDQC8N30lBnKFQw=="
+					"uidString" : "kp9U7rXzDQCXBEIRD+RoVA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "## Macos - Use Touch ID authentication on the terminal"
+				"string" : ""
 			},
 			{
 				"__type" : "textSnippet",
@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:02:28.543048+10:00"
+						"dateAndTimeString" : "2025-06-12T08:43:39.334154+10:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-12T05:41:30.860432+10:00"
+						"dateAndTimeString" : "2025-06-12T08:44:03.98775+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "8bVh/TDSDQC9ObijBnKFQw=="
+					"uidString" : "JHb4R7XzDQC+5x+gD+RoVA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "If you're sick of typing your password when running ```sudo``` you can enable Touch ID instead."
+				"string" : "Bunch of AI testing stuff using data around KPop"
 			},
 			{
 				"__type" : "textSnippet",
@@ -92,7 +92,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:14:49.088805+10:00"
+						"dateAndTimeString" : "2025-06-12T13:41:17.777798+10:00"
 					}
 				},
 				"editEmail" : {
@@ -103,128 +103,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:15:26.099174+10:00"
+						"dateAndTimeString" : "2025-06-12T13:41:17.777798+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "YYmFKTHSDQCDDiDSBnKFQw=="
+					"uidString" : "j6rFRLXzDQC+5kcKD+RoVA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "```bash\nsudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local\nsudo nano /etc/pam.d/sudo_local\n```"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:04:43.462872+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:05:30.358266+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "0W9sBTHSDQCA+c4FBnKFQw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "and follow the instructions inside, uncommenting the last line of the file by removing the # from the start of the line so the file looks like this:"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:15:38.685155+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-04-11T20:16:12.651425+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "T1V6LDHSDQCDSRY+BnKFQw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "```nano\n# uncomment following line to enable Touch ID for sudo\nauth       sufficient     pam_tid.so\n```"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-12T05:24:51.05293+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-12T05:24:56.814595+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "h23p9APXDQCvvXTaCq4TKw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "# Scale font size"
+				"string" : ""
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -240,7 +129,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-06-12T05:25:06.991734+10:00"
+						"dateAndTimeString" : "2025-06-16T07:35:23.22615+10:00"
 					}
 				},
 				"editEmail" : {
@@ -251,125 +140,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2024-08-06T16:03:26.96804+10:00"
+						"dateAndTimeString" : "2025-06-16T07:35:58.891294+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "v6Lc9QPXDQCwKjhiCq4TKw=="
+					"uidString" : "LU4wywT0DQCoqx7wDbCb+g=="
 				},
-				"code" : "BVCDevKitWorld\n\tspaceWithId: BVCDevKitWorld defaultId\n\tdo: [ :theWorld | theWorld root properties fontSizeEm: 1.05 ]"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T11:12:41.478242+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T11:13:52.115859+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "yIoWvWXoDQCl5FpgCtgiWA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Classes that start with BVC are generic to any game using the BenjaVisionCatalyst DevKits"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-01-19T11:12:55.843424+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:10:36.068421+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "l0cYvmXoDQCm/bORCtgiWA=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Classes that start with TGC are specific to ThatGameCatalyst"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:10:43.391264+10:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:10:57.772504+10:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "tXR7BIn2DQCvY50TCPLELw=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Surface area to sphere radius"
+				"code" : "metaDataAssistant := KPopMetaDataAssistant new"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -385,7 +163,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:10:47.070963+10:00"
+						"dateAndTimeString" : "2025-06-13T08:22:22.794137+10:00"
 					}
 				},
 				"editEmail" : {
@@ -396,14 +174,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:13:02.624325+10:00"
+						"dateAndTimeString" : "2025-06-13T18:04:37.341504+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "2JqzBIn2DQCvafejCPLELw=="
+					"uidString" : "G1y5GcnzDQCNmovTCNSxIQ=="
 				},
-				"code" : "| areaKm2 radiusKm |\nareaKm2 := 100.0.\nradiusKm := (areaKm2 / (4 * Float pi)) sqrt"
+				"code" : "KPopMetaDataAI updateMetaDataForVideosInDirectory: '/Users/jupiter/Downloads/KPopMetaDataAI/A20'"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -419,7 +197,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:13:35.217141+10:00"
+						"dateAndTimeString" : "2025-06-12T09:31:25.230595+10:00"
 					}
 				},
 				"editEmail" : {
@@ -430,14 +208,150 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-07-18T08:14:24.399557+10:00"
+						"dateAndTimeString" : "2025-06-12T13:52:27.495939+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "nEq5Don2DQCxNpRfCPLELw=="
+					"uidString" : "LY7K8rXzDQCXIQByD+RoVA=="
 				},
-				"code" : "| radiusKm areaKm2 |\nradiusKm := 5.0.     \"example: Earth's mean radius\"\nareaKm2 := 4 * Float pi * (radiusKm squared).\n"
+				"code" : "metaDataGuru := KPopMetaDataAI new"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-12T08:44:17.557437+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-13T08:00:06.259187+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "C6g/SrXzDQCAeUqHD+RoVA=="
+				},
+				"code" : "metaData := metaDataGuru metaDataForFileNamed: 'RIIZE 라이즈 ''9 Days'' MV [YVwNxYhgCdg].m4v'"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-12T16:59:03.877888+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-15T09:35:29.407444+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "g/6wM7zzDQC7ybNFCNSxIQ=="
+				},
+				"code" : "KPopMetaDataAI getMusicVideosFor: 'NCT Dream Chewing Gum' fromYouTube: 'https://www.youtube.com/watch?v=lB_sC__Y6Gc&list=PLWznbX9Vr47gcwEyN1bRY53oEY1_7gxWv&index=3'"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-12T13:41:12.127298+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-12T15:17:46.329034+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sXIUcLnzDQCrWKEiD+RoVA=="
+				},
+				"code" : " '/Users/jupiter/Downloads/video/RIIZE' asFileReference entries select: [ :entry | entry extension = 'm4v' ]"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-12T15:37:53.096559+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-06-13T08:45:45.129682+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ssJeEbvzDQCxY6z/D+RoVA=="
+				},
+				"code" : "| process |\rprocess := GtSubprocessWithInMemoryOutput\r             command: '/opt/homebrew/bin/AtomicParsley'\r             arguments: arguments.\rprocess\r  workingDirectory: '/Users/jupiter/Downloads/video/RIIZE' asFileReference;\r  errorBlock: [ :theProc | self error: 'External process failed, see proc' ].\rprocess\r  runAndSignal;\r  waitTimeoutMSecs: 10000.\r^ process stdout"
 			}
 		]
 	},
@@ -449,7 +363,7 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-04-11T20:02:11.421815+10:00"
+			"dateAndTimeString" : "2025-06-12T08:43:39.327584+10:00"
 		}
 	},
 	"editEmail" : {
@@ -460,15 +374,15 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2024-06-12T05:26:29.12948+10:00"
+			"dateAndTimeString" : "2025-06-12T09:30:10.383822+10:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "Extras"
+		"title" : "Music Video MetaData"
 	},
 	"uid" : {
 		"__type" : "uuid",
-		"uuid" : "dfe5c7fa-30d2-0d00-bc36-f66d06728543"
+		"uuid" : "b428c544-b5f3-0d00-bee5-83930fe46854"
 	}
 }

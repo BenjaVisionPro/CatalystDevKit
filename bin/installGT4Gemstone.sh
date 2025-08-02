@@ -5,7 +5,7 @@ start_banner
 
 registryName=gt
 stoneName=$registryName
-gemstoneVersion="3.7.2.1"
+gemstoneVersion="3.7.4.1"
 
 # Save current directory
 workingDirectory=`PWD`
