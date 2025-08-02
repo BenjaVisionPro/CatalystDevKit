@@ -33,8 +33,8 @@ BVCCelestialObject >> comment: anObject [
 BVCCelestialObject >> generateRandomSeed [
 
   | seedRange |
-  seedRange := 1 << 32. "This is 2^32 = 4,294,967,296"
-  ^ ( Random new next * seedRange ) asInteger - ( 1 << 31 )
+  seedRange := 1 << 32.
+  ^ ( Random new next * seedRange ) asInteger
 ]
 
 { #category : #accessing }
