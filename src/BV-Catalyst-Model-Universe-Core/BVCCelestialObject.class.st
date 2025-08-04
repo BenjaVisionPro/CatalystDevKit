@@ -29,7 +29,7 @@ BVCCelestialObject >> comment: anObject [
 	comment := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 BVCCelestialObject >> generateRandomSeed [
 
   | seedRange |
