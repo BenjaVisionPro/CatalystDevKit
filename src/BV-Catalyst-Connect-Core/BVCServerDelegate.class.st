@@ -1,6 +1,9 @@
 Class {
 	#name : #BVCServerDelegate,
 	#superclass : #Object,
+	#instVars : [
+		'handler'
+	],
 	#category : #'BV-Catalyst-Connect-Core'
 }
 
@@ -15,7 +18,7 @@ BVCServerDelegate >> continuation [
 	We will receive a ready-to-use instanciated WebSocket.
 	We delegate processing to our handler."
 
-	^ [ :webSocket | self handler value: webSocket ]
+	^ [ :webSocket | handler value: webSocket ]
 ]
 
 { #category : #'request handling' }
@@ -26,6 +29,13 @@ BVCServerDelegate >> handleRequest: request [
   ^ ( self isValidWebSocketRequest: request )
       ifTrue: [ self webSocketResponseForRequest: request ]
       ifFalse: [ ZnResponse badRequest: request ]
+]
+
+{ #category : #initialization }
+BVCServerDelegate >> initialize [
+
+  super initialize.
+  handler := self messageHandlerClass new
 ]
 
 { #category : #'request handling' }
@@ -46,6 +56,16 @@ BVCServerDelegate >> isValidWebSocketRequest: request [
 ]
 
 { #category : #'request handling' }
+BVCServerDelegate >> messageHandlerClass [
+	^ self subclassResponsibility
+]
+
+{ #category : #'request handling' }
+BVCServerDelegate >> protocolIdentifier [
+	^ self subclassResponsibility
+]
+
+{ #category : #'request handling' }
 BVCServerDelegate >> responseHeadersForKey: key [
 	"Return the headers for a WebSocket setup response, given key"
 	
@@ -53,6 +73,7 @@ BVCServerDelegate >> responseHeadersForKey: key [
 			at: 'Upgrade' put: 'websocket';
 			at: 'Connection' put: 'Upgrade';
 			at: 'Sec-WebSocket-Accept' put: key;
+			at: 'Sec-WebSocket-Protocol' put: self protocolIdentifier;
 			yourself
 ]
 
@@ -63,7 +84,7 @@ BVCServerDelegate >> value: request [
 	^ self handleRequest: request
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'request handling' }
 BVCServerDelegate >> webSocketResponseForRequest: request [
 	"Given a valid WebSocket setup request, return the matching server response"
 	
