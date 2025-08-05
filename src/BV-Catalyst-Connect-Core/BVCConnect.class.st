@@ -11,32 +11,39 @@ Class {
 }
 
 { #category : #defaults }
-BVCConnect >> defaultPort [
+BVCConnect >> catalystConnectPort [
 	^ 20302
 ]
 
-{ #category : #defaults }
-BVCConnect >> defaultServer [
-	"Answer the default Zinc server"
-	^ ZnServer default
+{ #category : #'as yet unclassified' }
+BVCConnect >> initialize [
+
+  super initialize.
+  hosts := Dictionary new
 ]
 
-{ #category : #'server - startup' }
-BVCConnect >> startServer [
-	"Starts the default BVCConnectServer on the default port"
-	self startServerOnPort: self defaultPort
-	
+{ #category : #'known hosts' }
+BVCConnect >> localTestHost [
+
+  ^ hosts at: #localTestHost ifAbsentPut: [
+        BVCHost new
+          hostName: 'localhost';
+          yourself
+      ]
 ]
 
 { #category : #'server - startup' }
 BVCConnect >> startServerOnPort: aPort [
   "Start BVCConnect Server on aPort"
 
-  ( ZnServer startDefaultOn: aPort ) delegate: BVCConnectServerDelegate new
+  ^( ZnServer startOn: aPort )
+    delegate: BVCConnectServerDelegate new;
+    yourself
 ]
 
 { #category : #'server - shutdown' }
-BVCConnect >> stopServer [
-	"Stop the default BVCConnect server"
-	ZnServer default stop
+BVCConnect >> stopServer: aServer [
+  "Stop the default BVCConnect server"
+
+  aServer stop
 ]

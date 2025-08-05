@@ -2,25 +2,53 @@ Class {
 	#name : #BVCConnectTests,
 	#superclass : #TestCase,
 	#instVars : [
-		'server'
+		'server',
+		'client'
 	],
 	#category : #'BV-Catalyst-Tests-Connect-Core'
 }
 
+{ #category : #messages }
+BVCConnectTests >> helloMessage [
+  "Answer a hello message"
+
+  ^ NeoJSONObject new
+      atPath: #( 'protocol' 'type' ) put: 'bv_connect_p';
+      atPath: #( 'protocol' 'version' ) put: 1.0;
+      atPath: #( 'payload' 'action' ) put: 'hello';
+      yourself
+]
+
+{ #category : #'as yet unclassified' }
+BVCConnectTests >> newWebSocketToTestServer [
+
+  ^ ZnWebSocket to: 'ws://localhost:' , self testPort asString , '/connect'
+]
+
 { #category : #'as yet unclassified' }
 BVCConnectTests >> setUp [
-	super setUp.
-	Catalyst connect startServer.
+
+  super setUp.
+  server := BVCConnectServer new startOnPort: self testPort
 ]
 
 { #category : #'as yet unclassified' }
 BVCConnectTests >> tearDown [
-	super tearDown.
-	Catalyst connect stopServer.
+
+  super tearDown.
+  server stop.
+  server := nil
 ]
 
 { #category : #'as yet unclassified' }
 BVCConnectTests >> testConnectServer [
-	| webSocket |
-	webSocket := ZnWebSocket to: 'ws://localhost:20302/connect'.
+
+  client := self newWebSocketToTestServer.
+  client sendMessage: self helloMessage.
+]
+
+{ #category : #defaults }
+BVCConnectTests >> testPort [
+
+  ^ 1701
 ]

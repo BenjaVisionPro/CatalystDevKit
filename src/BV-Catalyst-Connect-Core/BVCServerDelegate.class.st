@@ -7,11 +7,6 @@ Class {
 	#category : #'BV-Catalyst-Connect-Core'
 }
 
-{ #category : #defaults }
-BVCServerDelegate class >> delegateKey [
-	^ self subclassResponsibility
-]
-
 { #category : #protocol }
 BVCServerDelegate >> continuation [
 	"Return a block that defines what happens after a successful connection upgrade.
@@ -19,6 +14,11 @@ BVCServerDelegate >> continuation [
 	We delegate processing to our handler."
 
 	^ [ :webSocket | handler value: webSocket ]
+]
+
+{ #category : #defaults }
+BVCServerDelegate >> delegateUri [
+	^ self subclassResponsibility
 ]
 
 { #category : #'request handling' }
@@ -41,7 +41,7 @@ BVCServerDelegate >> initialize [
 { #category : #'request handling' }
 BVCServerDelegate >> isHandlerForRequest: request [
 
-  ^ ( self delegateKey findTokens: '/' ) = request uri pathSegments
+  ^ ( self delegateUri findTokens: '/' ) = request uri pathSegments
 ]
 
 { #category : #protocol }

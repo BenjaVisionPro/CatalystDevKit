@@ -285,14 +285,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T13:32:10.730165+10:00"
+						"dateAndTimeString" : "2025-08-06T08:33:04.30412+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "KwyLCd/3DQC4owZNDlrllQ=="
 				},
-				"code" : "Catalyst connect stopServer"
+				"code" : "Catalyst connect localTestHost "
 			},
 			{
 				"__type" : "pharoSnippet",

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-BVCConnectServerDelegate >> delegateKey [
+BVCConnectServerDelegate >> delegateUri [
 	"URI path to this entry point"
 	^'connect'
 ]
