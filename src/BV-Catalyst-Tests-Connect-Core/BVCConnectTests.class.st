@@ -15,7 +15,7 @@ BVCConnectTests >> helloMessage [
   ^ ( NeoJSONObject new
         atPath: #( 'protocol' 'type' ) put: 'bv_connect_p';
         atPath: #( 'protocol' 'version' ) put: 1.0;
-        atPath: #( 'payload' 'action' ) put: 'hello';
+        atPath: #( 'message' 'type' ) put: 'hello';
         yourself ) printString
 ]
 

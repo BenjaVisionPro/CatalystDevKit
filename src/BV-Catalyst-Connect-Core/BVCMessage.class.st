@@ -5,15 +5,32 @@ Class {
 }
 
 { #category : #'instance creation' }
-BVCMessage class >> fromBytes: bytes [
+BVCMessage class >> fromJsonBytes: bytes [
+  "Marshal bytes into the message"
 
-  ^ self new fromBytes: bytes
+  | json type |
+  json := ( NeoJSONReader on: ( ReadStream on: bytes ) ) next.
+  type := self messageClassForType: ( json atPath: #( 'message' 'type' ) ).
+  ^ type fromJson: json
+]
+
+{ #category : #'instance creation' }
+BVCMessage class >> messageClassForType: type [
+
+  ^ BVCMessage allSubclasses
+      detect: [ :messageClass | messageClass types includes: type ]
+      ifNone: [ self error: 'No Message class handles type "' , type , '".' ]
 ]
 
 { #category : #marshalling }
-BVCMessage >> fromBytes: bytes [
+BVCMessage >> fromJson: json [
+  "Marshal json into the message"
 
-  | json |
-  "Marshal bytes into a message"
-  json := ( NeoJSONReader on: ( ReadStream on: bytes ) ) next
+  self magritteDescription do: [ :desc |  ]
+]
+
+{ #category : #'as yet unclassified' }
+BVCMessage >> messageTypes [
+
+  ^ #(  )
 ]
