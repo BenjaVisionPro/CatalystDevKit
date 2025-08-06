@@ -7,6 +7,13 @@ Class {
 	#category : #'BV-Catalyst-Connect-Core'
 }
 
+{ #category : #'as yet unclassified' }
+BVCServer >> delegate [
+  "Answer the server delegate. This shouldn't be needed in production, it's only used in testing."
+
+  ^ server delegate
+]
+
 { #category : #defaults }
 BVCServer >> delegateClass [
   "The delegate for handling requests from this server"

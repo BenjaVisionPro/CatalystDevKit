@@ -12,11 +12,11 @@ Class {
 BVCConnectTests >> helloMessage [
   "Answer a hello message"
 
-  ^ NeoJSONObject new
-      atPath: #( 'protocol' 'type' ) put: 'bv_connect_p';
-      atPath: #( 'protocol' 'version' ) put: 1.0;
-      atPath: #( 'payload' 'action' ) put: 'hello';
-      yourself
+  ^ ( NeoJSONObject new
+        atPath: #( 'protocol' 'type' ) put: 'bv_connect_p';
+        atPath: #( 'protocol' 'version' ) put: 1.0;
+        atPath: #( 'payload' 'action' ) put: 'hello';
+        yourself ) printString
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,6 +45,8 @@ BVCConnectTests >> testConnectServer [
 
   client := self newWebSocketToTestServer.
   client sendMessage: self helloMessage.
+  server delegate 
+  
 ]
 
 { #category : #defaults }

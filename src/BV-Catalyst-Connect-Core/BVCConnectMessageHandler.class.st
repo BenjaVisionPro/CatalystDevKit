@@ -1,6 +1,6 @@
 Class {
 	#name : #BVCConnectMessageHandler,
-	#superclass : #Object,
+	#superclass : #BVCMessageHandler,
 	#instVars : [
 		'sockets',
 		'lock'
@@ -21,9 +21,10 @@ BVCConnectMessageHandler >> register: clientWebSocket [
 ]
 
 { #category : #'as yet unclassified' }
-BVCConnectMessageHandler >> triageMessage: message [ 
-	"I triage incoming messages and delegate to the appropriate handler"
-	
+BVCConnectMessageHandler >> triageMessage: message [
+  "I triage incoming messages and delegate to the appropriate handler"
+
+  self halt
 ]
 
 { #category : #'as yet unclassified' }
