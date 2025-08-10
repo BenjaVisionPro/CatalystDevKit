@@ -285,14 +285,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-06T08:32:44.081478+10:00"
+						"dateAndTimeString" : "2025-08-06T08:33:04.30412+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "KwyLCd/3DQC4owZNDlrllQ=="
 				},
-				"code" : "Catalyst connect localTestHost server start"
+				"code" : "Catalyst connect localTestHost "
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -319,14 +319,48 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-08-04T08:20:04.150778+10:00"
+						"dateAndTimeString" : "2025-08-07T13:20:04.233235+10:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "ohjKIN/3DQC6sPZwDlrllQ=="
 				},
-				"code" : "ZnServer default"
+				"code" : "server := BVCConnectServer new startOnPort: 1701"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-07T13:20:08.008711+10:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-08-07T13:20:11.717499+10:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bIrYqx/4DQC8ryG0AVnw/g=="
+				},
+				"code" : "server stop"
 			}
 		]
 	},
