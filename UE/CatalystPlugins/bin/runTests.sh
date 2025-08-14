@@ -1,0 +1,1 @@
+/Users/jupiter/UnrealEngine/UE_5.6/Engine/Binaries/Mac/UnrealEditor /opt/git/BenjaVision/CatalystDevKit/UE/CatalystPlugins/CatalystPlugins.uproject -ExecCmds="Automation RunTests BVC; Quit"

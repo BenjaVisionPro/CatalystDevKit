@@ -1,0 +1,45 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Catalyst:Connect",
+	"Description": "Connect is the foundational layer for all Catalyst plugins, serving as the essential bridge to foster communication. It streamlines interaction with the Catalyst Server, from players, games in operation, and linked accessory devices or applications. At its core, Connect ensures both the security and efficiency of these interactions, encapsulating a custom protocol tailored for fast and secure message deliveries.",
+	"Category": "BenjaVision",
+	"CreatedBy": "Jupiter Jones",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "CatalystConnect",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+		},
+		{
+			"Name": "CatalystConnectEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+
+		},
+        {
+            "Name": "CatalystConnectTests",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+        }
+	]
+}
