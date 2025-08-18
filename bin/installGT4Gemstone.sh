@@ -3,12 +3,15 @@ PROGNAME=$0
 . private/shFeedback
 start_banner
 
-registryName=gt
-stoneName=$registryName
+# User default registry ie. hostname
+registryName=`/bin/hostname`
+
+stoneName=gt
 gemstoneVersion="3.7.4.3"
 
 # Save current directory
 workingDirectory=`PWD`
+projectSetDirectory=$workingDirectory/../projectSets
 
 # Setup the BenjaVision Catalyst development environment
 information_banner "Version Report"
@@ -27,10 +30,9 @@ updateClientLibs.solo --registry=$registryName $gemstoneVersion
 information_banner "Registering GemStone $gemstoneVersion"
 registerProduct.solo --registry=$registryName --fromDirectory=$STONES_HOME/gemstone
 
-information_banner "Creating GT Project Set"
+information_banner "Creating GT Project Set from $projectSetDirectory/gt4gemstone.ston"
 createProjectSet.solo --registry=$registryName --projectSet=gt4gemstone \
-	--from=$STONES_HOME/git/GsDevKit_stones/projectSets/ssh/gt4gemstone.ston
-
+	--from=$projectSetDirectory/gt4gemstone.ston
 
 information_banner "Creating Project Directory $STONES_HOME/$registryName"
 projectPath=$STONES_HOME/$registryName
@@ -74,14 +76,28 @@ cd $projectPath/stones/$stoneName
 
 
 
-
 # turn on unicodeComparisonMode required by Jadeite
 enableUnicodeCompares.topaz -lq
+
+# install RSR
+information_banner "installing RSR"
+installProject.stone file:$projectPath/git/RemoteServiceReplication/rowan/specs/RemoteServiceReplication.ston  \
+	--projectsHome=$projectPath/git -D
+
+# install gtoolkit-wireencoding
+information_banner "installing gtoolkit-wireencoding"
+installProject.stone file:$projectPath/git/gtoolkit-wireencoding/rowan/specs/gtoolkit-wireencoding.ston  \
+	--projectsHome=$projectPath/git -D
+
+# install gtoolkit-remote
+information_banner "installing gtoolkit-remote"
+installProject.stone file:$projectPath/git/gtoolkit-remote/rowan/specs/gtoolkit-remote.ston  \
+	--projectsHome=$projectPath/git -D
 
 # install gt4gemstone
 information_banner "installing gt4GemStone"
 installProject.stone file:$projectPath/git/gt4gemstone/rowan/specs/gt4gemstone.ston  \
-	--projectsHome=$projectPath/git/gt4gemstone -D
+	--projectsHome=$projectPath/git -D
 
 
 
