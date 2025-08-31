@@ -3,6 +3,7 @@ PROGNAME=$0
 . private/shFeedback
 start_banner
 
+set -e
 # User default registry ie. hostname
 registryName=`/bin/hostname`
 
@@ -18,7 +19,7 @@ information_banner "Version Report"
 versionReport.solo
 
 information_banner "Creating Registry $registryName"
-createRegistry.solo $registryName
+createRegistry.solo $registryName --ensure
 
 information_banner "Register Shared Product Directory $STONES_HOME/gemstone"
 registerProductDirectory.solo --registry=$registryName --productDirectory=$STONES_HOME/gemstone
@@ -36,8 +37,10 @@ createProjectSet.solo --registry=$registryName --projectSet=gt4gemstone \
 
 information_banner "Creating Project Directory $STONES_HOME/$registryName"
 projectPath=$STONES_HOME/$registryName
-mkdir $projectPath
-mkdir $projectPath/git
+if [ ! -d "$projectPath" ]; then
+	mkdir $projectPath
+	mkdir $projectPath/git
+fi
 
 information_banner "Registering Project Git Directory $STONES_HOME/$registryName/git"
 registerProjectDirectory.solo --registry=$registryName --projectDirectory=$projectPath/git
@@ -47,12 +50,14 @@ cloneProjectsFromProjectSet.solo --registry=$registryName --projectSet=gt4gemsto
 	--projectDirectory=$projectPath/git
 
 information_banner "Creating Project Stones Directory $STONES_HOME/$registryName/stones"
-mkdir $projectPath/stones
-registerStonesDirectory.solo --registry=$registryName \
+if [ ! -d "$projectPath/stones" ]; then
+	mkdir $projectPath/stones
+	registerStonesDirectory.solo --registry=$registryName \
                              --stonesDirectory=$projectPath/stones
+fi
 
 information_banner "Creating Stone $stoneName"
-createStone.solo --registry=$registryName --template=default_rowan3 $stoneName $gemstoneVersion
+createStone.solo --force --registry=$registryName --template=default_rowan3 $stoneName $gemstoneVersion
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	# possible native code generation issues on mac and github, disable native code
@@ -84,14 +89,19 @@ information_banner "installing RSR"
 installProject.stone file:$projectPath/git/RemoteServiceReplication/rowan/specs/RemoteServiceReplication.ston  \
 	--projectsHome=$projectPath/git -D
 
+# install RowanClientServices
+information_banner "installing RowanClientServicesV3"
+installProject.stone file:$projectPath/git/RowanClientServicesV3/rowan/specs/RowanClientServices.ston  \
+	--projectsHome=$projectPath/git --alias=RowanClientServicesV3 -D
+
+# install Sparkle
+information_banner "installing Sparkle"
+installProject.stone file:$projectPath/git/Sparkle/rowan/specs/Sparkle.ston  \
+	--projectsHome=$projectPath/git -D
+
 # install gtoolkit-wireencoding
 information_banner "installing gtoolkit-wireencoding"
 installProject.stone file:$projectPath/git/gtoolkit-wireencoding/rowan/specs/gtoolkit-wireencoding.ston  \
-	--projectsHome=$projectPath/git -D
-
-# install gtoolkit-remote
-information_banner "installing gtoolkit-remote"
-installProject.stone file:$projectPath/git/gtoolkit-remote/rowan/specs/gtoolkit-remote.ston  \
 	--projectsHome=$projectPath/git -D
 
 # install gt4gemstone
@@ -99,7 +109,15 @@ information_banner "installing gt4GemStone"
 installProject.stone file:$projectPath/git/gt4gemstone/rowan/specs/gt4gemstone.ston  \
 	--projectsHome=$projectPath/git -D
 
+# install gtoolkit-remote
+information_banner "installing gtoolkit-remote"
+installProject.stone file:$projectPath/git/gtoolkit-remote/rowan/specs/gtoolkit-remote.ston  \
+	--projectsHome=$projectPath/git -D
 
+### Skippping because the attach step is only needed when editting projects that are part of 
+###		the base image and that's not critical functionality at the moment
+### attach stone to the Rowan projects that are part of the base image
+##attachRowanDevClones.stone --projectsHome=$projectPath/git $*
 
 # Restore working directory
 cd $workingDirectory
