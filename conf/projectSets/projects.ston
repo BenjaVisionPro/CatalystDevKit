@@ -1,0 +1,19 @@
+GDKProjectSet {
+	#name : 'bvc',
+	#parentRegistryName : 'jupiter.local',
+	#loadSpecs : {
+		'CatalystDevKit' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystDevKit.git'
+			}
+		},
+		'CatalystConnectGS' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystConnectGS.git'
+			}
+		}
+	},
+	#comment : 'BenjaVision Catalyst project repositories'
+}

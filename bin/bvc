@@ -1,0 +1,209 @@
+#! /usr/bin/env sh
+set -eu
+
+PROGNAME=$0
+SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
+
+# shellcheck disable=SC1091
+. "${SCRIPT_DIR}/private/shFunctions"
+
+# Load layered config (ENV > CWD/*.bvc > $BVC_CONF_DIR/bvc/bvc_defaults > bundled > safety net)
+load_bvc_config
+
+setup_traps
+start_banner
+information_banner "BenjaVision Catalyst Toolkit"
+
+# ---------------------------------------------------------
+# GSDevKit detection
+# ---------------------------------------------------------
+gsdevkit_installed() {
+  command -v versionReport.solo >/dev/null 2>&1 || return 1
+  [ -n "${STONES_HOME:-}" ] && [ -d "$STONES_HOME" ] || return 1
+}
+
+ensure_gsdevkit() {
+  if gsdevkit_installed; then
+    information_banner "GSDevKit found (STONES_HOME=${STONES_HOME:-unset})."
+  else
+    information_banner "GSDevKit not found — bootstrapping…"
+    "${SCRIPT_DIR}/setupGsDevKit_stones.sh"
+  fi
+}
+
+# ---------------------------------------------------------
+# Registry existence (use tool exit status)
+# ---------------------------------------------------------
+registry_exists() {
+  name="$1"
+  registryReport.solo --registry="$name" >/dev/null 2>&1
+}
+
+# ---------------------------------------------------------
+# ensure_init: make sure GSDevKit is installed AND the registry exists
+# ---------------------------------------------------------
+ensure_init() {
+  reg="$1"
+  ensure_gsdevkit
+  if registry_exists "$reg"; then
+    information_banner "GsDevKit registry '${reg}' already exists."
+  else
+    information_banner "Initializing registry '${reg}'…"
+    "${SCRIPT_DIR}/initRegistry.sh" "$reg"
+  fi
+}
+
+# ---------------------------------------------------------
+# Commands
+# ---------------------------------------------------------
+cmd_init() {
+  # Parse args: allow --registry anywhere; or a single positional.
+  registryName="${DEFAULT_REGISTRY}"
+  pos_seen=0
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --registry=*) registryName=${1#*=} ;;
+      --*)  error_banner "Unknown option: $1"; print_help; exit 1 ;;
+      *)
+        if [ $pos_seen -eq 0 ]; then
+          registryName="$1"; pos_seen=1
+        else
+          error_banner "Too many arguments to 'init'. Provide at most one registry name."
+          print_help; exit 1
+        fi
+        ;;
+    esac
+    shift
+  done
+
+  ensure_init "$registryName"
+  exit_0_banner "init complete"
+}
+
+cmd_createDevStone() {
+  # Parse everything first (flags can appear anywhere)
+  registryName="${DEFAULT_REGISTRY}"
+  gemStoneVersion=""
+  stoneName=""
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --registry=*) registryName=${1#*=} ;;
+      --*)  error_banner "Unknown option: $1"; print_help; exit 1 ;;
+      *)
+        # First positional is stoneName, second is optional gemStoneVersion
+        if [ -z "$stoneName" ]; then
+          stoneName="$1"
+        elif [ -z "$gemStoneVersion" ]; then
+          gemStoneVersion="$1"
+        else
+          error_banner "Too many arguments."
+          print_help; exit 1
+        fi
+        ;;
+    esac
+    shift
+  done
+
+  # Apply defaults (from layered config):
+  # - No args: stoneName + version default
+  # - One arg: stoneName provided; version default
+  # - Two args: both provided
+  if [ -z "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
+    stoneName="${GEMSTONE_STONE_NAME}"
+    gemStoneVersion="${GEMSTONE_VERSION}"
+  elif [ -n "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
+    gemStoneVersion="${GEMSTONE_VERSION}"
+  elif [ -n "$stoneName" ] && [ -n "$gemStoneVersion" ]; then
+    : # ok
+  else
+    error_banner "Invalid arguments to createDevStone."
+    print_help; exit 1
+  fi
+
+  # Ensure environment (GSDevKit + registry) before creating the stone
+  ensure_init "$registryName"
+
+  "${SCRIPT_DIR}/createDevStone.sh" \
+    --registry="$registryName" \
+    "$gemStoneVersion" "$stoneName"
+
+  exit_0_banner "createDevStone complete"
+}
+
+cmd_j4p() {
+  # Ensure Jadeite/Pharo installed (script should be idempotent)
+  "${SCRIPT_DIR}/setupJ4P.sh"
+
+  j4p_dir="$(abs_from_cwd "${J4P_INSTALL_DIR}")"
+  git_dir="$(abs_from_cwd "${ROWAN_PROJECTS_HOME}")"
+
+  if [ ! -d "$j4p_dir" ]; then
+    error_banner "J4P install directory not found: $j4p_dir"
+    exit 1
+  fi
+
+  information_banner "Launching J4P from ${j4p_dir}"
+  (
+    cd "$j4p_dir"
+    ROWAN_PROJECTS_HOME="$git_dir" ./pharo-ui --
+  )
+}
+
+print_help() {
+  cat <<EOF
+Usage: $(prog_basename "$PROGNAME") <command> [args]
+
+Commands:
+  init [--registry=NAME | registryName]
+      Ensure GSDevKit is installed and the registry exists.
+      Default registry: ${DEFAULT_REGISTRY}
+
+  createDevStone [--registry=NAME] [stoneName [gemstoneVersion]]
+      Ensure environment is ready, then create a development stone.
+      Defaults when not provided:
+        stone=${GEMSTONE_STONE_NAME}
+        version=${GEMSTONE_VERSION}
+        registry=${DEFAULT_REGISTRY}
+
+  j4p
+      Run setupJ4P.sh (idempotent) and then launch the J4P IDE.
+
+Examples:
+  bvc init
+  bvc init --registry=myReg
+  bvc init myReg
+
+  bvc createDevStone
+  bvc createDevStone myStone
+  bvc createDevStone myStone 3.7.4.3
+  bvc createDevStone --registry=myReg
+  bvc createDevStone --registry=myReg myStone
+  bvc createDevStone myStone 3.7.4.3 --registry=myReg
+
+  bvc j4p
+
+Notes:
+- Config precedence: ENV > CWD/*.bvc > \$BVC_CONF_DIR/bvc/bvc_defaults > bundled > safety net.
+- Edit defaults in your active conf root (e.g. ./conf/bvc/bvc_defaults).
+- Env overrides: e.g. DEFAULT_REGISTRY=myReg bvc init
+- Steps are idempotent: already-done work is skipped; later sections still run.
+EOF
+}
+
+# ---------------------------------------------------------
+# Dispatch
+# ---------------------------------------------------------
+if [ $# -gt 0 ]; then
+  cmd=$1; shift
+else
+  cmd=help
+fi
+
+case "$cmd" in
+  init)            cmd_init "$@" ;;
+  createDevStone)  cmd_createDevStone "$@" ;;
+  j4p)             cmd_j4p "$@" ;;
+  help|--help|-h)  print_help; exit 0 ;;
+  *)               error_banner "Unknown command: $cmd"; print_help; exit 1 ;;
+esac

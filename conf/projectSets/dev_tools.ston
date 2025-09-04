@@ -1,8 +1,7 @@
 GDKProjectSet {
-	#name : 'gt4gemstone.ston',
-	#parentRegistryName : 'gt',
-	#parentRegistryPath : '$STONES_DATA_HOME/gsdevkit_stones/registry.ston',
-	#comment : 'The gt4gemstone repositories are currently managed independently of the rowanV3_pharo repositories.',
+	#name : 'dev_tools',
+	#parentRegistryName : 'jupiter.local',
+	#comment : 'Adding J4P, Sparkle and GT IDE support',
 	#loadSpecs : {
 		'RemoteServiceReplication' : {
 			'revision' : 'main-v2',
@@ -30,7 +29,7 @@ GDKProjectSet {
 			}
 		},
 		'JadeiteForPharo' : {
-			'revision' : 'main3741',
+			'revision' : 'main374',
 			'gitUrls' : {
 				'origin' : 'git@github.com:GemTalk/JadeiteForPharo.git'
 			}
