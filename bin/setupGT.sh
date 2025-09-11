@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 load_bvc_config
 
 setup_traps
-start_banner
+start_banner "$@"
 information_banner "Initialising Glamorous Toolkit"
 
 # ---------------------------------------------------------
@@ -19,7 +19,10 @@ information_banner "Initialising Glamorous Toolkit"
 # ---------------------------------------------------------
 INSTALL_DIR="$(abs_from_cwd "${GT_INSTALL_DIR}")"
 APP_NAME="${GT_APP_NAME}"
-LOAD_SCRIPTS_DIR="${CONF_DIR}/gt/startup_scripts"
+# If not overridden by flag, individual scripts will be resolved via conf_resolve()
+LOAD_SCRIPTS_DIR=""
+# Resolve/normalize projects root now so we can pass it to GT when loading projects
+PROJECTS_ROOT_ABS="$(abs_from_cwd "${PROJECTS_ROOT}")"
 
 # ---------------------------------------------------------
 # Helpers
@@ -31,7 +34,7 @@ Usage: $(prog_basename "$0") [OPTIONS]
 Options:
   --install-dir=PATH      Install directory (default: ${GT_INSTALL_DIR})
   --app-name=NAME         Application name (default: ${GT_APP_NAME})
-  --load-scripts-dir=DIR  Startup scripts dir (default: ${CONF_DIR}/gt/startup_scripts)
+  --load-scripts-dir=DIR  Startup scripts dir (overrides per-file conf_resolve)
   --help                  Show this help
 EOF
 }
@@ -41,11 +44,11 @@ EOF
 # ---------------------------------------------------------
 for arg in "$@"; do
 	case "$arg" in
-		--install-dir=*)    INSTALL_DIR=$(abs_from_cwd "${arg#*=}") ;;
-		--app-name=*)       APP_NAME=${arg#*=} ;;
+		--install-dir=*)      INSTALL_DIR=$(abs_from_cwd "${arg#*=}") ;;
+		--app-name=*)         APP_NAME=${arg#*=} ;;
 		--load-scripts-dir=*) LOAD_SCRIPTS_DIR=${arg#*=} ;;
-		--help)             print_help; exit 0 ;;
-		*)                  error_banner "Unknown option: $arg"; print_help; exit 1 ;;
+		--help)               print_help; exit 0 ;;
+		*)                    error_banner "Unknown option: $arg"; print_help; exit 1 ;;
 	esac
 done
 
@@ -59,7 +62,12 @@ fi
 
 information_banner "Install dir:     ${INSTALL_DIR}"
 information_banner "App name:        ${APP_NAME}"
-information_banner "Load scripts:    ${LOAD_SCRIPTS_DIR}"
+if [ -n "${LOAD_SCRIPTS_DIR}" ]; then
+  information_banner "Load scripts:    ${LOAD_SCRIPTS_DIR} (override)"
+else
+  information_banner "Load scripts:    resolved via conf_resolve (CONF_DIR → bundled)"
+fi
+information_banner "Projects root:   ${PROJECTS_ROOT_ABS}"
 
 # ---------------------------------------------------------
 # Requirements
@@ -127,15 +135,23 @@ app_path="${INSTALL_DIR}/${app_rel}"
 [ -x "${cli_path}" ] || exit_1_banner "GT CLI not found/executable at: ${cli_path}"
 
 # ---------------------------------------------------------
-# Hook scripts (user-provided or defaults)
+# Hook scripts
+# If --load-scripts-dir is provided, use it directly.
+# Otherwise resolve each script via conf_resolve (CONF_DIR first, then bundled).
 # ---------------------------------------------------------
-preLoad_st="${LOAD_SCRIPTS_DIR}/preLoad.st"
-loadProjects_st="${LOAD_SCRIPTS_DIR}/loadProjects.st"
-postLoad_st="${LOAD_SCRIPTS_DIR}/postLoad.st"
+if [ -n "${LOAD_SCRIPTS_DIR}" ]; then
+  preLoad_st="${LOAD_SCRIPTS_DIR%/}/preLoad.st"
+  loadProjects_st="${LOAD_SCRIPTS_DIR%/}/loadProjects.st"
+  postLoad_st="${LOAD_SCRIPTS_DIR%/}/postLoad.st"
+else
+  preLoad_st="$(conf_resolve 'gt/startup_scripts/preLoad.st')"
+  loadProjects_st="$(conf_resolve 'gt/startup_scripts/loadProjects.st')"
+  postLoad_st="$(conf_resolve 'gt/startup_scripts/postLoad.st')"
+fi
 
-[ -f "${preLoad_st}" ]      || exit_1_banner "Missing preLoad.st in ${LOAD_SCRIPTS_DIR}"
-[ -f "${loadProjects_st}" ] || exit_1_banner "Missing loadProjects.st in ${LOAD_SCRIPTS_DIR}"
-[ -f "${postLoad_st}" ]     || exit_1_banner "Missing postLoad.st in ${LOAD_SCRIPTS_DIR}"
+[ -f "${preLoad_st}" ]      || exit_1_banner "Missing preLoad.st (checked override and bundled locations)"
+[ -f "${loadProjects_st}" ] || exit_1_banner "Missing loadProjects.st (checked override and bundled locations)"
+[ -f "${postLoad_st}" ]     || exit_1_banner "Missing postLoad.st (checked override and bundled locations)"
 
 # ---------------------------------------------------------
 # Execute loads
@@ -144,9 +160,12 @@ spinner_start "Running preLoad.st"
 "${cli_path}" "${INSTALL_DIR}/GlamorousToolkit.image" st "${preLoad_st}" --interactive --save --quit
 spinner_stop
 
+# Remove base image; keep the branded image
 rm -f "${INSTALL_DIR}/GlamorousToolkit.image" "${INSTALL_DIR}/GlamorousToolkit.changes" 2>/dev/null || :
 
 spinner_start "Running loadProjects.st"
+# IMPORTANT: pass the projects root to the GT process for this step only
+PROJECTS_ROOT="${PROJECTS_ROOT_ABS}/projects" \
 "${cli_path}" "${INSTALL_DIR}/${APP_NAME}.image" st "${loadProjects_st}" --save --quit
 spinner_stop
 

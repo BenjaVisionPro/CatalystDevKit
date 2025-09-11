@@ -11,50 +11,78 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 load_bvc_config
 
 # ---------------------------------------------------------
-# Required installer hooks (fatal if missing)
-# These must define:
-#   - install_devtools_projects <gitDir>
-#   - install_projects <gitDir>
-# Use CONF_DIR override first, then bundled fallback.
+# Required installers (fatal if missing)
+# Must provide:
+#   - install_devtools_projects <gitDirForDevTools>
+#   - install_projects <gitDirForProjects>
 # ---------------------------------------------------------
 # shellcheck disable=SC1090
-. "$(conf_resolve 'projectSets/dev_tools.install.sh')"
+. "$(conf_resolve 'gemstone/installers/dev_tools.install')"
 # shellcheck disable=SC1090
-. "$(conf_resolve 'projectSets/projects.install.sh')"
+. "$(conf_resolve 'gemstone/installers/projects.install')"
 
 setup_traps
-start_banner
+start_banner "$@"
 information_banner "Create Development Stone"
 
+usage() {
+  cat 1>&2 <<EOF
+Usage:
+  $(prog_basename "$PROGNAME") [--registry=NAME] [stoneName [gemstoneVersion]]
+
+Where:
+  --registry=NAME       Registry to use (default: ${DEFAULT_REGISTRY})
+  stoneName             Name of the stone (default: ${GEMSTONE_STONE_NAME})
+  gemstoneVersion       GemStone version (default: ${GEMSTONE_VERSION})
+
+Examples:
+  $(prog_basename "$PROGNAME")
+  $(prog_basename "$PROGNAME") myStone
+  $(prog_basename "$PROGNAME") myStone 3.7.4.3
+  $(prog_basename "$PROGNAME") --registry=myReg myStone 3.7.4.3
+EOF
+  exit 1
+}
+
 # ---------------------------------------------------------
-# Args (bvc calls with: --registry=NAME <gemstoneVersion> <stoneName>)
+# Args
+# 0 args -> defaults
+# 1 arg  -> <stoneName>
+# 2 args -> <stoneName> <gemstoneVersion>
+# Optional --registry=NAME can appear anywhere.
 # ---------------------------------------------------------
-registry=""
-gemStoneVersion=""
-stoneName=""
+registry="${DEFAULT_REGISTRY}"
+gemStoneVersion="${GEMSTONE_VERSION}"
+stoneName="${GEMSTONE_STONE_NAME}"
+
+pos1=""
+pos2=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
     --registry=*) registry=${1#*=} ;;
-    --*)          error_banner "Unknown option: $1"
-                  exit_1_banner "Usage: $(prog_basename "$PROGNAME") --registry=NAME <gemstoneVersion> <stoneName>   (called by bvc)" ;;
+    --help|-h)    usage ;;
+    --*)          error_banner "Unknown option: $1"; usage ;;
     *)
-      if [ -z "$gemStoneVersion" ]; then
-        gemStoneVersion="$1"
-      elif [ -z "$stoneName" ]; then
-        stoneName="$1"
+      if [ -z "$pos1" ]; then
+        pos1="$1"
+      elif [ -z "$pos2" ]; then
+        pos2="$1"
       else
         error_banner "Too many positional arguments."
-        exit_1_banner "Usage: $(prog_basename "$PROGNAME") --registry=NAME <gemstoneVersion> <stoneName>   (called by bvc)"
+        usage
       fi
       ;;
   esac
   shift
 done
 
-if [ -z "$registry" ] || [ -z "$gemStoneVersion" ] || [ -z "$stoneName" ]; then
-  error_banner "Missing required arguments."
-  exit_1_banner "Usage: $(prog_basename "$PROGNAME") --registry=NAME <gemstoneVersion> <stoneName>   (called by bvc)"
+# Apply positionals over defaults
+if [ -n "$pos1" ] && [ -z "$pos2" ]; then
+  stoneName="$pos1"
+elif [ -n "$pos1" ] && [ -n "$pos2" ]; then
+  stoneName="$pos1"
+  gemStoneVersion="$pos2"
 fi
 
 information_banner "Registry: ${registry}"
@@ -70,19 +98,22 @@ if [ -z "${STONES_HOME:-}" ] || [ ! -d "${STONES_HOME:-/nonexistent}" ]; then
 fi
 
 # ---------------------------------------------------------
-# Local project layout (CWD-relative by design)
+# Paths (CWD-relative by design)
 # ---------------------------------------------------------
 workingDirectory="$(pwd)"
 projectPath="${workingDirectory}"
 stonesDir="${projectPath}/${GSDEVKIT_STONES_DIR}"
-gitDir="$(abs_from_cwd "${ROWAN_PROJECTS_HOME}")"
 
-# Resolve .ston project-set files (hard-fail if missing)
-dev_tools_ston="$(conf_resolve 'projectSets/dev_tools.ston')"
-projects_ston="$(conf_resolve 'projectSets/projects.ston')"
+# New projects root model
+projectsRoot="$(abs_from_cwd "${PROJECTS_ROOT}")"
+gitDir_projects="${projectsRoot}/projects"
+gitDir_devtools="${projectsRoot}/dev_tools"
+
+# Ensure root exists (per-set dirs will be ensured by setupProjects)
+[ -d "${projectsRoot}" ] || mkdir -p "${projectsRoot}"
 
 # ---------------------------------------------------------
-# All-or-nothing existence check
+# If the stone already exists, leave it alone
 # ---------------------------------------------------------
 if registryReport.solo --registry="$registry" --stone="$stoneName" >/dev/null 2>&1; then
   information_banner "Stone '${stoneName}' already exists in registry '${registry}' — leaving it unchanged."
@@ -101,32 +132,11 @@ information_banner "Registering GemStone ${gemStoneVersion}"
 registerProduct.solo    --registry="$registry" --fromDirectory="${STONES_HOME}/gemstone"
 
 # ---------------------------------------------------------
-# Project sets (dev tools + user projects)
+# Project sets: create/register/clone (all .ston sets)
+# This also ensures ${projectsRoot}/<setName> exists.
 # ---------------------------------------------------------
-information_banner "Creating IDE Tools Project Set from ${dev_tools_ston}"
-createProjectSet.solo --registry="$registry" --projectSet=dev_tools \
-  --from="${dev_tools_ston}"
-
-information_banner "Creating User Project Set from ${projects_ston}"
-createProjectSet.solo --registry="$registry" --projectSet=projects \
-  --from="${projects_ston}"
-
-# ---------------------------------------------------------
-# Git directory (repositories)
-# ---------------------------------------------------------
-information_banner "Ensuring project git directory: ${gitDir}"
-[ -d "${gitDir}" ] || mkdir -p "${gitDir}"
-
-information_banner "Registering Project Git Directory: ${gitDir}"
-registerProjectDirectory.solo --registry="$registry" --projectDirectory="${gitDir}"
-
-information_banner "Cloning Projects from project set 'dev_tools'"
-cloneProjectsFromProjectSet.solo --registry="$registry" --projectSet=dev_tools \
-  --projectDirectory="${gitDir}"
-
-information_banner "Cloning Projects from project set 'projects'"
-cloneProjectsFromProjectSet.solo --registry="$registry" --projectSet=projects \
-  --projectDirectory="${gitDir}"
+information_banner "Setting up project sets under ${projectsRoot}"
+"${SCRIPT_DIR}/setupProjects.sh" --registry="${registry}"
 
 # ---------------------------------------------------------
 # Stones directory (where local stones live)
@@ -152,10 +162,10 @@ case "${OSTYPE:-}" in
 esac
 
 # ---------------------------------------------------------
-# Environment for tooling (ROWAN)
+# Environment for tooling (ROWAN) — MUST point to projects set
 # ---------------------------------------------------------
-information_banner "Setting ROWAN_PROJECTS_HOME=${gitDir}"
-export ROWAN_PROJECTS_HOME="${gitDir}"
+information_banner "Setting ROWAN_PROJECTS_HOME=${gitDir_projects}"
+export ROWAN_PROJECTS_HOME="${gitDir_projects}"
 updateCustomEnv.solo --registry="$registry" "$stoneName" \
   --addKey=ROWAN_PROJECTS_HOME --value="$ROWAN_PROJECTS_HOME" --restart
 
@@ -174,13 +184,13 @@ cd "${stonesDir}/${stoneName}"
 # Jadeite requirement: turn on unicodeComparisonMode
 enableUnicodeCompares.topaz -lq
 
-# Install Dev Tools (required hooks already loaded)
-information_banner "Installing dev tools projects"
-install_devtools_projects "${gitDir}"
+# Install Dev Tools (from dev_tools set dir)
+information_banner "Installing dev tools projects from ${gitDir_devtools}"
+install_devtools_projects "${gitDir_devtools}"
 
-# Install User Projects
-information_banner "Installing user projects"
-install_projects "${gitDir}"
+# Install User Projects (from projects set dir)
+information_banner "Installing user projects from ${gitDir_projects}"
+install_projects "${gitDir_projects}"
 
 # Restore working directory
 cd "${workingDirectory}"

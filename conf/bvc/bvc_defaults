@@ -21,8 +21,8 @@
 : "${DEFAULT_REGISTRY:=bvc}"
 : "${GGSDEVKIT_STONES_DIR:=stones}"
 
-# Repositories / GIT Root (used be project sets and becomes ROWAN_PROJECTS_HOME)
-: "${ROWAN_PROJECTS_HOME:=git}"
+# Repositories / Projects Root. Project sets will be cloned into sub-directories of this
+: "${PROJECTS_ROOT:=git_root}"
 
 # GemStone
 : "${GEMSTONE_VERSION:=3.7.4.3}"

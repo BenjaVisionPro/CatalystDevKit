@@ -13,7 +13,13 @@ GDKProjectSet {
 			'gitUrls' : {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystConnectGS.git'
 			}
+		},
+		'GsApplicationTools' : {
+			'revision' : 'JJ_Rowan',
+			'gitUrls' : {
+				'origin' : 'git@github.com:JupiterJones/gsApplicationTools.git'
+			}
 		}
 	},
-	#comment : 'BenjaVision Catalyst project repositories'
+	#comment : 'BenjaVision Catalyst Projects'
 }

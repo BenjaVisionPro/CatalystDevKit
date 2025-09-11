@@ -10,4 +10,8 @@ install_projects() {
   installProject.stone "file:${gitDir}/CatalystConnectGS/rowan/specs/CatalystConnectGS.ston" \
     --projectsHome="${gitDir}" -D
 
+  information_banner "Installing GsApplicationTools"
+  installProject.stone "file:${gitDir}/gsApplicationTools/rowan/specs/gsApplicationTools.ston" \
+    --projectsHome="${gitDir}" -D
+
 }

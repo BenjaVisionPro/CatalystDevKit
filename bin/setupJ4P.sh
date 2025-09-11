@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 load_bvc_config
 
 setup_traps
-start_banner
+start_banner "$@"
 information_banner "Installing Jadeite 4 Pharo"
 
 # ---------------------------------------------------------
@@ -67,7 +67,7 @@ information_banner "Setting up Pharo ${PHARO_VER} in ${INSTALL_DIR}"
 # ---------------------------------------------------------
 # Copy Jadeite startup.st (from projects root)
 # ---------------------------------------------------------
-git_dir="$(abs_from_cwd "${ROWAN_PROJECTS_HOME}")"
+git_dir="$(abs_from_cwd "${PROJECTS_ROOT}/dev_tools")"
 startup_src="${git_dir}/JadeiteForPharo/startup.st"
 if [ -f "${startup_src}" ]; then
   cp "${startup_src}" "${INSTALL_DIR}/"

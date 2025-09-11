@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 load_bvc_config
 
 setup_traps
-start_banner
+start_banner "$@"
 information_banner "BenjaVision Catalyst Toolkit"
 
 # ---------------------------------------------------------
@@ -106,9 +106,6 @@ cmd_createDevStone() {
   done
 
   # Apply defaults (from layered config):
-  # - No args: stoneName + version default
-  # - One arg: stoneName provided; version default
-  # - Two args: both provided
   if [ -z "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
     stoneName="${GEMSTONE_STONE_NAME}"
     gemStoneVersion="${GEMSTONE_VERSION}"
@@ -121,33 +118,127 @@ cmd_createDevStone() {
     print_help; exit 1
   fi
 
-  # Ensure environment (GSDevKit + registry) before creating the stone
   ensure_init "$registryName"
 
   "${SCRIPT_DIR}/createDevStone.sh" \
     --registry="$registryName" \
-    "$gemStoneVersion" "$stoneName"
+    "$stoneName" "$gemStoneVersion"
 
   exit_0_banner "createDevStone complete"
 }
 
 cmd_j4p() {
-  # Ensure Jadeite/Pharo installed (script should be idempotent)
+  # Install/update J4P if needed
   "${SCRIPT_DIR}/setupJ4P.sh"
 
   j4p_dir="$(abs_from_cwd "${J4P_INSTALL_DIR}")"
-  git_dir="$(abs_from_cwd "${ROWAN_PROJECTS_HOME}")"
-
   if [ ! -d "$j4p_dir" ]; then
     error_banner "J4P install directory not found: $j4p_dir"
     exit 1
   fi
 
-  information_banner "Launching J4P from ${j4p_dir}"
+  # Point ROWAN_PROJECTS_HOME at the dev_tools set dir
+  # (uses helper from shFunctions; sets + exports ROWAN_PROJECTS_HOME)
+  rowan_home="$(abs_from_cwd "${PROJECTS_ROOT}/dev_tools")"
+
+  information_banner "Launching J4P from ${j4p_dir} (ROWAN_PROJECTS_HOME=${rowan_home})"
   (
     cd "$j4p_dir"
-    ROWAN_PROJECTS_HOME="$git_dir" ./pharo-ui --
+    ROWAN_PROJECTS_HOME="$rowan_home" ./pharo-ui --
   )
+}
+
+cmd_gt() {
+  "${SCRIPT_DIR}/setupGT.sh"
+
+  gt_dir="$(abs_from_cwd "${GT_INSTALL_DIR}")"
+
+  if [ ! -d "$gt_dir" ]; then
+    error_banner "GT install directory not found: $gt_dir"
+    exit 1
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      exe_path="${gt_dir}/${GT_APP_NAME}.app/Contents/MacOS/GlamorousToolkit-cli"
+      ;;
+    Linux|*MINGW*|*MSYS*|*CYGWIN*)
+      exe_path="${gt_dir}/bin/GlamorousToolkit-cli"
+      ;;
+    *)
+      error_banner "Unsupported platform for GT launch"
+      exit 1
+      ;;
+  esac
+
+  if [ ! -x "$exe_path" ]; then
+    error_banner "GT executable not found: $exe_path"
+    exit 1
+  fi
+
+  image_file="${GT_APP_NAME}.image"
+
+  information_banner "Launching GT from ${exe_path} with image ${image_file} (background)"
+  (
+    cd "$gt_dir"
+    nohup "$exe_path" --interactive "$image_file" >/dev/null 2>&1 &
+    disown
+  )
+}
+
+cmd_setup() {
+  # Daily setup: ensure GSDevKit + registry, create dev stone, install GT + J4P.
+  # Same arg pattern as createDevStone: [--registry=NAME] [stoneName [gemstoneVersion]]
+  registryName="${DEFAULT_REGISTRY}"
+  gemStoneVersion=""
+  stoneName=""
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --registry=*) registryName=${1#*=} ;;
+      --*)  error_banner "Unknown option: $1"; print_help; exit 1 ;;
+      *)
+        if [ -z "$stoneName" ]; then
+          stoneName="$1"
+        elif [ -z "$gemStoneVersion" ]; then
+          gemStoneVersion="$1"
+        else
+          error_banner "Too many arguments."
+          print_help; exit 1
+        fi
+        ;;
+    esac
+    shift
+  done
+
+  # Defaults for omitted args
+  if [ -z "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
+    stoneName="${GEMSTONE_STONE_NAME}"
+    gemStoneVersion="${GEMSTONE_VERSION}"
+  elif [ -n "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
+    gemStoneVersion="${GEMSTONE_VERSION}"
+  elif [ -n "$stoneName" ] && [ -n "$gemStoneVersion" ]; then
+    : # ok
+  else
+    error_banner "Invalid arguments to setup."
+    print_help; exit 1
+  fi
+
+  information_banner "Setup: registry=${registryName} stone=${stoneName} version=${gemStoneVersion}"
+
+  # 1) Ensure environment (GSDevKit + registry)
+  ensure_init "$registryName"
+
+  # 2) Create / verify dev stone
+  "${SCRIPT_DIR}/createDevStone.sh" \
+    --registry="$registryName" \
+     "$stoneName" "$gemStoneVersion"
+
+  # 3) Install GT and J4P (idempotent)
+  "${SCRIPT_DIR}/setupGT.sh"
+  "${SCRIPT_DIR}/setupJ4P.sh"
+
+  exit_0_banner "setup complete"
 }
 
 print_help() {
@@ -169,6 +260,13 @@ Commands:
   j4p
       Run setupJ4P.sh (idempotent) and then launch the J4P IDE.
 
+  gt
+      Run setupGT.sh (idempotent) and then launch Glamorous Toolkit.
+
+  setup [--registry=NAME] [stoneName [gemstoneVersion]]
+      Daily setup: ensure env, create dev stone, install GT and J4P.
+      Uses the same defaults as createDevStone.
+
 Examples:
   bvc init
   bvc init --registry=myReg
@@ -182,6 +280,10 @@ Examples:
   bvc createDevStone myStone 3.7.4.3 --registry=myReg
 
   bvc j4p
+  bvc devkit
+  bvc setup
+  bvc setup myStone
+  bvc setup --registry=myReg myStone 3.7.4.3
 
 Notes:
 - Config precedence: ENV > CWD/*.bvc > \$BVC_CONF_DIR/bvc/bvc_defaults > bundled > safety net.
@@ -204,6 +306,8 @@ case "$cmd" in
   init)            cmd_init "$@" ;;
   createDevStone)  cmd_createDevStone "$@" ;;
   j4p)             cmd_j4p "$@" ;;
+  devkit)          cmd_gt "$@" ;;
+  setup)           cmd_setup "$@" ;;
   help|--help|-h)  print_help; exit 0 ;;
   *)               error_banner "Unknown command: $cmd"; print_help; exit 1 ;;
 esac

@@ -1,25 +1,6 @@
-| localProjectsPath connector |
+| projectsRoot connector |
 
-localProjectsPath := 'gitlocal://', FileSystem workingDirectory fullName, '/git'.
-
-"Create a GemStone connector"
-"
-connector := GtGemStoneSessionRegistry default propertiesFile addNewConnector.
-connector
-	name: 'bvc_dev';
-	host: 'localhost';
-	libraryPath: '/opt/GsDevKit/gemstone/clientlibs' asFileReference;
-	gemstoneVersion: '3.7.4.3';
-	stone: 'bvc_dev';
-	netldi: 'bvc_dev_ldi';
-	username: 'SystemUser';
-	password: 'swordfish';
-	hostUsername: '$USER';
-	hostPassword: '<password>'.
-connector
-	notifyNameChanged;
-	notifyUpdated.
-"
+projectsRoot := 'gitlocal://', (OSPlatform current environment at: 'PROJECTS_ROOT').
 
 "Load projects"
 "
@@ -85,9 +66,11 @@ Metacello new
 	baseline: 'CatalystWeb';
 	load.
 "
-Transcript show: 'LOADING CatalystDevKit FROM PATH: ', localProjectsPath.
+Transcript show: 'LOADING CatalystDevKit FROM ', 
+	(projectsRoot ifNil: ['<none>']).
+	
 Metacello new
-	repository: localProjectsPath, '/CatalystDevKit/src';
+	repository: projectsRoot, '/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
 	load.
 

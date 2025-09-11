@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "$0")" 2>/dev/null && pwd)
 load_bvc_config
 
 setup_traps
-start_banner
+start_banner "$@"
 information_banner "Bootstrapping GsDevKit_stones"
 
 usage() {
