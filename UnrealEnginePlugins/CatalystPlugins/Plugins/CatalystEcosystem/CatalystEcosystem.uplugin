@@ -1,0 +1,49 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+"FriendlyName": "Catalyst:Ecosystem",
+"Description": "Ecosystem is the life-simulation layer of the Catalyst suite, responsible for bringing worlds to life. It defines and manages biomes, weather, resources, plants, and animals, and governs how they interact with each other and with players. From subtle seasonal shifts to large-scale population dynamics, Ecosystem ensures every environment feels persistent, reactive, and alive. Designed for composability, it can describe everything from an alien moon’s caverns to a terrestrial farm, providing a flexible foundation for living worlds within Catalyst.",
+	"Category": "BenjaVision",
+	"CreatedBy": "Jupiter Jones",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+    "Plugins": [
+      { "Name": "CatalystFoundation", "Enabled": true },
+      { "Name": "CatalystConnect", "Enabled": true }
+    ],
+	"Modules": [
+		{
+			"Name": "CatalystEcosystem",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+		},
+		{
+			"Name": "CatalystEcosystemEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+
+		},
+        {
+            "Name": "CatalystEcosystemTests",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+        }
+	]
+}

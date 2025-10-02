@@ -14,6 +14,12 @@ GDKProjectSet {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystConnectGS.git'
 			}
 		},
+		'T2F2T-Conversion' : {
+			'revision' : 'master',
+			'gitUrls' : {
+				'origin' : 'git@github.com:GsDevKit/T2F2T-Conversion.git'
+			}
+		},
 		'GsApplicationTools' : {
 			'revision' : 'JJ_Rowan',
 			'gitUrls' : {

@@ -10,6 +10,10 @@ install_projects() {
   installProject.stone "file:${gitDir}/CatalystConnectGS/rowan/specs/CatalystConnectGS.ston" \
     --projectsHome="${gitDir}" -D
 
+  information_banner "Installing T2F2T-Conversion"
+  installProject.stone "file:${gitDir}/T2F2T-Conversion/rowan/specs/tonel.ston" \
+    --projectsHome="${gitDir}" -D
+
   information_banner "Installing GsApplicationTools"
   installProject.stone "file:${gitDir}/gsApplicationTools/rowan/specs/gsApplicationTools.ston" \
     --projectsHome="${gitDir}" -D

@@ -1,0 +1,196 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31314.256
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Automation", "Automation", "{0BFBE63A-B98A-3411-8EEB-8918FEC737B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Programs", "Programs", "{A338B9E2-A559-34BE-A46D-F789DD488FAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{C2F57ECE-B26F-39D8-BDA7-C1D40BD8F180}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{57713676-9DBE-331C-AD10-26632AC9EE0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnrealBuildTool.Plugins", "UnrealBuildTool.Plugins", "{7B5CFB44-F0FB-31DF-AE62-C3C096A29A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnrealBuildTool", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/UnrealBuildTool/UnrealBuildTool.csproj", "{F97BB6B4-E04B-346B-8F8B-5CEE89F8D456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTool", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/AutomationTool.csproj", "{A7C49978-FCEE-30C2-97E2-DD2D800E6383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Android/Android.Automation.csproj", "{FE182CDE-8699-36CB-A00B-564722CBE552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apple.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Apple/Apple.Automation.csproj", "{501819CD-0455-3CF3-ADA1-D0A48B0FE701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationUtils.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/AutomationUtils/AutomationUtils.Automation.csproj", "{53112F7E-1736-3EC1-90C9-335B8518BA72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildGraph.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/BuildGraph/BuildGraph.Automation.csproj", "{EEB3FEB9-6603-3F1B-99CF-B13F42AB8AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookedEditor.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/CookedEditor/CookedEditor.Automation.csproj", "{D15B6F3A-CC33-37D4-83D5-8656ACC550C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdinLocalization.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/CrowdinLocalization/CrowdinLocalization.Automation.csproj", "{6A7C2F22-3234-3A43-9020-4D1823966F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauntlet.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Gauntlet/Gauntlet.Automation.csproj", "{C7529950-0EFF-3D84-B784-05A445F3E826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOS.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/IOS/IOS.Automation.csproj", "{B092BBFA-95CD-3A83-85C5-C7BE3B1E38BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insights.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Insights/Insights.Automation.csproj", "{ED58CCC3-CBF6-3125-BEE2-43FF26180915}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linux.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Linux/Linux.Automation.csproj", "{238C2760-73C3-354F-8179-1244B9C27BA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveLinkHub.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/LiveLinkHub/LiveLinkHub.Automation.csproj", "{5E1EC71F-6EF3-39CD-832A-256A94B40964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Localization/Localization.Automation.csproj", "{3304FFEB-EAD9-364C-9483-70441B248A21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LowLevelTests.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/LowLevelTests/LowLevelTests.Automation.csproj", "{2B64C31E-5480-3036-9364-9D3B1E4330C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mac.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Mac/Mac.Automation.csproj", "{DDBAF2DA-CC94-3DFB-BC99-DC53FD92E80F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mutable.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Mutable/Mutable.Automation.csproj", "{CE3027CF-1760-32C1-9A1C-8C2E8714126A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSkyLocalization.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/OneSkyLocalization/OneSkyLocalization.Automation.csproj", "{BB890C85-1F76-3AD6-851F-22974270E660}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationScripts.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Scripts/AutomationScripts.Automation.csproj", "{03830595-2725-3D78-B308-B8CEAFC561B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartlingLocalization.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/SmartlingLocalization/SmartlingLocalization.Automation.csproj", "{3C290321-4238-395D-A054-EAC12588C495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamDeck.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/SteamDeck/SteamDeck.Automation.csproj", "{CD7B6BC4-F17F-3FAA-BE46-18A34038F18A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVOS.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/TVOS/TVOS.Automation.csproj", "{16AB1209-8DC4-35A3-9D9C-0392224AF889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turnkey.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Turnkey/Turnkey.Automation.csproj", "{0C69BB47-9D85-3731-812E-542235AE817E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/Win/Win.Automation.csproj", "{E89CE2BD-579F-3968-B552-FA1D5194B7A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLocLocalization.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/AutomationTool/XLocLocalization/XLocLocalization.Automation.csproj", "{F5445A40-D82D-3BB1-89C4-CEB231F3B77D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionOS.Automation", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Platforms/VisionOS/Source/Programs/AutomationTool/VisionOS.Automation.csproj", "{C5FC1098-2404-3117-91CB-D145DEE35D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptGeneratorUbtPlugin.ubtplugin", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Plugins/ScriptPlugin/Source/ScriptGeneratorUbtPlugin/ScriptGeneratorUbtPlugin.ubtplugin.csproj", "{F7CF11BC-3D00-370C-B766-3C4546BAB207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.MongoDB", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.MongoDB/EpicGames.MongoDB.csproj", "{4A01EB64-C838-36F2-9A56-BEBEE8023D52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Perforce.Managed", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Perforce.Managed/EpicGames.Perforce.Managed.csproj", "{B8A7283D-98FA-3B91-9981-89E5CCE6E751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.ProjectStore", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.ProjectStore/EpicGames.ProjectStore.csproj", "{47A5AADC-8C3C-3D60-906A-E8165F1B6DCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.BuildGraph", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.BuildGraph/EpicGames.BuildGraph.csproj", "{FD8BAB27-A2DF-303C-BCB7-90FBA356817D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Build", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Build/EpicGames.Build.csproj", "{BE3EC7FF-8B41-3C11-AEC2-0A866580EABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Slack", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Slack/EpicGames.Slack.csproj", "{6EE91111-2D98-3638-BCC1-52B172DB3446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Core", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Core/EpicGames.Core.csproj", "{CA5219D8-43BC-37A6-B41A-48D4869EA6CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Perforce.Fixture", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Perforce.Fixture/EpicGames.Perforce.Fixture.csproj", "{EC2EB26B-7808-3714-88D0-66F738EBCB94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Oodle", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Oodle/EpicGames.Oodle.csproj", "{C1D8EB71-4EB1-3FE2-AC96-F105FF3B1BB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.MsBuild", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.MsBuild/EpicGames.MsBuild.csproj", "{ACAE1533-D12F-30C5-813C-FFFB58A1DCDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Perforce", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Perforce/EpicGames.Perforce.csproj", "{3C43FB2B-ED9B-3A6E-B0DD-ABBD126C7CB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Tracing", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Tracing/EpicGames.Tracing.csproj", "{D971CDE2-1D4E-358B-A94F-32CEAA30DC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.AspNet", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.AspNet/EpicGames.AspNet.csproj", "{DC385F10-577D-3455-8D85-D06433004909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.OIDC", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.OIDC/EpicGames.OIDC.csproj", "{F43B3D91-09B9-39BB-B792-EA1EBF2062DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Horde", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Horde/EpicGames.Horde.csproj", "{53C7E0C0-9E4F-3508-8C15-4D74E42CE483}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.IoHash", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.IoHash/EpicGames.IoHash.csproj", "{60E26DC5-0956-38A6-94F4-00C65214017D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Serialization", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Serialization/EpicGames.Serialization.csproj", "{9182B1D1-FC21-3BAE-A231-4A29ED8DB78C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.Redis", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.Redis/EpicGames.Redis.csproj", "{BD7F7523-52F2-322A-942A-C237BCC34114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.UBA", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.UBA/EpicGames.UBA.csproj", "{C578F0B4-3B77-3CEE-A0DC-BBD88B2717C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.UHT", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.UHT/EpicGames.UHT.csproj", "{3295D1FD-07A8-3DB0-A1C6-C7F45ECCDD07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicGames.ScriptBuild", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Source/Programs/Shared/EpicGames.ScriptBuild/EpicGames.ScriptBuild.csproj", "{2C85A2B5-F52B-310E-AE5E-75A12F3B796B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalystPluginsModuleRules", "Intermediate/Build/BuildRulesProjects/CatalystPluginsModuleRules/CatalystPluginsModuleRules.csproj", "{B138DE2B-6B0C-3881-BEDB-7FC5BE604D78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketplaceRules", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Intermediate/Build/BuildRulesProjects/MarketplaceRules/MarketplaceRules.csproj", "{768D2B21-FC1A-3CF8-9FFE-51ECCF6FE1DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UE5ProgramRules", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Intermediate/Build/BuildRulesProjects/UE5ProgramRules/UE5ProgramRules.csproj", "{1EBAB862-239A-329F-B643-923AB46C1A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UE5Rules", "../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Intermediate/Build/BuildRulesProjects/UE5Rules/UE5Rules.csproj", "{58A2E016-449D-3A34-A291-9113016F0A78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visualizers", "Visualizers", "{1CCEC849-CC72-4C59-8C36-2F7C38706D4C}"
+	ProjectSection(SolutionItems) = preProject
+		../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natvis = ../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natvis
+		../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natstepfilter = ../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natstepfilter
+		../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natjmc = ../../../../../../Users/jupiter/UnrealEngine/UE_5.6/Engine/Extras/VisualStudioDebugging/Unreal.natjmc
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	# UnrealVS Section
+	GlobalSection(ddbf523f-7eb6-4887-bd51-85a714ff87eb) = preSolution
+		AvailablePlatforms=
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F97BB6B4-E04B-346B-8F8B-5CEE89F8D456} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
+		{A7C49978-FCEE-30C2-97E2-DD2D800E6383} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
+		{0BFBE63A-B98A-3411-8EEB-8918FEC737B3} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
+		{7B5CFB44-F0FB-31DF-AE62-C3C096A29A7B} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
+		{57713676-9DBE-331C-AD10-26632AC9EE0C} = {A338B9E2-A559-34BE-A46D-F789DD488FAD}
+		{FE182CDE-8699-36CB-A00B-564722CBE552} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{501819CD-0455-3CF3-ADA1-D0A48B0FE701} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{53112F7E-1736-3EC1-90C9-335B8518BA72} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{EEB3FEB9-6603-3F1B-99CF-B13F42AB8AD1} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{D15B6F3A-CC33-37D4-83D5-8656ACC550C1} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{6A7C2F22-3234-3A43-9020-4D1823966F85} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{C7529950-0EFF-3D84-B784-05A445F3E826} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{B092BBFA-95CD-3A83-85C5-C7BE3B1E38BA} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{ED58CCC3-CBF6-3125-BEE2-43FF26180915} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{238C2760-73C3-354F-8179-1244B9C27BA3} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{5E1EC71F-6EF3-39CD-832A-256A94B40964} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{3304FFEB-EAD9-364C-9483-70441B248A21} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{2B64C31E-5480-3036-9364-9D3B1E4330C9} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{DDBAF2DA-CC94-3DFB-BC99-DC53FD92E80F} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{CE3027CF-1760-32C1-9A1C-8C2E8714126A} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{BB890C85-1F76-3AD6-851F-22974270E660} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{03830595-2725-3D78-B308-B8CEAFC561B4} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{3C290321-4238-395D-A054-EAC12588C495} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{CD7B6BC4-F17F-3FAA-BE46-18A34038F18A} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{16AB1209-8DC4-35A3-9D9C-0392224AF889} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{0C69BB47-9D85-3731-812E-542235AE817E} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{E89CE2BD-579F-3968-B552-FA1D5194B7A0} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{F5445A40-D82D-3BB1-89C4-CEB231F3B77D} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{C5FC1098-2404-3117-91CB-D145DEE35D44} = {0BFBE63A-B98A-3411-8EEB-8918FEC737B3}
+		{F7CF11BC-3D00-370C-B766-3C4546BAB207} = {7B5CFB44-F0FB-31DF-AE62-C3C096A29A7B}
+		{4A01EB64-C838-36F2-9A56-BEBEE8023D52} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{B8A7283D-98FA-3B91-9981-89E5CCE6E751} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{47A5AADC-8C3C-3D60-906A-E8165F1B6DCF} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{FD8BAB27-A2DF-303C-BCB7-90FBA356817D} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{BE3EC7FF-8B41-3C11-AEC2-0A866580EABF} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{6EE91111-2D98-3638-BCC1-52B172DB3446} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{CA5219D8-43BC-37A6-B41A-48D4869EA6CF} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{EC2EB26B-7808-3714-88D0-66F738EBCB94} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{C1D8EB71-4EB1-3FE2-AC96-F105FF3B1BB1} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{ACAE1533-D12F-30C5-813C-FFFB58A1DCDC} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{3C43FB2B-ED9B-3A6E-B0DD-ABBD126C7CB2} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{D971CDE2-1D4E-358B-A94F-32CEAA30DC01} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{DC385F10-577D-3455-8D85-D06433004909} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{F43B3D91-09B9-39BB-B792-EA1EBF2062DD} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{53C7E0C0-9E4F-3508-8C15-4D74E42CE483} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{60E26DC5-0956-38A6-94F4-00C65214017D} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{9182B1D1-FC21-3BAE-A231-4A29ED8DB78C} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{BD7F7523-52F2-322A-942A-C237BCC34114} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{C578F0B4-3B77-3CEE-A0DC-BBD88B2717C7} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{3295D1FD-07A8-3DB0-A1C6-C7F45ECCDD07} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{2C85A2B5-F52B-310E-AE5E-75A12F3B796B} = {57713676-9DBE-331C-AD10-26632AC9EE0C}
+		{B138DE2B-6B0C-3881-BEDB-7FC5BE604D78} = {C2F57ECE-B26F-39D8-BDA7-C1D40BD8F180}
+		{768D2B21-FC1A-3CF8-9FFE-51ECCF6FE1DF} = {C2F57ECE-B26F-39D8-BDA7-C1D40BD8F180}
+		{1EBAB862-239A-329F-B643-923AB46C1A69} = {C2F57ECE-B26F-39D8-BDA7-C1D40BD8F180}
+		{58A2E016-449D-3A34-A291-9113016F0A78} = {C2F57ECE-B26F-39D8-BDA7-C1D40BD8F180}
+	EndGlobalSection
+EndGlobal
