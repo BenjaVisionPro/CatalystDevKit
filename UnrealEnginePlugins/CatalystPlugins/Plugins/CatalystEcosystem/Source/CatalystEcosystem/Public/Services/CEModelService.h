@@ -6,6 +6,8 @@
 
 #include "CoreMinimal.h"
 #include "Services/CFAbstractModelService.h" // from Foundation
+#include "Model/CEModel.h"        // for FCEModel
+#include "Model/CEModelAsset.h"   // for UCEModelAsset::GetModel()
 #include "CEModelService.generated.h"
 
 class UCEModelAsset;

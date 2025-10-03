@@ -1,0 +1,88 @@
+# =====================================================
+# Unreal Engine Git Ignore (Project-level .uproject)
+# =====================================================
+
+# Build artifacts (project root)
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+Script/
+
+# Ignore these everywhere (project + plugins)
+**/Binaries/
+**/Intermediate/
+**/Saved/
+**/DerivedDataCache/
+
+# IDE junk
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.opensdf
+*.sdf
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+*.VC.db-shm
+*.VC.db-wal
+
+# Mac-specific
+*.xccheckout
+*.xcworkspace
+xcuserdata/
+
+# Windows-specific
+Thumbs.db
+*.pdb
+*.ipch
+
+# Compiled binaries
+*.log
+*.tlog
+*.obj
+*.pch
+*.res
+*.idb
+*.dll
+*.exe
+*.app
+*.dylib
+*.so
+
+# Unreal generated project files (regeneratable from .uproject)
+*.xcodeproj
+*.xcworkspace
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+
+# Crash/backup/temp
+*.dmp
+*.backup
+*.tmp
+
+# Auto-generated Config backups
+Config/DefaultEditor.ini
+Config/DefaultEditorPerProjectUserSettings.ini
+
+# =====================================================
+# Keep: your actual source/content/config
+# =====================================================
+!Source/**
+!Content/**
+!Config/**
+!Plugins/**
+
+# But within Plugins, ignore build artifacts as well
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+Plugins/*/Saved/
+Plugins/*/DerivedDataCache/
+
+.DS_Store
