@@ -13,7 +13,7 @@ public class CatalystFoundation : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				System.IO.Path.Combine(EngineDirectory, "Source/ThirdParty/rapidjson/include")
+
 			}
 			);
 				
@@ -31,7 +31,7 @@ public class CatalystFoundation : ModuleRules
 				"Core",
                 "Json",
                 "JsonUtilities",
-                "RapidJSON",
+                "AssetRegistry",
 			}
 			);
 			

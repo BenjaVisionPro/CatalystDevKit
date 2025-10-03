@@ -4,18 +4,15 @@
 #include "Model/CFAbstractObject.h"
 #include "CFObjectWithTitleAndComment.generated.h"
 
-/**
- * Common leaf used anywhere you need a titled/commented thing.
- * Inherits Id from FCFAbstractObject.
- */
 USTRUCT(BlueprintType)
-struct FCFObjectWithTitleAndComment : public FCFAbstractObject
+struct CATALYSTFOUNDATION_API FCFObjectWithTitleAndComment : public FCFAbstractObject
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst|Model")
-	FString Title;
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString Title;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst|Model")
-	FString Comment;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString Comment;
 };

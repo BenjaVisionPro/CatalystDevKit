@@ -1,90 +1,54 @@
 #include "Services/CFAbstractModelService.h"
+#include "Model/CFModelAsset.h"
 #include "Engine/AssetManager.h"
-#include "Engine/StreamableManager.h"
+#include "UObject/UObjectGlobals.h"
 
 void UCFAbstractModelService::Initialize(FSubsystemCollectionBase& Collection)
 {
-    FString Err;
-    RefreshModel(Err);
+	Super::Initialize(Collection);
+	LoadModel();
 }
 
-bool UCFAbstractModelService::RefreshModel(FString& OutError)
+void UCFAbstractModelService::Deinitialize()
 {
-    if (Model.IsValid())
-    {
-        if (!Model->TryLoadFromDiskJson(OutError))
-        {
-            return LoadSeedIntoModel(OutError);
-        }
-        return true;
-    }
-
-    if (!LoadSeedIntoModel(OutError))
-    {
-        return false;
-    }
-
-    if (!Model->TryLoadFromDiskJson(OutError))
-    {
-        // keep seed
-    }
-    return true;
+	ModelAsset = nullptr;
+	Super::Deinitialize();
 }
 
-bool UCFAbstractModelService::SaveModel(FString& OutError) const
+bool UCFAbstractModelService::LoadModel()
 {
-    if (!Model.IsValid())
-    {
-        OutError = TEXT("No model loaded.");
-        return false;
-    }
-    return Model->SaveToDiskJson(OutError);
+	// Ensure instance exists
+	if (!ModelAsset)
+	{
+		ModelAsset = InstantiateModelFromSeed();
+		if (!ModelAsset)
+		{
+			UE_LOG(LogTemp, Error, TEXT("CF: %s: failed to instantiate model asset from seed."), *GetName());
+			return false;
+		}
+	}
+
+	// Overlay from Saved/<Plugin>/Model.json (non-fatal if absent)
+	FString Error;
+	if (!ModelAsset->TryLoadFromDiskJson(Error))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("CF: %s: JSON load failed: %s"), *GetName(), *Error);
+	}
+	return true;
 }
 
-void UCFAbstractModelService::SetModel(UCFModelRoot* NewModel)
+UCFModelAsset* UCFAbstractModelService::InstantiateModelFromSeed()
 {
-    Model.Reset();
-    if (NewModel)
-    {
-        Model = TStrongObjectPtr<UCFModelRoot>(NewModel);
-    }
-}
+	const TSoftObjectPtr<UCFModelAsset> SeedPtr = GetSeedModelAsset();
+	if (!SeedPtr.IsNull())
+	{
+		if (UCFModelAsset* Seed = SeedPtr.LoadSynchronous())
+		{
+			return DuplicateObject<UCFModelAsset>(Seed, this); // transient runtime copy
+		}
+		UE_LOG(LogTemp, Warning, TEXT("CF: %s: Seed asset not found: %s"), *GetName(), *SeedPtr.ToString());
+	}
 
-FString UCFAbstractModelService::GetPluginName() const
-{
-    if (Model.IsValid())
-    {
-        return Model->GetOwningPluginName();
-    }
-    if (TSoftObjectPtr<UCFModelRoot> Seed = GetSeedAssetSoft())
-    {
-        if (Seed.IsValid())
-        {
-            return Seed.Get()->GetOwningPluginName();
-        }
-    }
-    return TEXT("UnknownPlugin");
-}
-
-bool UCFAbstractModelService::LoadSeedIntoModel(FString& OutError)
-{
-    TSoftObjectPtr<UCFModelRoot> SeedSoft = GetSeedAssetSoft();
-    if (!SeedSoft.IsValid())
-    {
-        SeedSoft.LoadSynchronous();
-    }
-    UCFModelRoot* Seed = SeedSoft.Get();
-    if (!Seed)
-    {
-        OutError = TEXT("Failed to load seed model asset.");
-        return false;
-    }
-    UCFModelRoot* Instance = DuplicateObject<UCFModelRoot>(Seed, GetTransientPackage());
-    if (!Instance)
-    {
-        OutError = TEXT("Failed to duplicate seed model.");
-        return false;
-    }
-    SetModel(Instance);
-    return true;
+	// Fallback (rare): plain base instance
+	return NewObject<UCFModelAsset>(this, UCFModelAsset::StaticClass());
 }
