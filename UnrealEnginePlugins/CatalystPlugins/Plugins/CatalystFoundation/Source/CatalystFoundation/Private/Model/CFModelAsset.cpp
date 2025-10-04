@@ -31,7 +31,7 @@ bool UCFModelAsset::ApplyJsonString(const FString& JsonText, FString& OutError)
 	{
 		if (void* Mem = GetPayloadMemory())
 		{
-			if (!FJsonObjectConverter::JsonObjectToUStruct(Obj.ToSharedRef(), S, Mem, 0, 0))
+			if (!FJsonObjectConverter::JsonObjectToUStruct(Obj.ToSharedRef(), S, Mem, /*CheckFlags*/0, /*SkipFlags*/0))
 			{
 				OutError = TEXT("JSON -> struct conversion failed.");
 				return false;
@@ -50,7 +50,7 @@ bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
 	{
 		if (const void* Mem = GetPayloadMemory())
 		{
-			if (!FJsonObjectConverter::UStructToJsonObjectString(S, Mem, OutJson, 0, 0))
+			if (!FJsonObjectConverter::UStructToJsonObjectString(S, Mem, OutJson, /*CheckFlags*/0, /*SkipFlags*/0))
 			{
 				OutError = TEXT("Struct -> JSON conversion failed.");
 				return false;

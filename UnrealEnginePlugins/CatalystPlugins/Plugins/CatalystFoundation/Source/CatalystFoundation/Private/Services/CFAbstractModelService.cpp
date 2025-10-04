@@ -14,12 +14,13 @@ void UCFAbstractModelService::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCFAbstractModelService::Deinitialize()
 {
-	Model = nullptr;
+	Model = nullptr; // transient; GC will handle the duplicate
 	Super::Deinitialize();
 }
 
 bool UCFAbstractModelService::LoadModel()
 {
+	// Ensure we have a live instance first.
 	if (!Model)
 	{
 		Model = InstantiateModelFromSeed();
@@ -30,9 +31,11 @@ bool UCFAbstractModelService::LoadModel()
 		}
 	}
 
+	// Best-effort dev override: Saved/<Plugin>/Model.json
 	FString Error;
 	if (!Model->TryLoadFromDiskJson(Error))
 	{
+		// Not fatal: just keep the seed defaults if JSON missing/invalid.
 		UE_LOG(LogTemp, Warning, TEXT("CF: %s: JSON load failed: %s"), *GetName(), *Error);
 	}
 	return true;
@@ -45,13 +48,14 @@ UCFModelAsset* UCFAbstractModelService::InstantiateModelFromSeed()
 	{
 		if (UCFModelAsset* Seed = SeedPtr.LoadSynchronous())
 		{
-			// Work on a transient duplicate at runtime
+			// Work on a transient copy at runtime (we never mutate the content asset).
 			return DuplicateObject<UCFModelAsset>(Seed, this);
 		}
+
 		UE_LOG(LogTemp, Warning, TEXT("CF: %s: Seed asset not found: %s"),
 			*GetName(), *SeedPtr.ToString());
 	}
 
-	// Last-ditch fallback (rare)
+	// Last-resort fallback: construct a bare UCFModelAsset (unlikely path).
 	return NewObject<UCFModelAsset>(this, UCFModelAsset::StaticClass());
 }
