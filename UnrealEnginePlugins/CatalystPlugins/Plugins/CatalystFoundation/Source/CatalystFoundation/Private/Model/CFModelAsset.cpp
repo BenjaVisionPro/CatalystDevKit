@@ -1,27 +1,69 @@
+// ============================================
+// Copyright © 2022 Jupiter Jones & BenjaVision
+// All rights and remedies reserved
+// ============================================
+
 #include "Model/CFModelAsset.h"
 
-#include "Dom/JsonObject.h"
-#include "HAL/FileManager.h"
-#include "JsonObjectConverter.h"
-#include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Misc/FileHelper.h"
+#include "HAL/FileManager.h"
+#include "Dom/JsonObject.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+#include "JsonObjectConverter.h"
 
-FString UCFModelAsset::GetPluginNameForPaths() const
+/* ---------- Public helpers ---------- */
+
+bool UCFModelAsset::ApplyJsonString(const FString& JsonText, FString& OutError)
 {
-	// Heuristic: "/<Plugin>/..." -> "<Plugin>"
-	if (const UPackage* Pkg = GetOutermost())
+	TSharedPtr<FJsonObject> Obj;
 	{
-		TArray<FString> Segs;
-		Pkg->GetName().ParseIntoArray(Segs, TEXT("/"), /*CullEmpty*/true);
-		if (Segs.Num() > 0)
+		TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(JsonText);
+		if (!FJsonSerializer::Deserialize(Reader, Obj) || !Obj.IsValid())
 		{
-			return Segs[0];
+			OutError = TEXT("Failed to parse JSON.");
+			return false;
 		}
 	}
-	return TEXT("UnknownPlugin");
+
+	if (UScriptStruct* S = GetPayloadScriptStruct())
+	{
+		if (void* Mem = GetPayloadMemory())
+		{
+			if (!FJsonObjectConverter::JsonObjectToUStruct(Obj.ToSharedRef(), S, Mem, 0, 0))
+			{
+				OutError = TEXT("JSON -> struct conversion failed.");
+				return false;
+			}
+			return true;
+		}
+	}
+
+	OutError = TEXT("Model asset did not implement payload accessors.");
+	return false;
 }
+
+bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
+{
+	if (const UScriptStruct* S = GetPayloadScriptStruct())
+	{
+		if (const void* Mem = GetPayloadMemory())
+		{
+			if (!FJsonObjectConverter::UStructToJsonObjectString(S, Mem, OutJson, 0, 0))
+			{
+				OutError = TEXT("Struct -> JSON conversion failed.");
+				return false;
+			}
+			return true;
+		}
+	}
+
+	OutError = TEXT("Model asset did not implement payload accessors.");
+	return false;
+}
+
+/* ---------- Dev file helpers ---------- */
 
 FString UCFModelAsset::GetSavedJsonFile() const
 {
@@ -35,7 +77,7 @@ bool UCFModelAsset::TryLoadFromDiskJson(FString& OutError)
 	const FString File = GetSavedJsonFile();
 	if (!FPaths::FileExists(File))
 	{
-		// No file yet: keep asset defaults.
+		// No dev JSON yet -> keep asset defaults
 		return true;
 	}
 
@@ -46,47 +88,14 @@ bool UCFModelAsset::TryLoadFromDiskJson(FString& OutError)
 		return false;
 	}
 
-	TSharedPtr<FJsonObject> Obj;
-	{
-		TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(JsonText);
-		if (!FJsonSerializer::Deserialize(Reader, Obj) || !Obj.IsValid())
-		{
-			OutError = TEXT("Failed to parse JSON.");
-			return false;
-		}
-	}
-
-	UScriptStruct* StructType = GetModelStructType();
-	void*          StructMem  = GetModelStructMemory();
-	if (!StructType || !StructMem)
-	{
-		OutError = TEXT("Model accessors not implemented.");
-		return false;
-	}
-
-	if (!FJsonObjectConverter::JsonObjectToUStruct(Obj.ToSharedRef(), StructType, StructMem, /*CheckFlags*/0, /*SkipFlags*/0))
-	{
-		OutError = TEXT("JSON -> struct conversion failed.");
-		return false;
-	}
-
-	return true;
+	return ApplyJsonString(JsonText, OutError);
 }
 
 bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
 {
-	const UScriptStruct* StructType = GetModelStructType();
-	const void*          StructMem  = GetModelStructMemory();
-	if (!StructType || !StructMem)
-	{
-		OutError = TEXT("Model accessors not implemented.");
-		return false;
-	}
-
 	FString JsonText;
-	if (!FJsonObjectConverter::UStructToJsonObjectString(StructType, StructMem, JsonText, /*CheckFlags*/0, /*SkipFlags*/0))
+	if (!ExportJsonString(JsonText, OutError))
 	{
-		OutError = TEXT("Struct -> JSON conversion failed.");
 		return false;
 	}
 
@@ -96,6 +105,5 @@ bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
 		OutError = FString::Printf(TEXT("Failed to write %s"), *File);
 		return false;
 	}
-
 	return true;
 }

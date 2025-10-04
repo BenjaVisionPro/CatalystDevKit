@@ -1,6 +1,5 @@
 // ============================================
-// Copyright © 2022 Jupiter Jones & BenjaVision
-// All rights and remedies reserved
+// Copyright © 2022
 // ============================================
 
 #pragma once
@@ -9,15 +8,16 @@
 #include "Model/CFObjectWithTitleAndComment.h"
 #include "CEAnimal.generated.h"
 
-/**
- * A basic animal definition.
- */
+/** A species/animal entry. */
 USTRUCT(BlueprintType)
 struct CATALYSTECOSYSTEM_API FCEAnimal : public FCFObjectWithTitleAndComment
 {
 	GENERATED_BODY()
 
-	/** Optional classification (e.g., Herbivore, Carnivore) */
+	// Example placeholders for later simulation data
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	FName Class;
+	float TypicalMassKg = 0.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
+	TArray<FGuid> PreferredBiomeIds;
 };

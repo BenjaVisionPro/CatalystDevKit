@@ -1,6 +1,5 @@
 // ============================================
-// Copyright © 2022 Jupiter Jones & BenjaVision
-// All rights and remedies reserved
+// Copyright © 2022
 // ============================================
 
 #pragma once
@@ -9,15 +8,12 @@
 #include "Model/CFObjectWithTitleAndComment.h"
 #include "CEResource.generated.h"
 
-/**
- * A basic resource definition (e.g., Water, Timber).
- */
+/** A resource item (water, timber, minerals, etc.). */
 USTRUCT(BlueprintType)
 struct CATALYSTECOSYSTEM_API FCEResource : public FCFObjectWithTitleAndComment
 {
 	GENERATED_BODY()
 
-	/** Arbitrary tags for filtering/grouping */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	TArray<FName> Tags;
+	FString Unit; // e.g., "m³", "t", "kg"
 };

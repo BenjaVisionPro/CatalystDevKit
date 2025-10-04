@@ -1,7 +1,10 @@
+// ============================================
+// Copyright © 2022 Jupiter Jones & BenjaVision
+// All rights and remedies reserved
+// ============================================
+
 #include "Services/CFAbstractModelService.h"
 #include "Model/CFModelAsset.h"
-#include "Engine/AssetManager.h"
-#include "UObject/UObjectGlobals.h"
 
 void UCFAbstractModelService::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -11,26 +14,24 @@ void UCFAbstractModelService::Initialize(FSubsystemCollectionBase& Collection)
 
 void UCFAbstractModelService::Deinitialize()
 {
-	ModelAsset = nullptr;
+	Model = nullptr;
 	Super::Deinitialize();
 }
 
 bool UCFAbstractModelService::LoadModel()
 {
-	// Ensure instance exists
-	if (!ModelAsset)
+	if (!Model)
 	{
-		ModelAsset = InstantiateModelFromSeed();
-		if (!ModelAsset)
+		Model = InstantiateModelFromSeed();
+		if (!Model)
 		{
-			UE_LOG(LogTemp, Error, TEXT("CF: %s: failed to instantiate model asset from seed."), *GetName());
+			UE_LOG(LogTemp, Error, TEXT("CF: %s: failed to instantiate model from seed."), *GetName());
 			return false;
 		}
 	}
 
-	// Overlay from Saved/<Plugin>/Model.json (non-fatal if absent)
 	FString Error;
-	if (!ModelAsset->TryLoadFromDiskJson(Error))
+	if (!Model->TryLoadFromDiskJson(Error))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("CF: %s: JSON load failed: %s"), *GetName(), *Error);
 	}
@@ -44,11 +45,13 @@ UCFModelAsset* UCFAbstractModelService::InstantiateModelFromSeed()
 	{
 		if (UCFModelAsset* Seed = SeedPtr.LoadSynchronous())
 		{
-			return DuplicateObject<UCFModelAsset>(Seed, this); // transient runtime copy
+			// Work on a transient duplicate at runtime
+			return DuplicateObject<UCFModelAsset>(Seed, this);
 		}
-		UE_LOG(LogTemp, Warning, TEXT("CF: %s: Seed asset not found: %s"), *GetName(), *SeedPtr.ToString());
+		UE_LOG(LogTemp, Warning, TEXT("CF: %s: Seed asset not found: %s"),
+			*GetName(), *SeedPtr.ToString());
 	}
 
-	// Fallback (rare): plain base instance
+	// Last-ditch fallback (rare)
 	return NewObject<UCFModelAsset>(this, UCFModelAsset::StaticClass());
 }

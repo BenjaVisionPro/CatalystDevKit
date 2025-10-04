@@ -1,20 +1,21 @@
 // ============================================
-// CE: Model Asset (wrapper around FCEModel)
+// Copyright © 2022 Jupiter Jones & BenjaVision
+// All rights and remedies reserved
 // ============================================
 
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Model/CFModelAsset.h"      // from Foundation
+#include "Model/CFModelAsset.h"   // Foundation: base asset class (formerly ModelRoot)
 #include "Model/CEModel.h"
 #include "CEModelAsset.generated.h"
 
 /**
  * UCEModelAsset
- * -------------
- * Asset wrapper that holds the CE root struct (FCEModel).
- * - Implements the “model struct accessors” required by UCFModelAsset.
- * - Provides a typed accessor GetModel().
+ *
+ * PrimaryDataAsset wrapper holding the entire Ecosystem model (FCEModel).
+ * - Matches the Foundation JSON helpers by exposing GetPayload* for the 'Model' field.
+ * - Provides a concise summary string for editor/diagnostics.
  */
 UCLASS(BlueprintType)
 class CATALYSTECOSYSTEM_API UCEModelAsset : public UCFModelAsset
@@ -22,21 +23,25 @@ class CATALYSTECOSYSTEM_API UCEModelAsset : public UCFModelAsset
 	GENERATED_BODY()
 
 public:
-	/** Typed, read-only access to the model struct. */
-	const FCEModel& GetModel() const { return Model; }
-	/** Optional mutable access if you need to modify via tools. */
-	FCEModel&       GetMutableModel() { return Model; }
+	/** The full editable model for this plugin. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Model")
+	FCEModel Model;
 
-	// Summary shown in editor / diagnostics
-	virtual FString GetSummaryText() const override;
+	/** Accessor used by tools/UI. */
+	const FCEModel& GetModel() const { return Model; }
+	FCEModel&       GetModel()       { return Model; }
 
 protected:
-	// Implement the Foundation JSON helper hooks
-	virtual UScriptStruct* GetModelStructType() const override { return FCEModel::StaticStruct(); }
-	virtual void*          GetModelStructMemory()       override { return &Model; }
-	virtual const void*    GetModelStructMemory() const override { return &Model; }
+	// Foundation expects these exact virtuals for JSON load/save.
+	virtual FString GetPluginNameForPaths() const override { return TEXT("CatalystEcosystem"); }
 
-private:
-	UPROPERTY(EditAnywhere, Category="CE|Model")
-	FCEModel Model;
+	virtual UScriptStruct* GetPayloadScriptStruct() const override { return FCEModel::StaticStruct(); }
+	virtual void*          GetPayloadMemory()             override { return &Model; }
+	virtual const void*    GetPayloadMemory()       const override { return &Model; }
+
+	virtual FString GetSummaryText() const override
+	{
+		return FString::Printf(TEXT("Ecosystems:%d  Biomes:%d  Animals:%d  Resources:%d"),
+			Model.Ecosystems.Num(), Model.Biomes.Num(), Model.Animals.Num(), Model.Resources.Num());
+	}
 };

@@ -1,5 +1,6 @@
 // ============================================
-// Foundation: Model Asset (wrapper)
+// Copyright © 2022 Jupiter Jones & BenjaVision
+// All rights and remedies reserved
 // ============================================
 
 #pragma once
@@ -10,13 +11,20 @@
 
 /**
  * UCFModelAsset
- * --------------
- * Opinionated base for plugin “model assets”.
- * - Holds a *struct* model internally (the real data you edit/read).
- * - Provides optional JSON load/save helpers for development.
- * - Child classes (per plugin) expose their concrete struct and memory.
+ * A typed UPrimaryDataAsset that hosts a plugin’s root UStruct model and provides
+ * minimal JSON load/save helpers. Concrete subclasses implement the three protected
+ * accessors to expose their root struct and memory.
  *
- * This is *not* the model itself — it’s an asset wrapper around it.
+ * Plugin subclass overrides:
+ *  - GetPluginNameForPaths()   -> "CatalystEcosystem" (used for Saved/<Plugin>/Model.json)
+ *  - GetPayloadScriptStruct()  -> StaticStruct() of your root UStruct
+ *  - GetPayloadMemory()        -> &YourRootStruct (const + non-const versions)
+ *
+ * Public helpers:
+ *  - ApplyJsonString(...)      -> import JSON text into the struct
+ *  - ExportJsonString(...)     -> dump struct as JSON text
+ *  - TryLoadFromDiskJson(...)  -> dev convenience (Saved/<Plugin>/Model.json)
+ *  - SaveToDiskJson(...)       -> write to Saved/<Plugin>/Model.json
  */
 UCLASS(BlueprintType, Abstract)
 class CATALYSTFOUNDATION_API UCFModelAsset : public UPrimaryDataAsset
@@ -24,28 +32,34 @@ class CATALYSTFOUNDATION_API UCFModelAsset : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
-	/** Short human-readable summary for editor/diagnostics (safe to leave empty). */
+	/** Optional short summary for editor/diagnostics. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual FString GetSummaryText() const { return TEXT(""); }
 
-	/** Saved/<Plugin>/Model.json (created on demand). */
+	/** Import a JSON string into the concrete root struct. */
+	bool ApplyJsonString(const FString& JsonText, FString& OutError);
+
+	/** Export the concrete root struct to a JSON string. */
+	bool ExportJsonString(FString& OutJson, FString& OutError) const;
+
+	/** Saved/<Plugin>/Model.json path (dev convenience). */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual FString GetSavedJsonFile() const;
 
-	/** Load JSON into the model struct (if file exists). Returns true on success. */
+	/** Load JSON from Saved/<Plugin>/Model.json and apply it. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual bool TryLoadFromDiskJson(FString& OutError);
 
-	/** Save the model struct to JSON. Returns true on success. */
+	/** Save current struct to Saved/<Plugin>/Model.json. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual bool SaveToDiskJson(FString& OutError) const;
 
 protected:
-	/** Choose the directory name under Saved/. Default: heuristics from package name. */
-	virtual FString GetPluginNameForPaths() const;
+	/** Plugin name segment for Saved/<Plugin>/...  (override in child assets) */
+	virtual FString GetPluginNameForPaths() const { return TEXT("UnknownPlugin"); }
 
-	/** Child classes must expose their root *struct* type + memory for JSON conversion. */
-	virtual UScriptStruct* GetModelStructType()        const { return nullptr; }
-	virtual void*          GetModelStructMemory()            { return nullptr; }
-	virtual const void*    GetModelStructMemory()      const { return nullptr; }
+	/** These three power the JSON helpers. Child assets must override them. */
+	virtual UScriptStruct* GetPayloadScriptStruct() const { return nullptr; }
+	virtual void*          GetPayloadMemory()             { return nullptr; }
+	virtual const void*    GetPayloadMemory() const       { return nullptr; }
 };
