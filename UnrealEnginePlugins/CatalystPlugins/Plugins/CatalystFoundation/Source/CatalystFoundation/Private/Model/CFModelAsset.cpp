@@ -15,7 +15,7 @@
 #include "Serialization/JsonSerializer.h"
 
 #include "Log/CFLog.h"            // CF_INFO / CF_WARN / CF_ERR
-#define CF_LOG_DEFAULT_CATEGORY LogCatalystFoundation
+#define CF_LOG_DEFAULT_CATEGORY LogCF
 #include "Log/CFLog.h"            // header-only macros (safe to include twice for default)
 
 void UCFModelAsset::RefreshVersionMetadata() const

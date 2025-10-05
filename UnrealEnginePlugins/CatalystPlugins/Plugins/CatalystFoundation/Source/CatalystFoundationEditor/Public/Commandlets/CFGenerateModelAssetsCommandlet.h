@@ -1,7 +1,6 @@
 // ============================================
-// Catalyst Foundation — Generate Model Assets (public)
+// Catalyst Foundation — Generate Model Assets (Commandlet)
 // ============================================
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,25 +10,20 @@
 /**
  * Generate model assets from JSON files.
  *
- * Scans <PluginRoot>/<InputDir> for *.json and (re)generates assets at
- * /<Plugin>/Model/<Stem>.uasset where <Stem> is the JSON filename (no extension).
- *
- * Usage:
+ * Usage (examples):
  *   UnrealEditor-Cmd -run=CFGenerateModelAssets
- *       -Plugin=<PluginName>
- *       -AssetClass=/Script/<Module>.<YourModelAssetClass>
- *       [-InputDir=Model] [-Overwrite] [-DryRun]
+ *       -Plugin=CatalystEcosystem
+ *       -AssetClass=/Script/CatalystEcosystem.CEModelAsset
+ *       [-InputDir=Model] [-Overwrite] [-DryRun] [-FailFast]
  *
- * Notes:
- *   - AssetClass must derive from UCFModelAsset (it provides ApplyJsonString).
- *   - Use -Overwrite to update existing uassets; otherwise they are skipped.
- *   - Use -DryRun to log what would happen without saving.
+ * Output:
+ *   - Creates/updates assets under /<Plugin>/Model/
+ *   - Writes a CI report to Saved/<Plugin>/Reports/CF_GenerateReport_<UTC>.json
  */
 UCLASS()
 class CATALYSTFOUNDATIONEDITOR_API UCFGenerateModelAssetsCommandlet : public UCommandlet
 {
 	GENERATED_BODY()
-
 public:
 	UCFGenerateModelAssetsCommandlet();
 

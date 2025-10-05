@@ -43,6 +43,7 @@ public class CatalystEcosystemEditor : ModuleRules
 				"InputCore",
 				"EditorFramework",
 				"UnrealEd",
+				"PropertyEditor", 
 				"ToolMenus",
 				"CoreUObject",
 				"Engine",
@@ -53,7 +54,6 @@ public class CatalystEcosystemEditor : ModuleRules
 				"CatalystFoundationEditor",
 			}
         );
-		
 		
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]

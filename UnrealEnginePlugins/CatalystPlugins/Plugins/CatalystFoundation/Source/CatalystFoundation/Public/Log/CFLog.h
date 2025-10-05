@@ -1,11 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-
-// --------------------------------------------------------------
-// Log categories (declared once in the public header)
-// --------------------------------------------------------------
-DECLARE_LOG_CATEGORY_EXTERN(LogCatalystFoundation,       Log, All);
-DECLARE_LOG_CATEGORY_EXTERN(LogCatalystFoundationEditor, Log, All);
+#include "CatalystFoundation.h"
 
 // --------------------------------------------------------------
 // Compile-time toggle (strip logs in Shipping)
@@ -22,9 +17,9 @@ DECLARE_LOG_CATEGORY_EXTERN(LogCatalystFoundationEditor, Log, All);
 // Convenience macros (Foundation default category)
 // --------------------------------------------------------------
 #if CATALYST_LOG
-  #define CF_INFO(Format, ...)  UE_LOG(LogCatalystFoundation,       Display, Format, ##__VA_ARGS__)
-  #define CF_WARN(Format, ...)  UE_LOG(LogCatalystFoundation,       Warning, Format, ##__VA_ARGS__)
-  #define CF_ERR(Format, ...)   UE_LOG(LogCatalystFoundation,       Error,   Format, ##__VA_ARGS__)
+  #define CF_INFO(Format, ...)  UE_LOG(LogCF,       Display, Format, ##__VA_ARGS__)
+  #define CF_WARN(Format, ...)  UE_LOG(LogCF,       Warning, Format, ##__VA_ARGS__)
+  #define CF_ERR(Format, ...)   UE_LOG(LogCF,       Error,   Format, ##__VA_ARGS__)
   // If you need a different category in a callsite:
   #define CF_CAT_LOG(Category, Verbosity, Format, ...) UE_LOG(Category, Verbosity, Format, ##__VA_ARGS__)
 #else
@@ -35,7 +30,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogCatalystFoundationEditor, Log, All);
 #endif
 
 // --------------------------------------------------------------
-// Optional scope timer: logs to LogCatalystFoundation
+// Optional scope timer: logs to LogCF
 // --------------------------------------------------------------
 struct FCFLogScopeTimer
 {

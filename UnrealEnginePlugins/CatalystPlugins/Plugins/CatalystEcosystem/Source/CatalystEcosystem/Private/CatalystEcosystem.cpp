@@ -8,7 +8,7 @@
 
 
 #define LOCTEXT_NAMESPACE "FCatalystEcosystemModule"
-//DEFINE_LOG_CATEGORY(LogCatalystEcosystem);
+DEFINE_LOG_CATEGORY(LogCE);
 
 
 void FCatalystEcosystemModule::StartupModule()

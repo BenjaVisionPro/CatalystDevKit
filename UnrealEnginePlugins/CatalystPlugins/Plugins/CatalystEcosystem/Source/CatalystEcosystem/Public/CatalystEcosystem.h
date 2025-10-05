@@ -6,8 +6,8 @@
 #pragma once
 
 #include "Modules/ModuleManager.h"
-#include "CEHeaders.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogCE, Log, All);
 
 class FCatalystEcosystemModule : public IModuleInterface
 {

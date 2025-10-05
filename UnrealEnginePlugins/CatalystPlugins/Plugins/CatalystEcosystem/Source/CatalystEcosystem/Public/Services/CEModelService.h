@@ -6,19 +6,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Services/CFAbstractModelService.h"
-
-// We include full types because we expose typed accessors here.
-#include "Model/CEModelAsset.h"
+#include "Services/CFAbstractModelService.h"   // Foundation base
+#include "Model/CEModelAsset.h"                // typed accessors
 #include "CEModelService.generated.h"
 
 /**
  * Ecosystem Model Service
  *
- * - Uniform with other plugins: inherits UCFAbstractModelService.
+ * - Inherits UCFAbstractModelService (Foundation).
  * - Provides compile-time plugin identity and seed asset location.
- * - Exposes simple, typed getters for the CE asset and the CEModel struct.
- * - Adds a small static Instance() for convenience in editor/UI code.
+ * - Exposes typed getters for the CE asset and CEModel struct.
  */
 UCLASS()
 class CATALYSTECOSYSTEM_API UCEModelService : public UCFAbstractModelService
@@ -26,7 +23,7 @@ class CATALYSTECOSYSTEM_API UCEModelService : public UCFAbstractModelService
 	GENERATED_BODY()
 
 public:
-	// ---------- Identity & seed (compile-time enforced by override) ----------
+	// ---------- Identity & seed ----------
 	virtual FName GetPluginName() const override { return TEXT("CatalystEcosystem"); }
 
 	/** Where the seed asset lives (produced by the commandlet from /Model/<modelName>.json). */
@@ -38,8 +35,8 @@ public:
 	}
 
 	// ---------- Convenience access ----------
-	/** Fast path to the service (works in PIE/Editor via foundation’s Find<T> helper). */
-	static UCEModelService* Instance() { return UCFAbstractModelService::Find<UCEModelService>(); }
+	/** Best-effort singleton-style accessor (editor/runtime). May return nullptr. */
+	static UCEModelService* Instance();
 
 	/** Live CE model asset (read-only). May be null early in init. */
 	const UCEModelAsset* GetModelAsset() const { return Cast<UCEModelAsset>(Get()); }

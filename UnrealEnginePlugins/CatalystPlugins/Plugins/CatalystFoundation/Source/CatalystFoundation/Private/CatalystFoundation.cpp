@@ -1,9 +1,20 @@
 #include "CatalystFoundation.h"
+#include "Log/CFLog.h"
 
-// Define the runtime module's log category exactly once.
-DEFINE_LOG_CATEGORY(LogCatalystFoundation);
+DEFINE_LOG_CATEGORY(LogCF);
 
-void FCatalystFoundationModule::StartupModule() {}
-void FCatalystFoundationModule::ShutdownModule() {}
+#define LOCTEXT_NAMESPACE "FCatalystFoundationModule"
+
+void FCatalystFoundationModule::StartupModule()
+{
+    CF_INFO(TEXT("Catalyst Foundation module started."));
+}
+
+void FCatalystFoundationModule::ShutdownModule()
+{
+    CF_INFO(TEXT("Catalyst Foundation module shut down."));
+}
+
+#undef LOCTEXT_NAMESPACE
 
 IMPLEMENT_MODULE(FCatalystFoundationModule, CatalystFoundation)

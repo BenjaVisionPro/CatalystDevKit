@@ -4,5 +4,14 @@
 // ============================================
 
 #include "Services/CEModelService.h"
-// No extra implementation needed; the base class handles lifecycle + JSON apply.
-// This cpp exists to keep the linker happy and to be a home for future CE-specific logic.
+#include "UObject/UObjectIterator.h"
+
+UCEModelService* UCEModelService::Instance()
+{
+	// Best-effort: return the first loaded instance (works in editor/PIE/tools).
+	for (TObjectIterator<UCEModelService> It; It; ++It)
+	{
+		return *It;
+	}
+	return nullptr;
+}

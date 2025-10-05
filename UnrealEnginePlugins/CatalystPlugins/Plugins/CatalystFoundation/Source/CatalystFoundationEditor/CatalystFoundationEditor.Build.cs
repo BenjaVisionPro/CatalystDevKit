@@ -43,11 +43,16 @@ public class CatalystFoundationEditor : ModuleRules
 				"InputCore",
 				"EditorFramework",
 				"UnrealEd",
+				"AssetTools",
+				"PropertyEditor", 
 				"ToolMenus",
 				"CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"Kismet",
+				"Json",
+				"JsonUtilities",
 				"CatalystFoundation",
 			}
 			);
