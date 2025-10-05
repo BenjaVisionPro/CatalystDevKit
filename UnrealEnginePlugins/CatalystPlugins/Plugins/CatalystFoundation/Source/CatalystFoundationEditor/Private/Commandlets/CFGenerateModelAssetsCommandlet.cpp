@@ -1,18 +1,39 @@
 // ============================================
-// Copyright © 2022 Jupiter Jones & BenjaVision
-// All rights and remedies reserved
+// Catalyst Foundation — Generate Model Assets (private)
 // ============================================
 
 #include "Commandlets/CFGenerateModelAssetsCommandlet.h"
 
-#include "Model/CFModelAsset.h"
-#include "Interfaces/IPluginManager.h"
 #include "AssetRegistry/AssetRegistryModule.h"
-#include "UObject/Package.h"
-#include "UObject/SavePackage.h"
+#include "Interfaces/IPluginManager.h"
+#include "Log/CFLog.h"
+#define CF_LOG_DEFAULT_CATEGORY LogCatalystFoundationEditor
+#include "Log/CFLog.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Model/CFModelAsset.h"
+#include "UObject/Package.h"
+#include "UObject/SavePackage.h"
 #include "HAL/FileManager.h"
+
+namespace
+{
+	// Load a UClass from a path like /Script/Module.ClassName
+	bool LoadClassFromPath(const FString& ClassPath, UClass*& OutClass)
+	{
+		OutClass = nullptr;
+		if (ClassPath.IsEmpty()) return false;
+
+		UClass* C = StaticLoadClass(UObject::StaticClass(), /*InOuter*/nullptr, *ClassPath);
+		if (!C)
+		{
+			CF_ERR(TEXT("Could not load class from '%s'."), *ClassPath);
+			return false;
+		}
+		OutClass = C;
+		return true;
+	}
+}
 
 UCFGenerateModelAssetsCommandlet::UCFGenerateModelAssetsCommandlet()
 {
@@ -21,25 +42,9 @@ UCFGenerateModelAssetsCommandlet::UCFGenerateModelAssetsCommandlet()
 	LogToConsole   = true;
 	ShowErrorCount = true;
 
-	HelpDescription = TEXT(
-		"Generate model assets from JSON files under <PluginRoot>/Model (or -InputDir).\n")
+	HelpDescription =
+		TEXT("Generate model assets from JSON files under <PluginRoot>/Model (or -InputDir).\n")
 		TEXT("-Plugin=<Name> -AssetClass=/Script/Module.Class [-Overwrite] [-DryRun] [-InputDir=Model]");
-}
-
-// Load a UClass from a soft path like /Script/Module.ClassName
-static bool LoadClassFromPath(const FString& ClassPath, UClass*& OutClass)
-{
-	OutClass = nullptr;
-	if (ClassPath.IsEmpty()) return false;
-
-	UClass* C = StaticLoadClass(UObject::StaticClass(), /*InOuter*/nullptr, *ClassPath);
-	if (!C)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Could not load class from '%s'."), *ClassPath);
-		return false;
-	}
-	OutClass = C;
-	return true;
 }
 
 int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
@@ -57,17 +62,15 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 
 	if (PluginName.IsEmpty() || AssetClassPath.IsEmpty())
 	{
-		UE_LOG(LogTemp, Error,
-			TEXT("Usage: -run=CFGenerateModelAssets -Plugin=<PluginName> -AssetClass=/Script/Module.Class ")
-			TEXT("[-Overwrite] [-DryRun] [-InputDir=Model]"));
+		CF_ERR(TEXT("Usage: -run=CFGenerateModelAssets -Plugin=<PluginName> -AssetClass=/Script/Module.Class [-Overwrite] [-DryRun] [-InputDir=Model]"));
 		return 1;
 	}
 
-	// Resolve the plugin we’re targeting
+	// Resolve plugin
 	TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin(PluginName);
 	if (!Plugin.IsValid())
 	{
-		UE_LOG(LogTemp, Error, TEXT("Plugin '%s' not found."), *PluginName);
+		CF_ERR(TEXT("Plugin '%s' not found."), *PluginName);
 		return 1;
 	}
 
@@ -79,7 +82,7 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 	}
 	if (!AssetClass->IsChildOf(UCFModelAsset::StaticClass()))
 	{
-		UE_LOG(LogTemp, Error, TEXT("AssetClass '%s' must derive from UCFModelAsset."), *AssetClassPath);
+		CF_ERR(TEXT("AssetClass '%s' must derive from UCFModelAsset."), *AssetClassPath);
 		return 1;
 	}
 
@@ -92,24 +95,24 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 
 	if (JsonFiles.Num() == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No JSON files found under: %s"), *JsonDir);
+		CF_WARN(TEXT("No JSON files found under: %s"), *JsonDir);
 		return 0;
 	}
 
-	UE_LOG(LogTemp, Display, TEXT("Found %d JSON file(s) under %s"), JsonFiles.Num(), *JsonDir);
+	CF_INFO(TEXT("Found %d JSON file(s) under %s"), JsonFiles.Num(), *JsonDir);
 
 	int32 Created = 0, Updated = 0, Skipped = 0, Failed = 0;
 
 	for (const FString& JsonPathAbs : JsonFiles)
 	{
-		const FString Stem        = FPaths::GetBaseFilename(JsonPathAbs); // "CEModelAsset_Seed"
+		const FString Stem        = FPaths::GetBaseFilename(JsonPathAbs);
 		const FString PackagePath = FString::Printf(TEXT("/%s/Model/%s"), *PluginName, *Stem);
 
 		// Read JSON
 		FString JsonText;
 		if (!FFileHelper::LoadFileToString(JsonText, *JsonPathAbs))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Read failed: %s"), *JsonPathAbs);
+			CF_ERR(TEXT("Read failed: %s"), *JsonPathAbs);
 			++Failed;
 			continue;
 		}
@@ -117,7 +120,6 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 		// Create or find package and asset
 		UPackage* Package = CreatePackage(*PackagePath);
 
-		// Look up an existing asset with that name & class in the package (if any)
 		UObject* ExistingObj = StaticFindObjectFast(AssetClass, Package, FName(*Stem));
 		UCFModelAsset* Asset = Cast<UCFModelAsset>(ExistingObj);
 
@@ -126,7 +128,7 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 		{
 			if (bDryRun)
 			{
-				UE_LOG(LogTemp, Display, TEXT("[DRY] Would create asset %s (%s)"), *PackagePath, *AssetClass->GetName());
+				CF_INFO(TEXT("[DRY] Would create asset %s (%s)"), *PackagePath, *AssetClass->GetName());
 				++Created;
 				continue;
 			}
@@ -136,62 +138,74 @@ int32 UCFGenerateModelAssetsCommandlet::Main(const FString& Params)
 		}
 		else if (!bOverwrite)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Skip (exists, no -Overwrite): %s"), *PackagePath);
+			CF_INFO(TEXT("Skip (exists, no -Overwrite): %s"), *PackagePath);
 			++Skipped;
 			continue;
 		}
 
-		// Import JSON into the asset’s model struct (uses asset's public helper)
+		// Import JSON into the asset’s model struct
 		{
 			FString Err;
 			if (!Asset->ApplyJsonString(JsonText, Err))
 			{
-				UE_LOG(LogTemp, Error, TEXT("JSON import failed for %s: %s"), *PackagePath, *Err);
+				CF_ERR(TEXT("JSON import failed for %s: %s"), *PackagePath, *Err);
 				++Failed;
 				continue;
 			}
 		}
 
+		// Refresh version/provenance metadata before saving
+		Asset->UpdateVersionMetadata();
 		Asset->MarkPackageDirty();
 
 		if (bDryRun)
 		{
-			UE_LOG(LogTemp, Display, TEXT("[DRY] Would save: %s"), *PackagePath);
+			CF_INFO(TEXT("[DRY] Would save: %s"), *PackagePath);
 			(bIsNew ? ++Created : ++Updated);
 			continue;
 		}
 
-		// Save to <PluginRoot>/Content/Model/<Stem>.uasset
-		const FString PackageFilename = FPackageName::LongPackageNameToFilename(
+		// Save to Content path with ATOMIC write
+		const FString FinalFilename = FPackageName::LongPackageNameToFilename(
 			PackagePath, FPackageName::GetAssetPackageExtension());
+
+		const FString TempFilename  = FinalFilename + TEXT(".tmp");
 
 		FSavePackageArgs SaveArgs;
 		SaveArgs.TopLevelFlags = RF_Public | RF_Standalone;
 		SaveArgs.SaveFlags     = SAVE_None;
 		SaveArgs.Error         = GError;
 
-		const bool bSaved = UPackage::SavePackage(
-			Package,      // InOuter
-			Asset,        // InAsset
-			*PackageFilename,
+		// 1) Save to TEMP
+		const bool bSavedTemp = UPackage::SavePackage(
+			Package,
+			Asset,
+			*TempFilename,
 			SaveArgs
 		);
 
-		if (!bSaved)
+		if (!bSavedTemp)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Save failed: %s"), *PackageFilename);
+			CF_ERR(TEXT("Temp save failed: %s"), *TempFilename);
 			++Failed;
+			continue;
 		}
-		else
+
+		// 2) Atomic move temp -> final
+		const bool bMoved = IFileManager::Get().Move(*FinalFilename, *TempFilename, /*Replace*/true, /*EvenIfReadOnly*/false, /*Attributes*/false, /*bDoNotRetryOrError*/true);
+		if (!bMoved)
 		{
-			UE_LOG(LogTemp, Display, TEXT("%s: %s"),
-				(bIsNew ? TEXT("Created") : TEXT("Updated")), *PackageFilename);
-			(bIsNew ? ++Created : ++Updated);
+			// Clean temp if move failed
+			IFileManager::Get().Delete(*TempFilename, /*RequireExists*/false, /*EvenReadOnly*/true);
+			CF_ERR(TEXT("Atomic move failed: %s -> %s"), *TempFilename, *FinalFilename);
+			++Failed;
+			continue;
 		}
+
+		CF_INFO(TEXT("%s: %s"), (bIsNew ? TEXT("Created") : TEXT("Updated")), *FinalFilename);
+		(bIsNew ? ++Created : ++Updated);
 	}
 
-	UE_LOG(LogTemp, Display, TEXT("Done. Created:%d Updated:%d Skipped:%d Failed:%d"),
-		Created, Updated, Skipped, Failed);
-
+	CF_INFO(TEXT("Done. Created:%d Updated:%d Skipped:%d Failed:%d"), Created, Updated, Skipped, Failed);
 	return (Failed == 0) ? 0 : 1;
 }

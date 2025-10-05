@@ -1,22 +1,12 @@
-// ============================================
-// Copyright © 2022 Jupiter Jones & BenjaVision
-// All rights and remedies reserved
-// ============================================
-
 #pragma once
-
 #include "Modules/ModuleManager.h"
 
+// Declare the runtime module's log category (extern).
+DECLARE_LOG_CATEGORY_EXTERN(LogCatalystFoundation, Log, All);
 
 class FCatalystFoundationModule : public IModuleInterface
 {
 public:
-
-	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-
-
-private:
-
 };

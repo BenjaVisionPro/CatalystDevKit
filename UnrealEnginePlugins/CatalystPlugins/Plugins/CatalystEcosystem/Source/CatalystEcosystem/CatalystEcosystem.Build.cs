@@ -31,7 +31,7 @@ public class CatalystEcosystem : ModuleRules
 				"Core",
                 "Json",
                 "JsonUtilities",
-                "RapidJSON",
+                "CatalystFoundation",
 			}
 			);
 			
@@ -43,7 +43,6 @@ public class CatalystEcosystem : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-                "CatalystFoundation",
 			}
 			);
 		

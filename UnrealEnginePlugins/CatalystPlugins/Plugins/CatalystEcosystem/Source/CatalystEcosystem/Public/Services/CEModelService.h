@@ -8,7 +8,7 @@
 #include "CoreMinimal.h"
 #include "Services/CFAbstractModelService.h"
 
-// We need full types here because we access GetModel() below.
+// We include full types because we expose typed accessors here.
 #include "Model/CEModelAsset.h"
 #include "CEModelService.generated.h"
 
@@ -16,8 +16,9 @@
  * Ecosystem Model Service
  *
  * - Uniform with other plugins: inherits UCFAbstractModelService.
- * - Provides compile-time identity and seed asset path.
- * - Adds typed convenience accessors for CE.
+ * - Provides compile-time plugin identity and seed asset location.
+ * - Exposes simple, typed getters for the CE asset and the CEModel struct.
+ * - Adds a small static Instance() for convenience in editor/UI code.
  */
 UCLASS()
 class CATALYSTECOSYSTEM_API UCEModelService : public UCFAbstractModelService
@@ -25,26 +26,28 @@ class CATALYSTECOSYSTEM_API UCEModelService : public UCFAbstractModelService
 	GENERATED_BODY()
 
 public:
-	// Compile-time plugin identity
+	// ---------- Identity & seed (compile-time enforced by override) ----------
 	virtual FName GetPluginName() const override { return TEXT("CatalystEcosystem"); }
 
-	// Where the seed asset is expected to live (generated from JSON by our importer)
+	/** Where the seed asset lives (produced by the commandlet from /Model/<modelName>.json). */
 	virtual TSoftObjectPtr<UCFModelAsset> GetSeedModelAsset() const override
 	{
-		// Path must match the package name written by the importer.
+		// Must match the package name written by CFGenerateModelAssetsCommandlet.
 		return TSoftObjectPtr<UCFModelAsset>(
 			FSoftObjectPath(TEXT("/CatalystEcosystem/Model/CEModelAsset_Seed.CEModelAsset_Seed")));
 	}
 
-	// ---- Typed helpers (no static templates, no globals) ----
+	// ---------- Convenience access ----------
+	/** Fast path to the service (works in PIE/Editor via foundation’s Find<T> helper). */
+	static UCEModelService* Instance() { return UCFAbstractModelService::Find<UCEModelService>(); }
 
-	// Return the live CE model asset (read-only)
+	/** Live CE model asset (read-only). May be null early in init. */
 	const UCEModelAsset* GetModelAsset() const { return Cast<UCEModelAsset>(Get()); }
 
-	// Return the live CE model asset (mutable)
-	UCEModelAsset* GetMutableModelAsset()       { return Cast<UCEModelAsset>(GetMutable()); }
+	/** Live CE model asset (mutable). */
+	UCEModelAsset* GetMutableModelAsset() { return Cast<UCEModelAsset>(GetMutable()); }
 
-	// Return the CEModel UStruct pointer (read-only). May be null before initialization.
+	/** Root CEModel struct pointer (read-only). */
 	const FCEModel* GetModel() const
 	{
 		if (const UCEModelAsset* A = GetModelAsset())
@@ -54,7 +57,7 @@ public:
 		return nullptr;
 	}
 
-	// Return the CEModel UStruct pointer (mutable). May be null before initialization.
+	/** Root CEModel struct pointer (mutable). */
 	FCEModel* GetMutableModel()
 	{
 		if (UCEModelAsset* A = GetMutableModelAsset())

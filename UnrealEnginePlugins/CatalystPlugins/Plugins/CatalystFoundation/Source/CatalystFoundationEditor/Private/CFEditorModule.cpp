@@ -1,22 +1,9 @@
-// CFEditorModule.cpp
+#include "CatalystFoundationEditor.h"
 
-#include "CFEditorModule.h"
+// Define the editor module's log category exactly once.
+DEFINE_LOG_CATEGORY(LogCatalystFoundationEditor);
 
-DEFINE_LOG_CATEGORY(LogCFEditor);
+void FCatalystFoundationEditorModule::StartupModule() {}
+void FCatalystFoundationEditorModule::ShutdownModule() {}
 
-// 🔁 Replace with your actual tab name if you expose a Nomad tab:
-static const FName CatalystFoundationEditorTabName("Catalyst:Foundation");
-
-#define LOCTEXT_NAMESPACE "FCFEditorModule"
-
-void FCFEditorModule::StartupModule()
-{
-}
-
-void FCFEditorModule::ShutdownModule()
-{
-}
-
-#undef LOCTEXT_NAMESPACE
-
-IMPLEMENT_MODULE(FCFEditorModule, CatalystFoundationEditor)
+IMPLEMENT_MODULE(FCatalystFoundationEditorModule, CatalystFoundationEditor)

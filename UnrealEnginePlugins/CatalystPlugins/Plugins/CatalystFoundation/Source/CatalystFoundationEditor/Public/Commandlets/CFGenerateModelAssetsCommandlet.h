@@ -1,6 +1,5 @@
 // ============================================
-// Copyright © 2022 Jupiter Jones & BenjaVision
-// All rights and remedies reserved
+// Catalyst Foundation — Generate Model Assets (public)
 // ============================================
 
 #pragma once

@@ -15,32 +15,34 @@
 #include "Widgets/Text/STextBlock.h"
 #include "Widgets/SOverlay.h"
 
-#include "Styles/CFEditorFontsStyle.h"   // foundation shared Font Awesome + Bebas
-#include "CEEditorStyle.h"        // provides CE brushes (e.g. CE.Logo64)
-#include "UI/CEFontAwesome.h"     // FA glyph constants
+#include "Styles/CFEditorFontsStyle.h"   // shared Font Awesome + Bebas
+#include "CEEditorStyle.h"               // plugin brushes (e.g. CE.Logo64)
+#include "UI/CEFontAwesome.h"            // FA glyph constants
 #include "UI/Panels/SCESummaryPanel.h"
 
+// Runtime access to the data model
+#include "Services/CEModelService.h"
+#include "Model/CEModelAsset.h"
+#include "Engine/Engine.h"
+#include "Engine/GameInstance.h"
 
 namespace
 {
-    // Tile metrics
-    constexpr float kTileHeight = 60.f;     // card height
-    constexpr float kAspect     = 2.2f;     // width = height * 2.4
+    // ---- Tile metrics ----
+    constexpr float kTileHeight = 60.f;
+    constexpr float kAspect     = 2.2f;                // width = height * aspect
     constexpr float kTileWidth  = kTileHeight * kAspect;
+    const FMargin   kCardPad(14.f);
 
-    const FMargin kCardPad(14.f);           // inner padding/inset
-
-    // Font Awesome LIGHT icon, sized to a target pixel height
+    // Font Awesome LIGHT icon at a target pixel size.
     TSharedRef<STextBlock> MakeFAIconLightSized(const TCHAR* Glyph, float PixelSize)
     {
         FSlateFontInfo IconFont = FCFEditorFontsStyle::Get().GetFontStyle(FCFEditorFontsStyle::IconLight24);
         IconFont.Size = PixelSize;
-        return SNew(STextBlock)
-            .Font(IconFont)
-            .Text(FText::FromString(Glyph));
+        return SNew(STextBlock).Font(IconFont).Text(FText::FromString(Glyph));
     }
 
-    // 6px status dot (color provided)
+    // 6px status dot (bottom-right on our tiles).
     TSharedRef<SWidget> MakeStatusDotBR(const FLinearColor& Color)
     {
         return SNew(SBorder)
@@ -51,22 +53,64 @@ namespace
                 SNew(SBox).WidthOverride(6.f).HeightOverride(6.f)
             ];
     }
+
+    // --- Minimal, editor-safe resolver for our service/model ---
+    // Scans all world contexts (handles PIE/SIE) and returns the first CE service.
+    static UCEModelService* ResolveService()
+    {
+        if (!GEngine) return nullptr;
+
+        const TIndirectArray<FWorldContext>& Contexts = GEngine->GetWorldContexts();
+        for (int32 i = 0; i < Contexts.Num(); ++i)
+        {
+            if (UGameInstance* GI = Contexts[i].OwningGameInstance)
+            {
+                if (UCEModelService* Svc = GI->GetSubsystem<UCEModelService>())
+                {
+                    return Svc;
+                }
+            }
+        }
+        return nullptr;
+    }
+
+    static const UCEModelAsset* ResolveModelAsset()
+    {
+        if (const UCEModelService* Svc = ResolveService())
+        {
+            return Svc->GetModelAsset();
+        }
+        return nullptr;
+    }
 }
+
+/* ---------- Construct ---------- */
 
 void SCEVisualizer::Construct(const FArguments& InArgs)
 {
+    // Keeping seed for API compatibility in case we surface it later.
     PreviewSeed = InArgs._Seed;
-
-    // TODO: replace with live counts
-    EcosystemCount = 6;
-    BiomeCount     = 48;
-    SpeciesCount   = 36;
-    ResourceCount  = 185;
 
     const FLinearColor OK   = FLinearColor(0.12f, 0.80f, 0.32f);
     const FLinearColor WARN = FLinearColor(0.98f, 0.73f, 0.08f);
     const FLinearColor ERR  = FLinearColor(0.86f, 0.20f, 0.20f);
     const FLinearColor NEUT = FLinearColor(0.55f, 0.55f, 0.55f);
+
+    // Pull counts directly from the live model. If the model isn't ready yet,
+    // leave the badge hidden (optional remains unset).
+    auto CountOrUnset = [](TFunctionRef<int32(const FCEModel&)> Getter) -> TOptional<int32>
+    {
+        if (const UCEModelAsset* A = ResolveModelAsset())
+        {
+            return Getter(A->GetModel());
+        }
+        return TOptional<int32>(); // hide until the service seeds the model
+    };
+
+    const TOptional<int32> EcosystemCount = CountOrUnset([](const FCEModel& M){ return M.Ecosystems.Num(); });
+    const TOptional<int32> BiomeCount     = CountOrUnset([](const FCEModel& M){ return M.Biomes.Num();     });
+    const TOptional<int32> SpeciesCount   = CountOrUnset([](const FCEModel& M){ return M.Animals.Num();    });
+    const TOptional<int32> ResourceCount  = CountOrUnset([](const FCEModel& M){ return M.Resources.Num();  });
 
     ChildSlot
     [
@@ -81,7 +125,7 @@ void SCEVisualizer::Construct(const FArguments& InArgs)
             [
                 SNew(SHorizontalBox)
 
-                // Logo (left) – clickable to open Summary
+                // Logo (click to jump back to Summary)
                 + SHorizontalBox::Slot()
                 .AutoWidth()
                 .VAlign(VAlign_Center)
@@ -97,7 +141,7 @@ void SCEVisualizer::Construct(const FArguments& InArgs)
                     ]
                 ]
 
-                // Spacer between logo and tiles
+                // Spacer
                 + SHorizontalBox::Slot()
                 .AutoWidth()
                 .Padding(24.f, 0.f)
@@ -105,7 +149,7 @@ void SCEVisualizer::Construct(const FArguments& InArgs)
                     SNullWidget::NullWidget
                 ]
 
-                // Tiles (center, evenly distributed)
+                // Tiles
                 + SHorizontalBox::Slot()
                 .FillWidth(1.f)
                 .HAlign(HAlign_Center)
@@ -115,37 +159,38 @@ void SCEVisualizer::Construct(const FArguments& InArgs)
 
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
-                        MakeIconTile(CEFA::Globe, EcosystemCount, OK,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenEcosystems))
+                        MakeIconTile(CEFA::Globe, TOptional<int32>(EcosystemCount), OK,
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenEcosystems))
                     ]
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
-                        MakeIconTile(CEFA::Leaf, BiomeCount, OK,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenBiomes))
+                        MakeIconTile(CEFA::Leaf, TOptional<int32>(BiomeCount), OK,
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenBiomes))
                     ]
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
-                        MakeIconTile(CEFA::Paw, SpeciesCount, OK,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenSpecies))
+                        MakeIconTile(CEFA::Paw, TOptional<int32>(SpeciesCount), OK,
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenSpecies))
                     ]
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
-                        MakeIconTile(CEFA::Cubes, ResourceCount, WARN,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenResources))
+                        MakeIconTile(CEFA::Cubes, TOptional<int32>(ResourceCount), WARN,
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenResources))
                     ]
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
+                        // Weather not counted yet
                         MakeIconTile(CEFA::CloudSun, TOptional<int32>(), NEUT,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenWeather))
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenWeather))
                     ]
                     + SHorizontalBox::Slot().FillWidth(1.f/6.f).Padding(4.f,0.f)
                     [
                         MakeIconTile(CEFA::SlidersH, TOptional<int32>(), OK,
-                            FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenSimulations))
+                                     FOnClicked::CreateSP(this, &SCEVisualizer::OnOpenSimulations))
                     ]
                 ]
 
-                // Spacer between tiles and settings
+                // Spacer
                 + SHorizontalBox::Slot()
                 .AutoWidth()
                 .Padding(24.f, 0.f)
@@ -153,7 +198,7 @@ void SCEVisualizer::Construct(const FArguments& InArgs)
                     SNullWidget::NullWidget
                 ]
 
-                // Settings (right)
+                // Settings (placeholder action)
                 + SHorizontalBox::Slot()
                 .AutoWidth()
                 .VAlign(VAlign_Center)
@@ -203,12 +248,8 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
     const FLinearColor StatusColor,
     FOnClicked OnClicked)
 {
-    // Scale icon to fit tile height (leave breathing room within padding)
-    const float IconPx = FMath::Clamp(
-        (kTileHeight - (kCardPad.Top + kCardPad.Bottom)) * 0.72f,
-        18.f, 56.f);
+    const float IconPx = FMath::Clamp((kTileHeight - (kCardPad.Top + kCardPad.Bottom)) * 0.72f, 18.f, 56.f);
 
-    // Bebas Bold for the numeric count
     FSlateFontInfo CountFont = FCFEditorFontsStyle::Get().GetFontStyle(FCFEditorFontsStyle::BebasBold20);
     CountFont.Size = 18.f;
 
@@ -217,7 +258,6 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
         .ContentPadding(0.f)
         .OnClicked(OnClicked)
         [
-            // Fixed aspect card (2.4 : 1)
             SNew(SBox)
             .WidthOverride(kTileWidth)
             .HeightOverride(kTileHeight)
@@ -228,7 +268,7 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
                 [
                     SNew(SOverlay)
 
-                    // Left: outlined icon, vertically centered
+                    // Left icon
                     + SOverlay::Slot()
                     .HAlign(HAlign_Left)
                     .VAlign(VAlign_Center)
@@ -236,19 +276,18 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
                         MakeFAIconLightSized(Glyph, IconPx)
                     ]
 
-                    // Right: vertical column that is vertically centered and
-                    // internally centers both the number and the dot horizontally.
+                    // Right: number (optional) + status dot
                     + SOverlay::Slot()
                     .HAlign(HAlign_Right)
                     .VAlign(VAlign_Center)
                     [
                         SNew(SVerticalBox)
 
-                        // Number (if provided)
+                        // Number (visible only if Count has a value)
                         + SVerticalBox::Slot()
                         .AutoHeight()
                         .HAlign(HAlign_Center)
-                        .Padding(FMargin(0.f, 0.f, 0.f, 4.f)) // gap above the dot
+                        .Padding(FMargin(0.f, 0.f, 0.f, 4.f))
                         [
                             SNew(SBox)
                             .Visibility(Count.IsSet() ? EVisibility::Visible : EVisibility::Collapsed)
@@ -260,7 +299,7 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
                             ]
                         ]
 
-                        // Status dot (always shown)
+                        // Status dot
                         + SVerticalBox::Slot()
                         .AutoHeight()
                         .HAlign(HAlign_Center)
@@ -277,10 +316,7 @@ TSharedRef<SWidget> SCEVisualizer::MakeIconTile(
 
 void SCEVisualizer::ShowPanel(ECEPanelKind Kind)
 {
-    if (!PanelHost.IsValid())
-        return;
-
-    if (ActivePanel == Kind)
+    if (!PanelHost.IsValid() || ActivePanel == Kind)
         return;
 
     if (TWeakPtr<SWidget>* Found = PanelCache.Find(Kind))
@@ -293,7 +329,6 @@ void SCEVisualizer::ShowPanel(ECEPanelKind Kind)
         }
     }
 
-    // Build on demand and cache
     TSharedRef<SWidget> NewPanel = BuildPanel(Kind);
     PanelCache.Add(Kind, NewPanel);
     PanelHost->SetContent(NewPanel);
@@ -302,7 +337,7 @@ void SCEVisualizer::ShowPanel(ECEPanelKind Kind)
 
 TSharedRef<SWidget> SCEVisualizer::BuildTitledPanel(const FText& Title)
 {
-    // Simple placeholder layout you can replace with real editors
+    // Simple scaffold panel; we’ll replace with real editors panel-by-panel.
     return SNew(SVerticalBox)
     + SVerticalBox::Slot()
     .AutoHeight()
@@ -328,7 +363,7 @@ TSharedRef<SWidget> SCEVisualizer::BuildPanel(ECEPanelKind Kind)
         case ECEPanelKind::Summary:
             return SNew(SCESummaryPanel).Title(NSLOCTEXT("CE", "SummaryPanel", "Summary / News"));
 
-        // For now, placeholders for the rest until their concrete panels exist:
+        // Placeholders until the concrete editors land
         case ECEPanelKind::Ecosystems:
         case ECEPanelKind::Biomes:
         case ECEPanelKind::Species:
