@@ -1,10 +1,9 @@
 // ============================================================================
 // Catalyst Foundation — Base Factory for Model Assets (Editor)
 // ----------------------------------------------------------------------------
-// Purpose:
-//   - Standardize “Add New → Catalyst → …” creation for model assets.
-//   - Ensures supported asset classes derive from UCFModelAsset.
-//   - Feature plugins subclass and implement GetAssetClass() + GetAssetMenuName().
+// Post-AssetDefinition notes:
+// - Factory still creates the UObject.
+// - Add(+) menu placement is handled by UAssetDefinition*.
 // ============================================================================
 
 #pragma once
@@ -24,11 +23,15 @@ public:
 	UCFModelAssetFactory();
 
 	// ----- UFactory -----
-	virtual bool    ShouldShowInNewMenu() const override { return true; }
-	virtual uint32  GetMenuCategories() const override;      // “Catalyst” category bit
-	virtual FText   GetDisplayName() const override;         // Menu text
-	virtual FText   GetToolTip() const override;             // Tooltip
-	virtual UClass* ResolveSupportedClass() override;        // UE signature (non-const)
+	// Keep hidden from Add(+) — AssetDefinitions control UI.
+	virtual bool    ShouldShowInNewMenu() const override { return false; }
+
+	// Declare only; implement in .cpp (avoids pulling engine headers into public API).
+	virtual uint32  GetMenuCategories() const override;
+
+	virtual FText   GetDisplayName() const override;
+	virtual FText   GetToolTip() const override;
+	virtual UClass* ResolveSupportedClass() override;
 	virtual UObject* FactoryCreateNew(
 		UClass* InClass,
 		UObject* InParent,
@@ -41,7 +44,7 @@ protected:
 	/** Subclass must return the asset class it creates (must derive from UCFModelAsset). */
 	virtual UClass* GetAssetClass() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetClass, return nullptr;);
 
-	/** Subclass supplies the menu label. */
+	/** Label used in non-Add(+) contexts (palettes, etc.). */
 	virtual FText   GetAssetMenuName() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetMenuName, return FText::FromString(TEXT("Model Asset")););
 
 	/** Optional defaults. */

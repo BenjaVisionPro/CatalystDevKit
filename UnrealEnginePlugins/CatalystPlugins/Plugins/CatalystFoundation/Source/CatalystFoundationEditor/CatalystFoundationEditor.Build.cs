@@ -53,6 +53,7 @@ public class CatalystFoundationEditor : ModuleRules
 				"Kismet",
 				"Json",
 				"JsonUtilities",
+				"AssetDefinition",
 				"CatalystFoundation",
 			}
 			);

@@ -1,8 +1,4 @@
-// CEEEditorModule.h  (adjust filename to your module header)
-
-// ============================================
-// Copyright © ...
-// ============================================
+// CEEEditorModule.h
 
 #pragma once
 
@@ -17,23 +13,29 @@ DECLARE_LOG_CATEGORY_EXTERN(LogCEEditor, Log, All);
 class FCEEditorModule : public IModuleInterface
 {
 public:
-    // IModuleInterface
-    virtual void StartupModule() override;
-    virtual void ShutdownModule() override;
+	// IModuleInterface
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
 
-    // Opens the Ecosystem editor/visualiser tab
-    void PluginButtonClicked();
-
-private:
-    // Contribute to the global Catalyst menu
-    void RegisterMenus();
-
-    // Build the Ecosystem section dynamically each time the menu opens
-    void BuildEcosystemMenu(FToolMenuSection& Section);
-
-    // Spawn the Ecosystem editor tab (if you expose a Nomad tab)
-    TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& Args);
+	// Opens the Ecosystem editor/visualiser tab
+	void PluginButtonClicked();
 
 private:
-    TSharedPtr<class FUICommandList> PluginCommands;
+	// Contribute to the global Catalyst menu
+	void RegisterMenus();
+
+	// Build the Ecosystem section dynamically each time the menu opens
+	void BuildEcosystemMenu(FToolMenuSection& Section);
+
+	// Spawn the Ecosystem editor tab (Nomad tab)
+	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& Args);
+
+	// Resolve a nice window title: Ecosystem Title (if available) or fallback.
+	FText GetEcosystemTabLabel() const;
+
+private:
+	TSharedPtr<class FUICommandList> PluginCommands;
+
+	// Keep strong refs so we can unregister AssetTypeActions on shutdown
+	TArray<TSharedPtr<class IAssetTypeActions>> RegisteredAssetTypeActions;
 };

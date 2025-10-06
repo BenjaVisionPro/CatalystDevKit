@@ -49,6 +49,7 @@ public class CatalystEcosystemEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"AssetDefinition",
 				"CatalystEcosystem",
 				"CatalystFoundation",
 				"CatalystFoundationEditor",

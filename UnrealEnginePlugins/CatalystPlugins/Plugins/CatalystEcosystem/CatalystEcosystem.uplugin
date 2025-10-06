@@ -32,7 +32,7 @@
 		{
 			"Name": "CatalystEcosystemEditor",
 			"Type": "Editor",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PostEngineInit",
             "PlatformAllowList": [
                 "Mac",
                 "Linux",
