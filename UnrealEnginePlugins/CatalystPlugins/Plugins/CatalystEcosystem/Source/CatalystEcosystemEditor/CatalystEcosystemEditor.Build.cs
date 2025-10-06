@@ -32,6 +32,7 @@ public class CatalystEcosystemEditor : ModuleRules
 			new string[]
 			{
 				"Core",
+				"AssetDefinition",
 				// ... add other public dependencies that you statically link with here ...
 			}
         );
@@ -49,7 +50,6 @@ public class CatalystEcosystemEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"AssetDefinition",
 				"CatalystEcosystem",
 				"CatalystFoundation",
 				"CatalystFoundationEditor",

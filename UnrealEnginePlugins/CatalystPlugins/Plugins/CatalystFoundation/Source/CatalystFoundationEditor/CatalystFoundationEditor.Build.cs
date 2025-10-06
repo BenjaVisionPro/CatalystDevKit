@@ -32,6 +32,7 @@ public class CatalystFoundationEditor : ModuleRules
 			new string[]
 			{
 				"Core",
+				"AssetDefinition",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -53,7 +54,6 @@ public class CatalystFoundationEditor : ModuleRules
 				"Kismet",
 				"Json",
 				"JsonUtilities",
-				"AssetDefinition",
 				"CatalystFoundation",
 			}
 			);

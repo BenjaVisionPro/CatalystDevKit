@@ -1,7 +1,5 @@
 #include "AssetDefinitions/CFAssetDefinition_Model.h"
 #include "Model/CFModelAsset.h"
-#include "Containers/ArrayView.h"
-#include "Misc/AssetCategoryPath.h"
 
 TSoftClassPtr<UObject> UCFAssetDefinition_Model::GetAssetClass() const
 {
@@ -10,10 +8,10 @@ TSoftClassPtr<UObject> UCFAssetDefinition_Model::GetAssetClass() const
 
 TConstArrayView<FAssetCategoryPath> UCFAssetDefinition_Model::GetAssetCategories() const
 {
-    // UE5.6 requires FText-based constructors. No TEXT("...") here.
-    static const FAssetCategoryPath Cats[] = {
-        FAssetCategoryPath(
-            NSLOCTEXT("CatalystFoundationEditor", "CF_CatalystCat", "Catalyst"))
+    // Top-level: Catalyst
+    static const FText Cat     = NSLOCTEXT("CatalystFoundationEditor", "CatalystTopCat", "Catalyst");
+    static const FAssetCategoryPath Paths[] = {
+        FAssetCategoryPath(Cat)
     };
-    return MakeArrayView(Cats);
+    return Paths;
 }

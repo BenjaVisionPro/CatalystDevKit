@@ -8,8 +8,9 @@
 // #include "CFEditorModule.h"
 
 #include "Model/CFModelAsset.h"
-#include "AssetTypeCategories.h"   // <- OK in .cpp
+#include "AssetTypeCategories.h"   // OK in .cpp
 #include "Modules/ModuleManager.h"
+#include "Log/CFLog.h"             // << use CF_INFO/CF_WARN/CF_ERR/CF_CAT_LOG
 
 UCFModelAssetFactory::UCFModelAssetFactory()
 {
@@ -17,7 +18,7 @@ UCFModelAssetFactory::UCFModelAssetFactory()
 	bEditAfterNew  = true;
 	SupportedClass = nullptr; // resolve at create-time via ResolveSupportedClass()
 
-	UE_LOG(LogTemp, Verbose, TEXT("[%s] ctor: bCreateNew=%d bEditAfterNew=%d"),
+	CF_INFO(TEXT("[%s] ctor: bCreateNew=%d bEditAfterNew=%d"),
 		*GetClass()->GetName(), (int32)bCreateNew, (int32)bEditAfterNew);
 }
 
@@ -30,7 +31,7 @@ uint32 UCFModelAssetFactory::GetMenuCategories() const
 FText UCFModelAssetFactory::GetDisplayName() const
 {
 	const FText Name = GetAssetMenuName();
-	UE_LOG(LogTemp, Verbose, TEXT("[%s] GetDisplayName -> \"%s\""),
+	CF_INFO(TEXT("[%s] GetDisplayName -> \"%s\""),
 		*GetClass()->GetName(), *Name.ToString());
 	return Name;
 }
@@ -46,13 +47,13 @@ UClass* UCFModelAssetFactory::ResolveSupportedClass()
 {
 	UClass* Target = GetAssetClass();
 
-	UE_LOG(LogTemp, Verbose, TEXT("[%s] ResolveSupportedClass (raw) -> %s"),
+	CF_INFO(TEXT("[%s] ResolveSupportedClass (raw) -> %s"),
 		*GetClass()->GetName(), Target ? *Target->GetName() : TEXT("<null>"));
 
 	if (!ValidateSupportedClass(Target))
 	{
 		Target = UCFModelAsset::StaticClass();
-		UE_LOG(LogTemp, Warning, TEXT("[%s] ResolveSupportedClass fallback -> UCFModelAsset"),
+		CF_WARN(TEXT("[%s] ResolveSupportedClass fallback -> UCFModelAsset"),
 			*GetClass()->GetName());
 	}
 	return Target;
@@ -62,13 +63,12 @@ bool UCFModelAssetFactory::ValidateSupportedClass(UClass* InClass) const
 {
 	if (!InClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("[%s] GetAssetClass() returned null."), *GetClass()->GetName());
+		CF_ERR(TEXT("[%s] GetAssetClass() returned null."), *GetClass()->GetName());
 		return false;
 	}
 	if (!InClass->IsChildOf(UCFModelAsset::StaticClass()))
 	{
-		UE_LOG(LogTemp, Error,
-			TEXT("[%s] %s does not derive from UCFModelAsset."),
+		CF_ERR(TEXT("[%s] %s does not derive from UCFModelAsset."),
 			*GetClass()->GetName(), *InClass->GetName());
 		return false;
 	}
@@ -83,7 +83,7 @@ UObject* UCFModelAssetFactory::FactoryCreateNew(
 	UObject* /*Context*/,
 	FFeedbackContext* /*Warn*/)
 {
-	UE_LOG(LogTemp, Verbose, TEXT("[%s] FactoryCreateNew: InClass=%s Parent=%s Name=%s Flags=0x%08x"),
+	CF_INFO(TEXT("[%s] FactoryCreateNew: InClass=%s Parent=%s Name=%s Flags=0x%08x"),
 		*GetClass()->GetName(),
 		InClass ? *InClass->GetName() : TEXT("<null>"),
 		InParent ? *InParent->GetName() : TEXT("<null>"),
@@ -93,7 +93,7 @@ UObject* UCFModelAssetFactory::FactoryCreateNew(
 	UClass* TargetClass = InClass ? InClass : ResolveSupportedClass();
 	if (!ValidateSupportedClass(TargetClass))
 	{
-		UE_LOG(LogTemp, Error, TEXT("[%s] Aborting create; invalid TargetClass."), *GetClass()->GetName());
+		CF_ERR(TEXT("[%s] Aborting create; invalid TargetClass."), *GetClass()->GetName());
 		return nullptr;
 	}
 
@@ -101,13 +101,12 @@ UObject* UCFModelAssetFactory::FactoryCreateNew(
 	UObject* NewAsset = NewObject<UObject>(InParent, TargetClass, Name, Flags | RF_Public | RF_Standalone);
 	if (!NewAsset)
 	{
-		UE_LOG(LogTemp, Error,
-			TEXT("[%s] Failed to create asset %s of class %s"),
+		CF_ERR(TEXT("[%s] Failed to create asset %s of class %s"),
 			*GetClass()->GetName(), *Name.ToString(), *TargetClass->GetName());
 		return nullptr;
 	}
 
-	UE_LOG(LogTemp, Verbose, TEXT("[%s] Created asset object: %s (%s)"),
+	CF_INFO(TEXT("[%s] Created asset object: %s (%s)"),
 		*GetClass()->GetName(), *NewAsset->GetName(), *TargetClass->GetName());
 
 	InitializeNewAsset(NewAsset);

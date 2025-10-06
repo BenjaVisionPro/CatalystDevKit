@@ -1,28 +1,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Factories/CFModelAssetFactory.h"
+#include "Factories/Factory.h"
 #include "CEModelAssetFactory.generated.h"
 
-/**
- * Factory for Ecosystem model assets.
- * Appears under: Add New → Catalyst → Ecosystems → Ecosystem
- */
+class UCEModelAsset;
+
 UCLASS()
-class CATALYSTECOSYSTEMEDITOR_API UCEModelAssetFactory : public UCFModelAssetFactory
+class CATALYSTECOSYSTEMEDITOR_API UCEModelAssetFactory : public UFactory
 {
 	GENERATED_BODY()
 
-protected:
-	// UCFModelAssetFactory
-	virtual UClass* GetAssetClass() const override;
-	virtual FText   GetAssetMenuName() const override;
-	virtual FString GetDefaultAssetName() const override { return TEXT("Ecosystem"); }
-	virtual void    InitializeNewAsset(UObject* NewAsset) const override;
+public:
+	UCEModelAssetFactory();
 
-	/** Optional: for menu grouping (not overriding any UFactory API). */
-	TArray<FText> GetSubMenus() const
-	{
-		return { NSLOCTEXT("CatalystEcosystemEditor", "CE_Submenu_Ecosystems", "Ecosystems") };
-	}
+	// ---- UFactory ----
+	virtual UObject* FactoryCreateNew(
+		UClass* InClass,
+		UObject* InParent,
+		FName Name,
+		EObjectFlags Flags,
+		UObject* Context,
+		FFeedbackContext* Warn) override;
+
+	virtual FText GetDisplayName() const override;
 };

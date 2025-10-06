@@ -4,20 +4,21 @@
 
 #include "CFEditorModule.h"
 #include "Modules/ModuleManager.h"
+#include "AssetToolsModule.h" // <-- Add this include
 
 // Define the editor log category once, here.
 DEFINE_LOG_CATEGORY(LogCFEditor);
 
-// ----------------------------------------------------------------------------
-// NOTE:
-//  - Legacy AssetTools-based category registration has been removed.
-//  - Top-level Add menu placement is now provided by UAssetDefinition classes
-//    (e.g., UCFAssetDefinition_Model::GetAssetCategories()).
-// ----------------------------------------------------------------------------
-
 void FCatalystFoundationEditorModule::StartupModule()
 {
-	UE_LOG(LogCFEditor, Log, TEXT("CatalystFoundationEditor Startup"));
+	// Register top-level "Catalyst" category for AssetDefinition Add(+)
+	FAssetToolsModule& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
+	AssetToolsModule.Get().RegisterAdvancedAssetCategory(
+		FName(TEXT("Catalyst")),
+		NSLOCTEXT("CatalystFoundationEditor", "CatalystAssetCategory", "Catalyst")
+	);
+
+	UE_LOG(LogCFEditor, Log, TEXT("CatalystFoundationEditor Startup (registered 'Catalyst' category)"));
 }
 
 void FCatalystFoundationEditorModule::ShutdownModule()
@@ -25,5 +26,4 @@ void FCatalystFoundationEditorModule::ShutdownModule()
 	UE_LOG(LogCFEditor, Log, TEXT("CatalystFoundationEditor Shutdown"));
 }
 
-// Implement the module (only in the .cpp!)
 IMPLEMENT_MODULE(FCatalystFoundationEditorModule, CatalystFoundationEditor)

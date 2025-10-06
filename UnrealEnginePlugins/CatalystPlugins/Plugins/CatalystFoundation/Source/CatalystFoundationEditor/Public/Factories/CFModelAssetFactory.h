@@ -3,7 +3,8 @@
 // ----------------------------------------------------------------------------
 // Post-AssetDefinition notes:
 // - Factory still creates the UObject.
-// - Add(+) menu placement is handled by UAssetDefinition*.
+// - Add(+) menu placement is handled by UAssetDefinition*, but UE still needs
+//   a creation action; leaving this factory visible enables the Add(+) item.
 // ============================================================================
 
 #pragma once
@@ -23,10 +24,10 @@ public:
 	UCFModelAssetFactory();
 
 	// ----- UFactory -----
-	// Keep hidden from Add(+) — AssetDefinitions control UI.
-	virtual bool    ShouldShowInNewMenu() const override { return false; }
+	// Keep this TRUE so UE can offer a creation action in Add(+).
+	virtual bool    ShouldShowInNewMenu() const override { return true; }
 
-	// Declare only; implement in .cpp (avoids pulling engine headers into public API).
+	// Declare only; implement in .cpp (keeps engine headers out of public API).
 	virtual uint32  GetMenuCategories() const override;
 
 	virtual FText   GetDisplayName() const override;

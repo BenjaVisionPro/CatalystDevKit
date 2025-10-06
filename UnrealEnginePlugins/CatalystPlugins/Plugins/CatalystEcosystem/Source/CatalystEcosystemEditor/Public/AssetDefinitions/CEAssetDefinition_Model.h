@@ -1,26 +1,16 @@
 #pragma once
 
-#include "AssetDefinitions/CFAssetDefinition_Model.h"
+#include "CoreMinimal.h"
+#include "AssetDefinitionDefault.h"
 #include "CEAssetDefinition_Model.generated.h"
 
-class UCEModelAsset;
-
-/**
- * Ecosystem AssetDefinition
- * - Keeps placement under Catalyst, optionally as "Catalyst / Ecosystem"
- */
 UCLASS()
-class CATALYSTECOSYSTEMEDITOR_API UCEAssetDefinition_Model : public UCFAssetDefinition_Model
+class CATALYSTECOSYSTEMEDITOR_API UCEAssetDefinition_Model : public UAssetDefinitionDefault
 {
     GENERATED_BODY()
 public:
+    virtual FText GetAssetDisplayName() const override;
+    virtual FLinearColor GetAssetColor() const override;
     virtual TSoftClassPtr<UObject> GetAssetClass() const override;
-
-    virtual FText GetAssetDisplayName() const override
-    {
-        return NSLOCTEXT("CatalystEcosystemEditor", "CE_Model_DisplayName", "Ecosystem");
-    }
-
-    // Nested menu path: Catalyst / Ecosystem
     virtual TConstArrayView<FAssetCategoryPath> GetAssetCategories() const override;
 };
