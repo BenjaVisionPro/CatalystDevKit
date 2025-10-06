@@ -1,3 +1,13 @@
+// ============================================================================
+// Catalyst Ecosystem — Model Asset Factory (Editor)
+// ----------------------------------------------------------------------------
+// Purpose: Minimal factory to instantiate UCEModelAsset.
+// Notes:
+//   - Add(+) placement is handled entirely by UCEAssetDefinition_Model.
+//   - Factory remains necessary so the engine can instantiate the asset type.
+//   - No legacy AssetTools or custom menu handling.
+// ============================================================================
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -14,7 +24,7 @@ class CATALYSTECOSYSTEMEDITOR_API UCEModelAssetFactory : public UFactory
 public:
 	UCEModelAssetFactory();
 
-	// ---- UFactory ----
+	// ----- UFactory -----
 	virtual UObject* FactoryCreateNew(
 		UClass* InClass,
 		UObject* InParent,

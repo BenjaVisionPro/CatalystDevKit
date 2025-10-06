@@ -1,5 +1,5 @@
 // ============================================================================
-// Catalyst Ecosystem — Model Asset Factory (Editor)
+// Implementation
 // ============================================================================
 
 #include "Factories/CEModelAssetFactory.h"
@@ -8,18 +8,22 @@
 
 UCEModelAssetFactory::UCEModelAssetFactory()
 {
-	bCreateNew = true;
+	bCreateNew    = true;
 	bEditAfterNew = true;
 	SupportedClass = UCEModelAsset::StaticClass();
 
-	CF_INFO(TEXT("[CEModelAssetFactory] ctor; SupportedClass=%s"),
-		*GetNameSafe(SupportedClass));
+	CF_INFO(TEXT("[%s] ctor; SupportedClass=%s"),
+		*GetClass()->GetName(), *GetNameSafe(SupportedClass));
 }
 
 FText UCEModelAssetFactory::GetDisplayName() const
 {
-	const FText Name = NSLOCTEXT("CatalystEcosystemEditor", "CEModelAssetFactory_DisplayName", "Ecosystem Model");
-	CF_INFO(TEXT("[%s] GetDisplayName -> \"%s\""), *GetClass()->GetName(), *Name.ToString());
+	// Shown only in diagnostic contexts, not in Add(+)
+	static const FText Name = NSLOCTEXT(
+		"CatalystEcosystemEditor",
+		"CEModelAssetFactory_DisplayName",
+		"Ecosystem Model");
+
 	return Name;
 }
 
@@ -31,9 +35,18 @@ UObject* UCEModelAssetFactory::FactoryCreateNew(
 	UObject* /*Context*/,
 	FFeedbackContext* /*Warn*/)
 {
-	return NewObject<UCEModelAsset>(
+	UClass* TargetClass = InClass ? InClass : UCEModelAsset::StaticClass();
+
+	UObject* NewAsset = NewObject<UCEModelAsset>(
 		InParent,
-		InClass ? InClass : UCEModelAsset::StaticClass(),
+		TargetClass,
 		Name,
 		Flags | RF_Public | RF_Standalone);
+
+	CF_INFO(TEXT("[%s] FactoryCreateNew -> %s (%s)"),
+		*GetClass()->GetName(),
+		*GetNameSafe(NewAsset),
+		*GetNameSafe(TargetClass));
+
+	return NewAsset;
 }

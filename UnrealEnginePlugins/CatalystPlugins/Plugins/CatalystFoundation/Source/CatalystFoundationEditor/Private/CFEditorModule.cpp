@@ -1,29 +1,23 @@
 // ============================================================================
 // CatalystFoundationEditor — Editor Module (AssetDefinition-driven)
+// ----------------------------------------------------------------------------
+// Clean, no AssetTools category registration. AssetDefinitions own Add(+).
 // ============================================================================
 
 #include "CFEditorModule.h"
 #include "Modules/ModuleManager.h"
-#include "AssetToolsModule.h" // <-- Add this include
+#include "Log/CFLog.h" // CF_* macros
 
-// Define the editor log category once, here.
 DEFINE_LOG_CATEGORY(LogCFEditor);
 
 void FCatalystFoundationEditorModule::StartupModule()
 {
-	// Register top-level "Catalyst" category for AssetDefinition Add(+)
-	FAssetToolsModule& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
-	AssetToolsModule.Get().RegisterAdvancedAssetCategory(
-		FName(TEXT("Catalyst")),
-		NSLOCTEXT("CatalystFoundationEditor", "CatalystAssetCategory", "Catalyst")
-	);
-
-	UE_LOG(LogCFEditor, Log, TEXT("CatalystFoundationEditor Startup (registered 'Catalyst' category)"));
+    CF_CAT_LOG(LogCFEditor, Display, TEXT("CatalystFoundationEditor Startup"));
 }
 
 void FCatalystFoundationEditorModule::ShutdownModule()
 {
-	UE_LOG(LogCFEditor, Log, TEXT("CatalystFoundationEditor Shutdown"));
+    CF_CAT_LOG(LogCFEditor, Display, TEXT("CatalystFoundationEditor Shutdown"));
 }
 
 IMPLEMENT_MODULE(FCatalystFoundationEditorModule, CatalystFoundationEditor)

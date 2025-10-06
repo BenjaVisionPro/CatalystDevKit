@@ -1,10 +1,8 @@
 // ============================================================================
 // Catalyst Foundation — Base Factory for Model Assets (Editor)
 // ----------------------------------------------------------------------------
-// Post-AssetDefinition notes:
-// - Factory still creates the UObject.
-// - Add(+) menu placement is handled by UAssetDefinition*, but UE still needs
-//   a creation action; leaving this factory visible enables the Add(+) item.
+// - Creates the UObject (invoked by UAssetDefinition).
+// - Hidden from Add(+) and Content Browser; AssetDefinition owns placement.
 // ============================================================================
 
 #pragma once
@@ -24,15 +22,14 @@ public:
 	UCFModelAssetFactory();
 
 	// ----- UFactory -----
-	// Keep this TRUE so UE can offer a creation action in Add(+).
-	virtual bool    ShouldShowInNewMenu() const override { return true; }
-
-	// Declare only; implement in .cpp (keeps engine headers out of public API).
+	// Factory remains usable, but invisible in Add(+).
+	virtual bool    ShouldShowInNewMenu() const override { return false; }
 	virtual uint32  GetMenuCategories() const override;
 
 	virtual FText   GetDisplayName() const override;
 	virtual FText   GetToolTip() const override;
 	virtual UClass* ResolveSupportedClass() override;
+
 	virtual UObject* FactoryCreateNew(
 		UClass* InClass,
 		UObject* InParent,
@@ -45,7 +42,7 @@ protected:
 	/** Subclass must return the asset class it creates (must derive from UCFModelAsset). */
 	virtual UClass* GetAssetClass() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetClass, return nullptr;);
 
-	/** Label used in non-Add(+) contexts (palettes, etc.). */
+	/** Label for palettes or internal creation. */
 	virtual FText   GetAssetMenuName() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetMenuName, return FText::FromString(TEXT("Model Asset")););
 
 	/** Optional defaults. */
