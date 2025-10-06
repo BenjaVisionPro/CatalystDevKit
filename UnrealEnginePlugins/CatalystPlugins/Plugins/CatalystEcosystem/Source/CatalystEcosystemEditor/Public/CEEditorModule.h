@@ -1,15 +1,24 @@
-// CEEEditorModule.h
+// ============================================================================
+// CatalystEcosystemEditor — Module interface (AssetDefinition-driven)
+// ============================================================================
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
+#include "Logging/LogMacros.h"
 
 class UToolMenu;
 struct FToolMenuSection;
 
+// Editor log category (defined in the .cpp)
 DECLARE_LOG_CATEGORY_EXTERN(LogCEEditor, Log, All);
 
+/**
+ * Editor module for the Catalyst Ecosystem plugin.
+ * Handles menu registration, Nomad tab spawning, and diagnostics (debug only).
+ * Add(+) placement is handled entirely by UAssetDefinition classes.
+ */
 class FCEEditorModule : public IModuleInterface
 {
 public:
@@ -21,21 +30,18 @@ public:
 	void PluginButtonClicked();
 
 private:
-	// Contribute to the global Catalyst menu
+	// Register the "Catalyst" → "Ecosystem" menu section
 	void RegisterMenus();
 
-	// Build the Ecosystem section dynamically each time the menu opens
+	// Populate the section dynamically each time it opens
 	void BuildEcosystemMenu(FToolMenuSection& Section);
 
-	// Spawn the Ecosystem editor tab (Nomad tab)
+	// Spawn the Ecosystem editor tab
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& Args);
 
-	// Resolve a nice window title: Ecosystem Title (if available) or fallback.
+	// Resolve tab title (Ecosystem Title or fallback)
 	FText GetEcosystemTabLabel() const;
 
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
-
-	// Keep strong refs so we can unregister AssetTypeActions on shutdown
-	TArray<TSharedPtr<class IAssetTypeActions>> RegisteredAssetTypeActions;
 };

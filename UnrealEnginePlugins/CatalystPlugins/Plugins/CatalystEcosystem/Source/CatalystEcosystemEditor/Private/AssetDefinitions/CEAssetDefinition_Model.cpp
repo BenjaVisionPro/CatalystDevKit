@@ -1,14 +1,14 @@
-// Catalyst Ecosystem — Asset Definition for Ecosystem Model
-
+// CEAssetDefinition_Model.cpp
 #include "AssetDefinitions/CEAssetDefinition_Model.h"
 #include "Model/CEModelAsset.h"
-#include "Log/CFLog.h" // CF_INFO
+#include "Log/CFLog.h"
 
 #define LOCTEXT_NAMESPACE "CEAssetDefinition_Model"
 
 FText UCEAssetDefinition_Model::GetAssetDisplayName() const
 {
-    return LOCTEXT("CE_EcosystemModel_DisplayName", "Ecosystem Model");
+    // No "Model" suffix per convention
+    return LOCTEXT("CE_Ecosystem_DisplayName", "Ecosystem");
 }
 
 FLinearColor UCEAssetDefinition_Model::GetAssetColor() const
@@ -24,9 +24,9 @@ TSoftClassPtr<UObject> UCEAssetDefinition_Model::GetAssetClass() const
 
 TConstArrayView<FAssetCategoryPath> UCEAssetDefinition_Model::GetAssetCategories() const
 {
-    // We want: Catalyst → Ecosystems  (item shows as "Ecosystem Model")
-    static const FText Root   = LOCTEXT("CatalystTopCat", "Catalyst");
-    static const FText Mid    = LOCTEXT("CatalystSubCat_Ecosystems", "Ecosystems");
+    // Catalyst → Ecosystems → (asset item named "Ecosystem")
+    static const FText Root = LOCTEXT("CatalystTopCat", "Catalyst");
+    static const FText Mid  = LOCTEXT("CatalystSubCat_Ecosystems", "Ecosystems");
 
     static const FAssetCategoryPath RootToMid(Root, Mid);
     static const FAssetCategoryPath Paths[] = { RootToMid };

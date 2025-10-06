@@ -1,4 +1,3 @@
-// CEEEditorModule.cpp
 // ============================================================================
 // Catalyst Ecosystem — Editor Module (AssetDefinition-driven)
 // ----------------------------------------------------------------------------
@@ -17,20 +16,17 @@
 #include "ToolMenus.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
-#include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
-
-// Dynamic tab title lookup
-#include "Model/CEModelAsset.h"
 #include "UObject/SoftObjectPath.h"
 #include "UObject/UnrealType.h"
 
+#include "Model/CEModelAsset.h"
 #include "Log/CFLog.h" // CF_* macros (no UE_LOG)
 
 // ---- Optional diagnostics (compiled only in debug editor builds) ----
 #if WITH_EDITOR && UE_BUILD_DEBUG
-	#include "AssetDefinitionDefault.h"           // UAssetDefinition
-	#include "Factories/Factory.h"                // UFactory
+	#include "AssetDefinitionDefault.h"
+	#include "Factories/Factory.h"
 	#include "AssetDefinitions/CFAssetDefinition_Model.h"
 	#include "AssetDefinitions/CEAssetDefinition_Model.h"
 	#include "Factories/CEModelAssetFactory.h"
@@ -38,17 +34,13 @@
 
 DEFINE_LOG_CATEGORY(LogCEEditor);
 
-// Menu namespace created for the global Catalyst menu
 static const FName CatalystMenuName("Catalyst.Plugins");
-// Nomad tab name (internal)
 static const FName CatalystEcosystemEditorTabName("Catalyst:Ecosystem");
 
 static FDelegateHandle GToolMenusStartupHandle;
 
 #define LOCTEXT_NAMESPACE "FCEEditorModule"
 
-// Focused, opt-in diagnostics to prove our Add(+) wiring.
-// Only compiled for debug editor builds to avoid poking engine CDOs in release.
 #if WITH_EDITOR && UE_BUILD_DEBUG
 static void CE_DumpCreationPath()
 {
@@ -59,10 +51,6 @@ static void CE_DumpCreationPath()
 		CF_CAT_LOG(LogCEEditor, Display, TEXT("[Diag/Def:CF] CFAssetDefinition_Model -> Target=%s  CategoryPaths=%d"),
 			*GetNameSafe(Target), DefCDO->GetAssetCategories().Num());
 	}
-	else
-	{
-		CF_CAT_LOG(LogCEEditor, Warning, TEXT("[Diag/Def:CF] No valid CDO"));
-	}
 
 	// Ecosystem definition
 	if (UAssetDefinition* DefCDO = Cast<UAssetDefinition>(UCEAssetDefinition_Model::StaticClass()->GetDefaultObject(false)))
@@ -71,12 +59,8 @@ static void CE_DumpCreationPath()
 		CF_CAT_LOG(LogCEEditor, Display, TEXT("[Diag/Def:CE] CEAssetDefinition_Model -> Target=%s  CategoryPaths=%d"),
 			*GetNameSafe(Target), DefCDO->GetAssetCategories().Num());
 	}
-	else
-	{
-		CF_CAT_LOG(LogCEEditor, Warning, TEXT("[Diag/Def:CE] No valid CDO"));
-	}
 
-	// Ecosystem factory (creation only; hidden from Add(+))
+	// Ecosystem factory
 	if (const UFactory* FacCDO = Cast<UFactory>(UCEModelAssetFactory::StaticClass()->GetDefaultObject(false)))
 	{
 		CF_CAT_LOG(LogCEEditor, Display,
@@ -85,27 +69,20 @@ static void CE_DumpCreationPath()
 			FacCDO->ShouldShowInNewMenu() ? TEXT("true") : TEXT("false"),
 			FacCDO->GetMenuCategories());
 	}
-	else
-	{
-		CF_CAT_LOG(LogCEEditor, Warning, TEXT("[Diag/Factory] No valid CDO"));
-	}
 }
 #endif // WITH_EDITOR && UE_BUILD_DEBUG
 
 void FCEEditorModule::StartupModule()
 {
-	// Defer menu registration until ToolMenus is ready
 	GToolMenusStartupHandle = UToolMenus::RegisterStartupCallback(
 		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FCEEditorModule::RegisterMenus));
 
-	// Style/commands
 	FCEEditorStyle::Initialize();
 	FCEEditorStyle::ReloadTextures();
 	FCEEditorCommands::Register();
 
 	PluginCommands = MakeShareable(new FUICommandList);
 
-	// Nomad tab for visualizer/designer
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(
 		CatalystEcosystemEditorTabName,
 		FOnSpawnTab::CreateRaw(this, &FCEEditorModule::OnSpawnPluginTab))
@@ -114,15 +91,13 @@ void FCEEditorModule::StartupModule()
 
 	CF_CAT_LOG(LogCEEditor, Display, TEXT("CatalystEcosystemEditor Startup"));
 
-	// Optional one-shot diagnostics (debug editor builds only)
-	#if WITH_EDITOR && UE_BUILD_DEBUG
+#if WITH_EDITOR && UE_BUILD_DEBUG
 	CE_DumpCreationPath();
-	#endif
+#endif
 }
 
 void FCEEditorModule::ShutdownModule()
 {
-	// Proper 5.6 API spelling (note: capital R)
 	if (GToolMenusStartupHandle.IsValid())
 	{
 		UToolMenus::UnRegisterStartupCallback(GToolMenusStartupHandle);
@@ -152,7 +127,7 @@ void FCEEditorModule::RegisterMenus()
 
 void FCEEditorModule::BuildEcosystemMenu(FToolMenuSection& Section)
 {
-	const bool bVisualizerRunning = false; // TODO: wire up real state
+	const bool bVisualizerRunning = false;
 	const FText Label = bVisualizerRunning
 		? LOCTEXT("OpenEcosystem_Running", "Ecosystem (Running)")
 		: LOCTEXT("OpenEcosystem", "Ecosystem");

@@ -4,7 +4,6 @@
 
 #include "Factories/CFModelAssetFactory.h"
 #include "Model/CFModelAsset.h"
-#include "AssetTypeCategories.h"
 #include "Log/CFLog.h"
 
 UCFModelAssetFactory::UCFModelAssetFactory()
@@ -15,12 +14,6 @@ UCFModelAssetFactory::UCFModelAssetFactory()
 
 	CF_INFO(TEXT("[%s] ctor: bCreateNew=%d bEditAfterNew=%d"),
 		*GetClass()->GetName(), (int32)bCreateNew, (int32)bEditAfterNew);
-}
-
-uint32 UCFModelAssetFactory::GetMenuCategories() const
-{
-	// Irrelevant — AssetDefinitions control Add(+). Must return something valid.
-	return (uint32)EAssetTypeCategories::Misc;
 }
 
 FText UCFModelAssetFactory::GetDisplayName() const

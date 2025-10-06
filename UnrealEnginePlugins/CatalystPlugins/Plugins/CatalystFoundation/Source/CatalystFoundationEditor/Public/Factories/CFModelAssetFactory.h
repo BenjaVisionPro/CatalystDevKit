@@ -23,8 +23,10 @@ public:
 
 	// ----- UFactory -----
 	// Factory remains usable, but invisible in Add(+).
-	virtual bool    ShouldShowInNewMenu() const override { return false; }
-	virtual uint32  GetMenuCategories() const override;
+	virtual bool ShouldShowInNewMenu() const override { return false; }
+
+	// With AssetDefinitions, menu categories are unused; return 0 and avoid legacy headers.
+	virtual uint32 GetMenuCategories() const override { return 0u; }
 
 	virtual FText   GetDisplayName() const override;
 	virtual FText   GetToolTip() const override;
@@ -43,7 +45,7 @@ protected:
 	virtual UClass* GetAssetClass() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetClass, return nullptr;);
 
 	/** Label for palettes or internal creation. */
-	virtual FText   GetAssetMenuName() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetMenuName, return FText::FromString(TEXT("Model Asset")););
+	virtual FText GetAssetMenuName() const PURE_VIRTUAL(UCFModelAssetFactory::GetAssetMenuName, return FText::FromString(TEXT("Model Asset")););
 
 	/** Optional defaults. */
 	virtual FString GetDefaultAssetName() const { return TEXT("Model"); }

@@ -22,7 +22,7 @@ FText UCEModelAssetFactory::GetDisplayName() const
 	static const FText Name = NSLOCTEXT(
 		"CatalystEcosystemEditor",
 		"CEModelAssetFactory_DisplayName",
-		"Ecosystem Model");
+		"Ecosystem");
 
 	return Name;
 }

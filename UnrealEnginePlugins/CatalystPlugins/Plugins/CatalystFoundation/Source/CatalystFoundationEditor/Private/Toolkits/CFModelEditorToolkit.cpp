@@ -1,5 +1,5 @@
 #include "Toolkits/CFModelEditorToolkit.h"
-#include "CFEditorModule.h" // LogCFEditor + FCFEditorAssetCategory::Get()
+#include "CFEditorModule.h"
 
 #include "Model/CFModelAsset.h"
 
