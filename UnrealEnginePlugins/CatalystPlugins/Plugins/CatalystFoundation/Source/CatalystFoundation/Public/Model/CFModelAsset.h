@@ -1,3 +1,12 @@
+/**
+ * @file CFModelAsset.h
+ * @brief CFModelAsset.h for Catalyst Foundation.
+ *
+ * Copyright © 2022 Jupiter Jones
+ * Copyright © 2024 Benjability Pty Ltd.
+ * All rights and remedies reserved.
+ */
+
 // ============================================
 // Catalyst Foundation — Model Asset (public)
 // ============================================

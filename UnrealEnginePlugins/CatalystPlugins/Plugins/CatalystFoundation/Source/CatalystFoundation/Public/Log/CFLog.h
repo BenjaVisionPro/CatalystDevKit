@@ -1,3 +1,12 @@
+/**
+ * @file CFLog.h
+ * @brief Logging helpers and macros used across Catalyst modules.
+ *
+ * Copyright © 2022 Jupiter Jones
+ * Copyright © 2024 Benjability Pty Ltd.
+ * All rights and remedies reserved.
+ */
+
 #pragma once
 #include "CoreMinimal.h"
 #include "CatalystFoundation.h"

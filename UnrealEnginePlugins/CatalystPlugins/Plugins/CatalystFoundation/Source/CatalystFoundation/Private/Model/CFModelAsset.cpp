@@ -1,3 +1,12 @@
+/**
+ * @file CFModelAsset.cpp
+ * @brief Implementation for CFModelAsset.
+ *
+ * Copyright © 2022 Jupiter Jones
+ * Copyright © 2024 Benjability Pty Ltd.
+ * All rights and remedies reserved.
+ */
+
 // ============================================
 // Catalyst Foundation — Model Asset (private)
 // ============================================

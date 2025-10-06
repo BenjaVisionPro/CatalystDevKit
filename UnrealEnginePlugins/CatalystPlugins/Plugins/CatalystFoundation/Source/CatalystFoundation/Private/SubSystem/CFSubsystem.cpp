@@ -1,3 +1,12 @@
+/**
+ * @file CFSubsystem.cpp
+ * @brief Implementation for CFSubsystem.
+ *
+ * Copyright © 2022 Jupiter Jones
+ * Copyright © 2024 Benjability Pty Ltd.
+ * All rights and remedies reserved.
+ */
+
 // ============================================
 // Copyright © 2022 Jupiter Jones & BenjaVision
 // All rights and remedies reserved
