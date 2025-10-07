@@ -25,13 +25,13 @@ struct CATALYSTFOUNDATION_API FCFModelVersionInfo
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, Category="CF|Model")
+	UPROPERTY(VisibleAnywhere, Category="Foundation|Model")
 	int32 SchemaVersion = 1;
 
-	UPROPERTY(VisibleAnywhere, Category="CF|Model")
+	UPROPERTY(VisibleAnywhere, Category="Foundation|Model")
 	FString PluginVersion;
 
-	UPROPERTY(VisibleAnywhere, Category="CF|Model")
+	UPROPERTY(VisibleAnywhere, Category="Foundation|Model")
 	FString EngineVersion;
 };
 
@@ -58,11 +58,11 @@ public:
 	// ---------- Summary / metadata ----------
 
 	/** Optional short summary for editor/diagnostics. */
-	UFUNCTION(BlueprintCallable, Category="CF|Model")
+	UFUNCTION(BlueprintCallable, Category="Foundation|Model")
 	virtual FString GetSummaryText() const { return TEXT(""); }
 
 	/** Embedded provenance. */
-	UPROPERTY(VisibleAnywhere, Category="CF|Model")
+	UPROPERTY(VisibleAnywhere, Category="Foundation|Model")
 	FCFModelVersionInfo Version;
 
 	// ---------- JSON helpers ----------
@@ -70,16 +70,16 @@ public:
 	bool ApplyJsonString(const FString& JsonText, FString& OutError);
 	bool ExportJsonString(FString& OutJson, FString& OutError) const;
 
-	UFUNCTION(BlueprintCallable, Category="CF|Model")
+	UFUNCTION(BlueprintCallable, Category="Foundation|Model")
 	virtual FString GetSavedJsonFile() const;
 
-	UFUNCTION(BlueprintCallable, Category="CF|Model")
+	UFUNCTION(BlueprintCallable, Category="Foundation|Model")
 	virtual bool TryLoadFromDiskJson(FString& OutError);
 
-	UFUNCTION(BlueprintCallable, Category="CF|Model")
+	UFUNCTION(BlueprintCallable, Category="Foundation|Model")
 	virtual bool SaveToDiskJson(FString& OutError) const;
 
-	UFUNCTION(BlueprintCallable, Category="CF|Model")
+	UFUNCTION(BlueprintCallable, Category="Foundation|Model")
 	void UpdateVersionMetadata() const;
 
 	// ---------- Public accessors (editor-safe) ----------

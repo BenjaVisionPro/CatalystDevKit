@@ -27,7 +27,7 @@ class CATALYSTECOSYSTEM_API UCEModelAsset : public UCFModelAsset
 
 public:
 	/** Full editable model for this plugin. */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CE|Model")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystems|Model")
 	FCEModel Model;
 
 	/** Lightweight summary for editor and diagnostics. */
