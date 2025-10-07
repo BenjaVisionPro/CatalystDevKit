@@ -76,9 +76,7 @@ void FCFModelEditorToolkit::InitModelEditor(
 
 	BuildDetailsPanel();
 
-	// Layout: Details (open), Validation (NOW open by default)
-	// NOTE: Bump the layout id any time you change default tab states,
-	// otherwise UE will reuse a previously saved layout.
+	// Layout: Details (open), Validation (open by default)
 	const TSharedRef<FTabManager::FLayout> Layout = FTabManager::NewLayout("CFModelEditorToolkit_Layout_v3")
 	->AddArea
 	(
@@ -95,29 +93,18 @@ void FCFModelEditorToolkit::InitModelEditor(
 		(
 			FTabManager::NewStack()
 			->SetSizeCoefficient(0.3f)
-			->AddTab(ValidationTabId, ETabState::OpenedTab) // was ClosedTab
+			->AddTab(ValidationTabId, ETabState::OpenedTab)
 		)
-	);
-
-	// Initialize base asset editor
-	InitAssetEditor(
-		Mode,
-		InitToolkitHost,
-		GetToolkitFName(),
-		Layout,
-		/*bCreateDefaultStandaloneMenu*/ true,
-		/*bCreateDefaultToolbar*/        true,
-		EditingAsset
 	);
 
 	// --- JSON actions (menu & toolbar) ---
 	{
-		// Menu
+		// Menu extender
 		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
 		MenuExtender->AddMenuExtension(
 			"FileLoadAndSave",
 			EExtensionHook::After,
-			/*CommandList*/nullptr,
+			nullptr,
 			FMenuExtensionDelegate::CreateLambda([this](FMenuBuilder& Menu)
 			{
 				Menu.BeginSection("CFModelJson", LOCTEXT("CFModelJsonSection", "Model JSON"));
@@ -141,12 +128,12 @@ void FCFModelEditorToolkit::InitModelEditor(
 		);
 		AddMenuExtender(MenuExtender);
 
-		// Toolbar
+		// Toolbar extender (moved BEFORE InitAssetEditor)
 		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender());
 		ToolbarExtender->AddToolBarExtension(
 			"Asset",
 			EExtensionHook::After,
-			/*CommandList*/nullptr,
+			nullptr,
 			FToolBarExtensionDelegate::CreateLambda([this](FToolBarBuilder& Builder)
 			{
 				Builder.AddToolBarButton(
@@ -169,6 +156,17 @@ void FCFModelEditorToolkit::InitModelEditor(
 		AddToolbarExtender(ToolbarExtender);
 	}
 	// --- /JSON actions ---
+
+	// Initialize base asset editor (now AFTER extenders are registered)
+	InitAssetEditor(
+		Mode,
+		InitToolkitHost,
+		GetToolkitFName(),
+		Layout,
+		true,   // bCreateDefaultStandaloneMenu
+		true,   // bCreateDefaultToolbar
+		EditingAsset
+	);
 
 	// Attempt to bind to the runtime model service if we're in PIE/Game world
 	TryBindRuntimeService();
@@ -297,13 +295,11 @@ TSharedRef<SDockTab> FCFModelEditorToolkit::SpawnValidationTab(const FSpawnTabAr
 
 void FCFModelEditorToolkit::TryBindRuntimeService()
 {
-	// GameInstanceSubsystem lives on the GameInstance, not directly on the World.
 	UWorld* TargetWorld = nullptr;
 
 #if WITH_EDITOR
 	if (GEditor)
 	{
-		// Prefer PIE contexts
 		for (const FWorldContext& Ctx : GEditor->GetWorldContexts())
 		{
 			if (Ctx.WorldType == EWorldType::PIE && Ctx.World())
@@ -312,7 +308,6 @@ void FCFModelEditorToolkit::TryBindRuntimeService()
 				break;
 			}
 		}
-		// Fallback to "current" PIE
 		if (!TargetWorld && GEditor->GetPIEWorldContext())
 		{
 			TargetWorld = GEditor->GetPIEWorldContext()->World();
@@ -320,7 +315,6 @@ void FCFModelEditorToolkit::TryBindRuntimeService()
 	}
 #endif
 
-	// Runtime fallback (packaged/game runs)
 	if (!TargetWorld && GEngine)
 	{
 		for (const FWorldContext& Ctx : GEngine->GetWorldContexts())
@@ -335,7 +329,7 @@ void FCFModelEditorToolkit::TryBindRuntimeService()
 
 	if (!TargetWorld)
 	{
-		return; // Not in PIE/Game — editor still works on asset defaults.
+		return;
 	}
 
 	UGameInstance* GI = TargetWorld->GetGameInstance();
@@ -344,7 +338,6 @@ void FCFModelEditorToolkit::TryBindRuntimeService()
 		return;
 	}
 
-	// We don’t know the concrete subclass; request via the common base.
 	UGameInstanceSubsystem* Base = GI->GetSubsystemBase(UCFAbstractModelService::StaticClass());
 	if (Base && Base->IsA(UCFAbstractModelService::StaticClass()))
 	{
@@ -381,20 +374,17 @@ void FCFModelEditorToolkit::RefreshAllUI(UCFModelAsset* LiveModel, bool bIsReloa
 {
 	UCFModelAsset* Target = LiveModel ? LiveModel : EditingAsset.Get();
 
-	// Details
 	if (DetailsView.IsValid())
 	{
 		DetailsView->SetObject(Target);
 	}
 
-	// Version banner
 	if (VersionBanner.IsValid())
 	{
 		VersionBanner->SetAsset(Target);
 		VersionBanner->Refresh();
 	}
 
-	// Validation panel
 	if (ValidationPanel.IsValid())
 	{
 		ValidationPanel->SetAsset(Target);
@@ -402,7 +392,7 @@ void FCFModelEditorToolkit::RefreshAllUI(UCFModelAsset* LiveModel, bool bIsReloa
 	}
 }
 
-// ---- JSON actions (NEW) ----
+// ---- JSON actions ----
 
 void FCFModelEditorToolkit::HandleExportJson()
 {
@@ -434,7 +424,6 @@ void FCFModelEditorToolkit::HandleReloadJson()
 	FString Error;
 	if (EditingAsset->TryLoadFromDiskJson(Error))
 	{
-		// Repaint panels to reflect the new payload
 		RefreshAllUI(EditingAsset.Get(), /*bIsReload*/true);
 		CF_ShowToast(LOCTEXT("Reload_Success", "Reloaded JSON from Saved/<Plugin>/Model.json."), SNotificationItem::CS_Success);
 	}
@@ -448,30 +437,30 @@ void FCFModelEditorToolkit::HandleReloadJson()
 
 void FCFModelEditorToolkit::HandleModelReady(UCFModelAsset* LiveModel)
 {
-	RefreshAllUI(LiveModel, /*bIsReload*/false);
+	RefreshAllUI(LiveModel, false);
 }
 
 void FCFModelEditorToolkit::HandleModelReloaded(UCFModelAsset* LiveModel)
 {
-	RefreshAllUI(LiveModel, /*bIsReload*/true);
+	RefreshAllUI(LiveModel, true);
 }
 
 void FCFModelEditorToolkit::HandleModelUpdated()
 {
-	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), true);
 }
 
 void FCFModelEditorToolkit::HandleModelError(const FString& Message)
 {
 	UE_LOG(LogTemp, Warning, TEXT("ModelService Error: %s"), *Message);
-	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), true);
 }
 
 void FCFModelEditorToolkit::HandleModelErrorEx(const FCFModelError& Error)
 {
 	UE_LOG(LogTemp, Warning, TEXT("ModelService ErrorEx: Code=%d Msg=%s Ctx=%s"),
 		(int32)Error.Code, *Error.Message, *Error.Context);
-	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), true);
 }
 
 #undef LOCTEXT_NAMESPACE
