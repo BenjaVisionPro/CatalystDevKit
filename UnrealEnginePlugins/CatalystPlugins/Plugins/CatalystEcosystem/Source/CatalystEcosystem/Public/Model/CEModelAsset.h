@@ -18,8 +18,7 @@
 
 /**
  * @brief Root asset for Catalyst Ecosystem. Owns the full FCEModel payload.
- *        No extra surface beyond the Foundation base; tools read/write through
- *        the standard JSON helpers and the GetPayload* accessors below.
+ *        Tools read/write through the Foundation JSON helpers and payload accessors.
  */
 UCLASS(BlueprintType)
 class CATALYSTECOSYSTEM_API UCEModelAsset : public UCFModelAsset
@@ -34,7 +33,6 @@ public:
 	/** Lightweight summary for editor and diagnostics. */
 	virtual FString GetSummaryText() const override
 	{
-		// Keep this stable and cheap: counts only.
 		return FString::Printf(TEXT("Ecosystems:%d  Biomes:%d  Animals:%d  Resources:%d"),
 			Model.Ecosystems.Num(), Model.Biomes.Num(), Model.Animals.Num(), Model.Resources.Num());
 	}
@@ -44,38 +42,17 @@ public:
 	FCEModel&       GetModel()       { return Model; }
 
 protected:
-	// ---------- Foundation integration (payload + paths) ----------
-
-	/** Saved/<Plugin>/Model.json lives under this folder name. */
+	// ---------- Foundation integration (paths + schema + payload binding) ----------
 	virtual FString GetPluginNameForPaths() const override { return TEXT("CatalystEcosystem"); }
+	/** Bump this when FCEModel schema changes to surface in version metadata/UI. */
+	virtual int32   GetSchemaVersion() const override { return 1; }
 
-	/** Map the Foundation JSON helpers to our concrete payload. */
 	virtual UScriptStruct* GetPayloadScriptStruct() const override { return FCEModel::StaticStruct(); }
 	virtual void*          GetPayloadMemory()             override { return &Model; }
 	virtual const void*    GetPayloadMemory()       const override { return &Model; }
 
-	// ---------- Validation seam (opt-in; keep lean) ----------
-
-	/**
-	 * @brief Deterministically normalize payload (no-op by default).
-	 *        Add clamping/sorting/default fill here when rules are defined.
-	 */
-	virtual void NormalizePayload() override
-	{
-		// Intentionally empty: we haven’t defined normalization rules yet.
-		// Example (when needed):
-		// Model.Biomes.Sort([](const FBio& A, const FBio& B){ return A.Id < B.Id; });
-	}
-
-	/**
-	 * @brief Validate invariants (no-op pass for now).
-	 *        Return false with a precise error message to block save/export.
-	 */
-	virtual bool ValidatePayload(FString& OutError) const override
-	{
-		// Keep permissive until rules are formalised.
-		// Example (when needed):
-		// if (Model.Ecosystems.Num() == 0) { OutError = TEXT("At least one Ecosystem is required."); return false; }
-		return true;
-	}
+	// ---------- Normalization + validation ----------
+	virtual void NormalizePayload() override;
+	virtual bool ValidatePayload(FString& OutError) const override;
+	virtual void CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const override;
 };

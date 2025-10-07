@@ -13,6 +13,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "Validation/CFValidatable.h"  // Standardized validation interface
 #include "CFModelAsset.generated.h"
 
 /**
@@ -24,15 +25,12 @@ struct CATALYSTFOUNDATION_API FCFModelVersionInfo
 {
 	GENERATED_BODY()
 
-	/** Bumps when the *struct schema* changes. Override via GetSchemaVersion(). */
 	UPROPERTY(VisibleAnywhere, Category="CF|Model")
 	int32 SchemaVersion = 1;
 
-	/** Copied from the owning plugin's .uplugin (VersionName). */
 	UPROPERTY(VisibleAnywhere, Category="CF|Model")
 	FString PluginVersion;
 
-	/** Engine version that produced/last saved this asset (e.g. "5.7.0"). */
 	UPROPERTY(VisibleAnywhere, Category="CF|Model")
 	FString EngineVersion;
 };
@@ -46,92 +44,73 @@ struct CATALYSTFOUNDATION_API FCFModelVersionInfo
  *  - GetPayloadScriptStruct()  → StaticStruct() for the root UStruct
  *  - GetPayloadMemory()        → address of the root struct (const and non-const)
  *  - GetSchemaVersion()        → current schema integer for migrations
- *  - (optional) NormalizePayload() / ValidatePayload() → per-plugin rules
+ *  - NormalizePayload() / ValidatePayload() → per-plugin rules
+ *  - CollectValidationMessages() → structured results for editor/CI
  */
 UCLASS(BlueprintType, Abstract)
-class CATALYSTFOUNDATION_API UCFModelAsset : public UPrimaryDataAsset
+class CATALYSTFOUNDATION_API UCFModelAsset
+	: public UPrimaryDataAsset
+	, public ICFValidatable
 {
 	GENERATED_BODY()
 
 public:
+	// ---------- Summary / metadata ----------
+
 	/** Optional short summary for editor/diagnostics. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual FString GetSummaryText() const { return TEXT(""); }
 
-	/** Embedded provenance. Refreshed on export/save helpers. */
+	/** Embedded provenance. */
 	UPROPERTY(VisibleAnywhere, Category="CF|Model")
 	FCFModelVersionInfo Version;
 
 	// ---------- JSON helpers ----------
 
-	/**
-	 * @brief Import a JSON string into the concrete root struct.
-	 *        On success: NormalizePayload() then ValidatePayload() are invoked.
-	 * @return true on success; false sets OutError.
-	 */
 	bool ApplyJsonString(const FString& JsonText, FString& OutError);
-
-	/**
-	 * @brief Export the concrete root struct to a JSON string.
-	 *        Refreshes Version metadata first, then ValidatePayload().
-	 * @return true on success; false sets OutError.
-	 */
 	bool ExportJsonString(FString& OutJson, FString& OutError) const;
 
-	/** @return Saved/<Plugin>/Model.json (dev convenience). Creates directory on demand. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual FString GetSavedJsonFile() const;
 
-	/**
-	 * @brief Load JSON from Saved/<Plugin>/Model.json and apply it.
-	 * @note Missing file is treated as success (asset defaults remain).
-	 */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual bool TryLoadFromDiskJson(FString& OutError);
 
-	/**
-	 * @brief Save current struct to Saved/<Plugin>/Model.json.
-	 *        Refreshes Version first and writes atomically (temp → move).
-	 *        Calls ValidatePayload() before writing.
-	 */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	virtual bool SaveToDiskJson(FString& OutError) const;
 
-	/** Public hook for tools/commandlets to refresh version metadata pre-save. */
 	UFUNCTION(BlueprintCallable, Category="CF|Model")
 	void UpdateVersionMetadata() const;
+
+	// ---------- Public accessors (editor-safe) ----------
+
+	/** Public bridge for editor widgets (avoids protected access warnings). */
+	int32 GetPublicSchemaVersion() const { return GetSchemaVersion(); }
+
+	/** Public bridge for editor widgets (avoids protected access warnings). */
+	FString GetPublicPluginNameForPaths() const { return GetPluginNameForPaths(); }
 
 protected:
 	// ---------- Plugin identity & struct access ----------
 
-	/** Plugin folder name used for Saved/<Plugin> paths. */
 	virtual FString      GetPluginNameForPaths() const { return TEXT("UnknownPlugin"); }
-
-	/** Schema integer used to detect migrations. */
 	virtual int32        GetSchemaVersion() const { return 1; }
 
-	/** These power the JSON helpers. Child assets must override them. */
 	virtual UScriptStruct* GetPayloadScriptStruct() const { return nullptr; }
 	virtual void*          GetPayloadMemory()             { return nullptr; }
 	virtual const void*    GetPayloadMemory() const       { return nullptr; }
 
-	// ---------- Validation seam (tiny and first-class) ----------
+	// ---------- Validation seam ----------
 
-	/**
-	 * @brief Deterministically normalize payload after import (e.g., sort arrays,
-	 *        clamp ranges, fill defaults). No-ops by default.
-	 * @note Keep this fast and idempotent. Called only on mutation paths.
-	 */
+	/** Normalize payload (sorting, range clamping, filling defaults). */
 	virtual void NormalizePayload() {}
 
-	/**
-	 * @brief Validate payload invariants. Return false with OutError on violation.
-	 * @note Called after import and before export/save. Keep side-effect free.
-	 */
+	/** Validate payload invariants (legacy single-string version). */
 	virtual bool ValidatePayload(FString& OutError) const { return true; }
 
-	// ---------- Version/provenance maintenance ----------
+	/** Structured validation messages for editor / CI. */
+	virtual void CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const override;
 
-	/** Refresh Version fields from plugin + engine state. Called before export/save. */
+	// ---------- Version/provenance ----------
 	void RefreshVersionMetadata() const;
 };

@@ -18,19 +18,16 @@
 #include "Misc/Paths.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+#include "Validation/CFValidationTypes.h"
 
 #define CF_LOG_DEFAULT_CATEGORY LogCF
 #include "Log/CFLog.h" // CF_INFO / CF_WARN / CF_ERR
 
 void UCFModelAsset::RefreshVersionMetadata() const
 {
-	// Schema
 	const_cast<UCFModelAsset*>(this)->Version.SchemaVersion = GetSchemaVersion();
-
-	// Engine
 	const_cast<UCFModelAsset*>(this)->Version.EngineVersion = FEngineVersion::Current().ToString();
 
-	// Plugin
 	const FString PluginName = GetPluginNameForPaths();
 	if (!PluginName.IsEmpty())
 	{
@@ -51,27 +48,24 @@ void UCFModelAsset::UpdateVersionMetadata() const
 bool UCFModelAsset::ApplyJsonString(const FString& JsonText, FString& OutError)
 {
 	TSharedPtr<FJsonObject> Obj;
+	const TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(JsonText);
+
+	if (!FJsonSerializer::Deserialize(Reader, Obj) || !Obj.IsValid())
 	{
-		const TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(JsonText);
-		if (!FJsonSerializer::Deserialize(Reader, Obj) || !Obj.IsValid())
-		{
-			OutError = TEXT("Failed to parse JSON.");
-			return false;
-		}
+		OutError = TEXT("Failed to parse JSON.");
+		return false;
 	}
 
 	if (UScriptStruct* S = GetPayloadScriptStruct())
 	{
 		if (void* Mem = GetPayloadMemory())
 		{
-			// Strict by default (no lenient flags).
 			if (!FJsonObjectConverter::JsonObjectToUStruct(Obj.ToSharedRef(), S, Mem, 0, 0))
 			{
 				OutError = TEXT("JSON → struct conversion failed.");
 				return false;
 			}
 
-			// Seam: normalize then validate (single source of truth).
 			NormalizePayload();
 			if (!ValidatePayload(OutError))
 			{
@@ -87,10 +81,8 @@ bool UCFModelAsset::ApplyJsonString(const FString& JsonText, FString& OutError)
 
 bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
 {
-	// Ensure provenance is current
 	RefreshVersionMetadata();
 
-	// Validate current payload before emitting JSON
 	if (!ValidatePayload(OutError))
 	{
 		return false;
@@ -100,7 +92,6 @@ bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
 	{
 		if (const void* Mem = GetPayloadMemory())
 		{
-			// Use converter defaults to stay compatible across UE versions.
 			if (!FJsonObjectConverter::UStructToJsonObjectString(S, Mem, OutJson, 0, 0))
 			{
 				OutError = TEXT("Struct → JSON conversion failed.");
@@ -117,7 +108,7 @@ bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
 FString UCFModelAsset::GetSavedJsonFile() const
 {
 	const FString Dir = FPaths::Combine(FPaths::ProjectSavedDir(), GetPluginNameForPaths());
-	IFileManager::Get().MakeDirectory(*Dir, /*Tree*/true);
+	IFileManager::Get().MakeDirectory(*Dir, true);
 	return FPaths::Combine(Dir, TEXT("Model.json"));
 }
 
@@ -126,8 +117,7 @@ bool UCFModelAsset::TryLoadFromDiskJson(FString& OutError)
 	const FString File = GetSavedJsonFile();
 	if (!FPaths::FileExists(File))
 	{
-		// No dev JSON yet → keep asset defaults (success).
-		return true;
+		return true; // defaults OK
 	}
 
 	FString JsonText;
@@ -142,37 +132,54 @@ bool UCFModelAsset::TryLoadFromDiskJson(FString& OutError)
 
 bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
 {
-	// Ensure provenance is current
 	RefreshVersionMetadata();
 
 	FString JsonText;
 	if (!ExportJsonString(JsonText, OutError))
 	{
-		return false; // OutError already set
+		return false;
 	}
 
 	const FString FinalFile = GetSavedJsonFile();
-	const FString TempFile  = FinalFile + TEXT(".tmp");
+	const FString TempFile = FinalFile + TEXT(".tmp");
 
-	// Write to temp first.
 	if (!FFileHelper::SaveStringToFile(JsonText, *TempFile))
 	{
 		OutError = FString::Printf(TEXT("Failed to write %s"), *TempFile);
 		return false;
 	}
 
-	// Best-effort atomic replace.
-	const bool bMoved =
-		IFileManager::Get().Move(*FinalFile, *TempFile, /*Replace*/true, /*EvenIfReadOnly*/false, /*Attributes*/false);
-
+	const bool bMoved = IFileManager::Get().Move(*FinalFile, *TempFile, true, false, false);
 	if (!bMoved)
 	{
-		// Cleanup temp; leave OutError with final path
-		IFileManager::Get().Delete(*TempFile, /*RequireExists*/false, /*EvenReadOnly*/true);
+		IFileManager::Get().Delete(*TempFile, false, true);
 		OutError = FString::Printf(TEXT("Failed to move %s → %s"), *TempFile, *FinalFile);
 		return false;
 	}
 
 	CF_INFO(TEXT("Saved dev JSON: %s"), *FinalFile);
 	return true;
+}
+
+void UCFModelAsset::CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const
+{
+	// Base invariant checks shared across all plugin models.
+	if (!GetPayloadScriptStruct() || !GetPayloadMemory())
+	{
+		OutMessages.Add(FCFValidationMessage::Make(
+			ECFValidationSeverity::Error, TEXT("Model.PayloadMissing"),
+			NSLOCTEXT("CF", "Val_PayloadMissing", "Model payload is not bound."),
+			NSLOCTEXT("CF", "Val_PayloadMissingDetail", "GetPayloadScriptStruct() or GetPayloadMemory() returned null."),
+			TEXT("/Model")));
+	}
+
+	if (Version.EngineVersion.IsEmpty() || Version.PluginVersion.IsEmpty())
+	{
+		OutMessages.Add(FCFValidationMessage::Make(
+			ECFValidationSeverity::Warning, TEXT("Model.VersionUninitialized"),
+			NSLOCTEXT("CF", "Val_VersionUninitialized", "Version metadata has not been refreshed."),
+			NSLOCTEXT("CF", "Val_VersionUninitializedDetail", "Call UpdateVersionMetadata() before saving."),
+			TEXT("/Version"),
+			NSLOCTEXT("CF", "Val_VersionUninitializedFix", "Save or export the asset to refresh metadata.")));
+	}
 }

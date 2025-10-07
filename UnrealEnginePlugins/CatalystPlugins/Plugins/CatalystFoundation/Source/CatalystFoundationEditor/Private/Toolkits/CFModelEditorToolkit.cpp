@@ -1,16 +1,39 @@
 #include "Toolkits/CFModelEditorToolkit.h"
-#include "CFEditorModule.h"
 
+#include "CFEditorModule.h"
 #include "Model/CFModelAsset.h"
 
+// Runtime model service (kept out of the public header to avoid coupling)
+#include "Services/CFAbstractModelService.h"
+
+// Validation surface (editor-safe)
+#include "Validation/CFValidatable.h"
+#include "Validation/CFValidationTypes.h"
+
+// Our widgets
+#include "Widgets/SCFValidationPanel.h"
+#include "Widgets/SCFVersionStatusWidget.h"
+
+#include "Engine/GameInstance.h"
 #include "PropertyEditorModule.h"
 #include "Modules/ModuleManager.h"
 #include "Framework/Docking/TabManager.h"
 #include "Widgets/Docking/SDockTab.h"
-#include "Widgets/Layout/SBox.h"
-#include "Widgets/Text/STextBlock.h"
 #include "Widgets/Layout/SBorder.h"
+#include "Widgets/Layout/SBox.h"
+#include "Widgets/SBoxPanel.h" // SVerticalBox
+#include "Widgets/Text/STextBlock.h"
 #include "Styling/AppStyle.h"
+
+// NEW: menu/toolbar + notifications
+#include "Framework/MultiBox/MultiBoxBuilder.h"
+#include "Framework/Commands/UIAction.h"
+#include "Framework/Notifications/NotificationManager.h"
+#include "Widgets/Notifications/SNotificationList.h"
+
+#if WITH_EDITOR
+#include "Editor.h"
+#endif
 
 #define LOCTEXT_NAMESPACE "FCFModelEditorToolkit"
 
@@ -18,7 +41,30 @@ const FName FCFModelEditorToolkit::DetailsTabId    = TEXT("CFModelEditorToolkit_
 const FName FCFModelEditorToolkit::ValidationTabId = TEXT("CFModelEditorToolkit_Validation");
 
 FCFModelEditorToolkit::FCFModelEditorToolkit() = default;
-FCFModelEditorToolkit::~FCFModelEditorToolkit() = default;
+
+FCFModelEditorToolkit::~FCFModelEditorToolkit()
+{
+	UnbindRuntimeDelegates();
+}
+
+// --- helpers (local) ---
+namespace
+{
+	static void CF_ShowToast(const FText& Message, SNotificationItem::ECompletionState State)
+	{
+		FNotificationInfo Info(Message);
+		Info.bUseLargeFont = false;
+		Info.bFireAndForget = true;
+		Info.FadeOutDuration = 0.5f;
+		Info.ExpireDuration = 2.5f;
+
+		auto Item = FSlateNotificationManager::Get().AddNotification(Info);
+		if (Item.IsValid())
+		{
+			Item->SetCompletionState(State);
+		}
+	}
+}
 
 void FCFModelEditorToolkit::InitModelEditor(
 	UCFModelAsset* InAsset,
@@ -30,8 +76,10 @@ void FCFModelEditorToolkit::InitModelEditor(
 
 	BuildDetailsPanel();
 
-	// Layout: Details (open), Validation (closed by default)
-	const TSharedRef<FTabManager::FLayout> Layout = FTabManager::NewLayout("CFModelEditorToolkit_Layout_v1")
+	// Layout: Details (open), Validation (NOW open by default)
+	// NOTE: Bump the layout id any time you change default tab states,
+	// otherwise UE will reuse a previously saved layout.
+	const TSharedRef<FTabManager::FLayout> Layout = FTabManager::NewLayout("CFModelEditorToolkit_Layout_v3")
 	->AddArea
 	(
 		FTabManager::NewPrimaryArea()
@@ -47,7 +95,7 @@ void FCFModelEditorToolkit::InitModelEditor(
 		(
 			FTabManager::NewStack()
 			->SetSizeCoefficient(0.3f)
-			->AddTab(ValidationTabId, ETabState::ClosedTab)
+			->AddTab(ValidationTabId, ETabState::OpenedTab) // was ClosedTab
 		)
 	);
 
@@ -62,7 +110,71 @@ void FCFModelEditorToolkit::InitModelEditor(
 		EditingAsset
 	);
 
-	// Single-mode editor; no SetCurrentMode required on UE 5.6
+	// --- JSON actions (menu & toolbar) ---
+	{
+		// Menu
+		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
+		MenuExtender->AddMenuExtension(
+			"FileLoadAndSave",
+			EExtensionHook::After,
+			/*CommandList*/nullptr,
+			FMenuExtensionDelegate::CreateLambda([this](FMenuBuilder& Menu)
+			{
+				Menu.BeginSection("CFModelJson", LOCTEXT("CFModelJsonSection", "Model JSON"));
+				{
+					Menu.AddMenuEntry(
+						LOCTEXT("ExportJsonLabel", "Export as JSON"),
+						LOCTEXT("ExportJsonTip", "Export the current model to Saved/<Plugin>/Model.json"),
+						FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Save"),
+						FUIAction(FExecuteAction::CreateRaw(this, &FCFModelEditorToolkit::HandleExportJson))
+					);
+
+					Menu.AddMenuEntry(
+						LOCTEXT("ReloadJsonLabel", "Reload from JSON"),
+						LOCTEXT("ReloadJsonTip", "Reload the model from Saved/<Plugin>/Model.json"),
+						FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Refresh"),
+						FUIAction(FExecuteAction::CreateRaw(this, &FCFModelEditorToolkit::HandleReloadJson))
+					);
+				}
+				Menu.EndSection();
+			})
+		);
+		AddMenuExtender(MenuExtender);
+
+		// Toolbar
+		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender());
+		ToolbarExtender->AddToolBarExtension(
+			"Asset",
+			EExtensionHook::After,
+			/*CommandList*/nullptr,
+			FToolBarExtensionDelegate::CreateLambda([this](FToolBarBuilder& Builder)
+			{
+				Builder.AddToolBarButton(
+					FUIAction(FExecuteAction::CreateRaw(this, &FCFModelEditorToolkit::HandleExportJson)),
+					NAME_None,
+					LOCTEXT("ExportJson_TB", "Export JSON"),
+					LOCTEXT("ExportJson_TB_Tip", "Export to Saved/<Plugin>/Model.json"),
+					FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Save")
+				);
+
+				Builder.AddToolBarButton(
+					FUIAction(FExecuteAction::CreateRaw(this, &FCFModelEditorToolkit::HandleReloadJson)),
+					NAME_None,
+					LOCTEXT("ReloadJson_TB", "Reload JSON"),
+					LOCTEXT("ReloadJson_TB_Tip", "Reload from Saved/<Plugin>/Model.json"),
+					FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Refresh")
+				);
+			})
+		);
+		AddToolbarExtender(ToolbarExtender);
+	}
+	// --- /JSON actions ---
+
+	// Attempt to bind to the runtime model service if we're in PIE/Game world
+	TryBindRuntimeService();
+
+	// Initial UI pass
+	RefreshAllUI(EditingAsset, /*bIsReload*/false);
 }
 
 void FCFModelEditorToolkit::BuildDetailsPanel()
@@ -73,7 +185,6 @@ void FCFModelEditorToolkit::BuildDetailsPanel()
 	Args.bUpdatesFromSelection = false;
 	Args.bLockable = false;
 	Args.NameAreaSettings = FDetailsViewArgs::HideNameArea;
-	// Args.NotifyHook = this; // Only if class derives from FNotifyHook
 
 	DetailsView = PEM.CreateDetailView(Args);
 	DetailsView->SetObject(EditingAsset.Get());
@@ -133,7 +244,6 @@ TSharedRef<SDockTab> FCFModelEditorToolkit::SpawnDetailsTab(const FSpawnTabArgs&
 	check(DetailsView.IsValid());
 
 	return SNew(SDockTab)
-		// (Icon is set by spawner; avoid deprecated SDockTab::Icon)
 		.Label(LOCTEXT("DetailsTabLabel", "Details"))
 		[
 			DetailsView.ToSharedRef()
@@ -142,16 +252,226 @@ TSharedRef<SDockTab> FCFModelEditorToolkit::SpawnDetailsTab(const FSpawnTabArgs&
 
 TSharedRef<SDockTab> FCFModelEditorToolkit::SpawnValidationTab(const FSpawnTabArgs& Args)
 {
-	return SNew(SDockTab)
+	TSharedRef<SDockTab> Tab =
+		SNew(SDockTab)
 		.Label(LOCTEXT("ValidationTabLabel", "Validation"))
 		[
 			SNew(SBorder)
-			.Padding(8)
+			.BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
+			.Padding(4)
 			[
-				SNew(STextBlock)
-				.Text(LOCTEXT("ValidationPlaceholder", "Validation output will appear here."))
+				SNew(SVerticalBox)
+
+				// Version banner
+				+ SVerticalBox::Slot()
+				.AutoHeight()
+				.Padding(2)
+				[
+					SAssignNew(VersionBanner, SCFVersionStatusWidget, EditingAsset.Get())
+				]
+
+				// Validation list
+				+ SVerticalBox::Slot()
+				.FillHeight(1.f)
+				.Padding(2)
+				[
+					SAssignNew(ValidationPanel, SCFValidationPanel)
+				]
 			]
 		];
+
+	if (VersionBanner.IsValid())
+	{
+		VersionBanner->Refresh();
+	}
+	if (ValidationPanel.IsValid())
+	{
+		ValidationPanel->SetAsset(EditingAsset.Get());
+		ValidationPanel->Refresh();
+	}
+
+	return Tab;
+}
+
+// -------- Runtime service orchestration --------
+
+void FCFModelEditorToolkit::TryBindRuntimeService()
+{
+	// GameInstanceSubsystem lives on the GameInstance, not directly on the World.
+	UWorld* TargetWorld = nullptr;
+
+#if WITH_EDITOR
+	if (GEditor)
+	{
+		// Prefer PIE contexts
+		for (const FWorldContext& Ctx : GEditor->GetWorldContexts())
+		{
+			if (Ctx.WorldType == EWorldType::PIE && Ctx.World())
+			{
+				TargetWorld = Ctx.World();
+				break;
+			}
+		}
+		// Fallback to "current" PIE
+		if (!TargetWorld && GEditor->GetPIEWorldContext())
+		{
+			TargetWorld = GEditor->GetPIEWorldContext()->World();
+		}
+	}
+#endif
+
+	// Runtime fallback (packaged/game runs)
+	if (!TargetWorld && GEngine)
+	{
+		for (const FWorldContext& Ctx : GEngine->GetWorldContexts())
+		{
+			if ((Ctx.WorldType == EWorldType::PIE || Ctx.WorldType == EWorldType::Game) && Ctx.World())
+			{
+				TargetWorld = Ctx.World();
+				break;
+			}
+		}
+	}
+
+	if (!TargetWorld)
+	{
+		return; // Not in PIE/Game — editor still works on asset defaults.
+	}
+
+	UGameInstance* GI = TargetWorld->GetGameInstance();
+	if (!GI)
+	{
+		return;
+	}
+
+	// We don’t know the concrete subclass; request via the common base.
+	UGameInstanceSubsystem* Base = GI->GetSubsystemBase(UCFAbstractModelService::StaticClass());
+	if (Base && Base->IsA(UCFAbstractModelService::StaticClass()))
+	{
+		RuntimeService = Cast<UCFAbstractModelService>(Base);
+		BindRuntimeDelegates();
+	}
+}
+
+void FCFModelEditorToolkit::BindRuntimeDelegates()
+{
+	if (!RuntimeService.IsValid())
+		return;
+
+	RuntimeService->OnModelReady.AddRaw(this, &FCFModelEditorToolkit::HandleModelReady);
+	RuntimeService->OnModelReloaded.AddRaw(this, &FCFModelEditorToolkit::HandleModelReloaded);
+	RuntimeService->OnModelUpdated.AddRaw(this, &FCFModelEditorToolkit::HandleModelUpdated);
+	RuntimeService->OnModelError.AddRaw(this, &FCFModelEditorToolkit::HandleModelError);
+	RuntimeService->OnModelErrorEx.AddRaw(this, &FCFModelEditorToolkit::HandleModelErrorEx);
+}
+
+void FCFModelEditorToolkit::UnbindRuntimeDelegates()
+{
+	if (!RuntimeService.IsValid())
+		return;
+
+	RuntimeService->OnModelReady.RemoveAll(this);
+	RuntimeService->OnModelReloaded.RemoveAll(this);
+	RuntimeService->OnModelUpdated.RemoveAll(this);
+	RuntimeService->OnModelError.RemoveAll(this);
+	RuntimeService->OnModelErrorEx.RemoveAll(this);
+}
+
+void FCFModelEditorToolkit::RefreshAllUI(UCFModelAsset* LiveModel, bool bIsReload)
+{
+	UCFModelAsset* Target = LiveModel ? LiveModel : EditingAsset.Get();
+
+	// Details
+	if (DetailsView.IsValid())
+	{
+		DetailsView->SetObject(Target);
+	}
+
+	// Version banner
+	if (VersionBanner.IsValid())
+	{
+		VersionBanner->SetAsset(Target);
+		VersionBanner->Refresh();
+	}
+
+	// Validation panel
+	if (ValidationPanel.IsValid())
+	{
+		ValidationPanel->SetAsset(Target);
+		ValidationPanel->Refresh();
+	}
+}
+
+// ---- JSON actions (NEW) ----
+
+void FCFModelEditorToolkit::HandleExportJson()
+{
+	if (!EditingAsset)
+	{
+		CF_ShowToast(LOCTEXT("Export_NoAsset", "No asset to export."), SNotificationItem::CS_Fail);
+		return;
+	}
+
+	FString Error;
+	if (EditingAsset->SaveToDiskJson(Error))
+	{
+		CF_ShowToast(LOCTEXT("Export_Success", "Exported JSON to Saved/<Plugin>/Model.json."), SNotificationItem::CS_Success);
+	}
+	else
+	{
+		CF_ShowToast(FText::Format(LOCTEXT("Export_FailFmt", "Export failed: {0}"), FText::FromString(Error)), SNotificationItem::CS_Fail);
+	}
+}
+
+void FCFModelEditorToolkit::HandleReloadJson()
+{
+	if (!EditingAsset)
+	{
+		CF_ShowToast(LOCTEXT("Reload_NoAsset", "No asset to reload."), SNotificationItem::CS_Fail);
+		return;
+	}
+
+	FString Error;
+	if (EditingAsset->TryLoadFromDiskJson(Error))
+	{
+		// Repaint panels to reflect the new payload
+		RefreshAllUI(EditingAsset.Get(), /*bIsReload*/true);
+		CF_ShowToast(LOCTEXT("Reload_Success", "Reloaded JSON from Saved/<Plugin>/Model.json."), SNotificationItem::CS_Success);
+	}
+	else
+	{
+		CF_ShowToast(FText::Format(LOCTEXT("Reload_FailFmt", "Reload failed: {0}"), FText::FromString(Error)), SNotificationItem::CS_Fail);
+	}
+}
+
+// ---- Delegate handlers ----
+
+void FCFModelEditorToolkit::HandleModelReady(UCFModelAsset* LiveModel)
+{
+	RefreshAllUI(LiveModel, /*bIsReload*/false);
+}
+
+void FCFModelEditorToolkit::HandleModelReloaded(UCFModelAsset* LiveModel)
+{
+	RefreshAllUI(LiveModel, /*bIsReload*/true);
+}
+
+void FCFModelEditorToolkit::HandleModelUpdated()
+{
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
+}
+
+void FCFModelEditorToolkit::HandleModelError(const FString& Message)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ModelService Error: %s"), *Message);
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
+}
+
+void FCFModelEditorToolkit::HandleModelErrorEx(const FCFModelError& Error)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ModelService ErrorEx: Code=%d Msg=%s Ctx=%s"),
+		(int32)Error.Code, *Error.Message, *Error.Context);
+	RefreshAllUI(RuntimeService.IsValid() ? RuntimeService->GetMutable() : EditingAsset.Get(), /*bIsReload*/true);
 }
 
 #undef LOCTEXT_NAMESPACE

@@ -50,9 +50,9 @@ public class CatalystEcosystemEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"CatalystEcosystem",
 				"CatalystFoundation",
 				"CatalystFoundationEditor",
+				"CatalystEcosystem",
 			}
         );
 		

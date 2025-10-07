@@ -248,7 +248,7 @@ const UCFModelAsset* UCFAbstractModelService::Get() const
 	return Model;
 }
 
-UCFModelAsset* UCFAbstractModelService::GetMutable()
+UCFModelAsset* UCFAbstractModelService::GetMutable() // typo? keep original name:
 {
 	FWriteScopeLock Lock(ModelLock);
 	return Model;
