@@ -1,0 +1,45 @@
+name: CatalystPlugins CI (Mac)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up environment
+        run: |
+          echo "ENGINE_ROOT=/Users/jupiter/UnrealEngine/UE_5.6" >> $GITHUB_ENV
+          echo "UPROJECT=$PWD/CatalystPlugins/CatalystPlugins.uproject" >> $GITHUB_ENV
+          echo "REPORT_DIR=$PWD/CatalystPlugins/Saved/Logs/CIReports" >> $GITHUB_ENV
+          mkdir -p "$REPORT_DIR"
+
+      - name: Generate Project Files
+        working-directory: CatalystPlugins
+        run: |
+          "$ENGINE_ROOT/Engine/Build/BatchFiles/Mac/GenerateProjectFiles.sh" -project="$UPROJECT"
+
+      - name: Build Editor (Development)
+        working-directory: CatalystPlugins
+        run: |
+          "$ENGINE_ROOT/Engine/Build/BatchFiles/Mac/Build.sh" CatalystPluginsEditor Mac Development "$UPROJECT" -waitmutex
+
+      - name: Build Models (Commandlet)
+        working-directory: CatalystPlugins
+        run: |
+          bash ./bin/build-models.sh
+
+      - name: Upload CI Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-reports
+          path: CatalystPlugins/Saved/Logs/CIReports
