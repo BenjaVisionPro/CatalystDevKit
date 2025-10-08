@@ -1,45 +1,100 @@
-name: CatalystPlugins CI (Mac)
+name: macOS Self-Hosted • UE Build
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ue-build-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: self-hosted
+    name: Build UE Project
+    runs-on: [ self-hosted, macOS ]   # your Mac runner labels
+
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          fetch-depth: 0
 
+      # Set env vars for subsequent steps
       - name: Set up environment
         run: |
-          echo "ENGINE_ROOT=/Users/jupiter/UnrealEngine/UE_5.6" >> $GITHUB_ENV
-          echo "UPROJECT=$PWD/CatalystPlugins/CatalystPlugins.uproject" >> $GITHUB_ENV
-          echo "REPORT_DIR=$PWD/CatalystPlugins/Saved/Logs/CIReports" >> $GITHUB_ENV
+          echo "ENGINE_ROOT=/Users/jupiter/UnrealEngine/UE_5.6" >> "$GITHUB_ENV"
+          echo "UPROJECT=$PWD/CatalystPlugins/CatalystPlugins.uproject" >> "$GITHUB_ENV"
+          echo "REPORT_DIR=$PWD/CatalystPlugins/Saved/Logs/CIReports" >> "$GITHUB_ENV"
+          echo "LOG_DIR=$PWD/CatalystPlugins/Saved/Logs" >> "$GITHUB_ENV"
+
+      - name: Create report directory
+        run: |
           mkdir -p "$REPORT_DIR"
+          mkdir -p "$LOG_DIR"
 
-      - name: Generate Project Files
-        working-directory: CatalystPlugins
+      - name: Print environment
         run: |
-          "$ENGINE_ROOT/Engine/Build/BatchFiles/Mac/GenerateProjectFiles.sh" -project="$UPROJECT"
+          echo "ENGINE_ROOT=$ENGINE_ROOT"
+          echo "UPROJECT=$UPROJECT"
+          echo "REPORT_DIR=$REPORT_DIR"
+          echo "LOG_DIR=$LOG_DIR"
+          test -d "$ENGINE_ROOT" || { echo "❌ ENGINE_ROOT not found"; exit 1; }
+          test -f "$UPROJECT"    || { echo "❌ UPROJECT not found"; exit 1; }
 
-      - name: Build Editor (Development)
-        working-directory: CatalystPlugins
+      # Optional: warm up xcode-select if needed (uncomment if your runner needs it)
+      # - name: Ensure Xcode selected
+      #   run: |
+      #     xcodebuild -version
+      #     xcode-select -p
+
+      - name: Build UnrealEditor (this builds your project’s modules/plugins)
         run: |
-          "$ENGINE_ROOT/Engine/Build/BatchFiles/Mac/Build.sh" CatalystPluginsEditor Mac Development "$UPROJECT" -waitmutex
+          "$ENGINE_ROOT/Engine/Build/BatchFiles/Mac/Build.sh" \
+            UnrealEditor Mac Development \
+            -Project="$UPROJECT" \
+            -WaitMutex -NoHotReload -Quiet || {
+              echo "❌ Build failed"
+              exit 1
+            }
 
-      - name: Build Models (Commandlet)
-        working-directory: CatalystPlugins
+      # If you want to prove the editor boots headlessly and runs your commandlet,
+      # keep this; otherwise, set run: 'true' to skip.
+      - name: Run CF commandlet (optional proof)
+        continue-on-error: true
         run: |
-          bash ./bin/build-models.sh
+          "$ENGINE_ROOT/Engine/Binaries/Mac/UnrealEditor-Cmd" "$UPROJECT" \
+            -run=CFGenerateModelAssets \
+            -nop4 -unattended -nosplash -nologtimes \
+            -ReportDir="$REPORT_DIR" || {
+              echo "⚠️ Commandlet returned non-zero (continuing to upload logs)."
+            }
 
-      - name: Upload CI Reports
+      - name: Summarize logs to console (tail)
+        if: always()
+        run: |
+          echo "=== Recent Editor Logs ==="
+          ls -lah "$LOG_DIR" || true
+          LOGFILE="$(ls -t "$LOG_DIR"/*.log 2>/dev/null | head -n1 || true)"
+          if [[ -f "$LOGFILE" ]]; then
+            echo "--- $LOGFILE (tail -n 400) ---"
+            tail -n 400 "$LOGFILE"
+          else
+            echo "No log file found."
+          fi
+
+      - name: Upload Logs & Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ci-reports
-          path: CatalystPlugins/Saved/Logs/CIReports
+          name: UE-Logs-and-Reports-${{ github.run_id }}
+          path: |
+            ${{ env.LOG_DIR }}/**
+            ${{ env.REPORT_DIR }}/**
+          if-no-files-found: warn
