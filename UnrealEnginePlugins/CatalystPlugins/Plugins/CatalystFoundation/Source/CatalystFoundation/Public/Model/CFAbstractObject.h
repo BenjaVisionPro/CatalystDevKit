@@ -7,8 +7,6 @@
  * All rights and remedies reserved.
  */
 
-// Public/Model/CFAbstractObject.h
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -21,36 +19,23 @@ struct CATALYSTFOUNDATION_API FCFAbstractObject
 	GENERATED_BODY()
 
 public:
-	// Always initialize UPROPERTY members in ctors
 	FCFAbstractObject()
-		: Id(FGuid())              // or FGuid::NewGuid() if you want a runtime-unique default
-		, Name(TEXT(""))           // example if you have more fields
-		, Version(1)               // example
+		: Id(FGuid()) // or FGuid::NewGuid() if you prefer runtime-unique defaults
 	{
 	}
 
-	// If you have other ctors, init everything there, too.
 	explicit FCFAbstractObject(const FGuid& InId)
 		: Id(InId)
-		, Name(TEXT(""))
-		, Version(1)
 	{
 	}
 
-	// Copy/move must keep a valid value as well (defaults are fine)
 	FCFAbstractObject(const FCFAbstractObject&) = default;
 	FCFAbstractObject(FCFAbstractObject&&) = default;
 	FCFAbstractObject& operator=(const FCFAbstractObject&) = default;
 	FCFAbstractObject& operator=(FCFAbstractObject&&) = default;
 
 public:
-	/** Example fields — ensure you initialize whatever you actually have */
+	/** Stable identifier for cross-references and lookups. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CF")
 	FGuid Id;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CF")
-	FString Name;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="CF")
-	int32 Version = 1;
 };

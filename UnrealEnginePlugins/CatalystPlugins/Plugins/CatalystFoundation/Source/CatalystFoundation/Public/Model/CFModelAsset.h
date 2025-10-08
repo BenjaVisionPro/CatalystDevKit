@@ -3,10 +3,6 @@
  * @brief Root data-asset base for Catalyst plugins:
  *        hosts a concrete UStruct payload, handles JSON import/export,
  *        and embeds version/provenance metadata for migration and diagnostics.
- *
- * Copyright © 2022 Jupiter Jones
- * Copyright © 2024 Benjability Pty Ltd.
- * All rights and remedies reserved.
  */
 
 #pragma once
@@ -15,6 +11,8 @@
 #include "Engine/DataAsset.h"
 #include "Validation/CFValidatable.h"  // Standardized validation interface
 #include "CFModelAsset.generated.h"
+
+class UAssetImportData; // editor-only forward decl
 
 /**
  * @brief Version & provenance embedded in every model asset.
@@ -65,6 +63,12 @@ public:
 	UPROPERTY(VisibleAnywhere, Category="Foundation|Model")
 	FCFModelVersionInfo Version;
 
+#if WITH_EDITORONLY_DATA
+	/** Source data for UE's Reimport workflow (points at the JSON file). */
+	UPROPERTY(VisibleAnywhere, Instanced, Category="Import", meta=(ShowOnlyInnerProperties))
+	TObjectPtr<UAssetImportData> ImportData = nullptr;
+#endif
+
 	// ---------- JSON helpers ----------
 
 	bool ApplyJsonString(const FString& JsonText, FString& OutError);
@@ -84,10 +88,7 @@ public:
 
 	// ---------- Public accessors (editor-safe) ----------
 
-	/** Public bridge for editor widgets (avoids protected access warnings). */
-	int32 GetPublicSchemaVersion() const { return GetSchemaVersion(); }
-
-	/** Public bridge for editor widgets (avoids protected access warnings). */
+	int32   GetPublicSchemaVersion() const { return GetSchemaVersion(); }
 	FString GetPublicPluginNameForPaths() const { return GetPluginNameForPaths(); }
 
 protected:
@@ -102,15 +103,15 @@ protected:
 
 	// ---------- Validation seam ----------
 
-	/** Normalize payload (sorting, range clamping, filling defaults). */
 	virtual void NormalizePayload() {}
-
-	/** Validate payload invariants (legacy single-string version). */
 	virtual bool ValidatePayload(FString& OutError) const { return true; }
-
-	/** Structured validation messages for editor / CI. */
 	virtual void CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const override;
 
 	// ---------- Version/provenance ----------
 	void RefreshVersionMetadata() const;
+
+#if WITH_EDITOR
+	/** Ensure ImportData exists and points at our JSON (used by export/reimport). */
+	void EnsureImportDataUpToDate(const FString& SourceJsonPath);
+#endif
 };

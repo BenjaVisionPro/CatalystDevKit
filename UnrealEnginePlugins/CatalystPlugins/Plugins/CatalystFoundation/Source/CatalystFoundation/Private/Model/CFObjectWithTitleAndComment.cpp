@@ -1,6 +1,6 @@
 /**
  * @file CFObjectWithTitleAndComment.cpp
- * @brief Implementation for CFObjectWithTitleAndComment.
+ * @brief Implementation for FCFObjectWithTitleAndComment.
  *
  * Copyright © 2022 Jupiter Jones
  * Copyright © 2024 Benjability Pty Ltd.

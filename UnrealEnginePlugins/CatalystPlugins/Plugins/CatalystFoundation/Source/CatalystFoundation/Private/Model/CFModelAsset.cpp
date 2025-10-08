@@ -1,10 +1,6 @@
 /**
  * @file CFModelAsset.cpp
  * @brief Implementation for the foundation model asset base (JSON + provenance + validation seam).
- *
- * Copyright © 2022 Jupiter Jones
- * Copyright © 2024 Benjability Pty Ltd.
- * All rights and remedies reserved.
  */
 
 #include "Model/CFModelAsset.h"
@@ -19,6 +15,10 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "Validation/CFValidationTypes.h"
+
+#if WITH_EDITOR
+#include "EditorFramework/AssetImportData.h"
+#endif
 
 #define CF_LOG_DEFAULT_CATEGORY LogCF
 #include "Log/CFLog.h" // CF_INFO / CF_WARN / CF_ERR
@@ -71,6 +71,13 @@ bool UCFModelAsset::ApplyJsonString(const FString& JsonText, FString& OutError)
 			{
 				return false;
 			}
+
+#if WITH_EDITOR
+			// Make sure the editor notices in-place data changes.
+			Modify();
+			PostEditChange();
+			MarkPackageDirty();
+#endif
 			return true;
 		}
 	}
@@ -107,7 +114,7 @@ bool UCFModelAsset::ExportJsonString(FString& OutJson, FString& OutError) const
 
 FString UCFModelAsset::GetSavedJsonFile() const
 {
-	const FString Dir = FPaths::Combine(FPaths::ProjectSavedDir(), GetPluginNameForPaths());
+	const FString Dir = FPaths::Combine(FPaths::ProjectSavedDir(), GetPublicPluginNameForPaths());
 	IFileManager::Get().MakeDirectory(*Dir, true);
 	return FPaths::Combine(Dir, TEXT("Model.json"));
 }
@@ -127,7 +134,17 @@ bool UCFModelAsset::TryLoadFromDiskJson(FString& OutError)
 		return false;
 	}
 
-	return ApplyJsonString(JsonText, OutError);
+	const bool bOK = ApplyJsonString(JsonText, OutError);
+
+#if WITH_EDITOR
+	if (bOK)
+	{
+		// Keep ImportData pointing at our JSON so UE "Reimport" knows the source.
+		EnsureImportDataUpToDate(File);
+	}
+#endif
+
+	return bOK;
 }
 
 bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
@@ -141,7 +158,7 @@ bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
 	}
 
 	const FString FinalFile = GetSavedJsonFile();
-	const FString TempFile = FinalFile + TEXT(".tmp");
+	const FString TempFile  = FinalFile + TEXT(".tmp");
 
 	if (!FFileHelper::SaveStringToFile(JsonText, *TempFile))
 	{
@@ -158,6 +175,12 @@ bool UCFModelAsset::SaveToDiskJson(FString& OutError) const
 	}
 
 	CF_INFO(TEXT("Saved dev JSON: %s"), *FinalFile);
+
+#if WITH_EDITOR
+	// Ensure Reimport path is recorded.
+	const_cast<UCFModelAsset*>(this)->EnsureImportDataUpToDate(FinalFile);
+#endif
+
 	return true;
 }
 
@@ -183,3 +206,15 @@ void UCFModelAsset::CollectValidationMessages(TArray<FCFValidationMessage>& OutM
 			NSLOCTEXT("CF", "Val_VersionUninitializedFix", "Save or export the asset to refresh metadata.")));
 	}
 }
+
+#if WITH_EDITOR
+void UCFModelAsset::EnsureImportDataUpToDate(const FString& SourceJsonPath)
+{
+	if (!ImportData)
+	{
+		ImportData = NewObject<UAssetImportData>(this, TEXT("ImportData"));
+	}
+	// Record the JSON file as the source so UE's Reimport will call our Factory.
+	ImportData->Update(SourceJsonPath);
+}
+#endif

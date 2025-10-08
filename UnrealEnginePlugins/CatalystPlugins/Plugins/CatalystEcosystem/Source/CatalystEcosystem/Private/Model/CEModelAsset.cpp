@@ -49,14 +49,14 @@ void UCEModelAsset::CollectValidationMessages(TArray<FCFValidationMessage>& OutM
 	for (int32 i = 0; i < Model.Biomes.Num(); ++i)
 	{
 		const auto& Biome = Model.Biomes[i];
-		if (Biome.Name.IsEmpty())
+		if (Biome.Title.IsEmpty())
 		{
 			OutMessages.Add(FCFValidationMessage::Make(
 				ECFValidationSeverity::Error,
 				TEXT("CE.Biome.MissingName"),
-				NSLOCTEXT("CE", "Val_BiomeMissingName", "Biome is missing a name."),
+				NSLOCTEXT("CE", "Val_BiomeMissingName", "Biome is missing a title."),
 				FText(), FString::Printf(TEXT("/Biomes[%d]"), i),
-				NSLOCTEXT("CE", "Val_BiomeMissingNameFix", "Enter a non-empty name.")));
+				NSLOCTEXT("CE", "Val_BiomeMissingNameFix", "Enter a non-empty title.")));
 		}
 	}
 }

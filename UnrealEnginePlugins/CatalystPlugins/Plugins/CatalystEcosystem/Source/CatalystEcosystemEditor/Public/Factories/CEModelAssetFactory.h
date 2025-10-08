@@ -34,4 +34,6 @@ public:
 		FFeedbackContext* Warn) override;
 
 	virtual FText GetDisplayName() const override;
+	
+	virtual FString GetDefaultNewAssetName() const override { return TEXT("New Ecosystem"); }
 };

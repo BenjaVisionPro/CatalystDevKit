@@ -1,12 +1,7 @@
 /**
  * @file CFModelEditorToolkit.h
  * @brief Base asset editor for Catalyst model assets. Hosts Details + Validation
- *        tabs and (when in PIE/Game) listens to the runtime model service to
- *        keep editor UI in sync with the live model.
- *
- * Copyright © 2022 Jupiter Jones
- * Copyright © 2024 Benjability Pty Ltd.
- * All rights and remedies reserved.
+ *        tabs and (when in PIE/Game) listens to the runtime model service.
  */
 
 #pragma once
@@ -31,7 +26,6 @@ public:
 	FCFModelEditorToolkit();
 	virtual ~FCFModelEditorToolkit() override;
 
-	/** Initialize the editor for a specific model asset. */
 	void InitModelEditor(
 		UCFModelAsset* InAsset,
 		EToolkitMode::Type Mode,
@@ -51,45 +45,31 @@ protected:
 	TSharedRef<class SDockTab> SpawnDetailsTab(const class FSpawnTabArgs& Args);
 	TSharedRef<class SDockTab> SpawnValidationTab(const class FSpawnTabArgs& Args);
 
-	/** Build the DetailsView for the current asset. */
 	void BuildDetailsPanel();
-
-	/** Try to discover a PIE/Game world and bind model-service delegates if available. */
 	void TryBindRuntimeService();
 
-	/** Bind/unbind to the runtime model service delegates. */
 	void BindRuntimeDelegates();
 	void UnbindRuntimeDelegates();
 
-	/** Centralized UI refresh conductor. */
 	void RefreshAllUI(UCFModelAsset* LiveModel, bool bIsReload);
 
-	// ---- Toolbar / Menu JSON actions ----
+	// ---- Toolbar / Menu actions ----
 	void HandleExportJson();
-	void HandleReloadJson();
 
-	// ---- Runtime service delegate handlers ----
+	// ---- Runtime service handlers ----
 	void HandleModelReady(UCFModelAsset* LiveModel);
 	void HandleModelReloaded(UCFModelAsset* LiveModel);
 	void HandleModelUpdated();
 	void HandleModelError(const FString& Message);
-	void HandleModelErrorEx(const FCFModelError& Error); // typed error payload
+	void HandleModelErrorEx(const FCFModelError& Error);
 
 protected:
-	/** Current asset being edited (never null after Init). */
 	TObjectPtr<UCFModelAsset> EditingAsset = nullptr;
-
-	/** Details panel. */
 	TSharedPtr<IDetailsView> DetailsView;
-
-	/** Validation UI pieces. */
-	TSharedPtr<SCFValidationPanel>     ValidationPanel;
+	TSharedPtr<SCFValidationPanel> ValidationPanel;
 	TSharedPtr<SCFVersionStatusWidget> VersionBanner;
-
-	/** Optional runtime service (valid in PIE/Game worlds). */
 	TWeakObjectPtr<UCFAbstractModelService> RuntimeService;
 
-	// Tab IDs
 	static const FName DetailsTabId;
 	static const FName ValidationTabId;
 };
