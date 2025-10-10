@@ -3,7 +3,7 @@ set -euo pipefail
 
 # --- EDIT IF NEEDED ---
 UE="/Users/jupiter/UnrealEngine/UE_5.6"
-UPROJ="/opt/git/BenjaVision/CatalystDevKit/UnrealEnginePlugins/CatalystPlugins/CatalystPlugins.uproject"
+UPROJ="/opt/git/BenjaVision/CatalystDevKit/CatalystPlugins/CatalystPlugins.uproject"
 TARGET_PLATFORMS="${TARGET_PLATFORMS:-Mac}"      # e.g. Mac, Win64, Linux, Mac,Win64
 BUILD_CONFIG="${BUILD_CONFIG:-Development}"      # Development or Shipping
 # ----------------------

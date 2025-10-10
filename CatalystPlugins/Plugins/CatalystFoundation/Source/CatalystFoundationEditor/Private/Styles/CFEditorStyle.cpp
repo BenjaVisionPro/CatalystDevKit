@@ -4,6 +4,7 @@
 #include "Styling/SlateStyleRegistry.h"
 #include "Styling/AppStyle.h"
 #include "Interfaces/IPluginManager.h"
+#include "Misc/Paths.h" // FPaths::ProjectContentDir
 
 TSharedPtr<FSlateStyleSet> FCFEditorStyle::Style;
 
@@ -29,23 +30,25 @@ void FCFEditorStyle::Register()
 	}
 	else
 	{
-		// Fallback: project content root (still allows dev to place Resources here)
+		// Fallback: project content root
 		Style->SetContentRoot(FPaths::ProjectContentDir());
 	}
 
-	// Local macro that sees the Style pointer (scoped to this function)
+	// Local helper bound to this style's content root (no macro, no collisions).
 	auto* StylePtr = Style.Get();
-	#define IMAGE_BRUSH_SVG(RelativePath, Size) FSlateVectorImageBrush(StylePtr->RootToContentDir(RelativePath, TEXT(".svg")), Size)
+	auto MakeSvgBrush = [StylePtr](const TCHAR* RelativePath, const FVector2D& Size) -> FSlateVectorImageBrush*
+	{
+		return new FSlateVectorImageBrush(
+			StylePtr->RootToContentDir(RelativePath, TEXT(".svg")),
+			Size);
+	};
 
 	const FVector2D Icon16(16.f, 16.f);
 	const FVector2D Icon64(64.f, 64.f);
 
-	// Example: provide default icon/thumbnail for the base model asset class
-	// Feature plugins can add their own keys/classes in their editor modules.
-	Style->Set(TEXT("ClassIcon.UCFModelAsset"),      new IMAGE_BRUSH_SVG(TEXT("Icons/Model"), Icon16));
-	Style->Set(TEXT("ClassThumbnail.UCFModelAsset"), new IMAGE_BRUSH_SVG(TEXT("Icons/Model"), Icon64));
-
-	#undef IMAGE_BRUSH_SVG
+	// Example icons for UCFModelAsset
+	Style->Set(TEXT("ClassIcon.UCFModelAsset"),      static_cast<FSlateBrush*>(MakeSvgBrush(TEXT("Icons/Model"), Icon16)));
+	Style->Set(TEXT("ClassThumbnail.UCFModelAsset"), static_cast<FSlateBrush*>(MakeSvgBrush(TEXT("Icons/Model"), Icon64)));
 
 	FSlateStyleRegistry::RegisterSlateStyle(*Style.Get());
 }

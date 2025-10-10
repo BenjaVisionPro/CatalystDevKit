@@ -1,0 +1,166 @@
+# Catalyst:Ecosystems — Visualiser (Slice) Scope
+
+> **Goal:** Define the scope and integration points for the **Visualiser** that takes a developer-provided landscape and presents a clean, draggable **slice of earth** while rendering the world **exactly as it appears in-game**. The Visualiser is part of the **Catalyst:Ecosystems** plugin (not a separate plugin).
+
+---
+
+## 1) Purpose (What the Visualiser is)
+
+* A **presentation layer** that clips an existing world at a specified **slice volume** (default 500×500 m × 1000 m) and shows the ecosystem **as the game would render it** (materials, PCG foliage/resources/animals, lighting, post-process, etc.).
+* A **tooling surface** for moving/rotating/scaling the slice and for showing optional data overlays (axes, layer heatmaps/contours) without altering terrain or game rendering.
+
+### Always-True Rendering Constraint
+
+* The Visualiser must **not** substitute materials, foliage, actors, or PCG graphs. It must display the **real, project-authored** content so developers/players see the *actual* ecosystem application.
+
+---
+
+## 2) Non‑Goals (Out of Scope)
+
+* Terrain/geology/cave **authoring** or modification.
+* Spawning or managing **materials/foliage/resources/animals** (handled by project PCG and terrain materials).
+* Simulation logic (server or client). The Visualiser only mirrors the current **EcosystemDefinition** state.
+
+---
+
+## 3) Core Concepts & Data Dependencies
+
+* **EcosystemDefinition** (owned by Catalyst:Ecosystems):
+
+  * **Layers[]** (environment inputs), **Biomes[]**, **Resources[]**, **Animals[]**, Policies, VersionHash.
+  * Visualiser consumes this passively. When edited in the encompassing editor, the world re-evaluates via existing game wiring.
+* **SliceDefinition** (owned by Visualiser):
+
+  * `OriginWorld : FVector`, `YawDegrees : float`, `SizeXY : FVector2D` (default 500×500), `Height : float` (default 1000), `SnapSettings` (Landscape: 10 m grid + component-edge snap; Voxel: 1 m grid; Angle 15°).
+
+---
+
+## 4) User Experience (Editor)
+
+* **Gizmo control** in the level viewport: Move on XY, yaw-only rotate, scale XY (optionally uniform), adjust height.
+* **Snapping:** grid + angle; snap to landscape component edges (when applicable); **1 m precision** for voxel worlds.
+* **Overlays (optional):** X/Z axis bars, altitude ticks, read-only layer heatmap/contours.
+* **Undo/Redo**: all slice transforms transactional via UE’s editor transactions.
+* **Throttled updates** while dragging; full refresh on mouse-up.
+
+---
+
+## 5) System Responsibilities & Boundaries
+
+### Visualiser (this component)
+
+* Owns **SliceDefinition** and clipping presentation.
+* Requests terrain preparation around the slice area.
+* Shows overlays; never replaces or owns gameplay materials/PCG.
+* Provides API events for the encompassing editor to drive (see §9).
+
+### Encompassing Editor (Catalyst:Ecosystems)
+
+* Owns authoring UI for **Layers, Biomes, Resources, Animals**.
+* Emits **model change** notifications (the world reacts via existing bindings).
+* Hosts Visualiser UI (toolbar, panel, commands) and persists Visualiser settings.
+
+### Terrain Providers (pluggable)
+
+* Supply the **surface structure** for the **area surrounding a specified world point**; stream/warm content.
+* Respect and render with the project’s existing materials/PCG (already bound to EcosystemDefinition).
+* Do **not** clip; the Visualiser performs clipping.
+
+---
+
+## 6) Provider Integration (Extensible)
+
+The Visualiser connects to providers via a **thin interface** that future providers can implement.
+
+### Interface (conceptual)
+
+```cpp
+class IEVSTerrainProvider {
+public:
+  virtual void Initialize(const FEcosystemDefinition& Def, UObject* Context) = 0;
+  virtual void PrepareRegion(const FBox& RegionBoundsWS) = 0;   // stream/warm around the slice area
+  virtual void UpdateFromModel(const FEcosystemDefinition& Def) = 0; // Layers/Biomes/Resources/Animals changed
+  virtual void HintSliceChanged(const FBox& NewSliceBoundsWS) {};    // optional LOD/streaming hint
+};
+```
+
+### Implementations (initial)
+
+* **LandscapeProvider** (UE Landscape)
+* **VoxelProvider** (VoxelPluginPro)
+
+### Extensibility
+
+* Provider instances are resolved via a **factory/registry** keyed by provider id (e.g., `"Landscape"`, `"Voxel"`, future ids). Only **one** provider ships in the final game build; missing providers are never loaded.
+
+---
+
+## 7) Rendering & Clipping (Fidelity‑First)
+
+* The Visualiser **clips** the scene inside a box volume in **slice space**; the terrain continues using project materials/PCG.
+* **Landscape path:** a small material function (e.g., `MF_EVS_SliceClip(WorldPosWS, SliceBoundsSliceSpace)`) gates opacity mask to discard pixels outside the slice. Rim (cut face) is rendered by Visualiser proxy geometry for a tidy edge. No terrain data is modified.
+* **Voxel path:** clip via material/SDF box predicate or equivalent; caves/overhangs appear naturally if authored by the provider world.
+* **Dithered edge** (optional) hides hard mask aliasing; user-tunable.
+
+> **Rule:** If the game would render it, the Visualiser shows it — same materials, same PCG outputs, same lighting and PP.
+
+---
+
+## 8) Hooking into the Encompassing Editor
+
+* **Mount point:** Visualiser is a tool/view hosted by Catalyst:Ecosystems.
+* **Commands/Shortcuts:** Toggle Visualiser, focus slice, reset size, toggle overlays, snapping toggles.
+* **Events listened to:**
+
+  * `OnEcosystemModelChanged(Definition)` → pass-through to provider `UpdateFromModel()`; world updates via existing bindings.
+  * `OnWorldChanged(Levels/Streaming)` → recompute availability; request `PrepareRegion()` as needed.
+* **Events raised:**
+
+  * `OnSliceChanged(SliceDefinition, BoundsWS)` (throttled during drag; final event on commit) → editor may persist bookmarks or analytics later (out of scope).
+
+---
+
+## 9) Visualiser ↔ Provider Interaction Flow
+
+1. User drags slice gizmo → Visualiser updates `SliceDefinition` and computes `SliceBoundsWS`.
+2. Visualiser calls Provider:
+
+   * `HintSliceChanged(SliceBoundsWS)` (optional)
+   * `PrepareRegion(SliceBoundsWS)` (stream/warm terrain & PCG for that area)
+3. Visualiser updates its **clip uniforms** (slice-space transform + bounds) and re-renders the slice frame.
+4. When the **ecosystem model** changes (in the editor), Visualiser calls `UpdateFromModel()`. Providers and game content react via their existing material/PCG hookups.
+
+---
+
+## 10) Packaging & Runtime
+
+* The Visualiser view (and minimal controls) are also available in the packaged game (Explorer mode).
+* Build config selects which provider is compiled (e.g., Landscape or Voxel). If Voxel isn’t included, no VPP types are referenced or loaded.
+* The Visualiser must **not** degrade runtime fidelity; it is a window into the actual world.
+
+---
+
+## 11) Performance Guardrails
+
+* Provider region prep is throttled during drag; full finalization on mouse-up.
+* Clipping shader cost is minimal (single box predicate; dither optional).
+* Avoid per-frame parameter churn; only update uniforms when slice/model changes.
+* If streaming lags, show a slim non-blocking status ribbon (optional).
+
+---
+
+## 12) Acceptance Criteria (Visualiser Only)
+
+* Moving/rotating/scaling the slice **repositions the clipped area** over the real world smoothly.
+* The view **matches in-game rendering** (materials, PCG, lighting/PP) with no substitutions.
+* Works with **LandscapeProvider** and **VoxelProvider**; future providers can plug in with no Visualiser code changes.
+* Slice transforms are **undo/redo** safe and support snapping rules (Landscape 10 m + component-edge; Voxel 1 m; angle 15°).
+* Optional overlays reflect the current **EcosystemDefinition** but do not alter rendering.
+
+---
+
+## 13) Open Design Points (tracked)
+
+* Bookmarking slice poses (out of scope now; noted for future UX).
+* Preload radius policy for providers when dragging the slice (e.g., N-meter margin).
+* Overlay visual style (heatmap ramp, contour density) — keep read-only until validated.

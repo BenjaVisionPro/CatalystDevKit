@@ -76,6 +76,15 @@ jobs:
               echo "⚠️ Commandlet returned non-zero (continuing to upload logs)."
             }
 
+      - name: Run all tests
+        run: |
+            chmod +x bin/run-tests.sh bin/run-all-tests.sh
+            ENGINE_ROOT="$ENGINE_ROOT" \
+            UPROJECT="$UPROJECT" \
+            UE_BIN="$ENGINE_ROOT/Engine/Binaries/Mac/UnrealEditor" \
+            SUITES="CF" \
+            bin/run-all-tests.sh
+
       - name: Summarize logs to console (tail)
         if: always()
         run: |
