@@ -1,0 +1,48 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+"FriendlyName": "Catalyst:__PLUGIN_NAME__",
+"Description": "This is the description on the template plugin. Update your .uplugin file.",
+	"Category": "BenjaVision",
+	"CreatedBy": "Jupiter Jones",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+    "Plugins": [
+      { "Name": "CatalystFoundation", "Enabled": true },
+    ],
+	"Modules": [
+		{
+			"Name": "__PLUGIN_NAME__",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+		},
+		{
+			"Name": "__PLUGIN_NAME__Editor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+
+		},
+        {
+            "Name": "__PLUGIN_NAME__Tests",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+        }
+	]
+}
