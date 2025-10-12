@@ -86,3 +86,6 @@ Plugins/*/Saved/
 Plugins/*/DerivedDataCache/
 
 .DS_Store
+
+# VPP
+Plugins/VoxelPlugin/
