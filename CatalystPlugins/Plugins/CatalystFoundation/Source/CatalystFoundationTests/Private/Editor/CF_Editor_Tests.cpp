@@ -21,9 +21,8 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FCF_Editor_Commandlet_ClassExists_WithoutInclud
 
 bool FCF_Editor_Commandlet_ClassExists_WithoutInclude::RunTest(const FString& Parameters)
 {
-    // Avoid a direct include/dependency: look up the UClass by name.
-    // Class name is the generated UClass for UCFGenerateModelAssetsCommandlet.
-    UClass* Cls = FindObject<UClass>(ANY_PACKAGE, TEXT("CFGenerateModelAssetsCommandlet"));
+    // Look up the class by name without relying on deprecated ANY_PACKAGE.
+    UClass* Cls = FindFirstObjectSafe<UClass>(TEXT("/Script/CatalystFoundationEditor.CFGenerateModelAssetsCommandlet"));
     TestNotNull(TEXT("CFGenerateModelAssetsCommandlet class should be registered"), Cls);
     return true;
 }
