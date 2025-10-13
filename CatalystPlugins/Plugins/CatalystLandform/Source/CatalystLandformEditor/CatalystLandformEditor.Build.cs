@@ -33,6 +33,10 @@ public class CatalystLandformEditor : ModuleRules
 			{
 				"Core",
 				"AssetDefinition",
+				"Voxel",
+				"VoxelGraph",
+				"VoxelEditor",
+
 				// ... add other public dependencies that you statically link with here ...
 			}
         );

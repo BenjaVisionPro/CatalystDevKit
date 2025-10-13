@@ -1,34 +1,35 @@
-// ============================================================================
-// CLVoxelFunctionLibrary
-// Exposes Catalyst:Landform coordinate helpers to VPP2 voxel graphs
-// ============================================================================
-
 #pragma once
 #include "CoreMinimal.h"
+#include "VoxelMinimal.h"
+#include "VoxelBuffer.h"
 #include "VoxelFunctionLibrary.h"
 #include "CLVoxelFunctionLibrary.generated.h"
 
+/**
+ * Catalyst:Landform → VPP2 adapter.
+ * No math here — purely forwards buffer calls into the geodesic coordinate system.
+ */
 UCLASS()
 class CATALYSTLANDFORM_API UCLVoxelFunctionLibrary : public UVoxelFunctionLibrary
 {
 	GENERATED_BODY()
 
 public:
-	// Thread-safe math only! No UObject/world access.
-
-	UFUNCTION(Category="Catalyst|Landform", meta=(DisplayName="CL World→STR"))
+	UFUNCTION(BlueprintPure, Category="Catalyst|Landform", meta=(DisplayName="World → STR (buffer)"))
 	static void CL_WorldToSTR(
-		FVector WorldPos,
+		const FVoxelDoubleVectorBuffer& WorldPos,
 		double CoreRadiusM,
 		double MaxHeightM,
-		double& S, double& T, double& R);
+		FVoxelDoubleBuffer& S,
+		FVoxelDoubleBuffer& T,
+		FVoxelDoubleBuffer& R);
 
-	UFUNCTION(Category="Catalyst|Landform", meta=(DisplayName="CL STR→World"))
-	static FVector CL_STRToWorld(
-		double S, double T, double R,
+	UFUNCTION(BlueprintPure, Category="Catalyst|Landform", meta=(DisplayName="STR → World (buffer)"))
+	static void CL_STRToWorld(
+		const FVoxelDoubleBuffer& S,
+		const FVoxelDoubleBuffer& T,
+		const FVoxelDoubleBuffer& R,
 		double CoreRadiusM,
-		double MaxHeightM);
-
-	UFUNCTION(Category="Catalyst|Landform", meta=(DisplayName="CL Wrap S [0,1)"))
-	static double CL_WrapS(double S);
+		double MaxHeightM,
+		FVoxelDoubleVectorBuffer& OutWorldPos);
 };

@@ -16,6 +16,7 @@
 	"Installed": false,
     "Plugins": [
       { "Name": "CatalystFoundation", "Enabled": true },
+      { "Name": "Voxel", "Enabled": true },
     ],
 	"Modules": [
 		{

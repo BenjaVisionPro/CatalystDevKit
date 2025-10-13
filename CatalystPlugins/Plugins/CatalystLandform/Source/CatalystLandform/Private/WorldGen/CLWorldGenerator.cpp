@@ -1,3 +1,2 @@
-// Intentionally empty for now — we’re header-first for perf & simplicity.
-// Keep this cpp so the module links even if we later move code out of headers.
+// Keep this TU so the module links, even if we inline most things in headers.
 #include "WorldGen/CLWorldGenerator.h"

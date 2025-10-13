@@ -36,7 +36,7 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/dcb8f76613ce49cda4e70fb602513ce4"
 		},
 		{
-			"Name": "VoxelPlugin",
+			"Name": "Voxel",
 			"Enabled": true
 		}
 	]
