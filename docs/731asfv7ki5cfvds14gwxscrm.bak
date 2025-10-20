@@ -958,12 +958,49 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T07:09:06.556693+11:00"
+						"dateAndTimeString" : "2025-10-20T07:09:11.248036+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "wNSjRur9DQCh9c+dDhmlyA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "{{gtPage:NewBarry|db=731asfxqhyhdr96k6wo9yxnzv}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-20T07:09:11.858709+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-20T07:09:11.858709+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "E7/0Rur9DQCiC+FQDhmlyA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"

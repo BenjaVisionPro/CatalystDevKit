@@ -66,14 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T07:10:52.337784+11:00"
+						"dateAndTimeString" : "2025-10-20T08:37:41.686804+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "SmMPSer9DQCifGCdDhmlyA=="
 				},
-				"code" : "chat := GtLlmChat new\r\t\tprovider: (GtOpenAIProvider new\r\t\t\t\tapi: 'sk-proj-stolFisTLQLRZh8lOrfpT3BlbkFJiafC5ftipfnrzk55Wbk0';\r\t\t\t\tmodel: 'gpt-5';\r\t\t\t\tyourself)"
+				"code" : "chat := GtLlmChat new\r\t\tprovider: (GtOpenAIProvider withApiKeyFromFile\r\t\t\t\tmodel: 'gpt-5';\r\t\t\t\tyourself)"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -100,14 +100,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T07:12:38.293606+11:00"
+						"dateAndTimeString" : "2025-10-20T07:12:41.892159+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "rHPqUur9DQCjiTm4DhmlyA=="
 				},
-				"code" : "chat sendMessage: 'Hello! Who are you?'"
+				"code" : "chat sendMessage: 'Hey new Barry! Who are you?'"
 			}
 		]
 	},
