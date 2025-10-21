@@ -66,48 +66,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T08:37:41.686804+11:00"
+						"dateAndTimeString" : "2025-10-21T16:34:16.190754+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "SmMPSer9DQCifGCdDhmlyA=="
 				},
-				"code" : "chat := GtLlmChat new\r\t\tprovider: (GtOpenAIProvider withApiKeyFromFile\r\t\t\t\tmodel: 'gpt-5';\r\t\t\t\tyourself)"
-			},
-			{
-				"__type" : "pharoSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T07:12:32.510484+11:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-10-20T07:12:41.892159+11:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "rHPqUur9DQCjiTm4DhmlyA=="
-				},
-				"code" : "chat sendMessage: 'Hey new Barry! Who are you?'"
+				"code" : "chat := BVCAIFairy default createChats"
 			}
 		]
 	},
@@ -130,12 +96,12 @@
 		"__type" : "time",
 		"time" : {
 			"__type" : "dateAndTime",
-			"dateAndTimeString" : "2025-10-20T07:08:40.004573+11:00"
+			"dateAndTimeString" : "2025-10-20T14:24:06.91746+11:00"
 		}
 	},
 	"pageType" : {
 		"__type" : "namedPage",
-		"title" : "NewBarry"
+		"title" : "OtherBarry"
 	},
 	"uid" : {
 		"__type" : "uuid",
