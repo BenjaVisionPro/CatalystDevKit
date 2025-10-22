@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "Model/CFModelAsset.h"
 #include "Model/CLStrata.h"
-#include "Model/CLStrataCache.h"
 #include "CLStrataAsset.generated.h"
 
 UCLASS(BlueprintType)
@@ -23,17 +22,11 @@ public:
 	const FCLStrata& GetStrata() const { return Strata; }
 	FCLStrata&       GetStrata()       { return Strata; }
 
-	// Helper
-	static int32 QuantizeHeight(double AltitudeN, int32 Resolution)
+	// Pure helper: copy results out (no caching here)
+	void SampleStrata(double AltitudeN, bool bNormalize, TArray<FCLStratumSample>& Out) const
 	{
-		return FCLStrataCache::QuantizeHeight(AltitudeN, Resolution);
+		Strata.Sample(AltitudeN, bNormalize, Out);
 	}
-
-	// Resolution is passed per-call. Cache stores it only to invalidate when changed.
-	TSharedPtr<const TArray<FCLStratumSample>> SampleStrataShared_Resolution(
-		int32 Resolution,
-		int32 HeightIndex,
-		bool bNormalize) const;
 
 protected:
 	virtual FString        GetPluginNameForPaths() const override { return TEXT("CatalystLandform"); }
@@ -45,7 +38,4 @@ protected:
 	virtual void NormalizePayload() override;
 	virtual bool ValidatePayload(FString& OutError) const override;
 	virtual void CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const override;
-
-private:
-	mutable FCLStrataCache Cache;
 };

@@ -33,7 +33,9 @@ public class CatalystLandformEditor : ModuleRules
 			{
 				"Core",
 				"AssetDefinition",
+				"UMG",
 				"Voxel",
+				"VoxelCore",
 				"VoxelGraph",
 				"VoxelEditor",
 

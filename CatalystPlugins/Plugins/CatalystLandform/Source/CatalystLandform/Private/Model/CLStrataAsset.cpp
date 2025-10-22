@@ -1,16 +1,9 @@
 #include "Model/CLStrataAsset.h"
 #include "Validation/CFValidationTypes.h"
 
-TSharedPtr<const TArray<FCLStratumSample>> UCLStrataAsset::SampleStrataShared_Resolution(
-	const int32 Resolution, const int32 HeightIndex, const bool bNormalize) const
-{
-	Cache.EnsureResolution(Resolution);
-	return Cache.GetOrBuild(Strata, HeightIndex, bNormalize);
-}
-
 void UCLStrataAsset::NormalizePayload()
 {
-	Cache.Invalidate();
+	// Nothing to do yet
 }
 
 bool UCLStrataAsset::ValidatePayload(FString& OutError) const
@@ -20,5 +13,5 @@ bool UCLStrataAsset::ValidatePayload(FString& OutError) const
 
 void UCLStrataAsset::CollectValidationMessages(TArray<FCFValidationMessage>& OutMessages) const
 {
-	// Optional non-fatal warnings can go here.
+	// Optional warnings could go here
 }

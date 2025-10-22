@@ -21,7 +21,10 @@
 #include "UObject/UnrealType.h"
 
 #include "Model/CLModelAsset.h"
-#include "Log/CFLog.h" // CF_* macros (no UE_LOG)
+#include "Log/CFLog.h"
+
+// NEW: register our VoxelWorld context menu entry
+#include "Voxel/EditorActions/CLVoxelWorldEditorActions.h"
 
 // ---- Optional diagnostics (compiled only in debug editor builds) ----
 #if WITH_EDITOR && UE_BUILD_DEBUG
@@ -38,6 +41,7 @@ static const FName CatalystMenuName("Catalyst.Plugins");
 static const FName CatalystEditorTabName("Catalyst:Landform");
 
 static FDelegateHandle GToolMenusStartupHandle;
+static FDelegateHandle GVoxelWorldMenuStartupHandle; // NEW
 
 #define LOCTEXT_NAMESPACE "FCLEditorModule"
 
@@ -77,6 +81,16 @@ void FCLEditorModule::StartupModule()
 	GToolMenusStartupHandle = UToolMenus::RegisterStartupCallback(
 		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FCLEditorModule::RegisterMenus));
 
+	// Register our VoxelWorld actor context menu when ToolMenus is ready
+	GVoxelWorldMenuStartupHandle = UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateLambda([]()
+		{
+			CLVoxelWorldEditorActions::RegisterMenus();
+		})
+	);
+
+	CF_CAT_LOG(LogCLLandformEditor, Display, TEXT("CatalystLandformEditor Startup"));
+
 	FCLEditorStyle::Initialize();
 	FCLEditorStyle::ReloadTextures();
 	FCLEditorCommands::Register();
@@ -89,8 +103,6 @@ void FCLEditorModule::StartupModule()
 		.SetDisplayName(LOCTEXT("CL_TabTitle_Default", "Catalyst:Landform"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
 
-	CF_CAT_LOG(LogCLLandformEditor, Display, TEXT("CatalystLandformEditor Startup"));
-
 #if WITH_EDITOR && UE_BUILD_DEBUG
 	CE_DumpCreationPath();
 #endif
@@ -98,6 +110,15 @@ void FCLEditorModule::StartupModule()
 
 void FCLEditorModule::ShutdownModule()
 {
+	// Unregister our context menu entry first
+	CLVoxelWorldEditorActions::UnregisterMenus();
+
+	if (GVoxelWorldMenuStartupHandle.IsValid())
+	{
+		UToolMenus::UnRegisterStartupCallback(GVoxelWorldMenuStartupHandle);
+		GVoxelWorldMenuStartupHandle.Reset();
+	}
+
 	if (GToolMenusStartupHandle.IsValid())
 	{
 		UToolMenus::UnRegisterStartupCallback(GToolMenusStartupHandle);
@@ -194,6 +215,7 @@ FText FCLEditorModule::GetLandformTabLabel() const
 		}
 	}
 
+	// Guarantee a return
 	return DefaultTitle;
 }
 

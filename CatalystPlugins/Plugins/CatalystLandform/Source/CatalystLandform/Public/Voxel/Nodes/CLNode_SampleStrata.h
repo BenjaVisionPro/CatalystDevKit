@@ -1,36 +1,39 @@
 #pragma once
 
-#include "CoreMinimal.h"
 #include "VoxelNode.h"
-#include "Buffer/VoxelDoubleBuffers.h"
+#include "VoxelPinType.h"
 
-#include "Voxel/CLStratumSampleBuffer.h"
-#include "Model/CLStrata.h"
-#include "Model/CLStrataAsset.h"
+// Buffer types
+#include "Buffer/VoxelIntegerBuffers.h" // FVoxelInt32Buffer
+#include "Buffer/VoxelDoubleBuffers.h"  // FVoxelDoubleBuffer
+#include "Buffer/VoxelNameBuffer.h"     // FVoxelNameBuffer
+
+#include "Model/CLStrata.h"             // FCLStratum, FCLStratumSample, UCLStrataAsset
 #include "CLNode_SampleStrata.generated.h"
 
-USTRUCT(Category="Catalyst|Strata")
-struct CATALYSTLANDFORM_API FVoxelNode_SampleStrata : public FVoxelNode
+USTRUCT()
+struct CATALYSTLANDFORM_API FVoxelNode_SampleStrata final : public FVoxelNode
 {
 	GENERATED_BODY()
 	GENERATED_VOXEL_NODE_BODY()
 
+public:
+	// ===== Inputs =====
+	// Buffer input requires a Default in this Voxel version: use nullptr
+	VOXEL_INPUT_PIN(FVoxelDoubleBuffer, AltitudeN, nullptr);
+	VOXEL_INPUT_PIN(bool,               Normalize, false);
+	// Provide Resolution (floor(WorldHeight / VoxelSize)) from the graph
+	VOXEL_INPUT_PIN(int32,              Resolution, 0);
+
+	// Asset to sample
 	UPROPERTY(EditAnywhere, Category="Catalyst|Strata")
-	TObjectPtr<UCLStrataAsset> StrataAsset = nullptr;
+	const UCLStrataAsset* StrataAsset = nullptr;
 
-	// Inputs (Altitude normalized 0..1)
-	VOXEL_INPUT_PIN(FVoxelDoubleBuffer, AltitudeN, 0.0);
-	VOXEL_INPUT_PIN(bool,               Normalize, false, AdvancedDisplay);
+	// ===== Outputs =====
+	VOXEL_OUTPUT_PIN(FVoxelInt32Buffer,  StratumIndex);
+	VOXEL_OUTPUT_PIN(FVoxelDoubleBuffer, StratumWeightN);
+	VOXEL_OUTPUT_PIN(FVoxelNameBuffer,   StratumTitle);
 
-	// Output: (StratumId, WeightN) flat list
-	VOXEL_OUTPUT_PIN(FCLStratumSampleBuffer, Samples);
-
-	virtual void Compute(FVoxelGraphQuery Query) const override;
-
-private:
-	// Replace these with your real access paths:
-	// WorldHeight from CLModelAsset->Model.VoxelWorldHeightM
-	// VoxelSize  from VoxelWorld->VoxelSize
-	static double GetWorldHeight_FromNodeContext(const FVoxelGraphQuery& Query);
-	static double GetVoxelSize_FromNodeContext(const FVoxelGraphQuery& Query);
+	// Execution
+	void Compute(const FVoxelGraphQuery Query) const;
 };

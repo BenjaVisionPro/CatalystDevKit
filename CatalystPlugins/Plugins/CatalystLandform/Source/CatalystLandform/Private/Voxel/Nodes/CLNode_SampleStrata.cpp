@@ -1,87 +1,112 @@
 #include "Voxel/Nodes/CLNode_SampleStrata.h"
 
-#include "Buffer/VoxelDoubleBuffers.h"
 #include "Model/CLStrata.h"
-#include "Model/CLStrataAsset.h"
-#include "Voxel/CLStratumSampleBuffer.h"
+#include "Model/CLStrataCache.h"
 
-// -------------------------------------------------------------
-// TODO: Wire these to your actual accessors.
-// You said: CLModelAsset->Model.VoxelWorldHeightM  and  VoxelWorld->VoxelSize
-// Replace the bodies below with those calls in your project.
-// -------------------------------------------------------------
-double FVoxelNode_SampleStrata::GetWorldHeight_FromNodeContext(const FVoxelGraphQuery& /*Query*/)
+// Buffers
+#include "Buffer/VoxelIntegerBuffers.h"
+#include "Buffer/VoxelDoubleBuffers.h"
+#include "Buffer/VoxelNameBuffer.h"
+
+void FVoxelNode_SampleStrata::Compute(const FVoxelGraphQuery Query) const
 {
-	// Example (replace with your actual lookup):
-	// return CLModelAsset->Model.VoxelWorldHeightM;
-	ensureMsgf(false, TEXT("Wire CLModelAsset->Model.VoxelWorldHeightM here."));
-	return -1.0;
-}
+	// Read inputs
+	const FVoxelDoubleBuffer& InAltN  = *AltitudeNPin.Get(Query);
+	const bool bDoNormalize           = NormalizePin.Get(Query).Get();
+	const int32 Resolution            = ResolutionPin.Get(Query).Get();
 
-double FVoxelNode_SampleStrata::GetVoxelSize_FromNodeContext(const FVoxelGraphQuery& /*Query*/)
-{
-	// Example (replace with your actual lookup):
-	// return Query.GetVoxelWorld()->VoxelSize;
-	ensureMsgf(false, TEXT("Wire VoxelWorld->VoxelSize here."));
-	return -1.0;
-}
+	// Prepare outputs
+	const TSharedRef<FVoxelInt32Buffer>  OutIndex  = MakeShared<FVoxelInt32Buffer>();
+	const TSharedRef<FVoxelDoubleBuffer> OutWeight = MakeShared<FVoxelDoubleBuffer>();
+	const TSharedRef<FVoxelNameBuffer>   OutTitle  = MakeShared<FVoxelNameBuffer>();
 
-void FVoxelNode_SampleStrata::Compute(FVoxelGraphQuery Query) const
-{
-	const FVoxelDoubleBuffer& InAltN = *AltitudeNPin.Get(Query);
-	const bool bDoNormalize          = NormalizePin.Get(Query).Get();
-
-	if (!StrataAsset || StrataAsset->Strata.Strata.Num() == 0)
+	// Guards
+	if (!StrataAsset || StrataAsset->Strata.Strata.Num() == 0 || Resolution <= 0)
 	{
-		SamplesPin.Set(Query, FCLStratumSampleBuffer());
+		StratumIndexPin.Set(Query,  OutIndex);
+		StratumWeightNPin.Set(Query, OutWeight);
+		StratumTitlePin.Set(Query,  OutTitle);
 		return;
 	}
 
-	// Derive Resolution every call from world state
-	const double WorldHeight = GetWorldHeight_FromNodeContext(Query);
-	const double VoxelSize   = GetVoxelSize_FromNodeContext(Query);
-
-	if (!(WorldHeight > 0.0 && VoxelSize > 0.0))
+	// Use the cache helper you already have
+	auto QuantizeHeight = [Resolution](double AltN) -> int32
 	{
-		// Cannot compute resolution -> safe empty result
-		SamplesPin.Set(Query, FCLStratumSampleBuffer());
-		return;
-	}
+		return FCLStrataCache::QuantizeHeight(AltN, Resolution);
+	};
 
-	const int32 Resolution = FMath::Max(1, static_cast<int32>(FMath::RoundHalfFromZero(WorldHeight / VoxelSize)));
-
-	// Pass 1: gather shared arrays & count total outputs
-	const int32 Count = InAltN.Num();
-	TArray<TSharedPtr<const TArray<FCLStratumSample>>> SharedPerSample;
-	SharedPerSample.SetNumUninitialized(Count);
-
-	int32 Total = 0;
-	for (int32 i = 0; i < Count; i++)
+	// Resolve GUID -> index in the asset
+	auto ResolveIndexFromGuid = [Asset = StrataAsset](const FGuid& Id) -> int32
 	{
-		const int32 Hi = UCLStrataAsset::QuantizeHeight(InAltN[i], Resolution);
-		const TSharedPtr<const TArray<FCLStratumSample>> Shared =
-			StrataAsset->SampleStrataShared_Resolution(Resolution, Hi, bDoNormalize);
-
-		SharedPerSample[i] = Shared;
-		Total += Shared ? Shared->Num() : 0;
-	}
-
-	// Pass 2: allocate & copy
-	FCLStratumSampleBuffer Out;
-	Out.Allocate(Total);
-
-	int32 WriteIndex = 0;
-	for (int32 i = 0; i < Count; i++)
-	{
-		if (const auto& Shared = SharedPerSample[i])
+		const TArray<FCLStratum>& Arr = Asset->Strata.Strata;
+		for (int32 i = 0; i < Arr.Num(); i++)
 		{
-			for (const FCLStratumSample& S : *Shared)
+			if (Arr[i].Id == Id)
 			{
-				Out.Set(WriteIndex++, S);
+				return i;
+			}
+		}
+		return INDEX_NONE;
+	};
+
+	// Pass 1: count entries
+	int32 Total = 0;
+	{
+		const int32 Count = InAltN.Num();
+		for (int32 i = 0; i < Count; i++)
+		{
+			const int32 H = QuantizeHeight(InAltN[i]);
+
+			// No singleton: use a local cache instance per evaluation
+			FCLStrataCache Cache;
+			if (TSharedPtr<const TArray<FCLStratumSample>> S =
+					Cache.GetOrBuild(StrataAsset->Strata, H, bDoNormalize, Resolution))
+			{
+				Total += S->Num();
+			}
+		}
+	}
+
+	OutIndex->Allocate(Total);
+	OutWeight->Allocate(Total);
+	OutTitle->Allocate(Total);
+
+	// Pass 2: fill
+	int32 WriteIndex = 0;
+	{
+		const int32 Count = InAltN.Num();
+		for (int32 i = 0; i < Count; i++)
+		{
+			const int32 H = QuantizeHeight(InAltN[i]);
+
+			FCLStrataCache Cache;
+			if (TSharedPtr<const TArray<FCLStratumSample>> S =
+					Cache.GetOrBuild(StrataAsset->Strata, H, bDoNormalize, Resolution))
+			{
+				for (const FCLStratumSample& Sample : *S)
+				{
+					const int32 Index = ResolveIndexFromGuid(Sample.StratumId);
+					if (!StrataAsset->Strata.Strata.IsValidIndex(Index))
+					{
+						continue;
+					}
+
+					OutIndex->Set(WriteIndex,  Index);
+					OutWeight->Set(WriteIndex, Sample.WeightN);
+
+					const FName TitleName(*StrataAsset->Strata.Strata[Index].Title);
+					OutTitle->Set(WriteIndex, TitleName);
+
+					++WriteIndex;
+				}
 			}
 		}
 	}
 
 	checkSlow(WriteIndex == Total);
-	SamplesPin.Set(Query, Out);
+
+	// Push outputs (buffer pins expect shared refs)
+	StratumIndexPin.Set(Query,  OutIndex);
+	StratumWeightNPin.Set(Query, OutWeight);
+	StratumTitlePin.Set(Query,  OutTitle);
 }
