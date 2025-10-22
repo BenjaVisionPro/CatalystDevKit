@@ -31,6 +31,7 @@ public class CatalystLandform : ModuleRules
 				"Core",
                 "Json",
                 "JsonUtilities",
+                "Voxel",
                 "VoxelCore",
                 "VoxelGraph",
                 "CatalystFoundation",

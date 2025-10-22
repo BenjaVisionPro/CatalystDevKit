@@ -3,71 +3,40 @@
 #include "CoreMinimal.h"
 #include "Model/CLStrata.h"
 
+// One vertical "column": discrete height -> shared immutable sample set
 struct CATALYSTLANDFORM_API FCLStrataCache
 {
-	struct FKey
+	// Mutable lets const GetOrBuild populate cache safely
+	mutable TMap<int32, TSharedPtr<const TArray<FCLStratumSample>>> ByHeight;
+
+	static FORCEINLINE int32 QuantizeHeight(const double AltitudeN, const int32 Resolution)
 	{
-		int32 HeightIndex = 0;
-		bool  bNormalize  = false;
-
-		friend bool operator==(const FKey& A, const FKey& B)
-		{
-			return A.HeightIndex == B.HeightIndex
-				&& A.bNormalize  == B.bNormalize;
-		}
-	};
-	friend FORCEINLINE uint32 GetTypeHash(const FCLStrataCache::FKey& K)
-	{
-		return HashCombine(::GetTypeHash(K.HeightIndex), ::GetTypeHash(K.bNormalize));
-	}
-
-	// Sole purpose: detect change and invalidate.
-	int32 Resolution = 0;
-
-	// (HeightIndex, bNormalize) -> shared immutable array of samples
-	TMap<FKey, TSharedPtr<const TArray<FCLStratumSample>>> ByHeight;
-
-	static FORCEINLINE int32 QuantizeHeight(const double AltitudeN, const int32 InResolution)
-	{
-		check(InResolution > 0);
 		const double X = FMath::Clamp(AltitudeN, 0.0, 1.0);
-		return FMath::Clamp(static_cast<int32>(FMath::RoundHalfFromZero(X * InResolution)), 0, InResolution);
+		return FMath::Clamp(FMath::RoundToInt(X * Resolution), 0, Resolution);
 	}
 
 	FORCEINLINE void Invalidate()
 	{
 		ByHeight.Reset();
-		Resolution = 0;
-	}
-
-	FORCEINLINE void EnsureResolution(const int32 NewResolution)
-	{
-		check(NewResolution > 0);
-		if (Resolution != NewResolution)
-		{
-			Invalidate();
-			Resolution = NewResolution;
-		}
 	}
 
 	TSharedPtr<const TArray<FCLStratumSample>> GetOrBuild(
 		const FCLStrata& Strata,
 		const int32 HeightIndex,
-		const bool bNormalize)
+		const bool bNormalize,
+		const int32 Resolution) const
 	{
-		check(Resolution > 0);
-		const FKey Key{ HeightIndex, bNormalize };
-		if (const TSharedPtr<const TArray<FCLStratumSample>>* Found = ByHeight.Find(Key))
+		if (const auto* Found = ByHeight.Find(HeightIndex))
 		{
 			return *Found;
 		}
 
 		TArray<FCLStratumSample> Built;
-		const double AltN = double(HeightIndex) / double(Resolution);
+		const double AltN = (Resolution > 0) ? double(HeightIndex) / double(Resolution) : 0.0;
 		Strata.Sample(AltN, bNormalize, Built);
 
 		TSharedPtr<TArray<FCLStratumSample>> Owned = MakeShared<TArray<FCLStratumSample>>(MoveTemp(Built));
-		TSharedPtr<const TArray<FCLStratumSample>>& Slot = ByHeight.FindOrAdd(Key);
+		TSharedPtr<const TArray<FCLStratumSample>>& Slot = ByHeight.FindOrAdd(HeightIndex);
 		if (!Slot.IsValid())
 		{
 			Slot = StaticCastSharedPtr<const TArray<FCLStratumSample>>(Owned);
