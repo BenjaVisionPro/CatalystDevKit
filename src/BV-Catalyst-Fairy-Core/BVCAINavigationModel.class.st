@@ -6,40 +6,28 @@ Class {
 
 { #category : #factory }
 BVCAINavigationModel class >> null [
-	^ GtCoderNullNavigationModel default
+	^ BVCAINullNavigationModel default
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationModel >> classesToShow [
-	<return: #Collection of: #Class>
-	^ self subclassResponsibility
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationModel >> coderDo: aBlock [
+BVCAINavigationModel >> fairyDo: aBlock [
 	self subclassResponsibility
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationModel >> hasSelectedClass [
+BVCAINavigationModel >> hasSelectedProject [
 	<return: #Boolean>
 	^ self subclassResponsibility
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationModel >> hasSelectedPackage [
+BVCAINavigationModel >> hasSelectedProjectOrSession [
 	<return: #Boolean>
-	^ self subclassResponsibility
+	^ self hasSelectedProject or: [ self hasSelectedSession ]
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationModel >> hasSelectedPackageOrClass [
-	<return: #Boolean>
-	^ self hasSelectedPackage or: [ self hasSelectedClass ]
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationModel >> hasSelectedTag [
+BVCAINavigationModel >> hasSelectedSession [
 	<return: #Boolean>
 	^ self subclassResponsibility
 ]
@@ -50,49 +38,57 @@ BVCAINavigationModel >> isNavigationModel [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationModel >> packagesToShow [
-	<return: #Collection of: #Package>
+BVCAINavigationModel >> projectsToShow [
+	<return: #Collection of: #BVCAIProject>
 	^ self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectClass: aClass [
+BVCAINavigationModel >> selectProject: aProject [
 	self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectClasses: aCollectionOfClasses [
+BVCAINavigationModel >> selectProjects: aCollectionOfProjects [
 	self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectMethod: aCompiledMethod [
+BVCAINavigationModel >> selectSession: aSession [
 	self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectMethods: aCollectionOfCompiledMethods [
+BVCAINavigationModel >> selectSessions: aCollectionOfSessions [
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
-BVCAINavigationModel >> selectPackage: aPackage [
-	self subclassResponsibility
+{ #category : #'api - accessing' }
+BVCAINavigationModel >> selectedProject [
+	<return: #Collection of: #BVCAIProject>
+	^ self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectedClassDo: aBlock [
+BVCAINavigationModel >> selectedProjectDo: aBlock [
 	self subclassResponsibility
 ]
 
-{ #category : #'api - selection' }
-BVCAINavigationModel >> selectedPackageDo: aBlock [
-	self subclassResponsibility
+{ #category : #'api - accessing' }
+BVCAINavigationModel >> selectedSession [
+	<return: #Collection of: #BVCAISession>
+	^ self subclassResponsibility
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationModel >> selectedTagDo: aBlock [
+BVCAINavigationModel >> selectedSessionDo: aBlock [
 	self subclassResponsibility
+]
+
+{ #category : #'api - accessing' }
+BVCAINavigationModel >> sessionsToShow [
+	<return: #Collection of: #BVCAISession>
+	^ self subclassResponsibility
 ]
 
 { #category : #'api - subscriptions' }

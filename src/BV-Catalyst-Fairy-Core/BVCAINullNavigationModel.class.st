@@ -7,27 +7,17 @@ Class {
 }
 
 { #category : #'api - accessing' }
-BVCAINullNavigationModel >> classesToShow [
-	^ #()
-]
-
-{ #category : #'api - accessing' }
-BVCAINullNavigationModel >> coderDo: aBlock [
+BVCAINullNavigationModel >> fairyDo: aBlock [
 	"do nothing"
 ]
 
 { #category : #'api - testing' }
-BVCAINullNavigationModel >> hasSelectedClass [
+BVCAINullNavigationModel >> hasSelectedProject [
 	^ false
 ]
 
 { #category : #'api - testing' }
-BVCAINullNavigationModel >> hasSelectedPackage [
-	^ false
-]
-
-{ #category : #'api - testing' }
-BVCAINullNavigationModel >> hasSelectedTag [
+BVCAINullNavigationModel >> hasSelectedSession [
 	^ false
 ]
 
@@ -37,51 +27,41 @@ BVCAINullNavigationModel >> isNavigationModel [
 ]
 
 { #category : #'api - accessing' }
-BVCAINullNavigationModel >> packagesToShow [
+BVCAINullNavigationModel >> projectsToShow [
 	^ #()
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectClass: aClass [
+BVCAINullNavigationModel >> selectProject: aProject [
 	"do nothing"
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectClasses: aCollectionOfClasses [
+BVCAINullNavigationModel >> selectProjects: aCollectionOfProjects [
 	"do nothing"
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectMethod: aCompiledMethod [
+BVCAINullNavigationModel >> selectSession: aSession [
 	"do nothing"
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectMethodProtocol: aMethodProtocol [
+BVCAINullNavigationModel >> selectSessions: aCollectionOfSessions [
 	"do nothing"
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectPackage: aPackage [
+BVCAINullNavigationModel >> selectedProjectDo: aBlock [
 	"do nothing"
 ]
 
 { #category : #'api - selection' }
-BVCAINullNavigationModel >> selectedClassDo: aBlock [
+BVCAINullNavigationModel >> selectedSessionDo: aBlock [
 	"do nothing"
 ]
 
-{ #category : #'as yet unclassified' }
-BVCAINullNavigationModel >> selectedPackage [
-	"Do Nothing"
-]
-
-{ #category : #'api - selection' }
-BVCAINullNavigationModel >> selectedPackageDo: aBlock [
-	"do nothing"
-]
-
-{ #category : #'api - selection' }
-BVCAINullNavigationModel >> selectedTagDo: aBlock [
-	"do nothing"
+{ #category : #'api - accessing' }
+BVCAINullNavigationModel >> sessionsToShow [
+	^ #()
 ]

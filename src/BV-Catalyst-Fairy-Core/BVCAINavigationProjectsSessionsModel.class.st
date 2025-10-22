@@ -1,5 +1,5 @@
 Class {
-	#name : #BVCAINavigationSessionsModel,
+	#name : #BVCAINavigationProjectsSessionsModel,
 	#superclass : #BVCAINavigationModel,
 	#traits : 'TGtAnnouncer',
 	#classTraits : 'TGtAnnouncer classTrait',
@@ -21,19 +21,19 @@ Class {
 }
 
 { #category : #announcer }
-BVCAINavigationSessionsModel >> announcer [
+BVCAINavigationProjectsSessionsModel >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #asserting }
-BVCAINavigationSessionsModel >> assertCoder: aCoder [
+BVCAINavigationProjectsSessionsModel >> assertCoder: aCoder [
 	self 
 		assert: [ aCoder isNotNil ]
 		description: [ 'Coder must be non-nil' ].
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> classAdded: aClassAdded [
+BVCAINavigationProjectsSessionsModel >> classAdded: aClassAdded [
 	| aSelectedPackage |
 	
 	aSelectedPackage := self selectedPackage
@@ -51,7 +51,7 @@ BVCAINavigationSessionsModel >> classAdded: aClassAdded [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> classModificationApplied: aClassModificationApplied [
+BVCAINavigationProjectsSessionsModel >> classModificationApplied: aClassModificationApplied [
 	| aSelectedPackage |
 	
 	aSelectedPackage := self selectedPackage
@@ -78,7 +78,7 @@ BVCAINavigationSessionsModel >> classModificationApplied: aClassModificationAppl
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> classRemoved: aClassRemoved [
+BVCAINavigationProjectsSessionsModel >> classRemoved: aClassRemoved [
 	| aSelectedPackage |
 
 	performingBulkChanges ifTrue: [^needsUpdate := true].
@@ -99,7 +99,7 @@ BVCAINavigationSessionsModel >> classRemoved: aClassRemoved [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> classRenamed: aClassRenamed [
+BVCAINavigationProjectsSessionsModel >> classRenamed: aClassRenamed [
 	| aSelectedPackage |
 	
 	aSelectedPackage := self selectedPackage
@@ -128,7 +128,7 @@ BVCAINavigationSessionsModel >> classRenamed: aClassRenamed [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> classReorganized: aClassReorganized [
+BVCAINavigationProjectsSessionsModel >> classReorganized: aClassReorganized [
 	self selectedClass = aClassReorganized classReorganized instanceSide
 		ifFalse: [ ^ self ].
 
@@ -138,7 +138,7 @@ BVCAINavigationSessionsModel >> classReorganized: aClassReorganized [
 ]
 
 { #category : #'api - subscriptions' }
-BVCAINavigationSessionsModel >> classRepackaged: aClassRepackaged [
+BVCAINavigationProjectsSessionsModel >> classRepackaged: aClassRepackaged [
 	(self selectedPackage = aClassRepackaged oldPackage 
 		or: [ self selectedPackage = aClassRepackaged newPackage ]) 
 			ifFalse: [ ^ self ].
@@ -151,7 +151,7 @@ BVCAINavigationSessionsModel >> classRepackaged: aClassRepackaged [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> classesToShow [
+BVCAINavigationProjectsSessionsModel >> classesToShow [
 	<return: #Collection of: #Class>
 
 	self hasSelectedPackage
@@ -163,7 +163,7 @@ BVCAINavigationSessionsModel >> classesToShow [
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> coder: aCoder [
+BVCAINavigationProjectsSessionsModel >> coder: aCoder [
 	(self setCoder: aCoder)
 		ifFalse: [ ^ self ].
 
@@ -171,17 +171,17 @@ BVCAINavigationSessionsModel >> coder: aCoder [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> coderDo: aBlock [
+BVCAINavigationProjectsSessionsModel >> coderDo: aBlock [
 	coder ifNotNil: aBlock
 ]
 
 { #category : #initialization }
-BVCAINavigationSessionsModel >> createAllProtocol: aClass [
+BVCAINavigationProjectsSessionsModel >> createAllProtocol: aClass [
 	^ GtAllProtocol ofClass: aClass
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> deselectClass [
+BVCAINavigationProjectsSessionsModel >> deselectClass [
 	"Deselect any currently selected class and other entities such as protocols, slots and methods. Deselecting a class means that the model no longer shows any methods, slots or protocols but still continues to display classes".
 
 	(self privateJustDeselectClass)
@@ -194,7 +194,7 @@ BVCAINavigationSessionsModel >> deselectClass [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> deselectMethod [
+BVCAINavigationProjectsSessionsModel >> deselectMethod [
 	"Deselect any currently selected method and notify about the changes.
 	Deselecting a method has no influence on the currently selected protocol, slot or package."
 
@@ -202,7 +202,7 @@ BVCAINavigationSessionsModel >> deselectMethod [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> deselectProtocol [
+BVCAINavigationProjectsSessionsModel >> deselectProtocol [
 	"Deselect a currently selected protocol and no longer display methods"
 	
 	(self privateJustDeselectProtocol)
@@ -213,7 +213,7 @@ BVCAINavigationSessionsModel >> deselectProtocol [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> deselectSlot [
+BVCAINavigationProjectsSessionsModel >> deselectSlot [
 	"Deselect a currently selected slot and no longer display methods"
 	
 	(self privateJustDeselectSlot)
@@ -224,7 +224,7 @@ BVCAINavigationSessionsModel >> deselectSlot [
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasPackageTagsIn: aRPackage [
+BVCAINavigationProjectsSessionsModel >> hasPackageTagsIn: aRPackage [
 	<return: #Boolean>
 	| hasTags hasExtensions |
 	hasTags := (aRPackage tags size = 1
@@ -234,43 +234,43 @@ BVCAINavigationSessionsModel >> hasPackageTagsIn: aRPackage [
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedClass [
+BVCAINavigationProjectsSessionsModel >> hasSelectedClass [
 	<return: #Boolean>
 	^ self selectedClass isNotNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedMethod [
+BVCAINavigationProjectsSessionsModel >> hasSelectedMethod [
 	<return: #Boolean>
 	^ self selectedMethod isNotNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedPackage [
+BVCAINavigationProjectsSessionsModel >> hasSelectedPackage [
 	<return: #Boolean>
 	^ self selectedPackage notNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedProtocol [
+BVCAINavigationProjectsSessionsModel >> hasSelectedProtocol [
 	<return: #Boolean>
 	^ self selectedProtocol isNotNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedSlot [
+BVCAINavigationProjectsSessionsModel >> hasSelectedSlot [
 	<return: #Boolean>
 	^ self selectedSlot isNotNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationSessionsModel >> hasSelectedTag [
+BVCAINavigationProjectsSessionsModel >> hasSelectedTag [
 	<return: #Boolean>
 	^ self selectedTag notNil
 ]
 
 { #category : #initialization }
-BVCAINavigationSessionsModel >> initialize [
+BVCAINavigationProjectsSessionsModel >> initialize [
 	super initialize.
 	needsUpdate := false.
 	performingBulkChanges := false.
@@ -278,7 +278,7 @@ BVCAINavigationSessionsModel >> initialize [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> methodChanged: aMethodAnnouncement [
+BVCAINavigationProjectsSessionsModel >> methodChanged: aMethodAnnouncement [
 	self hasSelectedClass ifFalse: [ ^ self ].
 	(self selectedClassIsAffectedBy: aMethodAnnouncement) ifFalse: [ ^ self ].
 
@@ -292,7 +292,7 @@ BVCAINavigationSessionsModel >> methodChanged: aMethodAnnouncement [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> methodRecategorized: aMethodRecategorized [
+BVCAINavigationProjectsSessionsModel >> methodRecategorized: aMethodRecategorized [
 	| theClass aPackage aTag |
 	self hasSelectedClass ifFalse: [ ^ self ].
 	(self selectedClassIsAffectedBy: aMethodRecategorized) ifFalse: [ ^ self ].
@@ -327,7 +327,7 @@ BVCAINavigationSessionsModel >> methodRecategorized: aMethodRecategorized [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> methodsToShow [
+BVCAINavigationProjectsSessionsModel >> methodsToShow [
 	| anInstanceSideClass aClassSideClass |
 	anInstanceSideClass := (self selectedClass ifNil: [ ^ #() ]) instanceSide.
 	aClassSideClass := anInstanceSideClass classSide.
@@ -345,14 +345,14 @@ BVCAINavigationSessionsModel >> methodsToShow [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyClassDeselected: aPreviouslySelectedClass [
+BVCAINavigationProjectsSessionsModel >> notifyClassDeselected: aPreviouslySelectedClass [
 	self announce: (GtCoderNavigationClassDeselected new
 		theClass: aPreviouslySelectedClass;
 		coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyClassSelected: aClass [
+BVCAINavigationProjectsSessionsModel >> notifyClassSelected: aClass [
 	self
 		announce:
 			(GtCoderNavigationClassSelected new
@@ -364,7 +364,7 @@ BVCAINavigationSessionsModel >> notifyClassSelected: aClass [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyClassSelected: aClass package: anRPackage tag: anRPackageTag [
+BVCAINavigationProjectsSessionsModel >> notifyClassSelected: aClass package: anRPackage tag: anRPackageTag [
 	self
 		announce:
 			(GtCoderNavigationClassSelected new
@@ -376,26 +376,26 @@ BVCAINavigationSessionsModel >> notifyClassSelected: aClass package: anRPackage 
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyClassesToShowChanged [
+BVCAINavigationProjectsSessionsModel >> notifyClassesToShowChanged [
 	self announce: (GtCoderNavigationClassesToShowChanged new coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyCoderChanged [
+BVCAINavigationProjectsSessionsModel >> notifyCoderChanged [
 	self announce: (GtCoderNavigationCoderChanged new coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyCoderSelected [
+BVCAINavigationProjectsSessionsModel >> notifyCoderSelected [
 	self announce: (GtCoderNavigationPackagesSelected new coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyMethodDeselected: aPreviouslySelectedMethod [ 
+BVCAINavigationProjectsSessionsModel >> notifyMethodDeselected: aPreviouslySelectedMethod [ 
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyMethodSelected: aMethod [
+BVCAINavigationProjectsSessionsModel >> notifyMethodSelected: aMethod [
 	coder withSelectedMethod: aMethod.
 	self
 		announce:
@@ -405,7 +405,7 @@ BVCAINavigationSessionsModel >> notifyMethodSelected: aMethod [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyMethodsSelected: aCollectionOfMethods [
+BVCAINavigationProjectsSessionsModel >> notifyMethodsSelected: aCollectionOfMethods [
 	coder withSelectedMethods: aCollectionOfMethods.
 	self
 		announce:
@@ -415,12 +415,12 @@ BVCAINavigationSessionsModel >> notifyMethodsSelected: aCollectionOfMethods [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyMethodsToShowChanged [
+BVCAINavigationProjectsSessionsModel >> notifyMethodsToShowChanged [
 	self announce: (GtCoderNavigationMethodsToShowChanged new coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyPackageSelected: anRPackage [
+BVCAINavigationProjectsSessionsModel >> notifyPackageSelected: anRPackage [
 	self
 		announce:
 			(GtCoderNavigationPackageSelected new
@@ -429,7 +429,7 @@ BVCAINavigationSessionsModel >> notifyPackageSelected: anRPackage [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyPackageSelected: anRPackage tag: anRPackageTag [
+BVCAINavigationProjectsSessionsModel >> notifyPackageSelected: anRPackage tag: anRPackageTag [
 	self
 		announce:
 			(GtCoderNavigationPackageTagSelected new
@@ -439,7 +439,7 @@ BVCAINavigationSessionsModel >> notifyPackageSelected: anRPackage tag: anRPackag
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyProtocolDeselected: aGtPharoProtocol [
+BVCAINavigationProjectsSessionsModel >> notifyProtocolDeselected: aGtPharoProtocol [
 	self
 		announce:
 			(GtCoderNavigationProtocolDeselected new
@@ -448,7 +448,7 @@ BVCAINavigationSessionsModel >> notifyProtocolDeselected: aGtPharoProtocol [
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyProtocolSelected: aGtPharoProtocol source: aSource [
+BVCAINavigationProjectsSessionsModel >> notifyProtocolSelected: aGtPharoProtocol source: aSource [
 	self
 		announce:
 			(GtCoderNavigationProtocolSelected new
@@ -459,37 +459,37 @@ BVCAINavigationSessionsModel >> notifyProtocolSelected: aGtPharoProtocol source:
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifyProtocolsToShowChanged [
+BVCAINavigationProjectsSessionsModel >> notifyProtocolsToShowChanged [
 	self announce: (GtCoderNavigationProtocolsToShowChanged new coder: coder)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifySlotDeselected: aPreviouslySelectedProtocol [ 
+BVCAINavigationProjectsSessionsModel >> notifySlotDeselected: aPreviouslySelectedProtocol [ 
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifySlotSelected: aSlot source: aSource [
+BVCAINavigationProjectsSessionsModel >> notifySlotSelected: aSlot source: aSource [
 	coder withSlot: aSlot source: aSource
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationSessionsModel >> notifySlotsToShowChanged [
+BVCAINavigationProjectsSessionsModel >> notifySlotsToShowChanged [
 	self announce: (GtCoderNavigationSlotsToShowChanged new coder: coder)
 ]
 
 { #category : #'api - subscriptions' }
-BVCAINavigationSessionsModel >> onAboutToPerformBulkChanges: anAnnouncement [
+BVCAINavigationProjectsSessionsModel >> onAboutToPerformBulkChanges: anAnnouncement [
 	performingBulkChanges := true.
 	needsUpdate := false
 ]
 
 { #category : #'private - announcement handling' }
-BVCAINavigationSessionsModel >> onCoderAnnouncement: anAnnouncement [
+BVCAINavigationProjectsSessionsModel >> onCoderAnnouncement: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
 { #category : #'api - subscriptions' }
-BVCAINavigationSessionsModel >> onFinishedBulkChanges: anAnnouncement [
+BVCAINavigationProjectsSessionsModel >> onFinishedBulkChanges: anAnnouncement [
 	performingBulkChanges := false.
 	needsUpdate ifFalse: [ ^ self ].
 
@@ -503,7 +503,7 @@ BVCAINavigationSessionsModel >> onFinishedBulkChanges: anAnnouncement [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageRegistered: aRPackageRegistered [
+BVCAINavigationProjectsSessionsModel >> packageRegistered: aRPackageRegistered [
 	(self packagesToShow includes: aRPackageRegistered package) ifFalse: [ ^ self ].
 	
 	self announcer announce: (GtCoderNavigationPackageRegistered new 
@@ -512,7 +512,7 @@ BVCAINavigationSessionsModel >> packageRegistered: aRPackageRegistered [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageRenamed: aRPackageRenamed [
+BVCAINavigationProjectsSessionsModel >> packageRenamed: aRPackageRenamed [
 	(self packagesToShow includes: aRPackageRenamed package) ifFalse: [ ^ self ].
 	self announcer announce: (GtCoderNavigationPackageRenamed new 
 		coder: coder;
@@ -522,7 +522,7 @@ BVCAINavigationSessionsModel >> packageRenamed: aRPackageRenamed [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageTagAdded: aClassTagAdded [
+BVCAINavigationProjectsSessionsModel >> packageTagAdded: aClassTagAdded [
 	(self packagesToShow includes: aClassTagAdded package) ifFalse: [ ^ self ].
 	self announcer announce: (GtCoderNavigationPackageTagAdded new 
 		coder: coder;
@@ -531,7 +531,7 @@ BVCAINavigationSessionsModel >> packageTagAdded: aClassTagAdded [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageTagRemoved: aClassTagRemoved [
+BVCAINavigationProjectsSessionsModel >> packageTagRemoved: aClassTagRemoved [
 	(self packagesToShow includes: aClassTagRemoved package) ifFalse: [ ^ self ].
 	self announcer announce: (GtCoderNavigationPackageTagRemoved new 
 		coder: coder;
@@ -540,7 +540,7 @@ BVCAINavigationSessionsModel >> packageTagRemoved: aClassTagRemoved [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageTagRenamed: aClassTagRenamed [
+BVCAINavigationProjectsSessionsModel >> packageTagRenamed: aClassTagRenamed [
 	(self packagesToShow includes: aClassTagRenamed package) ifFalse: [ ^ self ].
 	self announcer
 		announce: (GtCoderNavigationPackageTagRenamed new
@@ -551,21 +551,21 @@ BVCAINavigationSessionsModel >> packageTagRenamed: aClassTagRenamed [
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> packageUnregistered: aRPackageUnregistered [
+BVCAINavigationProjectsSessionsModel >> packageUnregistered: aRPackageUnregistered [
 	self announcer announce: (GtCoderNavigationPackageUnregistered new 
 		coder: coder;
 		package: aRPackageUnregistered package)
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> packagesToShow [
+BVCAINavigationProjectsSessionsModel >> packagesToShow [
 	<return: #Collection of: #Package>
 
 	^ self packageOrganizer gtSortedPackages
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateAllClassSlotsOf: aBehavior [
+BVCAINavigationProjectsSessionsModel >> privateAllClassSlotsOf: aBehavior [
 	| allSlots |
 	
 	allSlots := OrderedCollection new.
@@ -579,7 +579,7 @@ BVCAINavigationSessionsModel >> privateAllClassSlotsOf: aBehavior [
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateAllClassVariablesOf: aBehavior [
+BVCAINavigationProjectsSessionsModel >> privateAllClassVariablesOf: aBehavior [
 	^ Array streamContents: [ :aStream |
 		aBehavior withAllSuperclassesDo: [ :eachClass |
 			eachClass ~= Object
@@ -587,7 +587,7 @@ BVCAINavigationSessionsModel >> privateAllClassVariablesOf: aBehavior [
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateAllSlotsOf: aBehavior [
+BVCAINavigationProjectsSessionsModel >> privateAllSlotsOf: aBehavior [
 	| allSlots |
 	
 	allSlots := OrderedCollection new.
@@ -601,7 +601,7 @@ BVCAINavigationSessionsModel >> privateAllSlotsOf: aBehavior [
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateClassesInPackage: aPackage [
+BVCAINavigationProjectsSessionsModel >> privateClassesInPackage: aPackage [
 	| allClasses |
 	allClasses := aPackage definedClasses asSet.
 	aPackage extendedClasses do: [ :eachClass |
@@ -610,7 +610,7 @@ BVCAINavigationSessionsModel >> privateClassesInPackage: aPackage [
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateClassesInPackageTag: aPackageTag [
+BVCAINavigationProjectsSessionsModel >> privateClassesInPackageTag: aPackageTag [
 	aPackageTag = (GtCoderPackageExtensionTag forPackage: aPackageTag package)
 		ifTrue: [
 			^ (aPackageTag package extendedClasses
@@ -621,7 +621,7 @@ BVCAINavigationSessionsModel >> privateClassesInPackageTag: aPackageTag [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustDeselectClass [
+BVCAINavigationProjectsSessionsModel >> privateJustDeselectClass [
 	"Just deselect any currently selected class and notify about the changes/
 	Return true if there was a class to deselect"
 	<return: #Boolean>
@@ -636,7 +636,7 @@ BVCAINavigationSessionsModel >> privateJustDeselectClass [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustDeselectMethod [
+BVCAINavigationProjectsSessionsModel >> privateJustDeselectMethod [
 	"Just deselect any currently selected method and notify about the changes.
 	Return true if there was a method to deselect"
 	<return: #Boolean>
@@ -651,7 +651,7 @@ BVCAINavigationSessionsModel >> privateJustDeselectMethod [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustDeselectProtocol [
+BVCAINavigationProjectsSessionsModel >> privateJustDeselectProtocol [
 	"Just deselect any currently selected protocol and notify about the changes.
 	Return true if there was a protocol to deselect"
 	<return: #Boolean>
@@ -665,7 +665,7 @@ BVCAINavigationSessionsModel >> privateJustDeselectProtocol [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustDeselectSlot [
+BVCAINavigationProjectsSessionsModel >> privateJustDeselectSlot [
 	"Just deselect any currently selected slot and notify about the changes.
 	Return true if there was a slot to deselect"
 	<return: #Boolean>
@@ -679,7 +679,7 @@ BVCAINavigationSessionsModel >> privateJustDeselectSlot [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustSelectClass: aClass outOfClasses: aCollectionOfClasses [
+BVCAINavigationProjectsSessionsModel >> privateJustSelectClass: aClass outOfClasses: aCollectionOfClasses [
 	"Just select a class and its corresponding package or tag and notify about the changes"
 	| aPackageToSelect aTagToSelect shouldSelectTag |
 	<return: #Boolean>
@@ -741,7 +741,7 @@ BVCAINavigationSessionsModel >> privateJustSelectClass: aClass outOfClasses: aCo
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustSelectPackage: aPackage [
+BVCAINavigationProjectsSessionsModel >> privateJustSelectPackage: aPackage [
 	"Just select a class a notify about the changes"
 
 	selectedPackage = aPackage
@@ -754,7 +754,7 @@ BVCAINavigationSessionsModel >> privateJustSelectPackage: aPackage [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustSelectPackage: aPackage tag: aTag [
+BVCAINavigationProjectsSessionsModel >> privateJustSelectPackage: aPackage tag: aTag [
 	"Just select a package and a tag a notify about the changes"
 
 	(selectedPackage = aPackage and: [ selectedTag = aTag ])
@@ -767,7 +767,7 @@ BVCAINavigationSessionsModel >> privateJustSelectPackage: aPackage tag: aTag [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustSelectProtocol: aGtPharoProtocol source: aSourceObject [
+BVCAINavigationProjectsSessionsModel >> privateJustSelectProtocol: aGtPharoProtocol source: aSourceObject [
 	"Just select a protocol a notify about the changes"
 
 	selectedProtocol = aGtPharoProtocol
@@ -779,7 +779,7 @@ BVCAINavigationSessionsModel >> privateJustSelectProtocol: aGtPharoProtocol sour
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateJustSelectSlot: aSlot source: aSourceObject [
+BVCAINavigationProjectsSessionsModel >> privateJustSelectSlot: aSlot source: aSourceObject [
 	"Just select a slot a notify about the changes"
 	self
 		assert: [ aSlot isNotNil ]
@@ -794,7 +794,7 @@ BVCAINavigationSessionsModel >> privateJustSelectSlot: aSlot source: aSourceObje
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> privateProtocolOfMethod: aCompiledMethod [
+BVCAINavigationProjectsSessionsModel >> privateProtocolOfMethod: aCompiledMethod [
 	| currentProtocol |
 	currentProtocol := aCompiledMethod methodClass
 		protocolNamed: aCompiledMethod protocol
@@ -807,7 +807,7 @@ BVCAINavigationSessionsModel >> privateProtocolOfMethod: aCompiledMethod [
 ]
 
 { #category : #'private - selection' }
-BVCAINavigationSessionsModel >> privateSelectDefaultProtocolOfClass: aClass [
+BVCAINavigationProjectsSessionsModel >> privateSelectDefaultProtocolOfClass: aClass [
 	| aProtocolToSelect thisPackageExtensionProtocol aDefaultProtocol |
 	thisPackageExtensionProtocol := self selectedPackage 
 		ifNotNil: [ :aPackage | 
@@ -834,7 +834,7 @@ BVCAINavigationSessionsModel >> privateSelectDefaultProtocolOfClass: aClass [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> protocolsToShow [
+BVCAINavigationProjectsSessionsModel >> protocolsToShow [
 	<return: #Collection of: #GtPharoProtocol>
 	| currentClass classProtocols methodProtocols extension allProtocol |
 	self hasSelectedClass ifFalse: [ ^ #() ].
@@ -873,7 +873,7 @@ BVCAINavigationSessionsModel >> protocolsToShow [
 ]
 
 { #category : #'api - refactorings' }
-BVCAINavigationSessionsModel >> renameProtocol: aPharoProtocol to: aNewName [
+BVCAINavigationProjectsSessionsModel >> renameProtocol: aPharoProtocol to: aNewName [
 	| refactoring |
 
 	refactoring := GtRBRenameProtocolRefactoring
@@ -888,28 +888,28 @@ BVCAINavigationSessionsModel >> renameProtocol: aPharoProtocol to: aNewName [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectClass: aClass [
+BVCAINavigationProjectsSessionsModel >> selectClass: aClass [
 	self
 		selectClass: aClass
 		withCoder: [ GtPharoBehaviorCoder forClass: aClass ]
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectClass: aClass withCoder: aBlockThatCreatesCoder [
+BVCAINavigationProjectsSessionsModel >> selectClass: aClass withCoder: aBlockThatCreatesCoder [
 	"Do nothing if a class is already selected"
 
 	self selectClasses: {aClass} withCoder: aBlockThatCreatesCoder
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectClasses: aCollectionOfClasses [
+BVCAINavigationProjectsSessionsModel >> selectClasses: aCollectionOfClasses [
 	self
 		selectClasses: aCollectionOfClasses
 		withCoder: [ GtPharoBehaviorCoder forClass: aCollectionOfClasses first ]
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectClasses: aCollectionOfClasses withCoder: aBlockThatCreatesCoder [
+BVCAINavigationProjectsSessionsModel >> selectClasses: aCollectionOfClasses withCoder: aBlockThatCreatesCoder [
 	"Do nothing if a class is already selected"
 
 	| aClass |
@@ -936,7 +936,7 @@ BVCAINavigationSessionsModel >> selectClasses: aCollectionOfClasses withCoder: a
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectCoder: aCoder [
+BVCAINavigationProjectsSessionsModel >> selectCoder: aCoder [
 	aCoder isForPackage
 		ifTrue: [ (coder isForPackage and: [ aCoder package = coder package ])
 				ifTrue: [ ^ self ].
@@ -967,7 +967,7 @@ BVCAINavigationSessionsModel >> selectCoder: aCoder [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectMethod: aMethod [
+BVCAINavigationProjectsSessionsModel >> selectMethod: aMethod [
 	self selectClass: aMethod methodClass instanceSide.
 
 	selectedMethod := aMethod.
@@ -975,7 +975,7 @@ BVCAINavigationSessionsModel >> selectMethod: aMethod [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectMethods: aCollectionOfMethods [
+BVCAINavigationProjectsSessionsModel >> selectMethods: aCollectionOfMethods [
 	aCollectionOfMethods ifEmpty: [ ^ self ].
 	aCollectionOfMethods size = 1 ifTrue: [
 		self selectMethod: aCollectionOfMethods anyOne.
@@ -989,7 +989,7 @@ BVCAINavigationSessionsModel >> selectMethods: aCollectionOfMethods [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectPackage: anRPackage [
+BVCAINavigationProjectsSessionsModel >> selectPackage: anRPackage [
 	| aCoder |
 
 	(self showPackage: anRPackage)
@@ -1012,7 +1012,7 @@ BVCAINavigationSessionsModel >> selectPackage: anRPackage [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectPackageTag: aRPackageTag [
+BVCAINavigationProjectsSessionsModel >> selectPackageTag: aRPackageTag [
 	| packageCoder aCoder |
 
 	aRPackageTag
@@ -1044,7 +1044,7 @@ BVCAINavigationSessionsModel >> selectPackageTag: aRPackageTag [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectProtocol: aPharoProtocol [
+BVCAINavigationProjectsSessionsModel >> selectProtocol: aPharoProtocol [
 	self
 		assert: [ aPharoProtocol isNotNil ]
 		description: [ 'Protocol must not be nil' ].
@@ -1053,7 +1053,7 @@ BVCAINavigationSessionsModel >> selectProtocol: aPharoProtocol [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectProtocol: aPharoProtocol source: aSource [
+BVCAINavigationProjectsSessionsModel >> selectProtocol: aPharoProtocol source: aSource [
 	self
 		privateJustSelectClass: aPharoProtocol protocolClass instanceSide
 		outOfClasses: { aPharoProtocol protocolClass instanceSide }.
@@ -1066,14 +1066,14 @@ BVCAINavigationSessionsModel >> selectProtocol: aPharoProtocol source: aSource [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectSlot: aSlot [
+BVCAINavigationProjectsSessionsModel >> selectSlot: aSlot [
 	self
 		selectSlot: aSlot
 		source: self
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> selectSlot: aSlot source: aSource [
+BVCAINavigationProjectsSessionsModel >> selectSlot: aSlot source: aSource [
 	(self privateJustSelectSlot: aSlot source: aSource)
 		ifFalse: [ ^ self ].
 
@@ -1083,18 +1083,18 @@ BVCAINavigationSessionsModel >> selectSlot: aSlot source: aSource [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedClass [
+BVCAINavigationProjectsSessionsModel >> selectedClass [
 	<return: #Class>
 	^ selectedClass
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedClassDo: aBlock [
+BVCAINavigationProjectsSessionsModel >> selectedClassDo: aBlock [
 	self selectedClass ifNotNil: aBlock
 ]
 
 { #category : #'event handling' }
-BVCAINavigationSessionsModel >> selectedClassIsAffectedBy: aSystemAnnouncement [
+BVCAINavigationProjectsSessionsModel >> selectedClassIsAffectedBy: aSystemAnnouncement [
 	| isClassSideAffected isInstanceSideAffected |
 	isInstanceSideAffected := selectedClass instanceSide
 			includesMethodsAffectedBy: aSystemAnnouncement.
@@ -1105,61 +1105,61 @@ BVCAINavigationSessionsModel >> selectedClassIsAffectedBy: aSystemAnnouncement [
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedClasses [
+BVCAINavigationProjectsSessionsModel >> selectedClasses [
 	<return: #Collection of: #Class>
 	^ selectedClasses ifNil: [ #() ]
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedMethod [
+BVCAINavigationProjectsSessionsModel >> selectedMethod [
 	<return: #CompiledMethod>
 
 	^ selectedMethod
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedMethods [
+BVCAINavigationProjectsSessionsModel >> selectedMethods [
 	<return: #Collection of: #CompiledMethod>
 
 	^ selectedMethods ifNil: [ #() ]
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedPackage [
+BVCAINavigationProjectsSessionsModel >> selectedPackage [
 	<return: #Package>
 	^ selectedPackage
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedPackageDo: aBlock [
+BVCAINavigationProjectsSessionsModel >> selectedPackageDo: aBlock [
 	self selectedPackage ifNotNil: aBlock
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedProtocol [
+BVCAINavigationProjectsSessionsModel >> selectedProtocol [
 	<return: #GtPharoProtocol>
 
 	^ selectedProtocol
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedSlot [
+BVCAINavigationProjectsSessionsModel >> selectedSlot [
 	^ selectedSlot
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedTag [
+BVCAINavigationProjectsSessionsModel >> selectedTag [
 	<return: #PackageTag>
 	^ selectedTag
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> selectedTagDo: aBlock [
+BVCAINavigationProjectsSessionsModel >> selectedTagDo: aBlock [
 	self selectedTag ifNotNil: aBlock
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationSessionsModel >> setCoder: aCoder [
+BVCAINavigationProjectsSessionsModel >> setCoder: aCoder [
 	coder == aCoder
 		ifTrue: [ ^ false ].
 	coder ifNotNil: [ :oldCoder | 
@@ -1177,12 +1177,12 @@ BVCAINavigationSessionsModel >> setCoder: aCoder [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationSessionsModel >> showPackage: anRPackage [
+BVCAINavigationProjectsSessionsModel >> showPackage: anRPackage [
 	^ true
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationSessionsModel >> slotsToShow [
+BVCAINavigationProjectsSessionsModel >> slotsToShow [
 	<return: #Collection of: #GtPharoProtocol>
 	| currentClass instanceSideSlots classSideSlots classVars |
 
@@ -1199,32 +1199,18 @@ BVCAINavigationSessionsModel >> slotsToShow [
 ]
 
 { #category : #'api - subscriptions' }
-BVCAINavigationSessionsModel >> subscribeToSystem [
+BVCAINavigationProjectsSessionsModel >> subscribeToSystem [
+	"Allow subscription to system announcements. Kept from Coder since it's a great idea even though I don't think this will need any system announcements.
+	
 	SystemAnnouncer uniqueInstance weak
 		when: RPackageRegistered send: #packageRegistered: to: self;
 		when: RPackageUnregistered send: #packageUnregistered: to: self;
 		when: RPackageRenamed send: #packageRenamed: to: self;
 		when: ClassTagRenamed send: #packageTagRenamed: to: self;
-		when: ClassTagAdded send: #packageTagAdded: to: self;
-		when: ClassTagRemoved send: #packageTagRemoved: to: self;
-		when: ClassAdded send: #classAdded: to: self;
-		when: ClassRepackaged send: #classRepackaged: to: self;
-		when: ClassRenamed send: #classRenamed: to: self;
-		when: ClassRemoved send: #classRemoved: to: self;
-		when: ClassModificationApplied send: #classModificationApplied: to: self;
-		when: ClassReorganized send: #classReorganized: to: self;
-		when: MethodAdded send: #methodChanged: to: self;
-		when: MethodRemoved send: #methodChanged: to: self;
-		when: MethodRecategorized send: #methodRecategorized: to: self;
-		when: GtAboutToPerformBulkChangesAnnouncement
-			send: #onAboutToPerformBulkChanges:
-			to: self;
-		when: GtFinishedBulkChangesAnnouncement
-			send: #onFinishedBulkChanges:
-			to: self
+		when: ClassTagAdded send: #packageTagAdded: to: self"
 ]
 
 { #category : #'api - subscriptions' }
-BVCAINavigationSessionsModel >> unsubscribeFromSystem [
+BVCAINavigationProjectsSessionsModel >> unsubscribeFromSystem [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
