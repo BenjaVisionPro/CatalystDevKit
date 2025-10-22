@@ -10,19 +10,19 @@ Class {
 }
 
 { #category : #'private - asserting' }
-BVCAIAbstractElement >> assertNavigationModel: aGtCoderNavigationModel [
+BVCAIAbstractElement >> assertNavigationModel: aBVCAINavigationModel [
 	self 
-		assert: [ aGtCoderNavigationModel isNotNil ] 
+		assert: [ aBVCAINavigationModel isNotNil ] 
 		description: [ 'Navigation model must be non-nil' ].
 	self 
-		assert: [ aGtCoderNavigationModel ~= GtCoderNavigationModel null ] 
-		description: [ 'Navigation model must be different from ', GtCoderNavigationModel null className ].
+		assert: [ aBVCAINavigationModel ~= BVCAINavigationModel null ] 
+		description: [ 'Navigation model must be different from ', BVCAINavigationModel null className ].
 	
 ]
 
 { #category : #defaults }
 BVCAIAbstractElement >> defaultNavigationModel [
-	^ GtCoderNavigationModel null
+	^ BVCAINavigationModel null
 ]
 
 { #category : #initialization }
