@@ -74,6 +74,74 @@
 					"uidString" : "SmMPSer9DQCifGCdDhmlyA=="
 				},
 				"code" : "chat := BVCAIFairy default createChat"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-22T10:29:04.095651+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-22T10:29:11.130977+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "z4NuTRX+DQCAX2JrAy7kXw=="
+				},
+				"code" : "BVCAISession new"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-22T07:48:46.997684+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-10-22T07:50:06.893338+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kz41EBP+DQC/03DRAy7kXw=="
+				},
+				"code" : "chat assistant"
 			}
 		]
 	},
