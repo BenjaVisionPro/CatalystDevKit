@@ -50,15 +50,15 @@ BVCAIAbstractElement >> initializeListeners [
 
 { #category : #'api - accessing' }
 BVCAIAbstractElement >> navigationModel [
-	<return: #GtCoderNavigationModel>
+	<return: #BVCAINavigationModel>
 	^ navigationModel
 ]
 
 { #category : #'api - accessing' }
-BVCAIAbstractElement >> navigationModel: aGtCoderNavigationModel [
-	navigationModel = aGtCoderNavigationModel ifTrue: [  ^ self ].
+BVCAIAbstractElement >> navigationModel: aBVCAINavigationModel [
+	navigationModel = aBVCAINavigationModel ifTrue: [  ^ self ].
 	self unsubscribeFromNavigationModel.
-	navigationModel := aGtCoderNavigationModel.
+	navigationModel := aBVCAINavigationModel.
 	self subscribeToNavigationModel.
 	self onNavigationModelChanged.
 ]
