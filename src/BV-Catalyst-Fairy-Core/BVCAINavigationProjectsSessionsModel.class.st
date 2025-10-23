@@ -219,6 +219,37 @@ BVCAINavigationProjectsSessionsModel >> privateSessionsInProject: aProject [
 	^ aProject sessions asArray
 ]
 
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> projectAdded: aProjectAdded [
+	
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+	
+	self notifyProjectsToShowChanged
+]
+
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> projectRemoved: aProjectRemoved [
+
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+	
+	self notifyProjectsToShowChanged
+]
+
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> projectRenamed: aProjectRenamed [
+
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+
+	self notifyProjectsToShowChanged.
+	
+	"we should still emit it, because other stuff might listen to it to update the label"
+	self announcer announce: (GtCoderNavigationClassRenamed new 
+		fairy: fairy;
+		project: aProjectRenamed projectRenamed;
+		oldName: aProjectRenamed oldName;
+		newName: aProjectRenamed newName)
+]
+
 { #category : #'api - accessing' }
 BVCAINavigationProjectsSessionsModel >> projectsToShow [
 	<return: #Collection of: #BVCAIProject>
@@ -247,80 +278,23 @@ BVCAINavigationProjectsSessionsModel >> selectFairy: aFairy [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> selectPackage: anRPackage [
-	| aCoder |
+BVCAINavigationProjectsSessionsModel >> selectProject: aProject [
+	| aFairy |
 
-	(self showPackage: anRPackage)
+	(self showProject: aProject)
 		ifFalse: [ ^ self ].
 
-	(coder isForPackage and: [ selectedPackage = anRPackage ])
+	(fairy isForProject and: [ selectedProject = aProject ])
 		ifTrue: [ ^ self ].
 
-	selectedPackage := anRPackage.
-	selectedTag := nil.
-	aCoder := coder isForPackageTag
-			ifTrue: [ coder packageCoder ]
-			ifFalse: [ GtPharoPackageCoder forPackage: anRPackage ].
-	self coder: aCoder.
+	selectedProject := aProject.
+	aFairy :=  GtPharoPackageCoder forProject: aProject .
+	self fairy: aFairy.
 
-	self deselectClass.
-	self notifyClassesToShowChanged.
+	self deselectSession.
+	self notifySessionsToShowChanged.
 
-	self notifyPackageSelected: anRPackage
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> selectPackageTag: aRPackageTag [
-	| packageCoder aCoder |
-
-	aRPackageTag
-		ifNil: [ ^ self ].
-
-	(self showPackage: aRPackageTag package)
-		ifFalse: [ ^ self ].
-
-	(coder isForPackageTag
-		and: [ selectedPackage = aRPackageTag package and: [ selectedTag = aRPackageTag ] ])
-		ifTrue: [ ^ self ].
-
-	packageCoder := ((coder isForPackage
-			and: [ selectedPackage = aRPackageTag package ]) ifTrue: [ coder ])
-			ifNil: [ selectedPackage := aRPackageTag package.
-				GtPharoPackageCoder forPackage: aRPackageTag package ].
-	aCoder := packageCoder packageTagCoderFor: aRPackageTag.
-	self coder: aCoder.
-	
-	selectedPackage := aRPackageTag package.
-	selectedTag := aRPackageTag.
-	
-	self deselectClass.
-	self notifyClassesToShowChanged.
-
-	self
-		notifyPackageSelected: aRPackageTag package
-		tag: aRPackageTag
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> selectProtocol: aPharoProtocol [
-	self
-		assert: [ aPharoProtocol isNotNil ]
-		description: [ 'Protocol must not be nil' ].
-
-	self selectProtocol: aPharoProtocol source: nil
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> selectProtocol: aPharoProtocol source: aSource [
-	self
-		privateJustSelectClass: aPharoProtocol protocolClass instanceSide
-		outOfClasses: { aPharoProtocol protocolClass instanceSide }.
-
-	(self privateJustSelectProtocol: aPharoProtocol source: aSource)
-		ifFalse: [ ^ self ].
-
-	self privateJustDeselectSlot.
-	self notifyMethodsToShowChanged
+	self notifyProjectSelected: aProject
 ]
 
 { #category : #'api - selection' }
@@ -368,27 +342,14 @@ BVCAINavigationProjectsSessionsModel >> selectSessions: aCollectionOfSessions wi
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedPackage [
-	<return: #Package>
-	^ selectedPackage
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedPackageDo: aBlock [
-	self selectedPackage ifNotNil: aBlock
-]
-
-{ #category : #'api - accessing' }
 BVCAINavigationProjectsSessionsModel >> selectedProject [
-	<return: #BVCAIProject>
+	<return: #BVCAUProject>
 	^ selectedProject
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedProtocol [
-	<return: #GtPharoProtocol>
-
-	^ selectedProtocol
+BVCAINavigationProjectsSessionsModel >> selectedProjectDo: aBlock [
+	self selectedProject ifNotNil: aBlock
 ]
 
 { #category : #'api - accessing' }
@@ -413,22 +374,6 @@ BVCAINavigationProjectsSessionsModel >> selectedSessionIsAffectedBy: aSystemAnno
 BVCAINavigationProjectsSessionsModel >> selectedSessions [
 	<return: #Collection of: #BVCAISession>
 	^ selectedSessions ifNil: [ #() ]
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedSlot [
-	^ selectedSlot
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedTag [
-	<return: #PackageTag>
-	^ selectedTag
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> selectedTagDo: aBlock [
-	self selectedTag ifNotNil: aBlock
 ]
 
 { #category : #'event handling' }
