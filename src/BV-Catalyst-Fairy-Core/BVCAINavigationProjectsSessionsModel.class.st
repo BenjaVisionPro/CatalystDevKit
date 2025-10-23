@@ -6,6 +6,9 @@ Class {
 	#instVars : [
 		'announcer',
 		'coder',
+		'fairy',
+		'selectedProject',
+		'selectedSession',
 		'selectedPackage',
 		'selectedTag',
 		'selectedProtocol',
@@ -26,247 +29,52 @@ BVCAINavigationProjectsSessionsModel >> announcer [
 ]
 
 { #category : #asserting }
-BVCAINavigationProjectsSessionsModel >> assertCoder: aCoder [
+BVCAINavigationProjectsSessionsModel >> assertFairy: aFairy [
 	self 
-		assert: [ aCoder isNotNil ]
-		description: [ 'Coder must be non-nil' ].
+		assert: [ aFairy isNotNil ]
+		description: [ 'Fairy must be non-nil' ].
 ]
 
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> classAdded: aClassAdded [
-	| aSelectedPackage |
-	
-	aSelectedPackage := self selectedPackage
-		ifNil: [ self selectedTag ifNotNil: [ :aTag | aTag package ] ].
-	
-	aSelectedPackage
-		ifNil: [ ^ self ]
-		ifNotNil: [ :aPackage |
-			(aPackage includesClassesAffectedBy: aClassAdded)
-				ifFalse: [ ^ self ] ].
+{ #category : #'api - selection' }
+BVCAINavigationProjectsSessionsModel >> deselectProject [
+	"Deselect anything downstream"
 
-	performingBulkChanges ifTrue: [^needsUpdate := true].
+	self privateJustDeselectProject ifFalse: [ ^ self ].
 	
-	self notifyClassesToShowChanged
+	self deselectSession.
+	self notifySessionsToShowChanged
 ]
 
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> classModificationApplied: aClassModificationApplied [
-	| aSelectedPackage |
-	
-	aSelectedPackage := self selectedPackage
-		ifNil: [ self selectedTag ifNotNil: [ :aTag | aTag package ] ].
-	
-	aSelectedPackage
-		ifNil: [ ^ self ]
-		ifNotNil: [ :aPackage |
-			(aPackage includesClassesAffectedBy: aClassModificationApplied)
-				ifFalse: [ ^ self ] ].
+{ #category : #'api - selection' }
+BVCAINavigationProjectsSessionsModel >> deselectSession [
+	"Deselect anything downstream"
 
-	performingBulkChanges ifTrue: [^needsUpdate := true].
-
-	self notifyClassesToShowChanged.
-	self notifySlotsToShowChanged.
-
-	self announcer announce: (GtCoderNavigationClassModified new 
-		coder: coder;
-		package: aClassModificationApplied packageAffected;
-		tag: (self 
-			forPharo12AndNewer: [aClassModificationApplied packageTagAffected name] 
-			forPharo11:  [ aClassModificationApplied classTagAffected]);
-		theClass: aClassModificationApplied classAffected)
-]
-
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> classRemoved: aClassRemoved [
-	| aSelectedPackage |
-
-	performingBulkChanges ifTrue: [^needsUpdate := true].
-	
-	aSelectedPackage := self selectedPackage
-		ifNil: [ self selectedTag ifNotNil: [ :aTag | aTag package ] ].
-	
-	aSelectedPackage
-		ifNil: [ ^ self ]
-		ifNotNil: [ :aPackage |
-			(aPackage includesClassesAffectedBy: aClassRemoved)
-				ifFalse: [ ^ self ] ].
-
-	aClassRemoved classRemoved = self selectedClass
-		ifTrue: [ self deselectClass ].
-
-	self notifyClassesToShowChanged
-]
-
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> classRenamed: aClassRenamed [
-	| aSelectedPackage |
-	
-	aSelectedPackage := self selectedPackage
-		ifNil: [ self selectedTag ifNotNil: [ :aTag | aTag package ] ].
-	
-	aSelectedPackage
-		ifNil: [ ^ self ]
-		ifNotNil: [ :aPackage |
-			(aPackage includesClassesAffectedBy: aClassRenamed)
-				ifFalse: [ ^ self ] ].
-
-	performingBulkChanges ifTrue: [^needsUpdate := true].
-
-	self notifyClassesToShowChanged.
-	
-	"we should still emit it, because GtCoderElement listens to it to update the label"
-	self announcer announce: (GtCoderNavigationClassRenamed new 
-		coder: coder;
-		package: aClassRenamed packageAffected;
-		tag: (self 
-			forPharo12AndNewer: [aClassRenamed packageTagAffected name] 
-			forPharo11:  [ aClassRenamed classTagAffected]);
-		theClass: aClassRenamed classRenamed;
-		oldName: aClassRenamed oldName;
-		newName: aClassRenamed newName)
-]
-
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> classReorganized: aClassReorganized [
-	self selectedClass = aClassReorganized classReorganized instanceSide
-		ifFalse: [ ^ self ].
-
-	performingBulkChanges ifTrue: [^needsUpdate := true].
-
-	self notifyProtocolsToShowChanged
-]
-
-{ #category : #'api - subscriptions' }
-BVCAINavigationProjectsSessionsModel >> classRepackaged: aClassRepackaged [
-	(self selectedPackage = aClassRepackaged oldPackage 
-		or: [ self selectedPackage = aClassRepackaged newPackage ]) 
-			ifFalse: [ ^ self ].
-
-	performingBulkChanges ifTrue: [^needsUpdate := true].
-	
-	self selectedClass = aClassRepackaged classAffected
-		ifTrue: [ self privateJustSelectPackage: aClassRepackaged newPackage ]
-		ifFalse: [ self notifyClassesToShowChanged ]
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> classesToShow [
-	<return: #Collection of: #Class>
-
-	self hasSelectedPackage
-		ifFalse: [ ^ #() ].
-
-	^ self hasSelectedTag
-		ifTrue: [ self privateClassesInPackageTag: self selectedTag ]
-		ifFalse: [ self privateClassesInPackage: self selectedPackage ]
+	self privateJustDeselectSession ifFalse: [ ^ self ]
 ]
 
 { #category : #'private - accessing' }
-BVCAINavigationProjectsSessionsModel >> coder: aCoder [
-	(self setCoder: aCoder)
+BVCAINavigationProjectsSessionsModel >> fairy: aFairy [
+	(self setFairy: aFairy)
 		ifFalse: [ ^ self ].
 
-	self notifyCoderChanged
+	self notifyFairyChanged
 ]
 
 { #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> coderDo: aBlock [
-	coder ifNotNil: aBlock
-]
-
-{ #category : #initialization }
-BVCAINavigationProjectsSessionsModel >> createAllProtocol: aClass [
-	^ GtAllProtocol ofClass: aClass
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> deselectClass [
-	"Deselect any currently selected class and other entities such as protocols, slots and methods. Deselecting a class means that the model no longer shows any methods, slots or protocols but still continues to display classes".
-
-	(self privateJustDeselectClass)
-		ifFalse: [ ^ self ].
-	
-	self deselectProtocol.
-	self notifyProtocolsToShowChanged.
-	self deselectSlot.
-	self notifySlotsToShowChanged
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> deselectMethod [
-	"Deselect any currently selected method and notify about the changes.
-	Deselecting a method has no influence on the currently selected protocol, slot or package."
-
-	self privateJustDeselectMethod
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> deselectProtocol [
-	"Deselect a currently selected protocol and no longer display methods"
-	
-	(self privateJustDeselectProtocol)
-		ifFalse: [ ^ self ].
-	
-	self deselectMethod.
-	self notifyMethodsToShowChanged
-]
-
-{ #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> deselectSlot [
-	"Deselect a currently selected slot and no longer display methods"
-	
-	(self privateJustDeselectSlot)
-		ifFalse: [ ^ self ].
-	
-	self deselectMethod.
-	self notifyMethodsToShowChanged
+BVCAINavigationProjectsSessionsModel >> fairyDo: aBlock [
+	fairy ifNotNil: aBlock
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasPackageTagsIn: aRPackage [
+BVCAINavigationProjectsSessionsModel >> hasSelectedProject [
 	<return: #Boolean>
-	| hasTags hasExtensions |
-	hasTags := (aRPackage tags size = 1
-			and: [ aRPackage tags anyOne isRoot ]) not.
-	hasExtensions := aRPackage gtDoesExtendClasses.
-	^ hasTags or: [ hasExtensions ]
+	^ self selectedProject notNil
 ]
 
 { #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedClass [
+BVCAINavigationProjectsSessionsModel >> hasSelectedSession [
 	<return: #Boolean>
-	^ self selectedClass isNotNil
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedMethod [
-	<return: #Boolean>
-	^ self selectedMethod isNotNil
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedPackage [
-	<return: #Boolean>
-	^ self selectedPackage notNil
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedProtocol [
-	<return: #Boolean>
-	^ self selectedProtocol isNotNil
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedSlot [
-	<return: #Boolean>
-	^ self selectedSlot isNotNil
-]
-
-{ #category : #'api - testing' }
-BVCAINavigationProjectsSessionsModel >> hasSelectedTag [
-	<return: #Boolean>
-	^ self selectedTag notNil
+	^ self selectedSession isNotNil
 ]
 
 { #category : #initialization }
@@ -274,207 +82,67 @@ BVCAINavigationProjectsSessionsModel >> initialize [
 	super initialize.
 	needsUpdate := false.
 	performingBulkChanges := false.
-	self coder: GtPharoPackagesCoder forAllPackages
-]
-
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> methodChanged: aMethodAnnouncement [
-	self hasSelectedClass ifFalse: [ ^ self ].
-	(self selectedClassIsAffectedBy: aMethodAnnouncement) ifFalse: [ ^ self ].
-
-	performingBulkChanges
-		ifTrue: [ needsUpdate := true.
-			^ self ].
-
-	self notifyProtocolsToShowChanged.
-	self notifySlotsToShowChanged.
-	self notifyMethodsToShowChanged
-]
-
-{ #category : #'event handling' }
-BVCAINavigationProjectsSessionsModel >> methodRecategorized: aMethodRecategorized [
-	| theClass aPackage aTag |
-	self hasSelectedClass ifFalse: [ ^ self ].
-	(self selectedClassIsAffectedBy: aMethodRecategorized) ifFalse: [ ^ self ].
-
-	performingBulkChanges
-		ifTrue: [ needsUpdate := true.
-			^ self ].
-
-	self selectedMethod = aMethodRecategorized methodRecategorized
-		ifTrue: [ self deselectMethod ].
-
-	self selectedProtocol
-		ifNotNil: [ :aProtocol | 
-			(aProtocol name = aMethodRecategorized oldProtocol
-				and: [ aProtocol methodSelectors isEmpty ])
-				ifTrue: [ (self privateProtocolOfMethod: aMethodRecategorized methodRecategorized)
-						ifNotNil: [ :aNewProtocol | self selectProtocol: aNewProtocol ] ] ].
-
-	self notifyProtocolsToShowChanged.
-	self notifyMethodsToShowChanged.
-
-	theClass := aMethodRecategorized methodRecategorized methodClass.
-	aPackage := theClass package.
-	aTag := (GtTagDefinition fromBehavior: theClass) name.
-
-	self announcer
-		announce: (GtCoderNavigationClassModified new
-				coder: coder;
-				package: aPackage;
-				tag: aTag;
-				theClass: theClass)
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> methodsToShow [
-	| anInstanceSideClass aClassSideClass |
-	anInstanceSideClass := (self selectedClass ifNil: [ ^ #() ]) instanceSide.
-	aClassSideClass := anInstanceSideClass classSide.
-
-	self selectedSlot
-		ifNotNil: [ :aSlot | 
-			^ Array
-				streamContents: [ :aStream | 
-					aStream nextPutAll: (anInstanceSideClass methodsAccessingSlot: aSlot).
-					aStream nextPutAll: (aClassSideClass methodsAccessingSlot: aSlot) ] ].
-	
-	^ self selectedProtocol
-		ifNil: [ #() ]
-		ifNotNil: [ :aProtocol | aProtocol allMethods ]
+	self fairy: GtPharoPackagesCoder forAllPackages
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyClassDeselected: aPreviouslySelectedClass [
-	self announce: (GtCoderNavigationClassDeselected new
-		theClass: aPreviouslySelectedClass;
-		coder: coder)
+BVCAINavigationProjectsSessionsModel >> notifyFairyChanged [
+	self announce: (GtCoderNavigationCoderChanged new fairy: fairy)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyClassSelected: aClass [
+BVCAINavigationProjectsSessionsModel >> notifyProjectDeselected: aPreviouslySelectedProject [
+	self
+		announce: (GtCoderNavigationClassDeselected new
+				project: aPreviouslySelectedProject;
+				fairy: fairy)
+]
+
+{ #category : #'private - notifying' }
+BVCAINavigationProjectsSessionsModel >> notifyProjectSelected: aProject [
+	self
+		announce: (GtCoderNavigationPackageSelected new
+				fairy: fairy;
+				project: aProject)
+]
+
+{ #category : #'private - notifying' }
+BVCAINavigationProjectsSessionsModel >> notifyProjectsToShowChanged [
+	self announce: (GtCoderNavigationClassesToShowChanged new fairy: fairy)
+]
+
+{ #category : #'private - notifying' }
+BVCAINavigationProjectsSessionsModel >> notifySessionDeselected: aPreviouslySelectedSession [
+	self
+		announce: (GtCoderNavigationClassDeselected new
+				theSession: aPreviouslySelectedSession;
+				fairy: fairy)
+]
+
+{ #category : #'private - notifying' }
+BVCAINavigationProjectsSessionsModel >> notifySessionSelected: aSession [
 	self
 		announce:
 			(GtCoderNavigationClassSelected new
-				coder: coder;
-				package: selectedPackage;
-				tag: selectedTag;
-				theClass: aClass;
-				selectedClasses: self selectedClasses)
+				fairy: fairy;
+				project: selectedProject;
+				theSession: aSession;
+				selectedSessions: self selectedSessions)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyClassSelected: aClass package: anRPackage tag: anRPackageTag [
+BVCAINavigationProjectsSessionsModel >> notifySessionSelected: aSession project: aProject [
 	self
-		announce:
-			(GtCoderNavigationClassSelected new
-				coder: coder;
-				package: anRPackage;
-				tag: anRPackageTag;
-				theClass: aClass;
-				selectedClasses: self selectedClasses)
+		announce: (GtCoderNavigationClassSelected new
+				fairy: fairy;
+				project: aProject;
+				theSession: aSession;
+				selectedSessions: self selectedSessions)
 ]
 
 { #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyClassesToShowChanged [
-	self announce: (GtCoderNavigationClassesToShowChanged new coder: coder)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyCoderChanged [
-	self announce: (GtCoderNavigationCoderChanged new coder: coder)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyCoderSelected [
-	self announce: (GtCoderNavigationPackagesSelected new coder: coder)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyMethodDeselected: aPreviouslySelectedMethod [ 
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyMethodSelected: aMethod [
-	coder withSelectedMethod: aMethod.
-	self
-		announce:
-			(GtCoderNavigationMethodSelected new
-				coder: coder;
-				method: aMethod)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyMethodsSelected: aCollectionOfMethods [
-	coder withSelectedMethods: aCollectionOfMethods.
-	self
-		announce:
-			(GtCoderNavigationMethodsSelected new
-				coder: coder;
-				methods: aCollectionOfMethods)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyMethodsToShowChanged [
-	self announce: (GtCoderNavigationMethodsToShowChanged new coder: coder)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyPackageSelected: anRPackage [
-	self
-		announce:
-			(GtCoderNavigationPackageSelected new
-				coder: coder;
-				package: anRPackage)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyPackageSelected: anRPackage tag: anRPackageTag [
-	self
-		announce:
-			(GtCoderNavigationPackageTagSelected new
-				coder: coder;
-				package: anRPackage;
-				tag: anRPackageTag)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyProtocolDeselected: aGtPharoProtocol [
-	self
-		announce:
-			(GtCoderNavigationProtocolDeselected new
-				coder: coder;
-				protocol: aGtPharoProtocol)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyProtocolSelected: aGtPharoProtocol source: aSource [
-	self
-		announce:
-			(GtCoderNavigationProtocolSelected new
-				coder: coder;
-				protocol: aGtPharoProtocol).
-
-	coder withMethodProtocol: aGtPharoProtocol source: aSource
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifyProtocolsToShowChanged [
-	self announce: (GtCoderNavigationProtocolsToShowChanged new coder: coder)
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifySlotDeselected: aPreviouslySelectedProtocol [ 
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifySlotSelected: aSlot source: aSource [
-	coder withSlot: aSlot source: aSource
-]
-
-{ #category : #'private - notifying' }
-BVCAINavigationProjectsSessionsModel >> notifySlotsToShowChanged [
-	self announce: (GtCoderNavigationSlotsToShowChanged new coder: coder)
+BVCAINavigationProjectsSessionsModel >> notifySessionsToShowChanged [
+	self announce: (GtCoderNavigationClassesToShowChanged new fairy: fairy)
 ]
 
 { #category : #'api - subscriptions' }
@@ -484,7 +152,7 @@ BVCAINavigationProjectsSessionsModel >> onAboutToPerformBulkChanges: anAnnouncem
 ]
 
 { #category : #'private - announcement handling' }
-BVCAINavigationProjectsSessionsModel >> onCoderAnnouncement: anAnnouncement [
+BVCAINavigationProjectsSessionsModel >> onFairyAnnouncement: anAnnouncement [
 	self announcer announce: anAnnouncement
 ]
 
@@ -493,12 +161,10 @@ BVCAINavigationProjectsSessionsModel >> onFinishedBulkChanges: anAnnouncement [
 	performingBulkChanges := false.
 	needsUpdate ifFalse: [ ^ self ].
 
-	self selectedClass
-		ifNotNil: [ :cls | cls isObsolete ifTrue: [ self deselectClass ] ].
-	self notifyClassesToShowChanged.
-	self notifySlotsToShowChanged.
-	self notifyProtocolsToShowChanged.
-	self notifyMethodsToShowChanged.
+	self selectedSession
+		ifNotNil: [ :session | session isObsolete ifTrue: [ self deselectSession ] ].
+	self notifyProjectsToShowChanged.
+	self notifySessionsToShowChanged.
 	needsUpdate := false
 ]
 
@@ -1158,17 +824,85 @@ BVCAINavigationProjectsSessionsModel >> selectedTagDo: aBlock [
 	self selectedTag ifNotNil: aBlock
 ]
 
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> sessionAdded: aSessionAdded [
+	| aSelectedProject |
+	
+	aSelectedProject := self selectedProject.
+	
+	aSelectedProject
+		ifNil: [ ^ self ]
+		ifNotNil: [ :aProject |
+			(aProject includesSessionsAffectedBy: aSessionAdded)
+				ifFalse: [ ^ self ] ].
+	
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+	
+	self notifySessionsToShowChanged
+]
+
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> sessionRemoved: aSessionRemoved [
+	| aSelectedProject |
+	
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+	
+	aSelectedProject := self selectedProject.
+	
+	aSelectedProject
+		ifNil: [ ^ self ]
+		ifNotNil: [ :aProject |
+			(aProject includesSessionsAffectedBy: aSessionRemoved)
+				ifFalse: [ ^ self ] ].
+
+	aSessionRemoved sessionRemoved = self selectedSession
+		ifTrue: [ self deselectSession ].
+
+	self notifySessionsToShowChanged
+]
+
+{ #category : #'event handling' }
+BVCAINavigationProjectsSessionsModel >> sessionRenamed: aSessionRenamed [
+	| aSelectedProject |
+	
+	aSelectedProject := self selectedProject.
+	
+	aSelectedProject
+		ifNil: [ ^ self ]
+		ifNotNil: [ :aPackage |
+			(aPackage includesClassesAffectedBy: aSessionRenamed)
+				ifFalse: [ ^ self ] ].
+
+	performingBulkChanges ifTrue: [^needsUpdate := true].
+
+	self notifySessionsToShowChanged.
+	
+	"we should still emit it, because other stuff might listen to it to update the label"
+	self announcer announce: (GtCoderNavigationClassRenamed new 
+		coder: coder;
+		project: aSessionRenamed projectAffected;
+		theSession: aSessionRenamed sessionRenamed;
+		oldName: aSessionRenamed oldName;
+		newName: aSessionRenamed newName)
+]
+
+{ #category : #'api - accessing' }
+BVCAINavigationProjectsSessionsModel >> sessionsToShow [
+	<return: #Collection of: #BVCAISession>
+
+	self hasSelectedProject
+		ifFalse: [ ^ #() ].
+
+	^ self privateSessionsInProject: self selectedProject 
+]
+
 { #category : #'private - accessing' }
-BVCAINavigationProjectsSessionsModel >> setCoder: aCoder [
-	coder == aCoder
-		ifTrue: [ ^ false ].
-	coder ifNotNil: [ :oldCoder | 
-		oldCoder announcer unsubscribe: self ].
-	
-	coder := aCoder.
-	
-	"forward coder announcements"
-	aCoder announcer weak
+BVCAINavigationProjectsSessionsModel >> setFairy: aFairy [
+	fairy == aFairy ifTrue: [ ^ false ].
+	fairy ifNotNil: [ :oldFairy | oldFairy announcer unsubscribe: self ].
+
+	fairy := aFairy.	"forward coder announcements"
+	aFairy announcer weak
 		when: Announcement
 		send: #onCoderAnnouncement:
 		to: self.
@@ -1177,25 +911,8 @@ BVCAINavigationProjectsSessionsModel >> setCoder: aCoder [
 ]
 
 { #category : #'api - selection' }
-BVCAINavigationProjectsSessionsModel >> showPackage: anRPackage [
+BVCAINavigationProjectsSessionsModel >> showProject: aProject [
 	^ true
-]
-
-{ #category : #'api - accessing' }
-BVCAINavigationProjectsSessionsModel >> slotsToShow [
-	<return: #Collection of: #GtPharoProtocol>
-	| currentClass instanceSideSlots classSideSlots classVars |
-
-	self hasSelectedClass
-		ifFalse: [ ^ #() ].
-
-	currentClass := self selectedClass.
-
-	instanceSideSlots := self privateAllSlotsOf: currentClass instanceSide.
-	classSideSlots := self privateAllClassSlotsOf: currentClass classSide.
-	classVars := self privateAllClassVariablesOf:currentClass.
-	
-	^ instanceSideSlots, classSideSlots, classVars
 ]
 
 { #category : #'api - subscriptions' }
