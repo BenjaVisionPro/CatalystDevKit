@@ -94,7 +94,7 @@ BVCAINavigationProjectsSessionsModel >> notifyFairyChanged [
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifyProjectDeselected: aPreviouslySelectedProject [
 	self
-		announce: (GtCoderNavigationClassDeselected new
+		announce: (BVCAINavigationProjectDeselected new
 				project: aPreviouslySelectedProject;
 				fairy: fairy)
 ]
@@ -102,21 +102,21 @@ BVCAINavigationProjectsSessionsModel >> notifyProjectDeselected: aPreviouslySele
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifyProjectSelected: aProject [
 	self
-		announce: (GtCoderNavigationPackageSelected new
+		announce: (BVCAINavigationProjectSelected new
 				fairy: fairy;
 				project: aProject)
 ]
 
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifyProjectsToShowChanged [
-	self announce: (GtCoderNavigationClassesToShowChanged new fairy: fairy)
+	self announce: (BVCAINavigationProjectsToShowChanged new fairy: fairy)
 ]
 
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifySessionDeselected: aPreviouslySelectedSession [
 	self
-		announce: (GtCoderNavigationClassDeselected new
-				theSession: aPreviouslySelectedSession;
+		announce: (BVCAINavigationSessionDeselected new
+				session: aPreviouslySelectedSession;
 				fairy: fairy)
 ]
 
@@ -124,26 +124,26 @@ BVCAINavigationProjectsSessionsModel >> notifySessionDeselected: aPreviouslySele
 BVCAINavigationProjectsSessionsModel >> notifySessionSelected: aSession [
 	self
 		announce:
-			(GtCoderNavigationClassSelected new
+			(BVCAINavigationSessionSelected new
 				fairy: fairy;
 				project: selectedProject;
-				theSession: aSession;
+				session: aSession;
 				selectedSessions: self selectedSessions)
 ]
 
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifySessionSelected: aSession project: aProject [
 	self
-		announce: (GtCoderNavigationClassSelected new
+		announce: (BVCAINavigationSessionSelected new
 				fairy: fairy;
 				project: aProject;
-				theSession: aSession;
+				session: aSession;
 				selectedSessions: self selectedSessions)
 ]
 
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifySessionsToShowChanged [
-	self announce: (GtCoderNavigationClassesToShowChanged new fairy: fairy)
+	self announce: (BVCAINavigationSessionsToShowChanged new fairy: fairy)
 ]
 
 { #category : #'api - subscriptions' }
