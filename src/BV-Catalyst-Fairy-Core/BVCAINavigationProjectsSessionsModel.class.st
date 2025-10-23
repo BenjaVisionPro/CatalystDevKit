@@ -88,7 +88,7 @@ BVCAINavigationProjectsSessionsModel >> initialize [
 
 { #category : #'private - notifying' }
 BVCAINavigationProjectsSessionsModel >> notifyFairyChanged [
-	self announce: (GtCoderNavigationCoderChanged new fairy: fairy)
+	self announce: (BVCAINavigationFairyChanged new fairy: fairy)
 ]
 
 { #category : #'private - notifying' }
