@@ -3,7 +3,7 @@ Class {
 	#superclass : #BVCAINavigationModel,
 	#traits : 'TGtUniqueInstance',
 	#classTraits : 'TGtUniqueInstance classTrait',
-	#category : #'BV-Catalyst-Fairy-Core-Navigation - Model'
+	#category : #'BV-Catalyst-Fairy-Core-Navigation'
 }
 
 { #category : #'api - accessing' }

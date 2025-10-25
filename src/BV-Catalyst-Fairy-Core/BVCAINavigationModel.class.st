@@ -1,7 +1,7 @@
 Class {
 	#name : #BVCAINavigationModel,
 	#superclass : #Object,
-	#category : #'BV-Catalyst-Fairy-Core-Navigation - Model'
+	#category : #'BV-Catalyst-Fairy-Core-Navigation'
 }
 
 { #category : #factory }
