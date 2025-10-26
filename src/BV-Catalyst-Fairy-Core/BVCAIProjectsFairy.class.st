@@ -10,8 +10,16 @@ BVCAIProjectsFairy >> = anObject [
 ]
 
 { #category : #ui }
-BVCAIProjectsFairy >> asCoderViewModel [
+BVCAIProjectsFairy >> asFairyViewModel [
 	^ GtPharoPackagesCoderViewModel new projectsFairyModel: self
+]
+
+{ #category : #ui }
+BVCAIProjectsFairy >> asNewFairyModelWithSameSubject [
+	"Return new fairy model with same subject (e.g., project, session)"
+
+	<return: #BVCAIFairyModel>
+	^ self class forItems: items
 ]
 
 { #category : #accessing }
@@ -48,5 +56,5 @@ BVCAIProjectsFairy >> name [
 
 { #category : #private }
 BVCAIProjectsFairy >> newFairyFor: aProject [
-	^ BVCAIProjectsFairy forProject: aProject
+	^ GtPharoPackageCoder forProject: aProject
 ]

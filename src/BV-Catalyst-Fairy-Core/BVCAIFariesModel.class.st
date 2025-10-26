@@ -71,7 +71,7 @@ BVCAIFariesModel >> initialize [
 ]
 
 { #category : #private }
-BVCAIFariesModel >> newCoderFor: anObject [
+BVCAIFariesModel >> newFairyFor: anObject [
 	self subclassResponsibility
 ]
 

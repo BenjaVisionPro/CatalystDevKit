@@ -5,28 +5,20 @@ Class {
 }
 
 { #category : #accessing }
-BVCAISessionsFairy >> coderForClass: aClass [
+BVCAISessionsFairy >> fairyForSession: aSession [
 	^ self coders
-		detect: [ :each | each theClass = aClass ]
-		ifNone: [ | coder |
-			items add: aClass.
-			coder := self newCoderFor: aClass.
-			coders add: coder.
-			coder ]
+		detect: [ :each | each theClass = aSession ]
+		ifNone: [ | fairy |
+			items add: aSession.
+			fairy := self newFairyFor: aSession.
+			faries add: fairy.
+			fairy ]
 ]
 
 { #category : #updating }
-BVCAISessionsFairy >> forPackage: aPackage [
-	items := aPackage definedClasses
-		asSortedCollection: [ :a :b | a name < b name ].
-	self updateCoders
-]
-
-{ #category : #updating }
-BVCAISessionsFairy >> forPackageTag: aPackageTag [
-	items := aPackageTag classes
-		asSortedCollection: [ :a :b | a name < b name ].
-	self updateCoders
+BVCAISessionsFairy >> forProject: aProject [
+	items := aProject sessions asSortedCollection: [ :a :b | a name < b name ].
+	self updateFaries
 ]
 
 { #category : #private }
@@ -34,4 +26,11 @@ BVCAISessionsFairy >> newCoderFor: aClass [
 	| coder |
 	coder := GtPharoBehaviorCoder forClass: aClass.
 	^ coder
+]
+
+{ #category : #private }
+BVCAISessionsFairy >> newFairyFor: aSession [
+	| fairy |
+	fairy := GtPharoBehaviorCoder forSession: aSession.
+	^ fairy
 ]
