@@ -6,15 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 BVCAIAssistant >> buildProvider [
-  | p |
-  p := GtOpenAIResponseProvider withApiKeyFromFile.
-  p model: self defaultModelName.
-  ^ p
-]
-
-{ #category : #'as yet unclassified' }
-BVCAIAssistant >> defaultModelName [
-  ^ 'gpt-5'
+	^ connection buildProvider
 ]
 
 { #category : #'as yet unclassified' }
