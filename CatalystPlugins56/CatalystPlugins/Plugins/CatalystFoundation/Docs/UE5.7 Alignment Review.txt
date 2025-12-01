@@ -1,0 +1,84 @@
+Catalyst Foundation 5.7 — Peer Review Summary
+
+(UE5.7-Aligned Architecture Evaluation)
+
+⸻
+
+✅ Core Architecture
+	•	Combines UPrimaryDataAsset + root UStruct for reflection-safe models.
+	•	Runtime model ownership via UGameInstanceSubsystem, ensuring persistent, modular data flow.
+	•	Editor integration through native Unreal APIs (UFactory, FAssetTypeActions, FAssetEditorToolkit) guarantees maintainability and Blueprint friendliness.
+	•	Commandlet layer with atomic writes, schema tagging, and CI-ready output ensures deterministic asset generation.
+
+⸻
+
+⚙ Runtime Lifecycle
+	•	Asynchronous soft-reference loading (via FStreamableManager) eliminates stalls and supports modular feature loading.
+	•	Multicast delegates expose lifecycle events (OnModelReady, OnError, etc.) for clean async coordination.
+	•	Runtime duplication separates immutable seed assets from mutable live data.
+	•	Thread safety enforced with FReadScopeLock / FWriteScopeLock.
+
+⸻
+
+🧠 Editor Workflow
+	•	Clear separation between runtime/editor modules prevents dependency bleed.
+	•	Registered factories & asset type actions integrate cleanly under “Add New → Catalyst → ”.
+	•	DetailsView-based editors with live validation offer immediate, safe feedback.
+
+⸻
+
+🧾 Commandlet Pipeline
+	•	Atomic I/O (temp + rename) ensures file integrity.
+	•	Embedded { SchemaVersion, PluginVersion, EngineVersion } metadata supports migration.
+	•	Flags: -Overwrite, -DryRun, -Verbose — structured log/JSON reports for CI.
+	•	Full error summaries exported per batch for pipeline consumption.
+
+⸻
+
+🌐 JSON Handling
+	•	FJsonObjectConverter ensures thread-safe import/export.
+	•	Malformed data never crashes — falls back to defaults, logs clearly.
+	•	All parse/apply failures emit both UE_LOG and diagnostic broadcast.
+
+⸻
+
+🔍 Logging & Diagnostics
+	•	Per-plugin log categories (LogCatalystFoundation, etc.) aid filtering.
+	•	Scoped, timestamped logs compatible with Unreal Insights.
+	•	Planned Diagnostic Manager aggregates async and commandlet events.
+
+⸻
+
+📂 Directory Layout
+
+CatalystFoundation/
+  Source/CatalystFoundation/
+  Source/CatalystFoundationEditor/
+
+
+⸻
+
+🔄 Live Update & Hot Reload
+	•	Services detect content reloads → broadcast OnModelReloaded.
+	•	Editors auto-invalidate Details Views.
+	•	Runtime validity checks guard against stale data.
+
+⸻
+
+🧪 CI & Automation
+	•	Fail-fast validation halts bad JSON early.
+	•	bin/build-models.sh automates regeneration.
+	•	“Catalyst Weather” example plugin provides reference.
+
+⸻
+
+🚀 Recommended 5.8 Targets
+	•	Chunked async import for massive datasets.
+	•	Prominent in-editor version mismatch warnings.
+	•	Strict pairing of asset type registrations on reload.
+	•	Expanded diagnostic/profiling hooks for multi-plugin insight.
+
+⸻
+
+Verdict:
+Catalyst Foundation 5.7 is a production-grade Unreal Framework — fully aligned with UE5.7’s data-driven paradigms, CI-integrated, and developer-centric. Future refinements focus on scalability, transparency, and enhanced UX for large-team ecosystems.

@@ -1,0 +1,45 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+"FriendlyName": "Catalyst:Foundation",
+"Description": "Foundation is the shared core of the Catalyst suite, providing common base types, logging, and editor frameworks that every Catalyst plugin relies on. It defines lightweight, reusable building blocks — from abstract data models and schema versioning, to consistent logging macros and UI panel chrome — ensuring all Catalyst systems speak the same language. By centralizing these essentials, Foundation reduces duplication and enforces consistency across the suite, while remaining minimal and runtime-safe. Designed for extensibility, it’s the bedrock on which specialized plugins like Ecosystem, Connect, and Store can build, integrate, and evolve together.",
+	"Category": "BenjaVision",
+	"CreatedBy": "Jupiter Jones",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "CatalystFoundation",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+		},
+		{
+			"Name": "CatalystFoundationEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+            "PlatformAllowList": [
+                "Mac",
+                "Linux",
+                "Win64"
+            ]
+
+		},
+        {
+            "Name": "CatalystFoundationTests",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+        }
+	]
+}

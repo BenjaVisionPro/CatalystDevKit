@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Prefer the headless binary; fall back to the app bundle binary
-DEFAULT_ENGINE_ROOT="${ENGINE_ROOT:-/Users/jupiter/UnrealEngine/UE_5.6}"
+DEFAULT_ENGINE_ROOT="${ENGINE_ROOT:-/Users/jupiter/UnrealEngine/UE_5.7}"
 DEFAULT_UE_BIN_CMD="$DEFAULT_ENGINE_ROOT/Engine/Binaries/Mac/UnrealEditor"
 DEFAULT_UE_BIN_APP="$DEFAULT_ENGINE_ROOT/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor"
 

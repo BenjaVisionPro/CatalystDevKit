@@ -1,0 +1,136 @@
+Catalyst Ecosystem Toolkit — Draft Spec
+
+Vision & Purpose
+
+Provide a persistent, authoritative ecosystem simulation (biomes, weather, resources, plant/animal dynamics) that hooks into arbitrary “spaces” (planet, voxel world, island, ship deck), and scales with players by player-group partitioning rather than strict geography. It publishes AOI-scoped simulation state to UE (Voxel + PCG + UDS) and accepts validated player commands that influence the ecology (damage, taming, harvesting, pollution, etc.).
+
+⸻
+
+Key Concepts & Naming
+	•	SimLOD: The simulation’s Level of Detail. Numbering matches UE’s mesh LOD numbering (LOD0 = highest fidelity).
+	•	SimLOD0 = full individual simulation
+	•	SimLOD1 = reduced individual simulation
+	•	SimLOD2 = cohort / aggregate simulation
+	•	SimLOD3+ = background stats / dormant
+	•	Promotion & Demotion: Entities move up/down SimLOD levels based on player proximity, interest, and budget. Pinned during interactions.
+	•	AOI (Area of Interest): Spatial window(s) around players (or groups) that dictates which agents/cohorts are promoted, replicated, or streamed.
+	•	Player-Group Partitioning: Sharding based on player sets, not strictly by geography. E.g. ≤50 players on a planet → one group; thousands → dozens/hundreds of groups.
+	•	Damage Ledger: A per-individual record mapping attackerId → totalDamage + timestamps; used to compute winner + assists at death.
+	•	Command / Query / Events: Clear architecture: Commands from UE → validated → applied in sim core → events (outcomes, deltas) streamed back.
+	•	Persistence / Checkpoints & Journal: Periodic durable snapshots + append journal(s) to enable recovery, replay, and determinism where possible.
+
+⸻
+Features & Components
+
+Biomes & Habitat
+	•	Biome resolution based on elevation, moisture, temperature, soil.
+	•	HabitatQuality maps per species.
+	•	Hooks for PCG to base foliage placement, masks, scatter rules.
+
+Weather System
+	•	Deterministic base + procedural noise for temperature, clouds, precipitation, wind, storm events.
+	•	UDS Bridge: Map sim weather → Ultra Dynamic Sky system for visuals (cloud cover, rain, fog, lightning, day/night cycle).
+
+Resource / Vegetation
+	•	ResourceField: Tiled map of biomass, forage, water, etc. Growth, decay, competition.
+	•	PCG Integration: Server reads tile inputs to scatter flora / despawn foliage in AOI bounds (bounded runtime graph).
+
+Populations & Simulation LOD
+	•	SimLOD2 / 3+: Cohorts / aggregates and far-field stat layers.
+	•	SimLOD1 / 0: Promoted individuals (near players) with behavior, movement, AI.
+	•	Promotion/demotion rules, budgets, hysteresis, and pin states during interactions (combat, taming, etc.).
+
+Inter-Species Interaction
+	•	Predation, competition, mutualism, territoriality, social groups (packs, herds).
+	•	Migrations: route logic, dispersal kernels, habitat gradients.
+	•	Stressors: disease, starvation, pollution, habitat loss events.
+
+Player Interaction
+	•	Validated through UE (GAS) → Commands: DamageEvent, KillAttempt, TrapAttempt, TameAttempt, FeedEvent, HarvestResource, Pollute, PlayerPresence.
+	•	Sim applies those commands, updates state, and emits Events: AnimalKilled {winner, assists}, AnimalTamed, AnimalTrapped, ResourceFieldDelta, WeatherDelta, etc.
+
+Multi-Server / Multi-Client & Partitioning
+	•	Player-Group Partitioning: scale out by player sets; each group subscribes only to its AOIs.
+	•	Fan-out AOI subscriptions: multiple UE servers may observe the same pack — sim core is authoritative.
+	•	Replication Graph (UE side) ensures actor replication cost is bounded per connection (spatial & frequency nodes).
+	•	World Partition server streaming: UE servers load only around their players, keeping memory/IO manageable.
+
+Persistence & Recovery
+	•	Checkpoint + journal design to support fault recovery, consistent replay, and deterministic segments.
+	•	Seeded random subsystems where possible to allow recomputation from checkpoint + seed.
+
+Performance / Scaling Considerations
+	•	Promotion budgets & pinning: cap how many can be SimLOD0/1 near each player or in each region.
+	•	Replication Graph frequency tiers: SimLOD0 animals replicate frequently, SimLOD1 moderately, cohorts minimally (summaries).
+	•	Mass / crowd fallback (optional): non-promoted herds simulated under UE Mass until promotion.
+	•	PCG bounding: only do scatter / update inside AOI volumes, avoid unbounded PCG runtime builds.
+	•	Voxel LOD / invoker tuning: keep the voxel streaming / LOD ranges tight around players.
+
+⸻
+
+Interfaces
+
+Commands (UE → Catalyst)
+
+{
+  "DamageEvent": { "cmdId":"uuid", "playerId":"uuid", "targetId":"uuid", "amount":17.5, "hitId":"uuid" },
+  "KillAttempt": { "cmdId":"uuid", "playerId":"uuid", "targetId":"uuid", "hit": { "time":"iso", "damage":42, "type":"pierce" } },
+  "TrapAttempt": { "cmdId":"uuid", "playerId":"uuid", "targetId":"uuid", "trapKind":"snare" },
+  "TameAttempt": { "cmdId":"uuid", "playerId":"uuid", "targetId":"uuid", "bait":"herb_bundle_A" },
+  "FeedEvent": { "cmdId":"uuid", "playerId":"uuid", "targetId":"uuid", "item":"forage_A", "qty":1 },
+  "HarvestResource": { "cmdId":"uuid", "playerId":"uuid", "tileId":"r-128-256", "amount":5 },
+  "Pollute": { "cmdId":"uuid", "playerId":"uuid", "region":"bbox", "intensity":0.4, "durationSec":120 },
+  "PlayerPresence": { "playerId":"uuid", "pos":[x,y,z], "vel":[vx,vy,vz], "threat":0.0 }
+}
+
+	•	All validated via UE server’s GAS system before being forwarded to simulation.
+
+Events / AOI Deltas (Catalyst → UE)
+
+{
+  "AOIIndividuals": [
+    { "id":"uuid", "species":"wolf", "pos":[x,y,z], "vel":[vx,vy,vz], "anim":"run", "simLOD":0, "flags":["pinned"] }
+  ],
+  "AOICohorts": [
+    { "species":"bison", "centroid":[x,y,z], "count":320, "behaviorHint":"grazing", "simLOD":2 }
+  ],
+  "ResourceFieldDelta": { "tileId":"r-128-256", "mask":"..." },
+  "WeatherDelta": { "tileId":"w-64-64", "params":{"tempC":23.1, "precip":0.2, "clouds":0.6, "wind":[2.3,310]} },
+  "AnimalKilled": { "id":"uuid", "winner":"player-uuid", "assists":[{"player":"p1","share":0.35}] },
+  "AnimalTamed": { "id":"uuid", "owner":"player-uuid" },
+  "AnimalTrapped": { "id":"uuid", "trapKind":"snare", "expires":"iso" }
+}
+
+UE Plugin Surfaces (Headers / Components)
+	•	UCatalystEcosystemProxySubsystem (Server): subscribe to AOI streams, process Events, batch Commands.
+	•	ReplicationGraph class: spatial + frequency nodes; treat SimLOD explicitly (higher SimLOD = higher replication rate).
+	•	PCG Input Nodes (Server): read Biome / Habitat / Resource tiles → scatter vegetation in AOI bounds.
+	•	UDS Bridge Component: map WeatherDelta → Ultra Dynamic Sky parameters (clouds, rain, fog, etc.).
+	•	(Optional) Mass adapter: simulate large background herds in UE Mass, convert to normal Actor when promoted to SimLOD0/1.
+
+Internal Class Sketch (textual)
+
+class CatalystSimCore {
+  WorldClock, Seeds
+  BiomeResolver → HabitatQuality
+  WeatherField → UDS Bridge
+  ResourceField (tiles)
+  CohortEngine (SimLOD2/3+)
+  PromotionManager → IndividualAgents (SimLOD1/0)
+  DamageLedger (per-individual)
+  CommandBus / EventStore / AOIBroker
+}
+
+class UEServer {
+  UCatalystEcosystemProxySubsystem
+  ReplicationGraph
+  PCG Graph + input nodes
+  UDS Bridge
+  (Optional) Mass adapter
+  GAS Abilities (Shoot/Trap/Tame/Feed)
+}
+
+
+⸻
+
+If you like, I’ll spin this final spec into a PDF + markdown repo readme + sample stub code (C++ headers, JSON stubs) so we can drop it straight into your codebase. Want me to prep that next, Jonesy?

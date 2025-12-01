@@ -1,0 +1,609 @@
+VoxelPluginPro – Graph Stamp Internals & Signature Map
+
+(Document 3B of 3 – Deep Technical Reference)
+
+Audience: Barry only.
+Objective: Zero-guessing, complete internal understanding of how graph stamps are defined, initialized, applied, validated, and integrated into the layer → query → mesher pipeline.
+
+This document describes the true runtime architecture, not the authoring workflow.
+
+⸻
+
+CONTENTS
+	1.	Core Types & Architecture
+	2.	Stamp Runtime Base (FVoxelVolumeStampRuntime)
+	3.	Volume Graph Stamp Runtime (FVoxelVolumeGraphStamp)
+	4.	Stamp Wrappers (Height + Volume)
+	5.	Volume Layer Integration
+	6.	StackLayer Resolution Pipeline
+	7.	Query Integration (Bulk + Sparse)
+	8.	Stamp Trees & Registration
+	9.	Parameter Overrides System
+	10.	Graph Execution Pipeline
+	11.	Transform Semantics (FVoxelVolumeTransform)
+	12.	Blend Modes
+	13.	Behavior Mask Enforcement
+	14.	Sparse vs Bulk Execution Rules
+	15.	Metadata Propagation
+	16.	Local Bounds & Culling Rules
+	17.	Debug Hooks / Breadcrumbs
+	18.	Required Invariants & Allowed Violations
+	19.	“If implementing a new stamp…” checklist
+
+⸻
+
+1. Core Types & Runtime Architecture
+
+Graph stamps plug into VPP’s existing 3-tiered stamp architecture:
+
+[StampRef] → [StampRuntime] → [StampWrapper] → [VolumeLayer] → [Query] → [Mesher]
+
+Where:
+	•	StampRef
+	•	Owns a stamp of a specific type
+	•	Rebuilds runtime when changed
+	•	Notifies stamp manager
+	•	StampRuntime
+	•	Stateful object produced after update()
+	•	Computes bounds
+	•	Executes stamp
+	•	StampWrapper
+	•	Enforces behavior mask
+	•	Runs validation
+	•	Invokes runtime (bulk/sparse)
+	•	VolumeLayer
+	•	Iterates stamp tree
+	•	Builds queries
+	•	Calls wrapper
+	•	Query
+	•	Holds buffers used by mesher
+	•	Routes sampling through layers
+	•	Mesher
+	•	Consumes distance, surface types, metadata
+
+Graph stamps are drop-in replacements for classical volume stamps.
+
+⸻
+
+2. Stamp Runtime Base FVoxelVolumeStampRuntime
+
+VoxelVolumeStamp.h
+
+USTRUCT()
+struct VOXEL_API FVoxelVolumeStampRuntime : public FVoxelStampRuntime
+{
+	GENERATED_BODY()
+
+	// Spatial
+	virtual FVoxelBox GetLocalBounds() const = 0;
+
+	// Allows blending with a previous layer's values
+	virtual bool ShouldUseQueryPrevious() const { return false; }
+
+	// Volume application
+	virtual void Apply(
+		const FVoxelVolumeBulkQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery
+	) const = 0;
+
+	virtual void Apply(
+		const FVoxelVolumeSparseQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery
+	) const = 0;
+};
+
+Key responsibilities
+	•	Define stamp’s local bounds
+	•	Decide whether to read Query.QueryPrevious
+	•	Apply stamp to bulk query (dense grid)
+	•	Apply stamp to sparse query (list of positions)
+
+⸻
+
+3. Graph Stamp Runtime FVoxelVolumeGraphStamp
+
+From VoxelVolumeGraphStamp.h
+
+USTRUCT(meta = (ShortName = "Graph", Icon = "ClassIcon.Blueprint", SortOrder = 2))
+struct VOXEL_API FVoxelVolumeGraphStamp final : public FVoxelVolumeStamp
+{
+	GENERATED_BODY()
+
+	virtual bool Initialize(FVoxelDependencyCollector& DependencyCollector) override;
+	virtual bool Initialize_Parallel(FVoxelDependencyCollector& DependencyCollector) override;
+
+	virtual FVoxelBox GetLocalBounds() const override;
+	virtual bool ShouldUseQueryPrevious() const override;
+
+	virtual void Apply(
+		const FVoxelVolumeBulkQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery
+	) const override;
+
+	virtual void Apply(
+		const FVoxelVolumeSparseQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery
+	) const override;
+
+	// usually exposed:
+	UPROPERTY()
+	UVoxelVolumeGraph* Graph;
+};
+
+
+⸻
+
+3.1 Initialization
+
+bool Initialize(FVoxelDependencyCollector&)
+
+Runs on game thread:
+	•	Validates Graph
+	•	Registers:
+	•	Graph asset dependencies
+	•	Parameter references
+	•	External assets referenced by graph
+	•	Creates intermediate runtime data (e.g., compiled nodes)
+
+bool Initialize_Parallel(FVoxelDependencyCollector&)
+
+Runs on worker threads, may:
+	•	Pre-evaluate static graph values
+	•	Warm up metadata channels
+	•	Precompute bounds from graph
+	•	Prepare temporary buffers
+
+⸻
+
+3.2 Bounds
+
+FVoxelBox GetLocalBounds() const
+
+Returns the stamp’s bounds in local (stamp) space.
+
+Source:
+	•	Typically the Bounds input pin of FVoxelOutputNode_OutputVolume
+	•	Fallback may be graph-computed region
+
+This is used by:
+	•	Stamp tree LOD-based pruning
+	•	Layer chunk-volume intersection tests
+	•	Query bounds selection
+
+⸻
+
+3.3 Previous-layer behavior
+
+bool ShouldUseQueryPrevious() const
+
+Graph stamps typically return:
+	•	true if using Alpha or override modes needing previous values
+	•	false if fully independent
+
+Layer logic:
+
+if (StampRuntime.ShouldUseQueryPrevious())
+	Query.QueryPrevious = true;
+
+This allows wrappers to relax certain validation invariants.
+
+⸻
+
+3.4 Apply – Bulk
+
+Full signature:
+
+void Apply(
+	const FVoxelVolumeBulkQuery& Query,
+	const FVoxelVolumeTransform& StampToQuery
+) const override;
+
+Graph stamp must:
+	•	Evaluate graph over a dense grid (positions derived from Query)
+	•	Fill:
+	•	Query.Distance
+	•	Query.SurfaceTypes
+	•	Query.MetadataBuffers[...]
+	•	Respect:
+	•	StampToQuery.RotationScaleTranslation
+	•	StampToQuery.MaxDistance
+	•	EVoxelStampBehavior bitmask
+	•	Optional layer override
+	•	Optional blend override
+
+⸻
+
+3.5 Apply – Sparse
+
+Full signature:
+
+void Apply(
+	const FVoxelVolumeSparseQuery& Query,
+	const FVoxelVolumeTransform& StampToQuery
+) const override;
+
+Sparse version differs:
+	•	Input is list of positions
+	•	Must sample graph per position
+	•	Often calls graph’s point-sampling API instead of bulk sampling
+	•	Must merge results correctly into sparse buffers
+
+⸻
+
+4. Stamp Wrappers
+
+Files:
+	•	VoxelVolumeStampWrapper.h/.cpp
+	•	VoxelHeightStampWrapper.h/.cpp
+
+These are mandatory for all stamps.
+
+⸻
+
+4.1 Volume Wrapper Public Interface
+
+struct FVoxelVolumeStampWrapper
+{
+	static void Apply(
+		const FVoxelWeakStackLayer& Layer,
+		const FVoxelVolumeStampRuntime& Stamp,
+		const FVoxelVolumeBulkQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery);
+
+	static void Apply(
+		const FVoxelWeakStackLayer& Layer,
+		const FVoxelVolumeStampRuntime& Stamp,
+		const FVoxelVolumeSparseQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery);
+};
+
+
+⸻
+
+4.2 What Wrappers Do
+	•	Convert weak layer → strong layer pointer
+	•	Run Breadcrumbs (before / after hooks)
+	•	Call runtime’s Apply(...)
+	•	Enforce behavior mask:
+	•	AffectShape
+	•	AffectSurfaceType
+	•	AffectMetadata
+	•	Run validation (only if enabled):
+
+Example validations:
+
+ensure(NewDistance <= StampToQuery.MaxDistance || Query.QueryPrevious);
+ensure(OldDistance == NewDistance);      // when AffectShape is off
+ensure(SurfaceTypesUnchanged);           // when AffectSurfaceType off
+ensure(MetadataUnchanged);               // when AffectMetadata off
+
+
+⸻
+
+5. Volume Layer Integration
+
+Files:
+	•	VoxelVolumeLayer.h/.cpp
+	•	VoxelLayerBase.h
+
+⸻
+
+5.1 Key Methods
+
+From VoxelVolumeLayer.cpp:
+
+void FVoxelVolumeLayer::Sample(
+	const FVoxelVolumeBulkQuery& Query) const;
+
+void FVoxelVolumeLayer::Sample(
+	const FVoxelVolumeSparseQuery& Query) const;
+
+Internally:
+
+void FVoxelVolumeLayer::SampleStampsImpl(Query)
+{
+	auto& Tree = GetTree(Query.Query.LOD);
+	
+	for (const auto& StampEntry : Tree.Iterate(Query.Bounds))
+	{
+		const FVoxelVolumeStampRuntime& Runtime = StampEntry.Runtime;
+		FVoxelVolumeStampWrapper::Apply(
+			thisWeakLayer,
+			Runtime,
+			Query,
+			StampToQuery);
+	}
+}
+
+
+⸻
+
+6. StackLayer Resolution Pipeline
+
+File: VoxelLayers.cpp
+
+FVoxelLayers stores all layers in a registry.
+FVoxelWeakStackLayer acts like an ID.
+
+Resolution pipeline (query-time):
+
+WeakLayer
+    → FVoxelLayers::FindLayer
+        → UVoxelVolumeLayer
+            → FVoxelVolumeLayer (runtime)
+
+This is invoked every time:
+
+Query.SampleVolumeLayer(WeakLayer, ...)
+
+
+⸻
+
+7. Query Integration
+
+File: VoxelQuery.h/.cpp
+
+7.1 Bulk query structure
+
+struct FVoxelVolumeBulkQuery
+{
+	FVoxelQueryContext Query; // includes LOD, Breadcrumbs, QueryPrevious
+	FVoxelFloatBuffer   Distances;
+	FVoxelSurfaceTypeBlendBuffer SurfaceTypes;
+	TMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>> MetadataBuffers;
+};
+
+7.2 Sparse query structure
+
+struct FVoxelVolumeSparseQuery
+{
+	FVoxelQueryContext Query;
+	FVoxelDoubleVectorBuffer Positions;
+	FVoxelFloatBuffer Distances;
+	FVoxelSurfaceTypeBlendBuffer SurfaceTypes;
+	TMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>> MetadataBuffers;
+};
+
+
+⸻
+
+8. Stamp Trees & Registration
+
+Each layer has a stamp tree per LOD:
+
+From VoxelLayerBase.h:
+
+FVoxelStampTree& GetTree(int32 LOD);
+
+Upon StampRef.Update():
+	•	StampManager updates the affected layer’s trees
+	•	Graph stamp gets inserted into all relevant LOD trees
+	•	Trees hold:
+	•	Runtime stamp pointer
+	•	Bounds
+	•	Spatial key for quick culling
+
+Tree iterator yields only stamps intersecting the query bounds.
+
+⸻
+
+9. Parameter Overrides System
+	•	Graph stamps inherit VoxelParameterOverridesOwner behavior:
+	•	Stores per-stamp parameter overrides
+	•	Overrides applied at runtime graph exec
+	•	Accessed through K2:
+	•	HasVoxelVolumeGraphParameter(...)
+	•	Setter functions not shown but known to exist
+
+Overrides applied before executing output node.
+
+⸻
+
+10. Graph Execution Pipeline
+
+Graph stamps use the graph evaluation backend also used by regular voxel graphs.
+
+Key runtime actions:
+	1.	Convert Query positions to graph local-space using StampToQuery
+	2.	Evaluate:
+	•	Distance buffer
+	•	SurfaceType blend buffer
+	•	Metadata buffers
+	•	Optional alpha
+	•	Optional layer override
+	3.	Merge into Query buffers using blend rules
+
+Execution rules depend on blend mode (next section).
+
+⸻
+
+11. Transform Semantics (FVoxelVolumeTransform)
+
+Contains:
+	•	local→query transform
+	•	max/min distance range
+	•	scale factors for interpretation (SDF sign rules)
+
+Relationships:
+
+Stamp local space
+    → StampToQuery (R,S,T)
+        → Query space grid / positions
+
+Bulk queries compute positions automatically.
+Sparse queries supply them directly.
+
+⸻
+
+12. Blend Modes
+
+From VoxelVolumeBlendMode.h
+
+Blend modes include:
+	•	Override
+	•	Additive
+	•	Max
+	•	Min
+	•	Others
+
+Graph stamp can override blend mode if:
+
+EnableBlendModeOverride == true
+
+Overrides affect how results merge with previous Query buffers.
+
+⸻
+
+13. Behavior Mask Enforcement
+
+Defined in VoxelStampBehavior.h
+
+enum class EVoxelStampBehavior : uint8
+{
+	AffectShape        = 1 << 0,
+	AffectSurfaceType  = 1 << 1,
+	AffectMetadata     = 1 << 2,
+
+	AffectAll = AffectShape | AffectSurfaceType | AffectMetadata
+};
+
+Wrapper uses this to ensure:
+	•	If AffectShape off → distance must not change
+	•	If AffectSurfaceType off → blends must not change
+	•	If AffectMetadata off → every metadata buffer must stay identical
+
+Violations cause runtime ensures (debug only).
+
+⸻
+
+14. Sparse vs Bulk Execution Rules
+
+Bulk rules:
+	•	Evaluate entire grid in consistent order
+	•	Apply transform per voxel position
+	•	Required for marching cubes extraction
+	•	Metadata must fill same-sized buffers
+
+Sparse rules:
+	•	Evaluate per input position
+	•	Metadata buffer lengths must match input positions
+	•	Sparse must not attempt to allocate bulk-size buffers
+	•	Used for:
+	•	Skimming
+	•	Point queries
+	•	Adaptive height queries
+
+Graph stamps must support both paths.
+
+⸻
+
+15. Metadata Propagation
+
+Metadata channels:
+	•	Declared dynamically in output nodes
+	•	Passed through stamp wrapper intact
+	•	If AffectMetadata off → wrappers ensure buffers unchanged
+	•	Metadata blending mode:
+	•	Usually override
+	•	Otherwise rules depend on metadata type
+
+Metadata is passed to mesher for material choices, biome selection, etc.
+
+⸻
+
+16. Local Bounds & Culling Rules
+	•	GetLocalBounds() is in stamp-local coordinates
+	•	When placing a stamp, world transform is applied externally
+	•	Tree stores world-space bounds per LOD
+	•	Query intersection test:
+	•	If stamp bounds do not intersect query region → skip
+	•	Bounds inform:
+	•	Tree iteration
+	•	LOD pruning
+	•	Chunk influences
+
+⸻
+
+17. Debug Hooks / Breadcrumbs
+
+If Query.Query.Breadcrumbs != nullptr, wrapper calls:
+
+PreApplyStamp.BulkVolume(...)
+PostApplyStamp.BulkVolume(...)
+
+Allows logging:
+	•	Which stamp ran
+	•	On what region
+	•	How long it took
+	•	Which behavior mask active
+
+Useful for debugging graph stamps.
+
+⸻
+
+18. Required Invariants & Allowed Violations
+
+Required:
+	•	All changed buffers must respect behavior mask
+	•	Distances must be finite
+	•	Distances ≤ MaxDistance unless QueryPrevious enabled
+	•	Metadata buffer sizes match distance buffer sizes
+	•	SurfaceType blend channels normalized
+	•	Bounds must match actual stamp extents
+
+Allowed when QueryPrevious = true:
+	•	Temporary violations (distance > max)
+	•	Partial metadata mismatches during blending
+	•	Out-of-band surface type weights
+
+Wrappers explicitly allow relaxed constraints when blending with previous layer is active.
+
+⸻
+
+19. “If implementing a new stamp…” checklist
+
+To ensure correctness:
+
+Runtime class
+	•	Subclass FVoxelVolumeStampRuntime
+	•	Implement:
+	•	Initialize
+	•	Initialize_Parallel
+	•	GetLocalBounds
+	•	ShouldUseQueryPrevious
+	•	Apply (Bulk)
+	•	Apply (Sparse)
+
+Full behavior mask support
+	•	Ensure distance only modified if AffectShape
+	•	Ensure surface types only modified if AffectSurfaceType
+	•	Ensure metadata only modified if AffectMetadata
+
+Transform correctness
+	•	Apply StampToQuery to convert positions
+	•	Do not skip rotation/scale
+	•	Clamp distances to MaxDistance
+
+Blend mode compliance
+	•	If EnableBlendModeOverride → use override
+	•	Else → inherit layer mode
+
+Sparse/bulk consistency
+	•	Ensure both paths produce equivalent semantics
+	•	No allocation mismatch
+	•	No implicit bulk evaluation in sparse path
+
+Metadata handling
+	•	Allocate buffers exactly matching Query size
+	•	Copy previous metadata if not overridden
+
+Bounds correctness
+	•	Compute from actual stamp shape
+	•	Do not leave default or incorrect bounds
+	•	Bounds determines layer culling behavior
+
+Registration
+	•	Ensure StampRef.Update() updates layer trees
+	•	Ensure dependency collector includes graph + params
+
+⸻

@@ -40,7 +40,7 @@ DRYRUN=0
 # 1) --ue-editor arg
 # 2) UE_EDITOR env var
 # 3) common macOS path used in your setup
-UE_EDITOR_DEFAULT="/Users/jupiter/UnrealEngine/UE_5.6/Engine/Binaries/Mac/UnrealEditor-Cmd"
+UE_EDITOR_DEFAULT="/Users/jupiter/UnrealEngine/UE_5.7/Engine/Binaries/Mac/UnrealEditor-Cmd"
 UE_EDITOR="${UE_EDITOR:-$UE_EDITOR_DEFAULT}"
 
 print_usage() {

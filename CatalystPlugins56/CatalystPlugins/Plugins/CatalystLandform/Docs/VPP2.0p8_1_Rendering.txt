@@ -1,0 +1,453 @@
+VoxelPluginPro – Render Chain Inner Workings (Document 1 of 2)
+
+Scope:
+This document covers the render pipeline only:
+RenderSubsystem → RenderTree → Chunk → Mesher → Mesh → RenderProxy/SceneProxy/Components → GPU/Nanite.
+
+Sampling, layers, stamps, stamp queries, and blend modes will live in Document 2.
+
+⸻
+
+0. High-level render flow (reminder)
+
+Flow:
+
+RenderSubsystem
+  → RenderTree
+    → RenderChunk
+      → Mesher
+        → FVoxelMesh
+          → RenderProxy / SceneProxy / Components
+            → GPU / VertexFactory
+              → Nanite finalization
+
+Mental model:
+	•	FVoxelRenderSubsystem orchestrates the frame.
+	•	FVoxelRenderTree decides which chunks exist and at what LOD.
+	•	Each FVoxelRenderChunk holds the mesh + render payload for that chunk.
+	•	FVoxelMesher turns sampled fields (from the sampling chain) into FVoxelMesh.
+	•	Render proxies + scene proxies + vertex factories send that mesh to the GPU.
+	•	Nanite path is finalized in a single sweep at the end.
+
+⸻
+
+1) Frame orchestration (manager)
+
+Files: VoxelRenderSubsystem.h/.cpp
+
+What this is
+
+The central render manager for a voxel world. It owns the render tree, chunks, mesher calls, and Nanite submission.
+
+What it does
+	•	Initializes rendering for the voxel world.
+	•	Sets up and maintains root chunks.
+	•	Each frame:
+	•	Updates visibility/LOD via FVoxelRenderTree.
+	•	Schedules meshing and render tasks asynchronously.
+	•	For each visible chunk:
+	•	Decides feature flags (Nanite/BasePass/Lumen/RT/MDF).
+	•	Builds or updates FVoxelMesh.
+	•	Builds FVoxelMeshRenderProxy.
+	•	Collects Nanite meshes and submits them in one pass.
+
+Key selectors (call order, as given)
+
+FVoxelRenderSubsystem::Initialize();
+FVoxelRenderSubsystem::TryInitializeRootChunks();
+FVoxelRenderSubsystem::Compute();
+FVoxelRenderSubsystem::Render(FVoxelRuntime& Runtime);
+FVoxelRenderSubsystem::StartMeshingTasks(); // spawns async work
+FVoxelRenderSubsystem::StartRenderTasks();  // spawns async work
+FVoxelRenderSubsystem::ProcessChunk(const TSharedRef<FVoxelRenderChunk>&, const FVoxelChunkNeighborInfo&);
+FVoxelRenderSubsystem::FinalizeRender_Nanite() const;
+
+Additional responsibilities explicitly called out:
+	•	Decides per-chunk flags (Nanite/BasePass/Lumen/RT/MDF) from config + LOD.
+	•	Builds Nanite mesh future (if enabled).
+	•	Always builds classic FVoxelMeshRenderProxy and initializes it (async → render thread).
+
+Notes (from original)
+	•	Work is budgeted/enqueued via Voxel::AsyncTask(...) inside Start*Tasks() / ProcessChunk().
+	•	If root chunks aren’t ready, old render data is destroyed before continuing.
+
+How it connects to the workflow
+	1.	Game thread calls FVoxelRenderSubsystem::Compute().
+	2.	Compute():
+	•	Drives FVoxelRenderTree::Update(...).
+	•	Pulls GetChunkKeysToRender().
+	3.	For each visible chunk key:
+	•	Ensures an FVoxelRenderChunk exists.
+	•	Calls ProcessChunk(...):
+	•	Picks the layer to render (via config’s LayerToRender) — link to sampling chain (Doc 2).
+	•	Instantiates and runs FVoxelMesher to build FVoxelMesh.
+	•	Initiates async FVoxelMeshRenderProxy creation.
+	4.	Render(FVoxelRuntime&) ensures async tasks are processed.
+	5.	FinalizeRender_Nanite() gathers all Nanite meshes and submits in one sweep.
+
+⸻
+
+2) LOD & visibility (what chunks exist this frame)
+
+Files: VoxelRenderTree.h/.cpp
+
+What this is
+
+The LOD + visibility tree that decides which chunks exist and at what LOD, per frame.
+
+What it does
+	•	Owns a map from chunk keys to FVoxelRenderChunk.
+	•	Performs multi-phase traversal to:
+	•	Subdivide chunks where higher detail is needed.
+	•	Collapse chunks where lower detail is enough.
+	•	Ensure neighbor consistency (no huge LOD gaps).
+	•	Produces the authoritative list of chunk keys that should be rendered this frame.
+
+Key selectors (as given)
+
+FVoxelRenderTree::Update(FVoxelRenderSubsystem&);
+FVoxelRenderTree::Traverse(...);
+FVoxelRenderTree::Collapse(...);
+FVoxelRenderTree::Subdivide(...);
+FVoxelRenderTree::SubdivideNeighbors(...);
+FVoxelRenderTree::FinalizeTraversal(...);
+FVoxelRenderTree::GetChunkKeysToRender() const;
+FVoxelRenderTree::DestroyAllRenderDatas(FVoxelRenderSubsystem&);
+
+Note: Parameter lists for Traverse(...), Collapse(...), etc. are not in the reference, so they must be treated as unknown and looked up in headers when needed. Do not guess.
+
+State it manages (explicit from original)
+	•	ChunkKeyToChunk map (keys → TSharedPtr<FVoxelRenderChunk>).
+	•	CachedChunkKeysToRender (the final set consumed by Subsystem & Nanite pass).
+
+How it connects
+	•	FVoxelRenderSubsystem::Compute() calls FVoxelRenderTree::Update(...).
+	•	After Update, the subsystem asks GetChunkKeysToRender() for the authoritative list of chunks to process.
+	•	DestroyAllRenderDatas(...) is used for cleanup/reset (e.g., world changes, shutdown).
+
+⸻
+
+3) Per-chunk render unit (lifecycle & payload handles)
+
+Files: VoxelRenderChunk.h
+
+What this is
+
+The per-chunk render container. A single logical chunk in the world, including its mesh, render state, and children.
+
+What it does
+	•	Encapsulates mesh + render payload for one chunk.
+	•	Keeps track of children and pending child destruction.
+	•	Tracks invalidation and dependencies so the mesher can know when to rebuild.
+
+Key members (as given)
+
+ChunkKey;                                        // identity & LOD
+Children;
+ChildrenToDestroy;
+TVoxelOptional<TSharedPtr<FVoxelMesh>> Mesh;     // meshing result
+TSharedPtr<FVoxelDependencyTracker> MeshDependencyTracker;
+bool bMeshInvalidated;
+TSharedPtr<FVoxelRenderChunkData> RenderData;    // holds NaniteMesh, FVoxelMeshRenderProxy, UE components
+
+RenderData in particular can contain:
+	•	Nanite mesh
+	•	FVoxelMeshRenderProxy
+	•	UE components (UVoxelMeshComponent, UVoxelNaniteComponent, collision components, etc.)
+
+How it connects
+	•	The tree (ChunkKeyToChunk) stores TSharedPtr<FVoxelRenderChunk>.
+	•	FVoxelRenderSubsystem::ProcessChunk(...):
+	•	Reads/writes Mesh.
+	•	Sets bMeshInvalidated and uses MeshDependencyTracker.
+	•	Populates RenderData with Nanite + classic proxies.
+	•	FVoxelRenderComponentCreator later consumes RenderData to spawn/update UE components.
+
+⸻
+
+4) Meshing (from voxel world → triangles)
+
+Files: VoxelMesher.h/.cpp
+
+What this is
+
+The CPU mesher that turns sampled scalar/vector fields into triangle geometry (FVoxelMesh).
+
+What it does
+	•	Samples a stack layer (height or volume) — via FVoxelQuery (see Doc 2).
+	•	Computes vertices, indices, normals, and other mesh attributes.
+	•	Applies surface types and material permutations.
+
+Constructor (as given)
+
+FVoxelMesher::FVoxelMesher(
+    FVoxelLayers& Layers,
+    FVoxelSurfaceTypeTable&,
+    FVoxelDependencyCollector&,
+    const FVoxelWeakStackLayer& LayerToRender,
+    int32 ChunkLOD,
+    FInt64Vector ChunkOffset,
+    int32 VoxelSize,
+    int32 ChunkSize,
+    const FTransform& LocalToWorld,
+    const FVoxelMegaMaterialProxy&,
+    FVoxelFloatMetadataRef BlockinessMetadata,
+    bool bExportDistances
+);
+
+Main build path selectors
+
+TSharedPtr<FVoxelMesh> FVoxelMesher::CreateMesh(const TSharedPtr<const FVoxelCellGeneratorHeights>& CachedHeights);
+
+// Internal pipeline (as described):
+GenerateVertices();
+GenerateTriangles();
+Finalize(); // returns TSharedPtr<FVoxelMesh>
+
+Supporting selectors commonly hit inside
+
+ComputeIndices();
+ComputeVertices();
+ComputeNormals();
+ComputeCells();
+ComputeLOD();
+GetPermutation(); // material/perm handling
+
+Note: Args for these helper methods are not specified in the original doc; must be read from headers when coding.
+
+How it connects
+	•	FVoxelRenderSubsystem::ProcessChunk(...):
+	•	Chooses LayerToRender via config: FVoxelWeakStackLayer.
+	•	Constructs FVoxelMesher with chunk LOD, offset, size, voxel size, transform, material proxy, metadata.
+	•	Calls CreateMesh(...) to build a TSharedPtr<FVoxelMesh>.
+	•	The mesher internally calls FVoxelQuery::SampleVolumeLayer(...) to get the field data (Doc 2) and then runs the mesh pipeline.
+	•	The resulting FVoxelMesh is stored on the chunk (Mesh) and used to build render proxies.
+
+⸻
+
+5) Where graphs are sampled (bridge to sampling chain)
+
+NOTE: This is the boundary where render chain touches the sampling chain. The detailed sampling logic (layers, stamps, etc.) will live in Document 2, but the key selectors are still listed here for completeness.
+
+Files: VoxelQuery.h/.cpp, VoxelStackLayer.h/.cpp
+
+Linkage from render side
+	•	Subsystem picks which layer to render via:
+	•	Config.LayerToRender : FVoxelWeakStackLayer
+	•	Passes LayerToRender to the mesher
+	•	The mesher creates an FVoxelQuery and calls:
+
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer& WeakLayer,
+    const FVector& Start,
+    const FIntVector& Size,
+    float Step
+) const; // grid sampling
+
+// point variants:
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer&,
+    const FVoxelDoubleVectorBuffer& Positions,
+    TVoxelArrayView<FVoxelSurfaceTypeBlend> OutSurfaceTypes,
+    const TVoxelMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>>& OutMetadataToBuffer
+) const;
+
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer&,
+    const FVoxelDoubleVectorBuffer& Positions
+) const;
+
+Inside FVoxelQuery::SampleVolumeLayer(...) (from original)
+	•	The WeakLayer is resolved to a concrete stack layer via FVoxelLayers.
+	•	The concrete sampler executes:
+
+// Height:
+FVoxelHeightLayer::SampleAsVolume(...);
+
+// Volume:
+FVoxelVolumeLayer::Sample(...);
+
+What comes back
+	•	Distance fields (SDF or height-as-volume)
+	•	Surface type blends
+	•	Metadata buffers
+
+These directly drive meshing steps.
+
+Bottom line for render chain
+
+Render chain viewpoint:
+The mesher samples a Stack Layer (height or volume) through FVoxelQuery::SampleVolumeLayer(...).
+That layer is the bridge to voxel graphs and stamps (Document 2).
+The render chain never talks to stamps directly.
+
+⸻
+
+6) Render data build (classic path) + render-thread init
+
+Files:
+VoxelMeshRenderProxy.h/.cpp
+VoxelMeshSceneProxy.h/.cpp
+VoxelVertexFactory.h/.cpp
+
+What this is
+
+The CPU→GPU upload path for classic (non-Nanite) meshes.
+
+What it does
+	•	Builds FVoxelMeshRenderProxy from an FVoxelMesh.
+	•	Initializes GPU resources on the render thread.
+	•	Provides a scene proxy for the renderer to draw.
+	•	Provides vertex factories and shader bindings.
+
+Key selectors (as given)
+
+Proxy (CPU→GPU upload path):
+
+FVoxelMeshRenderProxy::Initialize_AsyncThread(const FVoxelRenderSubsystem&);
+// async begin
+
+FVoxelMeshRenderProxy::Initialize_RenderThread(FRHICommandListBase&, const FVoxelRenderSubsystem&);
+// render thread; asserts IsInRenderingThread()
+
+FVoxelMeshRenderProxy::InitializeVertexFactory_RenderThread(...);
+
+// (optional)
+BuildDistanceField(...);
+
+Scene proxy (submission):
+
+FVoxelMeshSceneProxy::DrawStaticElements(FStaticPrimitiveDrawInterface* PDI);
+FVoxelMeshSceneProxy::GetDynamicMeshElements(...) const;
+// plus ray tracing hooks like IsRayTracingStaticRelevant, GetCachedRayTracingInstance, etc.
+
+Vertex factory (GPU binding & shaders):
+
+FVoxelVertexFactory::InitRHI();
+FVoxelVertexFactory::ReleaseRHI();
+FVoxelVertexFactory::GetPSOPrecacheVertexFetchElements(...);
+TVoxelVertexFactory<...>::ModifyCompilationEnvironment(...);
+FVoxelVertexFactoryShaderParameters::GetElementShaderBindings(...);
+
+Note: Where (...) is present, parameters were not provided in the original doc and must be looked up in headers when coding.
+
+How it connects
+	•	FVoxelMeshRenderProxy is created from the chunk’s FVoxelMesh on an async worker.
+	•	Initialize_RenderThread(...) and InitializeVertexFactory_RenderThread(...) run on the render thread to finalize GPU resources.
+	•	UVoxelMeshComponent::CreateSceneProxy() (see component section) returns an FVoxelMeshSceneProxy, which wraps the proxy data for rendering.
+
+⸻
+
+7) Component creation & scene bridge
+
+Files:
+VoxelRenderComponentCreator.h/.cpp
+VoxelMeshComponent.h/.cpp
+
+What this is
+
+The bridge between voxel render data and UE components in the world.
+
+What it does
+	•	Spawns and updates UVoxelMeshComponent (classic path) and UVoxelNaniteComponent (Nanite).
+	•	Processes queued mesh, render, and collision tasks.
+	•	Destroys unused components when chunks are removed.
+
+Key selectors (as given)
+
+Spawner/updater:
+
+FVoxelRenderComponentCreator::ProcessRenderDatasToDestroy();
+FVoxelRenderComponentCreator::ProcessRenderDatasToRender();
+FVoxelRenderComponentCreator::ProcessMeshTasks();
+FVoxelRenderComponentCreator::ProcessNaniteTasks();
+FVoxelRenderComponentCreator::ProcessCollisionTasks();
+FVoxelRenderComponentCreator::DestroyUnusedComponents();
+
+Component (UE bridge):
+
+UVoxelMeshComponent::CreateSceneProxy();              // returns FVoxelMeshSceneProxy
+UVoxelMeshComponent::GetUsedMaterials(...) const;
+UVoxelMeshComponent::CalcBounds(const FTransform&) const; // uses mesh bounds from the proxy
+UVoxelMeshComponent::OnComponentDestroyed(bool);
+
+How it connects
+	•	FVoxelRenderChunk::RenderData contains the data needed for components.
+	•	FVoxelRenderComponentCreator:
+	•	Processes pending mesh/Nanite/collision tasks.
+	•	Spawns/updates components to match current RenderData.
+	•	Destroys components when chunks are removed or invalidated.
+	•	UVoxelMeshComponent is the UE representation of a voxel chunk in the classic mesh path.
+
+⸻
+
+8) Nanite path (submission sweep)
+
+File: VoxelRenderSubsystem.cpp
+
+What this is
+
+The Nanite submission sweep after all per-chunk work is complete.
+
+Selector (as given)
+
+FVoxelRenderSubsystem::FinalizeRender_Nanite() const;
+
+What it does
+	•	Collects Chunk->RenderData->NaniteMesh for all renderable chunks (according to RenderTree->GetChunkKeysToRender()).
+	•	Submits them in one pass for Nanite rendering.
+
+How it connects
+	•	Runs after async mesh/render tasks have resolved.
+	•	Uses the same authoritative chunk list from FVoxelRenderTree.
+
+⸻
+
+9) Threading model (at a glance)
+
+From the original doc:
+	•	Game thread:
+
+FVoxelRenderSubsystem::{Initialize, Compute, Render}
+FVoxelRenderTree::Update
+component creator processing
+component lifecycle
+
+
+	•	Async worker threads:
+
+StartMeshingTasks()
+StartRenderTasks()
+ProcessChunk(...)
+FVoxelMeshRenderProxy::Initialize_AsyncThread(...)
+
+
+	•	Render thread:
+
+FVoxelMeshRenderProxy::Initialize_RenderThread(...)
+scene proxy draw paths
+vertex factory InitRHI/ReleaseRHI
+ray tracing hooks
+
+
+	•	Nanite sweep:
+
+FinalizeRender_Nanite() after per-chunk futures resolve
+
+
+
+⸻
+
+10) Minimal “remind me” checklist (render chain only)
+
+From your original summary, filtered to render-chain aspects:
+	•	Manager:
+VoxelRenderSubsystem::{TryInitializeRootChunks, StartMeshingTasks, StartRenderTasks, ProcessChunk, FinalizeRender_Nanite}
+	•	LOD/Set:
+VoxelRenderTree::{Update → Traverse/Collapse/Subdivide/SubdivideNeighbors/FinalizeTraversal, GetChunkKeysToRender}
+	•	Chunk state:
+VoxelRenderChunk{ Mesh, RenderData, Children, bMeshInvalidated }
+	•	GPU path:
+FVoxelMeshRenderProxy::{Initialize_AsyncThread, Initialize_RenderThread} → FVoxelMeshSceneProxy::{DrawStaticElements, GetDynamicMeshElements} → FVoxelVertexFactory::{InitRHI, ModifyCompilationEnvironment}
+	•	Components:
+FVoxelRenderComponentCreator::Process*Tasks + UVoxelMeshComponent::{CreateSceneProxy, CalcBounds}

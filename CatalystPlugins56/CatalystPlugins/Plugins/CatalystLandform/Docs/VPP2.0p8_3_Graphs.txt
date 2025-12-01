@@ -1,0 +1,552 @@
+VoxelPluginPro – Graph Stamps & Volume Graph Integration
+
+(Document 3A of 3 – Authoring & Usage)
+
+Scope: This document covers the parts of VPP that connect voxel graphs with stamps and volume layers, including:
+	•	Volume graph assets
+	•	Output nodes
+	•	Graph-based stamp runtimes
+	•	Stamp references and K2 bindings
+	•	Volume-layer pin types
+	•	Parameter inspection hooks
+	•	How all of this plugs into the existing stamp → layer → query → mesher pipeline
+
+This is a usage-focused document: enough detail to write code against the system without guessing, but not a line-by-line dump of internals (that’s 3B).
+
+⸻
+
+0. High-level picture
+
+Graph stamps extend the existing volume-stamp pipeline:
+
+[Graph Outputs Volume]
+ UVoxelVolumeGraph
+    → FVoxelOutputNode_OutputVolume       (Distance, SurfaceType, Alpha, Metadata, Bounds, Overrides)
+    → FVoxelVolumeGraphStamp              (volume stamp runtime)
+    → FVoxelVolumeStampWrapper::Apply     (validation + breadcrumbs)
+    → FVoxelVolumeLayer::Sample(...)      (SampleStampsImpl)
+    → FVoxelQuery::SampleVolumeLayer(...)
+    → FVoxelMesher::CreateMesh(...)
+
+Key points:
+	•	From the layer’s perspective, a graph stamp is just another FVoxelVolumeStampRuntime:
+	•	It has local bounds
+	•	It participates in stamp trees
+	•	It respects EVoxelStampBehavior
+	•	The difference is that its distance/surface/metadata come from executing a UVoxelVolumeGraph instead of from some analytic distance primitive.
+
+⸻
+
+1. Voxel Volume Graph – the asset
+
+File: VoxelVolumeGraph.h
+
+UCLASS(BlueprintType, meta = (AssetSubMenu = "Graph"))
+class VOXEL_API UVoxelVolumeGraph : public UVoxelGraph
+{
+	GENERATED_BODY()
+
+public:
+#if WITH_EDITOR
+	virtual FFactoryInfo GetFactoryInfo() override;
+#endif
+
+	virtual UScriptStruct* GetOutputNodeStruct() const override;
+};
+
+What it is
+
+A graph asset specifically designed to output volume data:
+	•	Distance field
+	•	Surface types
+	•	Alpha (blend weight for overrides)
+	•	Metadata
+	•	Optional layer + blend-mode overrides
+	•	Optional bounds
+
+What it does
+	•	Holds all nodes making up a volume-generating graph.
+	•	Overrides GetOutputNodeStruct() to point to the volume output node struct (see §2).
+
+How it fits
+	•	This is the authoring-time representation of a graph-based stamp.
+	•	When converted into a runtime stamp (FVoxelVolumeGraphStamp), this graph is executed inside the stamp’s Apply(...) methods to produce the data that gets blended into the active volume layer.
+
+⸻
+
+2. Output Node System (Volume + Metadata)
+
+Graph stamps rely on special output nodes that define exactly what data a volume graph produces and how that data can override layers/blend modes.
+
+2.1 Metadata Output Base
+
+File: VoxelOutputNode_MetadataBase.h
+
+USTRUCT(meta = (Abstract))
+struct VOXEL_API FVoxelOutputNode_MetadataBase : public FVoxelOutputNode
+{
+	GENERATED_BODY()
+	GENERATED_VOXEL_NODE_BODY()
+
+	virtual FString GetAddPinTooltip() const override;
+
+	virtual bool CanAddInputPin() const override { return true; }
+	virtual void AddInputPin() override;
+
+	virtual bool CanRemoveInputPin() const override;
+	virtual void RemoveInputPin() override;
+
+	virtual bool CanRemoveSelectedPin(FName PinName) const override;
+	virtual void RemoveSelectedPin(FName PinName) override;
+
+	virtual bool OnPinDefaultValueChanged(
+		FName PinName,
+		const FVoxelPinValue& NewDefaultValue) override;
+};
+
+What it is
+Base class for graph output nodes that include metadata:
+	•	Abstract FVoxelOutputNode subclass.
+	•	Provides dynamic pins for metadata channels.
+
+What it does
+	•	Allows adding/removing input pins dynamically (per-metadata-field).
+	•	Responds when default values change on those pins.
+	•	Provides a tooltip for “add pin” UX in the editor.
+
+How it fits
+	•	Volume graphs can output not only Distance + SurfaceType, but also metadata (via these dynamic pins).
+	•	Graph-based stamps therefore can influence both shape/surface and arbitrary metadata, consistent with EVoxelStampBehavior::AffectMetadata.
+
+⸻
+
+2.2 Volume Output Base
+
+File: VoxelOutputNode_OutputVolumeBase.h
+
+USTRUCT()
+struct VOXEL_API FVoxelOutputNode_OutputVolumeBase
+	: public FVoxelOutputNode_MetadataBase
+{
+	GENERATED_BODY()
+	GENERATED_VOXEL_NODE_BODY()
+
+	// Core volume fields
+	VOXEL_INPUT_PIN(FVoxelFloatBuffer, Distance, nullptr);
+	VOXEL_INPUT_PIN(FVoxelSurfaceTypeBlendBuffer, SurfaceType, nullptr);
+
+	// Weight used with Override blend mode (0 = previous, 1 = this graph)
+	VOXEL_INPUT_PIN(FVoxelFloatBuffer, Alpha, 1.f, AdvancedDisplay);
+
+	// Optional layer override
+	VOXEL_INPUT_PIN(bool,                  EnableLayerOverride,  false,                                AdvancedDisplay);
+	VOXEL_INPUT_PIN(FVoxelVolumeLayerObject, LayerOverride,      nullptr,                             AdvancedDisplay);
+
+	// Optional blend-mode override
+	VOXEL_INPUT_PIN(bool,                  EnableBlendModeOverride, false,                             AdvancedDisplay);
+	VOXEL_INPUT_PIN(EVoxelVolumeBlendMode, BlendModeOverride,    EVoxelVolumeBlendMode::Override,     AdvancedDisplay);
+};
+
+What it is
+The core output node struct for volume graphs.
+
+What it does
+Provides the main outputs used by graph stamps:
+	•	Distance : FVoxelFloatBuffer
+	•	Scalar field used as the volume distance (SDF / signed height-as-volume).
+	•	SurfaceType : FVoxelSurfaceTypeBlendBuffer
+	•	Surface type blends used downstream by the mesher material system.
+	•	Alpha : FVoxelFloatBuffer (Advanced)
+	•	Blend weight used for EVoxelVolumeBlendMode::Override:
+	•	0 → keep previous state
+	•	1 → fully replace with this graph’s state
+	•	Values in between for blending
+	•	Optional layer override:
+	•	EnableLayerOverride : bool
+	•	LayerOverride : FVoxelVolumeLayerObject
+	•	If enabled, this output can target a different UVoxelVolumeLayer than the surrounding context.
+	•	Optional blend-mode override:
+	•	EnableBlendModeOverride : bool
+	•	BlendModeOverride : EVoxelVolumeBlendMode
+	•	If enabled, the stamp uses a specific blend mode (e.g. Additive, Max, Override, etc.).
+
+How it fits
+	•	This node defines exactly what FVoxelVolumeGraphStamp will contribute when it runs.
+	•	The opt-in layer and blend-mode overrides give the graph control over:
+	•	Which layer to modify
+	•	How it blends with previous layers/values
+
+⸻
+
+2.3 Concrete Volume Output Node
+
+File: VoxelOutputNode_OutputVolume.h
+
+USTRUCT()
+struct VOXEL_API FVoxelOutputNode_OutputVolume
+	: public FVoxelOutputNode_OutputVolumeBase
+{
+	GENERATED_BODY()
+	GENERATED_VOXEL_NODE_BODY()
+
+	// Local bounds of the graph output
+	VOXEL_INPUT_PIN(FVoxelBox, Bounds, nullptr);
+};
+
+What it adds
+	•	An extra Bounds : FVoxelBox input pin defining the local bounds of the graph output.
+
+How it fits
+	•	Bounds is used by the graph stamp runtime (FVoxelVolumeGraphStamp) to compute its GetLocalBounds() result.
+	•	The stamp manager and stamp trees rely on these local bounds to:
+	•	Place the stamp in space
+	•	Cull it correctly per-chunk and per-LOD
+
+⸻
+
+3. Graph Stamp Runtime (Volume)
+
+File: VoxelVolumeGraphStamp.h
+
+USTRUCT(meta = (ShortName = "Graph", Icon = "ClassIcon.Blueprint", SortOrder = 2))
+struct VOXEL_API FVoxelVolumeGraphStamp final
+	: public FVoxelVolumeStamp
+{
+	GENERATED_BODY()
+
+	// Initialization (main + parallel)
+	virtual bool Initialize(FVoxelDependencyCollector& DependencyCollector) override;
+	virtual bool Initialize_Parallel(FVoxelDependencyCollector& DependencyCollector) override;
+
+	// Spatial & blending behavior
+	virtual FVoxelBox GetLocalBounds() const override;
+	virtual bool ShouldUseQueryPrevious() const override;
+
+	// Apply the stamp to a bulk query
+	virtual void Apply(
+		const FVoxelVolumeBulkQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery) const override;
+
+	// Apply the stamp to a sparse query
+	virtual void Apply(
+		const FVoxelVolumeSparseQuery& Query,
+		const FVoxelVolumeTransform& StampToQuery) const override;
+};
+
+What it is
+
+A concrete volume stamp runtime that executes a UVoxelVolumeGraph (via the FVoxelOutputNode_OutputVolume node) to produce:
+	•	Distance
+	•	SurfaceType
+	•	Metadata
+	•	Optional layer/blend overrides
+
+What it does
+
+Implements the FVoxelVolumeStampRuntime interface:
+	•	Initialize(...) / Initialize_Parallel(...)
+	•	Bind the underlying UVoxelVolumeGraph.
+	•	Register dependencies (e.g., parameters, referenced assets) with FVoxelDependencyCollector.
+	•	GetLocalBounds() const
+	•	Returns the local-space bounding box of this stamp (usually derived from Bounds on the output node).
+	•	Used by stamp trees and layers to cull work.
+	•	ShouldUseQueryPrevious() const
+	•	Indicates whether this stamp expects Query.QueryPrevious to be available for blending (e.g., for certain blend modes).
+	•	Apply(const FVoxelVolumeBulkQuery&, const FVoxelVolumeTransform&) const
+	•	Runs the volume graph over a bulk query (dense grid).
+	•	Produces distance, surface type, metadata into the query’s buffers.
+	•	Respects EVoxelStampBehavior and any overrides (layer, blend mode, alpha).
+	•	Apply(const FVoxelVolumeSparseQuery&, const FVoxelVolumeTransform&) const
+	•	Same as above, but for sparse positions.
+
+How it fits
+	•	Used like any other volume stamp runtime by the stamp wrappers and volume layer:
+
+FVoxelVolumeStampWrapper::Apply(Layer, GraphStampRuntime, BulkQuery, StampToQuery);
+// inside FVoxelVolumeLayer::SampleStampsImpl(...)
+
+
+	•	Participates in stamp trees managed by the stamp layer manager and referenced by FVoxelVolumeLayer::GetTree(LOD).
+
+⸻
+
+4. Graph Stamp References & Blueprint K2 Binding
+
+4.1 FVoxelVolumeGraphStampRef
+
+File: VoxelVolumeGraphStampRef.h
+
+USTRUCT(BlueprintType, DisplayName = "Voxel Volume Graph Stamp")
+struct VOXEL_API FVoxelVolumeGraphStampRef final
+	: public FVoxelVolumeStampRef
+{
+	GENERATED_BODY()
+	GENERATED_VOXEL_STAMP_REF_BODY(FVoxelVolumeGraphStampRef, FVoxelVolumeGraphStamp);
+};
+
+What it is
+
+A Blueprint/C++ reference to a FVoxelVolumeGraphStamp instance:
+	•	Subclass of FVoxelVolumeStampRef.
+
+What it does
+	•	Manages ownership of a graph-stamp runtime.
+	•	Provides the standard stamp-ref protocol:
+	•	bool IsValid() const;
+	•	FVoxelVolumeGraphStamp* operator->() const;
+	•	void Update(); (rebuild runtime as needed)
+	•	(plus any other common helpers defined by GENERATED_VOXEL_STAMP_REF_BODY)
+
+How it fits
+	•	This type is used by:
+	•	Stamp actors & components to hold a volume graph stamp.
+	•	Blueprint functions (see UVoxelVolumeGraphStamp_K2) to configure the stamp’s underlying graph.
+	•	Parameter/metadata systems (UVoxelParameterBlueprintLibrary::HasVoxelVolumeGraphParameter).
+
+⸻
+
+4.2 Blueprint K2 function
+
+File: VoxelVolumeGraphStamp_K2.h
+Core binding pattern:
+
+UCLASS()
+class VOXEL_API UVoxelVolumeGraphStamp_K2
+	: public UVoxelStampBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Voxel|Stamps", DisplayName = "Set Graph (Volume Graph Stamp)")
+	static void SetGraph(
+		UPARAM(ref) FVoxelVolumeGraphStampRef& OutStamp,
+		UVoxelVolumeGraph* Graph)
+	{
+		// OutStamp is passed by ref so we preserve the link in BP
+		if (!OutStamp.IsValid())
+		{
+			VOXEL_MESSAGE(Error, "Stamp is invalid");
+			return;
+		}
+
+		OutStamp->Graph = Graph;
+		OutStamp.Update();
+	}
+};
+
+(Signature shape shown; exact name of the function may differ, but the critical behavior is as above.)
+
+What it does
+	•	Assigns a UVoxelVolumeGraph* to a given FVoxelVolumeGraphStampRef.
+	•	Calls OutStamp.Update() to:
+	•	Reinitialize the stamp runtime.
+	•	Ensure the stamp manager / stamp trees pick up the new stamp configuration.
+
+How it fits
+	•	This is the Blueprint-facing entry point for configuring volume graph stamps.
+	•	Stamp components / actors can:
+	•	Expose FVoxelVolumeGraphStampRef as a property.
+	•	Use K2 functions to assign graphs at construction time or on events.
+
+⸻
+
+5. Volume Layer Pin Types
+
+File: VoxelVolumeLayerPinType.h
+
+USTRUCT(DisplayName = "Voxel Volume Layer")
+struct VOXEL_API FVoxelVolumeLayerObject
+{
+	GENERATED_BODY()
+
+	TVoxelObjectPtr<UVoxelVolumeLayer> Layer;
+};
+
+DECLARE_VOXEL_TERMINAL_BUFFER(FVoxelVolumeLayerObjectBuffer, FVoxelVolumeLayerObject);
+
+USTRUCT(DisplayName = "Voxel Volume Layer Buffer")
+struct VOXEL_API FVoxelVolumeLayerObjectBuffer final : public FVoxelTerminalBuffer
+{
+	GENERATED_BODY()
+	GENERATED_VOXEL_TERMINAL_BUFFER_BODY(FVoxelVolumeLayerObjectBuffer, FVoxelVolumeLayerObject);
+};
+
+What this adds
+	•	FVoxelVolumeLayerObject
+	•	A value type that wraps a TVoxelObjectPtr<UVoxelVolumeLayer> so layers can be referenced in graph pins.
+	•	FVoxelVolumeLayerObjectBuffer
+	•	A buffer type for multiple volume layer objects, used as a terminal buffer.
+
+How it fits
+	•	Integrates directly with FVoxelOutputNode_OutputVolumeBase:
+
+VOXEL_INPUT_PIN(FVoxelVolumeLayerObject, LayerOverride, nullptr, AdvancedDisplay);
+
+
+	•	This is how graphs can override which volume layer they stamp into:
+	•	When EnableLayerOverride is true and LayerOverride is set, the graph stamp writes into that specific UVoxelVolumeLayer.
+
+⸻
+
+6. Parameter Inspection & Overrides
+
+File: VoxelParameterBlueprintLibrary.h
+
+Relevant selector:
+
+UCLASS()
+class VOXEL_API UVoxelParameterBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintPure,
+		DisplayName = "Has Volume Graph Parameter",
+		Category = "Voxel|Parameters")
+	static bool HasVoxelVolumeGraphParameter(
+		const FVoxelVolumeGraphStampRef& Stamp,
+		FName Name);
+
+	// (other overloads for sculpt graphs and height graphs)
+};
+
+What this adds
+	•	A Blueprint-facing way to check whether a volume graph stamp exposes a named parameter.
+	•	Combined with the fact that graph stamps own parameter overrides (via a VoxelParameterOverridesOwner-style mix-in on the runtime), this implies:
+	•	Per-instance parameter overrides can be applied to the underlying UVoxelVolumeGraph.
+
+How it fits
+
+Typical workflow:
+
+if (UVoxelParameterBlueprintLibrary::HasVoxelVolumeGraphParameter(StampRef, "Frequency"))
+{
+    // Then use some other API (not shown here) to set "Frequency" override on this stamp
+    // StampRef.Update(); // reinitialize to apply overrides
+}
+
+	•	This enables multiple instances of the same graph to behave differently based on per-stamp parameters.
+
+⸻
+
+7. Graph Stamp Pin Ops
+
+File: VoxelGraphStamp.h
+
+Shape of the pin ops interface:
+
+USTRUCT()
+struct VOXEL_API FVoxelHeightGraphStampWrapper /* or similar type */
+{
+	GENERATED_BODY()
+
+	//~ Begin FVoxelPinValueOps Interface
+	virtual EVoxelPinValueOpsUsage GetUsage() const override;
+	virtual FVoxelPinType GetExposedType() const override;
+
+	virtual FVoxelRuntimePinValue MakeRuntimeValue(
+		const FVoxelPinValue& Value,
+		const FVoxelPinType::FRuntimeValueContext& Context) const override;
+
+	virtual bool HasPinDefaultValue() const override;
+
+#if WITH_EDITOR
+	virtual TMap<FName, FString> GetMetaData() const override;
+#endif
+	//~ End FVoxelPinValueOps Interface
+};
+
+(There is also a volume counterpart; shape is analogous.)
+
+What that means
+	•	Graph stamps can be exposed as pin value types within graphs:
+	•	As default values for pins.
+	•	As values that can flow through connections.
+	•	Implementing FVoxelPinValueOps-style interfaces allows:
+	•	Correct runtime conversion of pin defaults into runtime stamp references.
+	•	Editor metadata for visualizing and editing those values.
+
+How it fits
+	•	Ensures that graphs can reference stamps (including other graph stamps) cleanly:
+	•	Graph → Stamp → Graph chains are possible.
+	•	Integration with the existing pin/value system is fully standardized.
+
+⸻
+
+8. Workflow Integration Summary
+
+8.1 Authoring
+	1.	Create a UVoxelVolumeGraph asset in the editor.
+	2.	Inside that graph:
+	•	Use nodes that produce Distance, SurfaceType, and any Metadata you need.
+	•	Finish with a FVoxelOutputNode_OutputVolume node:
+	•	Connect Distance, SurfaceType, Alpha.
+	•	Optionally connect Bounds.
+	•	Optionally enable/assign LayerOverride and BlendModeOverride.
+	3.	Add any parameters you want exposed/overridable.
+
+⸻
+
+8.2 Stamp Creation
+	1.	Somewhere (BP or C++), maintain a FVoxelVolumeGraphStampRef.
+	2.	Use a K2 helper (e.g. from UVoxelVolumeGraphStamp_K2) to assign a graph:
+
+UVoxelVolumeGraphStamp_K2::SetGraph(GraphStampRef, VolumeGraphAsset);
+
+
+	3.	This:
+	•	Sets GraphStampRef->Graph = VolumeGraphAsset.
+	•	Calls GraphStampRef.Update() to rebuild the runtime (FVoxelVolumeGraphStamp).
+	•	Notifies stamp managers / trees so the new stamp becomes active in the correct layer stack.
+
+⸻
+
+8.3 Runtime Application
+
+At runtime, when a volume layer is sampled:
+
+FVoxelQuery Query(...);
+FVoxelFloatBuffer Distances = Query.SampleVolumeLayer(WeakLayer, ...);
+
+Under the hood:
+	1.	FVoxelQuery::SampleVolumeLayer(...):
+	•	Resolves FVoxelWeakStackLayer → FVoxelVolumeLayer via FVoxelLayers.
+	•	Builds a FVoxelVolume{Bulk|Sparse}Query.
+	•	Calls FVoxelVolumeLayer::Sample(Query).
+	2.	FVoxelVolumeLayer::Sample(...):
+	•	Uses GetTree(Query.Query.LOD) to get the FVoxelStampTree for the current LOD.
+	•	Creates a tree iterator to gather all relevant stamps.
+	•	Calls SampleStamps(...) → SampleStampsImpl(...).
+	3.	SampleStampsImpl(...):
+	•	For each stamp (FVoxelStampTree::FStamp):
+	•	Obtains the FVoxelVolumeStampRuntime (could be a FVoxelVolumeGraphStamp).
+	•	Calls FVoxelVolumeStampWrapper::Apply(Layer, StampRuntime, Query, StampToQuery).
+	4.	FVoxelVolumeStampWrapper::Apply(...):
+	•	Optionally runs breadcrumbs (pre/post hooks).
+	•	Calls StampRuntime.Apply(Query, StampToQuery):
+	•	For graph stamps, this executes the UVoxelVolumeGraph output node.
+	•	Validates results (ensures behavior mask is respected, distances/heights are in range, etc.).
+	5.	After all stamps are applied:
+	•	The Query holds final Distance, SurfaceType, and Metadata buffers.
+	•	These are returned by FVoxelQuery::SampleVolumeLayer(...).
+
+⸻
+
+8.4 Meshing
+	1.	FVoxelMesher::CreateMesh(...):
+	•	Uses an FVoxelQuery to sample the chosen stack layer:
+
+FVoxelQuery Query(...);
+FVoxelFloatBuffer Distances = Query.SampleVolumeLayer(LayerToRender, Start, Size, Step);
+
+
+	•	Optionally gathers surface types and metadata.
+
+	2.	The mesher uses these sampled fields to:
+	•	Generate vertices.
+	•	Generate triangles.
+	•	Decide material permutations.
+	•	Fill an FVoxelMesh instance.
+	3.	The rest of the pipeline (RenderSubsystem, MeshRenderProxy, SceneProxy, Nanite) is unchanged by whether the data came from a graph stamp or a classical stamp.
+
+⸻

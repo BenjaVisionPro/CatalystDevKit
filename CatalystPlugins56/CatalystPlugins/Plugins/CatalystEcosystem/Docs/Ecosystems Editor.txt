@@ -1,0 +1,199 @@
+# Catalyst:Ecosystems Editor
+
+Ecosystem Visualisation System (EVS) just an abbreviation for this doc only.
+
+## Prototype Scope / Source of Truth
+
+### 1) Purpose
+
+A developer- and player-facing **visualiser** that applies an **ecosystem model** (Biomes, Resources, Animals; plus Layers that drive selection) to an **existing landscape**, and renders the results inside a rectangular **slice of earth** (default 500×500 m footprint × 1000 m vertical). Runs in-editor and in packaged game.
+
+EVS is a subsystem within the **Catalyst:Ecosystems** plugin — it is not a separate plugin. It provides both the editor visualisation tools and runtime visualisation for ecosystem data.
+
+### 2) Out of Scope (for EVS)
+
+* Terrain/geology/cave authoring (these belong to the landscape/provider).
+* Server simulation loops/AI (the model is prepared for them but not implemented here).
+* Extra UI features we haven’t agreed (e.g., minimap).
+
+### 3) Core Concepts
+
+* **Layers**: environmental dimensions that influence biome distribution (e.g., temperature, moisture, radiation). Each has a ValueSource (constant/gradient/noise/external/expression), domain (2D/3D), range, and an Evaluator(WorldPos)->float.
+* **Display Mapping** (visual-only): chooses which Layers appear on **X** and **Z** axes in the visualiser, and how they are drawn (linear/log/custom curve; heatmap/contours/off). Y is altitude from the landscape.
+* **Biomes**: bounds across Layers (including Altitude), priority, blend width, visuals (materials/foliage/VFX/SFX).
+* **Resources**: resource types with availability per biome.
+* **Animals (Species)**: presence envelopes (biome allowlist + layer bounds) and asset refs.
+* **Slice**: the framed region of the world the visualiser clips from the provider to show the ecosystem application.
+* **Providers**: pluggable terrain backends — **VoxelPluginPro** or **UE Landscape**. Only one ships in the final game; if voxels aren’t used, VPP never loads.
+
+### 4) Responsibilities
+
+**Visualiser (part of Catalyst:Ecosystems)**
+
+* Clips the incoming terrain into the rectangular slice; reveals the interior via cutaway/dither/planes on its **own proxy**.
+* Applies the ecosystem model to the slice (layers → materials/foliage/overlays) and drives live updates.
+* Provides editor runtime controls and in-game explorer UI (basic).
+* Supports dragging/rotating/scaling the slice to change which world area is shown.
+
+**Terrain Provider (plugin impl)**
+
+* Supplies the **surface structure (including caves and overhangs)** for the **area surrounding a specified world point** that the visualiser will clip into its slice.
+* Uses the shared ecosystem model in its materials/foliage.
+* Streams/warms relevant terrain when the slice moves.
+
+### 5) Minimal Provider Interface
+
+```cpp
+class IEVSTerrainProvider {
+public:
+  virtual void Initialize(const FEcosystemDefinition& Def, UObject* Context) = 0;
+  virtual void PrepareRegion(const FBox& RegionBounds) = 0;           // stream/warm terrain around specified world area
+  virtual void UpdateFromModel(const FEcosystemDefinition& Def) = 0;   // bounds/layers/content changed
+  virtual void HintSliceChanged(const FBox& NewSliceBounds) {};        // optional LOD/stream hints
+};
+```
+
+### 6) Slice Interaction & Precision
+
+* Move / Rotate (yaw) / Scale footprint; default 500×500 m × 1000 m height.
+* **Snapping:** grid (Landscape: 10 m default; Voxel: **1 m**), angle (15°), and landscape component edges (when applicable).
+* Undo/redo all transforms; throttle updates while dragging; full refresh on mouse-up.
+
+### 7) Data Model (concise)
+
+```
+EcosystemDefinition
+  Layers: [LayerDefinition]
+  Biomes: [BiomeDefinition]
+  Resources: [ResourceDefinition]
+  Animals: [AnimalDefinition]
+  Policies: { Conflict: Priority|MaxWeight, DefaultBlendWidth }
+  VersionHash
+
+LayerDefinition
+  Id, DisplayName, Unit, Range[min,max]
+  Domain: 2D|3D
+  ValueSource: Constant|Gradient|Noise|ExternalField|Expression
+  Evaluator(WorldPos)->float  // authoritative
+
+DisplayMapping (visual-only)
+  Role: X|Z|Hidden
+  AxisRenderer: Linear|Log|Curve
+  Overlays: Heatmap|Contours|Off
+
+BiomeDefinition
+  Id, DisplayName, Color(editor)
+  Bounds: { AxisName -> [Min, Max] }  // must include Altitude
+  Priority, BlendWidth
+  Visuals: Materials[], FoliageSets[], VFX[], SFX[]
+
+ResourceDefinition
+  Id, DisplayName, Unit
+  Availability: { BiomeId -> value/curve }
+
+AnimalDefinition
+  Id, DisplayName, AssetRef
+  Presence: { BiomeAllowlist, LayerBounds }
+```
+
+### 8) Rendering & Update Flow
+
+1. Provider **PrepareRegion(bounds)** loads the real terrain for the slice region (around a chosen world point).
+2. Visualiser builds the **slice proxy** and cutaway, then applies model → materials/foliage.
+3. Edits to Layers/Biomes/Resources/Animals update **EcosystemDefinition**; Visualiser calls **UpdateFromModel**; materials/foliage re-evaluate; visuals change live.
+4. Changing X/Z display mapping only affects overlays/axis visuals.
+
+### 9) Prototype Acceptance Criteria (Complete When…)
+
+* You can **define Layers** with value sources, ranges, and use them in **Biomes**.
+* You can **add/remove biomes** and edit their bounds across Layers (incl. Altitude) and see borders/coverage change live.
+* You can **assign visuals** (materials, foliage sets, basic SFX/VFX) per biome and see them placed correctly.
+* You can author **Resources** and **Animals** and see their presence reflected (overlays/instances) in correct biomes.
+* The **slice gizmo** can move/yaw/scale; the region streams; visuals track the new area.
+* Works identically with **Landscape** or **Voxel** provider (within each tech’s constraints).
+* Runs in **PIE** with a basic explorer pawn; the packaged game shows the same.
+* All edits are **undo/redo** safe; updates are throttled and performant.
+
+---
+
+## Step-by-Step Implementation Guide (No-Rewrite Path)
+
+> Goal: Build iteratively without throwing away placeholders. Each step produces a working increment.
+
+### Phase 0 — Integration Setup (Day 0)
+
+* Add the **EVS** subsystem under `Catalyst:Ecosystems` plugin.
+* Create runtime/editor modules within the existing plugin structure.
+* Add settings asset `FEcosystemDefinition` (+ details panel). Stub out Layer/Biome/Resource/Animal structs.
+* Add **provider interface** header and two stub providers (compiled conditionally): `EVSProvider_Landscape`, `EVSProvider_Voxel`.
+
+**Deliverable:** Subsystem loads; empty definition asset editable; providers register but no terrain logic yet.
+
+### Phase 1 — Model First, Visual Later
+
+1. **Layers**: implement ValueSource types (Constant, Gradient, Noise; ExternalField stub).
+2. **Biomes**: bounds editing UI + validation; policies; version hash.
+3. **DisplayMapping**: choose X/Z and renderer type (no overlays yet).
+
+**Deliverable:** A solid data model with details panel; saves/loads; undo/redo.
+
+### Phase 2 — Terrain Preparation & Slice Proxy
+
+1. Implement `PrepareRegion(bounds)` in both providers:
+
+   * Landscape: identify components in bounds; ensure materials can consume an MPC/LUT.
+   * Voxel: allocate/stream chunks; placeholder SDF.
+2. Build **slice proxy** mesh + cutaway planes in Visualiser (no biome rendering yet).
+3. Implement **slice gizmo** (move/yaw/scale) + snapping (10 m / 1 m, 15°).
+
+**Deliverable:** You can position a slice box over real terrain; see a clean cutaway proxy.
+
+### Phase 3 — Biome Rendering Hookup
+
+1. Define **Material Parameter Collection (MPC)** keys and/or **LUT** format for Layers/Biome bounds.
+2. Implement `UpdateFromModel(def)` → write MPC/LUT; trigger material instance updates.
+3. Create minimal **demo material** that samples the biome selector and tints debug colors per biome.
+4. Add simple **foliage** per biome using density rules; throttle updates.
+
+**Deliverable:** Editing Layers/Biomes updates colors/foliage live across the slice.
+
+### Phase 4 — Resources & Animals (Lightweight)
+
+1. Resource availability per biome → overlay heatmap toggle or lightweight instanced markers.
+2. Animal presence → spawn simple proxies (skeletal idle loop or Niagara silhouettes) constrained to biome bounds.
+
+**Deliverable:** Resources/Animals appear only where allowed.
+
+### Phase 5 — Editor Polish & PIE
+
+* Axis overlays (linear/log/curve ticks), legend, coverage %, overlap warnings.
+* PIE explorer pawn (walk/fly; headlamp underground if applicable).
+* Throttle while dragging; full refresh on mouse-up; undo/redo all.
+
+**Deliverable:** Shippable prototype in-editor and packaged runtime.
+
+### Phase 6 — Provider Parity & Packaging
+
+* Verify both providers: identical biome placement; document cave/overhang differences.
+* Build config flag selects provider for packaged game; unused provider excluded.
+
+**Deliverable:** One-click package runs the Ecosystem Explorer with the chosen provider.
+
+---
+
+### MPC/LUT Keys (example — align with your selector)
+
+* `EVS_Layer_Temperature`
+* `EVS_Layer_Moisture`
+* `EVS_Altitude_Min/Max`
+* `EVS_Biome_{Id}_MinMax_*` (or packed LUT)
+
+### Risks & Mitigations
+
+* **Material churn**: use MPC where possible; batch writes; avoid per-frame.
+* **Foliage hitches**: chunk updates; cap instance counts; defer rebuilds to idle.
+* **Provider divergence**: write shared selector MF; unit tests on Evaluator(WorldPos).
+
+---
+
+**Done is when:** the prototype satisfies the acceptance list above, works with either provider, and ships in a packaged build as the basic in-game Ecosystem Explorer within the Catalyst:Ecosystems plugin.

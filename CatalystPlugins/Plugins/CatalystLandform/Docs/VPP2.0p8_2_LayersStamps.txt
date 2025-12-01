@@ -1,0 +1,957 @@
+VoxelPluginPro – Sampling, Layers & Stamps Inner Workings
+
+(Document 2 of 2 – for Barry’s brain)
+
+Scope:
+This document covers the data sampling & stamping pipeline:
+
+FVoxelMesher
+  → FVoxelQuery
+    → FVoxelLayers / FVoxelLayerBase
+      → FVoxel{Height,Volume}Layer
+        → Stamp trees
+          → Stamp runtime (Height/Volume)
+            → Stamp queries (.isph kernels)
+            → Blend modes / behaviors / metadata
+
+Render chain (RenderSubsystem / RenderTree / RenderChunk / proxies / components / Nanite) is in Document 1.
+
+⸻
+
+0. High-Level Sampling + Stamps Flow
+
+From the mesher’s point of view:
+
+FVoxelMesher::CreateMesh(...)
+  → constructs FVoxelQuery
+    → FVoxelQuery::SampleVolumeLayer(FVoxelWeakStackLayer, ...)
+      → FVoxelLayers resolves WeakLayer → FVoxelLayerBase
+        → FVoxelHeightLayer::SampleAsVolume(...)  OR  FVoxelVolumeLayer::Sample(...)
+          → FVoxelLayerBase::GetTree(int32 LOD) → FVoxelStampTree
+            → for each intersecting stamp:
+                FVoxel{Height,Volume}StampWrapper::Apply(...)
+                  → FVoxel{Height,Volume}StampRuntime::Apply(FVoxel{Height,Volume}{Bulk|Sparse}Query, ...)
+                    → ispc kernels in VoxelStampQueryImpl.isph
+                      → write distance/height + surface types + metadata
+
+The mesher never talks to stamps directly. It only calls FVoxelQuery::SampleVolumeLayer(...) with a FVoxelWeakStackLayer.
+
+⸻
+
+1. Query API – the entry point into sampling
+
+Files: VoxelQuery.h/.cpp, VoxelStackLayer.h/.cpp
+
+What this is
+
+The API the mesher (and other systems) use to ask: “for this layer, what is the voxel field (distances / surface types / metadata) at these positions?”
+
+What it does
+	•	Accepts a FVoxelWeakStackLayer handle (selected by the render config).
+	•	Resolves that weak handle through FVoxelLayers to a concrete layer (FVoxelHeightLayer or FVoxelVolumeLayer).
+	•	Executes the correct sampling call on that layer.
+	•	Returns:
+	•	Distance fields (volume or height-as-volume)
+	•	FVoxelSurfaceTypeBlend buffers
+	•	Metadata buffers keyed by FVoxelMetadataRef
+
+Key selectors (as given)
+
+Grid sampling:
+
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer& WeakLayer,
+    const FVector& Start,
+    const FIntVector& Size,
+    float Step
+) const;
+
+Point sampling variants:
+
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer&,
+    const FVoxelDoubleVectorBuffer& Positions,
+    TVoxelArrayView<FVoxelSurfaceTypeBlend> OutSurfaceTypes,
+    const TVoxelMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>>& OutMetadataToBuffer
+) const;
+
+FVoxelQuery::SampleVolumeLayer(
+    const FVoxelWeakStackLayer&,
+    const FVoxelDoubleVectorBuffer& Positions
+) const;
+
+How it connects
+	•	The mesher is given a FVoxelWeakStackLayer via config (Config.LayerToRender).
+	•	It constructs an FVoxelQuery and calls one of the SampleVolumeLayer(...) overloads above.
+	•	Inside SampleVolumeLayer(...):
+	•	WeakLayer is resolved via FVoxelLayers.
+	•	Height layers route to FVoxelHeightLayer::SampleAsVolume(...).
+	•	Volume layers route to FVoxelVolumeLayer::Sample(...).
+	•	The fully composited result (base + stamps + metadata) is returned to the mesher.
+
+⸻
+
+2. Layer Stack & Stamp Trees
+
+Files: VoxelLayerBase.h, VoxelLayers.h, VoxelHeightLayer.h/.cpp, VoxelVolumeLayer.h/.cpp
+
+2.1 FVoxelLayerBase & FVoxelLayers
+
+What this is
+	•	FVoxelLayerBase: abstract base for individual layers (height/volume).
+	•	FVoxelLayers: runtime registry mapping FVoxelWeakStackLayer to real layer instances.
+
+Key selector (from your doc):
+
+FVoxelLayerBase::GetTree(int32 LOD); // returns per-LOD FVoxelStampTree
+
+What it does
+	•	GetTree(int32 LOD) returns the stamp tree used when sampling the layer at a given LOD.
+	•	That tree is what layers walk to find stamps intersecting the current query bounds.
+
+⸻
+
+2.2 Height Layer
+
+Files: VoxelHeightLayer.h/.cpp
+
+What this is
+
+Layer that represents height fields, but can be sampled as a volume.
+
+Key selector (from your doc):
+
+FVoxelHeightLayer::SampleAsVolume(FVoxelVolume{Bulk|Sparse}Query);
+
+(You wrote it as:
+
+VoxelHeightLayer.h/.cpp → SampleAsVolume(FVoxelVolume{Bulk|Sparse}Query) → iterates tree → FVoxelHeightStampWrapper::Apply.)
+
+What it does
+	•	Takes a volume query structure (bulk or sparse).
+	•	Uses FVoxelLayerBase::GetTree(LOD) to get the stamp tree.
+	•	Iterates the tree to find stamps affecting the query bounds.
+	•	For each stamp:
+	•	Calls FVoxelHeightStampWrapper::Apply(...).
+	•	Returns a distance field representation (height-as-volume) plus surface types/metadata, fully stamped.
+
+⸻
+
+2.3 Volume Layer
+
+Files: VoxelVolumeLayer.h/.cpp
+
+What this is
+
+Layer that represents true volume SDF (distance field).
+
+Key members (from header):
+
+class VOXEL_API FVoxelVolumeLayer : public FVoxelLayerBase
+{
+public:
+    const FVoxelBox IntersectBounds;
+    const TSharedPtr<const FVoxelHeightLayer> PreviousHeightLayer;
+    const TSharedPtr<const FVoxelVolumeLayer> PreviousVolumeLayer;
+    ...
+    void Sample(const FVoxelVolumeBulkQuery& Query) const;
+    void Sample(const FVoxelVolumeSparseQuery& Query) const;
+
+private:
+    template<typename QueryType>
+    void SampleStamps(
+        const FVoxelQuery& PreviousQuery,
+        const QueryType& Query,
+        TConstVoxelArrayView<FVoxelStampTree::FStamp> Stamps) const;
+
+    template<typename QueryType>
+    void SampleStampsImpl(
+        const QueryType& Query,
+        TConstVoxelArrayView<FVoxelStampTree::FStamp> Stamps) const;
+};
+
+What it does
+	•	Sample(...) functions are the main volume sampling for this layer.
+	•	PreviousHeightLayer / PreviousVolumeLayer provide data from previous layers to blend with (if any).
+	•	IntersectBounds defines where this volume can actually contribute.
+	•	SampleStamps(...) / SampleStampsImpl(...):
+	•	Take a list of stamps from FVoxelStampTree.
+	•	For each stamp, construct the right stamp query (bulk/sparse).
+	•	Call the appropriate wrapper (FVoxelVolumeStampWrapper::Apply(...)) for each stamp.
+
+From your original summary:
+
+VoxelVolumeLayer.h/.cpp → Sample(FVoxelVolume{Bulk|Sparse}Query) → iterates tree → FVoxelVolumeStampWrapper::Apply.
+
+So the layering is:
+
+FVoxelVolumeLayer::Sample(...)
+  → GetTree(LOD) to get stamps
+    → SampleStamps(...)
+      → SampleStampsImpl(...)
+        → FVoxelVolumeStampWrapper::Apply(...)
+          → FVoxelVolumeStampRuntime::Apply(...)
+
+
+⸻
+
+3. Stamps – Behavior Flags & Base Stamp Type
+
+3.1 Stamp behavior flags
+
+File: VoxelStampBehavior.h
+
+What this is
+
+A bitmask enum describing which channels a stamp is allowed to modify.
+
+Enum:
+
+UENUM(BlueprintType, meta = (Bitflags, VoxelSegmentedEnum, UseEnumValuesAsMaskValuesInEditor = "true"))
+enum class EVoxelStampBehavior : uint8
+{
+    None = 0 UMETA(HideInUI),
+
+    // Affect Shape
+    AffectShape = 1 << 0 UMETA(Icon = "ClassIcon.Cube"),
+    // Affect Surface Type
+    AffectSurfaceType = 1 << 1 UMETA(Icon = "ClassIcon.Material"),
+    // Affect Metadata
+    AffectMetadata = 1 << 2 UMETA(Icon = "Kismet.Tabs.Palette"),
+
+    AffectAll = AffectShape | AffectSurfaceType | AffectMetadata UMETA(HideInUI),
+    AffectShapeAndSurfaceType = AffectShape | AffectSurfaceType UMETA(HideInUI),
+    AffectShapeAndMetadata = AffectShape | AffectMetadata UMETA(HideInUI),
+    AffectSurfaceTypeAndMetadata = AffectSurfaceType | AffectMetadata UMETA(HideInUI),
+};
+ENUM_CLASS_FLAGS(EVoxelStampBehavior);
+
+Meaning:
+	•	AffectShape → distance/height field.
+	•	AffectSurfaceType → FVoxelSurfaceTypeBlend buffers.
+	•	AffectMetadata → metadata buffers.
+
+Wrappers will use this to enforce invariants like “don’t touch shape if AffectShape is off”.
+
+⸻
+
+3.2 Base stamp type & runtime resolution
+
+File: VoxelStamp.h
+
+Key types & functions (from header)
+
+Forward declarations:
+
+struct FVoxelStampRuntime;
+class UVoxelStampComponent;
+class IVoxelStampComponentInterface;
+
+At the end of the file:
+
+public:
+    FVoxelStampRef GetStampRef() const;
+    TVoxelObjectPtr<USceneComponent> GetComponent() const;
+    TSharedPtr<const FVoxelStampRuntime> ResolveStampRuntime() const;
+
+private:
+    FVoxelWeakStampRef WeakStampRef;
+
+    friend FVoxelStampRef;
+};
+
+What this does
+	•	FVoxelStampRef GetStampRef() const;
+Returns a reference handle to this stamp (used by stamp manager, trees, etc.).
+	•	TVoxelObjectPtr<USceneComponent> GetComponent() const;
+Gives back the associated scene component (if any).
+	•	TSharedPtr<const FVoxelStampRuntime> ResolveStampRuntime() const;
+Turns the asset/authoring representation into a runtime stamp object (FVoxelStampRuntime).
+
+From your original workflow summary:
+
+VoxelStamp.h/.cpp → FVoxelStamp::ResolveStampRuntime() → returns TSharedPtr<const FVoxelStampRuntime>.
+
+That’s the key bridge from authored stamp data → runtime stamp used by wrappers.
+
+⸻
+
+4. Volume Stamps & Blend Modes
+
+4.1 Volume blend modes
+
+File: VoxelVolumeBlendMode.h
+
+Enum:
+
+UENUM(BlueprintType, meta = (VoxelSegmentedEnum))
+enum class EVoxelVolumeBlendMode : uint8
+{
+    Additive UMETA(... Icon = "Voxel.Stamps.BlendMode.Add"),
+    Subtractive UMETA(... Icon = "Voxel.Stamps.BlendMode.Subtract"),
+    Intersect UMETA(... Icon = "Voxel.Stamps.BlendMode.Intersect"),
+    Override UMETA(... Icon = "Voxel.Stamps.BlendMode.Override")
+};
+
+These define how a volume stamp’s distance field combines with existing data:
+	•	Additive
+	•	Subtractive
+	•	Intersect
+	•	Override
+
+(Exact math lives in the runtime and kernels; this enum just tags the mode.)
+
+⸻
+
+4.2 Volume stamp runtime
+
+File: VoxelVolumeStamp.h
+
+Key includes:
+
+#include "VoxelLayer.h"
+#include "VoxelStamp.h"
+#include "VoxelStampQuery.h"
+#include "VoxelStampRuntime.h"
+#include "VoxelStampTransform.h"
+#include "VoxelVolumeBlendMode.h"
+
+Key runtime interface (from header):
+
+public:
+    virtual void Apply(
+        const FVoxelVolumeBulkQuery& Query,
+        const FVoxelVolumeTransform& StampToQuery) const;
+
+    virtual void Apply(
+        const FVoxelVolumeSparseQuery& Query,
+        const FVoxelVolumeTransform& StampToQuery) const
+    {
+    }
+};
+
+What this does
+	•	FVoxelVolumeStampRuntime::Apply(...) is the core stamping function for volume stamps.
+	•	It takes:
+	•	A FVoxelVolumeBulkQuery or FVoxelVolumeSparseQuery (see §6).
+	•	A FVoxelVolumeTransform that maps stamp space → query space.
+	•	Inside, it:
+	•	Reads existing distance/surface/metadata from the query buffers.
+	•	Applies the stamp’s shape & blend mode (EVoxelVolumeBlendMode).
+	•	Writes back into the query’s buffers.
+
+From your earlier summary:
+
+Voxel{Height,Volume}Stamp.h/.cpp → FVoxel{Height,Volume}StampRuntime::Apply(FVoxel{Height,Volume}{Bulk|Sparse}Query, …).
+
+So height and volume stamps share the same conceptual runtime interface, with different scalar field math.
+
+⸻
+
+4.3 Volume stamp refs & Blueprint helpers
+
+File: VoxelVolumeStampRef.h
+
+Contains:
+
+USTRUCT(BlueprintType, DisplayName = "Voxel Volume Stamp", ...)
+struct VOXEL_API FVoxelVolumeStampRef : public FVoxelStampRef
+{
+    ...
+};
+
+Plus generated instanced stamp ref:
+
+USTRUCT(BlueprintType)
+struct VOXEL_API FVoxelVolumeInstancedStampRef : public FVoxelInstancedStampRef
+{
+    GENERATED_BODY()
+    GENERATED_VOXEL_STAMP_REF_PARENT_BODY(FVoxelVolumeInstancedStampRef, FVoxelVolumeStamp)
+};
+
+Specializations:
+
+template<>
+struct TStructOpsTypeTraits<FVoxelVolumeInstancedStampRef> : public TStructOpsTypeTraits<FVoxelInstancedStampRef>
+{
+};
+
+template<>
+struct TVoxelInstancedStampRefImpl<FVoxelVolumeStamp>
+{
+    using Type = FVoxelVolumeInstancedStampRef;
+};
+
+Blueprint helper (from VoxelVolumeStamp_K2.h):
+
+We see a pattern like:
+
+UCLASS()
+class VOXEL_API UVoxelVolumeStamp_K2 : public UVoxelStampBlueprintFunctionLibrary
+{
+    ...
+    UFUNCTION(BlueprintPure, Category = "Voxel|Stamp|Volume", DisplayName = "Get Volume Stamp")
+    static void MakeCopy(
+        const FVoxelVolumeStampRef Stamp,
+        FVoxelVolumeStampRef& Copy)
+    {
+        Copy = FVoxelVolumeStampRef(Stamp.MakeCopy());
+    }
+
+    UFUNCTION(BlueprintCallable, BlueprintInternalUseOnly)
+    static ...
+};
+
+That confirms:
+	•	FVoxelVolumeStampRef is the Blueprint-facing handle for volume stamps.
+	•	MakeCopy(...) produces independent copies so you can modify without touching the original.
+
+⸻
+
+5. Stamp Authoring in the World
+
+5.1 AVoxelStampActor
+
+File: VoxelStampActor.h
+
+What this is
+
+An AActor wrapper around a UVoxelStampComponent, giving you a quick way to place stamps in the world.
+
+Key selectors (from header):
+
+UCLASS(NotBlueprintable)
+class VOXEL_API AVoxelStampActor : public AActor
+{
+    GENERATED_BODY()
+public:
+    UFUNCTION(BlueprintPure, Category = "Voxel")
+    FVoxelStampRef GetStamp() const;
+
+    UFUNCTION(BlueprintCallable, Category = "Voxel")
+    FVoxelStampRef SetStamp(const FVoxelStampRef& NewStamp);
+    void SetStamp(const FVoxelStamp& NewStamp);
+
+    UFUNCTION(BlueprintCallable, Category = "Voxel")
+    void UpdateStamp();
+
+private:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Voxel", meta = (AllowPrivateAccess))
+    TObjectPtr<UVoxelStampComponent> StampComponent;
+};
+
+How it connects
+	•	GetStamp() returns the FVoxelStampRef for this actor.
+	•	SetStamp(...) assigns a new stamp or stamp ref.
+	•	UpdateStamp() syncs changes to the underlying stamp (priority, transforms, etc.) via its component.
+
+⸻
+
+5.2 Stamp component interface & base
+
+Files: VoxelStampComponentInterface.h, VoxelStampComponentBase.h, VoxelStampComponent.h
+
+Interface:
+
+UINTERFACE()
+class VOXEL_API UVoxelStampComponentInterface : public UInterface
+{
+    GENERATED_BODY()
+};
+
+class VOXEL_API IVoxelStampComponentInterface  : public IInterface
+{
+    GENERATED_BODY()
+
+public:
+    virtual USceneComponent* FindComponent(UClass* Class) const = 0;
+
+    template<typename T>
+    T* FindComponent() const
+    {
+        return CastChecked<T>(this->FindComponent(StaticClassFast<T>()), ECastCheckedType::NullAllowed);
+    }
+};
+
+Base component:
+
+UCLASS(NotBlueprintType, NotBlueprintable)
+class VOXEL_API UVoxelStampComponentBase : public USceneComponent
+{
+    GENERATED_BODY()
+
+public:
+    // ~ Begin USceneComponent Interface
+    virtual void OnRegister() override;
+    ...
+    // ~ End USceneComponent Interface
+
+public:
+    UFUNCTION(BlueprintCallable, Category = "Voxel")
+    void UpdateStamp();
+
+protected:
+    virtual void PreUpdateStamp() {}
+    virtual FVoxelStampRef GetStamp_Internal() const VOXEL_PURE_VIRTUAL({});
+
+private:
+    // Update stamp if component properties changed
+    // eg, IsVisible or Transform
+    void ApplyComponentChangesToStamp();
+};
+
+Stamp component (leaf):
+
+From VoxelStampComponent.h tail:
+
+class VOXEL_API UVoxelStampDummyPreviewComponent : public UPrimitiveComponent
+{
+    GENERATED_BODY()
+    ...
+};
+
+class VOXEL_API UVoxelStampComponent : public UVoxelStampComponentBase, public IVoxelStampComponentInterface
+{
+    GENERATED_BODY()
+public:
+    //~ Begin IVoxelStampComponentInterface Interface
+    virtual USceneComponent* FindComponent(UClass* Class) const override;
+    //~ End IVoxelStampComponentInterface Interface
+
+#if WITH_EDITOR
+    void OnActorLabelChanged();
+#endif
+
+public:
+    static int32 GetNewStampPriority(const UWorld* World, const FVoxelStampRef& TargetStamp);
+    static int32 GetNewStampPriority(const UWorld* World, const FVoxelStamp& TargetStamp);
+
+private:
+    UPROPERTY(EditAnywhere, Category = "Config", DisplayName = "Stamp", meta = (ShowOnlyI...
+    ...
+};
+
+What this does
+	•	UVoxelStampComponentBase::UpdateStamp():
+	•	Obtains FVoxelStampRef from GetStamp_Internal().
+	•	Calls internal logic to sync component state (transform, visibility) into the stamp.
+	•	UVoxelStampComponent:
+	•	Implements IVoxelStampComponentInterface::FindComponent.
+	•	Provides helper functions to get a new stamp priority:
+	•	static int32 GetNewStampPriority(const UWorld* World, const FVoxelStampRef& TargetStamp);
+	•	static int32 GetNewStampPriority(const UWorld* World, const FVoxelStamp& TargetStamp);
+
+⸻
+
+5.3 Stamp Blueprint function library
+
+File: VoxelStampBlueprintFunctionLibrary.h
+
+Enum:
+
+UENUM(BlueprintType)
+enum class EVoxelStampCastResult : uint8
+{
+    CastSucceeded,
+    CastFailed
+};
+
+Template helper:
+
+template<typename Type>
+static TVoxelStampRef<Type> CastToStampImpl(
+    const FVoxelStampRef Stamp,
+    EVoxelStampCastResult& Result)
+{
+    const TVoxelStampRef<Type> OutStamp = Stamp.CastTo<Type>();
+
+    Result = OutStamp.IsValid()
+        ? EVoxelStampCastResult::CastSucceeded
+        : EVoxelStampCastResult::CastFailed;
+
+    return OutStamp;
+}
+
+What this does
+	•	Allows Blueprint (and C++) to safely cast a generic FVoxelStampRef to a specific TVoxelStampRef<Type>.
+	•	Returns EVoxelStampCastResult to signal success/failure.
+
+⸻
+
+6. Stamp Queries & Kernels
+
+Files: VoxelStampQuery.h, VoxelStampQueryImpl.isph
+
+6.1 Query types
+
+From VoxelStampQuery.h:
+
+class FVoxelQuery;
+struct FVoxelHeightBulkQuery;
+struct FVoxelVolumeBulkQuery;
+struct FVoxelHeightSparseQuery;
+struct FVoxelVolumeSparseQuery;
+
+These are the data carriers passed into stamp runtime Apply(...) calls.
+
+From VoxelStampQueryImpl.isph (height bulk example):
+
+struct FVoxelHeightBulkQuery
+{
+    int2 StartIndex;
+    int2 EndIndex;
+    double2 Start;
+    float Step;
+
+    uniform float* Heights;
+
+    int32 StrideX;
+    ...
+};
+
+FORCEINLINE int32 GetIndex(
+    const uniform FVoxelHeightBulkQuery& Query,
+    const varying int32 X,
+    const uniform int32 Y)
+{
+    check(Query.StartIndex.x <= X && X < Query.EndIndex.x);
+    check(Query.StartIndex.y <= Y && Y < Query.EndIndex.y);
+
+    return X + Query.StrideX * Y;
+}
+
+FORCEINLINE varying double2 GetPosition(
+    const uniform FVoxelHeightBulkQuery& Query,
+    const varying int32 X,
+    const uniform int32 Y)
+{
+    check(Query.StartIndex.x <= X && X < Query.EndIndex.x);
+    check(Query.StartIndex.y <= Y && Y < Query.EndIndex.y);
+
+    return Query.Start + Query.Step ...
+}
+
+Metadata access helper (from the same header):
+
+class FVoxelMetadataMap
+{
+public:
+    const TVoxelMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>>& MetadataToBuffer;
+
+    FVoxelMetadataMap();
+    FVoxelMetadataMap(TVoxelMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>>&&) = delete;
+    FVoxelMetadataMap(const TVoxelMap<FVoxelMetadataRef, TSharedRef<FVoxelBuffer>>& MetadataToBuffer)
+        : MetadataToBuffer(MetadataToBuffer)
+    {
+    }
+
+public:
+    FORCEINLINE FVoxelBuffer* Find(const FVoxelMetadataRef& Metadata) const
+    {
+        return MetadataToBuffer.FindSmartPtr(Metadata);
+    }
+    FORCEINLINE ...
+};
+
+What this does
+	•	Bulk/sparse queries give runtime stamps:
+	•	Start/end indices, step sizes, starting positions.
+	•	Writeable distance/height pointers.
+	•	Strides for indexing and helper functions GetIndex/GetPosition.
+	•	Access to metadata buffers plus surface type buffers (not fully printed, but referenced).
+	•	FVoxelMetadataMap allows stamps to find the correct metadata buffer for a given FVoxelMetadataRef.
+
+⸻
+
+7. Stamp Layer Manager
+
+File: VoxelStampManager.h
+
+What this is
+
+A manager responsible for tracking stamps per layer and updating their stamp trees when stamps are registered/updated/unregistered.
+
+Key declarations (from header):
+
+class VOXEL_API FVoxelStampLayerManager : public TSharedFromThis<FVoxelStampLayerManager>
+{
+public:
+    const TVoxelObjectPtr<UWorld> World;
+    const TVoxelObjectPtr<UVoxelLayer> Layer;
+
+    struct FChangedStamp
+    {
+        ...
+    };
+
+    enum class EUpdateType
+    {
+        Register,
+        Unregister,
+        Update
+    };
+
+    struct FUpdate
+    {
+        EUpdateType Type = {};
+        FVoxelStampIndex StampIndex;
+        FVoxelWeakStampRef WeakStampRef;
+        TSharedPtr<FVoxelStamp> NewStamp;
+        TVoxelObjectPtr<USceneComponent> Component;
+    };
+
+    TVoxelSet<int32> IndicesPendingUpdate;
+    TVoxelChunkedArray...
+};
+
+What this does (at a high level)
+	•	Knows which world + layer it belongs to: World, Layer.
+	•	Uses FUpdate entries to record:
+	•	What changed (EUpdateType).
+	•	Which stamp index (FVoxelStampIndex).
+	•	Which weak stamp ref (FVoxelWeakStampRef).
+	•	New stamp data + component association.
+	•	Maintains sets/arrays of stamps pending update.
+
+Important:
+The specific methods on FVoxelStampLayerManager are not visible in the snippet; they must be read from the header when writing code. Do not assume names or signatures.
+
+⸻
+
+8. Stamp Wrappers & Validation
+
+This is your “Stamp Wrappers” section, which already encodes the critical invariants. I’m keeping the content and signatures exactly as written.
+
+A) Observed
+
+You asked how the new files (stamp behavior + height/volume stamp wrappers) fit into the StackLayer that the Mesher samples.
+
+B) Verified source proof (quoted)
+
+1) What “behavior” a stamp can affect
+File: VoxelStampBehavior.h
+
+Behavior bitmask (what a stamp modifies):
+enum class EVoxelStampBehavior : uint8 { … AffectShape = 1<<0, AffectSurfaceType = 1<<1, AffectMetadata = 1<<2, … AffectAll = AffectShape | AffectSurfaceType | AffectMetadata };
+(lines show the 3 core capabilities + combos)
+
+This tells you a stamp can independently affect shape (distance/height), surface type, and metadata.
+
+2) Wrappers are the gatekeepers that call the runtime stamp, with optional validation & breadcrumbs
+Files: VoxelHeightStampWrapper.{h,cpp}, VoxelVolumeStampWrapper.{h,cpp}
+
+Public entry points used by layers:
+
+Height:
+
+static void FVoxelHeightStampWrapper::Apply(
+    const FVoxelWeakStackLayer& Layer,
+    const FVoxelHeightStampRuntime& Stamp,
+    const FVoxelHeightBulkQuery& Query,
+    const FVoxelHeightTransform& StampToQuery);
+
+static void FVoxelHeightStampWrapper::Apply(..., const FVoxelHeightSparseQuery& Query, ...);
+
+Volume:
+
+static void FVoxelVolumeStampWrapper::Apply(
+    const FVoxelWeakStackLayer& Layer,
+    const FVoxelVolumeStampRuntime& Stamp,
+    const FVoxelVolumeBulkQuery& Query,
+    const FVoxelVolumeTransform& StampToQuery);
+
+static void FVoxelVolumeStampWrapper::Apply(..., const FVoxelVolumeSparseQuery& Query, ...);
+
+These are exactly what your FVoxel{Height,Volume}Layer::Sample{AsVolume|} call for each stamp during SampleStampsImpl.
+
+Validation switch & breadcrumbs hooks (from your notes):
+	•	Global validation toggle (height):
+
+VOXEL_CONSOLE_VARIABLE(
+    ...,
+    bool,
+    GVoxelEnableStampValidation,
+    ...,
+    "voxel.stamp.EnableValidation",
+    "If true, will run additional checks...");
+
+
+	•	Pre/post hooks (height bulk path example):
+
+if (Query.Query.Breadcrumbs && Query.Query.Breadcrumbs->PreApplyStamp.BulkHeight) { ... PreApplyStamp.BulkHeight(Layer, Stamp, Query); }
+Stamp.Apply(Query, StampToQuery);
+if (Query.Query.Breadcrumbs && Query.Query.Breadcrumbs->PostApplyStamp.BulkHeight) { ... PostApplyStamp.BulkHeight(Layer, Stamp, Query); }
+
+
+	•	Pre/post hooks (volume bulk path mirrors height):
+
+PreApplyStamp.BulkVolume(...) … Stamp.Apply(...) … PostApplyStamp.BulkVolume(...);
+
+
+
+So the wrapper:
+	1.	Optionally logs before/after each stamp application (breadcrumbs).
+	2.	Then calls the runtime stamp’s Apply(...).
+	3.	If validation is enabled, asserts invariants (see below).
+
+Validation invariants (examples from code, as you recorded):
+	•	Volume wrapper:
+	•	Checks distances are finite and not exceeding max unless blending with previous layer:
+
+ensure(OldDistance == NewDistance); // when behavior says “don’t touch shape”
+ensure(NewDistance <= StampToQuery.MaxDistance || Query.QueryPrevious);
+
+
+	•	Height wrapper:
+	•	Ensures height range & that side buffers match when behavior shouldn’t touch them:
+
+ensure(StampToQuery.MinHeight <= NewHeight && NewHeight <= StampToQuery.MaxHeight);
+ensure(Query.IndirectSurfaceTypes == OldIndirectSurfaceTypes);
+ensure(Query.IndirectHeights == OldIndirectHeights);
+
+
+
+3) Where the wrappers are called from (layers)
+From earlier layer files you referenced:
+	•	Height layer per-stamp call sites:
+
+FVoxelHeightStampWrapper::Apply(WeakLayer, StampRuntime, *ElementQuery, ...); // multiple call sites in VoxelHeightLayer.cpp
+
+
+	•	Volume layer per-stamp call sites:
+
+FVoxelVolumeStampWrapper::Apply(WeakLayer, StampRuntime, *ElementQuery, ...); // multiple call sites in VoxelVolumeLayer.cpp
+
+
+
+Those are invoked inside each layer’s SampleStampsImpl(...) after the stamp tree iterator yields candidate stamps for the query bounds.
+
+C) Derived rules (how it fits together)
+	1.	Behavior drives what gets written
+The runtime stamp (Height/Volume) inspects EVoxelStampBehavior and only writes to buffers that correspond to enabled bits:
+	•	AffectShape → updates height (height path) or distance (volume path).
+	•	AffectSurfaceType → writes surface type blends.
+	•	AffectMetadata → writes metadata buffers.
+Wrappers then validate untouched channels remain unchanged (e.g., ensure(OldDistance == NewDistance) when shape wasn’t supposed to change).
+	2.	Wrappers standardize the call, logging, and invariants
+	•	They run pre/post breadcrumbs so you can profile or debug per-stamp work.
+	•	They call the runtime Stamp.Apply(...) with the StampToQuery transform (bounds, scaling, min/max).
+	•	If GVoxelEnableStampValidation is on, they assert the stamp stayed within bounds and didn’t touch disabled behaviors.
+	3.	Layers are the schedulers; stamps are the operators
+	•	Layers query their stamp tree (per LOD) to find stamps intersecting the current query bounds.
+	•	For each, they construct a bulk or sparse query struct and call the corresponding Wrapper::Apply(...).
+	•	The runtime stamp computes contributions (often with a sparse inner pass) and writes back to the query.
+	4.	Back pressure & blending with previous
+	•	Wrappers explicitly relax some constraints when Query.QueryPrevious is present (previous layer data to blend with).
+	•	This is how layered composition can allow temporary “out of band” values during blending/merging.
+
+D) End-to-end “paste-back” wiring (files → selectors)
+	•	Behavior:
+	•	VoxelStampBehavior.h → EVoxelStampBehavior::{AffectShape, AffectSurfaceType, AffectMetadata, ...}
+	•	Wrappers:
+	•	VoxelHeightStampWrapper.h/.cpp
+	•	Apply(Layer, StampRuntime, FVoxelHeightBulkQuery, StampToQuery)
+	•	Apply(Layer, StampRuntime, FVoxelHeightSparseQuery, StampToQuery)
+	•	Uses: GVoxelEnableStampValidation, PreApplyStamp.BulkHeight, PostApplyStamp.BulkHeight, invariants on heights/surface types.
+	•	VoxelVolumeStampWrapper.h/.cpp
+	•	Apply(Layer, StampRuntime, FVoxelVolumeBulkQuery, StampToQuery)
+	•	Apply(Layer, StampRuntime, FVoxelVolumeSparseQuery, StampToQuery)
+	•	Uses: GVoxelEnableStampValidation, PreApplyStamp.BulkVolume, PostApplyStamp.BulkVolume, invariants on distances/surface types.
+	•	Layers (callers of wrappers):
+	•	VoxelHeightLayer.h/.cpp
+→ SampleAsVolume(FVoxelVolume{Bulk|Sparse}Query) → SampleStampsImpl(...) → FVoxelHeightStampWrapper::Apply(...)
+	•	VoxelVolumeLayer.h/.cpp
+→ Sample(FVoxelVolume{Bulk|Sparse}Query) → SampleStampsImpl(...) → FVoxelVolumeStampWrapper::Apply(...)
+	•	Upstream/Downstream context (for completeness):
+	•	Mesher: VoxelMesher.h/.cpp → CreateMesh() → FVoxelQuery::SampleVolumeLayer(WeakLayer, ...)
+	•	Query/Resolve: VoxelQuery.h/.cpp → SampleVolumeLayer → Find{Height|Volume}Layer(...)
+	•	Trees/Registry: VoxelLayerBase.h (GetTree), VoxelLayers.h (resolve weak layer)
+	•	Render: VoxelRenderSubsystem.cpp (ProcessChunk, FinalizeRender_Nanite), VoxelMeshRenderProxy, VoxelMeshSceneProxy, VoxelVertexFactory
+
+⸻
+
+9. World Integration (Stamp-Relevant Bits)
+
+Files: VoxelWorld.h, VoxelWorldRootComponent.h
+
+World root component:
+
+UCLASS()
+class VOXEL_API UVoxelWorldRootComponent : public UPrimitiveComponent
+{
+    GENERATED_BODY()
+
+public:
+    UVoxelWorldRootComponent();
+
+    //~ Begin UObject Interface
+    virtual void Serialize(FArchive& Ar) override;
+    //~ End UObject Interface
+};
+
+From VoxelWorld.h we see:
+	•	Forward declares:
+
+class FVoxelRuntime;
+class UVoxelLayerStack;
+class UVoxelMegaMaterial;
+class UVoxelFloatMetadata;
+extern VOXEL_API bool GVoxelDumpStatus;
+
+
+	•	Config flags about runtime creation and waiting:
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config", AdvancedDisplay)
+bool bCreateRuntimeOnBeginPlay = true;
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config", AdvancedDisplay)
+bool bWaitOnBeginPlay = true;
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config", AdvancedDisplay)
+bool bWaitForPCG = true;
+
+
+
+What this implies (without guessing methods)
+	•	UVoxelWorldRootComponent is the primitive component that anchors the voxel world in the scene and participates in serialization.
+	•	AVoxelWorld (declared in VoxelWorld.generated.h) owns:
+	•	UVoxelLayerStack (thus: the collection of layers used by sampling/stamps).
+	•	FVoxelRuntime (which includes our render + sampling subsystems).
+	•	Config around when the runtime is created and when to wait for it.
+
+Exact runtime methods (e.g., “GetRuntime()”) are not visible in the snippet and must be taken from the header when needed.
+
+⸻
+
+10. Minimal “Remind Me” Checklist (Sampling + Stamps)
+
+When I (Barry) need to work on sampling or stamps, this is the quick mental map:
+	•	Query entry:
+	•	FVoxelQuery::SampleVolumeLayer(WeakLayer, ...)
+	•	FVoxelLayers → FVoxelLayerBase::GetTree(int32 LOD)
+	•	Layers:
+	•	FVoxelHeightLayer::SampleAsVolume(FVoxelVolume{Bulk|Sparse}Query)
+	•	FVoxelVolumeLayer::Sample(FVoxelVolume{Bulk|Sparse}Query)
+	•	FVoxelVolumeLayer::SampleStamps(...) → SampleStampsImpl(...)
+	•	Trees & manager:
+	•	FVoxelLayerBase::GetTree(int32 LOD) → FVoxelStampTree
+	•	FVoxelStampLayerManager + FUpdate{EUpdateType, FVoxelStampIndex, FVoxelWeakStampRef, ...}
+	•	Stamps (asset → runtime):
+	•	FVoxelStampRef / FVoxelVolumeStampRef
+	•	FVoxelStamp::ResolveStampRuntime()
+	•	FVoxelVolumeStampRuntime::Apply(FVoxelVolume{Bulk|Sparse}Query, const FVoxelVolumeTransform&) const
+	•	Behaviors: EVoxelStampBehavior
+	•	Blend: EVoxelVolumeBlendMode
+	•	Wrappers:
+	•	FVoxelHeightStampWrapper::Apply(...)
+	•	FVoxelVolumeStampWrapper::Apply(...)
+	•	Validation: GVoxelEnableStampValidation, invariants on untouched channels.
+	•	Queries & kernels:
+	•	FVoxelHeightBulkQuery, FVoxelHeightSparseQuery
+	•	FVoxelVolumeBulkQuery, FVoxelVolumeSparseQuery
+	•	FVoxelMetadataMap::Find(...)
+	•	World & authoring:
+	•	AVoxelStampActor::{GetStamp, SetStamp, UpdateStamp}
+	•	UVoxelStampComponentBase::UpdateStamp()
+	•	UVoxelStampComponent::{FindComponent, GetNewStampPriority(...)}
+	•	Blueprint helpers: EVoxelStampCastResult, CastToStampImpl(...), UVoxelVolumeStamp_K2::MakeCopy(...)

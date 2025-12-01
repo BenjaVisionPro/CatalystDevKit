@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Auto-locate engine and project
-ENGINE_ROOT="${ENGINE_ROOT:-$HOME/UnrealEngine/UE_5.6}"
+ENGINE_ROOT="${ENGINE_ROOT:-$HOME/UnrealEngine/UE_5.7}"
 PROJECT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 UPROJECT="$PROJECT_ROOT/CatalystPlugins/CatalystPlugins.uproject"
 

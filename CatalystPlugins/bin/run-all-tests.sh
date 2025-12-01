@@ -4,7 +4,7 @@ set -euo pipefail
 SUITES="${SUITES:-CF CE}"   # override via env or --suites "CF CE CC"
 UPROJECT="${UPROJECT:-}"
 UE_BIN="${UE_BIN:-}"
-ENGINE_ROOT="${ENGINE_ROOT:-/Users/jupiter/UnrealEngine/UE_5.6}"
+ENGINE_ROOT="${ENGINE_ROOT:-/Users/jupiter/UnrealEngine/UE_5.7}"
 
 # ---- args ----
 while [[ $# -gt 0 ]]; do
