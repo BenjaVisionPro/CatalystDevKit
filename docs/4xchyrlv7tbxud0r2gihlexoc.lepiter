@@ -1,0 +1,215 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:07:10.522815+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:09:55.324903+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "n+gL0N33QneyVqpz9KjLiw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Create ID's"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:24:27.642492+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T09:39:59.123795+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ytnwtjDnS8mEQRIXHZB+FA=="
+				},
+				"code" : "CEBubbleId fromInteger: 123."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:10:09.854633+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T09:40:02.718344+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "3SH2OUtVT/ibZr5fAY16Ng=="
+				},
+				"code" : "CERegionId fromInteger: 321"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:24:10.175136+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:24:23.914396+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "qRhQrQwiTQmyl27LpScz3w=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Create SimWorld"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T07:24:40.07185+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T09:36:36.697053+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "RhszUI0tQ7GpmtnNFxmHdQ=="
+				},
+				"code" : "| engine pipeline stage |\nengine := CESimEngine new.\n\nstage := CESimStage new\n    stageId: #noop;\n    runner: CESimNoopStageRunner new;\n    yourself.\n\npipeline := CESimPipeline new\n    pipelineId: #global;\n    stages: { stage };\n    yourself.\n\nengine globalPipeline: pipeline.\nengine bubblePipeline: pipeline.\n\n\"Register some dummy subjects for now\"\nengine regionAt: (CERegionId fromInteger: 1) ifAbsentPut: [ Object new ].\nengine bubbleAt: (CEBubbleId fromInteger: 1) ifAbsentPut: [ Object new ].\n\nengine advanceGlobalTick.\nengine advanceBubbleTickFor: (CEBubbleId fromInteger: 1).\rengine"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-01-14T07:07:10.510815+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-01-14T07:07:10.510815+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Ecosystems Development Journal"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "fcda4a09-a74b-427e-a77b-cc4a78183653"
+	}
+}
