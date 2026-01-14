@@ -171,14 +171,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-14T09:36:36.697053+11:00"
+						"dateAndTimeString" : "2026-01-14T15:38:53.015515+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "RhszUI0tQ7GpmtnNFxmHdQ=="
 				},
-				"code" : "| engine pipeline stage |\nengine := CESimEngine new.\n\nstage := CESimStage new\n    stageId: #noop;\n    runner: CESimNoopStageRunner new;\n    yourself.\n\npipeline := CESimPipeline new\n    pipelineId: #global;\n    stages: { stage };\n    yourself.\n\nengine globalPipeline: pipeline.\nengine bubblePipeline: pipeline.\n\n\"Register some dummy subjects for now\"\nengine regionAt: (CERegionId fromInteger: 1) ifAbsentPut: [ Object new ].\nengine bubbleAt: (CEBubbleId fromInteger: 1) ifAbsentPut: [ Object new ].\n\nengine advanceGlobalTick.\nengine advanceBubbleTickFor: (CEBubbleId fromInteger: 1).\rengine"
+				"code" : "\"=== CE Sanity Check: pipeline -> update -> apply -> aggregate mutation ===\"\n\n| engine pipeline stage regionId bubbleId region bubble\n  beforeRegionEvents afterRegionEvents\n  beforeBubbleEvents afterBubbleEvents\n  bubbleResult |\n\nengine := CESimEngine new.\n\n\"Build a 1-stage pipeline that emits one demo event per run\"\nstage := CESimStage new\n    stageId: #demo;\n    runner: CESimDemoUpdateStageRunner new;\n    yourself.\n\npipeline := CESimPipeline new\n    pipelineId: #demoPipeline;\n    stages: { stage };\n    yourself.\n\nengine globalPipeline: pipeline.\nengine bubblePipeline: pipeline.\n\n\"Create aggregates\"\nregionId := CERegionId fromInteger: 1.\nbubbleId := CEBubbleId fromInteger: 1.\n\nregion := engine ensureRegion: regionId.\nbubble := engine ensureBubble: bubbleId.\n\n\"Capture pre-state\"\nbeforeRegionEvents := region eventLog size.\nbeforeBubbleEvents := bubble eventLog size.\n\n\"Run global tick (advances region pipeline + applies updates)\"\nengine advanceGlobalTick.\n\nafterRegionEvents := region eventLog size.\nafterRegionEvents = (beforeRegionEvents + 1)\n    ifFalse: [ self error: 'Expected region eventLog to increase by 1' ].\n\n\"Run bubble tick (advances bubble pipeline + applies updates + returns pipeline result)\"\nbubbleResult := engine advanceBubbleTickFor: bubbleId.\n\nafterBubbleEvents := bubble eventLog size.\nafterBubbleEvents = (beforeBubbleEvents + 1)\n    ifFalse: [ self error: 'Expected bubble eventLog to increase by 1' ].\n\n\"Basic introspection targets\"\n{ \n    #lastRunContext -> engine lastRunContext.\n    #lastSubject -> engine lastRunContext subject.\n    #lastUpdatesCount -> engine lastRunContext updates size.\n    #bubbleResult -> bubbleResult.\n    #regionEvents -> region eventLog.\n    #bubbleEvents -> bubble eventLog.\n}"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -205,14 +205,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-14T10:04:23.548949+11:00"
+						"dateAndTimeString" : "2026-01-14T14:28:23.883848+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "272SVghyQwSzjSuJ/fe/JA=="
 				},
-				"code" : "Object subclass: #CESimUpdate\n\tinstanceVariableNames: 'entityOps patches events'\n\tclassVariableNames: ''\n\tpackage: 'BV-Catalyst-Ecosystems-Sim-Core'."
+				"code" : "Object subclass: #CESimUpdateApplier\n    instanceVariableNames: ''\n    classVariableNames: ''\n    package: 'BV-Catalyst-Ecosystems-Sim-Core'."
 			}
 		]
 	},

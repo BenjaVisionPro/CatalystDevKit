@@ -8,7 +8,10 @@ Class {
 		'globalPipeline',
 		'bubblePipeline',
 		'environmentQuery',
-		'runLog'
+		'runLog',
+		'lastRunContext',
+		'updateApplier',
+		'transactionRunner'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -30,13 +33,14 @@ CESimEngine >> advanceBubbleTickFor: aCEBubbleId [
 { #category : 'running' }
 CESimEngine >> advanceGlobalTick [
 	"Advance the global simulation by one tick.
-     Runs the global pipeline once per region in stable order."
+     Runs the global pipeline for the selected regions (macro scheduling)."
 
 	tickId := tickId + 1.
 
 	globalPipeline ifNil: [ ^ self error: 'CESimEngine globalPipeline not set' ].
 
-	self regions do: [ :region | self runGlobalPipelineOnRegion: region ].
+	self regionsToAdvanceThisTick
+		do: [ :region | self runGlobalPipelineOnRegion: region ].
 
 	^ tickId
 ]
@@ -66,6 +70,16 @@ CESimEngine >> bubbles [
 { #category : 'accessing' }
 CESimEngine >> currentTick [
 	^ tickId
+]
+
+{ #category : 'accessing' }
+CESimEngine >> ensureBubble: aCEBubbleId [
+    ^ self bubbleAt: aCEBubbleId ifAbsentPut: [ CEBubbleAggregate id: aCEBubbleId ]
+]
+
+{ #category : 'accessing' }
+CESimEngine >> ensureRegion: aCERegionId [
+    ^ self regionAt: aCERegionId ifAbsentPut: [ CERegionAggregate id: aCERegionId ]
 ]
 
 { #category : 'accessing' }
@@ -100,13 +114,19 @@ CESimEngine >> hasRegionId: aCERegionId [
 
 { #category : 'initialization' }
 CESimEngine >> initialize [
-    super initialize.
-    tickId := 0.
-    regionsById := Dictionary new.  "CERegionId -> region aggregate"
-    bubblesById := Dictionary new.  "CEBubbleId -> bubble aggregate"
-    runLog := OrderedCollection new.
-    environmentQuery := CEFlatWorldEnvironment new.
-    "globalPipeline and bubblePipeline will be installed explicitly."
+	super initialize.
+	tickId := 0.
+	regionsById := Dictionary new.	"CERegionId -> region aggregate"
+	bubblesById := Dictionary new.	"CEBubbleId -> bubble aggregate"
+	runLog := OrderedCollection new.
+	environmentQuery := CEFlatWorldEnvironment new.
+	updateApplier := CESimUpdateApplier new.
+	transactionRunner := CENullTransactionRunner new
+]
+
+{ #category : 'accessing' }
+CESimEngine >> lastRunContext [
+	^ lastRunContext
 ]
 
 { #category : 'accessing' }
@@ -121,16 +141,34 @@ CESimEngine >> regions [
         collect: [ :id | regionsById at: id ]
 ]
 
+{ #category : 'scheduling' }
+CESimEngine >> regionsToAdvanceThisTick [
+	"Macro scheduling seam.
+     Default behaviour: advance all regions in stable order.
+     Later: return only active regions (hot/inbox/maintenance/wake zone)."
+
+	^ self regions
+]
+
 { #category : 'private - running' }
 CESimEngine >> runBubblePipelineOnBubble: aBubble [
-    | context |
+    | context result |
     context := CESimRunContext
         for: aBubble
         engine: self
         tickId: tickId
         environmentQuery: environmentQuery.
 
-    ^ bubblePipeline runInContext: context
+    result := bubblePipeline runInContext: context.
+
+    context updates isEmpty ifFalse: [
+        transactionRunner inTransactionDo: [
+            updateApplier applyUpdatesInContext: context
+        ].
+    ].
+
+    lastRunContext := context.
+    ^ result
 ]
 
 { #category : 'private - running' }
@@ -142,5 +180,23 @@ CESimEngine >> runGlobalPipelineOnRegion: aRegion [
         tickId: tickId
         environmentQuery: environmentQuery.
 
-    globalPipeline runInContext: context
+    globalPipeline runInContext: context.
+
+    context updates isEmpty ifFalse: [
+        transactionRunner inTransactionDo: [
+            updateApplier applyUpdatesInContext: context
+        ].
+    ].
+
+    lastRunContext := context
+]
+
+{ #category : 'accessing' }
+CESimEngine >> transactionRunner [
+	^ transactionRunner
+]
+
+{ #category : 'accessing' }
+CESimEngine >> updateApplier [
+	^ updateApplier
 ]

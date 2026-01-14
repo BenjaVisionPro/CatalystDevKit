@@ -62,5 +62,5 @@ CEStableId >> printOn: aStream [
 { #category : 'printing' }
 CEStableId >> typeLabel [
     "Subclasses override."
-    ^ self class name
+    ^ self class name asString
 ]
