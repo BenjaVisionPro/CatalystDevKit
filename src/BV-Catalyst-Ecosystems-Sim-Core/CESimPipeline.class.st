@@ -27,11 +27,15 @@ CESimPipeline >> pipelineId: anObject [
 
 { #category : 'running' }
 CESimPipeline >> runInContext: aCESimRunContext [
-    stages do: [ :stage |
-        (stage shouldRunInContext: aCESimRunContext) ifTrue: [
-            stage runInContext: aCESimRunContext
-        ] ].
-    ^ aCESimRunContext
+	aCESimRunContext clearStepCache.
+	aCESimRunContext clearUpdates.
+
+	stages
+		do: [ :stage | 
+			(stage shouldRunInContext: aCESimRunContext)
+				ifTrue: [ stage runInContext: aCESimRunContext ] ].
+
+	^ aCESimRunContext stepCacheAt: #result ifAbsent: [ aCESimRunContext ]
 ]
 
 { #category : 'accessing' }

@@ -179,6 +179,40 @@
 					"uidString" : "RhszUI0tQ7GpmtnNFxmHdQ=="
 				},
 				"code" : "| engine pipeline stage |\nengine := CESimEngine new.\n\nstage := CESimStage new\n    stageId: #noop;\n    runner: CESimNoopStageRunner new;\n    yourself.\n\npipeline := CESimPipeline new\n    pipelineId: #global;\n    stages: { stage };\n    yourself.\n\nengine globalPipeline: pipeline.\nengine bubblePipeline: pipeline.\n\n\"Register some dummy subjects for now\"\nengine regionAt: (CERegionId fromInteger: 1) ifAbsentPut: [ Object new ].\nengine bubbleAt: (CEBubbleId fromInteger: 1) ifAbsentPut: [ Object new ].\n\nengine advanceGlobalTick.\nengine advanceBubbleTickFor: (CEBubbleId fromInteger: 1).\rengine"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T10:04:21.510431+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-01-14T10:04:23.548949+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "272SVghyQwSzjSuJ/fe/JA=="
+				},
+				"code" : "Object subclass: #CESimUpdate\n\tinstanceVariableNames: 'entityOps patches events'\n\tclassVariableNames: ''\n\tpackage: 'BV-Catalyst-Ecosystems-Sim-Core'."
 			}
 		]
 	},

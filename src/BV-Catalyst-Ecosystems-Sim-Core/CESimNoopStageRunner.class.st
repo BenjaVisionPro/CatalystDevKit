@@ -7,5 +7,5 @@ Class {
 
 { #category : 'running' }
 CESimNoopStageRunner >> runStage: aStage inContext: aCESimRunContext [
-	^ aCESimRunContext
+	^ self
 ]

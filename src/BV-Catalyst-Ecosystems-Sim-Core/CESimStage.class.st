@@ -23,7 +23,7 @@ CESimStage >> printOn: aStream [
 CESimStage >> runInContext: aCESimRunContext [
 	runner
 		ifNil: [ ^ self error: 'Stage runner not set for stage: ' , stageId asString ].
-	^ runner runStage: self inContext: aCESimRunContext
+	runner runStage: self inContext: aCESimRunContext
 ]
 
 { #category : 'accessing' }
