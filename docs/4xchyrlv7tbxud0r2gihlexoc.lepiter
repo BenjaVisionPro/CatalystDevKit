@@ -171,14 +171,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-14T15:38:53.015515+11:00"
+						"dateAndTimeString" : "2026-01-15T10:01:49.283756+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "RhszUI0tQ7GpmtnNFxmHdQ=="
 				},
-				"code" : "\"=== CE Sanity Check: pipeline -> update -> apply -> aggregate mutation ===\"\n\n| engine pipeline stage regionId bubbleId region bubble\n  beforeRegionEvents afterRegionEvents\n  beforeBubbleEvents afterBubbleEvents\n  bubbleResult |\n\nengine := CESimEngine new.\n\n\"Build a 1-stage pipeline that emits one demo event per run\"\nstage := CESimStage new\n    stageId: #demo;\n    runner: CESimDemoUpdateStageRunner new;\n    yourself.\n\npipeline := CESimPipeline new\n    pipelineId: #demoPipeline;\n    stages: { stage };\n    yourself.\n\nengine globalPipeline: pipeline.\nengine bubblePipeline: pipeline.\n\n\"Create aggregates\"\nregionId := CERegionId fromInteger: 1.\nbubbleId := CEBubbleId fromInteger: 1.\n\nregion := engine ensureRegion: regionId.\nbubble := engine ensureBubble: bubbleId.\n\n\"Capture pre-state\"\nbeforeRegionEvents := region eventLog size.\nbeforeBubbleEvents := bubble eventLog size.\n\n\"Run global tick (advances region pipeline + applies updates)\"\nengine advanceGlobalTick.\n\nafterRegionEvents := region eventLog size.\nafterRegionEvents = (beforeRegionEvents + 1)\n    ifFalse: [ self error: 'Expected region eventLog to increase by 1' ].\n\n\"Run bubble tick (advances bubble pipeline + applies updates + returns pipeline result)\"\nbubbleResult := engine advanceBubbleTickFor: bubbleId.\n\nafterBubbleEvents := bubble eventLog size.\nafterBubbleEvents = (beforeBubbleEvents + 1)\n    ifFalse: [ self error: 'Expected bubble eventLog to increase by 1' ].\n\n\"Basic introspection targets\"\n{ \n    #lastRunContext -> engine lastRunContext.\n    #lastSubject -> engine lastRunContext subject.\n    #lastUpdatesCount -> engine lastRunContext updates size.\n    #bubbleResult -> bubbleResult.\n    #regionEvents -> region eventLog.\n    #bubbleEvents -> bubble eventLog.\n}"
+				"code" : "| engine bubblePipeline consumeStage visibleStage viewStage regionId bubbleId region bubble e1 e2 n1 n2 view1 view2 view3 |\rengine := CESimEngine new.\r\rconsumeStage := CESimStage new\r\t\tstageId: #consumeCommands;\r\t\trunner: CESimConsumeCommandsStageRunner new;\r\t\tyourself.\r\rvisibleStage := CESimStage new\r\t\tstageId: #collectVisible;\r\t\trunner: CESimCollectVisibleSnapshotsStageRunner new;\r\t\tyourself.\r\rviewStage := CESimStage new\r\t\tstageId: #buildLocalView;\r\t\trunner: CESimBuildLocalViewStageRunner new;\r\t\tyourself.\r\rbubblePipeline := CESimPipeline new\r\t\tpipelineId: #bubble;\r\t\tstages: {consumeStage.\r\t\t\t\tvisibleStage.\r\t\t\t\tviewStage};\r\t\tyourself.\r\rengine bubblePipeline: bubblePipeline.\r\rregionId := CERegionId fromInteger: 1.\rbubbleId := CEBubbleId fromInteger: 1.\rregion := engine ensureRegion: regionId.\rbubble := engine ensureBubble: bubbleId.\t\"Add two notables\"\re1 := CEEntityId fromInteger: 101.\re2 := CEEntityId fromInteger: 102.\r\rn1 := CENotable\r\t\tid: e1\r\t\tdefinitionKey: #wolf\r\t\ttransform: (Dictionary new\r\t\t\t\tat: #x put: 0;\r\t\t\t\tat: #y put: 0;\r\t\t\t\tat: #z put: 0;\r\t\t\t\tyourself)\r\t\tstate: (Dictionary new\r\t\t\t\tat: #health put: 1.0;\r\t\t\t\tyourself).\r\rn2 := CENotable\r\t\tid: e2\r\t\tdefinitionKey: #bear\r\t\ttransform: (Dictionary new\r\t\t\t\tat: #x put: 10;\r\t\t\t\tat: #y put: 0;\r\t\t\t\tat: #z put: 0;\r\t\t\t\tyourself)\r\t\tstate: (Dictionary new\r\t\t\t\tat: #health put: 0.8;\r\t\t\t\tyourself).\r\rregion addNotable: n1.\rregion addNotable: n2.\t\"Tick 1: should spawn 2\"\rview1 := engine advanceBubbleTickFor: bubbleId.\rview1 spawns size = 2 ifFalse: [ self error: 'Expected 2 spawns on first view' ].\rview1 updates isEmpty\r\tifFalse: [ self error: 'Expected 0 updates on first view' ].\rview1 despawns isEmpty\r\tifFalse: [ self error: 'Expected 0 despawns on first view' ].\t\"Mutate a notable (simulate movement) and tick 2: should be 2 updates, 0 spawns/despawns\"\rn1 transform at: #x put: 1.\rview2 := engine advanceBubbleTickFor: bubbleId.\rview2 spawns isEmpty ifFalse: [ self error: 'Expected 0 spawns on second view' ].\rview2 updates size = 2\r\tifFalse: [ self error: 'Expected 2 updates on second view' ].\rview2 despawns isEmpty\r\tifFalse: [ self error: 'Expected 0 despawns on second view' ].\t\"Remove one notable and tick 3: should despawn 1\"\rregion removeNotableId: e2.\rview3 := engine advanceBubbleTickFor: bubbleId.\rview3 spawns isEmpty ifFalse: [ self error: 'Expected 0 spawns on third view' ].\rview3 updates size = 1\r\tifFalse: [ self error: 'Expected 1 update on third view' ].\rview3 despawns size = 1\r\tifFalse: [ self error: 'Expected 1 despawn on third view' ].\r\r{#view1 -> view1.\r\t#view2 -> view2.\r\t#view3 -> view3}"
 			},
 			{
 				"__type" : "pharoSnippet",
@@ -205,14 +205,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-14T14:28:23.883848+11:00"
+						"dateAndTimeString" : "2026-01-15T09:30:47.356462+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "272SVghyQwSzjSuJ/fe/JA=="
 				},
-				"code" : "Object subclass: #CESimUpdateApplier\n    instanceVariableNames: ''\n    classVariableNames: ''\n    package: 'BV-Catalyst-Ecosystems-Sim-Core'."
+				"code" : "CESimSpatialEntity subclass: #CENotable\n    instanceVariableNames: 'state'\n    classVariableNames: ''\n    package: 'BV-Catalyst-Ecosystems-Sim-Core'."
 			}
 		]
 	},
