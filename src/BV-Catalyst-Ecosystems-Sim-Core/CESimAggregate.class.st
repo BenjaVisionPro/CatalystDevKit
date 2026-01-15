@@ -10,8 +10,8 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimAggregate class >> id: aCEStableId [
-    ^ self new initializeWithId: aCEStableId
+CESimAggregate class >> withId: aCEStableId [
+    ^ self new withId: aCEStableId
 ]
 
 { #category : 'accessing' }
@@ -30,8 +30,7 @@ CESimAggregate >> eventLog [
 ]
 
 { #category : 'initialization' }
-CESimAggregate >> initializeWithId: aCEStableId [
-	aggregateId := aCEStableId.
+CESimAggregate >> initialize [
 	eventLog := OrderedCollection new
 ]
 
@@ -50,4 +49,9 @@ CESimAggregate >> printOn: aStream [
 CESimAggregate >> typeLabel [
     "Subclasses override."
     ^ self class name asString
+]
+
+{ #category : 'initialization' }
+CESimAggregate >> withId: aCEStableId [
+	aggregateId := aCEStableId
 ]

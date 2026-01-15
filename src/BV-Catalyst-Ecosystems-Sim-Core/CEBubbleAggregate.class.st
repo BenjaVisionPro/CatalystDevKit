@@ -3,11 +3,19 @@ Class {
 	#superclass : 'CESimAggregate',
 	#instVars : [
 		'commandQueue',
-		'visibleEntityIds'
+		'visibleEntityIds',
+		'homeRegionId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
+
+{ #category : 'instance creation' }
+CEBubbleAggregate class >> withId: aBubbleId homeRegionId: aRegionId [
+	^ (self withId: aBubbleId)
+		withHomeRegionId: aRegionId;
+		yourself
+]
 
 { #category : 'accessing' }
 CEBubbleAggregate >> bubbleId [
@@ -31,16 +39,34 @@ CEBubbleAggregate >> enqueueCommand: aCommand [
 	commandQueue add: aCommand
 ]
 
+{ #category : 'accessing' }
+CEBubbleAggregate >> homeRegionId [
+	^ homeRegionId
+]
+
 { #category : 'initialization' }
-CEBubbleAggregate >> initializeWithId: aCEBubbleId [
-    super initializeWithId: aCEBubbleId.
-    commandQueue := OrderedCollection new.
-    visibleEntityIds := OrderedCollection new.
+CEBubbleAggregate >> initialize [
+	super initialize.
+	commandQueue := OrderedCollection new.
+	visibleEntityIds := OrderedCollection new
+]
+
+{ #category : 'accessing' }
+CEBubbleAggregate >> moveToHomeRegionId: aRegionId [
+	homeRegionId := aRegionId
 ]
 
 { #category : 'commands' }
 CEBubbleAggregate >> pendingCommandsCount [
 	^ commandQueue size
+]
+
+{ #category : 'regions' }
+CEBubbleAggregate >> relevantRegionIds [
+	"v0: only home region. Later: include micro-bubble region ids / halo overlaps."
+
+	homeRegionId ifNil: [ ^ #() ].
+	^ {homeRegionId}
 ]
 
 { #category : 'visibility' }

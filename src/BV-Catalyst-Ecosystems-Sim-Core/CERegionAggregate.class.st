@@ -14,8 +14,8 @@ CERegionAggregate >> addNotable: aCENotable [
 ]
 
 { #category : 'initialization' }
-CERegionAggregate >> initializeWithId: aCERegionId [
-	super initializeWithId: aCERegionId.
+CERegionAggregate >> initialize [
+	super initialize.
 	notablesById := Dictionary new
 ]
 
