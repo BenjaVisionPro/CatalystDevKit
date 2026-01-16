@@ -1,8 +1,8 @@
 Class {
-  #name : 'CESimInspectEntityCommand',
-  #superclass : 'CESimPerceptionCommand',
-  #category : 'BV-Catalyst-Ecosystems-Sim-Core',
-  #package : 'BV-Catalyst-Ecosystems-Sim-Core'
+	#name : 'CESimInspectEntityCommand',
+	#superclass : 'CESimPerceptionCommand',
+	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'instance creation' }

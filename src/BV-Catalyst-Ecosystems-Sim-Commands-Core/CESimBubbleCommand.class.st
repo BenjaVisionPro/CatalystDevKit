@@ -1,8 +1,8 @@
 Class {
-  #name : 'CESimBubbleCommand',
-  #superclass : 'CESimExternalCommand',
-  #category : 'BV-Catalyst-Ecosystems-Sim-Core',
-  #package : 'BV-Catalyst-Ecosystems-Sim-Core'
+	#name : 'CESimBubbleCommand',
+	#superclass : 'CESimExternalCommand',
+	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'helpers' }

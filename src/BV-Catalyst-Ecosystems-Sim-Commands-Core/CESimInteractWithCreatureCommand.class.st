@@ -1,9 +1,12 @@
 Class {
-  #name : 'CESimInteractWithCreatureCommand',
-  #superclass : 'CESimCreatureInteractionCommand',
-  #instVars : [ 'interactionType', 'payload' ],
-  #category : 'BV-Catalyst-Ecosystems-Sim-Core',
-  #package : 'BV-Catalyst-Ecosystems-Sim-Core'
+	#name : 'CESimInteractWithCreatureCommand',
+	#superclass : 'CESimCreatureInteractionCommand',
+	#instVars : [
+		'interactionType',
+		'payload'
+	],
+	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'instance creation' }
@@ -16,9 +19,12 @@ CESimInteractWithCreatureCommand class >> withTargetEntityId: aCEEntityId type: 
 ]
 
 { #category : 'accessing' }
-CESimInteractWithCreatureCommand >> interactionType: aType [ interactionType := aType ]
+CESimInteractWithCreatureCommand >> interactionType: aType [ interactionType := aType
+]
+
 { #category : 'accessing' }
-CESimInteractWithCreatureCommand >> payload: aPayload [ payload := aPayload ]
+CESimInteractWithCreatureCommand >> payload: aPayload [ payload := aPayload
+]
 
 { #category : 'producing' }
 CESimInteractWithCreatureCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [

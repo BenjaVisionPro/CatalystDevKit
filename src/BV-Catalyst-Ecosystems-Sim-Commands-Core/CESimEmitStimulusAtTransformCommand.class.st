@@ -1,9 +1,13 @@
 Class {
-  #name : 'CESimEmitStimulusAtTransformCommand',
-  #superclass : 'CESimStimulusCommand',
-  #instVars : [ 'stimulusType', 'transform', 'intensity' ],
-  #category : 'BV-Catalyst-Ecosystems-Sim-Core',
-  #package : 'BV-Catalyst-Ecosystems-Sim-Core'
+	#name : 'CESimEmitStimulusAtTransformCommand',
+	#superclass : 'CESimStimulusCommand',
+	#instVars : [
+		'stimulusType',
+		'transform',
+		'intensity'
+	],
+	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'instance creation' }
@@ -16,11 +20,8 @@ CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform i
 ]
 
 { #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> stimulusType: aType [ stimulusType := aType ]
-{ #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> transform: aTransform [ transform := aTransform ]
-{ #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> intensity: aNumber [ intensity := aNumber ]
+CESimEmitStimulusAtTransformCommand >> intensity: aNumber [ intensity := aNumber
+]
 
 { #category : 'producing' }
 CESimEmitStimulusAtTransformCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
@@ -31,4 +32,12 @@ CESimEmitStimulusAtTransformCommand >> produceIntoUpdate: aCESimUpdate inContext
     at: #intensity put: intensity;
     at: #tickId put: aCESimRunContext tickId;
     yourself).
+]
+
+{ #category : 'accessing' }
+CESimEmitStimulusAtTransformCommand >> stimulusType: aType [ stimulusType := aType
+]
+
+{ #category : 'accessing' }
+CESimEmitStimulusAtTransformCommand >> transform: aTransform [ transform := aTransform
 ]

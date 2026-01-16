@@ -1,9 +1,13 @@
 Class {
-  #name : 'CESimCreateNotableCommand',
-  #superclass : 'CESimToolLifecycleCommand',
-  #instVars : [ 'definitionKey', 'transform', 'state' ],
-  #category : 'BV-Catalyst-Ecosystems-Sim-Core',
-  #package : 'BV-Catalyst-Ecosystems-Sim-Core'
+	#name : 'CESimCreateNotableCommand',
+	#superclass : 'CESimToolLifecycleCommand',
+	#instVars : [
+		'definitionKey',
+		'transform',
+		'state'
+	],
+	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'instance creation' }
@@ -16,13 +20,8 @@ CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> definitionKey: aKey [ definitionKey := aKey ]
-
-{ #category : 'accessing' }
-CESimCreateNotableCommand >> transform: aTransform [ transform := aTransform ]
-
-{ #category : 'accessing' }
-CESimCreateNotableCommand >> state: aState [ state := aState ]
+CESimCreateNotableCommand >> definitionKey: aKey [ definitionKey := aKey
+]
 
 { #category : 'producing' }
 CESimCreateNotableCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
@@ -36,4 +35,12 @@ CESimCreateNotableCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRu
     state: state.
 
   aCESimUpdate addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionId notable: notable).
+]
+
+{ #category : 'accessing' }
+CESimCreateNotableCommand >> state: aState [ state := aState
+]
+
+{ #category : 'accessing' }
+CESimCreateNotableCommand >> transform: aTransform [ transform := aTransform
 ]
