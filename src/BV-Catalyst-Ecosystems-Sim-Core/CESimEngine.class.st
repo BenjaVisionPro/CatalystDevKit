@@ -11,7 +11,8 @@ Class {
 		'runLog',
 		'lastRunContext',
 		'updateApplier',
-		'transactionRunner'
+		'transactionRunner',
+		'idIssuer'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -112,6 +113,11 @@ CESimEngine >> hasRegionId: aCERegionId [
     ^ regionsById includesKey: aCERegionId
 ]
 
+{ #category : 'accessing' }
+CESimEngine >> idIssuer [
+	^ idIssuer
+]
+
 { #category : 'initialization' }
 CESimEngine >> initialize [
 	super initialize.
@@ -121,12 +127,29 @@ CESimEngine >> initialize [
 	runLog := OrderedCollection new.
 	environmentQuery := CEFlatWorldEnvironment new.
 	updateApplier := CESimUpdateApplier new.
-	transactionRunner := CENullTransactionRunner new
+	transactionRunner := CENullTransactionRunner new.
+	idIssuer := CESequenceIdIssuer new
 ]
 
 { #category : 'accessing' }
 CESimEngine >> lastRunContext [
 	^ lastRunContext
+]
+
+{ #category : 'aggregates' }
+CESimEngine >> newBubbleInHomeRegionId: aCERegionId [
+    | bubbleId |
+    bubbleId := idIssuer nextBubbleId.
+    ^ self bubbleAt: bubbleId ifAbsentPut: [
+        CEBubbleAggregate withId: bubbleId homeRegionId: aCERegionId
+    ]
+]
+
+{ #category : 'aggregates' }
+CESimEngine >> newRegion [
+	| regionId |
+	regionId := idIssuer nextRegionId.
+	^ self regionAt: regionId ifAbsentPut: [ CERegionAggregate withId: regionId ]
 ]
 
 { #category : 'accessing' }

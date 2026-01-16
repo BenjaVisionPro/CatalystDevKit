@@ -70,6 +70,17 @@ CESimRunContext >> initialize [
 	stepCache := Dictionary new
 ]
 
+{ #category : 'entities' }
+CESimRunContext >> newNotableWithDefinitionKey: aKey transform: aTransform state: aState [
+	| entityId |
+	entityId := engine idIssuer nextEntityId.
+	^ CENotable
+		id: entityId
+		definitionKey: aKey
+		transform: aTransform
+		state: aState
+]
+
 { #category : 'printing' }
 CESimRunContext >> printOn: aStream [
     aStream

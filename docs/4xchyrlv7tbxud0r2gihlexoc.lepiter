@@ -205,14 +205,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-15T09:30:47.356462+11:00"
+						"dateAndTimeString" : "2026-01-16T08:11:20.153488+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "272SVghyQwSzjSuJ/fe/JA=="
 				},
-				"code" : "CESimSpatialEntity subclass: #CENotable\n    instanceVariableNames: 'state'\n    classVariableNames: ''\n    package: 'BV-Catalyst-Ecosystems-Sim-Core'."
+				"code" : "Object subclass: #CESequenceIdIssuer\n    instanceVariableNames: 'nextRegionInt nextBubbleInt nextEntityInt'\n    classVariableNames: ''\n    package: 'BV-Catalyst-Ecosystems-Sim-Core'."
 			}
 		]
 	},

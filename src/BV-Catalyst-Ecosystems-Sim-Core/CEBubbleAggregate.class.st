@@ -81,3 +81,8 @@ CEBubbleAggregate >> setVisibleEntityIds: aCollection [
 CEBubbleAggregate >> visibleEntityIds [
 	^ visibleEntityIds copy
 ]
+
+{ #category : 'accessing' }
+CEBubbleAggregate >> withHomeRegionId: aRegionId [
+	homeRegionId := aRegionId
+]
