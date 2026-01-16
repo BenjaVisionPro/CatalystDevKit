@@ -1,5 +1,5 @@
 Class {
-	#name : 'CESimCreatureInteractionCommand',
+	#name : 'CESimEntityInteractionCommand',
 	#superclass : 'CESimTargetedEntityCommand',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'

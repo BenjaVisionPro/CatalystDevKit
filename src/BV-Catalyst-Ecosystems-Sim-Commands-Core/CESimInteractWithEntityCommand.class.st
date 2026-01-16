@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimInteractWithEntityCommand',
-	#superclass : 'CESimCreatureInteractionCommand',
+	#superclass : 'CESimEntityInteractionCommand',
 	#instVars : [
 		'interactionType',
 		'payload'
