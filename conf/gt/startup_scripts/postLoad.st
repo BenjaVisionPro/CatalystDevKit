@@ -4,7 +4,7 @@
 	5 seconds wait.
 	BVCDevKit initializeKnowledgeBase.		
 	5 seconds wait.
-	space := BVCDevKitWorld openDefault. 
+	BVCDevKitWorld openDefault. 
 	5 seconds wait.
 	
 	(registry := GtGemStoneSessionRegistry default)
@@ -33,4 +33,3 @@
 ]. 
 Smalltalk garbageCollect; garbageCollect; garbageCollect.
 5 seconds wait.
-"space universe snapshot: true andQuit: true."

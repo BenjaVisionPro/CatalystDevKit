@@ -1,7 +1,8 @@
 #include "Voxel/Components/CLVoxelWorldComponent.h"
 
-#include "VoxelWorld.h"               // VPP world class
-#include "GameFramework/Actor.h"
+#include "CLVoxelWorldManager.h"
+
+#include "VoxelWorld.h"
 #include "Engine/World.h"
 
 UCLVoxelWorldComponent::UCLVoxelWorldComponent()
@@ -14,146 +15,99 @@ const AVoxelWorld* UCLVoxelWorldComponent::GetVoxelWorldOwner() const
 	return Cast<AVoxelWorld>(GetOwner());
 }
 
-int32 UCLVoxelWorldComponent::GetVoxelSize() const
+TSharedPtr<const FCLWorldRuntime> UCLVoxelWorldComponent::BuildWorldRuntime() const
 {
-	if (const AVoxelWorld* World = GetVoxelWorldOwner())
-	{
-		return FMath::Max(1, World->VoxelSize); // centimeters
-	}
-	return 1;
-}
+	VOXEL_FUNCTION_COUNTER();
 
-double UCLVoxelWorldComponent::GetWorldHeightM() const
-{
-	if (const UCLModelAsset* Asset = GetModelAsset_NoLoad())
-	{
-		return Asset->Model.VoxelWorldHeightM;
-	}
-	return WorldHeightM;
-}
+	const UCLPlanetModelAsset* WorldAsset = CLWorldAsset.LoadSynchronous();
+	const UCLStrataAsset* Strata = StrataAsset.LoadSynchronous();
 
-int32 UCLVoxelWorldComponent::GetResolution() const
-{
-	const double HeightM = GetWorldHeightM();
-	const int32  VoxelCm = GetVoxelSize();
-
-	if (HeightM <= 0.0 || VoxelCm <= 0)
-	{
-		return 1;
-	}
-
-	const double VoxelSizeM = double(VoxelCm) / 100.0;
-	return FMath::Max(1, FMath::RoundToInt(HeightM / VoxelSizeM));
-}
-
-int32 UCLVoxelWorldComponent::QuantizeAltitude(const double AltitudeN) const
-{
-	const int32 Res = GetResolution();
-	const double X  = FMath::Clamp(AltitudeN, 0.0, 1.0);
-	return FMath::Clamp(FMath::RoundToInt(X * Res), 0, Res);
-}
-
-FVector UCLVoxelWorldComponent::GetPlanetCenterWS() const
-{
-	const AActor* Owner = GetOwner();
-	return Owner ? Owner->GetActorLocation() : FVector::ZeroVector;
-}
-
-void UCLVoxelWorldComponent::GetPlanetBasis(FVector& OutEast, FVector& OutNorth, FVector& OutUp) const
-{
-	const AActor* Owner = GetOwner();
-	if (!Owner)
-	{
-		OutEast  = FVector::ForwardVector;
-		OutNorth = FVector::RightVector;
-		OutUp    = FVector::UpVector;
-		return;
-	}
-
-	const FQuat Rot = Owner->GetActorQuat();
-	OutEast  = Rot.GetAxisX(); // +X
-	OutNorth = Rot.GetAxisY(); // +Y
-	OutUp    = Rot.GetAxisZ(); // +Z
-}
-
-TSharedRef<FCLWorldGeneratorModel> UCLVoxelWorldComponent::BuildWorldGeneratorModel() const
-{
-	TSharedRef<FCLWorldGeneratorModel> Model = MakeShared<FCLWorldGeneratorModel>();
-	Model->InnerRadiusM   = InnerRadiusM;
-	Model->WorldHeightM   = GetWorldHeightM();
-	Model->CoordSpace     = CoordSpace;
-	Model->SeamBlendWidth = SeamBlendWidth;
-	Model->Seed           = Seed;
-	return Model;
-}
-
-void UCLVoxelWorldComponent::PushWorldGeneratorModelToVoxelRuntime()
-{
-	// Integration hook: set FVoxelCLSubsystem::Model and invalidate VPP runtime as needed.
-	// Left intentionally empty until your runtime wiring is added in your VPP init path.
-}
-
-uint64 UCLVoxelWorldComponent::MakeCacheKey(const UCLStrataAsset* StrataAsset, const int32 Resolution)
-{
-	const uint64 A = (uint64)(UPTRINT)StrataAsset;
-	const uint64 B = (uint64)Resolution;
-	return (A << 17) ^ (B * 0x9E3779B97F4A7C15ull);
-}
-
-TSharedPtr<const TArray<FCLStratumSample>> UCLVoxelWorldComponent::GetSharedStrataSamples(
-	const UCLStrataAsset* StrataAsset,
-	const int32 HeightIndex,
-	const bool bNormalize) const
-{
-	if (!StrataAsset)
+	if (!WorldAsset)
 	{
 		return nullptr;
 	}
 
-	const int32 Resolution = GetResolution();
-	const uint64 Key = MakeCacheKey(StrataAsset, Resolution);
+	TSharedRef<FCLWorldRuntime> Runtime = MakeShared<FCLWorldRuntime>();
 
-	// Fast read
+	// World band
+	Runtime->InnerRadiusM = WorldAsset->Model.GetInnerRadiusM();
+	Runtime->WorldHeightM = WorldAsset->Model.VoxelWorldHeightM;
+
+	// Coord space
+	Runtime->CoordSpace = CoordSpace;
+	Runtime->SeamBlendWidthN = SeamBlendWidthN;
+
+	// Determinism
+	Runtime->Seed = Seed;
+
+	// Strata
+	if (Strata)
 	{
-		FReadScopeLock _R(MapLock);
-		if (const FPerResolutionCache* Found = PerStrataPerRes.Find(Key))
+		Runtime->Strata = Strata->Strata;
+	}
+
+	// Optional precompute LUT (normalized)
+	Runtime->StrataLutResolution = FMath::Max(0, StrataLutResolution);
+	if (Runtime->StrataLutResolution > 0 && Strata)
+	{
+		const int32 Res = Runtime->StrataLutResolution;
+		Runtime->StrataLut.SetNum(Res + 1);
+
+		for (int32 i = 0; i <= Res; i++)
 		{
-			return Found->Cache.GetOrBuild(StrataAsset->Strata, HeightIndex, bNormalize, Resolution);
+			const double AltitudeN = double(i) / double(Res);
+			Runtime->Strata.Sample(AltitudeN, true, Runtime->StrataLut[i]);
 		}
 	}
 
-	// Miss -> write
-	FWriteScopeLock _W(MapLock);
-	FPerResolutionCache& Entry = PerStrataPerRes.FindOrAdd(Key);
-	if (Entry.Resolution != Resolution)
-	{
-		Entry.Resolution = Resolution;
-		Entry.Cache.Invalidate();
-	}
-	return Entry.Cache.GetOrBuild(StrataAsset->Strata, HeightIndex, bNormalize, Resolution);
+	return Runtime;
 }
 
-void UCLVoxelWorldComponent::InvalidateCaches()
+void UCLVoxelWorldComponent::PublishToVoxelWorldManager()
 {
-	FWriteScopeLock _W(MapLock);
-	PerStrataPerRes.Reset();
+	VOXEL_FUNCTION_COUNTER();
+
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	const AVoxelWorld* VoxelWorld = GetVoxelWorldOwner();
+	if (!VoxelWorld)
+	{
+		return;
+	}
+
+	const TSharedRef<FCLVoxelWorldManager> Manager = FCLVoxelWorldManager::Get(World);
+	Manager->SetWorldRuntime(*VoxelWorld, BuildWorldRuntime());
 }
 
 void UCLVoxelWorldComponent::OnRegister()
 {
 	Super::OnRegister();
+	PublishToVoxelWorldManager();
 }
 
 void UCLVoxelWorldComponent::OnUnregister()
 {
-	InvalidateCaches();
+	if (UWorld* World = GetWorld())
+	{
+		const AVoxelWorld* VoxelWorld = GetVoxelWorldOwner();
+		if (VoxelWorld)
+		{
+			const TSharedRef<FCLVoxelWorldManager> Manager = FCLVoxelWorldManager::Get(World);
+			Manager->SetWorldRuntime(*VoxelWorld, nullptr);
+		}
+	}
+
 	Super::OnUnregister();
 }
 
 #if WITH_EDITOR
 void UCLVoxelWorldComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
-	InvalidateCaches();
 	Super::PostEditChangeProperty(PropertyChangedEvent);
+	PublishToVoxelWorldManager();
 }
 #endif

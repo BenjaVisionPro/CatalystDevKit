@@ -1,0 +1,26 @@
+Class {
+	#name : 'CESimAddNotableToRegionOp',
+	#superclass : 'CESimEntityLifecycleOp',
+	#instVars : [ 'notable' ],
+	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
+	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
+}
+
+{ #category : 'instance creation' }
+CESimAddNotableToRegionOp class >> withRegionId: aCERegionId notable: aCENotable [
+	^ self new
+		regionId: aCERegionId;
+		entityId: aCENotable entityId;
+		notable: aCENotable;
+		yourself
+]
+
+{ #category : 'accessing' }
+CESimAddNotableToRegionOp >> notable: aCENotable [
+	notable := aCENotable
+]
+
+{ #category : 'applying' }
+CESimAddNotableToRegionOp >> applyInContext: aCESimRunContext [
+	(self regionInContext: aCESimRunContext) addNotable: notable
+]

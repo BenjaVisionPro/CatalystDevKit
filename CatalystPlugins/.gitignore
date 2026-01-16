@@ -87,10 +87,11 @@ Plugins/*/DerivedDataCache/
 
 .DS_Store
 
-# VPP
+# Other plugins not to store in github
 Plugins/VoxelPlugin/
 Content/UltraDynamicSky/
+Content/FullSample/
 
-# ACF
-Content/ACF/
+# heightmaps
+Plugins/CatalystLandform/Content/Heightmaps/
 
