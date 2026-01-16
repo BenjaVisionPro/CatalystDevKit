@@ -20,7 +20,8 @@ CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> definitionKey: aKey [ definitionKey := aKey
+CESimCreateNotableCommand >> definitionKey: aKey [
+	definitionKey := aKey
 ]
 
 { #category : 'producing' }
@@ -38,9 +39,11 @@ CESimCreateNotableCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRu
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> state: aState [ state := aState
+CESimCreateNotableCommand >> state: aState [
+	state := aState
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> transform: aTransform [ transform := aTransform
+CESimCreateNotableCommand >> transform: aTransform [
+	transform := aTransform
 ]

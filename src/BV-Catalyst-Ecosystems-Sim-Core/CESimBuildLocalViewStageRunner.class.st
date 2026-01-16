@@ -8,16 +8,16 @@ Class {
 { #category : 'running' }
 CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	| bubble snapshots previousIds previousMap currentIds spawns updates despawns allEvents view |
-	bubble := aCESimRunContext subject.
+	bubble := aCESimRunContext subject.	
 	
 	"Snapshots must be provided in deterministic order by the collector stage.
      (Later: selector ordering / stable sort by entity id or spatial key.)"
 	snapshots := aCESimRunContext
 			stepCacheAt: #visibleSnapshots
-			ifAbsent: [ OrderedCollection new ].
+			ifAbsent: [ OrderedCollection new ].	
 			
 	"Previous visible ids are durable bubble state (not stepCache)."
-	previousIds := bubble visibleEntityIds.
+	previousIds := bubble visibleEntityIds.	
 	
 	"Mark-table for diff: keys remaining after the pass are despawns."
 	previousMap := Dictionary new: previousIds size.
@@ -47,9 +47,12 @@ CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aCESimRunContext [
 		do: [ :id | (previousMap includesKey: id) ifTrue: [ despawns add: id ] ].	
 		
 	"Events from this bubble advance (authoritative outcomes)."
-	allEvents := OrderedCollection new.
-	aCESimRunContext updates
-		do: [ :eachUpdate | allEvents addAll: eachUpdate events ].
+	allEvents := aCESimRunContext
+			stepCacheAt: #tickEvents
+			ifAbsent: [ | ev |
+				ev := OrderedCollection new.
+				aCESimRunContext updates do: [ :eachUpdate | ev addAll: eachUpdate events ].
+				ev ].
 
 	view := CESimLocalView new
 			bubbleId: bubble bubbleId;
@@ -59,10 +62,8 @@ CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aCESimRunContext [
 			updates: updates;
 			despawns: despawns;
 			yourself.	
-			
- "Persist the visible set for the next diff."
-	bubble setVisibleEntityIds: currentIds.	
 	
-	"Publish result for the engine boundary."
+	"Persist the visible set for the next diff."
+	bubble setVisibleEntityIds: currentIds.	"Publish result for the engine boundary."
 	aCESimRunContext stepCacheAt: #result put: view
 ]

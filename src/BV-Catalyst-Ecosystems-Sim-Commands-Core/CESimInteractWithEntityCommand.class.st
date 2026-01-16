@@ -1,5 +1,5 @@
 Class {
-	#name : 'CESimInteractWithCreatureCommand',
+	#name : 'CESimInteractWithEntityCommand',
 	#superclass : 'CESimCreatureInteractionCommand',
 	#instVars : [
 		'interactionType',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimInteractWithCreatureCommand class >> withTargetEntityId: aCEEntityId type: anInteractionType payload: aPayload [
+CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: anInteractionType payload: aPayload [
   ^ self new
     targetEntityId: aCEEntityId;
     interactionType: anInteractionType;
@@ -19,15 +19,15 @@ CESimInteractWithCreatureCommand class >> withTargetEntityId: aCEEntityId type: 
 ]
 
 { #category : 'accessing' }
-CESimInteractWithCreatureCommand >> interactionType: aType [ interactionType := aType
+CESimInteractWithEntityCommand >> interactionType: aType [ interactionType := aType
 ]
 
 { #category : 'accessing' }
-CESimInteractWithCreatureCommand >> payload: aPayload [ payload := aPayload
+CESimInteractWithEntityCommand >> payload: aPayload [ payload := aPayload
 ]
 
 { #category : 'producing' }
-CESimInteractWithCreatureCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimInteractWithEntityCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   aCESimUpdate addEvent: (Dictionary new
     at: #type put: #creatureInteraction;
     at: #interactionType put: interactionType;

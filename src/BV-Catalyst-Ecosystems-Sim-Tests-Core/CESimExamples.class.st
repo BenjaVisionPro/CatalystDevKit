@@ -6,6 +6,59 @@ Class {
 }
 
 { #category : 'examples' }
+CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
+	<gtExample>
+	| engine region bubble pipeline stages view cmd |
+	engine := CESimEngine new.	
+	
+	"Pipeline order: commands -> apply -> snapshots -> local view"
+	stages := OrderedCollection new.
+	stages
+		add: (CESimStage new
+				stageId: #consumeCommands;
+				runner: CESimConsumeCommandsStageRunner new;
+				yourself).
+	stages
+		add: (CESimStage new
+				stageId: #applyUpdates;
+				runner: CESimApplyUpdatesStageRunner new;
+				yourself).
+	stages
+		add: (CESimStage new
+				stageId: #collectVisible;
+				runner: CESimCollectVisibleSnapshotsStageRunner new;
+				yourself).
+	stages
+		add: (CESimStage new
+				stageId: #buildLocalView;
+				runner: CESimBuildLocalViewStageRunner new;
+				yourself).
+
+	pipeline := CESimPipeline new
+			pipelineId: #bubble;
+			stages: stages;
+			yourself.
+	engine bubblePipeline: pipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotable
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	bubble enqueueCommand: cmd.
+
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+	^ view
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	<gtExample>
 	| engine region bubble context notable update |
@@ -47,6 +100,79 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 ]
 
 { #category : 'examples' }
+CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
+	<gtExample>
+	| engine pipeline stages |
+	engine := CESimEngine new.
+
+	stages := OrderedCollection new.
+	stages
+		add: (CESimStage new
+				stageId: #consumeCommands;
+				runner: CESimConsumeCommandsStageRunner new;
+				yourself);
+		add: (CESimStage new
+				stageId: #applyUpdates;
+				runner: CESimApplyUpdatesStageRunner new;
+				yourself);
+		add: (CESimStage new
+				stageId: #collectVisibleSnapshots;
+				runner: CESimCollectVisibleSnapshotsStageRunner new;
+				yourself);
+		add: (CESimStage new
+				stageId: #buildLocalView;
+				runner: CESimBuildLocalViewStageRunner new;
+				yourself).
+
+	pipeline := CESimPipeline new.
+	pipeline
+		pipelineId: #bubble;
+		stages: stages.
+
+	engine bubblePipeline: pipeline.
+	^ engine
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
+	<gtExample>
+	| engine region bubble cmd1 cmd2 view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd1 := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotableA
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	cmd2 := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotableB
+			transform: (Dictionary new
+					at: #pos put: #(1 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	bubble enqueueCommand: cmd1.
+	bubble enqueueCommand: cmd2.
+
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #bubble put: bubble;
+		at: #view put: view;
+		yourself
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 	<gtExample>
 	| seed engine bubble context collectRunner buildRunner view |
@@ -73,6 +199,36 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 
 	^ Dictionary new
 		at: #seed put: seed;
+		at: #view put: view;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_localViewShowsSpawnFromCreateNotableCommandSameTick [
+	<gtExample>
+	| engine region bubble cmd view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotable
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	bubble enqueueCommand: cmd.
+
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #region put: region;
+		at: #bubble put: bubble;
 		at: #view put: view;
 		yourself
 ]
@@ -126,6 +282,36 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 ]
 
 { #category : 'tests' }
+CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
+	| view spawn |
+	view := self example_createNotableCommandSpawnsInLocalViewSameTick.
+
+	self assert: view spawns size equals: 1.
+	self assert: view updates isEmpty.
+	self assert: view despawns isEmpty.
+
+	spawn := view spawns first.
+	self assert: (spawn at: #definitionKey) equals: #demoNotable.
+	self assert: (spawn includesKey: #entityId)
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
+	| result view spawns id1 id2 |
+	result := self
+			example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands.
+	view := result at: #view.
+	spawns := view spawns.
+
+	self assert: spawns size equals: 2.
+
+	id1 := (spawns first at: #entityId) value.
+	id2 := (spawns second at: #entityId) value.
+
+	self assert: id1 < id2
+]
+
+{ #category : 'tests' }
 CESimExamples >> test_localViewShowsSpawnForAppliedNotable [
 	| result seed view notable spawn |
 	result := self example_localViewShowsSpawnForAppliedNotable.
@@ -140,6 +326,23 @@ CESimExamples >> test_localViewShowsSpawnForAppliedNotable [
 	spawn := view spawns first.
 	self assert: (spawn at: #entityId) equals: notable entityId.
 	self assert: (spawn at: #definitionKey) equals: #demoNotable
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewShowsSpawnFromCreateNotableCommandSameTick [
+	| result view spawn |
+	result := self example_localViewShowsSpawnFromCreateNotableCommandSameTick.
+	view := result at: #view.
+
+	self assert: view spawns size equals: 1.
+	self assert: view updates isEmpty.
+	self assert: view despawns isEmpty.
+
+	spawn := view spawns first.
+	self assert: (spawn at: #definitionKey) equals: #demoNotable.	"Audit facts still present (at least one commandAccepted event)."
+	self
+		assert: (view events
+				anySatisfy: [ :e | (e at: #type ifAbsent: [ nil ]) = #commandAccepted ])
 ]
 
 { #category : 'tests' }
