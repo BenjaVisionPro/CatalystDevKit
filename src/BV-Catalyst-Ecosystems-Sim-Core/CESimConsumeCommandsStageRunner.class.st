@@ -7,20 +7,21 @@ Class {
 
 { #category : 'running' }
 CESimConsumeCommandsStageRunner >> buildUpdateForStage: aStage inContext: aCESimRunContext [
-	| bubble commands update |
-	bubble := aCESimRunContext subject.
-	commands := bubble drainCommands.
-	commands isEmpty ifTrue: [ ^ CESimUpdate new ].
+  | bubble commands update |
+  bubble := aCESimRunContext subject.
+  commands := bubble drainCommands.
+  commands isEmpty ifTrue: [ ^ CESimUpdate new ].
 
-	update := CESimUpdate new.
-	commands
-		do: [ :cmd | 
-			update
-				addEvent: (self
-						eventFromCommand: cmd
-						stage: aStage
-						context: aCESimRunContext) ].
-	^ update
+  update := CESimUpdate new.
+  commands do: [ :cmd |
+    "Command contributes ops/events deterministically."
+    cmd produceIntoUpdate: update inContext: aCESimRunContext.
+
+    "Keep the existing acceptance event (still useful for tracing)."
+    update addEvent: (self eventFromCommand: cmd stage: aStage context: aCESimRunContext).
+  ].
+
+  ^ update
 ]
 
 { #category : 'private' }
