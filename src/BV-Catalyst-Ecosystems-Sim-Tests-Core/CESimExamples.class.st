@@ -134,6 +134,75 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 ]
 
 { #category : 'examples' }
+CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
+	<gtExample>
+	| engine region bubble createCmd view1 spawnedEntityId interactCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.	
+	
+	"Tick 1: create a notable so we have a real entityId to target."
+	createCmd := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotable
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	spawnedEntityId := view1 spawns first at: #entityId.	
+	
+	"Tick 2: interact with that entity."
+	interactCmd := CESimInteractWithEntityCommand
+			withTargetEntityId: spawnedEntityId
+			type: #pet
+			payload: (Dictionary new
+					at: #hand put: #right;
+					yourself).
+
+	bubble enqueueCommand: interactCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: spawnedEntityId;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_localViewContainsStimulusEmittedEventFromCommand [
+	<gtExample>
+	| engine region bubble cmd view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd := CESimEmitStimulusAtTransformCommand
+			type: #sound
+			transform: (Dictionary new
+					at: #pos put: #(5 0 0);
+					yourself)
+			intensity: 0.75.
+
+	bubble enqueueCommand: cmd.
+
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #bubble put: bubble;
+		at: #view put: view;
+		yourself
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
 	<gtExample>
 	| engine region bubble cmd1 cmd2 view |
@@ -234,6 +303,85 @@ CESimExamples >> example_localViewShowsSpawnFromCreateNotableCommandSameTick [
 ]
 
 { #category : 'examples' }
+CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId interactCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.	
+	
+	"Tick 1: create a notable"
+	createCmd := CESimCreateNotableCommand
+			withDefinitionKey: #demoNotable
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	entityId := view1 spawns first at: #entityId.	
+	
+	"Tick 2: interact -> should produce UPDATE with changed state"
+	interactCmd := CESimInteractWithEntityCommand
+			withTargetEntityId: entityId
+			type: #pet
+			payload: (Dictionary new
+					at: #hand put: #right;
+					yourself).
+
+	bubble enqueueCommand: interactCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId stimulusCmd view2 |
+
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	"Tick 1: create a notable"
+	createCmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	entityId := view1 spawns first at: #entityId.
+
+	"Tick 2: emit stimulus -> should update the notable state"
+	stimulusCmd := CESimEmitStimulusAtTransformCommand
+		type: #sound
+		transform: (Dictionary new at: #pos put: #(5 0 0); yourself)
+		intensity: 0.75.
+
+	bubble enqueueCommand: stimulusCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	<gtExample>
 	| seed engine bubble notable view1 context2 update2 collectRunner buildRunner view2 newTransform |
@@ -296,6 +444,37 @@ CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
 ]
 
 { #category : 'tests' }
+CESimExamples >> test_localViewContainsEntityInteractionEventFromCommand [
+	| result view2 entityId ev |
+	result := self example_localViewContainsEntityInteractionEventFromCommand.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	ev := view2 events
+			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
+			ifNone: [ self fail: 'Expected #creatureInteraction event in LocalView events' ].
+
+	self assert: (ev at: #entityId) equals: entityId.
+	self assert: (ev at: #interactionType) equals: #pet.
+	self assert: ((ev at: #payload) at: #hand) equals: #right
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewContainsStimulusEmittedEventFromCommand [
+	| result view ev |
+	result := self example_localViewContainsStimulusEmittedEventFromCommand.
+	view := result at: #view.
+
+	ev := view events
+			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
+			ifNone: [ self fail: 'Expected #stimulusEmitted event in LocalView events' ].
+
+	self assert: (ev at: #stimulusType) equals: #sound.
+	self assert: (ev at: #intensity) equals: 0.75.
+	self assert: ((ev at: #transform) at: #pos) equals: #(5 0 0)
+]
+
+{ #category : 'tests' }
 CESimExamples >> test_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
 	| result view spawns id1 id2 |
 	result := self
@@ -343,6 +522,60 @@ CESimExamples >> test_localViewShowsSpawnFromCreateNotableCommandSameTick [
 	self
 		assert: (view events
 				anySatisfy: [ :e | (e at: #type ifAbsent: [ nil ]) = #commandAccepted ])
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewShowsStateUpdateAfterEntityInteractionCommand [
+	| result view2 entityId updateSnap state ev |
+	result := self example_localViewShowsStateUpdateAfterEntityInteractionCommand.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	self assert: view2 spawns isEmpty.
+	self assert: view2 updates size equals: 1.
+	self assert: view2 despawns isEmpty.
+
+	updateSnap := view2 updates first.
+	self assert: (updateSnap at: #entityId) equals: entityId.
+
+	state := updateSnap at: #state.
+	self assert: (state at: #lastInteractionType) equals: #pet.
+	self assert: ((state at: #lastInteractionPayload) at: #hand) equals: #right.
+
+	ev := view2 events
+			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
+			ifNone: [ self fail: 'Expected #entityInteraction event' ].
+
+	self assert: (ev at: #entityId) equals: entityId.
+	self assert: (ev at: #interactionType) equals: #pet
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewShowsStateUpdateAfterStimulusCommand [
+	| result view2 entityId updateSnap state ev |
+	result := self example_localViewShowsStateUpdateAfterStimulusCommand.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	self assert: view2 spawns isEmpty.
+	self assert: view2 updates size equals: 1.
+	self assert: view2 despawns isEmpty.
+
+	updateSnap := view2 updates first.
+	self assert: (updateSnap at: #entityId) equals: entityId.
+
+	state := updateSnap at: #state.
+	self assert: (state at: #lastStimulusType) equals: #sound.
+	self assert: (state at: #lastStimulusIntensity) equals: 0.75.
+	self assert: ((state at: #lastStimulusTransform) at: #pos) equals: #(5 0 0).
+
+	ev := view2 events
+			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
+			ifNone: [ self fail: 'Expected #stimulusEmitted event' ].
+
+	self assert: (ev at: #stimulusType) equals: #sound.
+	self assert: (ev at: #intensity) equals: 0.75.
+	self assert: ((ev at: #transform) at: #pos) equals: #(5 0 0)
 ]
 
 { #category : 'tests' }

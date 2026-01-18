@@ -12,7 +12,9 @@ Class {
 		'lastRunContext',
 		'updateApplier',
 		'transactionRunner',
-		'idIssuer'
+		'idIssuer',
+		'interactionResolver',
+		'stimulusResolver'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -75,12 +77,12 @@ CESimEngine >> currentTick [
 
 { #category : 'accessing' }
 CESimEngine >> ensureBubble: aCEBubbleId [
-    ^ self bubbleAt: aCEBubbleId ifAbsentPut: [ CEBubbleAggregate id: aCEBubbleId ]
+    ^ self bubbleAt: aCEBubbleId ifAbsentPut: [ CEBubbleAggregate withId: aCEBubbleId ]
 ]
 
 { #category : 'accessing' }
 CESimEngine >> ensureRegion: aCERegionId [
-    ^ self regionAt: aCERegionId ifAbsentPut: [ CERegionAggregate id: aCERegionId ]
+    ^ self regionAt: aCERegionId ifAbsentPut: [ CERegionAggregate withId: aCERegionId ]
 ]
 
 { #category : 'accessing' }
@@ -128,7 +130,14 @@ CESimEngine >> initialize [
 	environmentQuery := CEFlatWorldEnvironment new.
 	updateApplier := CESimUpdateApplier new.
 	transactionRunner := CENullTransactionRunner new.
+	interactionResolver := CESimInteractionResolver new.
+	stimulusResolver := CESimStimulusResolver new.
 	idIssuer := CESequenceIdIssuer new
+]
+
+{ #category : 'accessing' }
+CESimEngine >> interactionResolver [
+	^ interactionResolver
 ]
 
 { #category : 'accessing' }
@@ -212,6 +221,11 @@ CESimEngine >> runGlobalPipelineOnRegion: aRegion [
     ].
 
     lastRunContext := context
+]
+
+{ #category : 'accessing' }
+CESimEngine >> stimulusResolver [
+	^ stimulusResolver
 ]
 
 { #category : 'accessing' }

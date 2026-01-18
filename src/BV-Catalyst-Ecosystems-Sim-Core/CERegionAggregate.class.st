@@ -20,6 +20,13 @@ CERegionAggregate >> initialize [
 ]
 
 { #category : 'notables' }
+CERegionAggregate >> notableAt: aCEEntityId [
+	^ self
+		notableAt: aCEEntityId
+		ifAbsent: [ self error: 'Unknown Notable with id: ' , aCEEntityId asString ]
+]
+
+{ #category : 'notables' }
 CERegionAggregate >> notableAt: aCEEntityId ifAbsent: aBlock [
     ^ notablesById at: aCEEntityId ifAbsent: aBlock
 ]
