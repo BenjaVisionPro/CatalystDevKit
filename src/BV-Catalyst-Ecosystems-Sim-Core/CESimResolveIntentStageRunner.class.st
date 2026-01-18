@@ -56,43 +56,23 @@ CESimResolveIntentStageRunner >> addStimulusOpsFrom: aStimulusCommand visibleSna
 CESimResolveIntentStageRunner >> buildUpdateForStage: aStage inContext: aCESimRunContext [
 	| commands visibleSnapshots bubble regionId update |
 	commands := aCESimRunContext
-		stepCacheAt: #drainedCommands
-		ifAbsent: [ OrderedCollection new ].
+			stepCacheAt: #drainedCommands
+			ifAbsent: [ OrderedCollection new ].
 
 	commands isEmpty ifTrue: [ ^ CESimUpdate new ].
 
 	visibleSnapshots := aCESimRunContext
-		stepCacheAt: #visibleSnapshots
-		ifAbsent: [ OrderedCollection new ].
+			stepCacheAt: #visibleSnapshots
+			ifAbsent: [ OrderedCollection new ].
 
 	bubble := aCESimRunContext subject.
 	regionId := bubble homeRegionId.
 
 	update := CESimUpdate new.
 
-	commands do: [ :cmd |
-		"Let the command contribute its audit facts (event-only)."
-		cmd produceIntoUpdate: update inContext: aCESimRunContext.
-
-		(cmd isKindOf: CESimEmitStimulusAtTransformCommand)
-			ifTrue: [
-				self
-					addStimulusOpsFrom: cmd
-					visibleSnapshots: visibleSnapshots
-					regionId: regionId
-					context: aCESimRunContext
-					intoUpdate: update
-			].
-
-		(cmd isKindOf: CESimInteractWithEntityCommand)
-			ifTrue: [
-				self
-					addInteractionOpsFrom: cmd
-					regionId: regionId
-					context: aCESimRunContext
-					intoUpdate: update
-			].
-	].
-
+	commands
+		do: [ :cmd | 
+			cmd produceIntoUpdate: update inContext: aCESimRunContext.	"events"
+			cmd produceIntentOpsIntoUpdate: update inContext: aCESimRunContext	"ops" ].
 	^ update
 ]

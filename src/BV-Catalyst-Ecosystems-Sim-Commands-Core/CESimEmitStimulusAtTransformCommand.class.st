@@ -29,8 +29,40 @@ CESimEmitStimulusAtTransformCommand >> intensity: aNumber [ intensity := aNumber
 ]
 
 { #category : 'producing' }
+CESimEmitStimulusAtTransformCommand >> produceIntentOpsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	| visibleSnapshots bubble regionId engine region |
+	visibleSnapshots := aCESimRunContext
+			stepCacheAt: #visibleSnapshots
+			ifAbsent: [ ^ self ].
+
+	bubble := aCESimRunContext subject.
+	regionId := bubble homeRegionId.
+
+	engine := aCESimRunContext engine.
+	region := engine ensureRegion: regionId.
+
+	visibleSnapshots
+		do: [ :snap | 
+			| entityId notable patch |
+			entityId := snap at: #entityId.
+			notable := region notableAt: entityId.
+
+			patch := engine stimulusResolver
+					patchForStimulusType: self stimulusType
+					transform: self transform
+					intensity: self intensity
+					target: notable
+					inContext: aCESimRunContext.
+
+			aCESimUpdate
+				addEntityOp: (CESimPatchNotableStateOp
+						withRegionId: regionId
+						entityId: entityId
+						patch: patch) ]
+]
+
+{ #category : 'producing' }
 CESimEmitStimulusAtTransformCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| bubble regionId region |
 	aCESimUpdate
 		addEvent: (Dictionary new
 				at: #type put: #stimulusEmitted;
@@ -38,30 +70,7 @@ CESimEmitStimulusAtTransformCommand >> produceIntoUpdate: aCESimUpdate inContext
 				at: #transform put: transform;
 				at: #intensity put: intensity;
 				at: #tickId put: aCESimRunContext tickId;
-				yourself).
-
-	bubble := aCESimRunContext subject.
-	regionId := bubble homeRegionId.
-	region := aCESimRunContext engine ensureRegion: regionId.
-
-	region notables
-		do: [ :notable | 
-			| patch newState |
-			patch := aCESimRunContext engine stimulusResolver
-					patchForStimulusType: stimulusType
-					transform: transform
-					intensity: intensity
-					target: notable
-					inContext: aCESimRunContext.
-
-			newState := notable state copy.
-			patch keysAndValuesDo: [ :k :v | newState at: k put: v ].
-
-			aCESimUpdate
-				addEntityOp: (CESimPatchNotableStateOp
-						withRegionId: regionId
-						entityId: notable entityId
-						patch: patch) ]
+				yourself)
 ]
 
 { #category : 'accessing' }
