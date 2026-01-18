@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfCatalystDevKit }
+Package { #name : 'BaselineOfCatalystDevKit' }
