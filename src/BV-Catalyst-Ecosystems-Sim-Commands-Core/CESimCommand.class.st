@@ -6,11 +6,11 @@ Class {
 }
 
 { #category : 'producing' }
-CESimCommand >> produceIntentOpsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-  "Default no op"
+CESimCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+  self subclassResponsibility
 ]
 
 { #category : 'producing' }
-CESimCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-  self subclassResponsibility
+CESimCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+  "Default no op"
 ]

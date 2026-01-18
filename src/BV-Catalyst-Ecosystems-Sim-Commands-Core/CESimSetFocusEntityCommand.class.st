@@ -11,7 +11,7 @@ CESimSetFocusEntityCommand class >> withTargetEntityId: aCEEntityId [
 ]
 
 { #category : 'producing' }
-CESimSetFocusEntityCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimSetFocusEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   aCESimUpdate addEvent: (Dictionary new
     at: #type put: #focusEntity;
     at: #entityId put: targetEntityId;

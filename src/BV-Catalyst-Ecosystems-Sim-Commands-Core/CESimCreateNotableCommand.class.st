@@ -25,7 +25,7 @@ CESimCreateNotableCommand >> definitionKey: aKey [
 ]
 
 { #category : 'producing' }
-CESimCreateNotableCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimCreateNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   | regionId notable |
   regionId := aCESimRunContext subject homeRegionId.
 

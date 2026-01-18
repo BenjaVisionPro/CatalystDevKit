@@ -39,7 +39,19 @@ CESimInteractWithEntityCommand >> payload: aPayload [
 ]
 
 { #category : 'producing' }
-CESimInteractWithEntityCommand >> produceIntentOpsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimInteractWithEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aCESimUpdate
+		addEvent: (Dictionary new
+				at: #type put: #entityInteraction;
+				at: #interactionType put: interactionType;
+				at: #entityId put: targetEntityId;
+				at: #payload put: payload;
+				at: #tickId put: aCESimRunContext tickId;
+				yourself)
+]
+
+{ #category : 'producing' }
+CESimInteractWithEntityCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| bubble regionId engine region notable patch |
 	bubble := aCESimRunContext subject.
 	regionId := bubble homeRegionId.
@@ -60,16 +72,4 @@ CESimInteractWithEntityCommand >> produceIntentOpsIntoUpdate: aCESimUpdate inCon
 				withRegionId: regionId
 				entityId: self targetEntityId
 				patch: patch)
-]
-
-{ #category : 'producing' }
-CESimInteractWithEntityCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #entityInteraction;
-				at: #interactionType put: interactionType;
-				at: #entityId put: targetEntityId;
-				at: #payload put: payload;
-				at: #tickId put: aCESimRunContext tickId;
-				yourself)
 ]

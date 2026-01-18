@@ -21,5 +21,5 @@ CESimCollectVisibleSnapshotsStageRunner >> runStage: aStage inContext: aCESimRun
 		asSortedCollection: [ :a :b | (a at: #entityId) value < (b at: #entityId) value ])
 		asOrderedCollection.
 
-	aCESimRunContext stepCacheAt: #visibleSnapshots put: snapshots
+	aCESimRunContext runCache visibleSnapshots: snapshots
 ]

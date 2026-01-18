@@ -7,7 +7,7 @@ Class {
 		'environmentQuery',
 		'subject',
 		'updates',
-		'stepCache'
+		'runCache'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -29,8 +29,8 @@ CESimRunContext >> addUpdate: aCESimUpdate [
 ]
 
 { #category : 'step cache' }
-CESimRunContext >> clearStepCache [
-	stepCache removeAll
+CESimRunContext >> clearRunCache [
+	runCache removeAll
 ]
 
 { #category : 'updates' }
@@ -58,16 +58,11 @@ CESimRunContext >> environmentQuery: anObject [
 	environmentQuery := anObject
 ]
 
-{ #category : 'step cache' }
-CESimRunContext >> hasStepCacheKey: aKey [
-    ^ stepCache includesKey: aKey
-]
-
 { #category : 'initialization' }
 CESimRunContext >> initialize [
 	super initialize.
 	updates := OrderedCollection new.
-	stepCache := Dictionary new
+	runCache := CESimRunCache new
 ]
 
 { #category : 'entities' }
@@ -93,18 +88,18 @@ CESimRunContext >> printOn: aStream [
 ]
 
 { #category : 'step cache' }
-CESimRunContext >> stepCache [
-	^ stepCache
+CESimRunContext >> runCache [
+	^ runCache
 ]
 
 { #category : 'step cache' }
-CESimRunContext >> stepCacheAt: aKey ifAbsent: aBlock [
-	^ stepCache at: aKey ifAbsent: aBlock
+CESimRunContext >> runCacheAt: aKey ifAbsent: aBlock [
+	^ runCache at: aKey ifAbsent: aBlock
 ]
 
 { #category : 'step cache' }
-CESimRunContext >> stepCacheAt: aKey put: aValue [
-	stepCache at: aKey put: aValue
+CESimRunContext >> runCacheAt: aKey put: aValue [
+	runCache at: aKey put: aValue
 ]
 
 { #category : 'accessing' }

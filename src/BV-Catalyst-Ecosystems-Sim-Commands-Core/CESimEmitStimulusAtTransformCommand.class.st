@@ -29,11 +29,21 @@ CESimEmitStimulusAtTransformCommand >> intensity: aNumber [ intensity := aNumber
 ]
 
 { #category : 'producing' }
-CESimEmitStimulusAtTransformCommand >> produceIntentOpsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimEmitStimulusAtTransformCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aCESimUpdate
+		addEvent: (Dictionary new
+				at: #type put: #stimulusEmitted;
+				at: #stimulusType put: stimulusType;
+				at: #transform put: transform;
+				at: #intensity put: intensity;
+				at: #tickId put: aCESimRunContext tickId;
+				yourself)
+]
+
+{ #category : 'producing' }
+CESimEmitStimulusAtTransformCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| visibleSnapshots bubble regionId engine region |
-	visibleSnapshots := aCESimRunContext
-			stepCacheAt: #visibleSnapshots
-			ifAbsent: [ ^ self ].
+	visibleSnapshots := aCESimRunContext runCache visibleSnapshots.
 
 	bubble := aCESimRunContext subject.
 	regionId := bubble homeRegionId.
@@ -59,18 +69,6 @@ CESimEmitStimulusAtTransformCommand >> produceIntentOpsIntoUpdate: aCESimUpdate 
 						withRegionId: regionId
 						entityId: entityId
 						patch: patch) ]
-]
-
-{ #category : 'producing' }
-CESimEmitStimulusAtTransformCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #stimulusEmitted;
-				at: #stimulusType put: stimulusType;
-				at: #transform put: transform;
-				at: #intensity put: intensity;
-				at: #tickId put: aCESimRunContext tickId;
-				yourself)
 ]
 
 { #category : 'accessing' }

@@ -11,7 +11,7 @@ CESimInspectEntityCommand class >> withTargetEntityId: aCEEntityId [
 ]
 
 { #category : 'producing' }
-CESimInspectEntityCommand >> produceIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimInspectEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   aCESimUpdate addEvent: (Dictionary new
     at: #type put: #inspectEntity;
     at: #entityId put: targetEntityId;

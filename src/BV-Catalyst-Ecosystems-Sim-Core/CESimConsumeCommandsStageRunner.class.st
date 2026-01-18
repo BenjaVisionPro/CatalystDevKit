@@ -12,7 +12,7 @@ CESimConsumeCommandsStageRunner >> buildUpdateForStage: aStage inContext: aCESim
 	commands := bubble drainCommands.
 
 	"Publish drained commands for later stages (ResolveIntent)."
-	aCESimRunContext stepCacheAt: #drainedCommands put: commands.
+	aCESimRunContext runCacheAt: #drainedCommands put: commands.
 
 	commands isEmpty ifTrue: [ ^ CESimUpdate new ].
 

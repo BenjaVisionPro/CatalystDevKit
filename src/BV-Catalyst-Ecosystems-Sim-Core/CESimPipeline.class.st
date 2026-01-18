@@ -27,7 +27,7 @@ CESimPipeline >> pipelineId: anObject [
 
 { #category : 'running' }
 CESimPipeline >> runInContext: aCESimRunContext [
-	aCESimRunContext clearStepCache.
+	aCESimRunContext clearRunCache.
 	aCESimRunContext clearUpdates.
 
 	stages
@@ -35,7 +35,7 @@ CESimPipeline >> runInContext: aCESimRunContext [
 			(stage shouldRunInContext: aCESimRunContext)
 				ifTrue: [ stage runInContext: aCESimRunContext ] ].
 
-	^ aCESimRunContext stepCacheAt: #result ifAbsent: [ aCESimRunContext ]
+	^ aCESimRunContext runCache result 
 ]
 
 { #category : 'accessing' }

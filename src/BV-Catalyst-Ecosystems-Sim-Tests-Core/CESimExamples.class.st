@@ -255,9 +255,7 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 	| seed engine bubble context collectRunner buildRunner view |
 	seed := self example_engineWithBubbleAndOneNotableApplied.
 	engine := seed at: #engine.
-	bubble := seed at: #bubble.	
-	
-	"Fresh context for observation pass."
+	bubble := seed at: #bubble.	"Fresh context for observation pass."
 	context := CESimRunContext
 			for: bubble
 			engine: engine
@@ -270,9 +268,7 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 	collectRunner runStage: nil inContext: context.
 	buildRunner runStage: nil inContext: context.
 
-	view := context
-			stepCacheAt: #result
-			ifAbsent: [ self error: 'Expected #result in stepCache' ].
+	view := context runCache result.
 
 	^ Dictionary new
 		at: #seed put: seed;
@@ -425,15 +421,84 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	collectRunner runStage: nil inContext: context2.
 	buildRunner runStage: nil inContext: context2.
 
-	view2 := context2
-			stepCacheAt: #result
-			ifAbsent: [ self error: 'Expected #result in stepCache' ].
+	view2 := context2 runCache result.
 
 	^ Dictionary new
 		at: #view1 put: view1;
 		at: #view2 put: view2;
 		at: #notable put: notable;
 		at: #transform2 put: newTransform;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
+<gtExample>
+	| engine regionA regionB bubble context notableA notableB stateA0 stateB0 update view |
+
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	regionA := engine newRegion.
+	regionB := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: regionA aggregateId.
+
+	"Context factory (no ids touched by caller)."
+	context := CESimRunContext
+		for: bubble
+		engine: engine
+		tickId: engine currentTick
+		environmentQuery: engine environmentQuery.
+
+	notableA := context
+		newNotableWithDefinitionKey: #demoVisible
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		state: (Dictionary new
+			at: #tag put: #A;
+			yourself).
+
+	notableB := context
+		newNotableWithDefinitionKey: #demoInvisible
+		transform: (Dictionary new
+			at: #pos put: #(999 0 0);
+			yourself)
+		state: (Dictionary new
+			at: #tag put: #B;
+			yourself).
+
+	"Add both notables, but to different regions."
+	update := CESimUpdate new.
+	update
+		addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionA aggregateId notable: notableA);
+		addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionB aggregateId notable: notableB).
+	context addUpdate: update.
+
+	engine transactionRunner
+		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context ].
+
+	"Capture initial states for mutation assertions."
+	stateA0 := notableA state copy.
+	stateB0 := notableB state copy.
+
+	"Enqueue stimulus. ResolveIntent will apply ops only to visible snapshots (v0: home region)."
+	bubble enqueueCommand: (CESimEmitStimulusAtTransformCommand
+		type: #sound
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		intensity: 1).
+
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #regionA put: regionA;
+		at: #regionB put: regionB;
+		at: #bubble put: bubble;
+		at: #notableA put: notableA;
+		at: #notableB put: notableB;
+		at: #stateA0 put: stateA0;
+		at: #stateB0 put: stateB0;
+		at: #view put: view;
 		yourself
 ]
 
@@ -605,4 +670,30 @@ CESimExamples >> test_localViewShowsUpdateAfterTransformChange [
 	updateSnap := view2 updates first.
 	self assert: (updateSnap at: #entityId) equals: notable entityId.
 	self assert: (updateSnap at: #transform) equals: transform2
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
+	| result view notableA notableB stateA0 stateB0 spawn |
+	result := self example_stimulusOnlyAffectsVisibleNotables.
+
+	view := result at: #view.
+	notableA := result at: #notableA.
+	notableB := result at: #notableB.
+	stateA0 := result at: #stateA0.
+	stateB0 := result at: #stateB0.
+
+	"LocalView should only contain the visible notable (home region only in v0)."
+	self assert: view spawns size equals: 1.
+	self assert: view updates isEmpty.
+	self assert: view despawns isEmpty.
+
+	spawn := view spawns first.
+	self assert: (spawn at: #entityId) equals: notableA entityId.
+
+	"Invisible notable must not be mutated by stimulus resolution."
+	self assert: notableB state equals: stateB0.
+
+	"Visible notable should have been affected (some patch applied)."
+	self deny: notableA state equals: stateA0.
 ]
