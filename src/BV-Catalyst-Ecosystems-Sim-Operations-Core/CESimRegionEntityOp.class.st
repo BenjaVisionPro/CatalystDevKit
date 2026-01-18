@@ -28,9 +28,7 @@ CESimRegionEntityOp >> entityId: aCEEntityId [
 
 { #category : 'resolving' }
 CESimRegionEntityOp >> notableInContext: aCESimRunContext [
-	^ (self regionInContext: aCESimRunContext)
-		notableAt: entityId
-		ifAbsent: [ self error: 'Notable not found: ', entityId asString ]
+	^ (self regionInContext: aCESimRunContext) notableAt: entityId
 ]
 
 { #category : 'ordering' }

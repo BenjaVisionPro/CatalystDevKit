@@ -12,15 +12,14 @@ CESimCollectVisibleSnapshotsStageRunner >> runStage: aStage inContext: aCESimRun
 	bubble := aCESimRunContext subject.
 	snapshots := OrderedCollection new.
 
-	bubble relevantRegionIds
-		do: [ :regionId | 
-			(engine ensureRegion: regionId) notables
-				do: [ :notable | snapshots add: notable asSnapshot ] ].	
-				
+	bubble relevantRegionIds do: [ :regionId |
+		(engine ensureRegion: regionId) notables
+			do: [ :notable | snapshots add: notable asSnapshot ] ].
+
 	"Deterministic order: by entityId backing value."
 	snapshots := (snapshots
-			asSortedCollection: [ :a :b | (a at: #entityId) value < (b at: #entityId) value ])
-			asOrderedCollection.
+		asSortedCollection: [ :a :b | (a at: #entityId) value < (b at: #entityId) value ])
+		asOrderedCollection.
 
 	aCESimRunContext stepCacheAt: #visibleSnapshots put: snapshots
 ]

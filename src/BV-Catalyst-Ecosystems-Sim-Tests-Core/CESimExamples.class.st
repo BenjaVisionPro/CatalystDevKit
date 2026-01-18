@@ -108,21 +108,29 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	stages := OrderedCollection new.
 	stages
 		add: (CESimStage new
-				stageId: #consumeCommands;
-				runner: CESimConsumeCommandsStageRunner new;
-				yourself);
+			stageId: #consumeCommands;
+			runner: CESimConsumeCommandsStageRunner new;
+			yourself);
 		add: (CESimStage new
-				stageId: #applyUpdates;
-				runner: CESimApplyUpdatesStageRunner new;
-				yourself);
+			stageId: #collectVisibleSnapshots_pre;
+			runner: CESimCollectVisibleSnapshotsStageRunner new;
+			yourself);
 		add: (CESimStage new
-				stageId: #collectVisibleSnapshots;
-				runner: CESimCollectVisibleSnapshotsStageRunner new;
-				yourself);
+			stageId: #resolveIntent;
+			runner: CESimResolveIntentStageRunner new;
+			yourself);
 		add: (CESimStage new
-				stageId: #buildLocalView;
-				runner: CESimBuildLocalViewStageRunner new;
-				yourself).
+			stageId: #applyUpdates;
+			runner: CESimApplyUpdatesStageRunner new;
+			yourself);
+		add: (CESimStage new
+			stageId: #collectVisibleSnapshots_post;
+			runner: CESimCollectVisibleSnapshotsStageRunner new;
+			yourself);
+		add: (CESimStage new
+			stageId: #buildLocalView;
+			runner: CESimBuildLocalViewStageRunner new;
+			yourself).
 
 	pipeline := CESimPipeline new.
 	pipeline
