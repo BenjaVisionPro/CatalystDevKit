@@ -17,7 +17,10 @@ CESimResolveIntentStageRunner >> buildUpdateForStage: aStage inContext: aCESimRu
 	commands
 		do: [ :cmd | 
 			cmd produceEventsIntoUpdate: update inContext: aCESimRunContext.
-			cmd produceOperationsIntoUpdate: update inContext: aCESimRunContext ].
+			aCESimRunContext engine behaviour
+				produceOperationsForCommand: cmd
+				intoUpdate: update
+				inContext: aCESimRunContext ].
 
 	^ update
 ]

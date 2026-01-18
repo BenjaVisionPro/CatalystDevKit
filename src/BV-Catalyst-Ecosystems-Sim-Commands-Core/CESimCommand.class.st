@@ -11,6 +11,6 @@ CESimCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContex
 ]
 
 { #category : 'producing' }
-CESimCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
   "Default no op"
 ]

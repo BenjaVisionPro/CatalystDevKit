@@ -51,25 +51,9 @@ CESimInteractWithEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContex
 ]
 
 { #category : 'producing' }
-CESimInteractWithEntityCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| bubble regionId engine region notable patch |
-	bubble := aCESimRunContext subject.
-	regionId := bubble homeRegionId.
-
-	engine := aCESimRunContext engine.
-	region := engine ensureRegion: regionId.
-
-	notable := region notableAt: self targetEntityId.
-
-	patch := engine interactionResolver
-			patchForInteractionType: self interactionType
-			payload: self payload
-			target: notable
-			inContext: aCESimRunContext.
-
-	aCESimUpdate
-		addEntityOp: (CESimPatchNotableStateOp
-				withRegionId: regionId
-				entityId: self targetEntityId
-				patch: patch)
+CESimInteractWithEntityCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aCESimBehaviour
+		produceOperationsForInteractWithEntityCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
 ]

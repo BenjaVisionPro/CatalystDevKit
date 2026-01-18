@@ -41,34 +41,11 @@ CESimEmitStimulusAtTransformCommand >> produceEventsIntoUpdate: aCESimUpdate inC
 ]
 
 { #category : 'producing' }
-CESimEmitStimulusAtTransformCommand >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| visibleSnapshots bubble regionId engine region |
-	visibleSnapshots := aCESimRunContext runCache visibleSnapshots.
-
-	bubble := aCESimRunContext subject.
-	regionId := bubble homeRegionId.
-
-	engine := aCESimRunContext engine.
-	region := engine ensureRegion: regionId.
-
-	visibleSnapshots
-		do: [ :snap | 
-			| entityId notable patch |
-			entityId := snap at: #entityId.
-			notable := region notableAt: entityId.
-
-			patch := engine stimulusResolver
-					patchForStimulusType: self stimulusType
-					transform: self transform
-					intensity: self intensity
-					target: notable
-					inContext: aCESimRunContext.
-
-			aCESimUpdate
-				addEntityOp: (CESimPatchNotableStateOp
-						withRegionId: regionId
-						entityId: entityId
-						patch: patch) ]
+CESimEmitStimulusAtTransformCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aCESimBehaviour
+		produceOperationsForEmitStimulusAtTransformCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
 ]
 
 { #category : 'accessing' }

@@ -13,8 +13,7 @@ Class {
 		'updateApplier',
 		'transactionRunner',
 		'idIssuer',
-		'interactionResolver',
-		'stimulusResolver'
+		'behaviour'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -46,6 +45,11 @@ CESimEngine >> advanceGlobalTick [
 		do: [ :region | self runGlobalPipelineOnRegion: region ].
 
 	^ tickId
+]
+
+{ #category : 'accessing' }
+CESimEngine >> behaviour [
+	^ behaviour
 ]
 
 { #category : 'accessing' }
@@ -130,14 +134,8 @@ CESimEngine >> initialize [
 	environmentQuery := CEFlatWorldEnvironment new.
 	updateApplier := CESimUpdateApplier new.
 	transactionRunner := CENullTransactionRunner new.
-	interactionResolver := CESimInteractionResolver new.
-	stimulusResolver := CESimStimulusResolver new.
-	idIssuer := CESequenceIdIssuer new
-]
-
-{ #category : 'accessing' }
-CESimEngine >> interactionResolver [
-	^ interactionResolver
+	idIssuer := CESequenceIdIssuer new.
+	behaviour := CESimBehaviour new.
 ]
 
 { #category : 'accessing' }
@@ -221,11 +219,6 @@ CESimEngine >> runGlobalPipelineOnRegion: aRegion [
     ].
 
     lastRunContext := context
-]
-
-{ #category : 'accessing' }
-CESimEngine >> stimulusResolver [
-	^ stimulusResolver
 ]
 
 { #category : 'accessing' }
