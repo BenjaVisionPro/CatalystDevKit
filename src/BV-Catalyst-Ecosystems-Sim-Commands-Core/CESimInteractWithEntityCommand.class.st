@@ -18,6 +18,14 @@ CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: an
     yourself
 ]
 
+{ #category : 'as yet unclassified' }
+CESimInteractWithEntityCommand >> contributeToInteractionBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aModule
+		applyInteractionCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
+]
+
 { #category : 'accessing' }
 CESimInteractWithEntityCommand >> interactionType [
 	^ interactionType

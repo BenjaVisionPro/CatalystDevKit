@@ -5,15 +5,30 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
+{ #category : 'as yet unclassified' }
+CESimInteractionBehaviourModule >> applyInteractionCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	| regionId entityId |
+	regionId := self homeRegionIdInContext: aCESimRunContext.
+	entityId := aCommand targetEntityId.
+
+	aCESimUpdate
+		addEntityOp: (CESimApplyInteractionToNotableOp
+				withRegionId: regionId
+				entityId: entityId
+				interactionType: aCommand interactionType
+				payload: aCommand payload
+				tickId: aCESimRunContext tickId)
+]
+
 { #category : 'producing' }
 CESimInteractionBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| commands |
 	commands := aCESimRunContext runCache drainedCommands.
 
-	commands do: [ :cmd |
-		cmd
-			contributeToInteractionBehaviourModule: self
-			intoUpdate: aCESimUpdate
-			inContext: aCESimRunContext
-	]
+	commands
+		do: [ :cmd | 
+			cmd
+				contributeToInteractionBehaviourModule: self
+				intoUpdate: aCESimUpdate
+				inContext: aCESimRunContext ]
 ]

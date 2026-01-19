@@ -19,6 +19,14 @@ CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform i
     yourself
 ]
 
+{ #category : 'as yet unclassified' }
+CESimEmitStimulusAtTransformCommand >> contributeToStimulusBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aModule
+		applyStimulusCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
+]
+
 { #category : 'accessing' }
 CESimEmitStimulusAtTransformCommand >> intensity [
 	^ intensity
