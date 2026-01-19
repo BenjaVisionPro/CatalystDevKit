@@ -16,6 +16,7 @@ CESimBehaviour >> initialize [
 	"Order matters. Keep it explicit and stable."
 	bubbleBehaviourModules := OrderedCollection new
 		add: CESimCommandInputBehaviourModule new;
+		add: CESimLifecycleBehaviourModule new;
 		add: CESimStimulusBehaviourModule new;
 		add: CESimInteractionBehaviourModule new;
 		yourself.

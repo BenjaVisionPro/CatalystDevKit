@@ -23,6 +23,15 @@ CESimCommand >> contributeToStimulusBehaviourModule: aModule intoUpdate: aCESimU
 	
 ]
 
+{ #category : 'contributing' }
+CESimCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: no lifecycle contribution."
+	
+	"NoOp"
+	
+	
+]
+
 { #category : 'producing' }
 CESimCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   self subclassResponsibility
