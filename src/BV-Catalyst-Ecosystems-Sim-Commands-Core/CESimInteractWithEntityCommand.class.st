@@ -11,14 +11,14 @@ Class {
 
 { #category : 'instance creation' }
 CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: anInteractionType payload: aPayload [
-  ^ self new
-    targetEntityId: aCEEntityId;
-    interactionType: anInteractionType;
-    payload: aPayload;
-    yourself
+	^ self new
+		targetEntityId: aCEEntityId;
+		interactionType: anInteractionType;
+		payload: aPayload;
+		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'contributing' }
 CESimInteractWithEntityCommand >> contributeToInteractionBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	aModule
 		applyInteractionCommand: self
@@ -48,20 +48,11 @@ CESimInteractWithEntityCommand >> payload: aPayload [
 
 { #category : 'producing' }
 CESimInteractWithEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #entityInteraction;
-				at: #interactionType put: interactionType;
-				at: #entityId put: targetEntityId;
-				at: #payload put: payload;
-				at: #tickId put: aCESimRunContext tickId;
-				yourself)
-]
-
-{ #category : 'producing' }
-CESimInteractWithEntityCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimBehaviour
-		produceOperationsForInteractWithEntityCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+	aCESimUpdate addEvent: (Dictionary new
+		at: #type put: #entityInteraction;
+		at: #interactionType put: interactionType;
+		at: #entityId put: targetEntityId;
+		at: #payload put: payload;
+		at: #tickId put: aCESimRunContext tickId;
+		yourself)
 ]

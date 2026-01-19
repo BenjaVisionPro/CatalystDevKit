@@ -12,14 +12,14 @@ Class {
 
 { #category : 'instance creation' }
 CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform intensity: aNumber [
-  ^ self new
-    stimulusType: aType;
-    transform: aTransform;
-    intensity: aNumber;
-    yourself
+	^ self new
+		stimulusType: aType;
+		transform: aTransform;
+		intensity: aNumber;
+		yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'contributing' }
 CESimEmitStimulusAtTransformCommand >> contributeToStimulusBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	aModule
 		applyStimulusCommand: self
@@ -33,27 +33,19 @@ CESimEmitStimulusAtTransformCommand >> intensity [
 ]
 
 { #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> intensity: aNumber [ intensity := aNumber
+CESimEmitStimulusAtTransformCommand >> intensity: aNumber [
+	intensity := aNumber
 ]
 
 { #category : 'producing' }
 CESimEmitStimulusAtTransformCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #stimulusEmitted;
-				at: #stimulusType put: stimulusType;
-				at: #transform put: transform;
-				at: #intensity put: intensity;
-				at: #tickId put: aCESimRunContext tickId;
-				yourself)
-]
-
-{ #category : 'producing' }
-CESimEmitStimulusAtTransformCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimBehaviour
-		produceOperationsForEmitStimulusAtTransformCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+	aCESimUpdate addEvent: (Dictionary new
+		at: #type put: #stimulusEmitted;
+		at: #stimulusType put: stimulusType;
+		at: #transform put: transform;
+		at: #intensity put: intensity;
+		at: #tickId put: aCESimRunContext tickId;
+		yourself)
 ]
 
 { #category : 'accessing' }
@@ -62,7 +54,8 @@ CESimEmitStimulusAtTransformCommand >> stimulusType [
 ]
 
 { #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> stimulusType: aType [ stimulusType := aType
+CESimEmitStimulusAtTransformCommand >> stimulusType: aType [
+	stimulusType := aType
 ]
 
 { #category : 'accessing' }
@@ -71,5 +64,6 @@ CESimEmitStimulusAtTransformCommand >> transform [
 ]
 
 { #category : 'accessing' }
-CESimEmitStimulusAtTransformCommand >> transform: aTransform [ transform := aTransform
+CESimEmitStimulusAtTransformCommand >> transform: aTransform [
+	transform := aTransform
 ]
