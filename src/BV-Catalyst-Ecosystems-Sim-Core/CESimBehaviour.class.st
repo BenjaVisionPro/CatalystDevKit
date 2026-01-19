@@ -35,14 +35,6 @@ CESimBehaviour >> patchForStimulusType: aType transform: aTransform intensity: a
 		inContext: aCESimRunContext
 ]
 
-{ #category : 'commands' }
-CESimBehaviour >> produceOperationsForCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCommand
-		produceOperationsViaBehaviour: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
-]
-
 { #category : 'stimuli' }
 CESimBehaviour >> produceOperationsForEmitStimulusAtTransformCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| visibleSnapshots bubble regionId engine region |
