@@ -9,8 +9,3 @@ Class {
 CESimCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   self subclassResponsibility
 ]
-
-{ #category : 'producing' }
-CESimCommand >> produceOperationsViaBehaviour: aCESimBehaviour intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-  "Default no op"
-]
