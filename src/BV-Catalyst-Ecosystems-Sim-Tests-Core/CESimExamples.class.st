@@ -77,12 +77,6 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	| engine pipeline stages |
 	engine := CESimEngine new.
 
-	"Final-direction bubble pipeline:
-	 1) collect visible (pre)  -> stimulus targeting
-	 2) run behaviour modules  -> commands drain + semantics
-	 3) apply updates          -> authoritative apply
-	 4) collect visible (post) -> local view inputs
-	 5) build local view       -> spawns/updates/despawns + events"
 	stages := OrderedCollection new.
 	stages
 		add: (CESimStage new
@@ -106,10 +100,10 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 			runner: CESimBuildLocalViewStageRunner new;
 			yourself).
 
-	pipeline := CESimPipeline new.
-	pipeline
+	pipeline := CESimPipeline new
 		pipelineId: #bubble;
-		stages: stages.
+		stages: stages;
+		yourself.
 
 	engine bubblePipeline: pipeline.
 	^ engine
@@ -596,4 +590,98 @@ CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	"Visible notable should have been affected (semantic op applied)."
 	self deny: notableA state equals: stateA0.
 	self assert: ((notableA state at: #lastStimulus) at: #type) equals: #sound
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
+	<gtExample>
+	| engine region bubble cmd view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: cmd.
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #bubble put: bubble;
+		at: #view put: view;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId removeCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	createCmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	entityId := view1 spawns first at: #entityId.
+
+	removeCmd := CESimRemoveNotableCommand entityId: entityId.
+	bubble enqueueCommand: removeCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_createNotableCommandProducesAuditEventAndSpawn [
+	| result view spawn ev |
+	result := self example_createNotableCommandProducesAuditEventAndSpawn.
+	view := result at: #view.
+
+	self assert: view spawns size equals: 1.
+	self assert: view updates isEmpty.
+	self assert: view despawns isEmpty.
+
+	spawn := view spawns first.
+	self assert: (spawn at: #definitionKey) equals: #demoNotable.
+	self assert: (spawn includesKey: #entityId).
+
+	ev := view events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #createNotableRequested ]
+		ifNone: [ self fail: 'Expected #createNotableRequested event' ].
+
+	self assert: (ev at: #definitionKey) equals: #demoNotable
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_removeNotableCommandDespawnsInLocalViewSameTick [
+	| result view2 entityId ev |
+	result := self example_removeNotableCommandDespawnsInLocalViewSameTick.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	self assert: view2 spawns isEmpty.
+	self assert: view2 updates isEmpty.
+	self assert: view2 despawns size equals: 1.
+	self assert: view2 despawns first equals: entityId.
+
+	ev := view2 events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #removeNotableRequested ]
+		ifNone: [ self fail: 'Expected #removeNotableRequested event' ].
+
+	self assert: (ev at: #entityId) equals: entityId
 ]

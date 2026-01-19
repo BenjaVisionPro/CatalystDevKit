@@ -33,3 +33,13 @@ CESimLifecycleBehaviourModule >> applyCreateNotableCommand: aCommand intoUpdate:
 		withRegionId: regionId
 		notable: notable)
 ]
+
+{ #category : 'applying' }
+CESimLifecycleBehaviourModule >> applyRemoveNotableCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	| regionId |
+	regionId := aCESimRunContext subject homeRegionId.
+
+	aCESimUpdate addEntityOp: (CESimRemoveNotableFromRegionOp
+		withRegionId: regionId
+		entityId: aCommand entityId)
+]
