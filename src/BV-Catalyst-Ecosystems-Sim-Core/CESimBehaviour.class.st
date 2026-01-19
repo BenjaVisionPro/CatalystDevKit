@@ -2,91 +2,43 @@ Class {
 	#name : 'CESimBehaviour',
 	#superclass : 'Object',
 	#instVars : [
-		'stimulusResolver',
-		'interactionResolver'
+		'bubbleBehaviourModules',
+		'globalBehaviourModules'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 CESimBehaviour >> initialize [
 	super initialize.
-	stimulusResolver := CESimStimulusResolver new.
-	interactionResolver := CESimInteractionResolver new
+
+	"Order matters. Keep it explicit and stable."
+	bubbleBehaviourModules := OrderedCollection new
+		add: CESimCommandInputBehaviourModule new;
+		add: CESimStimulusBehaviourModule new;
+		add: CESimInteractionBehaviourModule new;
+		yourself.
+
+	globalBehaviourModules := OrderedCollection new.
 ]
 
-{ #category : 'interaction' }
-CESimBehaviour >> patchForInteractionType: anInteractionType payload: aPayload target: aTarget inContext: aCESimRunContext [
-	^ interactionResolver
-		patchForInteractionType: anInteractionType
-		payload: aPayload
-		target: aTarget
-		inContext: aCESimRunContext
+{ #category : 'accessing' }
+CESimBehaviour >> bubbleBehaviourModules [
+	^ bubbleBehaviourModules
 ]
 
-{ #category : 'stimuli' }
-CESimBehaviour >> patchForStimulusType: aType transform: aTransform intensity: aNumber target: aTarget inContext: aCESimRunContext [
-	^ stimulusResolver
-		patchForStimulusType: aType
-		transform: aTransform
-		intensity: aNumber
-		target: aTarget
-		inContext: aCESimRunContext
+{ #category : 'accessing' }
+CESimBehaviour >> bubbleBehaviourModules: aCollection [
+	bubbleBehaviourModules := aCollection
 ]
 
-{ #category : 'stimuli' }
-CESimBehaviour >> produceOperationsForEmitStimulusAtTransformCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| visibleSnapshots bubble regionId engine region |
-	visibleSnapshots := aCESimRunContext runCache visibleSnapshots.
-
-	bubble := aCESimRunContext subject.
-	regionId := bubble homeRegionId.
-
-	engine := aCESimRunContext engine.
-	region := engine ensureRegion: regionId.
-
-	visibleSnapshots
-		do: [ :snap | 
-			| entityId notable patch |
-			entityId := snap at: #entityId.
-			notable := region notableAt: entityId.
-
-			patch := self
-					patchForStimulusType: aCommand stimulusType
-					transform: aCommand transform
-					intensity: aCommand intensity
-					target: notable
-					inContext: aCESimRunContext.
-
-			aCESimUpdate
-				addEntityOp: (CESimPatchNotableStateOp
-						withRegionId: regionId
-						entityId: entityId
-						patch: patch) ]
+{ #category : 'accessing' }
+CESimBehaviour >> globalBehaviourModules [
+	^ globalBehaviourModules
 ]
 
-{ #category : 'interaction' }
-CESimBehaviour >> produceOperationsForInteractWithEntityCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| bubble regionId engine region notable patch entityId |
-	bubble := aCESimRunContext subject.
-	regionId := bubble homeRegionId.
-
-	engine := aCESimRunContext engine.
-	region := engine ensureRegion: regionId.
-
-	entityId := aCommand targetEntityId.
-	notable := region notableAt: entityId.
-
-	patch := self
-			patchForInteractionType: aCommand interactionType
-			payload: aCommand payload
-			target: notable
-			inContext: aCESimRunContext.
-
-	aCESimUpdate
-		addEntityOp: (CESimPatchNotableStateOp
-				withRegionId: regionId
-				entityId: entityId
-				patch: patch)
+{ #category : 'accessing' }
+CESimBehaviour >> globalBehaviourModules: aCollection [
+	globalBehaviourModules := aCollection
 ]
