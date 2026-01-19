@@ -7,14 +7,16 @@ Class {
 
 { #category : 'applying' }
 CESimUpdateApplier >> applyUpdate: aCESimUpdate toAggregate: anAggregate inContext: aCESimRunContext [
-	| ops |
-	ops := (aCESimUpdate entityOps asSortedCollection: [ :a :b | a before: b ]) asOrderedCollection.
-	ops do: [ :eachOp | eachOp applyInContext: aCESimRunContext ].
+	"Apply update facts (events) + authoritative changes (entity ops)."
 
-	"Keep events as inspection facts on the subject aggregate (v0 behaviour)."
+	"Facts for inspection/debugging."
 	aCESimUpdate events do: [ :eachEvent | anAggregate appendEvent: eachEvent ].
 
-	"patches lane intentionally left for later"
+	"Authoritative changes (deterministic ordering)."
+	(aCESimUpdate entityOps asSortedCollection: [ :a :b | a before: b ])
+		do: [ :eachOp | eachOp applyInContext: aCESimRunContext ].
+
+	"v0 patches are now legacy; leave them unused/empty until removed."
 ]
 
 { #category : 'applying' }
@@ -23,7 +25,7 @@ CESimUpdateApplier >> applyUpdatesInContext: aCESimRunContext [
 	aggregate := aCESimRunContext subject.
 
 	aCESimRunContext updates
-		do: [ :eachUpdate | 
+		do: [ :eachUpdate |
 			self
 				applyUpdate: eachUpdate
 				toAggregate: aggregate
