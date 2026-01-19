@@ -8,49 +8,20 @@ Class {
 { #category : 'examples' }
 CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	<gtExample>
-	| engine region bubble pipeline stages view cmd |
-	engine := CESimEngine new.	
-	
-	"Pipeline order: commands -> apply -> snapshots -> local view"
-	stages := OrderedCollection new.
-	stages
-		add: (CESimStage new
-				stageId: #consumeCommands;
-				runner: CESimConsumeCommandsStageRunner new;
-				yourself).
-	stages
-		add: (CESimStage new
-				stageId: #applyUpdates;
-				runner: CESimApplyUpdatesStageRunner new;
-				yourself).
-	stages
-		add: (CESimStage new
-				stageId: #collectVisible;
-				runner: CESimCollectVisibleSnapshotsStageRunner new;
-				yourself).
-	stages
-		add: (CESimStage new
-				stageId: #buildLocalView;
-				runner: CESimBuildLocalViewStageRunner new;
-				yourself).
-
-	pipeline := CESimPipeline new
-			pipelineId: #bubble;
-			stages: stages;
-			yourself.
-	engine bubblePipeline: pipeline.
+	| engine region bubble cmd view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
 
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotable
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		state: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
 	bubble enqueueCommand: cmd.
 
@@ -64,28 +35,29 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	| engine region bubble context notable update |
 	engine := CESimEngine new.
 	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.	
-	
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
 	"Construct (context factory) — no ids touched by caller."
 	context := CESimRunContext
-			for: bubble
-			engine: engine
-			tickId: engine currentTick
-			environmentQuery: engine environmentQuery.
+		for: bubble
+		engine: engine
+		tickId: engine currentTick
+		environmentQuery: engine environmentQuery.
 
 	notable := context
-			newNotableWithDefinitionKey: #demoNotable
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).	
-	
+		newNotableWithDefinitionKey: #demoNotable
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		state: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
+
 	"Enqueue + apply (Ops are the authoritative change)."
 	update := CESimUpdate new.
-	update
-		addEntityOp: (CESimAddNotableToRegionOp withRegionId: bubble homeRegionId notable: notable).
+	update addEntityOp: (CESimAddNotableToRegionOp
+		withRegionId: bubble homeRegionId
+		notable: notable).
 	context addUpdate: update.
 
 	engine transactionRunner
@@ -105,19 +77,21 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	| engine pipeline stages |
 	engine := CESimEngine new.
 
+	"Final-direction bubble pipeline:
+	 1) collect visible (pre)  -> stimulus targeting
+	 2) run behaviour modules  -> commands drain + semantics
+	 3) apply updates          -> authoritative apply
+	 4) collect visible (post) -> local view inputs
+	 5) build local view       -> spawns/updates/despawns + events"
 	stages := OrderedCollection new.
 	stages
-		add: (CESimStage new
-			stageId: #consumeCommands;
-			runner: CESimConsumeCommandsStageRunner new;
-			yourself);
 		add: (CESimStage new
 			stageId: #collectVisibleSnapshots_pre;
 			runner: CESimCollectVisibleSnapshotsStageRunner new;
 			yourself);
 		add: (CESimStage new
-			stageId: #resolveIntent;
-			runner: CESimResolveIntentStageRunner new;
+			stageId: #modules;
+			runner: CESimModulesStageRunner new;
 			yourself);
 		add: (CESimStage new
 			stageId: #applyUpdates;
@@ -148,30 +122,24 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
 	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.	
-	
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
 	"Tick 1: create a notable so we have a real entityId to target."
 	createCmd := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotable
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
 	view1 := engine advanceBubbleTickFor: bubble bubbleId.
 
-	spawnedEntityId := view1 spawns first at: #entityId.	
-	
+	spawnedEntityId := view1 spawns first at: #entityId.
+
 	"Tick 2: interact with that entity."
 	interactCmd := CESimInteractWithEntityCommand
-			withTargetEntityId: spawnedEntityId
-			type: #pet
-			payload: (Dictionary new
-					at: #hand put: #right;
-					yourself).
+		withTargetEntityId: spawnedEntityId
+		type: #pet
+		payload: (Dictionary new at: #hand put: #right; yourself).
 
 	bubble enqueueCommand: interactCmd.
 	view2 := engine advanceBubbleTickFor: bubble bubbleId.
@@ -193,14 +161,11 @@ CESimExamples >> example_localViewContainsStimulusEmittedEventFromCommand [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd := CESimEmitStimulusAtTransformCommand
-			type: #sound
-			transform: (Dictionary new
-					at: #pos put: #(5 0 0);
-					yourself)
-			intensity: 0.75.
+		type: #sound
+		transform: (Dictionary new at: #pos put: #(5 0 0); yourself)
+		intensity: 0.75.
 
 	bubble enqueueCommand: cmd.
-
 	view := engine advanceBubbleTickFor: bubble bubbleId.
 
 	^ Dictionary new
@@ -220,22 +185,14 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd1 := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotableA
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withDefinitionKey: #demoNotableA
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	cmd2 := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotableB
-			transform: (Dictionary new
-					at: #pos put: #(1 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withDefinitionKey: #demoNotableB
+		transform: (Dictionary new at: #pos put: #(1 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: cmd1.
 	bubble enqueueCommand: cmd2.
@@ -255,12 +212,14 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 	| seed engine bubble context collectRunner buildRunner view |
 	seed := self example_engineWithBubbleAndOneNotableApplied.
 	engine := seed at: #engine.
-	bubble := seed at: #bubble.	"Fresh context for observation pass."
+	bubble := seed at: #bubble.
+
+	"Fresh context for observation pass."
 	context := CESimRunContext
-			for: bubble
-			engine: engine
-			tickId: engine currentTick
-			environmentQuery: engine environmentQuery.
+		for: bubble
+		engine: engine
+		tickId: engine currentTick
+		environmentQuery: engine environmentQuery.
 
 	collectRunner := CESimCollectVisibleSnapshotsStageRunner new.
 	buildRunner := CESimBuildLocalViewStageRunner new.
@@ -277,82 +236,9 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 ]
 
 { #category : 'examples' }
-CESimExamples >> example_localViewShowsSpawnFromCreateNotableCommandSameTick [
-	<gtExample>
-	| engine region bubble cmd view |
-	engine := self example_engineWithCommandDrivenBubblePipeline.
-
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
-
-	cmd := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotable
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
-
-	bubble enqueueCommand: cmd.
-
-	view := engine advanceBubbleTickFor: bubble bubbleId.
-
-	^ Dictionary new
-		at: #engine put: engine;
-		at: #region put: region;
-		at: #bubble put: bubble;
-		at: #view put: view;
-		yourself
-]
-
-{ #category : 'examples' }
 CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand [
 	<gtExample>
 	| engine region bubble createCmd view1 entityId interactCmd view2 |
-	engine := self example_engineWithCommandDrivenBubblePipeline.
-
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.	
-	
-	"Tick 1: create a notable"
-	createCmd := CESimCreateNotableCommand
-			withDefinitionKey: #demoNotable
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
-
-	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
-
-	entityId := view1 spawns first at: #entityId.	
-	
-	"Tick 2: interact -> should produce UPDATE with changed state"
-	interactCmd := CESimInteractWithEntityCommand
-			withTargetEntityId: entityId
-			type: #pet
-			payload: (Dictionary new
-					at: #hand put: #right;
-					yourself).
-
-	bubble enqueueCommand: interactCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
-
-	^ Dictionary new
-		at: #view1 put: view1;
-		at: #view2 put: view2;
-		at: #entityId put: entityId;
-		yourself
-]
-
-{ #category : 'examples' }
-CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
-	<gtExample>
-	| engine region bubble createCmd view1 entityId stimulusCmd view2 |
-
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
 	region := engine newRegion.
@@ -369,7 +255,43 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 
 	entityId := view1 spawns first at: #entityId.
 
-	"Tick 2: emit stimulus -> should update the notable state"
+	"Tick 2: interact -> should produce UPDATE (semantic state changed)"
+	interactCmd := CESimInteractWithEntityCommand
+		withTargetEntityId: entityId
+		type: #pet
+		payload: (Dictionary new at: #hand put: #right; yourself).
+
+	bubble enqueueCommand: interactCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId stimulusCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	"Tick 1: create a notable"
+	createCmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	entityId := view1 spawns first at: #entityId.
+
+	"Tick 2: emit stimulus -> should update the notable semantic state"
 	stimulusCmd := CESimEmitStimulusAtTransformCommand
 		type: #sound
 		transform: (Dictionary new at: #pos put: #(5 0 0); yourself)
@@ -396,21 +318,20 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	view1 := seed at: #view.
 
 	newTransform := Dictionary new
-			at: #pos put: #(10 0 0);
-			yourself.
+		at: #pos put: #(10 0 0);
+		yourself.
 
 	context2 := CESimRunContext
-			for: bubble
-			engine: engine
-			tickId: engine currentTick
-			environmentQuery: engine environmentQuery.
+		for: bubble
+		engine: engine
+		tickId: engine currentTick
+		environmentQuery: engine environmentQuery.
 
 	update2 := CESimUpdate new.
-	update2
-		addEntityOp: (CESimSetNotableTransformOp
-				withRegionId: bubble homeRegionId
-				entityId: notable entityId
-				transform: newTransform).
+	update2 addEntityOp: (CESimSetNotableTransformOp
+		withRegionId: bubble homeRegionId
+		entityId: notable entityId
+		transform: newTransform).
 	context2 addUpdate: update2.
 
 	engine transactionRunner
@@ -433,7 +354,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 
 { #category : 'examples' }
 CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
-<gtExample>
+	<gtExample>
 	| engine regionA regionB bubble context notableA notableB stateA0 stateB0 update view |
 
 	engine := self example_engineWithCommandDrivenBubblePipeline.
@@ -451,21 +372,13 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 
 	notableA := context
 		newNotableWithDefinitionKey: #demoVisible
-		transform: (Dictionary new
-			at: #pos put: #(0 0 0);
-			yourself)
-		state: (Dictionary new
-			at: #tag put: #A;
-			yourself).
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #tag put: #A; yourself).
 
 	notableB := context
 		newNotableWithDefinitionKey: #demoInvisible
-		transform: (Dictionary new
-			at: #pos put: #(999 0 0);
-			yourself)
-		state: (Dictionary new
-			at: #tag put: #B;
-			yourself).
+		transform: (Dictionary new at: #pos put: #(999 0 0); yourself)
+		state: (Dictionary new at: #tag put: #B; yourself).
 
 	"Add both notables, but to different regions."
 	update := CESimUpdate new.
@@ -481,7 +394,7 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 	stateA0 := notableA state copy.
 	stateB0 := notableB state copy.
 
-	"Enqueue stimulus. ResolveIntent will apply ops only to visible snapshots (v0: home region)."
+	"Enqueue stimulus. Module semantics apply ops only to visible snapshots (v0: home region)."
 	bubble enqueueCommand: (CESimEmitStimulusAtTransformCommand
 		type: #sound
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
@@ -524,8 +437,8 @@ CESimExamples >> test_localViewContainsEntityInteractionEventFromCommand [
 	entityId := result at: #entityId.
 
 	ev := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
-			ifNone: [ self fail: 'Expected #creatureInteraction event in LocalView events' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
+		ifNone: [ self fail: 'Expected #entityInteraction event in LocalView events' ].
 
 	self assert: (ev at: #entityId) equals: entityId.
 	self assert: (ev at: #interactionType) equals: #pet.
@@ -539,8 +452,8 @@ CESimExamples >> test_localViewContainsStimulusEmittedEventFromCommand [
 	view := result at: #view.
 
 	ev := view events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
-			ifNone: [ self fail: 'Expected #stimulusEmitted event in LocalView events' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
+		ifNone: [ self fail: 'Expected #stimulusEmitted event in LocalView events' ].
 
 	self assert: (ev at: #stimulusType) equals: #sound.
 	self assert: (ev at: #intensity) equals: 0.75.
@@ -550,8 +463,7 @@ CESimExamples >> test_localViewContainsStimulusEmittedEventFromCommand [
 { #category : 'tests' }
 CESimExamples >> test_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
 	| result view spawns id1 id2 |
-	result := self
-			example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands.
+	result := self example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands.
 	view := result at: #view.
 	spawns := view spawns.
 
@@ -581,25 +493,8 @@ CESimExamples >> test_localViewShowsSpawnForAppliedNotable [
 ]
 
 { #category : 'tests' }
-CESimExamples >> test_localViewShowsSpawnFromCreateNotableCommandSameTick [
-	| result view spawn |
-	result := self example_localViewShowsSpawnFromCreateNotableCommandSameTick.
-	view := result at: #view.
-
-	self assert: view spawns size equals: 1.
-	self assert: view updates isEmpty.
-	self assert: view despawns isEmpty.
-
-	spawn := view spawns first.
-	self assert: (spawn at: #definitionKey) equals: #demoNotable.	"Audit facts still present (at least one commandAccepted event)."
-	self
-		assert: (view events
-				anySatisfy: [ :e | (e at: #type ifAbsent: [ nil ]) = #commandAccepted ])
-]
-
-{ #category : 'tests' }
 CESimExamples >> test_localViewShowsStateUpdateAfterEntityInteractionCommand [
-	| result view2 entityId updateSnap state ev |
+	| result view2 entityId updateSnap state last ev |
 	result := self example_localViewShowsStateUpdateAfterEntityInteractionCommand.
 	view2 := result at: #view2.
 	entityId := result at: #entityId.
@@ -612,12 +507,14 @@ CESimExamples >> test_localViewShowsStateUpdateAfterEntityInteractionCommand [
 	self assert: (updateSnap at: #entityId) equals: entityId.
 
 	state := updateSnap at: #state.
-	self assert: (state at: #lastInteractionType) equals: #pet.
-	self assert: ((state at: #lastInteractionPayload) at: #hand) equals: #right.
+	last := state at: #lastInteraction.
+
+	self assert: (last at: #type) equals: #pet.
+	self assert: ((last at: #payload) at: #hand) equals: #right.
 
 	ev := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
-			ifNone: [ self fail: 'Expected #entityInteraction event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInteraction ]
+		ifNone: [ self fail: 'Expected #entityInteraction event' ].
 
 	self assert: (ev at: #entityId) equals: entityId.
 	self assert: (ev at: #interactionType) equals: #pet
@@ -625,7 +522,7 @@ CESimExamples >> test_localViewShowsStateUpdateAfterEntityInteractionCommand [
 
 { #category : 'tests' }
 CESimExamples >> test_localViewShowsStateUpdateAfterStimulusCommand [
-	| result view2 entityId updateSnap state ev |
+	| result view2 entityId updateSnap state last ev |
 	result := self example_localViewShowsStateUpdateAfterStimulusCommand.
 	view2 := result at: #view2.
 	entityId := result at: #entityId.
@@ -638,13 +535,15 @@ CESimExamples >> test_localViewShowsStateUpdateAfterStimulusCommand [
 	self assert: (updateSnap at: #entityId) equals: entityId.
 
 	state := updateSnap at: #state.
-	self assert: (state at: #lastStimulusType) equals: #sound.
-	self assert: (state at: #lastStimulusIntensity) equals: 0.75.
-	self assert: ((state at: #lastStimulusTransform) at: #pos) equals: #(5 0 0).
+	last := state at: #lastStimulus.
+
+	self assert: (last at: #type) equals: #sound.
+	self assert: (last at: #intensity) equals: 0.75.
+	self assert: ((last at: #transform) at: #pos) equals: #(5 0 0).
 
 	ev := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
-			ifNone: [ self fail: 'Expected #stimulusEmitted event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #stimulusEmitted ]
+		ifNone: [ self fail: 'Expected #stimulusEmitted event' ].
 
 	self assert: (ev at: #stimulusType) equals: #sound.
 	self assert: (ev at: #intensity) equals: 0.75.
@@ -694,6 +593,7 @@ CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	"Invisible notable must not be mutated by stimulus resolution."
 	self assert: notableB state equals: stateB0.
 
-	"Visible notable should have been affected (some patch applied)."
+	"Visible notable should have been affected (semantic op applied)."
 	self deny: notableA state equals: stateA0.
+	self assert: ((notableA state at: #lastStimulus) at: #type) equals: #sound
 ]
