@@ -11,8 +11,8 @@ CESimInteractionBehaviourModule >> applyInteractionCommand: aCommand intoUpdate:
 	regionId := self homeRegionIdInContext: aCESimRunContext.
 	entityId := aCommand targetEntityId.
 
-	"Gate: only interact with entities currently perceived by this bubble."
-	((aCESimRunContext runCache perceivedVisibleSnapshots) anySatisfy: [ :snap | (snap at: #entityId) = entityId ])
+	"Gate: centralised targeting rule (default: must be perceived)."
+	(aCESimRunContext canTargetEntityId: entityId)
 		ifFalse: [ ^ self ].
 
 	aCESimUpdate

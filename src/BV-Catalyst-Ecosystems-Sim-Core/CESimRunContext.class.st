@@ -158,3 +158,22 @@ CESimRunContext >> tickId: anObject [
 CESimRunContext >> updates [
 	^ updates copy
 ]
+
+
+{ #category : 'targeting' }
+CESimRunContext >> canTargetEntityId: anEntityId [
+	"Central targeting seam.
+	 Default (strict): entity must be in this tick's perceived snapshots.
+	 If environmentQuery provides a targeting policy, delegate to it."
+
+	| perceivedSnapshots bubble env |
+	bubble := self subject.
+	perceivedSnapshots := self runCache perceivedVisibleSnapshots ifNil: [ #() ].
+	env := self environmentQuery.
+
+	(env notNil and: [ env respondsTo: #canTargetEntityId:forBubble:perceivedSnapshots: ])
+		ifTrue: [ ^ env canTargetEntityId: anEntityId forBubble: bubble perceivedSnapshots: perceivedSnapshots ].
+
+	^ perceivedSnapshots anySatisfy: [ :snap | (snap at: #entityId) = anEntityId ]
+]
+
