@@ -177,3 +177,41 @@ CESimRunContext >> canTargetEntityId: anEntityId [
 	^ perceivedSnapshots anySatisfy: [ :snap | (snap at: #entityId) = anEntityId ]
 ]
 
+
+
+{ #category : 'targeting' }
+CESimRunContext >> gateTargetEntityId: anEntityId forCommand: aCommand module: aModuleSymbol intoUpdate: aCESimUpdate [
+	"Centralised targeting gate that also emits a deterministic audit event on rejection.
+	Default rule: must be in this tick's perceived snapshots.
+	If environmentQuery provides richer targeting decisions, we will use them when available."
+
+	| perceivedSnapshots bubble env allowed reason decision |
+	bubble := self subject.
+	perceivedSnapshots := self runCache perceivedVisibleSnapshots ifNil: [ #() ].
+	env := self environmentQuery.
+
+	allowed := false.
+	reason := #notPerceived.
+
+	(env notNil and: [ env respondsTo: #targetingDecisionForEntityId:forBubble:perceivedSnapshots: ])
+		ifTrue: [
+			decision := env targetingDecisionForEntityId: anEntityId forBubble: bubble perceivedSnapshots: perceivedSnapshots.
+			allowed := decision at: #allowed ifAbsent: [ false ].
+			reason := decision at: #reason ifAbsent: [ reason ] ]
+		ifFalse: [
+			allowed := self canTargetEntityId: anEntityId ].
+
+	allowed ifTrue: [ ^ true ].
+
+	"Audit: command was requested but had no eligible target in this bubble this tick."
+	aCESimUpdate addEvent: (Dictionary new
+		at: #type put: #targetRejected;
+		at: #module put: aModuleSymbol;
+		at: #commandType put: aCommand class name asSymbol;
+		at: #entityId put: anEntityId;
+		at: #reason put: reason;
+		at: #tickId put: self tickId;
+		yourself).
+
+	^ false
+]
