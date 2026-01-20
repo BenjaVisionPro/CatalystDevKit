@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimInteractionBehaviourModule',
-	#superclass : 'CESimPatchEffectBehaviourModule',
+	#superclass : 'CESimTargetedEffectBehaviourModule',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }

@@ -133,7 +133,6 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	^ engine
 ]
 
-
 { #category : 'examples' }
 CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	<gtExample>
@@ -233,14 +232,14 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
 
-	"Fresh context for observation pass."
+	"Fresh context for publication pass (LocalView is built from published snapshots)."
 	context := CESimRunContext
 		for: bubble
 		engine: engine
 		tickId: engine currentTick
 		environmentQuery: engine environmentQuery.
 
-	collectRunner := CESimCollectVisibleSnapshotsStageRunner new.
+	collectRunner := CESimCollectPublishedVisibleSnapshotsStageRunner new.
 	buildRunner := CESimBuildLocalViewStageRunner new.
 
 	collectRunner runStage: nil inContext: context.
@@ -337,26 +336,27 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	view1 := seed at: #view.
 
 	newTransform := Dictionary new
-		at: #pos put: #(10 0 0);
-		yourself.
+			at: #pos put: #(10 0 0);
+			yourself.
 
 	context2 := CESimRunContext
-		for: bubble
-		engine: engine
-		tickId: engine currentTick
-		environmentQuery: engine environmentQuery.
+			for: bubble
+			engine: engine
+			tickId: engine currentTick
+			environmentQuery: engine environmentQuery.
 
 	update2 := CESimUpdate new.
-	update2 addEntityOp: (CESimSetNotableTransformOp
-		withRegionId: bubble homeRegionId
-		entityId: notable entityId
-		transform: newTransform).
+	update2
+		addEntityOp: (CESimSetNotableTransformOp
+				withRegionId: bubble homeRegionId
+				entityId: notable entityId
+				transform: newTransform).
 	context2 addUpdate: update2.
 
 	engine transactionRunner
 		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context2 ].
 
-	collectRunner := CESimCollectVisibleSnapshotsStageRunner new.
+	collectRunner := CESimCollectPublishedVisibleSnapshotsStageRunner new.
 	buildRunner := CESimBuildLocalViewStageRunner new.
 	collectRunner runStage: nil inContext: context2.
 	buildRunner runStage: nil inContext: context2.

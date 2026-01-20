@@ -16,26 +16,6 @@ CESimRunCache >> drainedCommands: aCollection [
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> result [
-	^ self at: #result ifAbsent: [ nil ]
-]
-
-{ #category : 'accessing - api' }
-CESimRunCache >> result: aCollection [
-	self at: #result put: aCollection
-]
-
-{ #category : 'accessing - api' }
-CESimRunCache >> tickEvents [
-	^ self at: #tickEvents ifAbsent: [ OrderedCollection new ]
-]
-
-{ #category : 'accessing - api' }
-CESimRunCache >> tickEvents: aCollection [
-	self at: #tickEvents put: aCollection
-]
-
-{ #category : 'accessing - api' }
 CESimRunCache >> perceivedVisibleSnapshots [
 	^ self at: #perceivedVisibleSnapshots ifAbsent: [ OrderedCollection new ]
 ]
@@ -55,13 +35,22 @@ CESimRunCache >> publishedVisibleSnapshots: aCollection [
 	self at: #publishedVisibleSnapshots put: aCollection
 ]
 
-CESimRunCache >> visibleSnapshots [
-	"Legacy alias: use #publishedVisibleSnapshots."
-	^ self publishedVisibleSnapshots
+{ #category : 'accessing - api' }
+CESimRunCache >> result [
+	^ self at: #result ifAbsent: [ nil ]
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> visibleSnapshots: aCollection [
-	"Legacy alias: use #publishedVisibleSnapshots:."
-	self publishedVisibleSnapshots: aCollection
+CESimRunCache >> result: aCollection [
+	self at: #result put: aCollection
+]
+
+{ #category : 'accessing - api' }
+CESimRunCache >> tickEvents [
+	^ self at: #tickEvents ifAbsent: [ OrderedCollection new ]
+]
+
+{ #category : 'accessing - api' }
+CESimRunCache >> tickEvents: aCollection [
+	self at: #tickEvents put: aCollection
 ]
