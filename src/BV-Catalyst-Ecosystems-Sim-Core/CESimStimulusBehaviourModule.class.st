@@ -1,20 +1,20 @@
 Class {
 	#name : 'CESimStimulusBehaviourModule',
-	#superclass : 'CESimTargetedEffectBehaviourModule',
+	#superclass : 'CESimEffectBehaviourModule',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'producing' }
 CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| regionId |
-	regionId := self homeRegionIdInContext: aCESimRunContext.
-	
-	"Target current perceived visibility (this tick's observation set)." 
-	(aCESimRunContext runCache perceivedVisibleSnapshots) 
-		do: [ :snap | 
-			| entityId | 
-			entityId := snap at: #entityId. 
+	regionId := aCESimRunContext subject homeRegionId.
+
+	"Non-targeted: affects whatever is perceived this tick."
+	(self perceivedVisibleSnapshotsInContext: aCESimRunContext)
+		do: [ :snap |
+			| entityId |
+			entityId := snap at: #entityId.
 
 			aCESimUpdate
 				addEntityOp: (CESimApplyStimulusToNotableOp
@@ -32,7 +32,7 @@ CESimStimulusBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inCont
 	commands := aCESimRunContext runCache drainedCommands.
 
 	commands
-		do: [ :cmd | 
+		do: [ :cmd |
 			cmd
 				contributeToStimulusBehaviourModule: self
 				intoUpdate: aCESimUpdate

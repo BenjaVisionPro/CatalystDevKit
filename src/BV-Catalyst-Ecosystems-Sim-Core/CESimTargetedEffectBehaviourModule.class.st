@@ -24,18 +24,6 @@ CESimTargetedEffectBehaviourModule >> regionInContext: aCESimRunContext [
 ]
 
 { #category : 'private - targeting' }
-CESimTargetedEffectBehaviourModule >> perceivedVisibleSnapshotsInContext: aCESimRunContext [
-	^ aCESimRunContext runCache perceivedVisibleSnapshots
-]
-
-{ #category : 'private - targeting' }
-CESimTargetedEffectBehaviourModule >> perceivedVisibleEntityIdsInContext: aCESimRunContext [
-	^ (self perceivedVisibleSnapshotsInContext: aCESimRunContext)
-		collect: [ :snap | snap at: #entityId ]
-]
-
-
-{ #category : 'private - targeting' }
 CESimTargetedEffectBehaviourModule >> withPerceivedVisibleNotablesInContext: aCESimRunContext do: aBlock [
 	| region snapshots |
 	region := self regionInContext: aCESimRunContext.

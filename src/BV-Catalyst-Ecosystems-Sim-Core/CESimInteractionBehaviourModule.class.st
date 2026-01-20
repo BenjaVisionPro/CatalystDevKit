@@ -5,13 +5,16 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'producing' }
 CESimInteractionBehaviourModule >> applyInteractionCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| regionId entityId |
 	regionId := self homeRegionIdInContext: aCESimRunContext.
-	entityId := aCommand targetEntityId.	"Gate: centralised targeting rule (default: must be perceived) + deterministic audit event."
-	(aCESimRunContext gateTargetEntityId: entityId forCommand: aCommand module: #interaction intoUpdate: aCESimUpdate)
-		ifFalse: [ ^ self ].
+	entityId := aCommand targetEntityId.
+
+	"Gate: only interact with entities currently perceived by this bubble."
+	((self perceivedVisibleSnapshotsInContext: aCESimRunContext)
+		anySatisfy: [ :snap | (snap at: #entityId) = entityId ])
+			ifFalse: [ ^ self ].
 
 	aCESimUpdate
 		addEntityOp: (CESimApplyInteractionToNotableOp
@@ -28,7 +31,7 @@ CESimInteractionBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inC
 	commands := aCESimRunContext runCache drainedCommands.
 
 	commands
-		do: [ :cmd | 
+		do: [ :cmd |
 			cmd
 				contributeToInteractionBehaviourModule: self
 				intoUpdate: aCESimUpdate
