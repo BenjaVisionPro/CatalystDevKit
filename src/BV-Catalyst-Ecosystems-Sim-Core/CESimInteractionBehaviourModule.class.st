@@ -13,7 +13,18 @@ CESimInteractionBehaviourModule >> applyInteractionCommand: aCommand intoUpdate:
 
 	"Gate: centralised targeting rule (default: must be perceived)."
 	(aCESimRunContext canTargetEntityId: entityId)
-		ifFalse: [ ^ self ].
+		ifFalse: [
+			"Audit: command was requested but had no eligible target in this bubble this tick."
+			aCESimUpdate addEvent: (Dictionary new
+				at: #type put: #targetRejected;
+				at: #module put: #interaction;
+				at: #commandType put: aCommand class name asSymbol;
+				at: #entityId put: entityId;
+				at: #reason put: #notPerceived;
+				at: #tickId put: aCESimRunContext tickId;
+				yourself).
+			^ self
+		].
 
 	aCESimUpdate
 		addEntityOp: (CESimApplyInteractionToNotableOp
