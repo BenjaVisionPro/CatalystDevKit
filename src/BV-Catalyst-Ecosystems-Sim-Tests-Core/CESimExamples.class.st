@@ -6,6 +6,30 @@ Class {
 }
 
 { #category : 'examples' }
+CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
+	<gtExample>
+	| engine region bubble cmd view |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	cmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: cmd.
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #engine put: engine;
+		at: #bubble put: bubble;
+		at: #view put: view;
+		yourself
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	<gtExample>
 	| engine region bubble cmd view |
@@ -80,30 +104,26 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	stages := OrderedCollection new.
 	stages
 		add: (CESimStage new
-			stageId: #collectVisibleSnapshots_pre;
-			runner: CESimCollectVisibleSnapshotsStageRunner new;
-			yourself);
+				stageId: #modules;
+				runner: CESimModulesStageRunner new;
+				yourself);
 		add: (CESimStage new
-			stageId: #modules;
-			runner: CESimModulesStageRunner new;
-			yourself);
+				stageId: #applyUpdates;
+				runner: CESimApplyUpdatesStageRunner new;
+				yourself);
 		add: (CESimStage new
-			stageId: #applyUpdates;
-			runner: CESimApplyUpdatesStageRunner new;
-			yourself);
+				stageId: #collectVisibleSnapshots;
+				runner: CESimCollectVisibleSnapshotsStageRunner new;
+				yourself);
 		add: (CESimStage new
-			stageId: #collectVisibleSnapshots_post;
-			runner: CESimCollectVisibleSnapshotsStageRunner new;
-			yourself);
-		add: (CESimStage new
-			stageId: #buildLocalView;
-			runner: CESimBuildLocalViewStageRunner new;
-			yourself).
+				stageId: #buildLocalView;
+				runner: CESimBuildLocalViewStageRunner new;
+				yourself).
 
 	pipeline := CESimPipeline new
-		pipelineId: #bubble;
-		stages: stages;
-		yourself.
+			pipelineId: #bubble;
+			stages: stages;
+			yourself.
 
 	engine bubblePipeline: pipeline.
 	^ engine
@@ -347,6 +367,36 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 ]
 
 { #category : 'examples' }
+CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId removeCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	createCmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	entityId := view1 spawns first at: #entityId.
+
+	removeCmd := CESimRemoveNotableCommand entityId: entityId.
+	bubble enqueueCommand: removeCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 	<gtExample>
 	| engine regionA regionB bubble context notableA notableB stateA0 stateB0 update view |
@@ -407,6 +457,27 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 		at: #stateB0 put: stateB0;
 		at: #view put: view;
 		yourself
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_createNotableCommandProducesAuditEventAndSpawn [
+	| result view spawn ev |
+	result := self example_createNotableCommandProducesAuditEventAndSpawn.
+	view := result at: #view.
+
+	self assert: view spawns size equals: 1.
+	self assert: view updates isEmpty.
+	self assert: view despawns isEmpty.
+
+	spawn := view spawns first.
+	self assert: (spawn at: #definitionKey) equals: #demoNotable.
+	self assert: (spawn includesKey: #entityId).
+
+	ev := view events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #createNotableRequested ]
+		ifNone: [ self fail: 'Expected #createNotableRequested event' ].
+
+	self assert: (ev at: #definitionKey) equals: #demoNotable
 ]
 
 { #category : 'tests' }
@@ -566,6 +637,25 @@ CESimExamples >> test_localViewShowsUpdateAfterTransformChange [
 ]
 
 { #category : 'tests' }
+CESimExamples >> test_removeNotableCommandDespawnsInLocalViewSameTick [
+	| result view2 entityId ev |
+	result := self example_removeNotableCommandDespawnsInLocalViewSameTick.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	self assert: view2 spawns isEmpty.
+	self assert: view2 updates isEmpty.
+	self assert: view2 despawns size equals: 1.
+	self assert: view2 despawns first equals: entityId.
+
+	ev := view2 events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #removeNotableRequested ]
+		ifNone: [ self fail: 'Expected #removeNotableRequested event' ].
+
+	self assert: (ev at: #entityId) equals: entityId
+]
+
+{ #category : 'tests' }
 CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	| result view notableA notableB stateA0 stateB0 spawn |
 	result := self example_stimulusOnlyAffectsVisibleNotables.
@@ -590,98 +680,4 @@ CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	"Visible notable should have been affected (semantic op applied)."
 	self deny: notableA state equals: stateA0.
 	self assert: ((notableA state at: #lastStimulus) at: #type) equals: #sound
-]
-
-{ #category : 'examples' }
-CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
-	<gtExample>
-	| engine region bubble cmd view |
-	engine := self example_engineWithCommandDrivenBubblePipeline.
-
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
-
-	cmd := CESimCreateNotableCommand
-		withDefinitionKey: #demoNotable
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
-
-	bubble enqueueCommand: cmd.
-	view := engine advanceBubbleTickFor: bubble bubbleId.
-
-	^ Dictionary new
-		at: #engine put: engine;
-		at: #bubble put: bubble;
-		at: #view put: view;
-		yourself
-]
-
-{ #category : 'examples' }
-CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
-	<gtExample>
-	| engine region bubble createCmd view1 entityId removeCmd view2 |
-	engine := self example_engineWithCommandDrivenBubblePipeline.
-
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
-
-	createCmd := CESimCreateNotableCommand
-		withDefinitionKey: #demoNotable
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
-
-	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
-
-	entityId := view1 spawns first at: #entityId.
-
-	removeCmd := CESimRemoveNotableCommand entityId: entityId.
-	bubble enqueueCommand: removeCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
-
-	^ Dictionary new
-		at: #view1 put: view1;
-		at: #view2 put: view2;
-		at: #entityId put: entityId;
-		yourself
-]
-
-{ #category : 'tests' }
-CESimExamples >> test_createNotableCommandProducesAuditEventAndSpawn [
-	| result view spawn ev |
-	result := self example_createNotableCommandProducesAuditEventAndSpawn.
-	view := result at: #view.
-
-	self assert: view spawns size equals: 1.
-	self assert: view updates isEmpty.
-	self assert: view despawns isEmpty.
-
-	spawn := view spawns first.
-	self assert: (spawn at: #definitionKey) equals: #demoNotable.
-	self assert: (spawn includesKey: #entityId).
-
-	ev := view events
-		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #createNotableRequested ]
-		ifNone: [ self fail: 'Expected #createNotableRequested event' ].
-
-	self assert: (ev at: #definitionKey) equals: #demoNotable
-]
-
-{ #category : 'tests' }
-CESimExamples >> test_removeNotableCommandDespawnsInLocalViewSameTick [
-	| result view2 entityId ev |
-	result := self example_removeNotableCommandDespawnsInLocalViewSameTick.
-	view2 := result at: #view2.
-	entityId := result at: #entityId.
-
-	self assert: view2 spawns isEmpty.
-	self assert: view2 updates isEmpty.
-	self assert: view2 despawns size equals: 1.
-	self assert: view2 despawns first equals: entityId.
-
-	ev := view2 events
-		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #removeNotableRequested ]
-		ifNone: [ self fail: 'Expected #removeNotableRequested event' ].
-
-	self assert: (ev at: #entityId) equals: entityId
 ]
