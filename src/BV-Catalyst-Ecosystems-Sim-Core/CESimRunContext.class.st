@@ -33,6 +33,12 @@ CESimRunContext >> clearRunCache [
 	runCache removeAll
 ]
 
+{ #category : 'step cache' }
+CESimRunContext >> clearStepCache [
+	"Legacy alias. Prefer #clearRunCache."
+	self clearRunCache
+]
+
 { #category : 'updates' }
 CESimRunContext >> clearUpdates [
 	updates removeAll
@@ -56,6 +62,12 @@ CESimRunContext >> environmentQuery [
 { #category : 'accessing' }
 CESimRunContext >> environmentQuery: anObject [
 	environmentQuery := anObject
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> hasStepCacheKey: aKey [
+	"Legacy alias. Prefer #runCache includesKey:."
+	^ runCache includesKey: aKey
 ]
 
 { #category : 'initialization' }
@@ -102,6 +114,24 @@ CESimRunContext >> runCacheAt: aKey ifAbsent: aBlock [
 { #category : 'run cache' }
 CESimRunContext >> runCacheAt: aKey put: aValue [
 	runCache at: aKey put: aValue
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCache [
+	"Legacy alias."
+	^ runCache
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCacheAt: aKey ifAbsent: aBlock [
+	"Legacy alias."
+	^ self runCacheAt: aKey ifAbsent: aBlock
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCacheAt: aKey put: aValue [
+	"Legacy alias."
+	self runCacheAt: aKey put: aValue
 ]
 
 { #category : 'accessing' }

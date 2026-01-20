@@ -1,12 +1,12 @@
 Class {
-	#name : 'CESimCollectVisibleSnapshotsStageRunner',
+	#name : 'CESimCollectPublishedVisibleSnapshotsStageRunner',
 	#superclass : 'CESimStageRunner',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'running' }
-CESimCollectVisibleSnapshotsStageRunner >> runStage: aStage inContext: aCESimRunContext [
+CESimCollectPublishedVisibleSnapshotsStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	| engine subject regionIds snapshots |
 	engine := aCESimRunContext engine.
 	subject := aCESimRunContext subject.

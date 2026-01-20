@@ -12,7 +12,7 @@ CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	
 	"Snapshots must be provided in deterministic order by the collector stage.
      (Later: selector ordering / stable sort by entity id or spatial key.)"
-	snapshots := aCESimRunContext runCache visibleSnapshots.
+	snapshots := aCESimRunContext runCache publishedVisibleSnapshots.
 			
 	"Previous visible ids are durable bubble state (not stepCache)."
 	previousIds := bubble visibleEntityIds.

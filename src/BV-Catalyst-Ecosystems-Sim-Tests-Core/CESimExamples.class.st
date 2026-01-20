@@ -104,6 +104,10 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	stages := OrderedCollection new.
 	stages
 		add: (CESimStage new
+				stageId: #collectPerception;
+				runner: CESimCollectPerceivedVisibleSnapshotsStageRunner new;
+				yourself);
+		add: (CESimStage new
 				stageId: #modules;
 				runner: CESimModulesStageRunner new;
 				yourself);
@@ -112,8 +116,8 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 				runner: CESimApplyUpdatesStageRunner new;
 				yourself);
 		add: (CESimStage new
-				stageId: #collectVisibleSnapshots;
-				runner: CESimCollectVisibleSnapshotsStageRunner new;
+				stageId: #collectPublication;
+				runner: CESimCollectPublishedVisibleSnapshotsStageRunner new;
 				yourself);
 		add: (CESimStage new
 				stageId: #buildLocalView;
@@ -128,6 +132,7 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	engine bubblePipeline: pipeline.
 	^ engine
 ]
+
 
 { #category : 'examples' }
 CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [

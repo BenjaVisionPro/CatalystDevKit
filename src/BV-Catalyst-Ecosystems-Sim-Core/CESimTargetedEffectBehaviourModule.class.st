@@ -25,7 +25,7 @@ CESimTargetedEffectBehaviourModule >> regionInContext: aCESimRunContext [
 
 { #category : 'private - targeting' }
 CESimTargetedEffectBehaviourModule >> visibleSnapshotsInContext: aCESimRunContext [
-	^ aCESimRunContext runCache visibleSnapshots
+	^ aCESimRunContext runCache perceivedVisibleSnapshots
 ]
 
 { #category : 'private - targeting' }

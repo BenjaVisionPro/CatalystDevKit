@@ -10,9 +10,11 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 	| regionId |
 	regionId := self homeRegionIdInContext: aCESimRunContext.
 	
-	"Target last-tick visibility (durable bubble state)."
-	aCESimRunContext subject visibleEntityIds
-		do: [ :entityId |
+	"Target current perceived visibility (this tick's observation set)." 
+	(aCESimRunContext runCache perceivedVisibleSnapshots) 
+		do: [ :snap | 
+			| entityId | 
+			entityId := snap at: #entityId. 
 
 			aCESimUpdate
 				addEntityOp: (CESimApplyStimulusToNotableOp
