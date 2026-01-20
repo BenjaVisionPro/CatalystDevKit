@@ -35,7 +35,7 @@ CESimPipeline >> runInContext: aCESimRunContext [
 			(stage shouldRunInContext: aCESimRunContext)
 				ifTrue: [ stage runInContext: aCESimRunContext ] ].
 
-	^ aCESimRunContext runCache result 
+	^ aCESimRunContext runCacheAt: #result ifAbsent: [ aCESimRunContext ]
 ]
 
 { #category : 'accessing' }

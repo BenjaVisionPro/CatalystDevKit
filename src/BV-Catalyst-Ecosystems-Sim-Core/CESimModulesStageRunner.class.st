@@ -17,8 +17,5 @@ CESimModulesStageRunner >> buildUpdateForStage: aStage inContext: aCESimRunConte
 		each produceOperationsIntoUpdate: update inContext: aCESimRunContext
 	].
 
-	"Publish authoritative tick facts for downstream stages (eg LocalView)."
-	aCESimRunContext runCache tickEvents: update events.
-
 	^ update
 ]

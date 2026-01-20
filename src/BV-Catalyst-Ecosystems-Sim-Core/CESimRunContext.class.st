@@ -28,9 +28,15 @@ CESimRunContext >> addUpdate: aCESimUpdate [
 	updates add: aCESimUpdate
 ]
 
-{ #category : 'step cache' }
+{ #category : 'run cache' }
 CESimRunContext >> clearRunCache [
 	runCache removeAll
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> clearStepCache [
+	"Legacy alias. Prefer #clearRunCache."
+	self clearRunCache
 ]
 
 { #category : 'updates' }
@@ -58,6 +64,12 @@ CESimRunContext >> environmentQuery: anObject [
 	environmentQuery := anObject
 ]
 
+{ #category : 'step cache' }
+CESimRunContext >> hasStepCacheKey: aKey [
+	"Legacy alias. Prefer #runCache includesKey:."
+	^ runCache includesKey: aKey
+]
+
 { #category : 'initialization' }
 CESimRunContext >> initialize [
 	super initialize.
@@ -65,41 +77,48 @@ CESimRunContext >> initialize [
 	runCache := CESimRunCache new
 ]
 
-{ #category : 'entities' }
-CESimRunContext >> newNotableWithDefinitionKey: aKey transform: aTransform state: aState [
-	| entityId |
-	entityId := engine idIssuer nextEntityId.
-	^ CENotable
-		id: entityId
-		definitionKey: aKey
-		transform: aTransform
-		state: aState
-]
-
 { #category : 'printing' }
 CESimRunContext >> printOn: aStream [
-    aStream
-        nextPutAll: self class name asString;
-        nextPutAll: '(tick=';
-        nextPutAll: tickId asString;
-        nextPutAll: ', subject=';
-        print: subject;
-        nextPut: $)
+	aStream
+		nextPutAll: self class name asString;
+		nextPutAll: '(tick=';
+		nextPutAll: tickId asString;
+		nextPutAll: ', subject=';
+		print: subject;
+		nextPut: $)
 ]
 
-{ #category : 'step cache' }
+{ #category : 'run cache' }
 CESimRunContext >> runCache [
 	^ runCache
 ]
 
-{ #category : 'step cache' }
+{ #category : 'run cache' }
 CESimRunContext >> runCacheAt: aKey ifAbsent: aBlock [
 	^ runCache at: aKey ifAbsent: aBlock
 ]
 
-{ #category : 'step cache' }
+{ #category : 'run cache' }
 CESimRunContext >> runCacheAt: aKey put: aValue [
 	runCache at: aKey put: aValue
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCache [
+	"Legacy alias."
+	^ runCache
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCacheAt: aKey ifAbsent: aBlock [
+	"Legacy alias."
+	^ self runCacheAt: aKey ifAbsent: aBlock
+]
+
+{ #category : 'step cache' }
+CESimRunContext >> stepCacheAt: aKey put: aValue [
+	"Legacy alias."
+	self runCacheAt: aKey put: aValue
 ]
 
 { #category : 'accessing' }

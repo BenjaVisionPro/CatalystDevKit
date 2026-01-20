@@ -10,11 +10,9 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 	| regionId |
 	regionId := self homeRegionIdInContext: aCESimRunContext.
 	
-	"v0 targeting: apply to all visible snapshots (deterministic order already)."
-	(self visibleSnapshotsInContext: aCESimRunContext)
-		do: [ :snap | 
-			| entityId |
-			entityId := snap at: #entityId.
+	"Target last-tick visibility (durable bubble state)."
+	aCESimRunContext subject visibleEntityIds
+		do: [ :entityId |
 
 			aCESimUpdate
 				addEntityOp: (CESimApplyStimulusToNotableOp

@@ -15,7 +15,7 @@ CESimApplyUpdatesStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	aCESimRunContext updates do: [ :eachUpdate |
 		tickEvents addAll: eachUpdate events
 	].
-	aCESimRunContext runCacheAt: #tickEvents put: tickEvents.
+	aCESimRunContext runCache tickEvents: tickEvents.
 
 	aCESimRunContext updates isEmpty ifTrue: [ ^ self ].
 
