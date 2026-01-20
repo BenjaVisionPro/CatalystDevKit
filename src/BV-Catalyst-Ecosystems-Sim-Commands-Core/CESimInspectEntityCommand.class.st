@@ -10,6 +10,14 @@ CESimInspectEntityCommand class >> withTargetEntityId: aCEEntityId [
   ^ self new targetEntityId: aCEEntityId; yourself
 ]
 
+{ #category : 'as yet unclassified' }
+CESimInspectEntityCommand >> contributeToInteractionBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aModule
+		applyInspectEntityCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
+]
+
 { #category : 'producing' }
 CESimInspectEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   aCESimUpdate addEvent: (Dictionary new

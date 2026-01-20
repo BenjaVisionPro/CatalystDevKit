@@ -19,6 +19,19 @@ CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform
     yourself
 ]
 
+{ #category : 'contributing' }
+CESimCreateNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aModule
+		applyCreateNotableCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
+]
+
+{ #category : 'accessing' }
+CESimCreateNotableCommand >> definitionKey [
+	^ definitionKey
+]
+
 { #category : 'accessing' }
 CESimCreateNotableCommand >> definitionKey: aKey [
 	definitionKey := aKey
@@ -36,27 +49,13 @@ CESimCreateNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aC
 ]
 
 { #category : 'accessing' }
+CESimCreateNotableCommand >> state [
+	^ state
+]
+
+{ #category : 'accessing' }
 CESimCreateNotableCommand >> state: aState [
 	state := aState
-]
-
-{ #category : 'accessing' }
-CESimCreateNotableCommand >> transform: aTransform [
-	transform := aTransform
-]
-
-
-{ #category : 'contributing' }
-CESimCreateNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyCreateNotableCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
-]
-
-{ #category : 'accessing' }
-CESimCreateNotableCommand >> definitionKey [
-	^ definitionKey
 ]
 
 { #category : 'accessing' }
@@ -65,6 +64,6 @@ CESimCreateNotableCommand >> transform [
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> state [
-	^ state
+CESimCreateNotableCommand >> transform: aTransform [
+	transform := aTransform
 ]

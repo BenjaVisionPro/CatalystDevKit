@@ -134,6 +134,37 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 ]
 
 { #category : 'examples' }
+CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
+	<gtExample>
+	| engine region bubble createCmd view1 entityId inspectCmd view2 |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	"Tick 1: create a notable to inspect."
+	createCmd := CESimCreateNotableCommand
+		withDefinitionKey: #demoNotable
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #mood put: #chill; yourself).
+
+	bubble enqueueCommand: createCmd.
+	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	entityId := view1 spawns first at: #entityId.
+
+	"Tick 2: inspect it."
+	inspectCmd := CESimInspectEntityCommand withTargetEntityId: entityId.
+	bubble enqueueCommand: inspectCmd.
+	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+
+	^ Dictionary new
+		at: #view2 put: view2;
+		at: #entityId put: entityId;
+		yourself
+
+]
+
+{ #category : 'examples' }
 CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	<gtExample>
 	| engine region bubble createCmd view1 spawnedEntityId interactCmd view2 |
@@ -497,6 +528,45 @@ CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
 	spawn := view spawns first.
 	self assert: (spawn at: #definitionKey) equals: #demoNotable.
 	self assert: (spawn includesKey: #entityId)
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_inspectEntityRejectedEmitsTargetRejectedAuditEvent [
+	| engine region bubble bogusId inspectCmd view ev |
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+	region := engine newRegion.
+	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+
+	"Bogus target: nothing perceived in an empty region."
+	bogusId := CEEntityId fromInteger: 9999.
+	inspectCmd := CESimInspectEntityCommand withTargetEntityId: bogusId.
+
+	bubble enqueueCommand: inspectCmd.
+	view := engine advanceBubbleTickFor: bubble bubbleId.
+
+	ev := view events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #targetRejected ]
+		ifNone: [ self fail: 'Expected #targetRejected event in LocalView events' ].
+
+	self assert: (ev at: #module) equals: #interaction.
+	self assert: (ev at: #entityId) equals: bogusId.
+	self assert: (ev at: #reason) equals: #notPerceived
+]
+
+{ #category : 'tests' }
+CESimExamples >> test_localViewContainsEntityInspectedEventFromCommand [
+	| result view2 entityId ev |
+	result := self example_localViewContainsEntityInspectedEventFromCommand.
+	view2 := result at: #view2.
+	entityId := result at: #entityId.
+
+	ev := view2 events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInspected ]
+		ifNone: [ self fail: 'Expected #entityInspected event in LocalView events' ].
+
+	self assert: (ev at: #entityId) equals: entityId.
+	self assert: ((ev at: #snapshot) at: #entityId) equals: entityId
+
 ]
 
 { #category : 'tests' }
