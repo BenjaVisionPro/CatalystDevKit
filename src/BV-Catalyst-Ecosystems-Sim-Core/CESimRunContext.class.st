@@ -77,6 +77,19 @@ CESimRunContext >> initialize [
 	runCache := CESimRunCache new
 ]
 
+{ #category : 'factory - entities' }
+CESimRunContext >> newNotableWithDefinitionKey: aKey transform: aTransform state: aState [
+	"Canonical creation path for Notables.
+	 Callers never mint ids; context/engine owns determinism + id issuance."
+
+	^ CENotable new
+		definitionKey: aKey;
+		transform: aTransform;
+		state: aState;
+		entityId: self engine idIssuer nextEntityId;
+		yourself	"or whatever your issuer selector is"
+]
+
 { #category : 'printing' }
 CESimRunContext >> printOn: aStream [
 	aStream

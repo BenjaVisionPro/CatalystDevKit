@@ -191,12 +191,6 @@ CESimEngine >> runBubblePipelineOnBubble: aBubble [
 
     result := bubblePipeline runInContext: context.
 
-    context updates isEmpty ifFalse: [
-        transactionRunner inTransactionDo: [
-            updateApplier applyUpdatesInContext: context
-        ].
-    ].
-
     lastRunContext := context.
     ^ result
 ]
@@ -211,12 +205,6 @@ CESimEngine >> runGlobalPipelineOnRegion: aRegion [
         environmentQuery: environmentQuery.
 
     globalPipeline runInContext: context.
-
-    context updates isEmpty ifFalse: [
-        transactionRunner inTransactionDo: [
-            updateApplier applyUpdatesInContext: context
-        ].
-    ].
 
     lastRunContext := context
 ]
