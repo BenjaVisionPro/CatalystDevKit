@@ -5,19 +5,6 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'producing' }
-CESimLifecycleBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	| commands |
-	commands := aCESimRunContext runCache drainedCommands.
-
-	commands do: [ :cmd |
-		cmd
-			contributeToLifecycleBehaviourModule: self
-			intoUpdate: aCESimUpdate
-			inContext: aCESimRunContext
-	]
-]
-
 { #category : 'applying' }
 CESimLifecycleBehaviourModule >> applyCreateNotableCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| regionId notable |
@@ -42,4 +29,17 @@ CESimLifecycleBehaviourModule >> applyRemoveNotableCommand: aCommand intoUpdate:
 	aCESimUpdate addEntityOp: (CESimRemoveNotableFromRegionOp
 		withRegionId: regionId
 		entityId: aCommand entityId)
+]
+
+{ #category : 'producing' }
+CESimLifecycleBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	| commands |
+	commands := aCESimRunContext runCache drainedCommands.
+
+	commands do: [ :cmd |
+		cmd
+			contributeToLifecycleBehaviourModule: self
+			intoUpdate: aCESimUpdate
+			inContext: aCESimRunContext
+	]
 ]

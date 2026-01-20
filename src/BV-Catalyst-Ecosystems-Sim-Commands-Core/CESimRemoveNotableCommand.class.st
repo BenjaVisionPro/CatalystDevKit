@@ -15,6 +15,14 @@ CESimRemoveNotableCommand class >> entityId: aCEEntityId [
 		yourself
 ]
 
+{ #category : 'contributing' }
+CESimRemoveNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	aModule
+		applyRemoveNotableCommand: self
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext
+]
+
 { #category : 'accessing' }
 CESimRemoveNotableCommand >> entityId [
 	^ entityId
@@ -33,12 +41,4 @@ CESimRemoveNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aC
 		at: #entityId put: entityId;
 		at: #tickId put: aCESimRunContext tickId;
 		yourself)
-]
-
-{ #category : 'contributing' }
-CESimRemoveNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyRemoveNotableCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
 ]

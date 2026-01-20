@@ -9,21 +9,6 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'initialization' }
-CESimBehaviour >> initialize [
-	super initialize.
-
-	"Order matters. Keep it explicit and stable."
-	bubbleBehaviourModules := OrderedCollection new
-		add: CESimCommandInputBehaviourModule new;
-		add: CESimLifecycleBehaviourModule new;
-		add: CESimStimulusBehaviourModule new;
-		add: CESimInteractionBehaviourModule new;
-		yourself.
-
-	globalBehaviourModules := OrderedCollection new.
-]
-
 { #category : 'accessing' }
 CESimBehaviour >> bubbleBehaviourModules [
 	^ bubbleBehaviourModules
@@ -42,4 +27,19 @@ CESimBehaviour >> globalBehaviourModules [
 { #category : 'accessing' }
 CESimBehaviour >> globalBehaviourModules: aCollection [
 	globalBehaviourModules := aCollection
+]
+
+{ #category : 'initialization' }
+CESimBehaviour >> initialize [
+	super initialize.
+
+	"Order matters. Keep it explicit and stable."
+	bubbleBehaviourModules := OrderedCollection new
+		add: CESimCommandInputBehaviourModule new;
+		add: CESimLifecycleBehaviourModule new;
+		add: CESimStimulusBehaviourModule new;
+		add: CESimInteractionBehaviourModule new;
+		yourself.
+
+	globalBehaviourModules := OrderedCollection new.
 ]

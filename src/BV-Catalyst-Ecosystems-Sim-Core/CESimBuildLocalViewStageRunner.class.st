@@ -8,39 +8,45 @@ Class {
 { #category : 'running' }
 CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	| bubble snapshots previousIds previousMap currentIds spawns updates despawns allEvents view |
-	bubble := aCESimRunContext subject.	"Snapshots must be provided in deterministic order by the collector stage."
-	snapshots := aCESimRunContext runCache visibleSnapshots.	"Previous visible ids are durable bubble state (not stepCache)."
-	previousIds := bubble visibleEntityIds.	"Mark-table for diff: keys remaining after the pass are despawns."
+	bubble := aCESimRunContext subject.
+
+	"Snapshots must be provided in deterministic order by the collector stage."
+	snapshots := aCESimRunContext runCache visibleSnapshots.
+
+	"Previous visible ids are durable bubble state."
+	previousIds := bubble visibleEntityIds.
+
 	previousMap := Dictionary new: previousIds size.
 	previousIds do: [ :id | previousMap at: id put: true ].
 
 	currentIds := OrderedCollection new: snapshots size.
 	spawns := OrderedCollection new.
-	updates := OrderedCollection new.	"Single pass diff"
-	snapshots
-		do: [ :snap | 
-			| id |
-			id := snap at: #entityId.
-			currentIds add: id.
+	updates := OrderedCollection new.
 
-			(previousMap includesKey: id)
-				ifTrue: [ previousMap removeKey: id.
-					updates add: snap ]
-				ifFalse: [ spawns add: snap ] ].	"Despawn order follows previousIds order for stability."
+	snapshots do: [ :snap |
+		| id |
+		id := snap at: #entityId.
+		currentIds add: id.
+
+		(previousMap includesKey: id)
+			ifTrue: [ previousMap removeKey: id. updates add: snap ]
+			ifFalse: [ spawns add: snap ] ].
+
 	despawns := OrderedCollection new.
-	previousIds
-		do: [ :id | (previousMap includesKey: id) ifTrue: [ despawns add: id ] ].	"Events from this bubble advance (authoritative outcomes)."
-	allEvents := aCESimRunContext
-			runCache tickEvents.
+	previousIds do: [ :id | (previousMap includesKey: id) ifTrue: [ despawns add: id ] ].
+
+	"Events from this tick’s authoritative update(s)."
+	allEvents := aCESimRunContext runCache tickEvents.
 
 	view := CESimLocalView new
-			bubbleId: bubble bubbleId;
-			tickId: aCESimRunContext tickId;
-			events: allEvents;
-			spawns: spawns;
-			updates: updates;
-			despawns: despawns;
-			yourself.	"Persist visible set for next diff."
-	bubble setVisibleEntityIds: currentIds.	"Publish result for the engine boundary."
+		bubbleId: bubble bubbleId;
+		tickId: aCESimRunContext tickId;
+		events: allEvents;
+		spawns: spawns;
+		updates: updates;
+		despawns: despawns;
+		yourself.
+
+	bubble setVisibleEntityIds: currentIds.
 	aCESimRunContext runCache result: view
 ]

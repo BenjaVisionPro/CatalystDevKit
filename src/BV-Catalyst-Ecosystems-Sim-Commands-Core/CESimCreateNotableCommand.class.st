@@ -26,16 +26,13 @@ CESimCreateNotableCommand >> definitionKey: aKey [
 
 { #category : 'producing' }
 CESimCreateNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-  | regionId notable |
-  regionId := aCESimRunContext subject homeRegionId.
-
-  "Uses your existing context factory (constructs notable; IDs remain hidden)."
-  notable := aCESimRunContext
-    newNotableWithDefinitionKey: definitionKey
-    transform: transform
-    state: state.
-
-  aCESimUpdate addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionId notable: notable).
+	aCESimUpdate addEvent: (Dictionary new
+		at: #type put: #createNotableRequested;
+		at: #definitionKey put: definitionKey;
+		at: #transform put: transform;
+		at: #state put: state;
+		at: #tickId put: aCESimRunContext tickId;
+		yourself)
 ]
 
 { #category : 'accessing' }

@@ -16,10 +16,6 @@ CESimUpdateStageRunner >> buildUpdateForStage: aStage inContext: aCESimRunContex
 CESimUpdateStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	| update |
 	update := self buildUpdateForStage: aStage inContext: aCESimRunContext.
-
-	update ifNil: [ ^ self ].
-	(update isKindOf: CESimUpdate)
-		ifFalse: [ self error: 'Expected CESimUpdate from buildUpdateForStage:inContext:' ].
-
-	update isEmpty ifFalse: [ aCESimRunContext addUpdate: update ]
+	aCESimRunContext addUpdate: update.
+	^ update
 ]
