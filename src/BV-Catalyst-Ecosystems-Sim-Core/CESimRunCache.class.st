@@ -36,8 +36,6 @@ CESimRunCache >> tickEvents: aCollection [
 ]
 
 { #category : 'accessing - api' }
-
-{ #category : 'accessing - api' }
 CESimRunCache >> perceivedVisibleSnapshots [
 	^ self at: #perceivedVisibleSnapshots ifAbsent: [ OrderedCollection new ]
 ]
