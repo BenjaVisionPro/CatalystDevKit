@@ -10,6 +10,15 @@ CESimTargetedEffectBehaviourModule >> bubbleInContext: aCESimRunContext [
 	^ aCESimRunContext subject
 ]
 
+{ #category : 'as yet unclassified' }
+CESimTargetedEffectBehaviourModule >> gateTargetEntityId: anEntityId forCommand: aCommand module: aModuleSymbol intoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	^ aCESimRunContext
+		gateTargetEntityId: anEntityId
+		forCommand: aCommand
+		module: aModuleSymbol
+		intoUpdate: aCESimUpdate
+]
+
 { #category : 'private - targeting' }
 CESimTargetedEffectBehaviourModule >> homeRegionIdInContext: aCESimRunContext [
 	^ (self bubbleInContext: aCESimRunContext) homeRegionId

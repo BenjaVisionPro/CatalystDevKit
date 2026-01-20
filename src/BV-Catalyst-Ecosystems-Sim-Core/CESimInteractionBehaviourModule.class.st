@@ -11,10 +11,12 @@ CESimInteractionBehaviourModule >> applyInteractionCommand: aCommand intoUpdate:
 	regionId := self homeRegionIdInContext: aCESimRunContext.
 	entityId := aCommand targetEntityId.
 
-	"Gate: only interact with entities currently perceived by this bubble."
-	((self perceivedVisibleSnapshotsInContext: aCESimRunContext)
-		anySatisfy: [ :snap | (snap at: #entityId) = entityId ])
-			ifFalse: [ ^ self ].
+	(self
+		gateTargetEntityId: entityId
+		forCommand: aCommand
+		module: #interaction
+		intoUpdate: aCESimUpdate
+		inContext: aCESimRunContext) ifFalse: [ ^ self ].
 
 	aCESimUpdate
 		addEntityOp: (CESimApplyInteractionToNotableOp
