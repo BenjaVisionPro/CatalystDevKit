@@ -28,6 +28,11 @@ CESimRunContext >> addUpdate: aCESimUpdate [
 	updates add: aCESimUpdate
 ]
 
+{ #category : 'convenience' }
+CESimRunContext >> bubble [
+	^ subject
+]
+
 { #category : 'targeting' }
 CESimRunContext >> canTargetEntityId: anEntityId [
 	"Central targeting seam.
@@ -81,36 +86,15 @@ CESimRunContext >> environmentQuery: anObject [
 	environmentQuery := anObject
 ]
 
-{ #category : 'targeting' }
-CESimRunContext >> gateTargetEntityId: anEntityId forCommand: aCommand module: aModuleSymbol intoUpdate: aCESimUpdate [
-	"Evaluates targetability and emits a deterministic rejection audit event if disallowed.
-	Returns true if allowed, false otherwise."
-
-	| decision allowed reason |
-
-	decision := self targetingDecisionForEntityId: anEntityId.
-	allowed := decision at: #allowed ifAbsent: [ false ].
-
-	allowed ifTrue: [ ^ true ].
-
-	reason := decision at: #reason ifAbsent: [ #rejected ].
-
-	aCESimUpdate addEvent: (Dictionary new
-		at: #type put: #targetRejected;
-		at: #module put: aModuleSymbol;
-		at: #commandType put: aCommand class name asSymbol;
-		at: #entityId put: anEntityId;
-		at: #reason put: reason;
-		at: #tickId put: self tickId;
-		yourself).
-
-	^ false
-]
-
 { #category : 'step cache' }
 CESimRunContext >> hasStepCacheKey: aKey [
 	"Legacy alias. Prefer #runCache includesKey:."
 	^ runCache includesKey: aKey
+]
+
+{ #category : 'convenience' }
+CESimRunContext >> homeRegionId [
+	^ subject homeRegionId
 ]
 
 { #category : 'initialization' }
@@ -157,24 +141,6 @@ CESimRunContext >> runCacheAt: aKey ifAbsent: aBlock [
 { #category : 'run cache' }
 CESimRunContext >> runCacheAt: aKey put: aValue [
 	runCache at: aKey put: aValue
-]
-
-{ #category : 'step cache' }
-CESimRunContext >> stepCache [
-	"Legacy alias."
-	^ runCache
-]
-
-{ #category : 'step cache' }
-CESimRunContext >> stepCacheAt: aKey ifAbsent: aBlock [
-	"Legacy alias."
-	^ self runCacheAt: aKey ifAbsent: aBlock
-]
-
-{ #category : 'step cache' }
-CESimRunContext >> stepCacheAt: aKey put: aValue [
-	"Legacy alias."
-	self runCacheAt: aKey put: aValue
 ]
 
 { #category : 'accessing' }

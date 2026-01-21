@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimCreateNotableCommand',
-	#superclass : 'CESimToolLifecycleCommand',
+	#superclass : 'CESimExternalCommand',
 	#instVars : [
 		'definitionKey',
 		'transform',
@@ -20,11 +20,14 @@ CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform
 ]
 
 { #category : 'contributing' }
-CESimCreateNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyCreateNotableCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+CESimCreateNotableCommand >> contributeLifecycleIntoUpdate: aSimUpdate inContext: aSimContext [
+	aSimUpdate
+		addEntityOp: (CESimAddNotableToRegionOp
+				withRegionId: aSimContext subject homeRegionId
+				notable: (aSimContext
+						newNotableWithDefinitionKey: definitionKey
+						transform: transform
+						state: state))
 ]
 
 { #category : 'accessing' }

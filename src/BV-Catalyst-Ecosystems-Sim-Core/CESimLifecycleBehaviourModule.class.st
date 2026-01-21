@@ -36,10 +36,6 @@ CESimLifecycleBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inCon
 	| commands |
 	commands := aCESimRunContext runCache drainedCommands.
 
-	commands do: [ :cmd |
-		cmd
-			contributeToLifecycleBehaviourModule: self
-			intoUpdate: aCESimUpdate
-			inContext: aCESimRunContext
-	]
+	commands
+		do: [ :cmd | cmd contributeLifecycleIntoUpdate: aCESimUpdate inContext: aCESimRunContext ]
 ]

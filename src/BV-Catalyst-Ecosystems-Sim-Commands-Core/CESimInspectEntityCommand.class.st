@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimInspectEntityCommand',
-	#superclass : 'CESimPerceptionCommand',
+	#superclass : 'CESimTargetedEntityCommand',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
@@ -11,11 +11,18 @@ CESimInspectEntityCommand class >> withTargetEntityId: aCEEntityId [
 ]
 
 { #category : 'as yet unclassified' }
-CESimInspectEntityCommand >> contributeToInteractionBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyInspectEntityCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+CESimInspectEntityCommand >> contributeInteractionIntoUpdate: aSimUpdate inContext: aSimContext [
+	(self
+		canTargetEntityId: targetEntityId
+		inContext: aSimContext
+		update: aSimUpdate) ifFalse: [ ^ self ].
+
+	aSimUpdate
+		addEvent: (Dictionary new
+				at: #type put: #entityInspected;
+				at: #entityId put: targetEntityId;
+				at: #tickId put: aSimContext tickId;
+				yourself)
 ]
 
 { #category : 'producing' }

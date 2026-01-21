@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimRemoveNotableCommand',
-	#superclass : 'CESimToolLifecycleCommand',
+	#superclass : 'CESimTargetedEntityCommand',
 	#instVars : [
 		'entityId'
 	],
@@ -8,29 +8,17 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
-{ #category : 'instance creation' }
-CESimRemoveNotableCommand class >> entityId: aCEEntityId [
-	^ self new
-		entityId: aCEEntityId;
-		yourself
-]
-
-{ #category : 'contributing' }
-CESimRemoveNotableCommand >> contributeToLifecycleBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyRemoveNotableCommand: self
-		intoUpdate: aCESimUpdate
+{ #category : 'as yet unclassified' }
+CESimRemoveNotableCommand >> contributeLifecycleIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	(self
+		canTargetEntityId: targetEntityId
 		inContext: aCESimRunContext
-]
+		update: aCESimUpdate) ifFalse: [ ^ self ].
 
-{ #category : 'accessing' }
-CESimRemoveNotableCommand >> entityId [
-	^ entityId
-]
-
-{ #category : 'accessing' }
-CESimRemoveNotableCommand >> entityId: aCEEntityId [
-	entityId := aCEEntityId
+	aCESimUpdate
+		addEntityOp: (CESimRemoveNotableFromRegionOp
+				withRegionId: aCESimRunContext homeRegionId
+				entityId: targetEntityId)
 ]
 
 { #category : 'producing' }

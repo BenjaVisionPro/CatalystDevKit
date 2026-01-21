@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimSetFocusEntityCommand',
-	#superclass : 'CESimPerceptionCommand',
+	#superclass : 'CESimTargetedEntityCommand',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
@@ -8,6 +8,26 @@ Class {
 { #category : 'instance creation' }
 CESimSetFocusEntityCommand class >> withTargetEntityId: aCEEntityId [
   ^ self new targetEntityId: aCEEntityId; yourself
+]
+
+{ #category : 'as yet unclassified' }
+CESimSetFocusEntityCommand >> contributeFocusIntoUpdate: aSimUpdate inContext: aSimContext [
+	(self
+		canTargetEntityId: targetEntityId
+		inContext: aSimContext
+		update: aSimUpdate) ifFalse: [ ^ self ].
+
+	aSimUpdate
+		addEvent: (Dictionary new
+				at: #type put: #focusSet;
+				at: #entityId put: targetEntityId;
+				at: #tickId put: aSimContext tickId;
+				yourself)
+]
+
+{ #category : 'as yet unclassified' }
+CESimSetFocusEntityCommand >> contributePerceptionIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	
 ]
 
 { #category : 'producing' }

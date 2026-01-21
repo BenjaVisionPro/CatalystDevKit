@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimInteractWithEntityCommand',
-	#superclass : 'CESimEntityInteractionCommand',
+	#superclass : 'CESimTargetedEntityCommand',
 	#instVars : [
 		'interactionType',
 		'payload'
@@ -18,12 +18,20 @@ CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: an
 		yourself
 ]
 
-{ #category : 'contributing' }
-CESimInteractWithEntityCommand >> contributeToInteractionBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyInteractionCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+{ #category : 'as yet unclassified' }
+CESimInteractWithEntityCommand >> contributeInteractionIntoUpdate: aSimUpdate inContext: aSimContext [
+	(self
+		canTargetEntityId: targetEntityId
+		inContext: aSimContext
+		update: aSimUpdate) ifFalse: [ ^ self ].
+
+	aSimUpdate
+		addEntityOp: (CESimApplyInteractionToNotableOp
+				withRegionId: aSimContext subject homeRegionId
+				entityId: targetEntityId
+				interactionType: self interactionType
+				payload: self payload
+				tickId: aSimContext tickId)
 ]
 
 { #category : 'accessing' }

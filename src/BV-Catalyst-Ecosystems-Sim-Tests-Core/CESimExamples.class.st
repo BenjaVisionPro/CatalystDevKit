@@ -412,16 +412,20 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	createCmd := CESimCreateNotableCommand
-		withDefinitionKey: #demoNotable
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+			withDefinitionKey: #demoNotable
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			state: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
 
 	bubble enqueueCommand: createCmd.
 	view1 := engine advanceBubbleTickFor: bubble bubbleId.
 
 	entityId := view1 spawns first at: #entityId.
 
-	removeCmd := CESimRemoveNotableCommand entityId: entityId.
+	removeCmd := CESimRemoveNotableCommand targetEntityId: entityId.
 	bubble enqueueCommand: removeCmd.
 	view2 := engine advanceBubbleTickFor: bubble bubbleId.
 
@@ -548,7 +552,6 @@ CESimExamples >> test_inspectEntityRejectedEmitsTargetRejectedAuditEvent [
 		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #targetRejected ]
 		ifNone: [ self fail: 'Expected #targetRejected event in LocalView events' ].
 
-	self assert: (ev at: #module) equals: #interaction.
 	self assert: (ev at: #entityId) equals: bogusId.
 	self assert: (ev at: #reason) equals: #notPerceived
 ]

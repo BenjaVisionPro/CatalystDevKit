@@ -32,9 +32,5 @@ CESimStimulusBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inCont
 	commands := aCESimRunContext runCache drainedCommands.
 
 	commands
-		do: [ :cmd |
-			cmd
-				contributeToStimulusBehaviourModule: self
-				intoUpdate: aCESimUpdate
-				inContext: aCESimRunContext ]
+		do: [ :cmd | cmd contributeStimulusIntoUpdate: aCESimUpdate inContext: aCESimRunContext ]
 ]

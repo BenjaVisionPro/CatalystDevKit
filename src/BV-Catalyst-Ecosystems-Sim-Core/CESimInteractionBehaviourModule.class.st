@@ -59,9 +59,5 @@ CESimInteractionBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inC
 	commands := aCESimRunContext runCache drainedCommands.
 
 	commands
-		do: [ :cmd |
-			cmd
-				contributeToInteractionBehaviourModule: self
-				intoUpdate: aCESimUpdate
-				inContext: aCESimRunContext ]
+		do: [ :cmd | cmd contributeInteractionIntoUpdate: aCESimUpdate inContext: aCESimRunContext ]
 ]

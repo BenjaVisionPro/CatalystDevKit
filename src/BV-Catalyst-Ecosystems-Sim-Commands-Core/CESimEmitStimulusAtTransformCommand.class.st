@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimEmitStimulusAtTransformCommand',
-	#superclass : 'CESimStimulusCommand',
+	#superclass : 'CESimExternalCommand',
 	#instVars : [
 		'stimulusType',
 		'transform',
@@ -20,11 +20,17 @@ CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform i
 ]
 
 { #category : 'contributing' }
-CESimEmitStimulusAtTransformCommand >> contributeToStimulusBehaviourModule: aModule intoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aModule
-		applyStimulusCommand: self
-		intoUpdate: aCESimUpdate
-		inContext: aCESimRunContext
+CESimEmitStimulusAtTransformCommand >> contributeStimulusIntoUpdate: aSimUpdate inContext: aSimContext [
+	(aSimContext runCache perceivedVisibleSnapshots ifNil: [ #() ])
+		do: [ :snapshot | 
+			aSimUpdate
+				addEntityOp: (CESimApplyStimulusToNotableOp
+						withRegionId: aSimContext subject homeRegionId
+						entityId: (snapshot at: #entityId)
+						stimulusType: stimulusType
+						transform: transform
+						intensity: intensity
+						tickId: aSimContext tickId) ]
 ]
 
 { #category : 'accessing' }
