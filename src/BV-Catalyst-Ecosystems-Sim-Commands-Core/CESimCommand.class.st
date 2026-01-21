@@ -36,3 +36,33 @@ CESimCommand >> contributeToStimulusBehaviourModule: aModule intoUpdate: aCESimU
 CESimCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
   self subclassResponsibility
 ]
+
+{ #category : 'capabilities' }
+CESimCommand >> contributeLifecycleIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this command has no lifecycle capability contribution."
+	"NoOp"
+]
+
+{ #category : 'capabilities' }
+CESimCommand >> contributeStimulusIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this command has no stimulus capability contribution."
+	"NoOp"
+]
+
+{ #category : 'capabilities' }
+CESimCommand >> contributeInteractionIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this command has no interaction capability contribution."
+	"NoOp"
+]
+
+{ #category : 'capabilities' }
+CESimCommand >> contributePerceptionIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this command has no perception capability contribution."
+	"NoOp"
+]
+
+{ #category : 'capabilities' }
+CESimCommand >> contributeFocusIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this command has no focus capability contribution."
+	"NoOp"
+]
