@@ -19,7 +19,7 @@ CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: an
 ]
 
 { #category : 'capabilities - invocations' }
-CESimInteractWithEntityCommand >> contributeInvocationsInContext: aSimContext update: aSimUpdate [
+CESimInteractWithEntityCommand >> contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext [
 	aSimContext runCache
 		addCapabilityInvocation: (CESimInteractWithEntityInvocation
 				targetEntityId: targetEntityId

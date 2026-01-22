@@ -5,8 +5,8 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'producing' }
-CESimCommandInputBehaviourModule >> produceEventsIntoUpdate: aSimUpdate inContext: aSimContext [
+{ #category : 'contributing' }
+CESimCommandInputBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	| bubble commands |
 	bubble := aSimContext subject.	
 	

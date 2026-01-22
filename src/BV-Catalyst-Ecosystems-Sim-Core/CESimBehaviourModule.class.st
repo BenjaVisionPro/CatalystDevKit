@@ -5,12 +5,7 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'producing' }
-CESimBehaviourModule >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	"Default: no events."
-]
-
-{ #category : 'producing' }
-CESimBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	"Default: no operations."
+{ #category : 'contributing' }
+CESimBehaviourModule >> contributeIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+	"Default: this module contributes nothing."
 ]

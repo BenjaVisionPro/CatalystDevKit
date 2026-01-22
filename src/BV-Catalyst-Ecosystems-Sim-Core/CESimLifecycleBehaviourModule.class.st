@@ -31,8 +31,8 @@ CESimLifecycleBehaviourModule >> applyRemoveNotableCommand: aCommand intoUpdate:
 		entityId: aCommand entityId)
 ]
 
-{ #category : 'producing' }
-CESimLifecycleBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+{ #category : 'contributing' }
+CESimLifecycleBehaviourModule >> contributeIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| commands |
 	commands := aCESimRunContext runCache drainedCommands.
 

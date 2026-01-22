@@ -13,8 +13,7 @@ CESimModulesStageRunner >> buildUpdateForStage: aStage inContext: aCESimRunConte
 	modules := aCESimRunContext engine behaviour bubbleBehaviourModules.
 
 	modules do: [ :each |
-		each produceEventsIntoUpdate: update inContext: aCESimRunContext.
-		each produceOperationsIntoUpdate: update inContext: aCESimRunContext
+		each contributeIntoUpdate: update inContext: aCESimRunContext
 	].
 
 	^ update

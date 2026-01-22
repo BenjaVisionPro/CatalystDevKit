@@ -20,7 +20,7 @@ CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform i
 ]
 
 { #category : 'capabilities - invocations' }
-CESimEmitStimulusAtTransformCommand >> contributeInvocationsInContext: aSimContext update: aSimUpdate [
+CESimEmitStimulusAtTransformCommand >> contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext [
 	aSimContext runCache
 		addCapabilityInvocation: (CESimEmitStimulusAtTransformInvocation
 				stimulusType: stimulusType
