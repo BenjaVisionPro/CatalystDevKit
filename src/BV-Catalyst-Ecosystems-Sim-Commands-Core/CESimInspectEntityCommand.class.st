@@ -21,6 +21,12 @@ CESimInspectEntityCommand >> contributeInteractionIntoUpdate: aSimUpdate inConte
 		addEvent: (Dictionary new
 				at: #type put: #entityInspected;
 				at: #entityId put: targetEntityId;
+				at: #snapshot
+					put: (aSimContext runCache perceivedVisibleSnapshots
+							detect: [ :snap | (snap at: #entityId) = targetEntityId ]
+							ifNone: [ Dictionary new
+									at: #entityId put: targetEntityId;
+									yourself ]);
 				at: #tickId put: aSimContext tickId;
 				yourself)
 ]

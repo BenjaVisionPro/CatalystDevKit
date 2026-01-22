@@ -128,6 +128,11 @@ CESimRunContext >> printOn: aStream [
 		nextPut: $)
 ]
 
+{ #category : 'convenience' }
+CESimRunContext >> region [
+	^ engine ensureRegion: self homeRegionId
+]
+
 { #category : 'run cache' }
 CESimRunContext >> runCache [
 	^ runCache

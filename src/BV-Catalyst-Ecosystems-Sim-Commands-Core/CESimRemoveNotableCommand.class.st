@@ -1,9 +1,6 @@
 Class {
 	#name : 'CESimRemoveNotableCommand',
 	#superclass : 'CESimTargetedEntityCommand',
-	#instVars : [
-		'entityId'
-	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
@@ -26,7 +23,7 @@ CESimRemoveNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aC
 	"Events only."
 	aCESimUpdate addEvent: (Dictionary new
 		at: #type put: #removeNotableRequested;
-		at: #entityId put: entityId;
+		at: #entityId put: targetEntityId;
 		at: #tickId put: aCESimRunContext tickId;
 		yourself)
 ]
