@@ -26,6 +26,12 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 						tickId: aCESimRunContext tickId) ]
 ]
 
+{ #category : 'contributing' }
+CESimStimulusBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
+	aSimContext runCache stimulusInvocations
+		do: [ :invocation | invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext ]
+]
+
 { #category : 'producing' }
 CESimStimulusBehaviourModule >> produceOperationsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| commands |

@@ -19,21 +19,6 @@ CESimEmitStimulusAtTransformInvocation class >> stimulusType: aType transform: a
 		yourself
 ]
 
-{ #category : 'accessing' }
-CESimEmitStimulusAtTransformInvocation >> stimulusType: aType [
-	stimulusType := aType
-]
-
-{ #category : 'accessing' }
-CESimEmitStimulusAtTransformInvocation >> transform: aTransform [
-	transform := aTransform
-]
-
-{ #category : 'accessing' }
-CESimEmitStimulusAtTransformInvocation >> intensity: aNumber [
-	intensity := aNumber
-]
-
 { #category : 'contributing' }
 CESimEmitStimulusAtTransformInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	| snapshots |
@@ -49,4 +34,19 @@ CESimEmitStimulusAtTransformInvocation >> contributeIntoUpdate: aSimUpdate inCon
 			intensity: intensity
 			tickId: aSimContext tickId)
 	]
+]
+
+{ #category : 'accessing' }
+CESimEmitStimulusAtTransformInvocation >> intensity: aNumber [
+	intensity := aNumber
+]
+
+{ #category : 'accessing' }
+CESimEmitStimulusAtTransformInvocation >> stimulusType: aType [
+	stimulusType := aType
+]
+
+{ #category : 'accessing' }
+CESimEmitStimulusAtTransformInvocation >> transform: aTransform [
+	transform := aTransform
 ]

@@ -19,7 +19,16 @@ CESimEmitStimulusAtTransformCommand class >> type: aType transform: aTransform i
 		yourself
 ]
 
-{ #category : 'contributing' }
+{ #category : 'capabilities - invocations' }
+CESimEmitStimulusAtTransformCommand >> contributeInvocationsInContext: aSimContext update: aSimUpdate [
+	aSimContext runCache
+		addCapabilityInvocation: (CESimEmitStimulusAtTransformInvocation
+				stimulusType: stimulusType
+				transform: transform
+				intensity: intensity)
+]
+
+{ #category : 'capabilities - invocations' }
 CESimEmitStimulusAtTransformCommand >> contributeStimulusIntoUpdate: aSimUpdate inContext: aSimContext [
 	(aSimContext runCache perceivedVisibleSnapshots ifNil: [ #() ])
 		do: [ :snapshot | 
