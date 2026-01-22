@@ -34,20 +34,27 @@ CESimRunContext >> bubble [
 ]
 
 { #category : 'targeting' }
-CESimRunContext >> canTargetEntityId: anEntityId [
-	"Central targeting seam.
-	 Default (strict): entity must be in this tick's perceived snapshots.
-	 If environmentQuery provides a targeting policy, delegate to it."
+CESimRunContext >> canTargetEntityId: anEntityId forCause: aCause intoUpdate: aSimUpdate [
+	"Answers true if the entity is currently targetable. If not, emits a deterministic
+	#targetRejected audit event into the update and answers false."
 
-	| perceivedSnapshots bubble env |
-	bubble := self subject.
-	perceivedSnapshots := self runCache perceivedVisibleSnapshots ifNil: [ #() ].
-	env := self environmentQuery.
+	| decision allowed reason |
+	decision := self targetingDecisionForEntityId: anEntityId.
+	allowed := decision at: #allowed ifAbsent: [ false ].
 
-	(env notNil and: [ env respondsTo: #canTargetEntityId:forBubble:perceivedSnapshots: ])
-		ifTrue: [ ^ env canTargetEntityId: anEntityId forBubble: bubble perceivedSnapshots: perceivedSnapshots ].
+	allowed ifTrue: [ ^ true ].
 
-	^ perceivedSnapshots anySatisfy: [ :snap | (snap at: #entityId) = anEntityId ]
+	reason := decision at: #reason ifAbsent: [ #rejected ].
+
+	aSimUpdate
+		addEvent: (Dictionary new
+				at: #type put: #targetRejected;
+				at: #entityId put: anEntityId;
+				at: #reason put: reason;
+				at: #tickId put: self tickId;
+				yourself).
+
+	^ false
 ]
 
 { #category : 'run cache' }

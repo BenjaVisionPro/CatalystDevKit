@@ -25,6 +25,12 @@ CESimRunCache >> drainedCommands: aCollection [
 	self at: #drainedCommands put: aCollection
 ]
 
+{ #category : 'capabilities - invocations' }
+CESimRunCache >> interactionInvocations [
+	^ self capabilityInvocations
+		select: [ :each | each isKindOf: CESimInteractionInvocation ]
+]
+
 { #category : 'accessing - api' }
 CESimRunCache >> perceivedVisibleSnapshots [
 	^ self at: #perceivedVisibleSnapshots ifAbsent: [ OrderedCollection new ]

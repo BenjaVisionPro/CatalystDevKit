@@ -18,6 +18,12 @@ CESimCommand >> contributeInteractionIntoUpdate: aCESimUpdate inContext: aCESimR
 ]
 
 { #category : 'capabilities' }
+CESimCommand >> contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext [
+	"Default: this command has no invocations capability contribution."
+	"NoOp"
+]
+
+{ #category : 'capabilities' }
 CESimCommand >> contributeLifecycleIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	"Default: this command has no lifecycle capability contribution."
 	"NoOp"

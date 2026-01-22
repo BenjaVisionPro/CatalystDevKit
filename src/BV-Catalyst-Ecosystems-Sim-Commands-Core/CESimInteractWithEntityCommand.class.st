@@ -18,20 +18,13 @@ CESimInteractWithEntityCommand class >> withTargetEntityId: aCEEntityId type: an
 		yourself
 ]
 
-{ #category : 'as yet unclassified' }
-CESimInteractWithEntityCommand >> contributeInteractionIntoUpdate: aSimUpdate inContext: aSimContext [
-	(self
-		canTargetEntityId: targetEntityId
-		inContext: aSimContext
-		update: aSimUpdate) ifFalse: [ ^ self ].
-
-	aSimUpdate
-		addEntityOp: (CESimApplyInteractionToNotableOp
-				withRegionId: aSimContext subject homeRegionId
-				entityId: targetEntityId
-				interactionType: self interactionType
-				payload: self payload
-				tickId: aSimContext tickId)
+{ #category : 'capabilities - invocations' }
+CESimInteractWithEntityCommand >> contributeInvocationsInContext: aSimContext update: aSimUpdate [
+	aSimContext runCache
+		addCapabilityInvocation: (CESimInteractWithEntityInvocation
+				targetEntityId: targetEntityId
+				interactionType: interactionType
+				payload: payload)
 ]
 
 { #category : 'accessing' }

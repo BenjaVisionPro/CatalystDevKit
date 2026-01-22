@@ -153,7 +153,7 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	entityId := view1 spawns first at: #entityId.
 
 	"Tick 2: inspect it."
-	inspectCmd := CESimInspectEntityCommand withTargetEntityId: entityId.
+	inspectCmd := CESimInspectEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: inspectCmd.
 	view2 := engine advanceBubbleTickFor: bubble bubbleId.
 
@@ -543,7 +543,7 @@ CESimExamples >> test_inspectEntityRejectedEmitsTargetRejectedAuditEvent [
 
 	"Bogus target: nothing perceived in an empty region."
 	bogusId := CEEntityId fromInteger: 9999.
-	inspectCmd := CESimInspectEntityCommand withTargetEntityId: bogusId.
+	inspectCmd := CESimInspectEntityCommand targetEntityId: bogusId.
 
 	bubble enqueueCommand: inspectCmd.
 	view := engine advanceBubbleTickFor: bubble bubbleId.

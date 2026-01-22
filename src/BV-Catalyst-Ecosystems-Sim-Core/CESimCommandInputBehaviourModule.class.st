@@ -6,18 +6,19 @@ Class {
 }
 
 { #category : 'producing' }
-CESimCommandInputBehaviourModule >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimCommandInputBehaviourModule >> produceEventsIntoUpdate: aSimUpdate inContext: aSimContext [
 	| bubble commands |
-	bubble := aCESimRunContext subject.
-
+	bubble := aSimContext subject.	
+	
 	"Assumes bubble understands #drainCommands (your existing convention)."
-	commands := bubble drainCommands.
-
+	commands := bubble drainCommands.	
+	
 	"Store for downstream modules (single source of truth)."
-	aCESimRunContext runCache drainedCommands: commands.
-
+	aSimContext runCache drainedCommands: commands.	
+	
 	"Commands own their own event emission."
-	commands do: [ :cmd |
-		cmd produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext
-	]
+	commands
+		do: [ :cmd | 
+			cmd produceEventsIntoUpdate: aSimUpdate inContext: aSimContext.
+			cmd contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext ]
 ]
