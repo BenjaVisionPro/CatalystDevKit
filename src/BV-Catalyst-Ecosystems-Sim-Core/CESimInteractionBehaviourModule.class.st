@@ -8,5 +8,8 @@ Class {
 { #category : 'contributing' }
 CESimInteractionBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	aSimContext runCache interactionInvocations
-		do: [ :invocation | invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext ]
+		do: [ :invocation | 
+			CESimCurrentOrigin
+				value: invocation
+				during: [ invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext ] ]
 ]

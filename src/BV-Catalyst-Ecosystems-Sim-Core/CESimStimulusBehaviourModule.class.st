@@ -26,16 +26,23 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 						tickId: aCESimRunContext tickId) ]
 ]
 
-
 { #category : 'contributing' }
 CESimStimulusBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	| commands |
-	
-	"Capability invocations (e.g., targeted stimulus)"
-	aSimContext runCache stimulusInvocations
-		do: [ :invocation | invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext ].
 
-	"Command contributions"
+	"Command contributions (may enqueue stimulus invocations for this tick)"
 	commands := aSimContext runCache drainedCommands.
-	commands do: [ :cmd | cmd contributeStimulusIntoUpdate: aSimUpdate inContext: aSimContext ]
+	commands do: [ :cmd |
+		CESimCurrentOrigin value: cmd during: [
+			cmd contributeStimulusIntoUpdate: aSimUpdate inContext: aSimContext
+		]
+	].
+
+	"Capability invocations (e.g., targeted stimulus) - execute after commands"
+	aSimContext runCache stimulusInvocations
+		do: [ :invocation |
+			CESimCurrentOrigin value: invocation during: [
+				invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext
+			]
+		].
 ]

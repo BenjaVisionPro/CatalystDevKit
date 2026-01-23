@@ -34,7 +34,7 @@ CESimRunContext >> bubble [
 ]
 
 { #category : 'targeting' }
-CESimRunContext >> canTargetEntityId: anEntityId forCause: aCause intoUpdate: aSimUpdate [
+CESimRunContext >> canTargetEntityId: anEntityId origin: anOrigin update: aSimUpdate [
 	"Answers true if the entity is currently targetable. If not, emits a deterministic
 	#targetRejected audit event into the update and answers false."
 
@@ -55,6 +55,19 @@ CESimRunContext >> canTargetEntityId: anEntityId forCause: aCause intoUpdate: aS
 				yourself).
 
 	^ false
+]
+
+{ #category : 'targeting' }
+CESimRunContext >> canTargetEntityId: anEntityId update: aSimUpdate [
+	"Answers true if the entity is currently targetable. If not, emits a deterministic
+	#targetRejected audit event into the update and answers false.
+
+	Origin is implicit (CESimCurrentOrigin)."
+
+	^ self
+		canTargetEntityId: anEntityId
+		origin: CESimCurrentOrigin value
+		update: aSimUpdate
 ]
 
 { #category : 'run cache' }

@@ -21,7 +21,7 @@ CESimInteractWithEntityInvocation class >> targetEntityId: aCEEntityId interacti
 
 { #category : 'as yet unclassified' }
 CESimInteractWithEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
-	(aSimContext canTargetEntityId: targetEntityId intoUpdate: aSimUpdate)
+	(aSimContext canTargetEntityId: targetEntityId update: aSimUpdate)
 		ifFalse: [ ^ self ].
 
 	aSimUpdate
