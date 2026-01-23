@@ -9,3 +9,8 @@ Class {
 CESimCapabilityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	self subclassResponsibility
 ]
+
+{ #category : 'targeting' }
+CESimCapabilityInvocation >> targetingProfile [
+	self subclassResponsibility
+]

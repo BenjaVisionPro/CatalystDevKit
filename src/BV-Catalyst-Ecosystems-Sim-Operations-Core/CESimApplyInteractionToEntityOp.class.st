@@ -1,6 +1,6 @@
 Class {
-	#name : 'CESimApplyInteractionToNotableOp',
-	#superclass : 'CESimNotableSemanticStateOp',
+	#name : 'CESimApplyInteractionToEntityOp',
+	#superclass : 'CESimEntitySemanticStateOp',
 	#instVars : [
 		'interactionType',
 		'payload',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimApplyInteractionToNotableOp class >> withRegionId: aCERegionId entityId: aCEEntityId interactionType: aType payload: aPayload tickId: aTickId [
+CESimApplyInteractionToEntityOp class >> withRegionId: aCERegionId entityId: aCEEntityId interactionType: aType payload: aPayload tickId: aTickId [
 	^ (super withRegionId: aCERegionId entityId: aCEEntityId)
 		interactionType: aType;
 		payload: aPayload;
@@ -20,7 +20,7 @@ CESimApplyInteractionToNotableOp class >> withRegionId: aCERegionId entityId: aC
 ]
 
 { #category : 'applying' }
-CESimApplyInteractionToNotableOp >> applyInContext: aCESimRunContext [
+CESimApplyInteractionToEntityOp >> applyInContext: aCESimRunContext [
 	| state record |
 	state := self ensureStateDictInContext: aCESimRunContext.
 
@@ -35,16 +35,16 @@ CESimApplyInteractionToNotableOp >> applyInContext: aCESimRunContext [
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToNotableOp >> interactionType: aType [ 
+CESimApplyInteractionToEntityOp >> interactionType: aType [ 
 	interactionType := aType 
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToNotableOp >> payload: aPayload [ 
+CESimApplyInteractionToEntityOp >> payload: aPayload [ 
 	payload := aPayload 
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToNotableOp >> tickId: aTickId [ 
+CESimApplyInteractionToEntityOp >> tickId: aTickId [ 
 	tickId := aTickId 
 ]

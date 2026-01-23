@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'capabilities - invocations' }
-CESimRunCache >> addCapabilityInvocation: aCESimCapabilityInvocation [
+CESimRunCache >> addInvocation: aCESimCapabilityInvocation [
 	self capabilityInvocations add: aCESimCapabilityInvocation
 ]
 
@@ -26,9 +26,21 @@ CESimRunCache >> drainedCommands: aCollection [
 ]
 
 { #category : 'capabilities - invocations' }
+CESimRunCache >> focusInvocations [
+	^ self capabilityInvocations
+		select: [ :each | each isKindOf: CESimFocusInvocation ]
+]
+
+{ #category : 'capabilities - invocations' }
 CESimRunCache >> interactionInvocations [
 	^ self capabilityInvocations
 		select: [ :each | each isKindOf: CESimInteractionInvocation ]
+]
+
+{ #category : 'capabilities - invocations' }
+CESimRunCache >> lifecycleInvocations [
+	^ self capabilityInvocations
+		select: [ :each | each isKindOf: CESimLifecycleInvocation ]
 ]
 
 { #category : 'accessing - api' }

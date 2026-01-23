@@ -1,5 +1,5 @@
 Class {
-	#name : 'CESimSetNotableTransformOp',
+	#name : 'CESimSetEntityTransformOp',
 	#superclass : 'CESimEntitySpatialOp',
 	#instVars : [
 		'transform'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimSetNotableTransformOp class >> withRegionId: aCERegionId entityId: aCEEntityId transform: aTransformDict [
+CESimSetEntityTransformOp class >> withRegionId: aCERegionId entityId: aCEEntityId transform: aTransformDict [
 	^ self new
 		regionId: aCERegionId;
 		entityId: aCEEntityId;
@@ -18,11 +18,11 @@ CESimSetNotableTransformOp class >> withRegionId: aCERegionId entityId: aCEEntit
 ]
 
 { #category : 'applying' }
-CESimSetNotableTransformOp >> applyInContext: aCESimRunContext [
-	(self notableInContext: aCESimRunContext) transform: transform
+CESimSetEntityTransformOp >> applyInContext: aCESimRunContext [
+	(self entityInContext: aCESimRunContext) transform: transform
 ]
 
 { #category : 'accessing' }
-CESimSetNotableTransformOp >> transform: aTransformDict [
+CESimSetEntityTransformOp >> transform: aTransformDict [
 	transform := aTransformDict
 ]

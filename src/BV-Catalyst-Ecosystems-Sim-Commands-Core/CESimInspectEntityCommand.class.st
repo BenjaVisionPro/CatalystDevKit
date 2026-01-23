@@ -8,7 +8,7 @@ Class {
 { #category : 'capabilities - invocations' }
 CESimInspectEntityCommand >> contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext [
 	aSimContext runCache
-		addCapabilityInvocation: (CESimInspectEntityInvocation targetEntityId: targetEntityId)
+		addInvocation: (CESimInspectEntityInvocation targetEntityId: targetEntityId)
 ]
 
 { #category : 'producing' }

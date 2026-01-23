@@ -1,11 +1,11 @@
 Class {
-	#name : 'CESimRemoveNotableFromRegionOp',
+	#name : 'CESimRemoveEntityFromRegionOp',
 	#superclass : 'CESimEntityLifecycleOp',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Operations-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
 { #category : 'applying' }
-CESimRemoveNotableFromRegionOp >> applyInContext: aCESimRunContext [
-	(self regionInContext: aCESimRunContext) removeNotableId: entityId
+CESimRemoveEntityFromRegionOp >> applyInContext: aCESimRunContext [
+	(self regionInContext: aCESimRunContext) removeEntityId: entityId
 ]

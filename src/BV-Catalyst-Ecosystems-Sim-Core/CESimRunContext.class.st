@@ -33,18 +33,19 @@ CESimRunContext >> bubble [
 	^ subject
 ]
 
-{ #category : 'targeting' }
-CESimRunContext >> canTargetEntityId: anEntityId origin: anOrigin update: aSimUpdate [
-	"Answers true if the entity is currently targetable. If not, emits a deterministic
-	#targetRejected audit event into the update and answers false."
+{ #category : 'as yet unclassified' }
+CESimRunContext >> canTargetEntityId: anEntityId invocation: anInvocation update: aSimUpdate [
+	"Answers true if target is allowed for this invocation’s targeting profile.
+	If false, emits deterministic #targetRejected event into the update and answers false."
 
 	| decision allowed reason |
-	decision := self targetingDecisionForEntityId: anEntityId.
+	decision := self
+			targetingDecisionForEntityId: anEntityId
+			profile: anInvocation targetingProfile.
 	allowed := decision at: #allowed ifAbsent: [ false ].
-
 	allowed ifTrue: [ ^ true ].
 
-	reason := decision at: #reason ifAbsent: [ #rejected ].
+	reason := decision at: #reason ifAbsent: [ CESimDecisionOutcome notPresent ].
 
 	aSimUpdate
 		addEvent: (Dictionary new
@@ -55,19 +56,6 @@ CESimRunContext >> canTargetEntityId: anEntityId origin: anOrigin update: aSimUp
 				yourself).
 
 	^ false
-]
-
-{ #category : 'targeting' }
-CESimRunContext >> canTargetEntityId: anEntityId update: aSimUpdate [
-	"Answers true if the entity is currently targetable. If not, emits a deterministic
-	#targetRejected audit event into the update and answers false.
-
-	Origin is implicit (CESimCurrentOrigin)."
-
-	^ self
-		canTargetEntityId: anEntityId
-		origin: CESimCurrentOrigin value
-		update: aSimUpdate
 ]
 
 { #category : 'run cache' }
@@ -125,16 +113,32 @@ CESimRunContext >> initialize [
 ]
 
 { #category : 'factory - entities' }
-CESimRunContext >> newNotableWithDefinitionKey: aKey transform: aTransform state: aState [
+CESimRunContext >> newEntityWithDefinitionKey: aKey transform: aTransform state: aState [
 	"Canonical creation path for Notables.
 	 Callers never mint ids; context/engine owns determinism + id issuance."
 
-	^ CENotable new
+	^ CECreatureEntity new
 		definitionKey: aKey;
 		transform: aTransform;
 		state: aState;
 		entityId: self engine idIssuer nextEntityId;
 		yourself	"or whatever your issuer selector is"
+]
+
+{ #category : 'targeting' }
+CESimRunContext >> ownerDecision [
+	| ownerId |
+	ownerId := self subject ownerEntityId.
+	ownerId
+		ifNil: [ ^ Dictionary new
+				at: #allowed put: false;
+				at: #reason put: CESimDecisionOutcome notPresent;
+				yourself ].
+
+	^ Dictionary new
+		at: #allowed put: true;
+		at: #entityId put: ownerId;
+		yourself
 ]
 
 { #category : 'printing' }
@@ -179,26 +183,27 @@ CESimRunContext >> subject: anObject [
 ]
 
 { #category : 'targeting' }
-CESimRunContext >> targetingDecisionForEntityId: anEntityId [
-	"Returns a Dictionary with at least:
-	 #allowed -> Boolean
-	 #reason  -> Symbol (when not allowed)
-	Default policy: must be perceived this tick.
-	Delegates to environmentQuery if it provides a richer policy."
+CESimRunContext >> targetingDecisionForEntityId: anEntityId profile: aProfile [
+	| rules rejection |
+	rules := self engine behaviour targetingPolicies
+			at: aProfile
+			ifAbsent: [ ^ Dictionary new
+					at: #allowed put: false;
+					at: #reason put: CESimDecisionOutcome noPolicy;
+					yourself ].
 
-	| perceivedSnapshots bubble env |
+	rules
+		do: [ :rule | 
+			rejection := rule rejectionReasonForTargetEntityId: anEntityId inContext: self.
+			rejection
+				ifNotNil: [ ^ Dictionary new
+						at: #allowed put: false;
+						at: #reason put: rejection;
+						yourself ] ].
 
-	perceivedSnapshots := self runCache perceivedVisibleSnapshots ifNil: [ #() ].
-	bubble := self subject.
-	env := self environmentQuery.
-
-	(env notNil and: [ env respondsTo: #targetingDecisionForEntityId:forBubble:perceivedSnapshots: ])
-		ifTrue: [ ^ env targetingDecisionForEntityId: anEntityId forBubble: bubble perceivedSnapshots: perceivedSnapshots ].
-
-	^ (perceivedSnapshots anySatisfy: [ :snap | (snap at: #entityId) = anEntityId ])
-		ifTrue: [ Dictionary new at: #allowed put: true; yourself ]
-		ifFalse: [ Dictionary new at: #allowed put: false; at: #reason put: #notPerceived; yourself ]
-
+	^ Dictionary new
+		at: #allowed put: true;
+		yourself
 ]
 
 { #category : 'accessing' }

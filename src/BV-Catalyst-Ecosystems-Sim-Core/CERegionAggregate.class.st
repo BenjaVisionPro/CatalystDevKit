@@ -2,42 +2,40 @@ Class {
 	#name : 'CERegionAggregate',
 	#superclass : 'CESimAggregate',
 	#instVars : [
-		'notablesById'
+		'entitiesById'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'notables' }
-CERegionAggregate >> addNotable: aCENotable [
-	notablesById at: aCENotable entityId put: aCENotable
+CERegionAggregate >> addEntity: aCEEntity [
+	entitiesById at: aCEEntity entityId put: aCEEntity
+]
+
+{ #category : 'notables' }
+CERegionAggregate >> entities [
+	"Deterministic ordering: by entityId backing value."
+
+	^ (entitiesById values
+		asSortedCollection: [ :a :b | a entityId value < b entityId value ])
+		asOrderedCollection
+]
+
+{ #category : 'notables' }
+CERegionAggregate >> entityAt: aCEEntityId [
+	^ self entityAt: aCEEntityId ifAbsent: [ nil ]
+]
+
+{ #category : 'notables' }
+CERegionAggregate >> entityAt: aCEEntityId ifAbsent: aBlock [
+    ^ entitiesById at: aCEEntityId ifAbsent: aBlock
 ]
 
 { #category : 'initialization' }
 CERegionAggregate >> initialize [
 	super initialize.
-	notablesById := Dictionary new
-]
-
-{ #category : 'notables' }
-CERegionAggregate >> notableAt: aCEEntityId [
-	^ self
-		notableAt: aCEEntityId
-		ifAbsent: [ self error: 'Unknown Notable with id: ' , aCEEntityId asString ]
-]
-
-{ #category : 'notables' }
-CERegionAggregate >> notableAt: aCEEntityId ifAbsent: aBlock [
-    ^ notablesById at: aCEEntityId ifAbsent: aBlock
-]
-
-{ #category : 'notables' }
-CERegionAggregate >> notables [
-	"Deterministic ordering: by entityId backing value."
-
-	^ (notablesById values
-		asSortedCollection: [ :a :b | a entityId value < b entityId value ])
-		asOrderedCollection
+	entitiesById := Dictionary new
 ]
 
 { #category : 'accessing' }
@@ -46,6 +44,6 @@ CERegionAggregate >> regionId [
 ]
 
 { #category : 'notables' }
-CERegionAggregate >> removeNotableId: aCEEntityId [
-    notablesById removeKey: aCEEntityId ifAbsent: [ ].
+CERegionAggregate >> removeEntityId: aCEEntityId [
+    entitiesById removeKey: aCEEntityId ifAbsent: [ ].
 ]

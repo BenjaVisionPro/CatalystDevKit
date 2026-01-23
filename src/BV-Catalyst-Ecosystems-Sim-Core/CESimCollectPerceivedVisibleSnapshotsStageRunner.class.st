@@ -25,7 +25,7 @@ CESimCollectPerceivedVisibleSnapshotsStageRunner >> runStage: aStage inContext: 
 	regionIds do: [ :regionId |
 		| region |
 		region := engine ensureRegion: regionId.
-		region notables do: [ :notable | snapshots add: notable asSnapshot ]
+		region entities do: [ :entity | snapshots add: entity asSnapshot ]
 	].
 
 	"Deterministic order: by entityId backing value."

@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'bubbleBehaviourModules',
-		'globalBehaviourModules'
+		'globalBehaviourModules',
+		'targetingPolicies'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -33,13 +34,42 @@ CESimBehaviour >> globalBehaviourModules: aCollection [
 CESimBehaviour >> initialize [
 	super initialize.
 
-	"Order matters. Keep it explicit and stable."
-	bubbleBehaviourModules := OrderedCollection new
-		add: CESimCommandInputBehaviourModule new;
-		add: CESimLifecycleBehaviourModule new;
-		add: CESimStimulusBehaviourModule new;
-		add: CESimInteractionBehaviourModule new;
-		yourself.
+	self
+		initializeGlobalBehaviour;
+		initializeBubbleBehaviour;
+		initializeTargetingPolicies
+]
 
-	globalBehaviourModules := OrderedCollection new.
+{ #category : 'initialization' }
+CESimBehaviour >> initializeBubbleBehaviour [
+	"Order matters. Keep it explicit and stable."
+
+	bubbleBehaviourModules := OrderedCollection new
+			add: CESimCommandInputBehaviourModule new;
+			add: CESimLifecycleBehaviourModule new;
+			add: CESimStimulusBehaviourModule new;
+			add: CESimInteractionBehaviourModule new;
+			yourself
+]
+
+{ #category : 'initialization' }
+CESimBehaviour >> initializeGlobalBehaviour [
+	globalBehaviourModules := OrderedCollection new
+]
+
+{ #category : 'initialization' }
+CESimBehaviour >> initializeTargetingPolicies [
+	targetingPolicies := Dictionary new.
+	targetingPolicies
+		at: CESimTargetingProfile inspect
+			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
+		at: CESimTargetingProfile interact
+			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
+		at: CESimTargetingProfile targetedStimulus
+			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new)
+]
+
+{ #category : 'as yet unclassified' }
+CESimBehaviour >> targetingPolicies [
+	^ targetingPolicies ifNil: [ targetingPolicies := Dictionary new ]
 ]

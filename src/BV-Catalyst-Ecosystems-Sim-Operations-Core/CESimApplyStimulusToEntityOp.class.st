@@ -1,6 +1,6 @@
 Class {
-	#name : 'CESimApplyStimulusToNotableOp',
-	#superclass : 'CESimNotableSemanticStateOp',
+	#name : 'CESimApplyStimulusToEntityOp',
+	#superclass : 'CESimEntitySemanticStateOp',
 	#instVars : [
 		'stimulusType',
 		'transform',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimApplyStimulusToNotableOp class >> withRegionId: aCERegionId entityId: aCEEntityId stimulusType: aType transform: aTransform intensity: aNumber tickId: aTickId [
+CESimApplyStimulusToEntityOp class >> withRegionId: aCERegionId entityId: aCEEntityId stimulusType: aType transform: aTransform intensity: aNumber tickId: aTickId [
 	^ (super withRegionId: aCERegionId entityId: aCEEntityId)
 		stimulusType: aType;
 		transform: aTransform;
@@ -22,7 +22,7 @@ CESimApplyStimulusToNotableOp class >> withRegionId: aCERegionId entityId: aCEEn
 ]
 
 { #category : 'applying' }
-CESimApplyStimulusToNotableOp >> applyInContext: aCESimRunContext [
+CESimApplyStimulusToEntityOp >> applyInContext: aCESimRunContext [
 	| state record |
 	state := self ensureStateDictInContext: aCESimRunContext.
 
@@ -38,21 +38,21 @@ CESimApplyStimulusToNotableOp >> applyInContext: aCESimRunContext [
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToNotableOp >> intensity: aNumber [ 
+CESimApplyStimulusToEntityOp >> intensity: aNumber [ 
 	intensity := aNumber 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToNotableOp >> stimulusType: aType [ 
+CESimApplyStimulusToEntityOp >> stimulusType: aType [ 
 	stimulusType := aType 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToNotableOp >> tickId: aTickId [ 
+CESimApplyStimulusToEntityOp >> tickId: aTickId [ 
 	tickId := aTickId 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToNotableOp >> transform: aTransform [ 
+CESimApplyStimulusToEntityOp >> transform: aTransform [ 
 	transform := aTransform 
 ]

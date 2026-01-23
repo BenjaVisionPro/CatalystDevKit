@@ -27,8 +27,8 @@ CESimRegionEntityOp >> entityId: aCEEntityId [
 ]
 
 { #category : 'resolving' }
-CESimRegionEntityOp >> notableInContext: aCESimRunContext [
-	^ (self regionInContext: aCESimRunContext) notableAt: entityId
+CESimRegionEntityOp >> entityInContext: aCESimRunContext [
+	^ (self regionInContext: aCESimRunContext) entityAt: entityId
 ]
 
 { #category : 'ordering' }

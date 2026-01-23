@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'commandQueue',
 		'visibleEntityIds',
-		'homeRegionId'
+		'homeRegionId',
+		'ownerEntityId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -54,6 +55,11 @@ CEBubbleAggregate >> initialize [
 { #category : 'accessing' }
 CEBubbleAggregate >> moveToHomeRegionId: aRegionId [
 	homeRegionId := aRegionId
+]
+
+{ #category : 'accessing' }
+CEBubbleAggregate >> ownerEntityId [
+	^ ownerEntityId
 ]
 
 { #category : 'commands' }

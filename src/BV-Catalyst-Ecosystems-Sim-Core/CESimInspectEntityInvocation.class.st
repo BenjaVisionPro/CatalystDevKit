@@ -17,38 +17,32 @@ CESimInspectEntityInvocation class >> targetEntityId: aCEEntityId [
 
 { #category : 'as yet unclassified' }
 CESimInspectEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
-	| decision allowed reason snapshots snapshot |
-	decision := aSimContext targetingDecisionForEntityId: targetEntityId.
-	allowed := decision at: #allowed ifAbsent: [ false ].
+	| snapshots snapshot |
 
-	allowed
-		ifFalse: [ reason := decision at: #reason ifAbsent: [ #rejected ].
-			aSimUpdate
-				addEvent: (Dictionary new
-						at: #type put: #targetRejected;
-						at: #entityId put: targetEntityId;
-						at: #reason put: reason;
-						at: #tickId put: aSimContext tickId;
-						yourself).
-			^ self ].
+	(aSimContext canTargetEntityId: targetEntityId invocation: self update: aSimUpdate)
+		ifFalse: [ ^ self ].
 
-	snapshots := aSimContext runCache perceivedVisibleSnapshots ifNil: [ #() ].
+	snapshots := aSimContext runCache perceivedVisibleSnapshots.
 	snapshot := snapshots
-			detect: [ :snap | (snap at: #entityId) = targetEntityId ]
-			ifNone: [ Dictionary new
-					at: #entityId put: targetEntityId;
-					yourself ].
+		detect: [ :snap | (snap at: #entityId) = targetEntityId ]
+		ifNone: [ Dictionary new
+			at: #entityId put: targetEntityId;
+			yourself ].
 
-	aSimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #entityInspected;
-				at: #entityId put: targetEntityId;
-				at: #snapshot put: snapshot;
-				at: #tickId put: aSimContext tickId;
-				yourself)
+	aSimUpdate addEvent: (Dictionary new
+		at: #type put: #entityInspected;
+		at: #entityId put: targetEntityId;
+		at: #snapshot put: snapshot;
+		at: #tickId put: aSimContext tickId;
+		yourself)
 ]
 
 { #category : 'accessing' }
 CESimInspectEntityInvocation >> targetEntityId: anObject [
 	targetEntityId := anObject
+]
+
+{ #category : 'targeting' }
+CESimInspectEntityInvocation >> targetingProfile [
+	^ CESimTargetingProfile inspect
 ]

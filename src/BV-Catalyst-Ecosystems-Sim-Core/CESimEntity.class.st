@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'entityId',
 		'definitionKey',
-		'moduleStates'
+		'moduleStates',
+		'state'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -17,6 +18,17 @@ CESimEntity class >> id: aCEEntityId definitionKey: aDefinitionKey [
 		definitionKey: aDefinitionKey;
 		initializeModuleStates;
 		yourself
+]
+
+{ #category : 'as yet unclassified' }
+CESimEntity >> asSnapshot [
+	| snap |
+	snap := Dictionary new
+			at: #entityId put: entityId;
+			at: #definitionKey put: definitionKey;
+			at: #state put: state;
+			yourself.
+	^ snap
 ]
 
 { #category : 'accessing' }
@@ -58,4 +70,14 @@ CESimEntity >> moduleStateAt: aKey ifAbsentPut: aBlock [
 { #category : 'accessing' }
 CESimEntity >> moduleStates [
 	^ moduleStates
+]
+
+{ #category : 'accessing' }
+CESimEntity >> state [
+	^ state
+]
+
+{ #category : 'accessing' }
+CESimEntity >> state: anObject [
+	state := anObject
 ]

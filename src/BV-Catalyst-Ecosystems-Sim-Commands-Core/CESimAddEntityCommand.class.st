@@ -1,5 +1,5 @@
 Class {
-	#name : 'CESimCreateNotableCommand',
+	#name : 'CESimAddEntityCommand',
 	#superclass : 'CESimExternalCommand',
 	#instVars : [
 		'definitionKey',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform state: aState [
+CESimAddEntityCommand class >> withDefinitionKey: aKey transform: aTransform state: aState [
   ^ self new
     definitionKey: aKey;
     transform: aTransform;
@@ -20,28 +20,28 @@ CESimCreateNotableCommand class >> withDefinitionKey: aKey transform: aTransform
 ]
 
 { #category : 'contributing' }
-CESimCreateNotableCommand >> contributeLifecycleIntoUpdate: aSimUpdate inContext: aSimContext [
+CESimAddEntityCommand >> contributeLifecycleIntoUpdate: aSimUpdate inContext: aSimContext [
 	aSimUpdate
-		addEntityOp: (CESimAddNotableToRegionOp
+		addEntityOp: (CESimAddEntityToRegionOp
 				withRegionId: aSimContext subject homeRegionId
-				notable: (aSimContext
-						newNotableWithDefinitionKey: definitionKey
+				entity: (aSimContext
+						newEntityWithDefinitionKey: definitionKey
 						transform: transform
 						state: state))
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> definitionKey [
+CESimAddEntityCommand >> definitionKey [
 	^ definitionKey
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> definitionKey: aKey [
+CESimAddEntityCommand >> definitionKey: aKey [
 	definitionKey := aKey
 ]
 
 { #category : 'producing' }
-CESimCreateNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimAddEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	aCESimUpdate addEvent: (Dictionary new
 		at: #type put: #createNotableRequested;
 		at: #definitionKey put: definitionKey;
@@ -52,21 +52,21 @@ CESimCreateNotableCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aC
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> state [
+CESimAddEntityCommand >> state [
 	^ state
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> state: aState [
+CESimAddEntityCommand >> state: aState [
 	state := aState
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> transform [
+CESimAddEntityCommand >> transform [
 	^ transform
 ]
 
 { #category : 'accessing' }
-CESimCreateNotableCommand >> transform: aTransform [
+CESimAddEntityCommand >> transform: aTransform [
 	transform := aTransform
 ]

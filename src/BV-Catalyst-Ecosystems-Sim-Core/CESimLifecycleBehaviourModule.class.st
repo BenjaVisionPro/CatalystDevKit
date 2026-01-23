@@ -12,13 +12,13 @@ CESimLifecycleBehaviourModule >> applyCreateNotableCommand: aCommand intoUpdate:
 
 	"IDs are minted here (context factory), not in the command event path."
 	notable := aCESimRunContext
-		newNotableWithDefinitionKey: aCommand definitionKey
+		newEntityWithDefinitionKey: aCommand definitionKey
 		transform: aCommand transform
 		state: aCommand state.
 
-	aCESimUpdate addEntityOp: (CESimAddNotableToRegionOp
+	aCESimUpdate addEntityOp: (CESimAddEntityToRegionOp
 		withRegionId: regionId
-		notable: notable)
+		entity: notable)
 ]
 
 { #category : 'applying' }
@@ -26,16 +26,26 @@ CESimLifecycleBehaviourModule >> applyRemoveNotableCommand: aCommand intoUpdate:
 	| regionId |
 	regionId := aCESimRunContext subject homeRegionId.
 
-	aCESimUpdate addEntityOp: (CESimRemoveNotableFromRegionOp
+	aCESimUpdate addEntityOp: (CESimRemoveEntityFromRegionOp
 		withRegionId: regionId
 		entityId: aCommand entityId)
 ]
 
 { #category : 'contributing' }
-CESimLifecycleBehaviourModule >> contributeIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
+CESimLifecycleBehaviourModule >> contributeIntoUpdate: aUpdate inContext: aContext [
 	| commands |
-	commands := aCESimRunContext runCache drainedCommands.
-
+	"Commands first: enqueue lifecycle invocations"
+	commands := aContext runCache drainedCommands.
 	commands
-		do: [ :cmd | cmd contributeLifecycleIntoUpdate: aCESimUpdate inContext: aCESimRunContext ]
+		do: [ :cmd | 
+			CESimCurrentOrigin
+				value: cmd
+				during: [ cmd contributeLifecycleIntoUpdate: aUpdate inContext: aContext ] ].	
+	
+	"Invocations second: produce ops"
+	aContext runCache lifecycleInvocations
+		do: [ :inv | 
+			CESimCurrentOrigin
+				value: inv
+				during: [ inv contributeIntoUpdate: aUpdate inContext: aContext ] ]
 ]

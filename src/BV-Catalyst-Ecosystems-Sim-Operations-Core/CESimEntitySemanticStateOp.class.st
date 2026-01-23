@@ -1,14 +1,14 @@
 Class {
-	#name : 'CESimNotableSemanticStateOp',
+	#name : 'CESimEntitySemanticStateOp',
 	#superclass : 'CESimEntityStateOp',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Operations-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
 { #category : 'private - state' }
-CESimNotableSemanticStateOp >> ensureStateDictInContext: aCESimRunContext [
+CESimEntitySemanticStateOp >> ensureStateDictInContext: aCESimRunContext [
 	| notable state |
-	notable := self notableInContext: aCESimRunContext.
+	notable := self entityInContext: aCESimRunContext.
 	state := notable state.
 	state ifNil: [
 		state := Dictionary new.

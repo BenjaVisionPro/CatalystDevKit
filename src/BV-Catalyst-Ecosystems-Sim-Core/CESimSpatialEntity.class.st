@@ -13,9 +13,7 @@ Class {
 CESimSpatialEntity >> asSnapshot [
 	"Authoritative sim-space snapshot (no UE types)."
 
-	^ Dictionary new
-		at: #entityId put: entityId;
-		at: #definitionKey put: definitionKey;
+	^ super asSnapshot
 		at: #transform put: transform;
 		at: #velocity put: velocity;
 		yourself

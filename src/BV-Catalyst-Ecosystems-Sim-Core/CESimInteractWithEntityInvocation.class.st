@@ -21,11 +21,13 @@ CESimInteractWithEntityInvocation class >> targetEntityId: aCEEntityId interacti
 
 { #category : 'as yet unclassified' }
 CESimInteractWithEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
-	(aSimContext canTargetEntityId: targetEntityId update: aSimUpdate)
-		ifFalse: [ ^ self ].
+	(aSimContext
+		canTargetEntityId: targetEntityId
+		invocation: self
+		update: aSimUpdate) ifFalse: [ ^ self ].
 
 	aSimUpdate
-		addEntityOp: (CESimApplyInteractionToNotableOp
+		addEntityOp: (CESimApplyInteractionToEntityOp
 				withRegionId: aSimContext homeRegionId
 				entityId: targetEntityId
 				interactionType: interactionType
@@ -46,4 +48,9 @@ CESimInteractWithEntityInvocation >> payload: anObject [
 { #category : 'accessing' }
 CESimInteractWithEntityInvocation >> targetEntityId: anObject [
 	targetEntityId := anObject
+]
+
+{ #category : 'targeting' }
+CESimInteractWithEntityInvocation >> targetingProfile [
+	^ CESimTargetingProfile interact
 ]

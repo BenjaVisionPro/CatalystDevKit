@@ -15,31 +15,6 @@ CESimTargetedEntityCommand class >> targetEntityId: aCEEntityId [
 		yourself
 ]
 
-{ #category : 'targeting' }
-CESimTargetedEntityCommand >> canTargetEntityId: anEntityId inContext: aSimContext update: aSimUpdate [
-	"Answers true if this command can target anEntityId in the given run context.
-	If false, emits a deterministic #targetRejected audit event into aSimUpdate and answers false."
-
-	| decision allowed reason |
-	decision := aSimContext targetingDecisionForEntityId: anEntityId.
-	allowed := decision at: #allowed ifAbsent: [ false ].
-
-	allowed ifTrue: [ ^ true ].
-
-	reason := decision at: #reason ifAbsent: [ #rejected ].
-
-	aSimUpdate
-		addEvent: (Dictionary new
-				at: #type put: #targetRejected;
-				at: #commandType put: self class name asSymbol;
-				at: #entityId put: anEntityId;
-				at: #reason put: reason;
-				at: #tickId put: aSimContext tickId;
-				yourself).
-
-	^ false
-]
-
 { #category : 'accessing' }
 CESimTargetedEntityCommand >> targetEntityId [ ^ targetEntityId
 ]

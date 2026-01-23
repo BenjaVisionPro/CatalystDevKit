@@ -1,5 +1,5 @@
 Class {
-	#name : 'CESimSetNotableStateOp',
+	#name : 'CESimSetEntityStateOp',
 	#superclass : 'CESimEntityStateOp',
 	#instVars : [
 		'state'
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimSetNotableStateOp class >> withRegionId: aCERegionId entityId: aCEEntityId state: aStateDict [
+CESimSetEntityStateOp class >> withRegionId: aCERegionId entityId: aCEEntityId state: aStateDict [
 	^ self new
 		regionId: aCERegionId;
 		entityId: aCEEntityId;
@@ -18,11 +18,11 @@ CESimSetNotableStateOp class >> withRegionId: aCERegionId entityId: aCEEntityId 
 ]
 
 { #category : 'applying' }
-CESimSetNotableStateOp >> applyInContext: aCESimRunContext [
-	(self notableInContext: aCESimRunContext) state: state
+CESimSetEntityStateOp >> applyInContext: aCESimRunContext [
+	(self entityInContext: aCESimRunContext) state: state
 ]
 
 { #category : 'accessing' }
-CESimSetNotableStateOp >> state: aStateDict [
+CESimSetEntityStateOp >> state: aStateDict [
 	state := aStateDict
 ]

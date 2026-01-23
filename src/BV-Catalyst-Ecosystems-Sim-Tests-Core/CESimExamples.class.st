@@ -14,7 +14,7 @@ CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	cmd := CESimCreateNotableCommand
+	cmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -38,7 +38,7 @@ CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	cmd := CESimCreateNotableCommand
+	cmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
@@ -69,7 +69,7 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 		environmentQuery: engine environmentQuery.
 
 	notable := context
-		newNotableWithDefinitionKey: #demoNotable
+		newEntityWithDefinitionKey: #demoNotable
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
 			yourself)
@@ -79,9 +79,9 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 
 	"Enqueue + apply (Ops are the authoritative change)."
 	update := CESimUpdate new.
-	update addEntityOp: (CESimAddNotableToRegionOp
+	update addEntityOp: (CESimAddEntityToRegionOp
 		withRegionId: bubble homeRegionId
-		notable: notable).
+		entity: notable).
 	context addUpdate: update.
 
 	engine transactionRunner
@@ -143,7 +143,7 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	"Tick 1: create a notable to inspect."
-	createCmd := CESimCreateNotableCommand
+	createCmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -174,7 +174,7 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	"Tick 1: create a notable so we have a real entityId to target."
-	createCmd := CESimCreateNotableCommand
+	createCmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -233,12 +233,12 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	cmd1 := CESimCreateNotableCommand
+	cmd1 := CESimAddEntityCommand
 		withDefinitionKey: #demoNotableA
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
-	cmd2 := CESimCreateNotableCommand
+	cmd2 := CESimAddEntityCommand
 		withDefinitionKey: #demoNotableB
 		transform: (Dictionary new at: #pos put: #(1 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -294,7 +294,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	"Tick 1: create a notable"
-	createCmd := CESimCreateNotableCommand
+	createCmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -330,7 +330,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	"Tick 1: create a notable"
-	createCmd := CESimCreateNotableCommand
+	createCmd := CESimAddEntityCommand
 		withDefinitionKey: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
@@ -378,7 +378,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 
 	update2 := CESimUpdate new.
 	update2
-		addEntityOp: (CESimSetNotableTransformOp
+		addEntityOp: (CESimSetEntityTransformOp
 				withRegionId: bubble homeRegionId
 				entityId: notable entityId
 				transform: newTransform).
@@ -411,7 +411,7 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	createCmd := CESimCreateNotableCommand
+	createCmd := CESimAddEntityCommand
 			withDefinitionKey: #demoNotable
 			transform: (Dictionary new
 					at: #pos put: #(0 0 0);
@@ -425,7 +425,7 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 
 	entityId := view1 spawns first at: #entityId.
 
-	removeCmd := CESimRemoveNotableCommand targetEntityId: entityId.
+	removeCmd := CESimRemoveEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: removeCmd.
 	view2 := engine advanceBubbleTickFor: bubble bubbleId.
 
@@ -455,20 +455,20 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 		environmentQuery: engine environmentQuery.
 
 	notableA := context
-		newNotableWithDefinitionKey: #demoVisible
+		newEntityWithDefinitionKey: #demoVisible
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #tag put: #A; yourself).
 
 	notableB := context
-		newNotableWithDefinitionKey: #demoInvisible
+		newEntityWithDefinitionKey: #demoInvisible
 		transform: (Dictionary new at: #pos put: #(999 0 0); yourself)
 		state: (Dictionary new at: #tag put: #B; yourself).
 
 	"Add both notables, but to different regions."
 	update := CESimUpdate new.
 	update
-		addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionA aggregateId notable: notableA);
-		addEntityOp: (CESimAddNotableToRegionOp withRegionId: regionB aggregateId notable: notableB).
+		addEntityOp: (CESimAddEntityToRegionOp withRegionId: regionA aggregateId entity: notableA);
+		addEntityOp: (CESimAddEntityToRegionOp withRegionId: regionB aggregateId entity: notableB).
 	context addUpdate: update.
 
 	engine transactionRunner
