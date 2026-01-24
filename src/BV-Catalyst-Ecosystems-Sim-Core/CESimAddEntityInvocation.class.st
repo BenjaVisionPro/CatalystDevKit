@@ -4,17 +4,13 @@ Class {
 	#instVars : [
 		'entityId',
 		'transform',
-		'state',
-		'spawnSpecId'
+				'spawnSpecId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'as yet unclassified' }
-CESimAddEntityInvocation class >> entityId: anEntityId definitionKey: aDefinitionKey transform: aTransform state: aState [
-]
-
 { #category : 'as yet unclassified' }
 CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
 	| actualEntityId entity regionId |
@@ -54,15 +50,7 @@ CESimAddEntityInvocation >> spawnSpecId: anObject [
 ]
 
 { #category : 'accessing' }
-CESimAddEntityInvocation >> state [
-	^ state
-]
-
 { #category : 'accessing' }
-CESimAddEntityInvocation >> state: anObject [
-	state := anObject
-]
-
 { #category : 'accessing' }
 CESimAddEntityInvocation >> transform [
 	^ transform

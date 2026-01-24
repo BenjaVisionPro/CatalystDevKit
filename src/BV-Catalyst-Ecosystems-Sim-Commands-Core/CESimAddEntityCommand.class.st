@@ -3,8 +3,7 @@ Class {
 	#superclass : 'CESimExternalCommand',
 	#instVars : [
 		'transform',
-		'state',
-		'spawnSpecId',
+				'spawnSpecId',
 		'entityId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
@@ -12,12 +11,10 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimAddEntityCommand class >> withSpawnSpecId: aSpecId transform: aTransform state: aState [
+CESimAddEntityCommand class >> withSpawnSpecId: aSpecId transform: aTransform [
 	^ self new
 		spawnSpecId: aSpecId;
-		transform: aTransform;
-		state: aState;
-		yourself
+		transform: aTransform;		yourself
 ]
 
 { #category : 'contributing' }
@@ -26,18 +23,11 @@ CESimAddEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aCo
 		addInvocation: (CESimAddEntityInvocation new
 				spawnSpecId: spawnSpecId;
 				transform: transform;
+				entityId: entityId; "nil if not provided"
 				yourself)
 ]
 
 { #category : 'contributing' }
-CESimAddEntityCommand >> contributeLifecycleIntoUpdate: aUpdate inContext: aContext [
-	aContext runCache addInvocation: (CESimAddEntityInvocation new
-		spawnSpecId: spawnSpecId;
-		transform: transform;
-		entityId: entityId; "nil if not provided"
-		yourself)
-]
-
 { #category : 'accessing' }
 CESimAddEntityCommand >> entityId [
 	^ entityId
@@ -51,11 +41,9 @@ CESimAddEntityCommand >> entityId: anObject [
 { #category : 'producing' }
 CESimAddEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	aCESimUpdate addEvent: (Dictionary new
-		at: #type put: #createNotableRequested;
+		at: #type put: #addEntityRequested;
 		at: #spawnSpecId put: spawnSpecId;
-		at: #transform put: transform;
-		at: #state put: state;
-		at: #tickId put: aCESimRunContext tickId;
+		at: #transform put: transform;		at: #tickId put: aCESimRunContext tickId;
 		yourself)
 ]
 
@@ -70,15 +58,7 @@ CESimAddEntityCommand >> spawnSpecId: aKey [
 ]
 
 { #category : 'accessing' }
-CESimAddEntityCommand >> state [
-	^ state
-]
-
 { #category : 'accessing' }
-CESimAddEntityCommand >> state: aState [
-	state := aState
-]
-
 { #category : 'accessing' }
 CESimAddEntityCommand >> transform [
 	^ transform

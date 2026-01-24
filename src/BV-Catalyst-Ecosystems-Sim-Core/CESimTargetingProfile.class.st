@@ -19,3 +19,8 @@ CESimTargetingProfile class >> interact [
 CESimTargetingProfile class >> targetedStimulus [
 	^ #targetedStimulusTargetingProfile
 ]
+
+{ #category : 'profiles' }
+CESimTargetingProfile class >> focus [
+	^ #focusTargetingProfile
+]

@@ -1,16 +1,14 @@
 Class {
-	#name : 'CESimInteractionBehaviourModule',
+	#name : 'CESimFocusBehaviourModule',
 	#superclass : 'CESimEffectBehaviourModule',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'contributing' }
-
-{ #category : 'contributing' }
-CESimInteractionBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
+CESimFocusBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	"Invocations only: commands enqueue invocations during command-input."
-	aSimContext runCache interactionInvocations
+	aSimContext runCache focusInvocations
 		do: [ :invocation |
 			CESimCurrentOrigin value: invocation during: [
 				invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext

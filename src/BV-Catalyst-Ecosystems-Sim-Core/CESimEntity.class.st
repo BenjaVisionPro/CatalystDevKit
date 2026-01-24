@@ -12,14 +12,6 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimEntity class >> id: aCEEntityId definitionKey: aDefinitionKey [
-	^ self new
-		entityId: aCEEntityId;
-		spawnSpecId: aDefinitionKey;
-		initializeModuleStates;
-		yourself
-]
-
 { #category : 'instance creation' }
 CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
 	^ self new
