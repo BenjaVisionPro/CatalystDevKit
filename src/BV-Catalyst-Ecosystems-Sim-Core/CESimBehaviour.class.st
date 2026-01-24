@@ -47,7 +47,6 @@ CESimBehaviour >> initializeBubbleBehaviour [
 	bubbleBehaviourModules := OrderedCollection new
 			add: CESimCommandInputBehaviourModule new;
 			add: CESimLifecycleBehaviourModule new;
-			add: CESimFocusBehaviourModule new;
 			add: CESimStimulusBehaviourModule new;
 			add: CESimInteractionBehaviourModule new;
 			yourself
@@ -64,12 +63,8 @@ CESimBehaviour >> initializeTargetingPolicies [
 	targetingPolicies
 		at: CESimTargetingProfile inspect
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
-		
-		at: CESimTargetingProfile focus put: (targetingPolicies at: CESimTargetingProfile inspect);
-		
 		at: CESimTargetingProfile interact
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
-			
 		at: CESimTargetingProfile targetedStimulus
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new)
 ]

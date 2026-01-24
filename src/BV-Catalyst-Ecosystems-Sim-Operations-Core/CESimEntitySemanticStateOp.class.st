@@ -7,12 +7,12 @@ Class {
 
 { #category : 'private - state' }
 CESimEntitySemanticStateOp >> ensureStateDictInContext: aCESimRunContext [
-	| entity state |
-	entity := self entityInContext: aCESimRunContext.
-	state := entity state.
+	| notable state |
+	notable := self entityInContext: aCESimRunContext.
+	state := notable state.
 	state ifNil: [
 		state := Dictionary new.
-		entity state: state
+		notable state: state
 	].
 	^ state
 ]

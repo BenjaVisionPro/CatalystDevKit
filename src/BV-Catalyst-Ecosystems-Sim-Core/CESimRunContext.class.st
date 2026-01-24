@@ -113,7 +113,26 @@ CESimRunContext >> initialize [
 ]
 
 { #category : 'factory - entities' }
+CESimRunContext >> newEntityWithDefinitionKey: aDefinitionKey transform: aTransform state: aState [
+	^ self
+		newEntityWithId: self engine idIssuer nextEntityId
+		definitionKey: aDefinitionKey
+		transform: aTransform
+		state: aState
+]
+
 { #category : 'factory - entities' }
+CESimRunContext >> newEntityWithId: anEntityId definitionKey: aDefinitionKey transform: aTransform state: aState [
+	"Canonical creation path for Notables."
+
+	^ CECreatureEntity new
+		entityId: anEntityId;
+		spawnSpecId: aDefinitionKey;
+		transform: aTransform;
+		state: aState;
+		yourself
+]
+
 { #category : 'targeting' }
 CESimRunContext >> ownerDecision [
 	| ownerId |

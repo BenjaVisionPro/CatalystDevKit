@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'examples' }
-CESimExamples >> example_addEntityCommandProducesAuditEventAndSpawn [
+CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 	<gtExample>
 	| engine region bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
@@ -30,7 +30,7 @@ CESimExamples >> example_addEntityCommandProducesAuditEventAndSpawn [
 ]
 
 { #category : 'examples' }
-CESimExamples >> example_addEntityCommandSpawnsInLocalViewSameTick [
+CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	<gtExample>
 	| engine region bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
@@ -56,7 +56,7 @@ CESimExamples >> example_addEntityCommandSpawnsInLocalViewSameTick [
 { #category : 'examples' }
 CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	<gtExample>
-	| engine region bubble context entity update |
+	| engine region bubble context notable update |
 	engine := CESimEngine new.
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
@@ -68,18 +68,20 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 		tickId: engine currentTick
 		environmentQuery: engine environmentQuery.
 
-	entity := context
-	spawnEntityFromSpecId: #demoNotable
-	entityId: engine idIssuer nextEntityId
-	transform: (Dictionary new
-		at: #pos put: #(0 0 0);
-		yourself).
+	notable := context
+		newEntityWithDefinitionKey: #demoNotable
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		state: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
-"Enqueue + apply (Ops are the authoritative change)."
+	"Enqueue + apply (Ops are the authoritative change)."
 	update := CESimUpdate new.
 	update addEntityOp: (CESimAddEntityToRegionOp
 		withRegionId: bubble homeRegionId
-		entity: entity).
+		entity: notable).
 	context addUpdate: update.
 
 	engine transactionRunner
@@ -89,7 +91,7 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 		at: #engine put: engine;
 		at: #region put: region;
 		at: #bubble put: bubble;
-		at: #entity put: entity;
+		at: #notable put: notable;
 		yourself
 ]
 
@@ -141,7 +143,7 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	"Tick 1: create a entity to inspect."
+	"Tick 1: create a notable to inspect."
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
@@ -172,7 +174,7 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	"Tick 1: create a entity so we have a real entityId to target."
+	"Tick 1: create a notable so we have a real entityId to target."
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
@@ -292,7 +294,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	"Tick 1: add an entity"
+	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
@@ -328,7 +330,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 	region := engine newRegion.
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
-	"Tick 1: add an entity"
+	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
@@ -339,7 +341,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 
 	entityId := view1 spawns first at: #entityId.
 
-	"Tick 2: emit stimulus -> should update the entity semantic state"
+	"Tick 2: emit stimulus -> should update the notable semantic state"
 	stimulusCmd := CESimEmitStimulusAtTransformCommand
 		type: #sound
 		transform: (Dictionary new at: #pos put: #(5 0 0); yourself)
@@ -358,11 +360,11 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 { #category : 'examples' }
 CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	<gtExample>
-	| seed engine bubble entity view1 context2 update2 collectRunner buildRunner view2 newTransform |
+	| seed engine bubble notable view1 context2 update2 collectRunner buildRunner view2 newTransform |
 	seed := self example_localViewShowsSpawnForAppliedNotable.
 	engine := (seed at: #seed) at: #engine.
 	bubble := (seed at: #seed) at: #bubble.
-	entity := (seed at: #seed) at: #entity.
+	notable := (seed at: #seed) at: #notable.
 	view1 := seed at: #view.
 
 	newTransform := Dictionary new
@@ -379,7 +381,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	update2
 		addEntityOp: (CESimSetEntityTransformOp
 				withRegionId: bubble homeRegionId
-				entityId: entity entityId
+				entityId: notable entityId
 				transform: newTransform).
 	context2 addUpdate: update2.
 
@@ -396,7 +398,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	^ Dictionary new
 		at: #view1 put: view1;
 		at: #view2 put: view2;
-		at: #entity put: entity;
+		at: #notable put: notable;
 		at: #transform2 put: newTransform;
 		yourself
 ]
@@ -454,14 +456,14 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 		environmentQuery: engine environmentQuery.
 
 	notableA := context
-		spawnEntityFromSpecId: #demoVisible
-		entityId: engine idIssuer nextEntityId
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself).
+		newEntityWithDefinitionKey: #demoVisible
+		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
+		state: (Dictionary new at: #tag put: #A; yourself).
 
 	notableB := context
-		spawnEntityFromSpecId: #demoInvisible
-		entityId: engine idIssuer nextEntityId
-		transform: (Dictionary new at: #pos put: #(999 0 0); yourself).
+		newEntityWithDefinitionKey: #demoInvisible
+		transform: (Dictionary new at: #pos put: #(999 0 0); yourself)
+		state: (Dictionary new at: #tag put: #B; yourself).
 
 	"Add both notables, but to different regions."
 	update := CESimUpdate new.
@@ -490,8 +492,8 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 		at: #regionA put: regionA;
 		at: #regionB put: regionB;
 		at: #bubble put: bubble;
-		at: #entityA put: notableA;
-		at: #entityB put: notableB;
+		at: #notableA put: notableA;
+		at: #notableB put: notableB;
 		at: #stateA0 put: stateA0;
 		at: #stateB0 put: stateB0;
 		at: #view put: view;
@@ -536,9 +538,9 @@ CESimExamples >> seedArchetypesAndSpawnSpecsOn: engine [
 ]
 
 { #category : 'tests' }
-CESimExamples >> test_addEntityCommandProducesAuditEventAndSpawn [
+CESimExamples >> test_createNotableCommandProducesAuditEventAndSpawn [
 	| result view spawn ev |
-	result := self example_addEntityCommandProducesAuditEventAndSpawn.
+	result := self example_createNotableCommandProducesAuditEventAndSpawn.
 	view := result at: #view.
 
 	self assert: view spawns size equals: 1.
@@ -550,16 +552,16 @@ CESimExamples >> test_addEntityCommandProducesAuditEventAndSpawn [
 	self assert: (spawn includesKey: #entityId).
 
 	ev := view events
-		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #addEntityRequested ]
-		ifNone: [ self fail: 'Expected #addEntityRequested event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #createNotableRequested ]
+		ifNone: [ self fail: 'Expected #createNotableRequested event' ].
 
 	self assert: (ev at: #spawnSpecId) equals: #demoNotable
 ]
 
 { #category : 'tests' }
-CESimExamples >> test_addEntityCommandSpawnsInLocalViewSameTick [
+CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
 	| view spawn |
-	view := self example_addEntityCommandSpawnsInLocalViewSameTick.
+	view := self example_createNotableCommandSpawnsInLocalViewSameTick.
 
 	self assert: view spawns size equals: 1.
 	self assert: view updates isEmpty.
@@ -656,18 +658,18 @@ CESimExamples >> test_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableC
 
 { #category : 'tests' }
 CESimExamples >> test_localViewShowsSpawnForAppliedNotable [
-	| result seed view entity spawn |
+	| result seed view notable spawn |
 	result := self example_localViewShowsSpawnForAppliedNotable.
 	seed := result at: #seed.
 	view := result at: #view.
-	entity := seed at: #entity.
+	notable := seed at: #notable.
 
 	self assert: view spawns size equals: 1.
 	self assert: view updates isEmpty.
 	self assert: view despawns isEmpty.
 
 	spawn := view spawns first.
-	self assert: (spawn at: #entityId) equals: entity entityId.
+	self assert: (spawn at: #entityId) equals: notable entityId.
 	self assert: (spawn at: #spawnSpecId) equals: #demoNotable
 ]
 
@@ -731,11 +733,11 @@ CESimExamples >> test_localViewShowsStateUpdateAfterStimulusCommand [
 
 { #category : 'tests' }
 CESimExamples >> test_localViewShowsUpdateAfterTransformChange [
-	| result view1 view2 entity updateSnap transform2 |
+	| result view1 view2 notable updateSnap transform2 |
 	result := self example_localViewShowsUpdateAfterTransformChange.
 	view1 := result at: #view1.
 	view2 := result at: #view2.
-	entity := result at: #entity.
+	notable := result at: #notable.
 	transform2 := result at: #transform2.
 
 	self assert: view1 spawns size equals: 1.
@@ -746,7 +748,7 @@ CESimExamples >> test_localViewShowsUpdateAfterTransformChange [
 	self assert: view2 despawns isEmpty.
 
 	updateSnap := view2 updates first.
-	self assert: (updateSnap at: #entityId) equals: entity entityId.
+	self assert: (updateSnap at: #entityId) equals: notable entityId.
 	self assert: (updateSnap at: #transform) equals: transform2
 ]
 
@@ -775,12 +777,12 @@ CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	result := self example_stimulusOnlyAffectsVisibleNotables.
 
 	view := result at: #view.
-	notableA := result at: #entityA.
-	notableB := result at: #entityB.
+	notableA := result at: #notableA.
+	notableB := result at: #notableB.
 	stateA0 := result at: #stateA0.
 	stateB0 := result at: #stateB0.
 
-	"LocalView should only contain the visible entity (home region only in v0)."
+	"LocalView should only contain the visible notable (home region only in v0)."
 	self assert: view spawns size equals: 1.
 	self assert: view updates isEmpty.
 	self assert: view despawns isEmpty.
@@ -788,10 +790,10 @@ CESimExamples >> test_stimulusOnlyAffectsVisibleNotables [
 	spawn := view spawns first.
 	self assert: (spawn at: #entityId) equals: notableA entityId.
 
-	"Invisible entity must not be mutated by stimulus resolution."
+	"Invisible notable must not be mutated by stimulus resolution."
 	self assert: notableB state equals: stateB0.
 
-	"Visible entity should have been affected (semantic op applied)."
+	"Visible notable should have been affected (semantic op applied)."
 	self deny: notableA state equals: stateA0.
 	self assert: ((notableA state at: #lastStimulus) at: #type) equals: #sound
 ]
