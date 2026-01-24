@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimTargetedEntityCommand',
-	#superclass : 'CESimExternalCommand',
+	#superclass : 'CESimCommand',
 	#instVars : [
 		'targetEntityId'
 	],

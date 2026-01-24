@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimAddEntityCommand',
-	#superclass : 'CESimExternalCommand',
+	#superclass : 'CESimCommand',
 	#instVars : [
 		'transform',
 		'state',

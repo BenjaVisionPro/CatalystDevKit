@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimEmitStimulusAtTransformCommand',
-	#superclass : 'CESimExternalCommand',
+	#superclass : 'CESimCommand',
 	#instVars : [
 		'stimulusType',
 		'transform',
