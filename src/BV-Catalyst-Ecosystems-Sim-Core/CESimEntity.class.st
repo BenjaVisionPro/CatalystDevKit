@@ -29,6 +29,16 @@ CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
 		yourself
 ]
 
+{ #category : 'spawning' }
+CESimEntity class >> spawnFromSpec: aSpec entityId: anId transform: aTransform [
+	| entity |
+	entity := aSpec entityClass new.
+	^ entity
+		configureFromSpawnSpec: aSpec
+		entityId: anId
+		transform: aTransform
+]
+
 { #category : 'as yet unclassified' }
 CESimEntity >> asSnapshot [
 	| snap |
@@ -76,16 +86,6 @@ CESimEntity >> moduleStateAt: aKey ifAbsentPut: aBlock [
 { #category : 'accessing' }
 CESimEntity >> moduleStates [
 	^ moduleStates
-]
-
-{ #category : 'spawning' }
-CESimEntity >> spawnFromSpec: aSpec entityId: anId transform: aTransform [
-	| entity |
-	entity := aSpec entityClass new.
-	^ entity
-		configureFromSpawnSpec: aSpec
-		entityId: anId
-		transform: aTransform
 ]
 
 { #category : 'accessing' }

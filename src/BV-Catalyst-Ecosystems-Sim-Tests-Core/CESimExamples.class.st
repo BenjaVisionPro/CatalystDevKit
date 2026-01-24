@@ -235,12 +235,12 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd1 := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotableA
+		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	cmd2 := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotableB
+		withSpawnSpecId: #demoNotable
 		transform: (Dictionary new at: #pos put: #(1 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
