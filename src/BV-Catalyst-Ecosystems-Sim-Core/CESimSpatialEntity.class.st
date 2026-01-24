@@ -19,6 +19,16 @@ CESimSpatialEntity >> asSnapshot [
 		yourself
 ]
 
+{ #category : 'spawning' }
+CESimSpatialEntity >> configureFromSpawnSpec: aSpec entityId: anId transform: aTransform [
+	super
+		configureFromSpawnSpec: aSpec
+		entityId: anId
+		transform: aTransform.
+	transform := aTransform.
+	^ self
+]
+
 { #category : 'accessing' }
 CESimSpatialEntity >> transform [
 	^ transform

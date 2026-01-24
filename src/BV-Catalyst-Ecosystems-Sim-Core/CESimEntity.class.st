@@ -3,9 +3,9 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'entityId',
-		'definitionKey',
 		'moduleStates',
-		'state'
+		'state',
+		'spawnSpecId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -15,7 +15,16 @@ Class {
 CESimEntity class >> id: aCEEntityId definitionKey: aDefinitionKey [
 	^ self new
 		entityId: aCEEntityId;
-		definitionKey: aDefinitionKey;
+		spawnSpecId: aDefinitionKey;
+		initializeModuleStates;
+		yourself
+]
+
+{ #category : 'instance creation' }
+CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
+	^ self new
+		entityId: aCEEntityId;
+		spawnSpecId: aSpawnSpecId;
 		initializeModuleStates;
 		yourself
 ]
@@ -25,20 +34,17 @@ CESimEntity >> asSnapshot [
 	| snap |
 	snap := Dictionary new
 			at: #entityId put: entityId;
-			at: #definitionKey put: definitionKey;
+			at: #spawnSpecId put: spawnSpecId;
 			at: #state put: state;
 			yourself.
 	^ snap
 ]
 
-{ #category : 'accessing' }
-CESimEntity >> definitionKey [
-	^ definitionKey
-]
-
-{ #category : 'accessing' }
-CESimEntity >> definitionKey: anObject [
-	definitionKey := anObject
+{ #category : 'spawning' }
+CESimEntity >> configureFromSpawnSpec: aSpec entityId: anId transform: aTransform [
+	spawnSpecId := aSpec spawnSpecId.
+	entityId := anId.
+	state := aSpec initialState copy
 ]
 
 { #category : 'accessing' }
@@ -70,6 +76,26 @@ CESimEntity >> moduleStateAt: aKey ifAbsentPut: aBlock [
 { #category : 'accessing' }
 CESimEntity >> moduleStates [
 	^ moduleStates
+]
+
+{ #category : 'spawning' }
+CESimEntity >> spawnFromSpec: aSpec entityId: anId transform: aTransform [
+	| entity |
+	entity := aSpec entityClass new.
+	^ entity
+		configureFromSpawnSpec: aSpec
+		entityId: anId
+		transform: aTransform
+]
+
+{ #category : 'accessing' }
+CESimEntity >> spawnSpecId [
+	^ spawnSpecId
+]
+
+{ #category : 'accessing' }
+CESimEntity >> spawnSpecId: anObject [
+	spawnSpecId := anObject
 ]
 
 { #category : 'accessing' }

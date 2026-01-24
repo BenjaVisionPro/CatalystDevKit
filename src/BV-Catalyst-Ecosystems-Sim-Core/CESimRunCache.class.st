@@ -1,6 +1,6 @@
 Class {
 	#name : 'CESimRunCache',
-	#superclass : 'CESimTempCache',
+	#superclass : 'CESimDictionary',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }

@@ -12,7 +12,7 @@ CESimLifecycleBehaviourModule >> applyCreateNotableCommand: aCommand intoUpdate:
 
 	"IDs are minted here (context factory), not in the command event path."
 	notable := aCESimRunContext
-		newEntityWithDefinitionKey: aCommand definitionKey
+		newEntityWithDefinitionKey: aCommand spawnSpecId
 		transform: aCommand transform
 		state: aCommand state.
 

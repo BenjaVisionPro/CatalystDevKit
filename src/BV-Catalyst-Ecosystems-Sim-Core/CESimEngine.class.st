@@ -13,7 +13,9 @@ Class {
 		'updateApplier',
 		'transactionRunner',
 		'idIssuer',
-		'behaviour'
+		'behaviour',
+		'archetypes',
+		'spawnSpecs'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -45,6 +47,11 @@ CESimEngine >> advanceGlobalTick [
 		do: [ :region | self runGlobalPipelineOnRegion: region ].
 
 	^ tickId
+]
+
+{ #category : 'accessing' }
+CESimEngine >> archetypes [
+	^ archetypes
 ]
 
 { #category : 'accessing' }
@@ -136,6 +143,8 @@ CESimEngine >> initialize [
 	transactionRunner := CENullTransactionRunner new.
 	idIssuer := CESequenceIdIssuer new.
 	behaviour := CESimBehaviour new.
+	archetypes := CESimEntityArchetypes new.
+	spawnSpecs := CESimEntitySpawnSpecs new.
 ]
 
 { #category : 'accessing' }
@@ -207,6 +216,11 @@ CESimEngine >> runGlobalPipelineOnRegion: aRegion [
     globalPipeline runInContext: context.
 
     lastRunContext := context
+]
+
+{ #category : 'accessing' }
+CESimEngine >> spawnSpecs [
+	^ spawnSpecs
 ]
 
 { #category : 'accessing' }

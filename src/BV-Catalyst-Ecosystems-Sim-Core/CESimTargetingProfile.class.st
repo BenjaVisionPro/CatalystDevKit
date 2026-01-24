@@ -17,5 +17,5 @@ CESimTargetingProfile class >> interact [
 
 { #category : 'targeting profile' }
 CESimTargetingProfile class >> targetedStimulus [
-	^ #targetedStimulusTargetingProfilef
+	^ #targetedStimulusTargetingProfile
 ]

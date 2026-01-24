@@ -113,16 +113,24 @@ CESimRunContext >> initialize [
 ]
 
 { #category : 'factory - entities' }
-CESimRunContext >> newEntityWithDefinitionKey: aKey transform: aTransform state: aState [
-	"Canonical creation path for Notables.
-	 Callers never mint ids; context/engine owns determinism + id issuance."
+CESimRunContext >> newEntityWithDefinitionKey: aDefinitionKey transform: aTransform state: aState [
+	^ self
+		newEntityWithId: self engine idIssuer nextEntityId
+		definitionKey: aDefinitionKey
+		transform: aTransform
+		state: aState
+]
+
+{ #category : 'factory - entities' }
+CESimRunContext >> newEntityWithId: anEntityId definitionKey: aDefinitionKey transform: aTransform state: aState [
+	"Canonical creation path for Notables."
 
 	^ CECreatureEntity new
-		definitionKey: aKey;
+		entityId: anEntityId;
+		spawnSpecId: aDefinitionKey;
 		transform: aTransform;
 		state: aState;
-		entityId: self engine idIssuer nextEntityId;
-		yourself	"or whatever your issuer selector is"
+		yourself
 ]
 
 { #category : 'targeting' }
@@ -157,6 +165,12 @@ CESimRunContext >> region [
 	^ engine ensureRegion: self homeRegionId
 ]
 
+{ #category : 'accessing' }
+CESimRunContext >> regionIdForTransform: aTransform [
+	"ToDo: Spacial mapping from map to region"
+	^ self homeRegionId
+]
+
 { #category : 'run cache' }
 CESimRunContext >> runCache [
 	^ runCache
@@ -170,6 +184,31 @@ CESimRunContext >> runCacheAt: aKey ifAbsent: aBlock [
 { #category : 'run cache' }
 CESimRunContext >> runCacheAt: aKey put: aValue [
 	runCache at: aKey put: aValue
+]
+
+{ #category : 'spawning' }
+CESimRunContext >> spawnEntityFromSpecId: aSpecId entityId: anId transform: aTransform [
+	| spec |
+	spec := self spawnSpecAt: aSpecId.
+	^ CESimEntity
+		spawnFromSpec: spec
+		entityId: anId
+		transform: aTransform
+]
+
+{ #category : 'spawning' }
+CESimRunContext >> spawnEntityFromSpecId: aSpecId transform: aTransform [
+	| entityId |
+	entityId := self engine idIssuer nextEntityId.
+	^ self
+		spawnEntityFromSpecId: aSpecId
+		entityId: entityId
+		transform: aTransform
+]
+
+{ #category : 'spawning' }
+CESimRunContext >> spawnSpecAt: aSpecId [
+	^ self engine spawnSpecs at: aSpecId
 ]
 
 { #category : 'accessing' }
