@@ -66,8 +66,10 @@ CESimBehaviour >> initializeTargetingPolicies [
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
 		
 		at: CESimTargetingProfile focus put: (targetingPolicies at: CESimTargetingProfile inspect);
+		
 		at: CESimTargetingProfile interact
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new);
+			
 		at: CESimTargetingProfile targetedStimulus
 			put: (OrderedCollection with: CESimPerceivedThisTickTargetingRule new)
 ]
