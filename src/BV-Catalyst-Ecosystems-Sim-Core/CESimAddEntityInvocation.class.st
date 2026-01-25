@@ -4,33 +4,30 @@ Class {
 	#instVars : [
 		'entityId',
 		'transform',
-		'state',
-		'spawnSpecId'
+		'spawnSpecId',
+		'stateOverlay'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'as yet unclassified' }
-CESimAddEntityInvocation class >> entityId: anEntityId definitionKey: aDefinitionKey transform: aTransform state: aState [
-]
-
-{ #category : 'as yet unclassified' }
 CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
 	| actualEntityId entity regionId |
 	actualEntityId := entityId
-			ifNil: [  aContext engine idIssuer nextEntityId ]
+			ifNil: [ aContext engine idIssuer nextEntityId ]
 			ifNotNil: [ entityId ].
 
 	entity := aContext
 			spawnEntityFromSpecId: spawnSpecId
 			entityId: actualEntityId
-			transform: transform.
+			transform: transform
+			stateOverlay: stateOverlay.
 
 	regionId := aContext regionIdForTransform: transform.
 
 	aUpdate
-		addEntityOp: (CESimAddEntityToRegionOp withRegionId: regionId entity: entity)
+		addEntityOp: (CESimAddOp withRegionId: regionId entity: entity)
 ]
 
 { #category : 'accessing' }
@@ -54,13 +51,13 @@ CESimAddEntityInvocation >> spawnSpecId: anObject [
 ]
 
 { #category : 'accessing' }
-CESimAddEntityInvocation >> state [
-	^ state
+CESimAddEntityInvocation >> stateOverlay [
+	^ stateOverlay
 ]
 
 { #category : 'accessing' }
-CESimAddEntityInvocation >> state: anObject [
-	state := anObject
+CESimAddEntityInvocation >> stateOverlay: anObject [
+	stateOverlay := anObject
 ]
 
 { #category : 'accessing' }

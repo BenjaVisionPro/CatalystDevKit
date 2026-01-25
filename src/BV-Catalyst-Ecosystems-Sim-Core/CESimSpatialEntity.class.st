@@ -9,6 +9,17 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
+{ #category : 'instance creation' }
+CESimSpatialEntity class >> spawnFromSpec: aSpawnSpec entityId: anEntityId transform: aTransform state: aState [
+	| entity |
+	entity := super
+			spawnFromSpec: aSpawnSpec
+			entityId: anEntityId
+			state: aState.
+	entity transform: aTransform.
+	^ entity
+]
+
 { #category : 'convertion' }
 CESimSpatialEntity >> asSnapshot [
 	"Authoritative sim-space snapshot (no UE types)."
@@ -17,16 +28,6 @@ CESimSpatialEntity >> asSnapshot [
 		at: #transform put: transform;
 		at: #velocity put: velocity;
 		yourself
-]
-
-{ #category : 'spawning' }
-CESimSpatialEntity >> configureFromSpawnSpec: aSpec entityId: anId transform: aTransform [
-	super
-		configureFromSpawnSpec: aSpec
-		entityId: anId
-		transform: aTransform.
-	transform := aTransform.
-	^ self
 ]
 
 { #category : 'accessing' }

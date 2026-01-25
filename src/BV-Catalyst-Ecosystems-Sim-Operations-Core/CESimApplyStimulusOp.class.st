@@ -1,6 +1,6 @@
 Class {
-	#name : 'CESimApplyStimulusToEntityOp',
-	#superclass : 'CESimEntitySemanticStateOp',
+	#name : 'CESimApplyStimulusOp',
+	#superclass : 'CESimStateOp',
 	#instVars : [
 		'stimulusType',
 		'transform',
@@ -11,18 +11,8 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
-{ #category : 'instance creation' }
-CESimApplyStimulusToEntityOp class >> withRegionId: aCERegionId entityId: aCEEntityId stimulusType: aType transform: aTransform intensity: aNumber tickId: aTickId [
-	^ (super withRegionId: aCERegionId entityId: aCEEntityId)
-		stimulusType: aType;
-		transform: aTransform;
-		intensity: aNumber;
-		tickId: aTickId;
-		yourself
-]
-
 { #category : 'applying' }
-CESimApplyStimulusToEntityOp >> applyInContext: aCESimRunContext [
+CESimApplyStimulusOp >> applyInContext: aCESimRunContext [
 	| state record |
 	state := self ensureStateDictInContext: aCESimRunContext.
 
@@ -38,21 +28,21 @@ CESimApplyStimulusToEntityOp >> applyInContext: aCESimRunContext [
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToEntityOp >> intensity: aNumber [ 
+CESimApplyStimulusOp >> intensity: aNumber [ 
 	intensity := aNumber 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToEntityOp >> stimulusType: aType [ 
+CESimApplyStimulusOp >> stimulusType: aType [ 
 	stimulusType := aType 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToEntityOp >> tickId: aTickId [ 
+CESimApplyStimulusOp >> tickId: aTickId [ 
 	tickId := aTickId 
 ]
 
 { #category : 'accessing' }
-CESimApplyStimulusToEntityOp >> transform: aTransform [ 
+CESimApplyStimulusOp >> transform: aTransform [ 
 	transform := aTransform 
 ]

@@ -33,7 +33,7 @@ CESimEmitStimulusAtTransformCommand >> contributeStimulusIntoUpdate: aSimUpdate 
 	(aSimContext runCache perceivedVisibleSnapshots ifNil: [ #() ])
 		do: [ :snapshot | 
 			aSimUpdate
-				addEntityOp: (CESimApplyStimulusToEntityOp
+				addEntityOp: (CESimApplyStimulusOp
 						withRegionId: aSimContext subject homeRegionId
 						entityId: (snapshot at: #entityId)
 						stimulusType: stimulusType

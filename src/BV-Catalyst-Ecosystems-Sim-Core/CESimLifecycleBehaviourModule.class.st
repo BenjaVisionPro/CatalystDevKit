@@ -16,7 +16,7 @@ CESimLifecycleBehaviourModule >> applyCreateNotableCommand: aCommand intoUpdate:
 		transform: aCommand transform
 		state: aCommand state.
 
-	aCESimUpdate addEntityOp: (CESimAddEntityToRegionOp
+	aCESimUpdate addEntityOp: (CESimAddOp
 		withRegionId: regionId
 		entity: notable)
 ]
@@ -26,7 +26,7 @@ CESimLifecycleBehaviourModule >> applyRemoveNotableCommand: aCommand intoUpdate:
 	| regionId |
 	regionId := aCESimRunContext subject homeRegionId.
 
-	aCESimUpdate addEntityOp: (CESimRemoveEntityFromRegionOp
+	aCESimUpdate addEntityOp: (CESimRemoveOp
 		withRegionId: regionId
 		entityId: aCommand entityId)
 ]

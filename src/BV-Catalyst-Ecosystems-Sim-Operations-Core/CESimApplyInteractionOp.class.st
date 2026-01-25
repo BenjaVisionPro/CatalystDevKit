@@ -1,6 +1,6 @@
 Class {
-	#name : 'CESimApplyInteractionToEntityOp',
-	#superclass : 'CESimEntitySemanticStateOp',
+	#name : 'CESimApplyInteractionOp',
+	#superclass : 'CESimStateOp',
 	#instVars : [
 		'interactionType',
 		'payload',
@@ -10,17 +10,8 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
-{ #category : 'instance creation' }
-CESimApplyInteractionToEntityOp class >> withRegionId: aCERegionId entityId: aCEEntityId interactionType: aType payload: aPayload tickId: aTickId [
-	^ (super withRegionId: aCERegionId entityId: aCEEntityId)
-		interactionType: aType;
-		payload: aPayload;
-		tickId: aTickId;
-		yourself
-]
-
 { #category : 'applying' }
-CESimApplyInteractionToEntityOp >> applyInContext: aCESimRunContext [
+CESimApplyInteractionOp >> applyInContext: aCESimRunContext [
 	| state record |
 	state := self ensureStateDictInContext: aCESimRunContext.
 
@@ -35,16 +26,16 @@ CESimApplyInteractionToEntityOp >> applyInContext: aCESimRunContext [
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToEntityOp >> interactionType: aType [ 
+CESimApplyInteractionOp >> interactionType: aType [ 
 	interactionType := aType 
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToEntityOp >> payload: aPayload [ 
+CESimApplyInteractionOp >> payload: aPayload [ 
 	payload := aPayload 
 ]
 
 { #category : 'accessing' }
-CESimApplyInteractionToEntityOp >> tickId: aTickId [ 
+CESimApplyInteractionOp >> tickId: aTickId [ 
 	tickId := aTickId 
 ]

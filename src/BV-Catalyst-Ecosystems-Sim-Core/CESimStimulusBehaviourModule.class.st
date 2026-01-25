@@ -17,7 +17,7 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 			entityId := snap at: #entityId.
 
 			aCESimUpdate
-				addEntityOp: (CESimApplyStimulusToEntityOp
+				addEntityOp: (CESimApplyStimulusOp
 						withRegionId: regionId
 						entityId: entityId
 						stimulusType: aCommand stimulusType

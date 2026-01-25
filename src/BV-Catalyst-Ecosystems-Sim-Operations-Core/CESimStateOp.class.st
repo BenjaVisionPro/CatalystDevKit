@@ -1,10 +1,10 @@
 Class {
-	#name : 'CESimEntityBoundaryOp',
-	#superclass : 'CESimRegionEntityOp',
+	#name : 'CESimStateOp',
+	#superclass : 'CESimEntityOp',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Operations-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
 { #category : 'ordering' }
-CESimEntityBoundaryOp >> opOrder [ ^ 20
+CESimStateOp >> opOrder [ ^ 40
 ]

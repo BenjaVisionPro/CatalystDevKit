@@ -12,15 +12,6 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimEntity class >> id: aCEEntityId definitionKey: aDefinitionKey [
-	^ self new
-		entityId: aCEEntityId;
-		spawnSpecId: aDefinitionKey;
-		initializeModuleStates;
-		yourself
-]
-
-{ #category : 'instance creation' }
 CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
 	^ self new
 		entityId: aCEEntityId;
@@ -30,13 +21,14 @@ CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
 ]
 
 { #category : 'spawning' }
-CESimEntity class >> spawnFromSpec: aSpec entityId: anId transform: aTransform [
+CESimEntity class >> spawnFromSpec: aSpawnSpec entityId: anEntityId state: aState [
 	| entity |
-	entity := aSpec entityClass new.
+	entity := aSpawnSpec entityClass new.
+
+	entity configureFromSpawnSpec: aSpawnSpec.
+	entity entityId: anEntityId.
+	entity state: aState.
 	^ entity
-		configureFromSpawnSpec: aSpec
-		entityId: anId
-		transform: aTransform
 ]
 
 { #category : 'as yet unclassified' }
@@ -50,11 +42,11 @@ CESimEntity >> asSnapshot [
 	^ snap
 ]
 
-{ #category : 'spawning' }
-CESimEntity >> configureFromSpawnSpec: aSpec entityId: anId transform: aTransform [
-	spawnSpecId := aSpec spawnSpecId.
-	entityId := anId.
-	state := aSpec initialState copy
+{ #category : 'accessing' }
+CESimEntity >> configureFromSpawnSpec: aSpawnSpec [
+	"Configure intrinsic, type-level properties derived from the spawn spec."
+
+	self spawnSpecId: aSpawnSpec spawnSpecId
 ]
 
 { #category : 'accessing' }

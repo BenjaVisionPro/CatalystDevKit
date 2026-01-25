@@ -1,10 +1,10 @@
 Class {
-	#name : 'CESimEntityStateOp',
-	#superclass : 'CESimRegionEntityOp',
+	#name : 'CESimLifecycleOp',
+	#superclass : 'CESimEntityOp',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Operations-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
 { #category : 'ordering' }
-CESimEntityStateOp >> opOrder [ ^ 40
+CESimLifecycleOp >> opOrder [ ^ 10
 ]

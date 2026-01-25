@@ -1,6 +1,9 @@
 Class {
 	#name : 'CESimEntityOp',
-	#superclass : 'Object',
+	#superclass : 'CESimOp',
+	#instVars : [
+		'entityId'
+	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Operations-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }

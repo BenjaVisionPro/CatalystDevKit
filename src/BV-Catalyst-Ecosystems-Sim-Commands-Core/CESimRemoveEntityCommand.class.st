@@ -5,18 +5,18 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
-{ #category : 'as yet unclassified' }
-CESimRemoveEntityCommand >> contributeLifecycleIntoUpdate: aUpdate inContext: aContext [
+{ #category : 'contributing' }
+CESimRemoveEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aContext [
 	aContext runCache
 		addInvocation: (CESimRemoveEntityInvocation targetEntityId: targetEntityId)
 ]
 
 { #category : 'producing' }
-CESimRemoveEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	"Events only."
-	aCESimUpdate addEvent: (Dictionary new
-		at: #type put: #removeNotableRequested;
-		at: #entityId put: targetEntityId;
-		at: #tickId put: aCESimRunContext tickId;
-		yourself)
+CESimRemoveEntityCommand >> produceEventsIntoUpdate: aUpdate inContext: aContext [
+	aUpdate
+		addEvent: (Dictionary new
+				at: #type put: #removeEntityRequested;
+				at: #entityId put: targetEntityId;
+				at: #tickId put: aContext tickId;
+				yourself)
 ]

@@ -112,27 +112,6 @@ CESimRunContext >> initialize [
 	runCache := CESimRunCache new
 ]
 
-{ #category : 'factory - entities' }
-CESimRunContext >> newEntityWithDefinitionKey: aDefinitionKey transform: aTransform state: aState [
-	^ self
-		newEntityWithId: self engine idIssuer nextEntityId
-		definitionKey: aDefinitionKey
-		transform: aTransform
-		state: aState
-]
-
-{ #category : 'factory - entities' }
-CESimRunContext >> newEntityWithId: anEntityId definitionKey: aDefinitionKey transform: aTransform state: aState [
-	"Canonical creation path for Notables."
-
-	^ CECreatureEntity new
-		entityId: anEntityId;
-		spawnSpecId: aDefinitionKey;
-		transform: aTransform;
-		state: aState;
-		yourself
-]
-
 { #category : 'targeting' }
 CESimRunContext >> ownerDecision [
 	| ownerId |
@@ -149,6 +128,29 @@ CESimRunContext >> ownerDecision [
 		yourself
 ]
 
+{ #category : 'partitioning' }
+CESimRunContext >> partition [
+	"Answers the current storage partition for this bubble tick.
+	Today: it’s the existing region aggregate behind the scenes.
+	Later: true partitioning / routing."
+
+	^ engine ensureRegion: self homeRegionId
+]
+
+{ #category : 'partitioning' }
+CESimRunContext >> partitionForEntityId: anEntityId [
+	"Where an existing entity currently lives."
+
+	^ self partition
+]
+
+{ #category : 'partitioning' }
+CESimRunContext >> partitionForTransform: aTransform [
+	"Where a newly-spawned entity should live."
+
+	^ self partition
+]
+
 { #category : 'printing' }
 CESimRunContext >> printOn: aStream [
 	aStream
@@ -158,17 +160,6 @@ CESimRunContext >> printOn: aStream [
 		nextPutAll: ', subject=';
 		print: subject;
 		nextPut: $)
-]
-
-{ #category : 'convenience' }
-CESimRunContext >> region [
-	^ engine ensureRegion: self homeRegionId
-]
-
-{ #category : 'accessing' }
-CESimRunContext >> regionIdForTransform: aTransform [
-	"ToDo: Spacial mapping from map to region"
-	^ self homeRegionId
 ]
 
 { #category : 'run cache' }
@@ -187,13 +178,38 @@ CESimRunContext >> runCacheAt: aKey put: aValue [
 ]
 
 { #category : 'spawning' }
-CESimRunContext >> spawnEntityFromSpecId: aSpecId entityId: anId transform: aTransform [
-	| spec |
-	spec := self spawnSpecAt: aSpecId.
+CESimRunContext >> spawnEntityFromSpec: aSpec entityId: anEntityId transform: aTransform state: aState [
+	"Spawn an entity instance configured from the spawn spec and explicit state."
+
 	^ CESimEntity
-		spawnFromSpec: spec
-		entityId: anId
+		spawnFromSpec: aSpec
+		entityId: anEntityId
 		transform: aTransform
+		state: aState
+]
+
+{ #category : 'spawning' }
+CESimRunContext >> spawnEntityFromSpecId: aSpecId entityId: anEntityId transform: aTransform [
+	^ self
+		spawnEntityFromSpecId: aSpecId
+		entityId: anEntityId
+		transform: aTransform
+		stateOverlay: nil
+]
+
+{ #category : 'spawning' }
+CESimRunContext >> spawnEntityFromSpecId: aSpecId entityId: anEntityId transform: aTransform stateOverlay: aStateOverlay [
+	| spec baseState finalState |
+
+	spec := self spawnSpecAt: aSpecId.
+
+	baseState := spec initialState copy.
+
+	finalState := baseState.
+	aStateOverlay ifNotNil: [
+		aStateOverlay keysAndValuesDo: [ :k :v | finalState at: k put: v ] ].
+
+	^ self spawnEntityFromSpec: spec entityId: anEntityId transform: aTransform state: finalState
 ]
 
 { #category : 'spawning' }

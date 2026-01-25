@@ -79,7 +79,7 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 
 	"Enqueue + apply (Ops are the authoritative change)."
 	update := CESimUpdate new.
-	update addEntityOp: (CESimAddEntityToRegionOp
+	update addEntityOp: (CESimAddOp
 		withRegionId: bubble homeRegionId
 		entity: notable).
 	context addUpdate: update.
@@ -379,7 +379,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 
 	update2 := CESimUpdate new.
 	update2
-		addEntityOp: (CESimSetEntityTransformOp
+		addEntityOp: (CESimSetTransformOp
 				withRegionId: bubble homeRegionId
 				entityId: notable entityId
 				transform: newTransform).
@@ -468,8 +468,8 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 	"Add both notables, but to different regions."
 	update := CESimUpdate new.
 	update
-		addEntityOp: (CESimAddEntityToRegionOp withRegionId: regionA aggregateId entity: notableA);
-		addEntityOp: (CESimAddEntityToRegionOp withRegionId: regionB aggregateId entity: notableB).
+		addEntityOp: (CESimAddOp withRegionId: regionA aggregateId entity: notableA);
+		addEntityOp: (CESimAddOp withRegionId: regionB aggregateId entity: notableB).
 	context addUpdate: update.
 
 	engine transactionRunner

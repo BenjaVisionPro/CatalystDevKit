@@ -27,7 +27,7 @@ CESimInteractWithEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext:
 		update: aSimUpdate) ifFalse: [ ^ self ].
 
 	aSimUpdate
-		addEntityOp: (CESimApplyInteractionToEntityOp
+		addEntityOp: (CESimApplyInteractionOp
 				withRegionId: aSimContext homeRegionId
 				entityId: targetEntityId
 				interactionType: interactionType

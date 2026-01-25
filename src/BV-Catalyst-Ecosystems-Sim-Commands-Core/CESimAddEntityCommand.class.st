@@ -3,20 +3,20 @@ Class {
 	#superclass : 'CESimCommand',
 	#instVars : [
 		'transform',
-		'state',
 		'spawnSpecId',
-		'entityId'
+		'entityId',
+		'stateOverlay'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Commands-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Commands-Core'
 }
 
 { #category : 'instance creation' }
-CESimAddEntityCommand class >> withSpawnSpecId: aSpecId transform: aTransform state: aState [
+CESimAddEntityCommand class >> withSpawnSpecId: aSpecId transform: aTransform stateOverlay: aStateOverlay [
 	^ self new
 		spawnSpecId: aSpecId;
 		transform: aTransform;
-		state: aState;
+		stateOverlay: aStateOverlay;
 		yourself
 ]
 
@@ -26,16 +26,9 @@ CESimAddEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aCo
 		addInvocation: (CESimAddEntityInvocation new
 				spawnSpecId: spawnSpecId;
 				transform: transform;
-				yourself)
-]
-
-{ #category : 'contributing' }
-CESimAddEntityCommand >> contributeLifecycleIntoUpdate: aUpdate inContext: aContext [
-	aContext runCache addInvocation: (CESimAddEntityInvocation new
-		spawnSpecId: spawnSpecId;
-		transform: transform;
-		entityId: entityId; "nil if not provided"
-		yourself)
+				entityId: entityId;
+				stateOverlay: stateOverlay;
+				yourself)	"nil is fine"	"nil is fine"
 ]
 
 { #category : 'accessing' }
@@ -49,14 +42,16 @@ CESimAddEntityCommand >> entityId: anObject [
 ]
 
 { #category : 'producing' }
-CESimAddEntityCommand >> produceEventsIntoUpdate: aCESimUpdate inContext: aCESimRunContext [
-	aCESimUpdate addEvent: (Dictionary new
-		at: #type put: #createNotableRequested;
-		at: #spawnSpecId put: spawnSpecId;
-		at: #transform put: transform;
-		at: #state put: state;
-		at: #tickId put: aCESimRunContext tickId;
-		yourself)
+CESimAddEntityCommand >> produceEventsIntoUpdate: aUpdate inContext: aContext [
+	aUpdate
+		addEvent: (Dictionary new
+				at: #type put: #addEntityRequested;
+				at: #spawnSpecId put: spawnSpecId;
+				at: #transform put: transform;
+				at: #stateOverlay put: stateOverlay;
+				at: #entityId put: entityId;
+				at: #tickId put: aContext tickId;
+				yourself)
 ]
 
 { #category : 'accessing' }
@@ -70,13 +65,13 @@ CESimAddEntityCommand >> spawnSpecId: aKey [
 ]
 
 { #category : 'accessing' }
-CESimAddEntityCommand >> state [
-	^ state
+CESimAddEntityCommand >> stateOverlay [
+	^ stateOverlay
 ]
 
 { #category : 'accessing' }
-CESimAddEntityCommand >> state: aState [
-	state := aState
+CESimAddEntityCommand >> stateOverlay: aState [
+	stateOverlay := aState
 ]
 
 { #category : 'accessing' }
