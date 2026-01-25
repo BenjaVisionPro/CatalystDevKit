@@ -17,11 +17,7 @@ CESimRemoveEntityInvocation class >> targetEntityId: anEntityId [
 
 { #category : 'as yet unclassified' }
 CESimRemoveEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
-	| regionId |
-	regionId := aContext regionIdForEntityId: targetEntityId.
-
-	aUpdate
-		addEntityOp: (CESimRemoveOp withRegionId: regionId entityId: targetEntityId)
+	aUpdate addEntityOp: (CESimRemoveOp entityId: targetEntityId)
 ]
 
 { #category : 'accessing' }

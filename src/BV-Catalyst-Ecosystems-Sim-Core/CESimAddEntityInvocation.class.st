@@ -13,21 +13,18 @@ Class {
 
 { #category : 'as yet unclassified' }
 CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
-	| actualEntityId entity regionId |
+	| actualEntityId entity |
 	actualEntityId := entityId
-			ifNil: [ aContext engine idIssuer nextEntityId ]
-			ifNotNil: [ entityId ].
+		ifNil: [ aContext engine idIssuer nextEntityId ]
+		ifNotNil: [ entityId ].
 
 	entity := aContext
-			spawnEntityFromSpecId: spawnSpecId
-			entityId: actualEntityId
-			transform: transform
-			stateOverlay: stateOverlay.
+		spawnEntityFromSpecId: spawnSpecId
+		entityId: actualEntityId
+		transform: transform
+		stateOverlay: stateOverlay.
 
-	regionId := aContext regionIdForTransform: transform.
-
-	aUpdate
-		addEntityOp: (CESimAddOp withRegionId: regionId entity: entity)
+	aUpdate addEntityOp: (CESimAddOp entity: entity)
 ]
 
 { #category : 'accessing' }

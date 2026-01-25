@@ -28,6 +28,16 @@ CESimEntityOp >> before: anotherOp [
 	^ self class name asString < anotherOp class name asString
 ]
 
+{ #category : 'accessing' }
+CESimEntityOp >> entityId [
+	^ entityId
+]
+
+{ #category : 'accessing' }
+CESimEntityOp >> entityId: anObject [
+	entityId := anObject
+]
+
 { #category : 'ordering' }
 CESimEntityOp >> opOrder [
 	"Lower applies first. Subclasses override."

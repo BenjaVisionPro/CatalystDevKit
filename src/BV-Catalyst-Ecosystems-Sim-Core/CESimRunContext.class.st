@@ -145,6 +145,15 @@ CESimRunContext >> partitionForEntityId: anEntityId [
 ]
 
 { #category : 'partitioning' }
+CESimRunContext >> partitionForSpawnOf: anEntity [
+	"Temporary placement policy until the partition workshop."
+
+	(anEntity isKindOf: CESimSpatialEntity)
+		ifTrue: [ ^ self partitionForTransform: anEntity transform ].
+	^ self partition
+]
+
+{ #category : 'partitioning' }
 CESimRunContext >> partitionForTransform: aTransform [
 	"Where a newly-spawned entity should live."
 
