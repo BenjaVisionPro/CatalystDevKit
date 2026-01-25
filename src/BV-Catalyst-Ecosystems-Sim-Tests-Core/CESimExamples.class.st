@@ -15,7 +15,7 @@ CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -39,7 +39,7 @@ CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
 			yourself)
@@ -69,7 +69,7 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 		environmentQuery: engine environmentQuery.
 
 	notable := context
-		newEntityWithDefinitionKey: #demoNotable
+		newEntityWithDefinitionKey: #demoCreature
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
 			yourself)
@@ -145,7 +145,7 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 
 	"Tick 1: create a notable to inspect."
 	createCmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -176,7 +176,7 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 
 	"Tick 1: create a notable so we have a real entityId to target."
 	createCmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -235,12 +235,12 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	cmd1 := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	cmd2 := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(1 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -296,7 +296,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 
 	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -332,7 +332,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 
 	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoNotable
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
@@ -413,7 +413,7 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 	bubble := engine newBubbleInHomeRegionId: region aggregateId.
 
 	createCmd := CESimAddEntityCommand
-			withSpawnSpecId: #demoNotable
+			withSpawnSpecId: #demoCreature
 			transform: (Dictionary new
 					at: #pos put: #(0 0 0);
 					yourself)
@@ -524,9 +524,9 @@ CESimExamples >> seedArchetypesAndSpawnSpecsOn: engine [
 				yourself).
 
 	engine spawnSpecs
-		at: #demoNotable
+		at: #demoCreature
 		put: (CEEntitySpawnSpec new
-				spawnSpecId: #demoNotable;
+				spawnSpecId: #demoCreature;
 				archetypeId: #creature;
 				entityClass: CECreatureEntity;
 				appellation: 'Demo Creature';
@@ -548,14 +548,14 @@ CESimExamples >> test_createNotableCommandProducesAuditEventAndSpawn [
 	self assert: view despawns isEmpty.
 
 	spawn := view spawns first.
-	self assert: (spawn at: #spawnSpecId) equals: #demoNotable.
+	self assert: (spawn at: #spawnSpecId) equals: #demoCreature.
 	self assert: (spawn includesKey: #entityId).
 
 	ev := view events
 		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #createNotableRequested ]
 		ifNone: [ self fail: 'Expected #createNotableRequested event' ].
 
-	self assert: (ev at: #spawnSpecId) equals: #demoNotable
+	self assert: (ev at: #spawnSpecId) equals: #demoCreature
 ]
 
 { #category : 'tests' }
@@ -568,7 +568,7 @@ CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
 	self assert: view despawns isEmpty.
 
 	spawn := view spawns first.
-	self assert: (spawn at: #spawnSpecId) equals: #demoNotable.
+	self assert: (spawn at: #spawnSpecId) equals: #demoCreature.
 	self assert: (spawn includesKey: #entityId)
 ]
 
@@ -670,7 +670,7 @@ CESimExamples >> test_localViewShowsSpawnForAppliedNotable [
 
 	spawn := view spawns first.
 	self assert: (spawn at: #entityId) equals: notable entityId.
-	self assert: (spawn at: #spawnSpecId) equals: #demoNotable
+	self assert: (spawn at: #spawnSpecId) equals: #demoCreature
 ]
 
 { #category : 'tests' }
