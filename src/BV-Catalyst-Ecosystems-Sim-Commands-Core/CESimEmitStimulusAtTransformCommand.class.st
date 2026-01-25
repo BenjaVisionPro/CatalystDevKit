@@ -30,7 +30,7 @@ CESimEmitStimulusAtTransformCommand >> contributeInvocationsIntoUpdate: aSimUpda
 
 { #category : 'capabilities - invocations' }
 CESimEmitStimulusAtTransformCommand >> contributeStimulusIntoUpdate: aSimUpdate inContext: aSimContext [
-	(aSimContext runCache perceivedVisibleSnapshots ifNil: [ #() ])
+	(aSimContext runCache perceivedSnapshots ifNil: [ #() ])
 		do: [ :snapshot | 
 			aSimUpdate
 				addEntityOp: (CESimApplyStimulusOp

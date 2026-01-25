@@ -44,23 +44,23 @@ CESimRunCache >> lifecycleInvocations [
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> perceivedVisibleSnapshots [
-	^ self at: #perceivedVisibleSnapshots ifAbsent: [ OrderedCollection new ]
+CESimRunCache >> postEntitySnapshots [
+	^ self at: #postEntitySnapshots ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> perceivedVisibleSnapshots: aCollection [
-	self at: #perceivedVisibleSnapshots put: aCollection
+CESimRunCache >> postEntitySnapshots: aCollection [
+	self at: #postEntitySnapshots put: aCollection
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> publishedVisibleSnapshots [
-	^ self at: #publishedVisibleSnapshots ifAbsent: [ OrderedCollection new ]
+CESimRunCache >> preEntitySnapshots [
+	^ self at: #preEntitySnapshots ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : 'accessing - api' }
-CESimRunCache >> publishedVisibleSnapshots: aCollection [
-	self at: #publishedVisibleSnapshots put: aCollection
+CESimRunCache >> preEntitySnapshots: aCollection [
+	self at: #preEntitySnapshots put: aCollection
 ]
 
 { #category : 'accessing - api' }

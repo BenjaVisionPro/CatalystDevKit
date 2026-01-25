@@ -105,7 +105,7 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 	stages
 		add: (CESimStage new
 				stageId: #collectPerception;
-				runner: CESimCollectPerceivedVisibleSnapshotsStageRunner new;
+				runner: CESimCollectPreEntitySnapshotsStageRunner new;
 				yourself);
 		add: (CESimStage new
 				stageId: #modules;
@@ -117,7 +117,7 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 				yourself);
 		add: (CESimStage new
 				stageId: #collectPublication;
-				runner: CESimCollectPublishedVisibleSnapshotsStageRunner new;
+				runner: CESimCollectPostEntitySnapshotsStageRunner new;
 				yourself);
 		add: (CESimStage new
 				stageId: #buildLocalView;
@@ -271,7 +271,7 @@ CESimExamples >> example_localViewShowsSpawnForAppliedNotable [
 		tickId: engine currentTick
 		environmentQuery: engine environmentQuery.
 
-	collectRunner := CESimCollectPublishedVisibleSnapshotsStageRunner new.
+	collectRunner := CESimCollectPostEntitySnapshotsStageRunner new.
 	buildRunner := CESimBuildLocalViewStageRunner new.
 
 	collectRunner runStage: nil inContext: context.
@@ -388,7 +388,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	engine transactionRunner
 		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context2 ].
 
-	collectRunner := CESimCollectPublishedVisibleSnapshotsStageRunner new.
+	collectRunner := CESimCollectPostEntitySnapshotsStageRunner new.
 	buildRunner := CESimBuildLocalViewStageRunner new.
 	collectRunner runStage: nil inContext: context2.
 	buildRunner runStage: nil inContext: context2.

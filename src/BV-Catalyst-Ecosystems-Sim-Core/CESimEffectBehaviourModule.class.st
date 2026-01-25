@@ -13,5 +13,5 @@ CESimEffectBehaviourModule >> perceivedVisibleEntityIdsInContext: aCESimRunConte
 
 { #category : 'private - perception' }
 CESimEffectBehaviourModule >> perceivedVisibleSnapshotsInContext: aCESimRunContext [
-	^ aCESimRunContext runCache perceivedVisibleSnapshots ifNil: [ #() ]
+	^ aCESimRunContext runCache perceivedSnapshots ifNil: [ #() ]
 ]

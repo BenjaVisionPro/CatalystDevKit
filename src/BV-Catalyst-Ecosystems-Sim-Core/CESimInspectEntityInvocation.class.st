@@ -16,25 +16,24 @@ CESimInspectEntityInvocation class >> targetEntityId: aCEEntityId [
 ]
 
 { #category : 'as yet unclassified' }
-CESimInspectEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
-	| snapshots snapshot |
+CESimInspectEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
+	| decision snapshot |
+	decision := aContext
+			canTargetEntityId: targetEntityId
+			invocation: self
+			update: aUpdate.
 
-	(aSimContext canTargetEntityId: targetEntityId invocation: self update: aSimUpdate)
-		ifFalse: [ ^ self ].
+	(decision at: #allowed) ifFalse: [ ^ self ].
 
-	snapshots := aSimContext runCache perceivedVisibleSnapshots.
-	snapshot := snapshots
-		detect: [ :snap | (snap at: #entityId) = targetEntityId ]
-		ifNone: [ Dictionary new
-			at: #entityId put: targetEntityId;
-			yourself ].
+	snapshot := aContext perceivedSnapshotForEntityId: targetEntityId.
 
-	aSimUpdate addEvent: (Dictionary new
-		at: #type put: #entityInspected;
-		at: #entityId put: targetEntityId;
-		at: #snapshot put: snapshot;
-		at: #tickId put: aSimContext tickId;
-		yourself)
+	aUpdate
+		addEvent: (Dictionary new
+				at: #type put: #entityInspected;
+				at: #entityId put: targetEntityId;
+				at: #snapshot put: snapshot;
+				at: #tickId put: aContext tickId;
+				yourself)
 ]
 
 { #category : 'accessing' }

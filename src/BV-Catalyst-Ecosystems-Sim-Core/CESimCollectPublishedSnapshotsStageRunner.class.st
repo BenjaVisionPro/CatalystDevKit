@@ -1,12 +1,12 @@
 Class {
-	#name : 'CESimCollectPerceivedVisibleSnapshotsStageRunner',
+	#name : 'CESimCollectPublishedSnapshotsStageRunner',
 	#superclass : 'CESimStageRunner',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'running' }
-CESimCollectPerceivedVisibleSnapshotsStageRunner >> runStage: aStage inContext: aCESimRunContext [
+CESimCollectPublishedSnapshotsStageRunner >> runStage: aStage inContext: aCESimRunContext [
 	| engine subject regionIds snapshots |
 	engine := aCESimRunContext engine.
 	subject := aCESimRunContext subject.
@@ -33,5 +33,5 @@ CESimCollectPerceivedVisibleSnapshotsStageRunner >> runStage: aStage inContext: 
 			asSortedCollection: [ :a :b | (a at: #entityId) value < (b at: #entityId) value ])
 			asOrderedCollection.
 
-	aCESimRunContext runCache perceivedVisibleSnapshots: snapshots
+	aCESimRunContext runCache publishedSnapshots: snapshots
 ]

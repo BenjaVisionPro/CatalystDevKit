@@ -8,7 +8,7 @@ Class {
 { #category : 'as yet unclassified' }
 CESimPerceivedThisTickTargetingRule >> rejectionReasonForTargetEntityId: anEntityId inContext: aSimContext [
 	| perceived |
-	perceived := aSimContext runCache perceivedVisibleSnapshots.
+	perceived := aSimContext runCache perceivedSnapshots.
 	(perceived anySatisfy: [ :snap | (snap at: #entityId) = anEntityId ])
 		ifTrue: [ ^ nil ].
 
