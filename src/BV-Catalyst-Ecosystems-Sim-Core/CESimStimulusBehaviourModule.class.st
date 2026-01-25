@@ -11,7 +11,7 @@ CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESi
 	regionId := aCESimRunContext subject homeRegionId.
 
 	"Non-targeted: affects whatever is perceived this tick."
-	(self perceivedVisibleSnapshotsInContext: aCESimRunContext)
+	(self preEntitySnapshotsInContext: aCESimRunContext)
 		do: [ :snap |
 			| entityId |
 			entityId := snap at: #entityId.
@@ -45,4 +45,9 @@ CESimStimulusBehaviourModule >> contributeIntoUpdate: aSimUpdate inContext: aSim
 				invocation contributeIntoUpdate: aSimUpdate inContext: aSimContext
 			]
 		].
+]
+
+{ #category : 'producing' }
+CESimStimulusBehaviourModule >> preEntitySnapshotsInContext: aCESimRunContext [
+	^ aCESimRunContext runCache preEntitySnapshots ifNil: [ #() ]
 ]

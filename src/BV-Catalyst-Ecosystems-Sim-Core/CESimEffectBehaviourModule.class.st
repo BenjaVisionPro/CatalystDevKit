@@ -6,12 +6,12 @@ Class {
 }
 
 { #category : 'private - perception' }
-CESimEffectBehaviourModule >> perceivedVisibleEntityIdsInContext: aCESimRunContext [
-	^ (self perceivedVisibleSnapshotsInContext: aCESimRunContext)
+CESimEffectBehaviourModule >> preEntityIdsInContext: aCESimRunContext [
+	^ (self preEntitySnapshotsInContext: aCESimRunContext)
 		collect: [ :snap | snap at: #entityId ]
 ]
 
 { #category : 'private - perception' }
-CESimEffectBehaviourModule >> perceivedVisibleSnapshotsInContext: aCESimRunContext [
-	^ aCESimRunContext runCache perceivedSnapshots ifNil: [ #() ]
+CESimEffectBehaviourModule >> preEntitySnapshotsInContext: aCESimRunContext [
+	^ aCESimRunContext runCache preEntitySnapshots ifNil: [ #() ]
 ]
