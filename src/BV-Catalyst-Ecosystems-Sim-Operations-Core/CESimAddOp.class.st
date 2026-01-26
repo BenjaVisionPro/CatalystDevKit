@@ -12,7 +12,6 @@ Class {
 CESimAddOp class >> entity: anEntity [
 	^ self new
 		entity: anEntity;
-		entityId: anEntity entityId;
 		yourself
 ]
 
@@ -28,11 +27,7 @@ CESimAddOp >> entity [
 ]
 
 { #category : 'accessing' }
-CESimAddOp >> entity: anObject [
-	entity := anObject
-]
-
-{ #category : 'applying' }
-CESimAddOp >> partitionInContext: aContext [
-	^ entity spawnPartitionInContext: aContext
+CESimAddOp >> entity: anEntity [
+	entity := anEntity.
+	self entityId: anEntity entityId
 ]

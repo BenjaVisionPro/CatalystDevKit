@@ -60,42 +60,30 @@ CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 { #category : 'examples' }
 CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	<gtExample>
-	| engine region bubble context notable update |
-	engine := CESimEngine new.
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	| engine partition bubble context view |
 
-	"Construct (context factory) — no ids touched by caller."
-	context := CESimRunContext
-		for: bubble
-		engine: engine
-		tickId: engine currentTick
-		environmentQuery: engine environmentQuery.
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition partitionId.
 
-	notable := context
-		newEntityWithDefinitionKey: #demoCreature
+	"Spawn via the public input seam (command → invocation → op)."
+	bubble enqueueCommand: (CESimAddEntityCommand
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
 			yourself)
-		state: (Dictionary new
+		stateOverlay: (Dictionary new
 			at: #mood put: #chill;
-			yourself).
+			yourself)).
 
-	"Enqueue + apply (Ops are the authoritative change)."
-	update := CESimUpdate new.
-	update addEntityOp: (CESimAddOp
-		withRegionId: bubble partitionId
-		entity: notable).
-	context addUpdate: update.
-
-	engine transactionRunner
-		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context ].
+	context := engine advanceTickForBubbleId: bubble bubbleId.
+	view := context localView.
 
 	^ Dictionary new
 		at: #engine put: engine;
-		at: #region put: region;
+		at: #partition put: partition;
 		at: #bubble put: bubble;
-		at: #notable put: notable;
+		at: #view put: view;
 		yourself
 ]
 
@@ -141,62 +129,78 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 { #category : 'examples' }
 CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	<gtExample>
-	| engine region bubble createCmd view1 entityId inspectCmd view2 |
+	| engine partition bubble createCmd context1 view1 entityId inspectCmd context2 view2 |
+
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
 
-	"Tick 1: create a notable to inspect."
+	"Tick 1: spawn something to inspect."
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		stateOverlay: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceTickForBubbleId: bubble bubbleId.
+
+	context1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := context1 localView.
 	entityId := view1 spawns first at: #entityId.
 
 	"Tick 2: inspect it."
 	inspectCmd := CESimInspectEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: inspectCmd.
-	view2 := engine advanceTickForBubbleId: bubble bubbleId.
+
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
 
 	^ Dictionary new
 		at: #view2 put: view2;
 		at: #entityId put: entityId;
 		yourself
-
 ]
 
 { #category : 'examples' }
 CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	<gtExample>
-	| engine region bubble createCmd view1 spawnedEntityId interactCmd view2 |
+	| engine partition bubble createCmd context1 view1 spawnedEntityId interactCmd context2 view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
 
-	"Tick 1: create a notable so we have a real entityId to target."
+	"Tick 1: spawn something to target."
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+		stateOverlay: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceTickForBubbleId: bubble bubbleId.
+	context1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := context1 localView.
 
 	spawnedEntityId := view1 spawns first at: #entityId.
 
-	"Tick 2: interact with that entity."
+	"Tick 2: interact with it."
 	interactCmd := CESimInteractWithEntityCommand
 		withTargetEntityId: spawnedEntityId
 		type: #pet
 		payload: (Dictionary new at: #hand put: #right; yourself).
 
+	"IF you renamed the ctor to match the targeted-command pattern, use this instead:"
+	"interactCmd := (CESimInteractWithEntityCommand targetEntityId: spawnedEntityId)
+		type: #pet;
+		payload: (Dictionary new at: #hand put: #right; yourself);
+		yourself."
+
 	bubble enqueueCommand: interactCmd.
-	view2 := engine advanceTickForBubbleId: bubble bubbleId.
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
 
 	^ Dictionary new
 		at: #view1 put: view1;
@@ -444,63 +448,44 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 { #category : 'examples' }
 CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 	<gtExample>
-	| engine regionA regionB bubble context notableA notableB stateA0 stateB0 update view |
+	| engine partitionA partitionB bubble ctx1 view1 entityAId entityBId ctx2 view2 |
 
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	regionA := engine newPartition.
-	regionB := engine newPartition.
-	bubble := engine newBubbleInPartitionId: regionA aggregateId.
+	partitionA := engine newPartition.
+	partitionB := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partitionA aggregateId.
 
-	"Context factory (no ids touched by caller)."
-	context := CESimRunContext
-		for: bubble
-		engine: engine
-		tickId: engine currentTick
-		environmentQuery: engine environmentQuery.
-
-	notableA := context
-		newEntityWithDefinitionKey: #demoVisible
+	"Tick 1: spawn A in the bubble partition."
+	bubble enqueueCommand: (CESimAddEntityCommand
+		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #tag put: #A; yourself).
+		stateOverlay: (Dictionary new at: #tag put: #A; yourself)).
 
-	notableB := context
-		newEntityWithDefinitionKey: #demoInvisible
-		transform: (Dictionary new at: #pos put: #(999 0 0); yourself)
-		state: (Dictionary new at: #tag put: #B; yourself).
+	ctx1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := ctx1 localView.
+	entityAId := view1 spawns first at: #entityId.
 
-	"Add both notables, but to different regions."
-	update := CESimUpdate new.
-	update
-		addEntityOp: (CESimAddOp withRegionId: regionA aggregateId entity: notableA);
-		addEntityOp: (CESimAddOp withRegionId: regionB aggregateId entity: notableB).
-	context addUpdate: update.
+	"Spawn B into a different partition (not scanned by the bubble), so it is not perceived."
+	(engine ensurePartition: partitionB aggregateId) addEntity:
+		(CESimEntity spawnFromSpec: (engine spawnSpecAt: #demoCreature)
+			entityId: (engine idIssuer nextEntityId)
+			transform: (Dictionary new at: #pos put: #(999 0 0); yourself)
+			state: (Dictionary new at: #tag put: #B; yourself)).
 
-	engine transactionRunner
-		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context ].
-
-	"Capture initial states for mutation assertions."
-	stateA0 := notableA state copy.
-	stateB0 := notableB state copy.
-
-	"Enqueue stimulus. Module semantics apply ops only to visible snapshots (v0: home region)."
+	"Tick 2: emit stimulus in bubble partition. Semantics should only affect perceived entities."
 	bubble enqueueCommand: (CESimEmitStimulusAtTransformCommand
 		type: #sound
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		intensity: 1).
 
-	view := engine advanceTickForBubbleId: bubble bubbleId.
+	ctx2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := ctx2 localView.
 
 	^ Dictionary new
-		at: #engine put: engine;
-		at: #regionA put: regionA;
-		at: #regionB put: regionB;
-		at: #bubble put: bubble;
-		at: #notableA put: notableA;
-		at: #notableB put: notableB;
-		at: #stateA0 put: stateA0;
-		at: #stateB0 put: stateB0;
-		at: #view put: view;
+		at: #entityAId put: entityAId;
+		at: #view1 put: view1;
+		at: #view2 put: view2;
 		yourself
 ]
 

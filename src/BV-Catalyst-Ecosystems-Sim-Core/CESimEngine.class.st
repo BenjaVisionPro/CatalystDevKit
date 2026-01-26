@@ -3,7 +3,6 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'tickId',
-		'regionsById',
 		'bubblesById',
 		'globalPipeline',
 		'bubblePipeline',
@@ -15,7 +14,8 @@ Class {
 		'idIssuer',
 		'behaviour',
 		'archetypes',
-		'spawnSpecs'
+		'spawnSpecs',
+		'partitionsById'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -134,7 +134,7 @@ CESimEngine >> idIssuer [
 CESimEngine >> initialize [
 	super initialize.
 	tickId := 0.
-	regionsById := Dictionary new.	"CERegionId -> region aggregate"
+	partitionsById := Dictionary new.	"CERegionId -> region aggregate"
 	bubblesById := Dictionary new.	"CEBubbleId -> bubble aggregate"
 	runLog := OrderedCollection new.
 	environmentQuery := CEFlatWorldEnvironment new.
@@ -171,14 +171,14 @@ CESimEngine >> newPartition [
 
 { #category : 'accessing' }
 CESimEngine >> partitionAt: aCERegionId ifAbsentPut: aBlock [
-    ^ regionsById at: aCERegionId ifAbsentPut: aBlock
+    ^ partitionsById at: aCERegionId ifAbsentPut: aBlock
 ]
 
 { #category : 'accessing' }
 CESimEngine >> partitions [
     "Stable order (determinism): sort by regionId."
-    ^ (regionsById keys asSortedCollection)
-        collect: [ :id | regionsById at: id ]
+    ^ (partitionsById keys asSortedCollection)
+        collect: [ :id | partitionsById at: id ]
 ]
 
 { #category : 'scheduling' }

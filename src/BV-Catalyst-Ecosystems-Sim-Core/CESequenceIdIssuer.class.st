@@ -37,7 +37,7 @@ CESequenceIdIssuer >> nextEntityId [
 { #category : 'issuing' }
 CESequenceIdIssuer >> nextRegionId [
 	| id |
-	id := CERegionId fromInteger: nextRegionInt.
+	id := CEPartitionId fromInteger: nextRegionInt.
 	nextRegionInt := nextRegionInt + 1.
 	^ id
 ]

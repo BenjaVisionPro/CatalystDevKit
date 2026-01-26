@@ -9,8 +9,8 @@ Class {
 }
 
 { #category : 'notables' }
-CESimPartition >> addEntity: aCEEntity [
-	entitiesById at: aCEEntity entityId put: aCEEntity
+CESimPartition >> addEntity: anEntity [
+	entitiesById at: anEntity entityId put: anEntity
 ]
 
 { #category : 'notables' }
@@ -23,13 +23,13 @@ CESimPartition >> entities [
 ]
 
 { #category : 'notables' }
-CESimPartition >> entityAt: aCEEntityId [
-	^ self entityAt: aCEEntityId ifAbsent: [ nil ]
+CESimPartition >> entityAt: anEntityId [
+	^ self entityAt: anEntityId ifAbsent: [ nil ]
 ]
 
 { #category : 'notables' }
-CESimPartition >> entityAt: aCEEntityId ifAbsent: aBlock [
-    ^ entitiesById at: aCEEntityId ifAbsent: aBlock
+CESimPartition >> entityAt: anEntityId ifAbsent: aBlock [
+    ^ entitiesById at: anEntityId ifAbsent: aBlock
 ]
 
 { #category : 'initialization' }
@@ -38,9 +38,9 @@ CESimPartition >> initialize [
 	entitiesById := Dictionary new
 ]
 
-{ #category : 'accessing' }
-CESimPartition >> regionId [
-	^ self aggregateId
+{ #category : 'as yet unclassified' }
+CESimPartition >> partitionId [
+	^ aggregateId
 ]
 
 { #category : 'notables' }

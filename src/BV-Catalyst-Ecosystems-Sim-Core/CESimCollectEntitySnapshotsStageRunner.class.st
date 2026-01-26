@@ -9,23 +9,17 @@ Class {
 CESimCollectEntitySnapshotsStageRunner >> runStage: aStage inContext: aContext [
 	| engine subject partitionIds snapshots |
 	engine := aContext engine.
-	subject := aContext subject.	
-	
-	"Pick partitions to scan (whatever you currently do — keep it simple for now)."
-	partitionIds := (subject respondsTo: #relevantPartitionIds)
-			ifTrue: [ subject relevantPartitionIds ]
-			ifFalse: [ (subject respondsTo: #aggregateId)
-					ifTrue: [ {subject aggregateId} ]
-					ifFalse: [ #() ] ].
+	subject := aContext subject.
+
+	partitionIds := subject partitionIdsForSnapshotCollection.
 
 	snapshots := OrderedCollection new.
 	partitionIds
 		do: [ :partitionId | 
 			| partition |
 			partition := engine ensurePartition: partitionId.
-			partition entities do: [ :entity | snapshots add: entity asSnapshot ] ].	
-			
-	"Deterministic order."
+			partition entities do: [ :entity | snapshots add: entity asSnapshot ] ].
+
 	snapshots := (snapshots
 			asSortedCollection: [ :a :b | (a at: #entityId) value < (b at: #entityId) value ])
 			asOrderedCollection.

@@ -133,7 +133,7 @@ CESimRunContext >> partition [
 	Today: it’s the existing region aggregate behind the scenes.
 	Later: true partitioning / routing."
 
-	^ engine ensureRegion: self partitionId
+	^ engine ensurePartition:  self partitionId
 ]
 
 { #category : 'partitioning' }

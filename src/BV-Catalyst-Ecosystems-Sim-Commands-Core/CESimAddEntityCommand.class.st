@@ -22,13 +22,13 @@ CESimAddEntityCommand class >> withSpawnSpecId: aSpecId transform: aTransform st
 
 { #category : 'contributing' }
 CESimAddEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aContext [
-	aContext runCache
-		addInvocation: (CESimAddEntityInvocation new
+	aContext subject
+		enqueueInvocation: (CESimAddEntityInvocation new
 				spawnSpecId: spawnSpecId;
 				transform: transform;
 				entityId: entityId;
 				stateOverlay: stateOverlay;
-				yourself)	"nil is fine"	"nil is fine"
+				yourself)
 ]
 
 { #category : 'accessing' }

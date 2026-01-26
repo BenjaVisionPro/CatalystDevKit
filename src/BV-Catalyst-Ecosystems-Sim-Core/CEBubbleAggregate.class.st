@@ -67,6 +67,13 @@ CEBubbleAggregate >> partitionId: aPartitionId [
 	partitionId := aPartitionId
 ]
 
+{ #category : 'partitions' }
+CEBubbleAggregate >> partitionIdsForSnapshotCollection [
+	"I point at the partition that holds my entities."
+
+	^ {self partitionId}
+]
+
 { #category : 'commands' }
 CEBubbleAggregate >> pendingCommandsCount [
 	^ commandQueue size

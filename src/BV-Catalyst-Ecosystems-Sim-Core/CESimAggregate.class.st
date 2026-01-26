@@ -64,6 +64,13 @@ CESimAggregate >> initialize [
 	invocations := OrderedCollection new.
 ]
 
+{ #category : 'partitions' }
+CESimAggregate >> partitionIdsForSnapshotCollection [
+	"By default, I *am* the partition to scan."
+
+	^ {self aggregateId}
+]
+
 { #category : 'printing' }
 CESimAggregate >> printOn: aStream [
 	aStream
