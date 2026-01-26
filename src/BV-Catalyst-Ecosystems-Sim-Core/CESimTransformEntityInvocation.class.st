@@ -20,7 +20,7 @@ CESimTransformEntityInvocation >> contributeIntoUpdate: anUpdate inContext: aCon
 	"Targeting / policy checks will live here"
 
 	anUpdate
-		addEntityOp: (CESimSetTransformOp targetEntityId: targetEntityId transform: transform)
+		addEntityOp: (CESimSetTransformOp entityId: targetEntityId transform: transform)
 ]
 
 { #category : 'accessing' }

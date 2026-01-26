@@ -21,8 +21,13 @@ CESimSpatialEntity class >> spawnFromSpec: aSpec entityId: anEntityId transform:
 	^ entity
 ]
 
-{ #category : 'accessing' }
+{ #category : 'transforming' }
 CESimSpatialEntity >> applySpawnTransform: aTransform [
+	self transform: aTransform
+]
+
+{ #category : 'transforming' }
+CESimSpatialEntity >> applyTransform: aTransform [
 	self transform: aTransform
 ]
 

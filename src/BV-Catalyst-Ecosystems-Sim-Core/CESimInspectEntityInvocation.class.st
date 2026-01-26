@@ -7,16 +7,13 @@ Class {
 
 { #category : 'as yet unclassified' }
 CESimInspectEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
-	| decision snapshot |
-	decision := aContext
-			canTargetEntityId: targetEntityId
-			invocation: self
-			update: aUpdate.
+	| snapshot |
+	(aContext
+		canTargetEntityId: targetEntityId
+		invocation: self
+		update: aUpdate) ifFalse: [ ^ self ].
 
-	(decision at: #allowed) ifFalse: [ ^ self ].
-
-	snapshot := aContext perceivedSnapshotForEntityId: targetEntityId.
-
+	snapshot := aContext preEntitySnapshotForEntityId: targetEntityId.
 	aUpdate
 		addEvent: (Dictionary new
 				at: #type put: #entityInspected;

@@ -18,8 +18,12 @@ CESimSetTransformOp class >> entityId: anEntityId transform: aTransform [
 
 { #category : 'applying' }
 CESimSetTransformOp >> applyInContext: aContext [
-	| entity |
-	entity := aContext engine entityWithId: entityId ifAbsent: [ ^ self ].
+	| partition entity |
+	partition := aContext engine
+			partitionContainingEntityId: entityId
+			ifNone: [ ^ self ].
+
+	entity := partition entityAt: entityId ifAbsent: [ ^ self ].
 	entity applyTransform: transform
 ]
 

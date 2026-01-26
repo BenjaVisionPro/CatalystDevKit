@@ -111,22 +111,6 @@ CESimRunContext >> localView: aLocalView [
 	runCache localView: aLocalView
 ]
 
-{ #category : 'targeting' }
-CESimRunContext >> ownerDecision [
-	| ownerId |
-	ownerId := self subject ownerEntityId.
-	ownerId
-		ifNil: [ ^ Dictionary new
-				at: #allowed put: false;
-				at: #reason put: CESimDecisionOutcome notPresent;
-				yourself ].
-
-	^ Dictionary new
-		at: #allowed put: true;
-		at: #entityId put: ownerId;
-		yourself
-]
-
 { #category : 'partitioning' }
 CESimRunContext >> partition [
 	"Answers the current storage partition for this bubble tick.
@@ -172,6 +156,13 @@ CESimRunContext >> postEntitySnapshots [
 { #category : 'accessing' }
 CESimRunContext >> postEntitySnapshots: snapshots [
 	runCache postEntitySnapshots: snapshots
+]
+
+{ #category : 'searching' }
+CESimRunContext >> preEntitySnapshotForEntityId: anEntityId [
+	^ self preEntitySnapshots
+		detect: [ :each | (each at: #entityId) = anEntityId ]
+		ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }

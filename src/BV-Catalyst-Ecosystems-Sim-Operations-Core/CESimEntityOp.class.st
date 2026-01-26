@@ -22,17 +22,12 @@ CESimEntityOp >> applyInContext: aCESimRunContext [
 
 { #category : 'ordering' }
 CESimEntityOp >> before: anotherOp [
-	| aOrder bOrder aPrim bPrim |
+	| aOrder bOrder |
 	aOrder := self opOrder.
 	bOrder := anotherOp opOrder.
 	aOrder = bOrder ifFalse: [ ^ aOrder < bOrder ].
 
-	aPrim := self primarySortValue.
-	bPrim := anotherOp primarySortValue.
-	aPrim = bPrim ifFalse: [ ^ aPrim < bPrim ].
-
-	"Final tie-breaker: stable by class name"
-	^ self class name asString < anotherOp class name asString
+	^ self entityId < anotherOp entityId
 ]
 
 { #category : 'accessing' }

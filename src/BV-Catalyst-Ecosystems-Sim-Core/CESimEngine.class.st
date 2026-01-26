@@ -176,10 +176,11 @@ CESimEngine >> partitionAt: aCERegionId ifAbsentPut: aBlock [
 
 { #category : 'partitions' }
 CESimEngine >> partitionContainingEntityId: anEntityId ifNone: aBlock [
-	"Temporary linear scan until the partition workshop introduces an index."
+	"Temporary linear scan until the partition workshop introduces an index.
+	 Deterministic: scan partitions in stable regionId order."
 
-	partitionsById
-		valuesDo: [ :eachPartition | (eachPartition includesEntityId: anEntityId) ifTrue: [ ^ eachPartition ] ].
+	self partitions
+		do: [ :partition | (partition includesEntityId: anEntityId) ifTrue: [ ^ partition ] ].
 
 	^ aBlock value
 ]

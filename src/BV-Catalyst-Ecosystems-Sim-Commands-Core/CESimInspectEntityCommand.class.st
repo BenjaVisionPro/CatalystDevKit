@@ -6,9 +6,9 @@ Class {
 }
 
 { #category : 'capabilities - invocations' }
-CESimInspectEntityCommand >> contributeInvocationsIntoUpdate: aSimUpdate inContext: aSimContext [
-	aSimContext runCache
-		addInvocation: (CESimInspectEntityInvocation targetEntityId: targetEntityId)
+CESimInspectEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aContext [
+	aContext subject
+		enqueueInvocation: (CESimInspectEntityInvocation targetEntityId: targetEntityId)
 ]
 
 { #category : 'producing' }

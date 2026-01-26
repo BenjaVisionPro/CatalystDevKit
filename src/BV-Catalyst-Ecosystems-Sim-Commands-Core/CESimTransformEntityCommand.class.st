@@ -18,7 +18,7 @@ CESimTransformEntityCommand class >> targetEntityId: anEntityId transform: aTran
 
 { #category : 'as yet unclassified' }
 CESimTransformEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aContext [
-	aContext
+	aContext subject
 		enqueueInvocation: (CESimTransformEntityInvocation
 				targetEntityId: targetEntityId
 				transform: transform)

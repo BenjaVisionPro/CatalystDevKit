@@ -18,7 +18,14 @@ CEStableId class >> fromInteger: anInteger [
 CEStableId >> < other [
     (other class == self class) ifFalse: [
         self error: 'Cannot compare different ID types: ', self class name, ' vs ', other class name ].
-    ^ value < other asInteger
+    ^ value < other value
+]
+
+{ #category : 'comparing' }
+CEStableId >> <= other [
+    self == other ifTrue: [ ^ true ].
+    (other class == self class) ifFalse: [ ^ false ].
+    ^ value <= (other asInteger)
 ]
 
 { #category : 'comparing' }
