@@ -13,9 +13,9 @@ Class {
 { #category : 'as yet unclassified' }
 CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
 	| actualEntityId entity |
-	actualEntityId := entityId
+	actualEntityId := targetEntityId
 		ifNil: [ aContext engine idIssuer nextEntityId ]
-		ifNotNil: [ entityId ].
+		ifNotNil: [ targetEntityId ].
 
 	entity := aContext
 		spawnEntityFromSpecId: spawnSpecId

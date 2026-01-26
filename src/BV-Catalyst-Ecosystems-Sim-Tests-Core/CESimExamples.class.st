@@ -140,7 +140,7 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	createCmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new
-			at: #pos put: #(0 0 0);
+			at: #pos put: #(1 2 3);
 			yourself)
 		stateOverlay: (Dictionary new
 			at: #mood put: #chill;

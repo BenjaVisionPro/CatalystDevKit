@@ -26,7 +26,7 @@ CESimAddEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aCo
 		enqueueInvocation: (CESimAddEntityInvocation new
 				spawnSpecId: spawnSpecId;
 				transform: transform;
-				entityId: entityId;
+				targetEntityId: entityId;
 				stateOverlay: stateOverlay;
 				yourself)
 ]
