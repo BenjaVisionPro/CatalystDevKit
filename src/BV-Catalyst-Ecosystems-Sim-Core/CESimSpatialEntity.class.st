@@ -10,14 +10,20 @@ Class {
 }
 
 { #category : 'instance creation' }
-CESimSpatialEntity class >> spawnFromSpec: aSpawnSpec entityId: anEntityId transform: aTransform state: aState [
+CESimSpatialEntity class >> spawnFromSpec: aSpec entityId: anEntityId transform: aTransform state: aState [
 	| entity |
 	entity := super
-			spawnFromSpec: aSpawnSpec
+			spawnFromSpec: aSpec
 			entityId: anEntityId
+			transform: aTransform
 			state: aState.
-	entity transform: aTransform.
+	entity applySpawnTransform: aTransform.
 	^ entity
+]
+
+{ #category : 'accessing' }
+CESimSpatialEntity >> applySpawnTransform: aTransform [
+	self transform: aTransform
 ]
 
 { #category : 'convertion' }

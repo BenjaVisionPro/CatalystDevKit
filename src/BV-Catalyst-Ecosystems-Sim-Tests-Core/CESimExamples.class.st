@@ -11,13 +11,17 @@ CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 	| engine region bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	cmd := CESimAddEntityCommand
-		withSpawnSpecId: #demoCreature
-		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+			withSpawnSpecId: #demoCreature
+			transform: (Dictionary new
+					at: #pos put: #(0 0 0);
+					yourself)
+			stateOverlay: (Dictionary new
+					at: #mood put: #chill;
+					yourself).
 
 	bubble enqueueCommand: cmd.
 	view := engine advanceBubbleTickFor: bubble bubbleId.
@@ -35,8 +39,8 @@ CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	| engine region bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	cmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
@@ -58,8 +62,8 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	<gtExample>
 	| engine region bubble context notable update |
 	engine := CESimEngine new.
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Construct (context factory) — no ids touched by caller."
 	context := CESimRunContext
@@ -80,7 +84,7 @@ CESimExamples >> example_engineWithBubbleAndOneNotableApplied [
 	"Enqueue + apply (Ops are the authoritative change)."
 	update := CESimUpdate new.
 	update addEntityOp: (CESimAddOp
-		withRegionId: bubble homeRegionId
+		withRegionId: bubble partitionId
 		entity: notable).
 	context addUpdate: update.
 
@@ -140,8 +144,8 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 	| engine region bubble createCmd view1 entityId inspectCmd view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Tick 1: create a notable to inspect."
 	createCmd := CESimAddEntityCommand
@@ -171,8 +175,8 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 	| engine region bubble createCmd view1 spawnedEntityId interactCmd view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Tick 1: create a notable so we have a real entityId to target."
 	createCmd := CESimAddEntityCommand
@@ -207,8 +211,8 @@ CESimExamples >> example_localViewContainsStimulusEmittedEventFromCommand [
 	| engine region bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	cmd := CESimEmitStimulusAtTransformCommand
 		type: #sound
@@ -231,8 +235,8 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	| engine region bubble cmd1 cmd2 view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	cmd1 := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
@@ -291,8 +295,8 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 	| engine region bubble createCmd view1 entityId interactCmd view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
@@ -327,8 +331,8 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 	| engine region bubble createCmd view1 entityId stimulusCmd view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Tick 1: create a notable"
 	createCmd := CESimAddEntityCommand
@@ -380,7 +384,7 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	update2 := CESimUpdate new.
 	update2
 		addEntityOp: (CESimSetTransformOp
-				withRegionId: bubble homeRegionId
+				withRegionId: bubble partitionId
 				entityId: notable entityId
 				transform: newTransform).
 	context2 addUpdate: update2.
@@ -409,8 +413,8 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 	| engine region bubble createCmd view1 entityId removeCmd view2 |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	createCmd := CESimAddEntityCommand
 			withSpawnSpecId: #demoCreature
@@ -444,9 +448,9 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	regionA := engine newRegion.
-	regionB := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: regionA aggregateId.
+	regionA := engine newPartition.
+	regionB := engine newPartition.
+	bubble := engine newBubbleInPartitionId: regionA aggregateId.
 
 	"Context factory (no ids touched by caller)."
 	context := CESimRunContext
@@ -576,8 +580,8 @@ CESimExamples >> test_createNotableCommandSpawnsInLocalViewSameTick [
 CESimExamples >> test_inspectEntityRejectedEmitsTargetRejectedAuditEvent [
 	| engine region bubble bogusId inspectCmd view ev |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
-	region := engine newRegion.
-	bubble := engine newBubbleInHomeRegionId: region aggregateId.
+	region := engine newPartition.
+	bubble := engine newBubbleInPartitionId: region aggregateId.
 
 	"Bogus target: nothing perceived in an empty region."
 	bogusId := CEEntityId fromInteger: 9999.

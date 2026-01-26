@@ -28,7 +28,7 @@ CESimInteractWithEntityInvocation >> contributeIntoUpdate: aSimUpdate inContext:
 
 	aSimUpdate
 		addEntityOp: (CESimApplyInteractionOp
-				withRegionId: aSimContext homeRegionId
+				withRegionId: aSimContext partitionId
 				entityId: targetEntityId
 				interactionType: interactionType
 				payload: payload

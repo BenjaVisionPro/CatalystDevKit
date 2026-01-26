@@ -43,8 +43,8 @@ CESimEngine >> advanceGlobalTick [
 
 	globalPipeline ifNil: [ ^ self error: 'CESimEngine globalPipeline not set' ].
 
-	self regionsToAdvanceThisTick
-		do: [ :region | self runGlobalPipelineOnRegion: region ].
+	self partitionsToAdvanceThisTick
+		do: [ :region | self runGlobalPipelineOnPartition: region ].
 
 	^ tickId
 ]
@@ -88,12 +88,16 @@ CESimEngine >> currentTick [
 
 { #category : 'accessing' }
 CESimEngine >> ensureBubble: aCEBubbleId [
-    ^ self bubbleAt: aCEBubbleId ifAbsentPut: [ CEBubbleAggregate withId: aCEBubbleId ]
+	^ self
+		bubbleAt: aCEBubbleId
+		ifAbsentPut: [ CEBubbleAggregate withId: aCEBubbleId ]
 ]
 
 { #category : 'accessing' }
-CESimEngine >> ensureRegion: aCERegionId [
-    ^ self regionAt: aCERegionId ifAbsentPut: [ CERegionAggregate withId: aCERegionId ]
+CESimEngine >> ensurePartition: aPartitionId [
+	^ self
+		partitionAt: aPartitionId
+		ifAbsentPut: [ CESimPartition withId: aPartitionId ]
 ]
 
 { #category : 'accessing' }
@@ -119,11 +123,6 @@ CESimEngine >> globalPipeline: aPipeline [
 { #category : 'testing' }
 CESimEngine >> hasBubbleId: aCEBubbleId [
     ^ bubblesById includesKey: aCEBubbleId
-]
-
-{ #category : 'testing' }
-CESimEngine >> hasRegionId: aCERegionId [
-    ^ regionsById includesKey: aCERegionId
 ]
 
 { #category : 'accessing' }
@@ -153,40 +152,42 @@ CESimEngine >> lastRunContext [
 ]
 
 { #category : 'aggregates' }
-CESimEngine >> newBubbleInHomeRegionId: aCERegionId [
+CESimEngine >> newBubbleInPartitionId: aPartitionId [
     | bubbleId |
     bubbleId := idIssuer nextBubbleId.
     ^ self bubbleAt: bubbleId ifAbsentPut: [
-        CEBubbleAggregate withId: bubbleId homeRegionId: aCERegionId
+        CEBubbleAggregate withId: bubbleId partitionId: aPartitionId
     ]
 ]
 
 { #category : 'aggregates' }
-CESimEngine >> newRegion [
-	| regionId |
-	regionId := idIssuer nextRegionId.
-	^ self regionAt: regionId ifAbsentPut: [ CERegionAggregate withId: regionId ]
+CESimEngine >> newPartition [
+	| partitionId |
+	partitionId := idIssuer nextRegionId.
+	^ self
+		partitionAt: partitionId
+		ifAbsentPut: [ CESimPartition withId: partitionId ]
 ]
 
 { #category : 'accessing' }
-CESimEngine >> regionAt: aCERegionId ifAbsentPut: aBlock [
+CESimEngine >> partitionAt: aCERegionId ifAbsentPut: aBlock [
     ^ regionsById at: aCERegionId ifAbsentPut: aBlock
 ]
 
 { #category : 'accessing' }
-CESimEngine >> regions [
+CESimEngine >> partitions [
     "Stable order (determinism): sort by regionId."
     ^ (regionsById keys asSortedCollection)
         collect: [ :id | regionsById at: id ]
 ]
 
 { #category : 'scheduling' }
-CESimEngine >> regionsToAdvanceThisTick [
+CESimEngine >> partitionsToAdvanceThisTick [
 	"Macro scheduling seam.
      Default behaviour: advance all regions in stable order.
      Later: return only active regions (hot/inbox/maintenance/wake zone)."
 
-	^ self regions
+	^ self partitions
 ]
 
 { #category : 'private - running' }
@@ -205,10 +206,10 @@ CESimEngine >> runBubblePipelineOnBubble: aBubble [
 ]
 
 { #category : 'private - running' }
-CESimEngine >> runGlobalPipelineOnRegion: aRegion [
+CESimEngine >> runGlobalPipelineOnPartition: aPartition [
     | context |
     context := CESimRunContext
-        for: aRegion
+        for: aPartition
         engine: self
         tickId: tickId
         environmentQuery: environmentQuery.

@@ -100,11 +100,6 @@ CESimRunContext >> hasStepCacheKey: aKey [
 	^ runCache includesKey: aKey
 ]
 
-{ #category : 'convenience' }
-CESimRunContext >> homeRegionId [
-	^ subject homeRegionId
-]
-
 { #category : 'initialization' }
 CESimRunContext >> initialize [
 	super initialize.
@@ -134,7 +129,7 @@ CESimRunContext >> partition [
 	Today: it’s the existing region aggregate behind the scenes.
 	Later: true partitioning / routing."
 
-	^ engine ensureRegion: self homeRegionId
+	^ engine ensureRegion: self partitionId
 ]
 
 { #category : 'partitioning' }
@@ -158,6 +153,11 @@ CESimRunContext >> partitionForTransform: aTransform [
 	"Where a newly-spawned entity should live."
 
 	^ self partition
+]
+
+{ #category : 'convenience' }
+CESimRunContext >> partitionId [
+	^ subject partitionId
 ]
 
 { #category : 'printing' }

@@ -11,15 +11,6 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
-{ #category : 'instance creation' }
-CESimEntity class >> id: aCEEntityId spawnSpecId: aSpawnSpecId [
-	^ self new
-		entityId: aCEEntityId;
-		spawnSpecId: aSpawnSpecId;
-		initializeModuleStates;
-		yourself
-]
-
 { #category : 'spawning' }
 CESimEntity class >> spawnFromSpec: aSpawnSpec entityId: anEntityId state: aState [
 	| entity |
@@ -28,6 +19,13 @@ CESimEntity class >> spawnFromSpec: aSpawnSpec entityId: anEntityId state: aStat
 	entity configureFromSpawnSpec: aSpawnSpec.
 	entity entityId: anEntityId.
 	entity state: aState.
+	^ entity
+]
+
+{ #category : 'spawning' }
+CESimEntity class >> spawnFromSpec: aSpec entityId: anEntityId transform: aTransform state: aState [
+	| entity |
+	entity := self spawnFromSpec: aSpec entityId: anEntityId state: aState.
 	^ entity
 ]
 
@@ -62,12 +60,12 @@ CESimEntity >> entityId: anObject [
 { #category : 'initialization' }
 CESimEntity >> initialize [
     super initialize.
-    moduleStates := Dictionary new.
+    self initializeModuleStates
 ]
 
 { #category : 'initialization' }
 CESimEntity >> initializeModuleStates [
-    moduleStates ifNil: [ moduleStates := Dictionary new ].
+    moduleStates := Dictionary new
 ]
 
 { #category : 'accessing' }

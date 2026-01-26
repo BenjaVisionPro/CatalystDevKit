@@ -8,7 +8,7 @@ Class {
 { #category : 'producing' }
 CESimStimulusBehaviourModule >> applyStimulusCommand: aCommand intoUpdate: aCESimUpdate inContext: aCESimRunContext [
 	| regionId |
-	regionId := aCESimRunContext subject homeRegionId.
+	regionId := aCESimRunContext subject partitionId.
 
 	"Non-targeted: affects whatever is perceived this tick."
 	(self preEntitySnapshotsInContext: aCESimRunContext)

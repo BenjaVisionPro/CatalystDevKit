@@ -34,7 +34,7 @@ CESimEmitStimulusAtTransformCommand >> contributeStimulusIntoUpdate: aSimUpdate 
 		do: [ :snapshot | 
 			aSimUpdate
 				addEntityOp: (CESimApplyStimulusOp
-						withRegionId: aSimContext subject homeRegionId
+						withRegionId: aSimContext subject partitionId
 						entityId: (snapshot at: #entityId)
 						stimulusType: stimulusType
 						transform: transform

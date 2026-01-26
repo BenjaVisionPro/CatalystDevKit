@@ -4,17 +4,17 @@ Class {
 	#instVars : [
 		'commandQueue',
 		'visibleEntityIds',
-		'homeRegionId',
-		'ownerEntityId'
+		'ownerEntityId',
+		'partitionId'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'instance creation' }
-CEBubbleAggregate class >> withId: aBubbleId homeRegionId: aRegionId [
+CEBubbleAggregate class >> withId: aBubbleId partitionId: aPartitionId [
 	^ (self withId: aBubbleId)
-		withHomeRegionId: aRegionId;
+		partitionId: aPartitionId;
 		yourself
 ]
 
@@ -40,11 +40,6 @@ CEBubbleAggregate >> enqueueCommand: aCommand [
 	commandQueue add: aCommand
 ]
 
-{ #category : 'accessing' }
-CEBubbleAggregate >> homeRegionId [
-	^ homeRegionId
-]
-
 { #category : 'initialization' }
 CEBubbleAggregate >> initialize [
 	super initialize.
@@ -53,13 +48,23 @@ CEBubbleAggregate >> initialize [
 ]
 
 { #category : 'accessing' }
-CEBubbleAggregate >> moveToHomeRegionId: aRegionId [
-	homeRegionId := aRegionId
+CEBubbleAggregate >> moveToPartitionId: aRegionId [
+	partitionId := aRegionId
 ]
 
 { #category : 'accessing' }
 CEBubbleAggregate >> ownerEntityId [
 	^ ownerEntityId
+]
+
+{ #category : 'accessing' }
+CEBubbleAggregate >> partitionId [
+	^ partitionId
+]
+
+{ #category : 'accessing' }
+CEBubbleAggregate >> partitionId: aPartitionId [
+	partitionId := aPartitionId
 ]
 
 { #category : 'commands' }
@@ -71,8 +76,8 @@ CEBubbleAggregate >> pendingCommandsCount [
 CEBubbleAggregate >> relevantRegionIds [
 	"v0: only home region. Later: include micro-bubble region ids / halo overlaps."
 
-	homeRegionId ifNil: [ ^ #() ].
-	^ {homeRegionId}
+	partitionId ifNil: [ ^ #() ].
+	^ {partitionId}
 ]
 
 { #category : 'visibility' }
@@ -86,9 +91,4 @@ CEBubbleAggregate >> setVisibleEntityIds: aCollection [
 { #category : 'visibility' }
 CEBubbleAggregate >> visibleEntityIds [
 	^ visibleEntityIds copy
-]
-
-{ #category : 'accessing' }
-CEBubbleAggregate >> withHomeRegionId: aRegionId [
-	homeRegionId := aRegionId
 ]

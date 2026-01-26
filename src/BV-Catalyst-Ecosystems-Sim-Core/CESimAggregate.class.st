@@ -3,7 +3,9 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'aggregateId',
-		'eventLog'
+		'eventLog',
+		'commands',
+		'invocations'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -24,6 +26,32 @@ CESimAggregate >> appendEvent: anEvent [
 	eventLog add: anEvent
 ]
 
+{ #category : 'commnands' }
+CESimAggregate >> drainCommands [
+	| drained |
+	drained := commands.
+	commands := OrderedCollection new.
+	^ drained
+]
+
+{ #category : 'invocations' }
+CESimAggregate >> drainInvocations [
+	| drained |
+	drained := invocations.
+	invocations := OrderedCollection new.
+	^ drained
+]
+
+{ #category : 'commnands' }
+CESimAggregate >> enqueueCommand: aCommand [
+	commands add: aCommand
+]
+
+{ #category : 'invocations' }
+CESimAggregate >> enqueueInvocation: anInvocation [
+	invocations add: anInvocation
+]
+
 { #category : 'accessing' }
 CESimAggregate >> eventLog [
 	^ eventLog copy
@@ -31,7 +59,9 @@ CESimAggregate >> eventLog [
 
 { #category : 'initialization' }
 CESimAggregate >> initialize [
-	eventLog := OrderedCollection new
+	eventLog := OrderedCollection new.
+	commands := OrderedCollection new.
+	invocations := OrderedCollection new.
 ]
 
 { #category : 'printing' }

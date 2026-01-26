@@ -1,5 +1,5 @@
 Class {
-	#name : 'CERegionAggregate',
+	#name : 'CESimPartition',
 	#superclass : 'CESimAggregate',
 	#instVars : [
 		'entitiesById'
@@ -9,12 +9,12 @@ Class {
 }
 
 { #category : 'notables' }
-CERegionAggregate >> addEntity: aCEEntity [
+CESimPartition >> addEntity: aCEEntity [
 	entitiesById at: aCEEntity entityId put: aCEEntity
 ]
 
 { #category : 'notables' }
-CERegionAggregate >> entities [
+CESimPartition >> entities [
 	"Deterministic ordering: by entityId backing value."
 
 	^ (entitiesById values
@@ -23,27 +23,27 @@ CERegionAggregate >> entities [
 ]
 
 { #category : 'notables' }
-CERegionAggregate >> entityAt: aCEEntityId [
+CESimPartition >> entityAt: aCEEntityId [
 	^ self entityAt: aCEEntityId ifAbsent: [ nil ]
 ]
 
 { #category : 'notables' }
-CERegionAggregate >> entityAt: aCEEntityId ifAbsent: aBlock [
+CESimPartition >> entityAt: aCEEntityId ifAbsent: aBlock [
     ^ entitiesById at: aCEEntityId ifAbsent: aBlock
 ]
 
 { #category : 'initialization' }
-CERegionAggregate >> initialize [
+CESimPartition >> initialize [
 	super initialize.
 	entitiesById := Dictionary new
 ]
 
 { #category : 'accessing' }
-CERegionAggregate >> regionId [
+CESimPartition >> regionId [
 	^ self aggregateId
 ]
 
 { #category : 'notables' }
-CERegionAggregate >> removeEntityId: aCEEntityId [
+CESimPartition >> removeEntityId: aCEEntityId [
     entitiesById removeKey: aCEEntityId ifAbsent: [ ].
 ]

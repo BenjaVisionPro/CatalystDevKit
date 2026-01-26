@@ -7,12 +7,7 @@ Class {
 
 { #category : 'capabilities - invocations' }
 CESimRunCache >> addInvocation: aCESimCapabilityInvocation [
-	self capabilityInvocations add: aCESimCapabilityInvocation
-]
-
-{ #category : 'capabilities - invocations' }
-CESimRunCache >> capabilityInvocations [
-	^ self at: #capabilityInvocations ifAbsentPut: [ OrderedCollection new ]
+	self invocations add: aCESimCapabilityInvocation
 ]
 
 { #category : 'accessing - api' }
@@ -26,21 +21,8 @@ CESimRunCache >> drainedCommands: aCollection [
 ]
 
 { #category : 'capabilities - invocations' }
-CESimRunCache >> focusInvocations [
-	^ self capabilityInvocations
-		select: [ :each | each isKindOf: CESimFocusInvocation ]
-]
-
-{ #category : 'capabilities - invocations' }
-CESimRunCache >> interactionInvocations [
-	^ self capabilityInvocations
-		select: [ :each | each isKindOf: CESimInteractionInvocation ]
-]
-
-{ #category : 'capabilities - invocations' }
-CESimRunCache >> lifecycleInvocations [
-	^ self capabilityInvocations
-		select: [ :each | each isKindOf: CESimLifecycleInvocation ]
+CESimRunCache >> invocations [
+	^ self at: #invocations ifAbsentPut: [ OrderedCollection new ]
 ]
 
 { #category : 'accessing - api' }
@@ -71,12 +53,6 @@ CESimRunCache >> result [
 { #category : 'accessing - api' }
 CESimRunCache >> result: aCollection [
 	self at: #result put: aCollection
-]
-
-{ #category : 'capabilities - invocations' }
-CESimRunCache >> stimulusInvocations [
-	^ self capabilityInvocations
-		select: [ :each | each isKindOf: CESimStimulusInvocation ]
 ]
 
 { #category : 'accessing - api' }
