@@ -63,12 +63,6 @@ CESimRunContext >> clearRunCache [
 	runCache removeAll
 ]
 
-{ #category : 'step cache' }
-CESimRunContext >> clearStepCache [
-	"Legacy alias. Prefer #clearRunCache."
-	self clearRunCache
-]
-
 { #category : 'updates' }
 CESimRunContext >> clearUpdates [
 	updates removeAll
@@ -105,6 +99,16 @@ CESimRunContext >> initialize [
 	super initialize.
 	updates := OrderedCollection new.
 	runCache := CESimRunCache new
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> localView [
+	^ runCache localView
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> localView: aLocalView [
+	runCache localView: aLocalView
 ]
 
 { #category : 'targeting' }
@@ -158,6 +162,26 @@ CESimRunContext >> partitionForTransform: aTransform [
 { #category : 'convenience' }
 CESimRunContext >> partitionId [
 	^ subject partitionId
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> postEntitySnapshots [
+	^ runCache postEntitySnapshots
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> postEntitySnapshots: snapshots [
+	runCache postEntitySnapshots: snapshots
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> preEntitySnapshots [
+	^ runCache preEntitySnapshots
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> preEntitySnapshots: snapshots [
+	runCache preEntitySnapshots: snapshots
 ]
 
 { #category : 'printing' }
@@ -268,6 +292,16 @@ CESimRunContext >> targetingDecisionForEntityId: anEntityId profile: aProfile [
 	^ Dictionary new
 		at: #allowed put: true;
 		yourself
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> tickEvents [
+	^ runCache tickEvents
+]
+
+{ #category : 'accessing' }
+CESimRunContext >> tickEvents: events [
+	runCache tickEvents: events
 ]
 
 { #category : 'accessing' }

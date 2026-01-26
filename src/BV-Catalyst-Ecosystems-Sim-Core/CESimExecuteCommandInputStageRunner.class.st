@@ -1,12 +1,12 @@
 Class {
-	#name : 'CESimModulesStageRunner',
+	#name : 'CESimExecuteCommandInputStageRunner',
 	#superclass : 'CESimUpdateStageRunner',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'running' }
-CESimModulesStageRunner >> buildUpdateForStage: aStage inContext: aContext [
+CESimExecuteCommandInputStageRunner >> buildUpdateForStage: aStage inContext: aContext [
 	| update commands |
 
 	update := CESimUpdate new.
@@ -23,7 +23,7 @@ CESimModulesStageRunner >> buildUpdateForStage: aStage inContext: aContext [
 ]
 
 { #category : 'running' }
-CESimModulesStageRunner >> processCommands: commands intoUpdate: anUpdate inContext: aContext [
+CESimExecuteCommandInputStageRunner >> processCommands: commands intoUpdate: anUpdate inContext: aContext [
 	| subject invocations |
 	subject := aContext subject.
 	

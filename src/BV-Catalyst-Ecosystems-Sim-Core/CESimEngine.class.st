@@ -22,19 +22,6 @@ Class {
 }
 
 { #category : 'running' }
-CESimEngine >> advanceBubbleTickFor: aCEBubbleId [
-	| bubble |
-	"Advance one bubble. Returns a CESimLocalView (may be empty in v0)."
-	bubblePipeline ifNil: [ ^ self error: 'CESimEngine bubblePipeline not set' ].
-
-	bubble := bubblesById
-			at: aCEBubbleId
-			ifAbsent: [ ^ self error: 'Unknown bubbleId: ' , aCEBubbleId asString ].
-
-	^ self runBubblePipelineOnBubble: bubble
-]
-
-{ #category : 'running' }
 CESimEngine >> advanceGlobalTick [
 	"Advance the global simulation by one tick.
      Runs the global pipeline for the selected regions (macro scheduling)."
@@ -47,6 +34,19 @@ CESimEngine >> advanceGlobalTick [
 		do: [ :region | self runGlobalPipelineOnPartition: region ].
 
 	^ tickId
+]
+
+{ #category : 'running' }
+CESimEngine >> advanceTickForBubbleId: aCEBubbleId [
+	| bubble |
+	"Advance one bubble. Returns a CESimLocalView (may be empty in v0)."
+	bubblePipeline ifNil: [ ^ self error: 'CESimEngine bubblePipeline not set' ].
+
+	bubble := bubblesById
+			at: aCEBubbleId
+			ifAbsent: [ ^ self error: 'Unknown bubbleId: ' , aCEBubbleId asString ].
+
+	^ self runBubblePipelineOnBubble: bubble
 ]
 
 { #category : 'accessing' }

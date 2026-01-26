@@ -26,8 +26,18 @@ CESimRunCache >> invocations [
 ]
 
 { #category : 'accessing - api' }
+CESimRunCache >> localView [
+	^ self at: #localView ifAbsent: [ nil ]
+]
+
+{ #category : 'accessing - api' }
+CESimRunCache >> localView: aLocalView [
+	self at: #localView put: aLocalView
+]
+
+{ #category : 'accessing - api' }
 CESimRunCache >> postEntitySnapshots [
-	^ self at: #postEntitySnapshots ifAbsent: [ OrderedCollection new ]
+	^ self at: #postEntitySnapshots ifAbsent: [ #() ]
 ]
 
 { #category : 'accessing - api' }
@@ -37,7 +47,7 @@ CESimRunCache >> postEntitySnapshots: aCollection [
 
 { #category : 'accessing - api' }
 CESimRunCache >> preEntitySnapshots [
-	^ self at: #preEntitySnapshots ifAbsent: [ OrderedCollection new ]
+	^ self at: #preEntitySnapshots ifAbsent: [ #() ]
 ]
 
 { #category : 'accessing - api' }

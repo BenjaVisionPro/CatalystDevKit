@@ -24,7 +24,7 @@ CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 					yourself).
 
 	bubble enqueueCommand: cmd.
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #engine put: engine;
@@ -36,24 +36,24 @@ CESimExamples >> example_createNotableCommandProducesAuditEventAndSpawn [
 { #category : 'examples' }
 CESimExamples >> example_createNotableCommandSpawnsInLocalViewSameTick [
 	<gtExample>
-	| engine region bubble cmd view |
+	| engine partition bubble cmd view |
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
 
 	cmd := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new
 			at: #pos put: #(0 0 0);
 			yourself)
-		state: (Dictionary new
+		stateOverlay: (Dictionary new
 			at: #mood put: #chill;
 			yourself).
 
 	bubble enqueueCommand: cmd.
 
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 	^ view
 ]
 
@@ -112,8 +112,8 @@ CESimExamples >> example_engineWithCommandDrivenBubblePipeline [
 				runner: CESimCollectPreEntitySnapshotsStageRunner new;
 				yourself);
 		add: (CESimStage new
-				stageId: #modules;
-				runner: CESimModulesStageRunner new;
+				stageId: #executeCommandInput;
+				runner: CESimExecuteCommandInputStageRunner new;
 				yourself);
 		add: (CESimStage new
 				stageId: #applyUpdates;
@@ -154,13 +154,13 @@ CESimExamples >> example_localViewContainsEntityInspectedEventFromCommand [
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	view1 := engine advanceTickForBubbleId: bubble bubbleId.
 	entityId := view1 spawns first at: #entityId.
 
 	"Tick 2: inspect it."
 	inspectCmd := CESimInspectEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: inspectCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+	view2 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #view2 put: view2;
@@ -185,7 +185,7 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	view1 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	spawnedEntityId := view1 spawns first at: #entityId.
 
@@ -196,7 +196,7 @@ CESimExamples >> example_localViewContainsEntityInteractionEventFromCommand [
 		payload: (Dictionary new at: #hand put: #right; yourself).
 
 	bubble enqueueCommand: interactCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+	view2 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #view1 put: view1;
@@ -220,7 +220,7 @@ CESimExamples >> example_localViewContainsStimulusEmittedEventFromCommand [
 		intensity: 0.75.
 
 	bubble enqueueCommand: cmd.
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #engine put: engine;
@@ -251,7 +251,7 @@ CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotab
 	bubble enqueueCommand: cmd1.
 	bubble enqueueCommand: cmd2.
 
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #engine put: engine;
@@ -305,7 +305,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	view1 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	entityId := view1 spawns first at: #entityId.
 
@@ -316,7 +316,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterEntityInteractionCommand 
 		payload: (Dictionary new at: #hand put: #right; yourself).
 
 	bubble enqueueCommand: interactCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+	view2 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #view1 put: view1;
@@ -341,7 +341,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 		state: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	view1 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	entityId := view1 spawns first at: #entityId.
 
@@ -352,7 +352,7 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 		intensity: 0.75.
 
 	bubble enqueueCommand: stimulusCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+	view2 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #view1 put: view1;
@@ -426,13 +426,13 @@ CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
 					yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceBubbleTickFor: bubble bubbleId.
+	view1 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	entityId := view1 spawns first at: #entityId.
 
 	removeCmd := CESimRemoveEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: removeCmd.
-	view2 := engine advanceBubbleTickFor: bubble bubbleId.
+	view2 := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #view1 put: view1;
@@ -489,7 +489,7 @@ CESimExamples >> example_stimulusOnlyAffectsVisibleNotables [
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
 		intensity: 1).
 
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 
 	^ Dictionary new
 		at: #engine put: engine;
@@ -588,7 +588,7 @@ CESimExamples >> test_inspectEntityRejectedEmitsTargetRejectedAuditEvent [
 	inspectCmd := CESimInspectEntityCommand targetEntityId: bogusId.
 
 	bubble enqueueCommand: inspectCmd.
-	view := engine advanceBubbleTickFor: bubble bubbleId.
+	view := engine advanceTickForBubbleId: bubble bubbleId.
 
 	ev := view events
 		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #targetRejected ]
