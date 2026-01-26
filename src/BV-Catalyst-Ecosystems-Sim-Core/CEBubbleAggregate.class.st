@@ -3,9 +3,9 @@ Class {
 	#superclass : 'CESimAggregate',
 	#instVars : [
 		'commandQueue',
-		'visibleEntityIds',
 		'ownerEntityId',
-		'partitionId'
+		'partitionId',
+		'collectedEntityIds'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -21,6 +21,11 @@ CEBubbleAggregate class >> withId: aBubbleId partitionId: aPartitionId [
 { #category : 'accessing' }
 CEBubbleAggregate >> bubbleId [
 	^ self aggregateId
+]
+
+{ #category : 'visibility' }
+CEBubbleAggregate >> collectedEntityIds [
+	^ collectedEntityIds copy
 ]
 
 { #category : 'commands' }
@@ -44,12 +49,12 @@ CEBubbleAggregate >> enqueueCommand: aCommand [
 CEBubbleAggregate >> initialize [
 	super initialize.
 	commandQueue := OrderedCollection new.
-	visibleEntityIds := OrderedCollection new
+	collectedEntityIds := OrderedCollection new
 ]
 
 { #category : 'accessing' }
-CEBubbleAggregate >> moveToPartitionId: aRegionId [
-	partitionId := aRegionId
+CEBubbleAggregate >> moveToPartitionId: aPartitionId [
+	partitionId := aPartitionId
 ]
 
 { #category : 'accessing' }
@@ -74,28 +79,10 @@ CEBubbleAggregate >> partitionIdsForSnapshotCollection [
 	^ {self partitionId}
 ]
 
-{ #category : 'commands' }
-CEBubbleAggregate >> pendingCommandsCount [
-	^ commandQueue size
-]
-
-{ #category : 'regions' }
-CEBubbleAggregate >> relevantRegionIds [
-	"v0: only home region. Later: include micro-bubble region ids / halo overlaps."
-
-	partitionId ifNil: [ ^ #() ].
-	^ {partitionId}
-]
-
 { #category : 'visibility' }
-CEBubbleAggregate >> setVisibleEntityIds: aCollection [
+CEBubbleAggregate >> setCollectedEntityIds: aCollection [
 	"Store in deterministic order (by id value)."
 
-	visibleEntityIds := (aCollection asOrderedCollection
+	collectedEntityIds := (aCollection asOrderedCollection
 			asSortedCollection: [ :a :b | a value < b value ]) asOrderedCollection
-]
-
-{ #category : 'visibility' }
-CEBubbleAggregate >> visibleEntityIds [
-	^ visibleEntityIds copy
 ]

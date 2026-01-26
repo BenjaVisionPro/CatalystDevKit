@@ -7,8 +7,8 @@ Class {
 
 { #category : 'contributing' }
 CESimRemoveEntityCommand >> contributeInvocationsIntoUpdate: aUpdate inContext: aContext [
-	aContext runCache
-		addInvocation: (CESimRemoveEntityInvocation targetEntityId: targetEntityId)
+	aContext subject
+		enqueueInvocation: (CESimRemoveEntityInvocation targetEntityId: targetEntityId)
 ]
 
 { #category : 'producing' }

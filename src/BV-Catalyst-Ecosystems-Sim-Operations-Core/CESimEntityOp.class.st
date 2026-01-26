@@ -8,6 +8,13 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
+{ #category : 'instance creation' }
+CESimEntityOp class >> entityId: anEntityId [
+	^ self new
+		entityId: anEntityId;
+		yourself
+]
+
 { #category : 'applying' }
 CESimEntityOp >> applyInContext: aCESimRunContext [
 	self subclassResponsibility

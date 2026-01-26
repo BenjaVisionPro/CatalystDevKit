@@ -412,31 +412,75 @@ CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 ]
 
 { #category : 'examples' }
-CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
+CESimExamples >> example_removeEntityCommandDespawnsInLocalView [
 	<gtExample>
-	| engine region bubble createCmd view1 entityId removeCmd view2 |
+	| engine partition bubble createCmd removeCmd context1 context2 view1 view2 entityId |
+
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
 
+	"Tick 1 — create entity"
 	createCmd := CESimAddEntityCommand
-			withSpawnSpecId: #demoCreature
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			state: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withSpawnSpecId: #demoCreature
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		stateOverlay: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
 	bubble enqueueCommand: createCmd.
-	view1 := engine advanceTickForBubbleId: bubble bubbleId.
+	context1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := context1 localView.
+
+	entityId := view1 spawns first at: #entityId.
+
+	"Tick 2 — remove entity"
+	removeCmd := CESimRemoveEntityCommand
+		targetEntityId: entityId.
+
+	bubble enqueueCommand: removeCmd.
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
+
+	^ Dictionary new
+		at: #view1 put: view1;
+		at: #view2 put: view2;
+		at: #removedEntityId put: entityId;
+		yourself
+]
+
+{ #category : 'examples' }
+CESimExamples >> example_removeNotableCommandDespawnsInLocalViewSameTick [
+	<gtExample>
+	| engine partition bubble createCmd context1 view1 entityId removeCmd context2 view2 |
+
+	engine := self example_engineWithCommandDrivenBubblePipeline.
+
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
+
+	createCmd := CESimAddEntityCommand
+		withSpawnSpecId: #demoCreature
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		stateOverlay: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
+
+	bubble enqueueCommand: createCmd.
+	context1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := context1 localView.
 
 	entityId := view1 spawns first at: #entityId.
 
 	removeCmd := CESimRemoveEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: removeCmd.
-	view2 := engine advanceTickForBubbleId: bubble bubbleId.
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
 
 	^ Dictionary new
 		at: #view1 put: view1;

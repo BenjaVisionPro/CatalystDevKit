@@ -32,6 +32,11 @@ CESimPartition >> entityAt: anEntityId ifAbsent: aBlock [
     ^ entitiesById at: anEntityId ifAbsent: aBlock
 ]
 
+{ #category : 'notables' }
+CESimPartition >> includesEntityId: anEntityId [
+	^ entitiesById includesKey: anEntityId
+]
+
 { #category : 'initialization' }
 CESimPartition >> initialize [
 	super initialize.
@@ -44,6 +49,6 @@ CESimPartition >> partitionId [
 ]
 
 { #category : 'notables' }
-CESimPartition >> removeEntityId: aCEEntityId [
-    entitiesById removeKey: aCEEntityId ifAbsent: [ ].
+CESimPartition >> removeEntityId: anEntityId [
+	entitiesById removeKey: anEntityId ifAbsent: [  ]
 ]

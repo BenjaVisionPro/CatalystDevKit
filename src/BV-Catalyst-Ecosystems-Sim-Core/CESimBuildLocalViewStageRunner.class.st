@@ -15,7 +15,7 @@ CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aContext [
 	snapshots ifNil: [ snapshots := #() ].	
 	
 	"Previous visible ids are durable bubble state."
-	previousIds := subject visibleEntityIds.
+	previousIds := subject collectedEntityIds.
 
 	previousMap := Dictionary new: previousIds size.
 	previousIds do: [ :id | previousMap at: id put: true ].
@@ -49,7 +49,10 @@ CESimBuildLocalViewStageRunner >> runStage: aStage inContext: aContext [
 			spawns: spawns;
 			updates: updates;
 			despawns: despawns;
-			yourself.
+			yourself.	
 
+	"Persist for next tick diffing."
+	subject setCollectedEntityIds: currentIds.
+	
 	aContext localView: view
 ]

@@ -160,7 +160,7 @@ CESimEngine >> newBubbleInPartitionId: aPartitionId [
     ]
 ]
 
-{ #category : 'aggregates' }
+{ #category : 'partitions' }
 CESimEngine >> newPartition [
 	| partitionId |
 	partitionId := idIssuer nextRegionId.
@@ -169,19 +169,29 @@ CESimEngine >> newPartition [
 		ifAbsentPut: [ CESimPartition withId: partitionId ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'partitions' }
 CESimEngine >> partitionAt: aCERegionId ifAbsentPut: aBlock [
     ^ partitionsById at: aCERegionId ifAbsentPut: aBlock
 ]
 
-{ #category : 'accessing' }
+{ #category : 'partitions' }
+CESimEngine >> partitionContainingEntityId: anEntityId ifNone: aBlock [
+	"Temporary linear scan until the partition workshop introduces an index."
+
+	partitionsById
+		valuesDo: [ :eachPartition | (eachPartition includesEntityId: anEntityId) ifTrue: [ ^ eachPartition ] ].
+
+	^ aBlock value
+]
+
+{ #category : 'partitions' }
 CESimEngine >> partitions [
     "Stable order (determinism): sort by regionId."
     ^ (partitionsById keys asSortedCollection)
         collect: [ :id | partitionsById at: id ]
 ]
 
-{ #category : 'scheduling' }
+{ #category : 'partitions' }
 CESimEngine >> partitionsToAdvanceThisTick [
 	"Macro scheduling seam.
      Default behaviour: advance all regions in stable order.

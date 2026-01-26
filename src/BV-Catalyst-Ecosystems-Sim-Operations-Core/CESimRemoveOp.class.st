@@ -7,5 +7,10 @@ Class {
 
 { #category : 'applying' }
 CESimRemoveOp >> applyInContext: aContext [
-	(aContext partitionForEntityId: entityId) removeEntityId: entityId
+	| partition |
+	partition := aContext engine
+			partitionContainingEntityId: self entityId
+			ifNone: [ ^ self ].
+
+	partition removeEntityId: self entityId
 ]
