@@ -8,9 +8,19 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 }
 
+{ #category : 'instance creation' }
+CESimSetTransformOp class >> entityId: anEntityId transform: aTransform [
+	^ self new
+		entityId: anEntityId;
+		transform: aTransform;
+		yourself
+]
+
 { #category : 'applying' }
-CESimSetTransformOp >> applyInContext: aCESimRunContext [
-	(self entityInContext: aCESimRunContext) transform: transform
+CESimSetTransformOp >> applyInContext: aContext [
+	| entity |
+	entity := aContext engine entityWithId: entityId ifAbsent: [ ^ self ].
+	entity applyTransform: transform
 ]
 
 { #category : 'accessing' }

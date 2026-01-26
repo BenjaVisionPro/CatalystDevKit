@@ -1,8 +1,7 @@
 Class {
 	#name : 'CESimAddEntityInvocation',
-	#superclass : 'CESimLifecycleInvocation',
+	#superclass : 'CESimTargetedInvocation',
 	#instVars : [
-		'entityId',
 		'transform',
 		'spawnSpecId',
 		'stateOverlay'
@@ -25,16 +24,6 @@ CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
 		stateOverlay: stateOverlay.
 
 	aUpdate addEntityOp: (CESimAddOp entity: entity)
-]
-
-{ #category : 'accessing' }
-CESimAddEntityInvocation >> entityId [
-	^ entityId
-]
-
-{ #category : 'accessing' }
-CESimAddEntityInvocation >> entityId: anObject [
-	entityId := anObject
 ]
 
 { #category : 'accessing' }

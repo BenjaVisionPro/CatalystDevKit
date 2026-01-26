@@ -236,26 +236,28 @@ CESimExamples >> example_localViewContainsStimulusEmittedEventFromCommand [
 { #category : 'examples' }
 CESimExamples >> example_localViewShowsDeterministicSpawnOrderFromTwoCreateNotableCommands [
 	<gtExample>
-	| engine region bubble cmd1 cmd2 view |
+	| engine partition bubble cmd1 cmd2 context view |
+
 	engine := self example_engineWithCommandDrivenBubblePipeline.
 
-	region := engine newPartition.
-	bubble := engine newBubbleInPartitionId: region aggregateId.
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition aggregateId.
 
 	cmd1 := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(0 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+		stateOverlay: (Dictionary new at: #mood put: #chill; yourself).
 
 	cmd2 := CESimAddEntityCommand
 		withSpawnSpecId: #demoCreature
 		transform: (Dictionary new at: #pos put: #(1 0 0); yourself)
-		state: (Dictionary new at: #mood put: #chill; yourself).
+		stateOverlay: (Dictionary new at: #mood put: #chill; yourself).
 
 	bubble enqueueCommand: cmd1.
 	bubble enqueueCommand: cmd2.
 
-	view := engine advanceTickForBubbleId: bubble bubbleId.
+	context := engine advanceTickForBubbleId: bubble bubbleId.
+	view := context localView.
 
 	^ Dictionary new
 		at: #engine put: engine;
@@ -368,45 +370,31 @@ CESimExamples >> example_localViewShowsStateUpdateAfterStimulusCommand [
 { #category : 'examples' }
 CESimExamples >> example_localViewShowsUpdateAfterTransformChange [
 	<gtExample>
-	| seed engine bubble notable view1 context2 update2 collectRunner buildRunner view2 newTransform |
-	seed := self example_localViewShowsSpawnForAppliedNotable.
+	| seed engine bubble entity view1 newTransform setTransformCmd context2 view2 |
+
+	seed := self example_localViewShowsSpawnForAppliedEntity.
 	engine := (seed at: #seed) at: #engine.
 	bubble := (seed at: #seed) at: #bubble.
-	notable := (seed at: #seed) at: #notable.
+	entity := (seed at: #seed) at: #entity.
 	view1 := seed at: #view.
 
 	newTransform := Dictionary new
-			at: #pos put: #(10 0 0);
-			yourself.
+		at: #pos put: #(10 0 0);
+		yourself.
 
-	context2 := CESimRunContext
-			for: bubble
-			engine: engine
-			tickId: engine currentTick
-			environmentQuery: engine environmentQuery.
+	"Tick 2: request a transform change via command (preferred path)"
+	"setTransformCmd := CESimSetEntityTransformCommand
+		targetEntityId: entity entityId
+		transform: newTransform."
 
-	update2 := CESimUpdate new.
-	update2
-		addEntityOp: (CESimSetTransformOp
-				withRegionId: bubble partitionId
-				entityId: notable entityId
-				transform: newTransform).
-	context2 addUpdate: update2.
-
-	engine transactionRunner
-		inTransactionDo: [ engine updateApplier applyUpdatesInContext: context2 ].
-
-	collectRunner := CESimCollectPostEntitySnapshotsStageRunner new.
-	buildRunner := CESimBuildLocalViewStageRunner new.
-	collectRunner runStage: nil inContext: context2.
-	buildRunner runStage: nil inContext: context2.
-
-	view2 := context2 runCache result.
+	bubble enqueueCommand: setTransformCmd.
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
 
 	^ Dictionary new
 		at: #view1 put: view1;
 		at: #view2 put: view2;
-		at: #notable put: notable;
+		at: #entity put: entity;
 		at: #transform2 put: newTransform;
 		yourself
 ]

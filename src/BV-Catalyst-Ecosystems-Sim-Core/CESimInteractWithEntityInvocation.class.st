@@ -1,8 +1,7 @@
 Class {
 	#name : 'CESimInteractWithEntityInvocation',
-	#superclass : 'CESimInteractionInvocation',
+	#superclass : 'CESimTargetedInvocation',
 	#instVars : [
-		'targetEntityId',
 		'interactionType',
 		'payload'
 	],
@@ -43,11 +42,6 @@ CESimInteractWithEntityInvocation >> interactionType: anObject [
 { #category : 'accessing' }
 CESimInteractWithEntityInvocation >> payload: anObject [
 	payload := anObject
-]
-
-{ #category : 'accessing' }
-CESimInteractWithEntityInvocation >> targetEntityId: anObject [
-	targetEntityId := anObject
 ]
 
 { #category : 'targeting' }

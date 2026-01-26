@@ -1,19 +1,9 @@
 Class {
 	#name : 'CESimInspectEntityInvocation',
-	#superclass : 'CESimInteractionInvocation',
-	#instVars : [
-		'targetEntityId'
-	],
+	#superclass : 'CESimTargetedInvocation',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
-
-{ #category : 'instance creation' }
-CESimInspectEntityInvocation class >> targetEntityId: aCEEntityId [
-	^ self new
-		targetEntityId: aCEEntityId;
-		yourself
-]
 
 { #category : 'as yet unclassified' }
 CESimInspectEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
@@ -34,11 +24,6 @@ CESimInspectEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContex
 				at: #snapshot put: snapshot;
 				at: #tickId put: aContext tickId;
 				yourself)
-]
-
-{ #category : 'accessing' }
-CESimInspectEntityInvocation >> targetEntityId: anObject [
-	targetEntityId := anObject
 ]
 
 { #category : 'targeting' }

@@ -1,16 +1,16 @@
 Class {
-	#name : 'CESimCapabilityInvocation',
+	#name : 'CESimInvocation',
 	#superclass : 'Object',
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'contributing' }
-CESimCapabilityInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
+CESimInvocation >> contributeIntoUpdate: aSimUpdate inContext: aSimContext [
 	self subclassResponsibility
 ]
 
 { #category : 'targeting' }
-CESimCapabilityInvocation >> targetingProfile [
+CESimInvocation >> targetingProfile [
 	self subclassResponsibility
 ]
