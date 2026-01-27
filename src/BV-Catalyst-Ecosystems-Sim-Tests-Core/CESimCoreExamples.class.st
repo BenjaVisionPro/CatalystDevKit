@@ -508,3 +508,52 @@ CESimCoreExamples >> test_partitionContainingEntityId_usesStablePartitionsEnumer
 	self assert: engine partitionsWasCalled.
 	self assert: found equals: p2
 ]
+
+
+{ #category : 'tests' }
+CESimCoreExamples >> test_inbox_drainSortsDeterministically [
+	| inbox drained |
+	inbox := CESimInbox orderedBy: [ :each | each ].
+	inbox enqueue: 3.
+	inbox enqueue: 1.
+	inbox enqueue: 2.
+
+	drained := inbox drain.
+
+	self assert: drained equals: #(1 2 3).
+	self assert: inbox isEmpty
+]
+
+{ #category : 'tests' }
+CESimCoreExamples >> test_dedupingInbox_dropsDuplicates [
+	| inbox drained |
+	inbox := CESimDedupingInbox
+		orderedBy: [ :each | each ]
+		dedupeBy: [ :each | each ].
+
+	inbox enqueue: 2.
+	inbox enqueue: 1.
+	inbox enqueue: 2.
+
+	drained := inbox drain.
+
+	self assert: drained equals: #(1 2).
+	self assert: inbox isEmpty
+]
+
+{ #category : 'tests' }
+CESimCoreExamples >> test_invocationEnvelope_envelopeIdIsInvocationId [
+	| invocation entityId envelope |
+	entityId := CEEntityId fromInteger: 1.
+	invocation := CESimInspectEntityInvocation targetEntityId: entityId.
+
+	envelope := CESimInvocationEnvelope
+		invocationId: #invocation1
+		bubbleId: #bubble1
+		gatewayId: #gateway1
+		playerIntentTickId: 7
+		invocation: invocation.
+
+	self assert: envelope envelopeId equals: envelope invocationId.
+	self assert: envelope envelopeId equals: #invocation1
+]
