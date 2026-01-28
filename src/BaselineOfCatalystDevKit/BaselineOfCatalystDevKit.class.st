@@ -34,6 +34,9 @@ BaselineOfCatalystDevKit >> baseline: spec [
 				"Runtime (CR*) - common, platform-neutral"
 				package: 'BV-Catalyst-Runtime-Core'
 					with: [ spec requires: #('BV-Catalyst-Core') ];
+					
+				package: 'BV-Catalyst-Runtime-UI'
+					with: [ spec requires: #('BV-Catalyst-Core') ];
 
 				"Runtime Examples/Tests remain self-contained, and must depend on the platform service"
 				package: 'BV-Catalyst-Runtime-ExamplesAndTests'
