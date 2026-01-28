@@ -31,10 +31,11 @@ BaselineOfCatalystDevKit >> baseline: spec [
 
 				"==== New architecture packages (keep old ones until migration is complete) ===="
 
-				"Runtime (CR*)"
+				"Runtime (CR*) - common, platform-neutral"
 				package: 'BV-Catalyst-Runtime-Core'
 					with: [ spec requires: #('BV-Catalyst-Core') ];
 
+				"Runtime Examples/Tests remain self-contained, and must depend on the platform service"
 				package: 'BV-Catalyst-Runtime-ExamplesAndTests'
 					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ];
 
@@ -131,11 +132,34 @@ BaselineOfCatalystDevKit >> baseline: spec [
 					with: [ spec requires: #('BV-Catalyst-Model-Universe-Core') ].
 		].
 
+	"Platform-specific Runtime service implementations"
 	spec
 		for: #pharo
 		do: [
 			spec
+				package: 'BV-Catalyst-Runtime-Service-Pharo'
+					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ].
+
+			"Make runtime examples/tests depend on the Pharo service when loading on Pharo"
+			spec
+				group: 'runtime' with: #('BV-Catalyst-Runtime-Core' 'BV-Catalyst-Runtime-Service-Pharo');
+				group: 'runtime-tests' with: #('BV-Catalyst-Runtime-ExamplesAndTests').
+
+			spec
 				package: 'BV-Catalyst-DevKit-Core'
+		].
+
+	spec
+		for: #gemstone
+		do: [
+			spec
+				package: 'BV-Catalyst-Runtime-Server-GemStone'
+					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ].
+
+			"Make runtime examples/tests depend on the GemStone service when loading on GemStone"
+			spec
+				group: 'runtime' with: #('BV-Catalyst-Runtime-Core' 'BV-Catalyst-Runtime-Server-GemStone');
+				group: 'runtime-tests' with: #('BV-Catalyst-Runtime-ExamplesAndTests')
 		].
 
 	^ spec
