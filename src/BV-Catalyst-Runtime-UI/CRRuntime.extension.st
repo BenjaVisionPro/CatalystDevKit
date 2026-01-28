@@ -20,7 +20,7 @@ CRRuntime >> gtActionStopOn: anAction [
 	^ anAction button
 		icon: BrGlamorousVectorIcons stop;
 		tooltip: 'Stop the Runtime';
-		menuDisable: [ isRunning not ];
+		menuDisable: [ true ];
 		action: [ self stop ]
 ]
 

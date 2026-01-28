@@ -5,7 +5,8 @@ Class {
 		'displayName',
 		'workers',
 		'runners',
-		'isRunning'
+		'isRunning',
+		'announcer'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
@@ -18,6 +19,11 @@ CRRuntime >> addWorker: aWorker [
 	workers add: aWorker.
 	isRunning ifTrue: [ self ensureRunnerStartedFor: aWorker ].
 	^ aWorker
+]
+
+{ #category : 'accessing' }
+CRRuntime >> announcer [
+	^ announcer
 ]
 
 { #category : 'workers' }
@@ -57,6 +63,7 @@ CRRuntime >> initialize [
 	displayName := 'Catalyst Runtime'.
 	workers := OrderedCollection new.
 	runners := IdentityDictionary new.
+	announcer := CRAnnouncer new.
 	isRunning := false
 ]
 
