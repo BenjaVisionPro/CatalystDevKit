@@ -1,25 +1,25 @@
 Extension { #name : 'CRRuntime' }
 
 { #category : '*bv-catalyst-runtime-ui' }
-CRRuntime >> gtOverviewFor: aView [
-	"I show the current state of the runtime in a stable, non-flashy way."
+CRRuntime >> gtActionStartOn: anAction [
+	<gtAction>
+	"I start the runtime."
 
-	<gtView>
-	^ aView textEditor
-		title: 'Overview';
+	^ anAction
+		label: 'Start';
 		priority: 10;
-		text: [ String
-				streamContents: [ :s | 
-					s
-						nextPutAll: (displayName ifNil: [ 'Catalyst Runtime' ]);
-						cr;
-						cr;
-						nextPutAll: 'Running: ';
-						nextPutAll: isRunning asString;
-						cr;
-						nextPutAll: 'Runners: ';
-						nextPutAll: runners size asString;
-						cr ] ]
+		action: [ self start ]
+]
+
+{ #category : '*bv-catalyst-runtime-ui' }
+CRRuntime >> gtActionStopOn: anAction [
+	<gtAction>
+	"I stop the runtime."
+
+	^ anAction
+		label: 'Stop';
+		priority: 20;
+		action: [ self stop ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }
@@ -33,4 +33,31 @@ CRRuntime >> gtRunnersFor: aView [
 		items: [ runners values asArray ];
 		column: 'Runner' text: [ :each | each gtDisplayText ];
 		column: 'Running' text: [ :each | each isRunning asString ]
+]
+
+{ #category : '*bv-catalyst-runtime-ui' }
+CRRuntime >> gtViewOverviewOn: aView [
+	"I show the current runtime state (no telemetry yet)."
+
+	<gtView>
+	^ aView columnedList
+		title: 'Overview';
+		priority: 10;
+		items: [ {#displayName -> (displayName ifNil: [ 'Catalyst Runtime' ]).
+				#isRunning -> isRunning.
+				#workerCount -> (workers ifNil: [ #() ]) size.
+				#runnerCount -> (runners ifNil: [ IdentityDictionary new ]) size} ];
+		column: 'Key' text: [ :assoc | assoc key asString ];
+		column: 'Value' text: [ :assoc | assoc value asString ]
+]
+
+{ #category : '*bv-catalyst-runtime-ui' }
+CRRuntime >> gtViewWorkersOn: aView [
+	"I show my registered workers (the intent-level objects)."
+
+	<gtView>
+	^ aView list
+		title: 'Workers';
+		priority: 20;
+		items: [ workers ifNil: [ #() ] ]
 ]
