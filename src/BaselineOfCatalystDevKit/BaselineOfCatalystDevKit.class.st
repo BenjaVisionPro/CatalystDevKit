@@ -137,7 +137,7 @@ BaselineOfCatalystDevKit >> baseline: spec [
 		for: #pharo
 		do: [
 			spec
-				package: 'BV-Catalyst-Runtime-Service-Pharo'
+				package: 'BV-Catalyst-Runtime-Server-Pharo'
 					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ].
 
 			"Make runtime examples/tests depend on the Pharo service when loading on Pharo"
