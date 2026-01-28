@@ -2,7 +2,8 @@ Class {
 	#name : 'CRRuntimeRegistry',
 	#superclass : 'Object',
 	#instVars : [
-		'runtimes'
+		'runtimes',
+		'announcer'
 	],
 	#classInstVars : [
 		'Default'
@@ -19,31 +20,19 @@ CRRuntimeRegistry class >> default [
 	^ Default
 ]
 
-{ #category : 'ui' }
-CRRuntimeRegistry >> gtRuntimesFor: aView [
-	"I show the registered runtimes so I can find and stop them."
-
-	<gtView>
-	^ aView columnedList
-		title: 'Runtimes';
-		priority: 10;
-		items: [ self runtimes asArray ];
-		column: 'Name' text: [ :each | each displayName ];
-		column: 'Running' text: [ :each | each isRunning asString ];
-		column: 'Runners' text: [ :each | each runners size asString ]
-]
-
 { #category : 'initialization' }
 CRRuntimeRegistry >> initialize [
 	super initialize.
-	runtimes := OrderedCollection new
+	runtimes := OrderedCollection new.
+	announcer := Announcer new
 ]
 
 { #category : 'registry' }
 CRRuntimeRegistry >> register: aRuntime [
-	"I remember a runtime so it can be discovered and shut down later."
+	"I remember a runtime so it can be discovered and stopped later."
 
-	runtimes add: aRuntime
+	self runtimes add: aRuntime.
+	announcer announce: (CRRuntimeRegistryChanged runtime: aRuntime)
 ]
 
 { #category : 'accessing' }
@@ -53,7 +42,8 @@ CRRuntimeRegistry >> runtimes [
 
 { #category : 'registry' }
 CRRuntimeRegistry >> unregister: aRuntime [
-	"I forget a runtime when it is shut down."
+	"I forget a runtime when it is stopped."
 
-	runtimes remove: aRuntime ifAbsent: [  ]
+	(self runtimes remove: aRuntime ifAbsent: [ nil ])
+		ifNotNil: [ announcer announce: (CRRuntimeRegistryChanged runtime: aRuntime) ]
 ]
