@@ -2,23 +2,25 @@ Extension { #name : 'CRRuntime' }
 
 { #category : '*bv-catalyst-runtime-ui' }
 CRRuntime >> gtActionStartOn: anAction [
-	<gtAction>
 	"I start the runtime."
 
-	^ anAction
-		label: 'Start';
-		priority: 10;
+	<gtAction>
+	^ anAction button
+		icon: BrGlamorousVectorIcons play;
+		tooltip: 'Start the Runtime';
+		menuDisable: [ isRunning ];
 		action: [ self start ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }
 CRRuntime >> gtActionStopOn: anAction [
-	<gtAction>
 	"I stop the runtime."
 
-	^ anAction
-		label: 'Stop';
-		priority: 20;
+	<gtAction>
+	^ anAction button
+		icon: BrGlamorousVectorIcons stop;
+		tooltip: 'Stop the Runtime';
+		menuDisable: [ isRunning not ];
 		action: [ self stop ]
 ]
 

@@ -55,7 +55,7 @@ CRRuntime >> initialize [
 
 	super initialize.
 	displayName := 'Catalyst Runtime'.
-	workers := IdentitySet new.
+	workers := OrderedCollection new.
 	runners := IdentityDictionary new.
 	isRunning := false
 ]
