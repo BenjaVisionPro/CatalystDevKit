@@ -17,12 +17,14 @@ CESimDedupingInbox class >> orderedBy: aSortKeyBlock dedupeBy: aDedupeKeyBlock [
 		yourself
 ]
 
-{ #category : 'initialization' }
-CESimDedupingInbox >> initialize [
-	super initialize.
-	seenKeys := Set new.
-	"Default: identity key. Usually callers configure via class-side constructor."
-	dedupeKeyBlock := [ :each | each ]
+{ #category : 'accessing' }
+CESimDedupingInbox >> dedupeKeyBlock [
+	^ dedupeKeyBlock
+]
+
+{ #category : 'accessing' }
+CESimDedupingInbox >> dedupeKeyBlock: aDedupeKeyBlock [
+	dedupeKeyBlock := aDedupeKeyBlock
 ]
 
 { #category : 'enqueueing' }
@@ -34,14 +36,12 @@ CESimDedupingInbox >> enqueue: anObject [
 	^ super enqueue: anObject
 ]
 
-{ #category : 'accessing' }
-CESimDedupingInbox >> dedupeKeyBlock [
-	^ dedupeKeyBlock
-]
-
-{ #category : 'accessing' }
-CESimDedupingInbox >> dedupeKeyBlock: aDedupeKeyBlock [
-	dedupeKeyBlock := aDedupeKeyBlock
+{ #category : 'initialization' }
+CESimDedupingInbox >> initialize [
+	super initialize.
+	seenKeys := Set new.
+	"Default: identity key. Usually callers configure via class-side constructor."
+	dedupeKeyBlock := [ :each | each ]
 ]
 
 { #category : 'maintenance' }

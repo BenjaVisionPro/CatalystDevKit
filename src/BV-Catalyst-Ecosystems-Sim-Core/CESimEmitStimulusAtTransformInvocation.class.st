@@ -41,6 +41,13 @@ CESimEmitStimulusAtTransformInvocation >> intensity: aNumber [
 	intensity := aNumber
 ]
 
+{ #category : 'routing' }
+CESimEmitStimulusAtTransformInvocation >> routeOn: anInvocationRouter inContext: aContext [
+	"I route using my transform so I am delivered to the partition(s) that cover my stimulus location."
+
+	^ anInvocationRouter partitionIdsForTransform: transform inContext: aContext
+]
+
 { #category : 'accessing' }
 CESimEmitStimulusAtTransformInvocation >> stimulusType: aType [
 	stimulusType := aType

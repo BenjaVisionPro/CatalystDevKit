@@ -2,7 +2,8 @@ Class {
 	#name : 'CESimPartition',
 	#superclass : 'CESimAggregate',
 	#instVars : [
-		'entitiesById'
+		'entitiesById',
+		'invocationInbox'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
@@ -11,6 +12,13 @@ Class {
 { #category : 'notables' }
 CESimPartition >> addEntity: anEntity [
 	entitiesById at: anEntity entityId put: anEntity
+]
+
+{ #category : 'inbox' }
+CESimPartition >> enqueueInvocationEnvelope: anEnvelope [
+	"I enqueue an invocation envelope so I can execute it on my next tick. I rely on my inbox to dedupe duplicates."
+
+	invocationInbox enqueue: anEnvelope
 ]
 
 { #category : 'notables' }
@@ -40,7 +48,15 @@ CESimPartition >> includesEntityId: anEntityId [
 { #category : 'initialization' }
 CESimPartition >> initialize [
 	super initialize.
-	entitiesById := Dictionary new
+	entitiesById := Dictionary new.
+	invocationInbox := CESimDedupingInbox
+			orderedBy: [ :anEnvelope | anEnvelope envelopeId ]
+			dedupeBy: [ :anEnvelope | anEnvelope envelopeId ]
+]
+
+{ #category : 'inbox' }
+CESimPartition >> invocationInbox [
+	^ invocationInbox
 ]
 
 { #category : 'as yet unclassified' }

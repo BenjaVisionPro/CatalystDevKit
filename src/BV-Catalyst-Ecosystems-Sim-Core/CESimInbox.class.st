@@ -16,19 +16,6 @@ CESimInbox class >> orderedBy: aSortKeyBlock [
 		yourself
 ]
 
-{ #category : 'initialization' }
-CESimInbox >> initialize [
-	super initialize.
-	items := OrderedCollection new.
-	"Default: stable, identity key. Usually callers configure via #orderedBy:."
-	sortKeyBlock := [ :each | each ]
-]
-
-{ #category : 'enqueueing' }
-CESimInbox >> enqueue: anObject [
-	items add: anObject
-]
-
 { #category : 'draining' }
 CESimInbox >> drain [
 	"Return queued items in deterministic order and empty the inbox." 
@@ -44,14 +31,17 @@ CESimInbox >> drain [
 	^ drained
 ]
 
-{ #category : 'accessing' }
-CESimInbox >> sortKeyBlock [
-	^ sortKeyBlock
+{ #category : 'enqueueing' }
+CESimInbox >> enqueue: anObject [
+	items add: anObject
 ]
 
-{ #category : 'accessing' }
-CESimInbox >> sortKeyBlock: aSortKeyBlock [
-	sortKeyBlock := aSortKeyBlock
+{ #category : 'initialization' }
+CESimInbox >> initialize [
+	super initialize.
+	items := OrderedCollection new.
+	"Default: stable, identity key. Usually callers configure via #orderedBy:."
+	sortKeyBlock := [ :each | each ]
 ]
 
 { #category : 'testing' }
@@ -62,4 +52,14 @@ CESimInbox >> isEmpty [
 { #category : 'accessing' }
 CESimInbox >> size [
 	^ items size
+]
+
+{ #category : 'accessing' }
+CESimInbox >> sortKeyBlock [
+	^ sortKeyBlock
+]
+
+{ #category : 'accessing' }
+CESimInbox >> sortKeyBlock: aSortKeyBlock [
+	sortKeyBlock := aSortKeyBlock
 ]

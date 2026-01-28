@@ -26,6 +26,13 @@ CESimAddEntityInvocation >> contributeIntoUpdate: aUpdate inContext: aContext [
 	aUpdate addEntityOp: (CESimAddOp entity: entity)
 ]
 
+{ #category : 'routing' }
+CESimAddEntityInvocation >> routeOn: anInvocationRouter inContext: aContext [
+	"I route using my spawn transform so I am delivered to the partition that owns my spawn location."
+
+	^ anInvocationRouter partitionIdsForTransform: transform inContext: aContext
+]
+
 { #category : 'accessing' }
 CESimAddEntityInvocation >> spawnSpecId [
 	^ spawnSpecId

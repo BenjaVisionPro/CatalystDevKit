@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'tickId',
 		'bubblesById',
-		'globalPipeline',
 		'bubblePipeline',
 		'environmentQuery',
 		'runLog',
@@ -15,20 +14,21 @@ Class {
 		'behaviour',
 		'archetypes',
 		'spawnSpecs',
-		'partitionsById'
+		'partitionsById',
+		'partitionPipeline'
 	],
 	#category : 'BV-Catalyst-Ecosystems-Sim-Core',
 	#package : 'BV-Catalyst-Ecosystems-Sim-Core'
 }
 
 { #category : 'running' }
-CESimEngine >> advanceGlobalTick [
+CESimEngine >> advancePartitionTick [
 	"Advance the global simulation by one tick.
      Runs the global pipeline for the selected regions (macro scheduling)."
 
 	tickId := tickId + 1.
 
-	globalPipeline ifNil: [ ^ self error: 'CESimEngine globalPipeline not set' ].
+	partitionPipeline ifNil: [ ^ self error: 'CESimEngine globalPipeline not set' ].
 
 	self partitionsToAdvanceThisTick
 		do: [ :region | self runGlobalPipelineOnPartition: region ].
@@ -110,16 +110,6 @@ CESimEngine >> environmentQuery: anEnvironmentQuery [
     environmentQuery := anEnvironmentQuery
 ]
 
-{ #category : 'accessing' }
-CESimEngine >> globalPipeline [
-    ^ globalPipeline
-]
-
-{ #category : 'accessing' }
-CESimEngine >> globalPipeline: aPipeline [
-    globalPipeline := aPipeline
-]
-
 { #category : 'testing' }
 CESimEngine >> hasBubbleId: aCEBubbleId [
     ^ bubblesById includesKey: aCEBubbleId
@@ -185,6 +175,16 @@ CESimEngine >> partitionContainingEntityId: anEntityId ifNone: aBlock [
 	^ aBlock value
 ]
 
+{ #category : 'accessing' }
+CESimEngine >> partitionPipeline [
+    ^ partitionPipeline
+]
+
+{ #category : 'accessing' }
+CESimEngine >> partitionPipeline: aPipeline [
+    partitionPipeline := aPipeline
+]
+
 { #category : 'partitions' }
 CESimEngine >> partitions [
     "Stable order (determinism): sort by regionId."
@@ -225,7 +225,7 @@ CESimEngine >> runGlobalPipelineOnPartition: aPartition [
         tickId: tickId
         environmentQuery: environmentQuery.
 
-    globalPipeline runInContext: context.
+    partitionPipeline runInContext: context.
 
     lastRunContext := context
 ]

@@ -5,12 +5,11 @@ Class {
 	#package : 'BV-Catalyst-Ecosystems-Sim-Tests-Core'
 }
 
-{ #category : 'examples' }
-CESimCoreExamples >> example_coreEngine [
-	<gtExample>
-	| engine pipeline stages |
-	engine := CESimEngine new.
+{ #category : 'configuration' }
+CESimCoreExamples >> bubblePipeline [
+	"I build the pipeline used to advance a bubble."
 
+	| stages |
 	stages := OrderedCollection new.
 	stages
 		add: (CESimStage new
@@ -34,12 +33,21 @@ CESimCoreExamples >> example_coreEngine [
 				runner: CESimBuildLocalViewStageRunner new;
 				yourself).
 
-	pipeline := CESimPipeline new
-			pipelineId: #bubble;
-			stages: stages;
-			yourself.
+	^ CESimPipeline new
+		pipelineId: #bubble;
+		stages: stages;
+		yourself
+]
 
-	engine bubblePipeline: pipeline.
+{ #category : 'examples' }
+CESimCoreExamples >> example_coreEngine [
+	<gtExample>
+	| engine |
+	engine := CESimEngine new.
+
+	engine bubblePipeline: self bubblePipeline.
+	engine partitionPipeline: self partitionPipeline.
+
 	self seedArchetypesAndSpawnSpecsOn: engine.
 
 	^ Dictionary new
@@ -63,9 +71,10 @@ CESimCoreExamples >> example_coreEngineWithOnePartitionAndBubble [
 ]
 
 { #category : 'examples' }
-CESimCoreExamples >> example_inspectRejected_tick1_emptyWorld [
+CESimCoreExamples >> example_inspectRejected_emptyWorld [
 	<gtExample>
-	| seed engine bubble bogusId inspectCmd context1 view1 rejectionEvent |
+	| seed engine bubble bogusId inspectCmd context1 context2 view2 rejectionEvent |
+
 	seed := self example_coreEngineWithOnePartitionAndBubble.
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
@@ -74,62 +83,82 @@ CESimCoreExamples >> example_inspectRejected_tick1_emptyWorld [
 	inspectCmd := CESimInspectEntityCommand targetEntityId: bogusId.
 	bubble enqueueCommand: inspectCmd.
 
+	"Bubble tick routes only."
 	context1 := engine advanceTickForBubbleId: bubble bubbleId.
-	view1 := context1 localView.
 
-	rejectionEvent := view1 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #targetRejected ]
-			ifNone: [ nil ].
+	"Partition tick executes and produces the rejection."
+	engine advancePartitionTick.
+
+	"Next bubble tick observes the rejection event."
+	context2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := context2 localView.
+
+	rejectionEvent := view2 events
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #targetRejected ]
+		ifNone: [ nil ].
 
 	^ Dictionary new
 		at: #engine put: engine;
 		at: #bubble put: bubble;
 		at: #bogusId put: bogusId;
 		at: #context1 put: context1;
-		at: #view1 put: view1;
+		at: #context2 put: context2;
+		at: #view2 put: view2;
 		at: #rejectionEvent put: rejectionEvent;
 		yourself
 ]
 
 { #category : 'examples' }
-CESimCoreExamples >> example_spawnOneEntity_tick1 [
+CESimCoreExamples >> example_spawnOneEntity_afterPartitionTick [
 	<gtExample>
-	| seed engine partition bubble cmd context1 view1 entityId |
+	| seed engine partition bubble cmd bubbleContext0 view0 bubbleContext1 view1 entityId |
+
 	seed := self example_coreEngineWithOnePartitionAndBubble.
 	engine := seed at: #engine.
 	partition := seed at: #partition.
 	bubble := seed at: #bubble.
 
 	cmd := CESimAddEntityCommand
-			withSpawnSpecId: #demoCreature
-			transform: (Dictionary new
-					at: #pos put: #(0 0 0);
-					yourself)
-			stateOverlay: (Dictionary new
-					at: #mood put: #chill;
-					yourself).
+		withSpawnSpecId: #demoCreature
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		stateOverlay: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
 	bubble enqueueCommand: cmd.
 
-	context1 := engine advanceTickForBubbleId: bubble bubbleId.
-	view1 := context1 localView.
+	"Bubble tick routes only."
+	bubbleContext0 := engine advanceTickForBubbleId: bubble bubbleId.
+	view0 := bubbleContext0 localView.
+
+	"Partition tick executes and applies."
+	engine advancePartitionTick.
+
+	"Next bubble tick observes the spawn."
+	bubbleContext1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := bubbleContext1 localView.
 	entityId := view1 spawns first at: #entityId.
 
 	^ Dictionary new
 		at: #engine put: engine;
 		at: #partition put: partition;
 		at: #bubble put: bubble;
-		at: #context1 put: context1;
+		at: #bubbleContext0 put: bubbleContext0;
+		at: #view0 put: view0;
+		at: #bubbleContext1 put: bubbleContext1;
 		at: #view1 put: view1;
 		at: #entityId put: entityId;
 		yourself
 ]
 
 { #category : 'examples' }
-CESimCoreExamples >> example_spawnThenInspect_tick2 [
+CESimCoreExamples >> example_spawnThenInspect_afterPartitionTick [
 	<gtExample>
-	| seed engine bubble entityId inspectCmd context2 view2 inspectEvent |
-	seed := self example_spawnOneEntity_tick1.
+	| seed engine bubble entityId inspectCmd bubbleContext2 view2 inspectEvent |
+
+	seed := self example_spawnOneEntity_afterPartitionTick.
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
 	entityId := seed at: #entityId.
@@ -137,28 +166,36 @@ CESimCoreExamples >> example_spawnThenInspect_tick2 [
 	inspectCmd := CESimInspectEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: inspectCmd.
 
-	context2 := engine advanceTickForBubbleId: bubble bubbleId.
-	view2 := context2 localView.
+	"Bubble tick routes only."
+	bubbleContext2 := engine advanceTickForBubbleId: bubble bubbleId.
+
+	"Partition tick executes inspect and applies any updates/events."
+	engine advancePartitionTick.
+
+	"Next bubble tick observes the event."
+	bubbleContext2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := bubbleContext2 localView.
 
 	inspectEvent := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInspected ]
-			ifNone: [ nil ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInspected ]
+		ifNone: [ nil ].
 
 	^ Dictionary new
 		at: #engine put: engine;
 		at: #bubble put: bubble;
 		at: #entityId put: entityId;
-		at: #context2 put: context2;
+		at: #context2 put: bubbleContext2;
 		at: #view2 put: view2;
 		at: #inspectEvent put: inspectEvent;
 		yourself
 ]
 
 { #category : 'examples' }
-CESimCoreExamples >> example_spawnThenRemove_tick2 [
+CESimCoreExamples >> example_spawnThenRemove_afterPartitionTick [
 	<gtExample>
-	| seed engine bubble entityId removeCmd context2 view2 |
-	seed := self example_spawnOneEntity_tick1.
+	| seed engine bubble entityId removeCmd bubbleContext2 view2 |
+
+	seed := self example_spawnOneEntity_afterPartitionTick.
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
 	entityId := seed at: #entityId.
@@ -166,46 +203,61 @@ CESimCoreExamples >> example_spawnThenRemove_tick2 [
 	removeCmd := CESimRemoveEntityCommand targetEntityId: entityId.
 	bubble enqueueCommand: removeCmd.
 
-	context2 := engine advanceTickForBubbleId: bubble bubbleId.
-	view2 := context2 localView.
+	"Bubble tick routes only."
+	engine advanceTickForBubbleId: bubble bubbleId.
+
+	"Partition tick executes the remove and applies ops."
+	engine advancePartitionTick.
+
+	"Next bubble tick observes the despawn."
+	bubbleContext2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := bubbleContext2 localView.
 
 	^ Dictionary new
 		at: #engine put: engine;
 		at: #bubble put: bubble;
 		at: #removedEntityId put: entityId;
-		at: #context2 put: context2;
+		at: #context2 put: bubbleContext2;
 		at: #view2 put: view2;
 		yourself
 ]
 
 { #category : 'examples' }
-CESimCoreExamples >> example_spawnThenTransform_tick2 [
+CESimCoreExamples >> example_spawnThenTransform_afterPartitionTick [
 	<gtExample>
-	| seed engine bubble entityId transform2 transformCmd context2 view2 |
-	seed := self example_spawnOneEntity_tick1.
+	| seed engine bubble entityId transform2 transformCmd bubbleContext2 view2 |
+
+	seed := self example_spawnOneEntity_afterPartitionTick.
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
 	entityId := seed at: #entityId.
 
 	transform2 := Dictionary new
-			at: #pos put: #(10 0 0);
-			yourself.
+		at: #pos put: #(10 0 0);
+		yourself.
 
 	transformCmd := CESimTransformEntityCommand
-			targetEntityId: entityId
-			transform: transform2.
+		targetEntityId: entityId
+		transform: transform2.
 
 	bubble enqueueCommand: transformCmd.
 
-	context2 := engine advanceTickForBubbleId: bubble bubbleId.
-	view2 := context2 localView.
+	"Bubble tick routes only."
+	engine advanceTickForBubbleId: bubble bubbleId.
+
+	"Partition tick executes the transform and applies ops."
+	engine advancePartitionTick.
+
+	"Next bubble tick observes the transform update."
+	bubbleContext2 := engine advanceTickForBubbleId: bubble bubbleId.
+	view2 := bubbleContext2 localView.
 
 	^ Dictionary new
 		at: #engine put: engine;
 		at: #bubble put: bubble;
 		at: #entityId put: entityId;
 		at: #transform2 put: transform2;
-		at: #context2 put: context2;
+		at: #context2 put: bubbleContext2;
 		at: #view2 put: view2;
 		yourself
 ]
@@ -254,7 +306,28 @@ CESimCoreExamples >> example_spawnTwoEntitiesSameTick_deterministicOrder [
 		yourself
 ]
 
-{ #category : 'support' }
+{ #category : 'configuration' }
+CESimCoreExamples >> partitionPipeline [
+	"I build the partition pipeline used to execute partition inboxes and apply their updates."
+	| stages |
+	stages := OrderedCollection new.
+	stages
+		add: (CESimStage new
+				stageId: #executePartitionInvocations;
+				runner: CESimExecutePartitionInvocationsStageRunner new;
+				yourself);
+		add: (CESimStage new
+				stageId: #applyUpdates;
+				runner: CESimApplyUpdatesStageRunner new;
+				yourself).
+
+	^ CESimPipeline new
+		pipelineId: #partition;
+		stages: stages;
+		yourself
+]
+
+{ #category : 'configuration' }
 CESimCoreExamples >> seedArchetypesAndSpawnSpecsOn: engine [
 	engine archetypes
 		at: #wolf
@@ -292,6 +365,23 @@ CESimCoreExamples >> seedArchetypesAndSpawnSpecsOn: engine [
 ]
 
 { #category : 'tests' }
+CESimCoreExamples >> test_dedupingInbox_dropsDuplicates [
+	| inbox drained |
+	inbox := CESimDedupingInbox
+		orderedBy: [ :each | each ]
+		dedupeBy: [ :each | each ].
+
+	inbox enqueue: 2.
+	inbox enqueue: 1.
+	inbox enqueue: 2.
+
+	drained := inbox drain.
+
+	self assert: drained equals: #(1 2).
+	self assert: inbox isEmpty
+]
+
+{ #category : 'tests' }
 CESimCoreExamples >> test_example_coreEngineWithOnePartitionAndBubble_createsAggregates [
 	| seed engine partition bubble |
 	seed := self example_coreEngineWithOnePartitionAndBubble.
@@ -317,9 +407,9 @@ CESimCoreExamples >> test_example_coreEngine_seedsPipelineAndSpawnSpecs [
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_inspectRejected_tick1_emptyWorld_emitsTargetRejected [
+CESimCoreExamples >> test_example_inspectRejected_emptyWorld_emitsTargetRejected [
 	| seed rejection |
-	seed := self example_inspectRejected_tick1_emptyWorld.
+	seed := self example_inspectRejected_emptyWorld.
 	rejection := seed at: #rejectionEvent.
 
 	self assert: rejection notNil.
@@ -328,9 +418,9 @@ CESimCoreExamples >> test_example_inspectRejected_tick1_emptyWorld_emitsTargetRe
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_spawnOneEntity_tick1_persistsInPartition [
+CESimCoreExamples >> test_example_spawnOneEntity_persistsInPartition [
 	| seed partition entityId |
-	seed := self example_spawnOneEntity_tick1.
+	seed := self example_spawnOneEntity_afterPartitionTick.
 	partition := seed at: #partition.
 	entityId := seed at: #entityId.
 
@@ -338,9 +428,9 @@ CESimCoreExamples >> test_example_spawnOneEntity_tick1_persistsInPartition [
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_spawnOneEntity_tick1_spawnsAndProducesAuditEvent [
+CESimCoreExamples >> test_example_spawnOneEntity_spawnsAndProducesAuditEvent [
 	| seed view1 spawn audit |
-	seed := self example_spawnOneEntity_tick1.
+	seed := self example_spawnOneEntity_afterPartitionTick.
 	view1 := seed at: #view1.
 
 	self assert: view1 spawns size equals: 1.
@@ -354,38 +444,38 @@ CESimCoreExamples >> test_example_spawnOneEntity_tick1_spawnsAndProducesAuditEve
 	self assert: (spawn includesKey: #state).
 
 	audit := view1 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #addEntityRequested ]
-			ifNone: [ self fail: 'Expected #addEntityRequested event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #addEntityRequested ]
+		ifNone: [ self fail: 'Expected #addEntityRequested event' ].
 
 	self assert: (audit at: #spawnSpecId) equals: #demoCreature.
-	self assert: (audit at: #entityId) isNil.
+	self assert: (audit at: #entityId) isNil
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_spawnThenInspect_tick2_emitsInspectRequestedAndEntityInspected [
+CESimCoreExamples >> test_example_spawnThenInspect_emitsInspectRequestedAndEntityInspected [
 	| seed view2 entityId request inspected |
-	seed := self example_spawnThenInspect_tick2.
+	seed := self example_spawnThenInspect_afterPartitionTick.
 	view2 := seed at: #view2.
 	entityId := seed at: #entityId.
 
 	request := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #inspectEntityRequested ]
-			ifNone: [ self fail: 'Expected #inspectEntityRequested event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #inspectEntityRequested ]
+		ifNone: [ self fail: 'Expected #inspectEntityRequested event' ].
 
 	self assert: (request at: #entityId) equals: entityId.
 
 	inspected := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInspected ]
-			ifNone: [ self fail: 'Expected #entityInspected event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #entityInspected ]
+		ifNone: [ self fail: 'Expected #entityInspected event' ].
 
 	self assert: (inspected at: #entityId) equals: entityId.
 	self assert: ((inspected at: #snapshot) at: #entityId) equals: entityId
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_spawnThenRemove_tick2_despawnsAndRemovesFromPartition [
+CESimCoreExamples >> test_example_spawnThenRemove_despawnsAndRemovesFromPartition [
 	| seed engine bubble removedId view2 partition removeAudit |
-	seed := self example_spawnThenRemove_tick2.
+	seed := self example_spawnThenRemove_afterPartitionTick.
 
 	engine := seed at: #engine.
 	bubble := seed at: #bubble.
@@ -398,16 +488,16 @@ CESimCoreExamples >> test_example_spawnThenRemove_tick2_despawnsAndRemovesFromPa
 	self assert: (partition includesEntityId: removedId) equals: false.
 
 	removeAudit := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #removeEntityRequested ]
-			ifNone: [ self fail: 'Expected #removeEntityRequested event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #removeEntityRequested ]
+		ifNone: [ self fail: 'Expected #removeEntityRequested event' ].
 
 	self assert: (removeAudit at: #entityId) equals: removedId
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_example_spawnThenTransform_tick2_producesUpdateWithNewTransform [
+CESimCoreExamples >> test_example_spawnThenTransform_producesUpdateWithNewTransform [
 	| seed view2 entityId transform2 updateSnap audit |
-	seed := self example_spawnThenTransform_tick2.
+	seed := self example_spawnThenTransform_afterPartitionTick.
 	view2 := seed at: #view2.
 	entityId := seed at: #entityId.
 	transform2 := seed at: #transform2.
@@ -420,8 +510,8 @@ CESimCoreExamples >> test_example_spawnThenTransform_tick2_producesUpdateWithNew
 	self assert: (updateSnap at: #transform) equals: transform2.
 
 	audit := view2 events
-			detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #transformEntityRequested ]
-			ifNone: [ self fail: 'Expected #transformEntityRequested event' ].
+		detect: [ :e | (e at: #type ifAbsent: [ nil ]) = #transformEntityRequested ]
+		ifNone: [ self fail: 'Expected #transformEntityRequested event' ].
 
 	self assert: (audit at: #entityId) equals: entityId.
 	self assert: (audit at: #transform) equals: transform2
@@ -435,6 +525,37 @@ CESimCoreExamples >> test_example_spawnTwoEntitiesSameTick_deterministicOrderByE
 
 	self assert: ids size equals: 2.
 	self assert: ids first value < ids second value
+]
+
+{ #category : 'tests' }
+CESimCoreExamples >> test_inbox_drainSortsDeterministically [
+	| inbox drained |
+	inbox := CESimInbox orderedBy: [ :each | each ].
+	inbox enqueue: 3.
+	inbox enqueue: 1.
+	inbox enqueue: 2.
+
+	drained := inbox drain.
+
+	self assert: drained equals: #(1 2 3).
+	self assert: inbox isEmpty
+]
+
+{ #category : 'tests' }
+CESimCoreExamples >> test_invocationEnvelope_envelopeIdIsInvocationId [
+	| invocation entityId envelope |
+	entityId := CEEntityId fromInteger: 1.
+	invocation := CESimInspectEntityInvocation targetEntityId: entityId.
+
+	envelope := CESimInvocationEnvelope
+		invocationId: #invocation1
+		bubbleId: #bubble1
+		gatewayId: #gateway1
+		playerIntentTickId: 7
+		invocation: invocation.
+
+	self assert: envelope envelopeId equals: envelope invocationId.
+	self assert: envelope envelopeId equals: #invocation1
 ]
 
 { #category : 'tests' }
@@ -459,26 +580,28 @@ CESimCoreExamples >> test_opOrdering_acrossOpOrder_lifecycleBeforeSpatial [
 ]
 
 { #category : 'tests' }
-CESimCoreExamples >> test_opOrdering_withinSameOpOrder_sortsByEntityIdValue [
+CESimCoreExamples >> test_opOrdering_withinSameOpOrder_sortsByEntityId [
 	| engine id1 id2 e1 e2 op1 op2 |
 	engine := CESimEngine new.
 
 	id1 := engine idIssuer nextEntityId.
 	id2 := engine idIssuer nextEntityId.
 
-	self assert: id1 value < id2 value.
+	self assert: id1 < id2.
 
 	e1 := CECreatureEntity new
-			entityId: id1;
-			spawnSpecId: #demoCreature;
-			state: Dictionary new;
-			yourself.
+		entityId: id1;
+		spawnSpecId: #demoCreature;
+		state: Dictionary new;
+		yourself.
 
 	e2 := CECreatureEntity new
-			entityId: id2;
-			spawnSpecId: #demoCreature;
-			state: Dictionary new;
-			yourself.	"Both are lifecycle ops (same opOrder). Must sort by entityId."
+		entityId: id2;
+		spawnSpecId: #demoCreature;
+		state: Dictionary new;
+		yourself.
+
+	"Both are lifecycle ops (same opOrder). I must sort deterministically by stable id."
 	op1 := CESimAddOp entity: e1.
 	op2 := CESimAddOp entity: e2.
 
@@ -509,51 +632,46 @@ CESimCoreExamples >> test_partitionContainingEntityId_usesStablePartitionsEnumer
 	self assert: found equals: p2
 ]
 
-
 { #category : 'tests' }
-CESimCoreExamples >> test_inbox_drainSortsDeterministically [
-	| inbox drained |
-	inbox := CESimInbox orderedBy: [ :each | each ].
-	inbox enqueue: 3.
-	inbox enqueue: 1.
-	inbox enqueue: 2.
+CESimCoreExamples >> test_spawnCommand_onlyTakesEffectAfterPartitionTick_usingExampleCoreEngine [ 
+	| engine partition bubble cmd bubbleContext0 view0 bubbleContext1 view1 entityId |
 
-	drained := inbox drain.
+	engine := (self example_coreEngine at: #engine).
 
-	self assert: drained equals: #(1 2 3).
-	self assert: inbox isEmpty
-]
+	partition := engine newPartition.
+	bubble := engine newBubbleInPartitionId: partition partitionId.
 
-{ #category : 'tests' }
-CESimCoreExamples >> test_dedupingInbox_dropsDuplicates [
-	| inbox drained |
-	inbox := CESimDedupingInbox
-		orderedBy: [ :each | each ]
-		dedupeBy: [ :each | each ].
+	cmd := CESimAddEntityCommand
+		withSpawnSpecId: #demoCreature
+		transform: (Dictionary new
+			at: #pos put: #(0 0 0);
+			yourself)
+		stateOverlay: (Dictionary new
+			at: #mood put: #chill;
+			yourself).
 
-	inbox enqueue: 2.
-	inbox enqueue: 1.
-	inbox enqueue: 2.
+	bubble enqueueCommand: cmd.
 
-	drained := inbox drain.
+	"Bubble tick routes only (no authoritative mutation yet)."
+	bubbleContext0 := engine advanceTickForBubbleId: bubble bubbleId.
+	view0 := bubbleContext0 localView.
 
-	self assert: drained equals: #(1 2).
-	self assert: inbox isEmpty
-]
+	self assert: view0 spawns isEmpty.
+	self assert: view0 updates isEmpty.
+	self assert: view0 despawns isEmpty.
 
-{ #category : 'tests' }
-CESimCoreExamples >> test_invocationEnvelope_envelopeIdIsInvocationId [
-	| invocation entityId envelope |
-	entityId := CEEntityId fromInteger: 1.
-	invocation := CESimInspectEntityInvocation targetEntityId: entityId.
+	self assert: partition invocationInbox size equals: 1.
 
-	envelope := CESimInvocationEnvelope
-		invocationId: #invocation1
-		bubbleId: #bubble1
-		gatewayId: #gateway1
-		playerIntentTickId: 7
-		invocation: invocation.
+	"Partition tick executes partition inbox + applies ops."
+	engine advancePartitionTick.
 
-	self assert: envelope envelopeId equals: envelope invocationId.
-	self assert: envelope envelopeId equals: #invocation1
+	self assert: partition invocationInbox size equals: 0.
+
+	"Next bubble tick observes the applied change and reports it."
+	bubbleContext1 := engine advanceTickForBubbleId: bubble bubbleId.
+	view1 := bubbleContext1 localView.
+
+	self assert: view1 spawns size equals: 1.
+	entityId := view1 spawns first at: #entityId.
+	self assert: (partition includesEntityId: entityId)
 ]

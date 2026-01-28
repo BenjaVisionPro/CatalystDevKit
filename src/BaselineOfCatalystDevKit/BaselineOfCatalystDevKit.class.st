@@ -29,6 +29,49 @@ BaselineOfCatalystDevKit >> baseline: spec [
 			spec
 				package: 'BV-Catalyst-Core';
 
+				"==== New architecture packages (keep old ones until migration is complete) ===="
+
+				"Runtime (CR*)"
+				package: 'BV-Catalyst-Runtime-Core'
+					with: [ spec requires: #('BV-Catalyst-Core') ];
+
+				package: 'BV-Catalyst-Runtime-ExamplesAndTests'
+					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ];
+
+				"Simulator (CS*)"
+				package: 'BV-Catalyst-Simulator-Core'
+					with: [ spec requires: #('BV-Catalyst-Runtime-Core') ];
+
+				package: 'BV-Catalyst-Simulator-Commands'
+					with: [ spec requires: #('BV-Catalyst-Simulator-Core') ];
+
+				package: 'BV-Catalyst-Simulator-Routing'
+					with: [ spec requires: #('BV-Catalyst-Simulator-Core') ];
+
+				package: 'BV-Catalyst-Simulator-Pipeline'
+					with: [ spec requires: #('BV-Catalyst-Simulator-Core' 'BV-Catalyst-Simulator-Commands' 'BV-Catalyst-Simulator-Routing') ];
+
+				package: 'BV-Catalyst-Simulator-ExamplesAndTests'
+					with: [ spec requires: #('BV-Catalyst-Simulator-Pipeline') ];
+
+				"Ecosystem (CE*)"
+				package: 'BV-Catalyst-Ecosystem-Domain'
+					with: [ spec requires: #('BV-Catalyst-Simulator-Core') ];
+
+				package: 'BV-Catalyst-Ecosystem-Behaviours'
+					with: [ spec requires: #('BV-Catalyst-Ecosystem-Domain' 'BV-Catalyst-Simulator-Core') ];
+
+				package: 'BV-Catalyst-Ecosystem-Commands'
+					with: [ spec requires: #('BV-Catalyst-Ecosystem-Domain' 'BV-Catalyst-Simulator-Commands' 'BV-Catalyst-Simulator-Core') ];
+
+				package: 'BV-Catalyst-Ecosystem-Core'
+					with: [ spec requires: #('BV-Catalyst-Ecosystem-Domain' 'BV-Catalyst-Ecosystem-Behaviours' 'BV-Catalyst-Ecosystem-Commands') ];
+
+				package: 'BV-Catalyst-Ecosystem-ExamplesAndTests'
+					with: [ spec requires: #('BV-Catalyst-Ecosystem-Core') ];
+
+				"==== Existing packages (unchanged for now) ===="
+
 				package: 'BV-Catalyst-Connect-Core'
 					with: [ spec requires: #('BV-Catalyst-Core') ];
 

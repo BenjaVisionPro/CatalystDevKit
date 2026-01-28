@@ -24,22 +24,6 @@ CESimInvocationEnvelope class >> invocationId: anInvocationId bubbleId: aBubbleI
 ]
 
 { #category : 'accessing' }
-CESimInvocationEnvelope >> envelopeId [
-	"1:1 mapping. Envelope id is the wrapped invocation id."
-	^ invocationId
-]
-
-{ #category : 'accessing' }
-CESimInvocationEnvelope >> invocationId [
-	^ invocationId
-]
-
-{ #category : 'accessing' }
-CESimInvocationEnvelope >> invocationId: anObject [
-	invocationId := anObject
-]
-
-{ #category : 'accessing' }
 CESimInvocationEnvelope >> bubbleId [
 	^ bubbleId
 ]
@@ -47,6 +31,12 @@ CESimInvocationEnvelope >> bubbleId [
 { #category : 'accessing' }
 CESimInvocationEnvelope >> bubbleId: anObject [
 	bubbleId := anObject
+]
+
+{ #category : 'accessing' }
+CESimInvocationEnvelope >> envelopeId [
+	"1:1 mapping. Envelope id is the wrapped invocation id."
+	^ invocationId
 ]
 
 { #category : 'accessing' }
@@ -60,16 +50,6 @@ CESimInvocationEnvelope >> gatewayId: anObject [
 ]
 
 { #category : 'accessing' }
-CESimInvocationEnvelope >> playerIntentTickId [
-	^ playerIntentTickId
-]
-
-{ #category : 'accessing' }
-CESimInvocationEnvelope >> playerIntentTickId: anObject [
-	playerIntentTickId := anObject
-]
-
-{ #category : 'accessing' }
 CESimInvocationEnvelope >> invocation [
 	^ invocation
 ]
@@ -77,4 +57,24 @@ CESimInvocationEnvelope >> invocation [
 { #category : 'accessing' }
 CESimInvocationEnvelope >> invocation: anObject [
 	invocation := anObject
+]
+
+{ #category : 'accessing' }
+CESimInvocationEnvelope >> invocationId [
+	^ invocationId
+]
+
+{ #category : 'accessing' }
+CESimInvocationEnvelope >> invocationId: anObject [
+	invocationId := anObject
+]
+
+{ #category : 'accessing' }
+CESimInvocationEnvelope >> playerIntentTickId [
+	^ playerIntentTickId
+]
+
+{ #category : 'accessing' }
+CESimInvocationEnvelope >> playerIntentTickId: anObject [
+	playerIntentTickId := anObject
 ]
