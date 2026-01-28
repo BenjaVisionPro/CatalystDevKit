@@ -1,0 +1,75 @@
+Class {
+	#name : 'CRRuntimeExamples',
+	#superclass : 'TestCase',
+	#category : 'BV-Catalyst-Runtime-ExamplesAndTests',
+	#package : 'BV-Catalyst-Runtime-ExamplesAndTests'
+}
+
+{ #category : 'examples' }
+CRRuntimeExamples >> example_runtimeStartStop [
+	<gtExample>
+	| seed runtime |
+	seed := self example_runtimeWithOneWorker.
+	runtime := seed at: #runtime.
+
+	runtime start.
+	runtime stop.
+
+	^ Dictionary new
+		at: #runtime put: runtime;
+		yourself
+]
+
+{ #category : 'examples' }
+CRRuntimeExamples >> example_runtimeWithOneWorker [
+	<gtExample>
+	| runtime worker |
+	runtime := CRRuntime new.
+	worker := CRWorker new
+			displayName: 'Worker-1';
+			yourself.
+	runtime addWorker: worker.
+
+	^ Dictionary new
+		at: #runtime put: runtime;
+		at: #worker put: worker;
+		yourself
+]
+
+{ #category : 'examples' }
+CRRuntimeExamples >> example_workerRunsAWorkUnit_runOnce [
+	<gtExample>
+	| seed worker ran counter |
+	seed := self example_runtimeWithOneWorker.
+	worker := seed at: #worker.
+
+	counter := 0.
+	worker enqueue: (CRBlockUnit on: [ counter := counter + 1 ]).
+
+	ran := worker runOnce.
+
+	^ Dictionary new
+		at: #worker put: worker;
+		at: #ran put: ran;
+		at: #counter put: counter;
+		yourself
+]
+
+{ #category : 'tests' }
+CRRuntimeExamples >> test_example_runtimeStartStop_registersAndUnregisters [
+	| runtime |
+	runtime := (self example_runtimeStartStop) at: #runtime.
+
+	self assert: (CRRuntimeRegistry default runtimes includes: runtime) equals: false
+]
+
+{ #category : 'tests' }
+CRRuntimeExamples >> test_example_workerRunsAWorkUnit_runOnce_executes [
+	| seed ran counter |
+	seed := self example_workerRunsAWorkUnit_runOnce.
+	ran := seed at: #ran.
+	counter := seed at: #counter.
+
+	self assert: ran equals: true.
+	self assert: counter equals: 1
+]

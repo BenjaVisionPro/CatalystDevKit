@@ -9,6 +9,11 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
+{ #category : 'testing' }
+CRWorkerRunner >> isRunning [
+	^ process isActive
+]
+
 { #category : 'running' }
 CRWorkerRunner >> start [
 	"I start running my worker in a background process."
