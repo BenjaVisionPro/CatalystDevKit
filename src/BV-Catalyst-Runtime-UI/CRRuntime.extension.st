@@ -47,7 +47,7 @@ CRRuntime >> gtViewOverviewOn: aView [
 		priority: 1;
 		stencil: [ (CRRuntimeOverviewWidget new
 				runtime: self;
-				yourself) margin: (BlInsets all: 10) ]
+				yourself) margin: (BlInsets all: 2) ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }

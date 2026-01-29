@@ -70,7 +70,7 @@ CRRuntimeOverviewWidget >> createHeader [
 			padding: (BlInsets all: 8);
 			yourself.
 
-	powerButton := self createPowerButton.
+	self createPowerButton.
 
 	row
 		addChild: logo;
@@ -85,16 +85,12 @@ CRRuntimeOverviewWidget >> createHeader [
 CRRuntimeOverviewWidget >> createPowerButton [
 	"I build the power toggle button and keep the icon element so I can recolor it."
 
-	| button |
-	powerIcon := (BVCDevKitVectorIcons powerSourceColor: Color red) asElement
-			asScalableElement size: 32 @ 32.
-
-	button := BrButton new
+	powerButton := BrButton new
 			aptitude: BrGlamorousButtonWithIconCircularAptitude new;
-			icon: powerIcon;
 			action: [ :aButton | self toggleRuntimeFrom: aButton ];
-			yourself.	"self updatePowerButton: button."
-	^ button
+			yourself.
+	self updatePowerButton.
+	^ powerButton
 ]
 
 { #category : 'initialization' }
@@ -112,7 +108,6 @@ CRRuntimeOverviewWidget >> onAddedToSceneGraph [
 	"I refresh visual state once I'm visible."
 
 	super onAddedToSceneGraph.
-	powerButton ifNotNil: [ self updatePowerButton: powerButton ]
 ]
 
 { #category : 'updating' }
@@ -154,8 +149,6 @@ CRRuntimeOverviewWidget >> toggleRuntimeFrom: aButton [
 	runtime ifNil: [ ^ self ].
 
 	runtime isRunning ifTrue: [ runtime stop ] ifFalse: [ runtime start ].
-
-	self updatePowerButton: aButton
 ]
 
 { #category : 'updating' }
@@ -170,15 +163,14 @@ CRRuntimeOverviewWidget >> updateContent [
 ]
 
 { #category : 'private - ui' }
-CRRuntimeOverviewWidget >> updatePowerButton: aButton [
+CRRuntimeOverviewWidget >> updatePowerButton [
 	"I update the power icon background color + tooltip based on runtime state."
 
 	| statusColor |
-	statusColor := (runtime notNil and: [ runtime isRunning ])
+	statusColor := runtime isRunning
 			ifTrue: [ Color green ]
-			ifFalse: [ Color gray ].
-
-	powerIcon ifNotNil: [ powerIcon background: (BlBackground paint: statusColor) ].
-
-	"aButton tooltip: self runtimeStatusSummary"
+			ifFalse: [ Color black ].
+	powerIcon := (BVCDevKitVectorIcons powerSourceColor: statusColor) asElement
+			asScalableElement size: 64 @ 64.
+		powerButton icon: powerIcon.
 ]
