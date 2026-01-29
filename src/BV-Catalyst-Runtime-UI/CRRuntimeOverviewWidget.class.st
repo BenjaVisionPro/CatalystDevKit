@@ -86,7 +86,8 @@ CRRuntimeOverviewWidget >> createPowerButton [
 	"I build the power toggle button and keep the icon element so I can recolor it."
 
 	| button |
-	powerIcon := (BVCDevKitVectorIcons icon: #power size: 32 @ 32) asElement.
+	powerIcon := (BVCDevKitVectorIcons powerSourceColor: Color red) asElement
+			asScalableElement size: 32 @ 32.
 
 	button := BrButton new
 			aptitude: BrGlamorousButtonWithIconCircularAptitude new;

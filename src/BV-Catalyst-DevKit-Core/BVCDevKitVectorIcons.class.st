@@ -651,7 +651,7 @@ BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize [
 { #category : 'converting' }
 BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize colour: aColor [
 	| icon |
-	icon := self perform: (aSelectorSymbol , 'Source') asSymbol.
+	icon := self perform: aSelectorSymbol asSymbol.
 	icon children
 		do: [ :child | child background: (BlBackground paint: (BlColorPaint color: aColor)) ].
 	^ [ icon asElement asScalableElement size: aSize ] asStencil
@@ -760,14 +760,26 @@ BVCDevKitVectorIcons class >> plusCircle [
 { #category : 'icons' }
 BVCDevKitVectorIcons class >> power [
 	<script: 'self power inspect'>
-	^ [ BlElement new
+	^ [ self powerSource ] asStencil
+]
+
+{ #category : 'icons' }
+BVCDevKitVectorIcons class >> powerSource [
+	<script: 'self power inspect'>
+	^ self powerSourceColor: self iconColor
+]
+
+{ #category : 'icons' }
+BVCDevKitVectorIcons class >> powerSourceColor: aColor [
+	<script: 'self power inspect'>
+	^ BlElement new
 		size: 512 @ 512;
 		addChild: (BlElement new
 				geometry: (BlSvgPath new
 						svg: 'M388.5 46.3C457.9 90.3 504 167.8 504 256c0 136.8-110.8 247.7-247.5 248C120 504.3 8.2 393 8 256.4 7.9 168 54 90.3 123.5 46.3c5.8-3.7 13.5-1.8 16.9 4.2l3.9 7c3.1 5.6 1.3 12.6-4.1 16C79.9 112 40 179.6 40 256c0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216 0-77-40.1-144.2-100.3-182.4-5.4-3.4-7.2-10.5-4.1-16l3.9-7c3.4-6.1 11.2-7.9 17-4.3zM272 276V12c0-6.6-5.4-12-12-12h-8c-6.6 0-12 5.4-12 12v264c0 6.6 5.4 12 12 12h8c6.6 0 12-5.4 12-12z'
 						viewbox: (0 @ 0 extent: 512 @ 512));
-				background: self iconColor);
-		yourself ] asStencil
+				background: aColor);
+		yourself
 ]
 
 { #category : 'icons' }
