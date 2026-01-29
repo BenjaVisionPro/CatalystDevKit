@@ -1,6 +1,6 @@
 Class {
-	#name : #BVCDevKitManagedInstaller,
-	#superclass : #BlElement,
+	#name : 'BVCDevKitManagedInstaller',
+	#superclass : 'BlElement',
 	#instVars : [
 		'baseDirectory',
 		'gsDevKitDirectory',
@@ -9,51 +9,52 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #'BV-Catalyst-DevKit-Core'
+	#category : 'BV-Catalyst-DevKit-Core',
+	#package : 'BV-Catalyst-DevKit-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller class >> instance [
 	^ instance ifNil: [ instance := super new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller class >> new [
 	"This is a singleton so the sole instance is returned"
 	^ self instance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller class >> resetInstance [
 	instance := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller class >> rootDirectory [
 	^ '/opt' asFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller >> baseDirectory [
 	^ baseDirectory ifNil: [ baseDirectory := self rootDirectory / self baseDirectoryName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller >> baseDirectoryName [
 	^ 'bvcDevKit'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller >> gsDevKitDirectory [
 	^ gsDevKitDirectory ifNil: [ self baseDirectory / self gsDevKitName ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller >> gsDevKitName [
 	^ 'gsDevKit'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitManagedInstaller >> rootDirectory [
 	^ rootDirectory ifNil: [ rootDirectory := self class rootDirectory ]
 ]

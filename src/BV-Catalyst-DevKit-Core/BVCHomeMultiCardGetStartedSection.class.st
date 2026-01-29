@@ -1,10 +1,12 @@
 Class {
-	#name : #BVCHomeMultiCardGetStartedSection,
-	#superclass : #GtHomeMultiCardSection,
-	#category : #'BV-Catalyst-DevKit-Core-Sections'
+	#name : 'BVCHomeMultiCardGetStartedSection',
+	#superclass : 'GtHomeMultiCardSection',
+	#category : 'BV-Catalyst-DevKit-Core-Sections',
+	#package : 'BV-Catalyst-DevKit-Core',
+	#tag : 'Sections'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 	<gtSectionCard>
 	<gtExample>
@@ -26,17 +28,17 @@ BVCHomeMultiCardGetStartedSection >> bvcDevKitBookCard [
 				yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCHomeMultiCardGetStartedSection >> bvcDevKitBookName [
 	^ 'BenjaVision Catalyst DevKit'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCHomeMultiCardGetStartedSection >> defaultPriority [
 	^ 30
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 BVCHomeMultiCardGetStartedSection >> gemStoneSessionsCard [
 	<gtSectionCard>
 	<gtExample>
@@ -61,12 +63,12 @@ BVCHomeMultiCardGetStartedSection >> gemStoneSessionsCard [
 					c frame vertical alignCenter ])]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCHomeMultiCardGetStartedSection >> sectionTitle [
 	^ 'Getting Started'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 BVCHomeMultiCardGetStartedSection >> unrealProjectCard [
 	<gtSectionCard>
 	<gtExample>

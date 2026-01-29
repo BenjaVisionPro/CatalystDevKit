@@ -42,15 +42,12 @@ CRRuntime >> gtViewOverviewOn: aView [
 	"I show the current runtime state (no telemetry yet)."
 
 	<gtView>
-	^ aView columnedList
+	^ aView explicit
 		title: 'Overview';
-		priority: 10;
-		items: [ {#displayName -> (displayName ifNil: [ 'Catalyst Runtime' ]).
-				#isRunning -> isRunning.
-				#workerCount -> (workers ifNil: [ #() ]) size.
-				#runnerCount -> (runners ifNil: [ IdentityDictionary new ]) size} ];
-		column: 'Key' text: [ :assoc | assoc key asString ];
-		column: 'Value' text: [ :assoc | assoc value asString ]
+		priority: 1;
+		stencil: [ (CRRuntimeOverviewWidget new
+				runtime: self;
+				yourself) margin: (BlInsets all: 10) ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }

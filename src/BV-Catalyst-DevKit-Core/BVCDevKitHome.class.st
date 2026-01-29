@@ -1,10 +1,11 @@
 Class {
-	#name : #BVCDevKitHome,
-	#superclass : #GtHome,
-	#category : #'BV-Catalyst-DevKit-Core'
+	#name : 'BVCDevKitHome',
+	#superclass : 'GtHome',
+	#category : 'BV-Catalyst-DevKit-Core',
+	#package : 'BV-Catalyst-DevKit-Core'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCDevKitHome >> backgroundIcon [
 	^ (BVCDevKitVectorIcons gray: #bvcServer) value asElement asScalableElement
 		constraintsDo: [ :c | 
@@ -14,7 +15,7 @@ BVCDevKitHome >> backgroundIcon [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitHome >> collectHomeSectionStencils [
 	^ self homeSectionCollector
 		fromObject: self;
@@ -22,7 +23,7 @@ BVCDevKitHome >> collectHomeSectionStencils [
 		collect
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 BVCDevKitHome >> createVersionLabel [
 	^ BrButton new 
 		label: 'BVC DevKit ', GtImage instance version versionString; 
@@ -42,7 +43,7 @@ BVCDevKitHome >> createVersionLabel [
 				from: button ]
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 BVCDevKitHome >> getStartedSection [
 	<gtHomeSection>
 	<gtExample>
@@ -50,7 +51,7 @@ BVCDevKitHome >> getStartedSection [
 	^ BVCHomeMultiCardGetStartedSection new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCDevKitHome >> initialize [
 	super initialize.
 	self addChildFirst: self backgroundIcon

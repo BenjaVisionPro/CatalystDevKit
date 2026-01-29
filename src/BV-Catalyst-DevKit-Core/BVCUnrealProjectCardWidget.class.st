@@ -1,15 +1,17 @@
 Class {
-	#name : #BVCUnrealProjectCardWidget,
-	#superclass : #BrVerticalPane,
+	#name : 'BVCUnrealProjectCardWidget',
+	#superclass : 'BrVerticalPane',
 	#instVars : [
 		'registry',
 		'sessionList',
 		'elementUpdater'
 	],
-	#category : #'BV-Catalyst-DevKit-Core-UI'
+	#category : 'BV-Catalyst-DevKit-Core-UI',
+	#package : 'BV-Catalyst-DevKit-Core',
+	#tag : 'UI'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BVCUnrealProjectCardWidget class >> addToHomeSectionCardsContainer: cardsContainer in: aGtHomeSection [
 
 	cardsContainer
@@ -31,12 +33,12 @@ BVCUnrealProjectCardWidget class >> addToHomeSectionCardsContainer: cardsContain
 					c frame vertical alignCenter ]))
 ]
 
-{ #category : #callbacks }
+{ #category : 'callbacks' }
 BVCUnrealProjectCardWidget >> actOnGemStoneSessionAnnouncement [
 	self requestContentUpdate
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BVCUnrealProjectCardWidget >> activeMark [
 
 	^ BlElement new
@@ -47,14 +49,14 @@ BVCUnrealProjectCardWidget >> activeMark [
 		addChild: (BrGlamorousVectorIcons accept asElement)
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> buildContent [
 	self
 		addChild: (sessionList := self createListWithItems) as: #sessionList;
 		addChild: self createToolbar.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> createAddNewDefaultSessionButton [
 	| selectionButton |
 	
@@ -80,7 +82,7 @@ BVCUnrealProjectCardWidget >> createAddNewDefaultSessionButton [
 	^ selectionButton
 ]
 
-{ #category : #'private - children' }
+{ #category : 'private - children' }
 BVCUnrealProjectCardWidget >> createConnectorList [
 	| newList |
 	newList := BrColumnedList new.
@@ -144,7 +146,7 @@ BVCUnrealProjectCardWidget >> createConnectorList [
 	^ newList
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> createInspectButton [
 
 	^ BrButton new 
@@ -156,7 +158,7 @@ BVCUnrealProjectCardWidget >> createInspectButton [
 			yourself.
 ]
 
-{ #category : #'private - children' }
+{ #category : 'private - children' }
 BVCUnrealProjectCardWidget >> createList [
 	| newList |
 
@@ -204,7 +206,7 @@ BVCUnrealProjectCardWidget >> createList [
 	^ newList.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> createListWithItems [
 	| newList |
 	newList := self createList.
@@ -212,7 +214,7 @@ BVCUnrealProjectCardWidget >> createListWithItems [
 	^ newList
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> createRefreshButton [
 
 	^ BrButton new 
@@ -224,7 +226,7 @@ BVCUnrealProjectCardWidget >> createRefreshButton [
 			yourself.
 ]
 
-{ #category : #'private - children' }
+{ #category : 'private - children' }
 BVCUnrealProjectCardWidget >> createRowStencil [
 	^ BrColumnedListItemElementWithContextMenuDecorator new
 		stencilBuilder: BrGlamorousColumnedListSelectableRowElementStencilBuilder new;
@@ -232,7 +234,7 @@ BVCUnrealProjectCardWidget >> createRowStencil [
 			self sessionActionsFor: aSession ] 
 ]
 
-{ #category : #'private - children' }
+{ #category : 'private - children' }
 BVCUnrealProjectCardWidget >> createStatusLabel [
 	^ BrLabel new
 		aptitude: BrGlamorousLabelAptitude new;
@@ -240,7 +242,7 @@ BVCUnrealProjectCardWidget >> createStatusLabel [
 		vFitContent
 ]
 
-{ #category : #'private - children' }
+{ #category : 'private - children' }
 BVCUnrealProjectCardWidget >> createTitleLabel [
 
 	^ BrLabel new
@@ -250,7 +252,7 @@ BVCUnrealProjectCardWidget >> createTitleLabel [
 		text: 'Unreal Engine Project' asRopedText bold.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> createToolbar [
 
 	^ BrHorizontalPane new
@@ -266,7 +268,7 @@ BVCUnrealProjectCardWidget >> createToolbar [
 		yourself.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> doDoubleClicked: anEvent [ 
 	| session |
 
@@ -281,7 +283,7 @@ BVCUnrealProjectCardWidget >> doDoubleClicked: anEvent [
 		from: anEvent currentTarget.
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 BVCUnrealProjectCardWidget >> iconForSymbol: anIconName [ 
 	
 	^ [ 
@@ -296,7 +298,7 @@ BVCUnrealProjectCardWidget >> iconForSymbol: anIconName [
 		Smalltalk ui icons iconNamed: #smallWarningIcon ]
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> informCannotOpenSnippetOnNonDefaultSession [
 	self
 		showNotification: (GtNotificationMessage
@@ -304,7 +306,7 @@ BVCUnrealProjectCardWidget >> informCannotOpenSnippetOnNonDefaultSession [
 				showNotifications
 ]
 
-{ #category : #'initialization ' }
+{ #category : 'initialization ' }
 BVCUnrealProjectCardWidget >> initialize [
 	super initialize.
 	
@@ -314,7 +316,7 @@ BVCUnrealProjectCardWidget >> initialize [
 		selector: #updateContent.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> inspectRegistryFrom: aButton [ 
 
 	GtPager
@@ -323,7 +325,7 @@ BVCUnrealProjectCardWidget >> inspectRegistryFrom: aButton [
 		from: aButton.
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> inspectSession: aSession from: anElement [
 
 	GtPager
@@ -332,14 +334,14 @@ BVCUnrealProjectCardWidget >> inspectSession: aSession from: anElement [
 		from: anElement.
 ]
 
-{ #category : #'private - hooks' }
+{ #category : 'private - hooks' }
 BVCUnrealProjectCardWidget >> onAddedToSceneGraph [
 	super onAddedToSceneGraph.
 	
 	self requestContentUpdate
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> openPlaygroundOnSessionNamed: aSessionName withSnippet: aGemStoneSnippet from: anElement [
 	| page |
 	page := LePage unnamedPage.
@@ -355,7 +357,7 @@ BVCUnrealProjectCardWidget >> openPlaygroundOnSessionNamed: aSessionName withSni
 		showFrom: anElement
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> openPlaygroundWithDefaultSessionIdentifierNamed: aSessionName from: anElement [
 	^ self 
 		openPlaygroundOnSessionNamed: aSessionName
@@ -363,7 +365,7 @@ BVCUnrealProjectCardWidget >> openPlaygroundWithDefaultSessionIdentifierNamed: a
 		from: anElement
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> openPlaygroundWithExplicitSessionIdentifierNamed: aSessionName from: anElement [
 	^ self 
 		openPlaygroundOnSessionNamed: aSessionName
@@ -371,7 +373,7 @@ BVCUnrealProjectCardWidget >> openPlaygroundWithExplicitSessionIdentifierNamed: 
 		from: anElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCUnrealProjectCardWidget >> registry [
 	^ registry ifNil: [ 
 		"Initialize the registry with the default one"
@@ -379,7 +381,7 @@ BVCUnrealProjectCardWidget >> registry [
 		registry ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCUnrealProjectCardWidget >> registry: aGtGemStoneSessionRegistry [
 
 	registry ifNotNil: [ registry unsubscribe: self ].
@@ -390,13 +392,13 @@ BVCUnrealProjectCardWidget >> registry: aGtGemStoneSessionRegistry [
 		to: self.
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 BVCUnrealProjectCardWidget >> requestContentUpdate [
 	elementUpdater ifNil: [ ^ self ].
 	elementUpdater requestUpdate
 ]
 
-{ #category : #'actions - ui' }
+{ #category : 'actions - ui' }
 BVCUnrealProjectCardWidget >> selectSession: aSession [ 
 	| sessionIndex |
 	sessionIndex := self sessionList items indexOf:  aSession.
@@ -404,7 +406,7 @@ BVCUnrealProjectCardWidget >> selectSession: aSession [
 		self sessionList selectOne: sessionIndex ].
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> sessionActionsFor: aGtGemStoneSession [
 	| actions |
 	
@@ -473,19 +475,19 @@ BVCUnrealProjectCardWidget >> sessionActionsFor: aGtGemStoneSession [
 		items: actions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCUnrealProjectCardWidget >> sessionList [
 	^self childNamed: #sessionList
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> sessionsToDisplay [
 	^ ((self registry sessionsToDisplay 
 		sorted: #name ascending) ifEmpty:[ 
 			{ GtGemStoneCardWidgetNoSessions new } ])
 ]
 
-{ #category : #'private - ui' }
+{ #category : 'private - ui' }
 BVCUnrealProjectCardWidget >> updateContent [
 	| selectedSession|
 	

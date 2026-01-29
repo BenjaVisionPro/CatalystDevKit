@@ -1,1 +1,1 @@
-Package { #name : #'BV-Catalyst-DevKit-Core' }
+Package { #name : 'BV-Catalyst-DevKit-Core' }

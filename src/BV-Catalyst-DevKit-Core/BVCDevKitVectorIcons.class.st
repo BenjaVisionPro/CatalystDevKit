@@ -1,10 +1,12 @@
 Class {
-	#name : #BVCDevKitVectorIcons,
-	#superclass : #Object,
-	#category : #'BV-Catalyst-DevKit-Core-Colors, Icons, Fonts'
+	#name : 'BVCDevKitVectorIcons',
+	#superclass : 'Object',
+	#category : 'BV-Catalyst-DevKit-Core-Colors, Icons, Fonts',
+	#package : 'BV-Catalyst-DevKit-Core',
+	#tag : 'Colors, Icons, Fonts'
 }
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> addressBook [
 	<script: 'self addressBook inspect'>
 	^ [ BlElement new
@@ -17,7 +19,7 @@ BVCDevKitVectorIcons class >> addressBook [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> addressCard [
 	<script: 'self addressCard inspect'>
 	^ [ BlElement new
@@ -30,7 +32,7 @@ BVCDevKitVectorIcons class >> addressCard [
 		yourself ] asStencil
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 BVCDevKitVectorIcons class >> allIcons [
 	<script: 'super inspect'>
 	^ (self class methodsInProtocol: #icons)
@@ -39,7 +41,7 @@ BVCDevKitVectorIcons class >> allIcons [
 			eachCompiledMethod selector -> (self perform: eachCompiledMethod selector) ]
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> analytics [
 	<script: 'self analytics inspect'>
 	^ [ BlElement new
@@ -52,7 +54,7 @@ BVCDevKitVectorIcons class >> analytics [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> atlas [
 	<script: 'self atlas inspect'>
 	^ [ BlElement new
@@ -65,7 +67,7 @@ BVCDevKitVectorIcons class >> atlas [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> aws [
 	<script: 'self aws inspect'>
 	^ [ BlElement new
@@ -78,13 +80,13 @@ BVCDevKitVectorIcons class >> aws [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcArchitect [
 	<script: 'self bvcArchitect inspect'>
 	^ [ self bvcArchitectSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcArchitectSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -128,13 +130,13 @@ BVCDevKitVectorIcons class >> bvcArchitectSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcConnect [
 	<script: 'self bvcConnect inspect'>
 	^ [ self bvcConnectSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcConnectSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -201,13 +203,13 @@ BVCDevKitVectorIcons class >> bvcConnectSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcCurrency [
 	<script: 'self bvcCurrency inspect'>
 	^ [ self bvcCurrencySource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcCurrencySource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -259,13 +261,13 @@ BVCDevKitVectorIcons class >> bvcCurrencySource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcGroups [
 	<script: 'self bvcGroups inspect'>
 	^ [ self bvcGroupsSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcGroupsSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -307,13 +309,13 @@ BVCDevKitVectorIcons class >> bvcGroupsSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcLandform [
 	<script: 'self bvcLandform inspect'>
 	^ [ self bvcLandformSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcLandformSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -355,13 +357,13 @@ BVCDevKitVectorIcons class >> bvcLandformSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcServer [
 	<script: 'self bvcServer inspect'>
 	^ [ self bvcServerSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcServerSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -408,13 +410,13 @@ BVCDevKitVectorIcons class >> bvcServerSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcStore [
 	<script: 'self bvcStore inspect'>
 	^ [ self bvcStoreSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcStoreSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -451,13 +453,13 @@ BVCDevKitVectorIcons class >> bvcStoreSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> bvcUsers [
 	<script: 'self bvcUsers inspect'>
 	^ [ self bvcUsersSource ] asStencil
 ]
 
-{ #category : #svg }
+{ #category : 'svg' }
 BVCDevKitVectorIcons class >> bvcUsersSource [
 	^ BlElement new
 		size: 512 @ 512;
@@ -499,7 +501,7 @@ BVCDevKitVectorIcons class >> bvcUsersSource [
 		yourself
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> checkCircle [
 	<script: 'self checkCircle inspect'>
 	^ [ BlElement new
@@ -512,7 +514,7 @@ BVCDevKitVectorIcons class >> checkCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> cloudDownload [
 	<script: 'self cloudDownload inspect'>
 	^ [ BlElement new
@@ -525,7 +527,7 @@ BVCDevKitVectorIcons class >> cloudDownload [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> cog [
 	<script: 'self cog inspect'>
 	^ [ BlElement new
@@ -538,7 +540,7 @@ BVCDevKitVectorIcons class >> cog [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> file [
 	<script: 'self file inspect'>
 	^ [ BlElement new
@@ -551,7 +553,7 @@ BVCDevKitVectorIcons class >> file [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> folder [
 	<script: 'self folder inspect'>
 	^ [ BlElement new
@@ -564,7 +566,7 @@ BVCDevKitVectorIcons class >> folder [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> gem [
 	<script: 'self gem inspect'>
 	^ [ BlElement new
@@ -577,7 +579,7 @@ BVCDevKitVectorIcons class >> gem [
 		yourself ] asStencil
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 BVCDevKitVectorIcons class >> gray: aSelectorSymbol [
 	"Answer a grey version of the icon at aSelectorSymbol... or don't since they are immutable"
 
@@ -596,7 +598,7 @@ BVCDevKitVectorIcons class >> gray: aSelectorSymbol [
 	^ [ icon ] asStencil
 ]
 
-{ #category : #'gt-inspector' }
+{ #category : 'gt-inspector' }
 BVCDevKitVectorIcons class >> gtIconsFor: aView [
 	<gtView>
 	<gtClassView>
@@ -628,7 +630,7 @@ BVCDevKitVectorIcons class >> gtIconsFor: aView [
 			send: #value
 ]
 
-{ #category : #'gt-spotter' }
+{ #category : 'gt-spotter' }
 BVCDevKitVectorIcons class >> gtSpotterForVectorIconFor: aSearch [
 	<gtSearch>
 	^ aSearch list
@@ -641,12 +643,21 @@ BVCDevKitVectorIcons class >> gtSpotterForVectorIconFor: aSearch [
 		filterBySubstring
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize [
 	^ (self perform: aSelectorSymbol) value asElement asScalableElement size: aSize
 ]
 
-{ #category : #default }
+{ #category : 'converting' }
+BVCDevKitVectorIcons class >> icon: aSelectorSymbol size: aSize colour: aColor [
+	| icon |
+	icon := self perform: (aSelectorSymbol , 'Source') asSymbol.
+	icon children
+		do: [ :child | child background: (BlBackground paint: (BlColorPaint color: aColor)) ].
+	^ [ icon asElement asScalableElement size: aSize ] asStencil
+]
+
+{ #category : 'default' }
 BVCDevKitVectorIcons class >> iconColor [
 	^ Color
 		r: 0
@@ -655,7 +666,7 @@ BVCDevKitVectorIcons class >> iconColor [
 		alpha: 0.95
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> infoCircle [
 	<script: 'self list inspect'>
 	^ [ BlElement new
@@ -668,7 +679,7 @@ BVCDevKitVectorIcons class >> infoCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> key [
 	<script: 'self key inspect'>
 	^ [ BlElement new
@@ -681,7 +692,7 @@ BVCDevKitVectorIcons class >> key [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> list [
 	<script: 'self list inspect'>
 	^ [ BlElement new
@@ -694,7 +705,7 @@ BVCDevKitVectorIcons class >> list [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> minusCircle [
 	<script: 'self minusCircle inspect'>
 	^ [ BlElement new
@@ -707,7 +718,7 @@ BVCDevKitVectorIcons class >> minusCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> networkWired [
 	<script: 'self networkWired inspect'>
 	^ [ BlElement new
@@ -720,7 +731,7 @@ BVCDevKitVectorIcons class >> networkWired [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> playCircle [
 	<script: 'self playCircle inspect'>
 	^ [ BlElement new
@@ -733,7 +744,7 @@ BVCDevKitVectorIcons class >> playCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> plusCircle [
 	<script: 'self plusCircle inspect'>
 	^ [ BlElement new
@@ -746,7 +757,20 @@ BVCDevKitVectorIcons class >> plusCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
+BVCDevKitVectorIcons class >> power [
+	<script: 'self power inspect'>
+	^ [ BlElement new
+		size: 512 @ 512;
+		addChild: (BlElement new
+				geometry: (BlSvgPath new
+						svg: 'M388.5 46.3C457.9 90.3 504 167.8 504 256c0 136.8-110.8 247.7-247.5 248C120 504.3 8.2 393 8 256.4 7.9 168 54 90.3 123.5 46.3c5.8-3.7 13.5-1.8 16.9 4.2l3.9 7c3.1 5.6 1.3 12.6-4.1 16C79.9 112 40 179.6 40 256c0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216 0-77-40.1-144.2-100.3-182.4-5.4-3.4-7.2-10.5-4.1-16l3.9-7c3.4-6.1 11.2-7.9 17-4.3zM272 276V12c0-6.6-5.4-12-12-12h-8c-6.6 0-12 5.4-12 12v264c0 6.6 5.4 12 12 12h8c6.6 0 12-5.4 12-12z'
+						viewbox: (0 @ 0 extent: 512 @ 512));
+				background: self iconColor);
+		yourself ] asStencil
+]
+
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> server [
 	<script: 'self server inspect'>
 	^ [ BlElement new
@@ -759,7 +783,7 @@ BVCDevKitVectorIcons class >> server [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> stopCircle [
 	<script: 'self stopCircle inspect'>
 	^ [ BlElement new
@@ -772,7 +796,7 @@ BVCDevKitVectorIcons class >> stopCircle [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> tag [
 	<script: 'self tag inspect'>
 	^ [ BlElement new
@@ -785,7 +809,7 @@ BVCDevKitVectorIcons class >> tag [
 		yourself ] asStencil
 ]
 
-{ #category : #'icons-bug' }
+{ #category : 'icons-bug' }
 BVCDevKitVectorIcons class >> tagsIcon [
 	<script: 'self tagsIcon inspect'>
 	^ [ BlElement new
@@ -798,7 +822,7 @@ BVCDevKitVectorIcons class >> tagsIcon [
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> unrealCircle [
 	<script: 'self unrealCircle inspect'>
 	^ [ BlElement new
@@ -812,7 +836,7 @@ M237.2,110.2c-41.7,11.1-80.3,32.3-131.7,90.8-51.4,58.5-41.7,106.8-41.7,106.8,0,0
 		yourself ] asStencil
 ]
 
-{ #category : #icons }
+{ #category : 'icons' }
 BVCDevKitVectorIcons class >> userCircle [
 	<script: 'self userCircle inspect'>
 	^ [ BlElement new

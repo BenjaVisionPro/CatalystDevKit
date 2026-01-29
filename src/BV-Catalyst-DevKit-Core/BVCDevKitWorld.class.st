@@ -1,26 +1,27 @@
 Class {
-	#name : #BVCDevKitWorld,
-	#superclass : #GtWorld,
-	#category : #'BV-Catalyst-DevKit-Core'
+	#name : 'BVCDevKitWorld',
+	#superclass : 'GtWorld',
+	#category : 'BV-Catalyst-DevKit-Core',
+	#package : 'BV-Catalyst-DevKit-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCDevKitWorld class >> defaultTitle [
 	^ 'BenjaVision Catalyst DevKit'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCDevKitWorld >> defaultWorldElement [
 	^ BVCDevKitWorldElement new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCDevKitWorld >> initialize [
 	super initialize.
 	self updateWorldContent
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 BVCDevKitWorld >> updateWorldContent [
 	BVCDevKitWorld allInstances
 		do: [ :aGtWorld | aGtWorld root children first home updateWidget ]

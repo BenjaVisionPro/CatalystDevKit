@@ -1,15 +1,16 @@
 Class {
-	#name : #BVCDevKitWorldElement,
-	#superclass : #GtWorldElement,
-	#category : #'BV-Catalyst-DevKit-Core'
+	#name : 'BVCDevKitWorldElement',
+	#superclass : 'GtWorldElement',
+	#category : 'BV-Catalyst-DevKit-Core',
+	#package : 'BV-Catalyst-DevKit-Core'
 }
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 BVCDevKitWorldElement >> defaultHomeElement [
 	^ BVCDevKitHome new
 ]
 
-{ #category : #defaults }
+{ #category : 'defaults' }
 BVCDevKitWorldElement >> defaultHomeTabIcon [
 	^ BVCDevKitVectorIcons icon: #bvcServer size: 32 @ 32
 ]
