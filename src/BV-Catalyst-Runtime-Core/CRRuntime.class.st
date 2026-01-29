@@ -14,11 +14,21 @@ Class {
 
 { #category : 'workers' }
 CRRuntime >> addWorker: aWorker [
-	"I register a worker. If I am running, I also start it via its runner."
+	"I add a worker to my runtime. I announce that the worker was added."
 
 	workers add: aWorker.
+	self announcer
+		announce: (CRRuntimeWorkerAddedAnnouncement runtime: self worker: aWorker).
+
 	isRunning ifTrue: [ self ensureRunnerStartedFor: aWorker ].
 	^ aWorker
+]
+
+{ #category : 'announcer api' }
+CRRuntime >> announce: anAnnouncement [
+	"I announce through my channel-gated announcer."
+
+	^ self announcer announce: anAnnouncement
 ]
 
 { #category : 'accessing' }
@@ -81,12 +91,17 @@ CRRuntime >> registry [
 
 { #category : 'workers' }
 CRRuntime >> removeWorker: aWorker [
-	"I remove a worker and stop its runner if present."
+	"I remove a worker from my runtime. I stop its runner if present and announce removal."
 
-	| runner |
-	runner := runners removeKey: aWorker ifAbsent: [ nil ].
-	runner ifNotNil: [ runner stop ].
+	(runners at: aWorker ifAbsent: [ nil ])
+		ifNotNil: [ :runner | 
+			runner stop.
+			runners removeKey: aWorker ifAbsent: [  ] ].
+
 	workers remove: aWorker ifAbsent: [  ].
+
+	self announcer
+		announce: (CRRuntimeWorkerRemovedAnnouncement runtime: self worker: aWorker).
 	^ aWorker
 ]
 
@@ -97,27 +112,28 @@ CRRuntime >> runners [
 
 { #category : 'lifecycle' }
 CRRuntime >> start [
-	"I start my runtime and all registered workers."
+	"I start my runtime and all registered workers. I announce that I started."
 
 	isRunning ifTrue: [ ^ self ].
 
 	isRunning := true.
 	self registry register: self.
+	self announcer announce: (CRRuntimeStartedAnnouncement runtime: self).
 
-	workers do: [ :w | self ensureRunnerStartedFor: w ].
-	^ self
+	workers do: [ :w | self ensureRunnerStartedFor: w ]
 ]
 
 { #category : 'lifecycle' }
 CRRuntime >> stop [
-	"I stop all workers and unregister myself."
+	"I stop all workers and unregister myself. I announce that I stopped."
 
 	isRunning ifFalse: [ ^ self ].
 
 	[ runners valuesDo: [ :runner | runner stop ].
 	runners := IdentityDictionary new.
-	isRunning := false ] ensure: [ self registry unregister: self ].
-	^ self
+	isRunning := false.
+	self announcer announce: (CRRuntimeStoppedAnnouncement runtime: self) ]
+		ensure: [ isRunning ifFalse: [ self registry unregister: self ] ]
 ]
 
 { #category : 'workers' }

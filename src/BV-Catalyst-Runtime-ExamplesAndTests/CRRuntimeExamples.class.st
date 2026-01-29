@@ -56,6 +56,25 @@ CRRuntimeExamples >> example_workerRunsAWorkUnit_runOnce [
 ]
 
 { #category : 'tests' }
+CRRuntimeExamples >> test_announcerOperationsChannel_canBeDisabled [
+	| runtime events |
+	runtime := CRRuntime new.
+
+	events := OrderedCollection new.
+	runtime announcer
+		when: CRRuntimeAnnouncement
+		do: [ :ann | events add: ann ]
+		for: self.
+
+	runtime announcer disableChannel: CRAnnouncer operationsChannel.
+
+	runtime start.
+	runtime stop.
+
+	self assert: events isEmpty
+]
+
+{ #category : 'tests' }
 CRRuntimeExamples >> test_example_runtimeStartStop_registersAndUnregisters [
 	| runtime |
 	runtime := (self example_runtimeStartStop) at: #runtime.
@@ -72,4 +91,45 @@ CRRuntimeExamples >> test_example_workerRunsAWorkUnit_runOnce_executes [
 
 	self assert: ran equals: true.
 	self assert: counter equals: 1
+]
+
+{ #category : 'tests' }
+CRRuntimeExamples >> test_runtimeStartStop_emitsAnnouncements [
+	| runtime events |
+	runtime := CRRuntime new.
+
+	events := OrderedCollection new.
+	runtime announcer
+		when: CRRuntimeAnnouncement
+		do: [ :ann | events add: ann ]
+		for: self.
+
+	runtime start.
+	runtime stop.
+
+	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeStartedAnnouncement ]).
+	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeStoppedAnnouncement ])
+]
+
+{ #category : 'tests' }
+CRRuntimeExamples >> test_runtimeWorkerAddRemove_emitsAnnouncements [
+	| runtime worker events |
+	runtime := CRRuntime new.
+	worker := CRWorker new.
+
+	events := OrderedCollection new.
+	runtime announcer
+		when: CRRuntimeWorkerAnnouncement
+		do: [ :ann | events add: ann ]
+		for: self.
+
+	runtime addWorker: worker.
+	runtime removeWorker: worker.
+
+	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeWorkerAddedAnnouncement ]).
+	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeWorkerRemovedAnnouncement ])
 ]
