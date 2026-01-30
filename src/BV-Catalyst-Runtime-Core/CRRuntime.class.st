@@ -5,7 +5,6 @@ Class {
 		'displayName',
 		'workers',
 		'runners',
-		'isRunning',
 		'announcer',
 		'status'
 	],
@@ -73,7 +72,7 @@ CRRuntime >> initialize [
 	workers := OrderedCollection new.
 	runners := IdentityDictionary new.
 	announcer := CRAnnouncer new.
-	isRunning := false
+	status := CRStatus stopped
 ]
 
 { #category : 'as yet unclassified' }
@@ -161,15 +160,7 @@ CRRuntime >> status [
 
 { #category : 'lifecycle' }
 CRRuntime >> stop [
-	"I stop all workers and unregister myself. I announce that I stopped."
-
-	isRunning ifFalse: [ ^ self ].
-
-	[ runners valuesDo: [ :runner | runner stop ].
-	runners := IdentityDictionary new.
-	isRunning := false.
-	self announcer announce: (CRRuntimeStoppedAnnouncement runtime: self) ]
-		ensure: [ isRunning ifFalse: [ self registry unregister: self ] ]
+	self shutdownGraceful
 ]
 
 { #category : 'workers' }
