@@ -3,39 +3,87 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'worker',
-		'process'
+		'process',
+		'status'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
+{ #category : 'initialization' }
+CRWorkerRunner >> initialize [
+	super initialize.
+	status := CRStatus stopped
+]
+
 { #category : 'testing' }
 CRWorkerRunner >> isRunning [
-	^ process isActive
+	"Truth is process-backed, but we also maintain #status."
+
+	^ process notNil and: [ process isActive ]
 ]
 
 { #category : 'running' }
 CRWorkerRunner >> start [
-	"I start running my worker in a background process."
+	(process notNil and: [ process isTerminated not ]) ifTrue: [ ^ self ].
 
-	process ifNotNil: [ ^ self ].
+	status := CRStatus startingUp.
 
-	process := [ worker runLoop ] forkAt: Processor userBackgroundPriority
+	process := [ [ worker runLoop ] ensure: [ status := CRStatus stopped ] ]
+			forkAt: Processor userBackgroundPriority.
+
+	status := CRStatus running
+]
+
+{ #category : 'accessing' }
+CRWorkerRunner >> status [
+	^ status
 ]
 
 { #category : 'running' }
 CRWorkerRunner >> stop [
-	"I ask my worker to stop and I terminate the process only as a safety net.
-	TODO: Replace the fixed delay with a join/wait policy once we have one."
+	"Compatibility: default is graceful."
 
-	process ifNil: [ ^ self ].
+	^ self stopGraceful
+]
 
-	worker requestStop.
+{ #category : 'running' }
+CRWorkerRunner >> stopGraceful [
+	process
+		ifNil: [ status := CRStatus stopped.
+			^ self ].
 
-	(Delay forMilliseconds: 50) wait.
+	status := CRStatus shuttingDown.
+	worker requestGracefulStop.
+
+	self waitForTerminationUpToMilliseconds: 2000 pollingEveryMilliseconds: 10.
 	process isTerminated ifFalse: [ process terminate ].
 
-	process := nil
+	process := nil.
+	status := CRStatus stopped
+]
+
+{ #category : 'running' }
+CRWorkerRunner >> stopImmediate [ 
+	process ifNil: [ status := CRStatus stopped. ^ self ].
+
+	status := CRStatus shuttingDown.
+	worker requestImmediateStop.
+
+	"Immediate means: don't wait."
+	process isTerminated ifFalse: [ process terminate ].
+
+	process := nil.
+	status := CRStatus stopped
+]
+
+{ #category : 'running' }
+CRWorkerRunner >> waitForTerminationUpToMilliseconds: maxMillis pollingEveryMilliseconds: pollMillis [
+	| waited |
+	waited := 0.
+	[ process notNil and: [ process isTerminated not and: [ waited < maxMillis ] ] ]
+		whileTrue: [ (Delay forMilliseconds: pollMillis) wait.
+			waited := waited + pollMillis ]
 ]
 
 { #category : 'accessing' }

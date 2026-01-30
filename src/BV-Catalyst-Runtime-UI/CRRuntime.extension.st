@@ -2,39 +2,33 @@ Extension { #name : 'CRRuntime' }
 
 { #category : '*bv-catalyst-runtime-ui' }
 CRRuntime >> gtActionStartOn: anAction [
-	"I start the runtime."
-
 	<gtAction>
 	^ anAction button
 		icon: BrGlamorousVectorIcons play;
 		tooltip: 'Start the Runtime';
-		menuDisable: [ isRunning ];
+		menuDisable: [ self status == CRStatus running or: [ self status == CRStatus startingUp ] ];
 		action: [ self start ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }
 CRRuntime >> gtActionStopOn: anAction [
-	"I stop the runtime."
-
 	<gtAction>
 	^ anAction button
 		icon: BrGlamorousVectorIcons stop;
-		tooltip: 'Stop the Runtime';
-		menuDisable: [ true ];
-		action: [ self stop ]
+		tooltip: 'Stop the Runtime (graceful)';
+		menuDisable: [ self status == CRStatus stopped or: [ self status == CRStatus shuttingDown ] ];
+		action: [ self shutdownGraceful ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }
 CRRuntime >> gtRunnersFor: aView [
-	"I show the runtime’s runners so I can drill into them."
-
 	<gtView>
 	^ aView columnedList
 		title: 'Runners';
 		priority: 20;
 		items: [ runners values asArray ];
 		column: 'Runner' text: [ :each | each gtDisplayText ];
-		column: 'Running' text: [ :each | each isRunning asString ]
+		column: 'Status' text: [ :each | each status asString ]
 ]
 
 { #category : '*bv-catalyst-runtime-ui' }

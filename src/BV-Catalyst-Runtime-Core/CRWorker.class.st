@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'displayName',
 		'workQueue',
-		'stopRequested'
+		'stopRequested',
+		'stopMode',
+		'status'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
@@ -33,30 +35,50 @@ CRWorker >> enqueue: aWorkItem [
 
 { #category : 'initialization' }
 CRWorker >> initialize [
-	"I initialise my state."
-
-	super initialize.
 	displayName := 'Runtime Worker'.
 	workQueue := CRWorkQueue new.
-	stopRequested := false
+	stopMode := CRStopMode none.
+	status := CRStatus stopped
+]
+
+{ #category : 'lifecycle' }
+CRWorker >> requestGracefulStop [
+	stopMode == CRStopMode immediate ifTrue: [ ^ self ].
+	stopMode := CRStopMode graceful.
+	status := CRStatus shuttingDown.
+	workQueue enqueue: CRWakeupWorkUnit new
+]
+
+{ #category : 'lifecycle' }
+CRWorker >> requestImmediateStop [
+	stopMode := CRStopMode immediate.
+	status := CRStatus shuttingDown.
+	workQueue enqueue: CRWakeupWorkUnit new
 ]
 
 { #category : 'lifecycle' }
 CRWorker >> requestStop [
-	"I request that my run loop stops and I wake the queue so it can notice."
+	"Compatibility: default is graceful."
 
-	stopRequested := true.
-	workQueue enqueue: CRWakeupWorkUnit new
+	^ self requestGracefulStop
 ]
 
 { #category : 'running' }
 CRWorker >> runLoop [
-	"I run work items until I am asked to stop."
+	| work |
+	status := CRStatus running.
 
-	[ stopRequested ]
-		whileFalse: [ | work |
-			work := workQueue next.
-			work run ]
+	[ [ true ]
+		whileTrue: [ stopMode == CRStopMode immediate ifTrue: [ ^ self ].
+
+			stopMode == CRStopMode graceful
+				ifTrue: [ work := workQueue nextOrNil.
+					work ifNil: [ ^ self ] ]
+				ifFalse: [ work := workQueue next ].
+
+			work run ] ]
+		ensure: [ status := CRStatus stopped.
+			stopMode := CRStopMode none ]
 ]
 
 { #category : 'running' }
@@ -68,4 +90,9 @@ CRWorker >> runOnce [
 	work ifNil: [ ^ false ].
 	work run.
 	^ true
+]
+
+{ #category : 'accessing' }
+CRWorker >> status [
+	^ status
 ]

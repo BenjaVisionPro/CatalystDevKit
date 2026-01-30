@@ -6,7 +6,8 @@ Class {
 		'workers',
 		'runners',
 		'isRunning',
-		'announcer'
+		'announcer',
+		'status'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
@@ -14,13 +15,11 @@ Class {
 
 { #category : 'workers' }
 CRRuntime >> addWorker: aWorker [
-	"I add a worker to my runtime. I announce that the worker was added."
-
 	workers add: aWorker.
 	self announcer
 		announce: (CRRuntimeWorkerAddedAnnouncement runtime: self worker: aWorker).
 
-	isRunning ifTrue: [ self ensureRunnerStartedFor: aWorker ].
+	status == CRStatus running ifTrue: [ self ensureRunnerStartedFor: aWorker ].
 	^ aWorker
 ]
 
@@ -77,9 +76,11 @@ CRRuntime >> initialize [
 	isRunning := false
 ]
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 CRRuntime >> isRunning [
-	^ isRunning
+	"Compatibility predicate. Truth comes from #status."
+
+	^ status == CRStatus running
 ]
 
 { #category : 'private' }
@@ -91,11 +92,9 @@ CRRuntime >> registry [
 
 { #category : 'workers' }
 CRRuntime >> removeWorker: aWorker [
-	"I remove a worker from my runtime. I stop its runner if present and announce removal."
-
 	(runners at: aWorker ifAbsent: [ nil ])
-		ifNotNil: [ :runner | 
-			runner stop.
+		ifNotNil: [  "Hard protocol: runner MUST understand stopGraceful":runner | 
+			runner stopGraceful.
 			runners removeKey: aWorker ifAbsent: [  ] ].
 
 	workers remove: aWorker ifAbsent: [  ].
@@ -111,16 +110,53 @@ CRRuntime >> runners [
 ]
 
 { #category : 'lifecycle' }
-CRRuntime >> start [
-	"I start my runtime and all registered workers. I announce that I started."
+CRRuntime >> shutdownGraceful [
+	(status == CRStatus stopped or: [ status == CRStatus shuttingDown ])
+		ifTrue: [ ^ self ].
 
-	isRunning ifTrue: [ ^ self ].
+	status := CRStatus shuttingDown.
+	self announcer announce: (CRRuntimeShuttingDownAnnouncement runtime: self).
 
-	isRunning := true.
+	[ runners valuesDo: [ :runner | runner stopGraceful ].
+	runners := IdentityDictionary new.
+	status := CRStatus stopped.
+	self announcer announce: (CRRuntimeStoppedAnnouncement runtime: self) ]
+		ensure: [ status == CRStatus stopped ifTrue: [ self registry unregister: self ] ]
+]
+
+{ #category : 'lifecycle' }
+CRRuntime >> shutdownImmediate [
+	(status == CRStatus stopped or: [ status == CRStatus shuttingDown ])
+		ifTrue: [ ^ self ].
+
+	status := CRStatus shuttingDown.
+	self announcer announce: (CRRuntimeShuttingDownAnnouncement runtime: self).
+
+	[ runners valuesDo: [ :runner | runner stopImmediate ].
+	runners := IdentityDictionary new.
+	status := CRStatus stopped.
+	self announcer announce: (CRRuntimeStoppedAnnouncement runtime: self) ]
+		ensure: [ status == CRStatus stopped ifTrue: [ self registry unregister: self ] ]
+]
+
+{ #category : 'lifecycle' }
+CRRuntime >> start [ 
+	status ~= CRStatus stopped ifTrue: [ ^ self ].
+
+	status := CRStatus startingUp.
+	self announcer announce: (CRRuntimeStartingUpAnnouncement runtime: self).
+
 	self registry register: self.
-	self announcer announce: (CRRuntimeStartedAnnouncement runtime: self).
 
-	workers do: [ :w | self ensureRunnerStartedFor: w ]
+	workers do: [ :w | self ensureRunnerStartedFor: w ].
+
+	status := CRStatus running.
+	self announcer announce: (CRRuntimeStartedAnnouncement runtime: self)
+]
+
+{ #category : 'accessing' }
+CRRuntime >> status [
+	^ status
 ]
 
 { #category : 'lifecycle' }

@@ -26,6 +26,11 @@ CRRuntimeCardWidgetNoRuntimes >> runners [
 	^ #()
 ]
 
+{ #category : 'as yet unclassified' }
+CRRuntimeCardWidgetNoRuntimes >> status [
+	^ CRStatus stopped
+]
+
 { #category : 'accessing' }
 CRRuntimeCardWidgetNoRuntimes >> workers [
 	"I answer an empty collection for placeholder rows."

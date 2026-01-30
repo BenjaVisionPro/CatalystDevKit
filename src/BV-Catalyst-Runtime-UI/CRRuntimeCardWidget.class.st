@@ -50,8 +50,6 @@ CRRuntimeCardWidget >> createInspectRegistryButton [
 
 { #category : 'private-children' }
 CRRuntimeCardWidget >> createList [
-	"I create the runtimes list."
-
 	| list |
 	list := BrColumnedList new.
 
@@ -62,10 +60,10 @@ CRRuntimeCardWidget >> createList [
 		dataBinder: [ :aLabel :aRuntime | aLabel text: (aRuntime displayName ifNil: [ aRuntime printString ]) ].
 
 	list column
-		title: 'Run';
-		width: 45;
+		title: 'Status';
+		width: 90;
 		cellStencil: [ BrLabel new aptitude: BrGlamorousLabelAptitude new ];
-		dataBinder: [ :aLabel :aRuntime | aLabel text: (aRuntime isRunning ifTrue: [ '✓' ] ifFalse: [ '-' ]) ].
+		dataBinder: [ :aLabel :aRuntime | aLabel text: aRuntime status asString ].
 
 	list column
 		title: 'W';
@@ -219,19 +217,22 @@ CRRuntimeCardWidget >> requestContentUpdate [
 
 { #category : 'private-ui' }
 CRRuntimeCardWidget >> runtimeActionsFor: aRuntime [
-	"I offer actions for a runtime."
-
 	| actions |
 	aRuntime class = CRRuntimeCardWidgetNoRuntimes
 		ifTrue: [ ^ BrGlamorousSimpleContextMenuContent new ].
 
 	actions := OrderedCollection new.
 
-	aRuntime isRunning
+	aRuntime status == CRStatus running
 		ifTrue: [ actions
-				add: 'Stop'
+				add: 'Stop (graceful)'
 						-> [ :el | 
-							aRuntime stop.
+							aRuntime shutdownGraceful.
+							self requestContentUpdate ].
+			actions
+				add: 'Stop (immediate)'
+						-> [ :el | 
+							aRuntime shutdownImmediate.
 							self requestContentUpdate ] ]
 		ifFalse: [ actions
 				add: 'Start'
@@ -239,7 +240,7 @@ CRRuntimeCardWidget >> runtimeActionsFor: aRuntime [
 							aRuntime start.
 							self requestContentUpdate ] ].
 
-	actions addAll: {'Inspect' -> [ :el | self inspectRuntime: aRuntime from: el ]}.
+	actions add: 'Inspect' -> [ :el | self inspectRuntime: aRuntime from: el ].
 
 	^ BrGlamorousSimpleContextMenuContent new items: actions
 ]

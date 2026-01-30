@@ -108,7 +108,11 @@ CRRuntimeExamples >> test_runtimeStartStop_emitsAnnouncements [
 	runtime stop.
 
 	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeStartingUpAnnouncement ]).
+	self
 		assert: (events anySatisfy: [ :e | e class = CRRuntimeStartedAnnouncement ]).
+	self
+		assert: (events anySatisfy: [ :e | e class = CRRuntimeShuttingDownAnnouncement ]).
 	self
 		assert: (events anySatisfy: [ :e | e class = CRRuntimeStoppedAnnouncement ])
 ]
