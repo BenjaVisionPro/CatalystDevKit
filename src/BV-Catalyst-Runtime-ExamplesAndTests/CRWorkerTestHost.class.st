@@ -58,7 +58,7 @@ CRWorkerTestHost >> waitUntilRunningUpToMSecs: timeoutMSecs [
 
 	[ worker status == CRStatus running
 		or: [ Time millisecondClockValue - startTime >= timeoutMSecs ] ]
-		whileFalse: [ Processor yield ].
+		whileFalse: [ (Delay forMilliseconds: 1) wait ].
 
 	worker status == CRStatus running
 		ifFalse: [ self error: 'Timed out waiting for worker to become running.' ]
