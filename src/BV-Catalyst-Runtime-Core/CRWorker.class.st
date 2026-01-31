@@ -6,11 +6,17 @@ Class {
 		'workQueue',
 		'stopRequested',
 		'stopMode',
-		'status'
+		'status',
+		'announcer'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
 }
+
+{ #category : 'accessing' }
+CRWorker >> announcer [
+	^ announcer
+]
 
 { #category : 'queue' }
 CRWorker >> basicEnqueue: aUnit [
@@ -57,12 +63,24 @@ CRWorker >> enqueue: aUnit [
 	^ self basicEnqueue: aUnit
 ]
 
+{ #category : 'running' }
+CRWorker >> executeUnit: aUnit [
+	[ aUnit run ]
+		on: Error
+		do: [ :ex |
+			announcer announce: (CRWorkUnitFailedAnnouncement
+				worker: self
+				unit: aUnit
+				exception: ex) ].
+]
+
 { #category : 'initialization' }
 CRWorker >> initialize [
 	displayName := 'Runtime Worker'.
 	workQueue := CRWorkQueue new.
 	stopMode := CRStopMode none.
-	status := CRStatus stopped
+	status := CRStatus stopped.
+	announcer := CRAnnouncer new.
 ]
 
 { #category : 'lifecycle' }
@@ -101,28 +119,25 @@ CRWorker >> runLoop [
 	[ [ true ]
 		whileTrue: [ stopMode == CRStopMode immediate ifTrue: [ ^ self ].
 
-			stopMode == CRStopMode graceful
-				ifTrue: [ work := workQueue nextOrNil.
-					work ifNil: [ ^ self ] ]
-				ifFalse: [ work := workQueue next ].
+			work := workQueue nextOrNil.
 
-			work run ] ]
+			work
+				ifNil: [ stopMode == CRStopMode graceful ifTrue: [ ^ self ].
+					self yieldExecution	"continue" ]
+				ifNotNil: [ self executeUnit: work ] ] ]
 		ensure: [ status := CRStatus stopped.
 			stopMode := CRStopMode none ]
-]
-
-{ #category : 'running' }
-CRWorker >> runOnce [
-	"I run at most one available work item and answer whether I ran one."
-
-	| work |
-	work := workQueue nextOrNil.
-	work ifNil: [ ^ false ].
-	work run.
-	^ true
 ]
 
 { #category : 'accessing' }
 CRWorker >> status [
 	^ status
+]
+
+{ #category : 'running' }
+CRWorker >> yieldExecution [
+	"Idle behaviour: yield so we don’t burn CPU.
+	We can tune this later or replace with a policy object."
+
+	Processor yield
 ]

@@ -10,6 +10,13 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
+{ #category : 'instance creation' }
+CRWorkerRunner class >> worker: aWorker [
+	^ self new
+		worker: aWorker;
+		yourself
+]
+
 { #category : 'initialization' }
 CRWorkerRunner >> initialize [
 	super initialize.

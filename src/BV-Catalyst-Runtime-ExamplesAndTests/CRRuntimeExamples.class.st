@@ -37,26 +37,30 @@ CRRuntimeExamples >> example_runtimeWithOneWorker [
 ]
 
 { #category : 'examples' }
-CRRuntimeExamples >> example_workerRunsAWorkUnit_runOnce [
+CRRuntimeExamples >> example_workerRunsAWorkUnit [
 	<gtExample>
-	| seed worker runner ran counter |
+	| seed worker runner counter done |
 	seed := self example_runtimeWithOneWorker.
 	worker := seed at: #worker.
 
-	runner := CRInlineWorkerRunner on: worker.
+	runner := CRWorkerRunner worker: worker.
 	runner start.
 
 	counter := 0.
-	worker enqueue: (CRBlockUnit on: [ counter := counter + 1 ]).
+	done := Semaphore new.
 
-	ran := runner runOnce.
+	worker enqueue: (CRBlockUnit on: [
+		counter := counter + 1.
+		done signal ]).
 
-	runner stop.
+	(done waitTimeoutMSecs: 200)
+		ifFalse: [ self error: 'Timed out waiting for worker to run the unit.' ].
+
+	runner stopGraceful.
 
 	^ Dictionary new
 		at: #worker put: worker;
 		at: #runner put: runner;
-		at: #ran put: ran;
 		at: #counter put: counter;
 		yourself
 ]

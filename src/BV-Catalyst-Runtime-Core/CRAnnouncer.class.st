@@ -8,34 +8,11 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
-{ #category : 'channels' }
-CRAnnouncer class >> auditChannel [
-	^ #auditChannel
-]
-
-{ #category : 'channels' }
-CRAnnouncer class >> debugChannel [
-	^ #debugChannel
-]
-
-{ #category : 'channels' }
+{ #category : 'defaults' }
 CRAnnouncer class >> defaultEnabledChannels [
-	^ Set with: self operationsChannel with: self securityChannel
-]
-
-{ #category : 'channels' }
-CRAnnouncer class >> operationsChannel [
-	^ #operationsChannel
-]
-
-{ #category : 'channels' }
-CRAnnouncer class >> securityChannel [
-	^ #securityChannel
-]
-
-{ #category : 'channels' }
-CRAnnouncer class >> telemetryChannel [
-	^ #telemetryChannel
+	^ Set
+		with: CRAnnouncementChannel operations
+		with: CRAnnouncementChannel security
 ]
 
 { #category : 'announcer' }

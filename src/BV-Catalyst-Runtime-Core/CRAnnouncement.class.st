@@ -9,5 +9,5 @@ Class {
 CRAnnouncement class >> channel [
 	"I answer the channel for this announcement type."
 
-	^ CRAnnouncer operationsChannel
+	^ CRAnnouncementChannel operations
 ]

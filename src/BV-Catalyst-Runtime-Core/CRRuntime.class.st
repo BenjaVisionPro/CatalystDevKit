@@ -38,9 +38,7 @@ CRRuntime >> announcer [
 CRRuntime >> createRunnerFor: aWorker [
 	"I create a runner for the worker."
 
-	^ CRWorkerRunner new
-		worker: aWorker;
-		yourself
+	^ CRWorkerRunner worker: aWorker
 ]
 
 { #category : 'accessing' }
