@@ -62,20 +62,20 @@ CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [
 	unit := aWorkUnitEnvelope workUnit.
 	ctx := aWorkUnitEnvelope context.
 
-	[ unit executeWorkUnit ]
+	[ [ unit executeWorkUnit ]
+		on: Error
+		do: [ :ex | 
+			announcer
+				announce: (CRWorkUnitFailedAnnouncement
+						worker: self
+						workUnit: unit
+						exception: ex) ] ]
 		ensure: [  
 			"Scheduler in-flight completion hook."
 			scheduleContext := ctx
 					at: CRScheduleContext
 					ifAbsent: [ nil ].
-			scheduleContext ifNotNil: [ scheduler noteCompletedKey: scheduleContext key ] ];
-		on: Error
-			do: [ :ex | 
-				announcer
-					announce: (CRWorkUnitFailedAnnouncement
-							worker: self
-							workUnit: unit
-							exception: ex) ]
+			scheduleContext ifNotNil: [ scheduler noteCompletedKey: scheduleContext key ] ]
 ]
 
 { #category : 'initialization' }
