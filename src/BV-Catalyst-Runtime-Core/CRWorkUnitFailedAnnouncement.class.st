@@ -2,17 +2,17 @@ Class {
 	#name : 'CRWorkUnitFailedAnnouncement',
 	#superclass : 'CRWorkerAnnouncement',
 	#instVars : [
-		'unit',
-		'exception'
+		'exception',
+		'workUnit'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
 { #category : 'instance creation' }
-CRWorkUnitFailedAnnouncement class >> worker: aWorker unit: aWorkUnit exception: anException [
+CRWorkUnitFailedAnnouncement class >> worker: aWorker workUnit: aWorkUnit exception: anException [
 	^ (self worker: aWorker)
-		unit: aWorkUnit;
+		workUnit: aWorkUnit;
 		exception: anException;
 		yourself
 ]
@@ -28,11 +28,11 @@ CRWorkUnitFailedAnnouncement >> exception: anObject [
 ]
 
 { #category : 'accessing' }
-CRWorkUnitFailedAnnouncement >> unit [
-	^ unit
+CRWorkUnitFailedAnnouncement >> workUnit [
+	^ workUnit
 ]
 
 { #category : 'accessing' }
-CRWorkUnitFailedAnnouncement >> unit: anObject [
-	unit := anObject
+CRWorkUnitFailedAnnouncement >> workUnit: anObject [
+	workUnit := anObject
 ]

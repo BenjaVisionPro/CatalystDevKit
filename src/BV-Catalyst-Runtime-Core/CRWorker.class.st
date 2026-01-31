@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'displayName',
 		'workQueue',
-		'stopRequested',
-		'stopMode',
+		'scheduler',
+		'idleEnvelope',
 		'status',
 		'announcer'
 	],
@@ -16,23 +16,6 @@ Class {
 { #category : 'accessing' }
 CRWorker >> announcer [
 	^ announcer
-]
-
-{ #category : 'queue' }
-CRWorker >> basicEnqueue: aUnit [
-	"Internal enqueue. No acceptance checks.
-	Used for lifecycle wakeups so shutdown can always break a blocking wait."
-
-	workQueue enqueue: aUnit.
-	^ aUnit
-]
-
-{ #category : 'testing' }
-CRWorker >> canAcceptWork [
-	"External acceptance rule: only accept while running and not shutting down."
-
-	status == CRStatus running ifFalse: [ ^ false ].
-	^ stopMode == CRStopMode none
 ]
 
 { #category : 'accessing' }
@@ -50,83 +33,143 @@ CRWorker >> displayName: aString [
 ]
 
 { #category : 'queue' }
-CRWorker >> enqueue: aUnit [
-	"I enqueue external work.
-	If I am not accepting work, I signal a typed exception carrying worker + unit."
+CRWorker >> enqueue: aWorkUnit [
+	"Public API: accept only while running."
 
-	self canAcceptWork
+	self isAcceptingWork
 		ifFalse: [ (CRWorkerNotAcceptingWorkException
 				worker: self
-				unit: aUnit
-				reason: self notAcceptingWorkReason) signal ].
+				workUnit: aWorkUnit
+				reason: 'not running') signal ].
 
-	^ self basicEnqueue: aUnit
+	^ workQueue enqueue: (self newEnvelopeFor: aWorkUnit)
 ]
 
-{ #category : 'running' }
-CRWorker >> executeUnit: aUnit [
-	[ aUnit run ]
+{ #category : 'queue' }
+CRWorker >> enqueueScheduled: aWorkUnit scheduleKey: aKey boundaryMillis: boundaryMillis [
+	"Internal seam for the scheduler: envelope context is created at enqueue time."
+
+	| envelope |
+	envelope := self newEnvelopeFor: aWorkUnit.
+	envelope context
+		add: (CRScheduleContext key: aKey boundaryMillis: boundaryMillis).
+	^ workQueue enqueue: envelope
+]
+
+{ #category : 'private - running' }
+CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [
+	| unit ctx scheduleContext |
+	unit := aWorkUnitEnvelope workUnit.
+	ctx := aWorkUnitEnvelope context.
+
+	[ unit executeWorkUnit ]
+		ensure: [  
+			"Scheduler in-flight completion hook."
+			scheduleContext := ctx
+					at: CRScheduleContext
+					ifAbsent: [ nil ].
+			scheduleContext ifNotNil: [ scheduler noteCompletedKey: scheduleContext key ] ];
 		on: Error
-		do: [ :ex |
-			announcer announce: (CRWorkUnitFailedAnnouncement
-				worker: self
-				unit: aUnit
-				exception: ex) ].
+			do: [ :ex | 
+				announcer
+					announce: (CRWorkUnitFailedAnnouncement
+							worker: self
+							workUnit: unit
+							exception: ex) ]
 ]
 
 { #category : 'initialization' }
 CRWorker >> initialize [
+	super initialize.
 	displayName := 'Runtime Worker'.
 	workQueue := CRWorkQueue new.
-	stopMode := CRStopMode none.
 	status := CRStatus stopped.
 	announcer := CRAnnouncer new.
+	scheduler := CRWorkScheduler new.
+
+	idleEnvelope := CRWorkUnitEnvelope onWorkUnit: CRIdleWorkUnit new
 ]
 
-{ #category : 'lifecycle' }
-CRWorker >> notAcceptingWorkReason [
-	status == CRStatus running ifFalse: [ ^ 'not running' ].
-	stopMode == CRStopMode none ifFalse: [ ^ 'shutting down' ].
-	^ 'not accepting work'
+{ #category : 'testing' }
+CRWorker >> isAcceptingWork [
+	^ status == CRStatus running
 ]
 
-{ #category : 'lifecycle' }
-CRWorker >> requestGracefulStop [
-	stopMode := CRStopMode graceful.
-	status := CRStatus shuttingDown.
-	announcer announce: (CRWorkerShuttingDownAnnouncement worker: self).
+{ #category : 'private - running' }
+CRWorker >> minimumIdleMillis [
+	"Config hook. Keep small; can be lifted to a configuration object later."
+
+	^ 10
 ]
 
-{ #category : 'lifecycle' }
-CRWorker >> requestImmediateStop [
-	stopMode := CRStopMode immediate.
-	status := CRStatus shuttingDown.
-	announcer announce: (CRWorkerShuttingDownAnnouncement worker: self).
+{ #category : 'private - queue' }
+CRWorker >> newEnvelopeFor: aWorkUnit [
+	^ CRWorkUnitEnvelope onWorkUnit: aWorkUnit
 ]
 
-{ #category : 'running' }
+{ #category : 'private - running' }
 CRWorker >> runLoop [
-	| work |
+	| envelope timeout |
 	status := CRStatus running.
 	announcer announce: (CRWorkerStartedAnnouncement worker: self).
 
 	[ [ true ]
-		whileTrue: [ stopMode == CRStopMode immediate ifTrue: [ ^ self ].
+		whileTrue: [  
+			timeout := self timeoutMillisUntilNextWake.
+			envelope := workQueue next: timeout ifNone: idleEnvelope.
 
-			work := workQueue nextOrNil.
-
-			work
-				ifNil: [ stopMode == CRStopMode graceful ifTrue: [ ^ self ].
-					self yieldExecution	"continue" ]
-				ifNotNil: [ self executeUnit: work ] ] ]
+			envelope == idleEnvelope
+				ifTrue: [ self shouldExitAfterIdle ifTrue: [ ^ self ].
+					self yieldExecution ]
+				ifFalse: [ self executeWorkUnitInEnvelope: envelope ] ] ]
 		ensure: [ status := CRStatus stopped.
-			stopMode := CRStopMode none.
 			announcer announce: (CRWorkerStoppedAnnouncement worker: self) ]
+]
+
+{ #category : 'private - running' }
+CRWorker >> shouldExitAfterIdle [
+	"Exit rule: shutting down, scheduler suspended, and queue still empty after an idle wake."
+
+	status == CRStatus shuttingDown ifFalse: [ ^ false ].
+	scheduler millisecondsUntilNextDue = 0 ifFalse: [ ^ false ].
+	^ workQueue nextOrNil isNil
+]
+
+{ #category : 'running' }
+CRWorker >> start [
+	"Block and run the worker loop until shutdown completes."
+
+	^ self runLoop
 ]
 
 { #category : 'accessing' }
 CRWorker >> status [
 	^ status
+]
+
+{ #category : 'running' }
+CRWorker >> stop [
+	"Graceful shutdown only: stop scheduling new internal work, drain, then exit."
+
+	status == CRStatus shuttingDown ifTrue: [ ^ self ].
+
+	status := CRStatus shuttingDown.
+	announcer announce: (CRWorkerShuttingDownAnnouncement worker: self).
+
+	scheduler suspend
+]
+
+{ #category : 'private - running' }
+CRWorker >> timeoutMillisUntilNextWake [
+	"Wake either when the next scheduled work is due,
+	or at least every minimumIdleMillis (for periodic loop progress)."
+
+	| nextDue |
+	(scheduler isSuspended and: [ status == CRStatus shuttingDown ])
+		ifTrue: [ ^ 0 ].
+
+	nextDue := scheduler millisecondsUntilNextDue.
+	^ (nextDue min: self minimumIdleMillis) max: 0
 ]
 
 { #category : 'running' }

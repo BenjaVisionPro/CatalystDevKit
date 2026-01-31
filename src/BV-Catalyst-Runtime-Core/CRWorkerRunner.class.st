@@ -25,9 +25,7 @@ CRWorkerRunner >> initialize [
 
 { #category : 'testing' }
 CRWorkerRunner >> isRunning [
-	"Truth is process-backed, but we also maintain #status."
-
-	^ process notNil and: [ process isActive ]
+	^ process notNil and: [ process isTerminated not ]
 ]
 
 { #category : 'running' }
@@ -36,7 +34,7 @@ CRWorkerRunner >> start [
 
 	status := CRStatus startingUp.
 
-	process := [ [ worker runLoop ] ensure: [ status := CRStatus stopped ] ]
+	process := [ [ worker start ] ensure: [ status := CRStatus stopped ] ]
 			forkAt: Processor userBackgroundPriority.
 
 	status := CRStatus running
@@ -49,21 +47,17 @@ CRWorkerRunner >> status [
 
 { #category : 'running' }
 CRWorkerRunner >> stop [
-	"Compatibility: default is graceful."
+	"Graceful stop only: ask the worker to stop, then wait; if it won't die, terminate the process."
 
-	^ self stopGraceful
-]
-
-{ #category : 'running' }
-CRWorkerRunner >> stopGraceful [
 	process
 		ifNil: [ status := CRStatus stopped.
 			^ self ].
 
 	status := CRStatus shuttingDown.
-	worker requestGracefulStop.
+	worker stop.
 
-	self waitForTerminationUpToMilliseconds: 2000 pollingEveryMilliseconds: 10.
+	self waitForTerminationUpToMilliseconds: 2000.
+
 	process isTerminated ifFalse: [ process terminate ].
 
 	process := nil.
@@ -71,13 +65,15 @@ CRWorkerRunner >> stopGraceful [
 ]
 
 { #category : 'running' }
-CRWorkerRunner >> stopImmediate [ 
-	process ifNil: [ status := CRStatus stopped. ^ self ].
+CRWorkerRunner >> stopImmediate [
+	"Immediate is purely environment-level: terminate the process."
+
+	process
+		ifNil: [ status := CRStatus stopped.
+			^ self ].
 
 	status := CRStatus shuttingDown.
-	worker requestImmediateStop.
 
-	"Immediate means: don't wait."
 	process isTerminated ifFalse: [ process terminate ].
 
 	process := nil.
@@ -85,12 +81,15 @@ CRWorkerRunner >> stopImmediate [
 ]
 
 { #category : 'running' }
-CRWorkerRunner >> waitForTerminationUpToMilliseconds: maxMillis pollingEveryMilliseconds: pollMillis [
-	| waited |
-	waited := 0.
-	[ process notNil and: [ process isTerminated not and: [ waited < maxMillis ] ] ]
-		whileTrue: [ (Delay forMilliseconds: pollMillis) wait.
-			waited := waited + pollMillis ]
+CRWorkerRunner >> waitForTerminationUpToMilliseconds: timeoutMillis [
+	| startTime |
+	process ifNil: [ ^ self ].
+
+	startTime := Time millisecondClockValue.
+	[ process notNil
+		and: [ process isTerminated not
+				and: [ Time millisecondClockValue - startTime < timeoutMillis ] ] ]
+		whileTrue: [ Processor yield ]
 ]
 
 { #category : 'accessing' }

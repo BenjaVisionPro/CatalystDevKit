@@ -153,7 +153,7 @@ CRRuntimeExamples >> test_exceptionCarriesWorkerAndUnit [
 		raise: CRWorkerNotAcceptingWorkException
 		withExceptionDo: [ :ex | 
 			self assert: ex worker == worker.
-			self assert: ex unit == unit.
+			self assert: ex workUnit == unit.
 			self assert: ex reason notNil ]
 ]
 

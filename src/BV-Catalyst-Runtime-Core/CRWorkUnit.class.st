@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'running' }
-CRWorkUnit >> run [
+CRWorkUnit >> executeWorkUnit [
 	"I perform my unit of work."
 
 	self subclassResponsibility

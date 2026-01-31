@@ -3,18 +3,18 @@ Class {
 	#superclass : 'Exception',
 	#instVars : [
 		'worker',
-		'unit',
-		'reason'
+		'reason',
+		'workUnit'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
 { #category : 'instance creation' }
-CRWorkerNotAcceptingWorkException class >> worker: aWorker unit: aUnit reason: aString [
+CRWorkerNotAcceptingWorkException class >> worker: aWorker workUnit: aUnit reason: aString [
 	^ self new
 		worker: aWorker
-		unit: aUnit
+		workUnit: aUnit
 		reason: aString
 ]
 
@@ -36,8 +36,8 @@ CRWorkerNotAcceptingWorkException >> reason [
 ]
 
 { #category : 'accessing' }
-CRWorkerNotAcceptingWorkException >> unit [
-	^ unit
+CRWorkerNotAcceptingWorkException >> workUnit [
+	^ workUnit
 ]
 
 { #category : 'accessing' }
@@ -46,8 +46,8 @@ CRWorkerNotAcceptingWorkException >> worker [
 ]
 
 { #category : 'accessing' }
-CRWorkerNotAcceptingWorkException >> worker: aWorker unit: aUnit reason: aString [
+CRWorkerNotAcceptingWorkException >> worker: aWorker workUnit: aUnit reason: aString [
 	worker := aWorker.
-	unit := aUnit.
+	workUnit := aUnit.
 	reason := aString
 ]

@@ -9,11 +9,9 @@ Class {
 }
 
 { #category : 'queue' }
-CRWorkQueue >> enqueue: aWorkItem [
-	"I enqueue a work item."
-
-	sharedQueue nextPut: aWorkItem.
-	^ aWorkItem
+CRWorkQueue >> enqueue: aWorkUnitEnvelope [
+	sharedQueue nextPut: aWorkUnitEnvelope.
+	^ aWorkUnitEnvelope
 ]
 
 { #category : 'initialization' }
@@ -25,10 +23,23 @@ CRWorkQueue >> initialize [
 ]
 
 { #category : 'queue' }
-CRWorkQueue >> next [
-	"Ianswer the next work item, waiting until one exists."
+CRWorkQueue >> next: timeoutMillis ifNone: aFallbackEnvelope [
+	"Non-blocking wait: repeatedly poll nextOrNil and yield.
+	Returns fallback if no work arrives before timeoutMillis."
 
-	^ sharedQueue next
+	| startMillis envelope nowMillis |
+	timeoutMillis <= 0 ifTrue: [ ^ self nextOrNil ifNil: [ aFallbackEnvelope ] ].
+
+	startMillis := Time millisecondClockValue.
+
+	[ envelope := self nextOrNil.
+	envelope ifNotNil: [ ^ envelope ].
+
+	nowMillis := Time millisecondClockValue.
+	nowMillis - startMillis >= timeoutMillis ifTrue: [ ^ aFallbackEnvelope ].
+
+	Processor yield.
+	false ] whileFalse
 ]
 
 { #category : 'queue' }

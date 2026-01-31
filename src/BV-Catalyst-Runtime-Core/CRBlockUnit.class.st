@@ -23,6 +23,13 @@ CRBlockUnit >> block: anObject [
 ]
 
 { #category : 'accessing' }
+CRBlockUnit >> executeWorkUnit [
+	"I run my block."
+
+	block value
+]
+
+{ #category : 'accessing' }
 CRBlockUnit >> run [
 	"I run my block."
 
