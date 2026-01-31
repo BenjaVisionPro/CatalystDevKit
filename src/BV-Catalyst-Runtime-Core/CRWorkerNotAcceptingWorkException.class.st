@@ -36,13 +36,28 @@ CRWorkerNotAcceptingWorkException >> reason [
 ]
 
 { #category : 'accessing' }
+CRWorkerNotAcceptingWorkException >> reason: anObject [
+	reason := anObject
+]
+
+{ #category : 'accessing' }
 CRWorkerNotAcceptingWorkException >> workUnit [
 	^ workUnit
 ]
 
 { #category : 'accessing' }
+CRWorkerNotAcceptingWorkException >> workUnit: anObject [
+	workUnit := anObject
+]
+
+{ #category : 'accessing' }
 CRWorkerNotAcceptingWorkException >> worker [
 	^ worker
+]
+
+{ #category : 'accessing' }
+CRWorkerNotAcceptingWorkException >> worker: anObject [
+	worker := anObject
 ]
 
 { #category : 'accessing' }

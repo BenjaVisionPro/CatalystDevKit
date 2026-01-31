@@ -10,7 +10,7 @@ Class {
 
 { #category : 'instance creation' }
 CRWorkerAnnouncement class >> worker: aWorker [
-	^ self
+	^ self new
 		worker: aWorker;
 		yourself
 ]
