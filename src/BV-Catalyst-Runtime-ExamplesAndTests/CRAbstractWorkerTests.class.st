@@ -59,12 +59,25 @@ CRAbstractWorkerTests >> tearDown [
 ]
 
 { #category : 'helpers' }
-CRAbstractWorkerTests >> withRunningWorkerDo: aBlock [
-	"Convenience: always stops even if the block errors."
-	| worker host |
-	worker := CRWorker new.
-	host := self startWorker: worker andWaitUpToMSecs: 200.
+CRAbstractWorkerTests >> waitUntil: aZeroArgBooleanBlock upToMSecs: timeoutMSecs description: aString [
+	| startTime |
+	startTime := Time millisecondClockValue.
 
-	^ [ aBlock value: worker ]
-		ensure: [ host ensureStoppedUpToMSecs: 2000 ]
+	[ aZeroArgBooleanBlock value
+		or: [ Time millisecondClockValue - startTime >= timeoutMSecs ] ]
+		whileFalse: [ (Delay forMilliseconds: 1) wait ].
+
+	aZeroArgBooleanBlock value ifFalse: [ self error: 'Timed out: ' , aString ]
+]
+
+{ #category : 'helpers' }
+CRAbstractWorkerTests >> withRunningWorkerDo: aTwoArgBlock [
+	"Convenience wrapper: always stops even if the block fails."
+
+	| worker host |
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	^ [ aTwoArgBlock value: worker value: host ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]
