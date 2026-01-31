@@ -65,6 +65,25 @@ CRRuntimeExamples >> example_workerRunsAWorkUnit [
 		yourself
 ]
 
+{ #category : 'runner' }
+CRRuntimeExamples >> startRunner: aRunner andWaitForWorkerRunningUpToMSecs: maxMSecs [
+	| started worker |
+	worker := aRunner worker.	"Assumes runner has #worker; if not, pass worker explicitly."
+	started := Semaphore new.
+
+	worker announcer
+		when: CRWorkerStartedAnnouncement
+		do: [ :ann | started signal ]
+		for: self.
+
+	aRunner start.
+
+	(started waitTimeoutMSecs: maxMSecs)
+		ifFalse: [ self error: 'Timed out waiting for worker to start.' ].
+
+	^ aRunner
+]
+
 { #category : 'tests' }
 CRRuntimeExamples >> test_announcerOperationsChannel_canBeDisabled [
 	| runtime events |
@@ -227,4 +246,26 @@ CRRuntimeExamples >> test_workerRunsAWorkUnit_runOnce [
 	self assert: counter equals: 1.
 
 	runner stop
+]
+
+{ #category : 'runner' }
+CRRuntimeExamples >> waitOnWorker: aWorker [
+	^ self waitOnWorker: aWorker upToMSecs: 200
+]
+
+{ #category : 'runner' }
+CRRuntimeExamples >> waitOnWorker: aWorker upToMSecs: maxMSecs [
+	| started token |
+	aWorker status == CRStatus running ifTrue: [ ^ aWorker ].
+
+	started := Semaphore new.
+	token := aWorker announcer
+			when: CRWorkerStartedAnnouncement
+			do: [ :ann | started signal ].
+
+	[ (started waitTimeoutMSecs: maxMSecs)
+		ifFalse: [ self error: 'Timed out waiting for worker to start.' ] ]
+		ensure: [ token unsubscribe ].
+
+	^ aWorker
 ]

@@ -94,27 +94,21 @@ CRWorker >> notAcceptingWorkReason [
 CRWorker >> requestGracefulStop [
 	stopMode := CRStopMode graceful.
 	status := CRStatus shuttingDown.
-	self basicEnqueue: CRWakeupWorkUnit new
+	announcer announce: (CRWorkerShuttingDownAnnouncement worker: self).
 ]
 
 { #category : 'lifecycle' }
 CRWorker >> requestImmediateStop [
 	stopMode := CRStopMode immediate.
 	status := CRStatus shuttingDown.
-	self basicEnqueue: CRWakeupWorkUnit new
-]
-
-{ #category : 'lifecycle' }
-CRWorker >> requestStop [
-	"Compatibility: default is graceful."
-
-	^ self requestGracefulStop
+	announcer announce: (CRWorkerShuttingDownAnnouncement worker: self).
 ]
 
 { #category : 'running' }
 CRWorker >> runLoop [
 	| work |
 	status := CRStatus running.
+	announcer announce: (CRWorkerStartedAnnouncement worker: self).
 
 	[ [ true ]
 		whileTrue: [ stopMode == CRStopMode immediate ifTrue: [ ^ self ].
@@ -126,7 +120,8 @@ CRWorker >> runLoop [
 					self yieldExecution	"continue" ]
 				ifNotNil: [ self executeUnit: work ] ] ]
 		ensure: [ status := CRStatus stopped.
-			stopMode := CRStopMode none ]
+			stopMode := CRStopMode none.
+			announcer announce: (CRWorkerStoppedAnnouncement worker: self) ]
 ]
 
 { #category : 'accessing' }
