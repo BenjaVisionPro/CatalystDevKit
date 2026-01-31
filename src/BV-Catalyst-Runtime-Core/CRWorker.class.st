@@ -12,6 +12,23 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Core'
 }
 
+{ #category : 'queue' }
+CRWorker >> basicEnqueue: aUnit [
+	"Internal enqueue. No acceptance checks.
+	Used for lifecycle wakeups so shutdown can always break a blocking wait."
+
+	workQueue enqueue: aUnit.
+	^ aUnit
+]
+
+{ #category : 'testing' }
+CRWorker >> canAcceptWork [
+	"External acceptance rule: only accept while running and not shutting down."
+
+	status == CRStatus running ifFalse: [ ^ false ].
+	^ stopMode == CRStopMode none
+]
+
 { #category : 'accessing' }
 CRWorker >> displayName [
 	"I answer my display name."
@@ -27,10 +44,17 @@ CRWorker >> displayName: aString [
 ]
 
 { #category : 'queue' }
-CRWorker >> enqueue: aWorkItem [
-	"I enqueue a work item for execution."
+CRWorker >> enqueue: aUnit [
+	"I enqueue external work.
+	If I am not accepting work, I signal a typed exception carrying worker + unit."
 
-	^ workQueue enqueue: aWorkItem
+	self canAcceptWork
+		ifFalse: [ (CRWorkerNotAcceptingWorkException
+				worker: self
+				unit: aUnit
+				reason: self notAcceptingWorkReason) signal ].
+
+	^ self basicEnqueue: aUnit
 ]
 
 { #category : 'initialization' }
@@ -42,18 +66,24 @@ CRWorker >> initialize [
 ]
 
 { #category : 'lifecycle' }
+CRWorker >> notAcceptingWorkReason [
+	status == CRStatus running ifFalse: [ ^ 'not running' ].
+	stopMode == CRStopMode none ifFalse: [ ^ 'shutting down' ].
+	^ 'not accepting work'
+]
+
+{ #category : 'lifecycle' }
 CRWorker >> requestGracefulStop [
-	stopMode == CRStopMode immediate ifTrue: [ ^ self ].
 	stopMode := CRStopMode graceful.
 	status := CRStatus shuttingDown.
-	workQueue enqueue: CRWakeupWorkUnit new
+	self basicEnqueue: CRWakeupWorkUnit new
 ]
 
 { #category : 'lifecycle' }
 CRWorker >> requestImmediateStop [
 	stopMode := CRStopMode immediate.
 	status := CRStatus shuttingDown.
-	workQueue enqueue: CRWakeupWorkUnit new
+	self basicEnqueue: CRWakeupWorkUnit new
 ]
 
 { #category : 'lifecycle' }
