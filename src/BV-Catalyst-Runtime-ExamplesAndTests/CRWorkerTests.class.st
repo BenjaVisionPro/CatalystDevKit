@@ -25,7 +25,7 @@ CRWorkerTests >> example_scaffoldStartsAndStopsWorker [
 CRWorkerTests >> example_workerExecutesAWorkUnit [
 	<gtExample>
 	^ self
-		withRunningWorkerDo: [ :worker | 
+		withRunningWorkerDo: [ :worker :host | 
 			| counter |
 			counter := 0.
 
