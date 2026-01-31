@@ -27,6 +27,11 @@ CRAbstractWorkerTests >> initializeHosts [
 	hosts := OrderedCollection new
 ]
 
+{ #category : 'factory' }
+CRAbstractWorkerTests >> newWorker [
+	^ CRWorker new
+]
+
 { #category : 'running' }
 CRAbstractWorkerTests >> setUp [
 	super setUp.
@@ -34,13 +39,22 @@ CRAbstractWorkerTests >> setUp [
 ]
 
 { #category : 'helpers' }
+CRAbstractWorkerTests >> startTimeoutMSecs [
+	^ 200
+]
+
+{ #category : 'helpers' }
 CRAbstractWorkerTests >> startWorker: aWorker andWaitUpToMSecs: timeoutMSecs [
 	| host |
 	host := self hostWorker: aWorker.
-	host
-		start;
-		waitUntilRunningUpToMSecs: timeoutMSecs.
+	host start.
+	host waitUntilRunningUpToMSecs: timeoutMSecs.
 	^ host
+]
+
+{ #category : 'helpers' }
+CRAbstractWorkerTests >> stopTimeoutMSecs [
+	^ 2000
 ]
 
 { #category : 'running' }
@@ -50,11 +64,10 @@ CRAbstractWorkerTests >> tearDown [
 	hosts
 		ifNotNil: [ hosts
 				do: [ :each | 
-					[ each ensureStoppedUpToMSecs: 2000 ]
+					[ each ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 						on: Error
-						do: [ :ex "swallow during teardown" |  ] ] ].
+						do: [  "Swallow during teardown to avoid masking failures":ex |  ] ] ].
 
-	hosts := nil.
 	super tearDown
 ]
 
