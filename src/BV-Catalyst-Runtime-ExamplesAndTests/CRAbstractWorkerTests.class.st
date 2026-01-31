@@ -11,15 +11,26 @@ Class {
 { #category : 'helpers' }
 CRAbstractWorkerTests >> hostWorker: aWorker [
 	| host |
-	host := CRWorkerTestHost on: aWorker.
+	host := CRWorkerTestHost onWorker: aWorker.
 	hosts add: host.
 	^ host
+]
+
+{ #category : 'as yet unclassified' }
+CRAbstractWorkerTests >> initialize [
+	super initialize.
+	self initializeHosts
+]
+
+{ #category : 'running' }
+CRAbstractWorkerTests >> initializeHosts [
+	hosts := OrderedCollection new
 ]
 
 { #category : 'running' }
 CRAbstractWorkerTests >> setUp [
 	super setUp.
-	hosts := OrderedCollection new
+	self initializeHosts.
 ]
 
 { #category : 'helpers' }
@@ -41,8 +52,9 @@ CRAbstractWorkerTests >> tearDown [
 				do: [ :each | 
 					[ each ensureStoppedUpToMSecs: 2000 ]
 						on: Error
-						do: [  "swallow during teardown":ex |  ] ] ].
+						do: [ :ex "swallow during teardown" |  ] ] ].
 
+	hosts := nil.
 	super tearDown
 ]
 
