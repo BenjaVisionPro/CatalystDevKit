@@ -13,7 +13,7 @@ CRWorkerTests >> example_scaffoldStartsAndStopsWorker [
 	host := self startWorker: worker andWaitUpToMSecs: 200.
 
 	"Now prove teardown works even if we stop explicitly here."
-	host ensureStoppedUpToMSecs: 2000.
+	host ensureStoppedUpToMSecs: 1000.
 
 	^ Dictionary new
 		at: #worker put: worker;

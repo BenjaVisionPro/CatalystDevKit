@@ -29,7 +29,7 @@ CRWorkerTestHost >> ensureStoppedUpToMSecs: timeoutMSecs [
 	[ worker status == CRStatus stopped
 		or: [ process isTerminated
 				or: [ Time millisecondClockValue - startTime >= timeoutMSecs ] ] ]
-		whileFalse: [ Processor yield ].
+		whileFalse: [ (Delay forMilliseconds: 1) wait ].
 
 	process isTerminated not ifTrue: [ process terminate ].
 	process := nil
