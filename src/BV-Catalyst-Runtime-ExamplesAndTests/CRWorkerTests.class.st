@@ -286,6 +286,52 @@ CRWorkerTests >> test_failureAnnouncementEmittedOncePerFailingUnit [
 ]
 
 { #category : 'tests' }
+CRWorkerTests >> test_scheduledWorkSkipsWhileInFlight_thenResumes [
+	| worker host enteredGate releaseGate counter schedule |
+	counter := 0.
+	enteredGate := Semaphore new.
+	releaseGate := Semaphore new.
+
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	[ schedule := (CRRepeatingSchedule
+			workUnitFactory: [ CRBlockUnit
+					on: [ counter := counter + 1.
+						enteredGate signal.
+						releaseGate wait ] ]
+			key: #heartbeat
+			intervalMillis: 20)
+			scheduledMillis: Time millisecondClockValue;
+			yourself.
+
+	worker scheduler addSchedule: schedule.	
+	
+	"Wait until the first scheduled unit starts running (and blocks)."
+	self
+		waitUntil: [ enteredGate waitTimeoutMilliseconds: 200 ]
+		upToMSecs: 250
+		description: 'waiting for first scheduled unit to start'.	
+		
+	"Give it time to attempt repeats; skip policy should prevent counter incrementing again."
+	(Delay forMilliseconds: 80) wait.
+	self assert: counter equals: 1.	
+	
+	"Allow the in-flight unit to finish."
+	releaseGate signal.	
+	
+	"Now we should eventually see a second run."
+	self
+		waitUntil: [ counter >= 2 ]
+		upToMSecs: 500
+		description: 'waiting for scheduled unit to run again after completion.'.
+
+	self assert: counter >= 2 ]
+		ensure: [ worker stop.
+			host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
+]
+
+{ #category : 'tests' }
 CRWorkerTests >> test_stopConvergesToStopped [
 	| worker host |
 	worker := self newWorker.
