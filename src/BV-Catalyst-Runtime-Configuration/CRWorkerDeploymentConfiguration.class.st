@@ -10,14 +10,6 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Configuration'
 }
 
-{ #category : 'initialization' }
-CRWorkerDeploymentConfiguration >> initialize [
-	super initialize.
-	workerIdentifier := ''.
-	initialCount := 0.
-	scalingConfiguration := nil
-]
-
 { #category : 'accessing' }
 CRWorkerDeploymentConfiguration >> initialCount [
 	^ initialCount
@@ -26,6 +18,14 @@ CRWorkerDeploymentConfiguration >> initialCount [
 { #category : 'accessing' }
 CRWorkerDeploymentConfiguration >> initialCount: anInteger [
 	initialCount := anInteger asInteger
+]
+
+{ #category : 'initialization' }
+CRWorkerDeploymentConfiguration >> initialize [
+	super initialize.
+	workerIdentifier := ''.
+	initialCount := 0.
+	scalingConfiguration := nil
 ]
 
 { #category : 'accessing' }

@@ -13,19 +13,28 @@ Class {
 }
 
 { #category : 'accessing' }
-CRHostConfiguration >> address [ ^ address ]
-{ #category : 'accessing' }
-CRHostConfiguration >> address: aString [ address := aString asString ]
+CRHostConfiguration >> address [ ^ address
+]
 
 { #category : 'accessing' }
-CRHostConfiguration >> displayName [ ^ displayName ]
-{ #category : 'accessing' }
-CRHostConfiguration >> displayName: aString [ displayName := aString asString ]
+CRHostConfiguration >> address: aString [ address := aString asString
+]
 
 { #category : 'accessing' }
-CRHostConfiguration >> identifier [ ^ identifier ]
+CRHostConfiguration >> displayName [ ^ displayName
+]
+
 { #category : 'accessing' }
-CRHostConfiguration >> identifier: aString [ identifier := aString asString ]
+CRHostConfiguration >> displayName: aString [ displayName := aString asString
+]
+
+{ #category : 'accessing' }
+CRHostConfiguration >> identifier [ ^ identifier
+]
+
+{ #category : 'accessing' }
+CRHostConfiguration >> identifier: aString [ identifier := aString asString
+]
 
 { #category : 'initialization' }
 CRHostConfiguration >> initialize [
@@ -38,9 +47,12 @@ CRHostConfiguration >> initialize [
 ]
 
 { #category : 'accessing' }
-CRHostConfiguration >> maxProcesses [ ^ maxProcesses ]
+CRHostConfiguration >> maxProcesses [ ^ maxProcesses
+]
+
 { #category : 'accessing' }
-CRHostConfiguration >> maxProcesses: anInteger [ maxProcesses := anInteger asInteger ]
+CRHostConfiguration >> maxProcesses: anInteger [ maxProcesses := anInteger asInteger
+]
 
 { #category : 'validation' }
 CRHostConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [
@@ -53,6 +65,9 @@ CRHostConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: kno
 ]
 
 { #category : 'accessing' }
-CRHostConfiguration >> workers [ ^ workers ]
+CRHostConfiguration >> workers [ ^ workers
+]
+
 { #category : 'accessing' }
-CRHostConfiguration >> workers: aCollection [ workers := aCollection asOrderedCollection ]
+CRHostConfiguration >> workers: aCollection [ workers := aCollection asOrderedCollection
+]

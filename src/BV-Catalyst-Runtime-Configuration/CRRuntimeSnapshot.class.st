@@ -9,6 +9,14 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Configuration'
 }
 
+{ #category : 'accessing' }
+CRRuntimeSnapshot >> hostSnapshots [ ^ hostSnapshots
+]
+
+{ #category : 'accessing' }
+CRRuntimeSnapshot >> hostSnapshots: aCollection [ hostSnapshots := aCollection asOrderedCollection
+]
+
 { #category : 'initialization' }
 CRRuntimeSnapshot >> initialize [
 	super initialize.
@@ -17,11 +25,9 @@ CRRuntimeSnapshot >> initialize [
 ]
 
 { #category : 'accessing' }
-CRRuntimeSnapshot >> hostSnapshots [ ^ hostSnapshots ]
-{ #category : 'accessing' }
-CRRuntimeSnapshot >> hostSnapshots: aCollection [ hostSnapshots := aCollection asOrderedCollection ]
+CRRuntimeSnapshot >> workerSnapshots [ ^ workerSnapshots
+]
 
 { #category : 'accessing' }
-CRRuntimeSnapshot >> workerSnapshots [ ^ workerSnapshots ]
-{ #category : 'accessing' }
-CRRuntimeSnapshot >> workerSnapshots: aCollection [ workerSnapshots := aCollection asOrderedCollection ]
+CRRuntimeSnapshot >> workerSnapshots: aCollection [ workerSnapshots := aCollection asOrderedCollection
+]

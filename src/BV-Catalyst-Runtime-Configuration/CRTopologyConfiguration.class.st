@@ -11,9 +11,25 @@ Class {
 }
 
 { #category : 'accessing' }
-CRTopologyConfiguration >> displayName [ ^ displayName ]
+CRTopologyConfiguration >> displayName [ ^ displayName
+]
+
 { #category : 'accessing' }
-CRTopologyConfiguration >> displayName: aString [ displayName := aString asString ]
+CRTopologyConfiguration >> displayName: aString [ displayName := aString asString
+]
+
+{ #category : 'accessing' }
+CRTopologyConfiguration >> hostConfigurationNamed: aHostIdentifier [
+	^ hosts detect: [ :each | each identifier = aHostIdentifier asString ] ifNone: [ nil ]
+]
+
+{ #category : 'accessing' }
+CRTopologyConfiguration >> hosts [ ^ hosts
+]
+
+{ #category : 'accessing' }
+CRTopologyConfiguration >> hosts: aCollection [ hosts := aCollection asOrderedCollection
+]
 
 { #category : 'initialization' }
 CRTopologyConfiguration >> initialize [
@@ -24,19 +40,12 @@ CRTopologyConfiguration >> initialize [
 ]
 
 { #category : 'accessing' }
-CRTopologyConfiguration >> hosts [ ^ hosts ]
-{ #category : 'accessing' }
-CRTopologyConfiguration >> hosts: aCollection [ hosts := aCollection asOrderedCollection ]
-
-{ #category : 'accessing' }
-CRTopologyConfiguration >> hostConfigurationNamed: aHostIdentifier [
-	^ hosts detect: [ :each | each identifier = aHostIdentifier asString ] ifNone: [ nil ]
+CRTopologyConfiguration >> placementStrategyConfiguration [ ^ placementStrategyConfiguration
 ]
 
 { #category : 'accessing' }
-CRTopologyConfiguration >> placementStrategyConfiguration [ ^ placementStrategyConfiguration ]
-{ #category : 'accessing' }
-CRTopologyConfiguration >> placementStrategyConfiguration: aCRPlacementStrategyConfiguration [ placementStrategyConfiguration := aCRPlacementStrategyConfiguration ]
+CRTopologyConfiguration >> placementStrategyConfiguration: aCRPlacementStrategyConfiguration [ placementStrategyConfiguration := aCRPlacementStrategyConfiguration
+]
 
 { #category : 'validation' }
 CRTopologyConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [

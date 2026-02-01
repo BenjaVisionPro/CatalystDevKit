@@ -9,6 +9,13 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Configuration'
 }
 
+{ #category : 'initialization' }
+CRWorkScheduleDeliveryConfiguration >> initialize [
+	super initialize.
+	overlapBehaviour := nil.
+	missedBehaviour := nil
+]
+
 { #category : 'accessing' }
 CRWorkScheduleDeliveryConfiguration >> missedBehaviour [
 	^ missedBehaviour
@@ -17,13 +24,6 @@ CRWorkScheduleDeliveryConfiguration >> missedBehaviour [
 { #category : 'accessing' }
 CRWorkScheduleDeliveryConfiguration >> missedBehaviour: anObject [
 	missedBehaviour := anObject
-]
-
-{ #category : 'initialization' }
-CRWorkScheduleDeliveryConfiguration >> initialize [
-	super initialize.
-	overlapBehaviour := nil.
-	missedBehaviour := nil
 ]
 
 { #category : 'accessing' }

@@ -1,5 +1,5 @@
 Class {
-	#name : 'CRScalingConfiguration',
+	#name : 'CRScaleConfiguration',
 	#superclass : 'Object',
 	#instVars : [
 		'minCount',
@@ -16,8 +16,24 @@ Class {
 	#package : 'BV-Catalyst-Runtime-Configuration'
 }
 
+{ #category : 'accessing' }
+CRScaleConfiguration >> cooldownMillis [ ^ cooldownMillis
+]
+
+{ #category : 'accessing' }
+CRScaleConfiguration >> cooldownMillis: anInteger [ cooldownMillis := anInteger asInteger
+]
+
+{ #category : 'accessing' }
+CRScaleConfiguration >> evaluationIntervalMillis [ ^ evaluationIntervalMillis
+]
+
+{ #category : 'accessing' }
+CRScaleConfiguration >> evaluationIntervalMillis: anInteger [ evaluationIntervalMillis := anInteger asInteger
+]
+
 { #category : 'initialization' }
-CRScalingConfiguration >> initialize [
+CRScaleConfiguration >> initialize [
 	super initialize.
 	minCount := 0.
 	maxCount := 0.
@@ -31,44 +47,63 @@ CRScalingConfiguration >> initialize [
 ]
 
 { #category : 'accessing' }
-CRScalingConfiguration >> cooldownMillis [ ^ cooldownMillis ]
+CRScaleConfiguration >> maxCount [ ^ maxCount
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> cooldownMillis: anInteger [ cooldownMillis := anInteger asInteger ]
+CRScaleConfiguration >> maxCount: anInteger [ maxCount := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> evaluationIntervalMillis [ ^ evaluationIntervalMillis ]
+CRScaleConfiguration >> maxIdleCount [ ^ maxIdleCount
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> evaluationIntervalMillis: anInteger [ evaluationIntervalMillis := anInteger asInteger ]
+CRScaleConfiguration >> maxIdleCount: anInteger [ maxIdleCount := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> maxCount [ ^ maxCount ]
+CRScaleConfiguration >> minCount [ ^ minCount
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> maxCount: anInteger [ maxCount := anInteger asInteger ]
+CRScaleConfiguration >> minCount: anInteger [ minCount := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> maxIdleCount [ ^ maxIdleCount ]
+CRScaleConfiguration >> minIdleCount [ ^ minIdleCount
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> maxIdleCount: anInteger [ maxIdleCount := anInteger asInteger ]
+CRScaleConfiguration >> minIdleCount: anInteger [ minIdleCount := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> minCount [ ^ minCount ]
+CRScaleConfiguration >> scaleDownBatchSize [ ^ scaleDownBatchSize
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> minCount: anInteger [ minCount := anInteger asInteger ]
+CRScaleConfiguration >> scaleDownBatchSize: anInteger [ scaleDownBatchSize := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> minIdleCount [ ^ minIdleCount ]
+CRScaleConfiguration >> scaleUpBatchSize [ ^ scaleUpBatchSize
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> minIdleCount: anInteger [ minIdleCount := anInteger asInteger ]
+CRScaleConfiguration >> scaleUpBatchSize: anInteger [ scaleUpBatchSize := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> scaleDownBatchSize [ ^ scaleDownBatchSize ]
+CRScaleConfiguration >> stabilizationWindowMillis [ ^ stabilizationWindowMillis
+]
+
 { #category : 'accessing' }
-CRScalingConfiguration >> scaleDownBatchSize: anInteger [ scaleDownBatchSize := anInteger asInteger ]
-{ #category : 'accessing' }
-CRScalingConfiguration >> scaleUpBatchSize [ ^ scaleUpBatchSize ]
-{ #category : 'accessing' }
-CRScalingConfiguration >> scaleUpBatchSize: anInteger [ scaleUpBatchSize := anInteger asInteger ]
-{ #category : 'accessing' }
-CRScalingConfiguration >> stabilizationWindowMillis [ ^ stabilizationWindowMillis ]
-{ #category : 'accessing' }
-CRScalingConfiguration >> stabilizationWindowMillis: anIntegerOrNil [ stabilizationWindowMillis := anIntegerOrNil ifNil: [ nil ] ifNotNil: [ anIntegerOrNil asInteger ] ]
+CRScaleConfiguration >> stabilizationWindowMillis: anIntegerOrNil [ stabilizationWindowMillis := anIntegerOrNil ifNil: [ nil ] ifNotNil: [ anIntegerOrNil asInteger ]
+]
 
 { #category : 'validation' }
-CRScalingConfiguration >> validateOn: aValidationResult forWorkerIdentifier: aWorkerIdentifier [
+CRScaleConfiguration >> validateOn: aValidationResult forWorkerIdentifier: aWorkerIdentifier [
 	(minCount isInteger and: [ minCount >= 0 ]) ifFalse: [ aValidationResult addError: 'Scaling minCount for ', aWorkerIdentifier printString, ' must be >= 0.' ].
 	(maxCount isInteger and: [ maxCount >= 0 ]) ifFalse: [ aValidationResult addError: 'Scaling maxCount for ', aWorkerIdentifier printString, ' must be >= 0.' ].
 	(maxCount >= minCount) ifFalse: [ aValidationResult addError: 'Scaling maxCount must be >= minCount for ', aWorkerIdentifier printString, '.' ].

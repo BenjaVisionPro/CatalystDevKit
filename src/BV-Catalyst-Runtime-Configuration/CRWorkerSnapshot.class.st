@@ -12,9 +12,12 @@ Class {
 }
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> hostIdentifier [ ^ hostIdentifier ]
+CRWorkerSnapshot >> hostIdentifier [ ^ hostIdentifier
+]
+
 { #category : 'accessing' }
-CRWorkerSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString ]
+CRWorkerSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString
+]
 
 { #category : 'initialization' }
 CRWorkerSnapshot >> initialize [
@@ -26,16 +29,25 @@ CRWorkerSnapshot >> initialize [
 ]
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> instanceOrdinal [ ^ instanceOrdinal ]
-{ #category : 'accessing' }
-CRWorkerSnapshot >> instanceOrdinal: anInteger [ instanceOrdinal := anInteger asInteger ]
+CRWorkerSnapshot >> instanceOrdinal [ ^ instanceOrdinal
+]
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> status [ ^ status ]
-{ #category : 'accessing' }
-CRWorkerSnapshot >> status: anObject [ status := anObject ]
+CRWorkerSnapshot >> instanceOrdinal: anInteger [ instanceOrdinal := anInteger asInteger
+]
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> workerIdentifier [ ^ workerIdentifier ]
+CRWorkerSnapshot >> status [ ^ status
+]
+
 { #category : 'accessing' }
-CRWorkerSnapshot >> workerIdentifier: aString [ workerIdentifier := aString asString ]
+CRWorkerSnapshot >> status: anObject [ status := anObject
+]
+
+{ #category : 'accessing' }
+CRWorkerSnapshot >> workerIdentifier [ ^ workerIdentifier
+]
+
+{ #category : 'accessing' }
+CRWorkerSnapshot >> workerIdentifier: aString [ workerIdentifier := aString asString
+]

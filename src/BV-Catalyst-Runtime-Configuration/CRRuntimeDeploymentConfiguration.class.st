@@ -14,23 +14,6 @@ CRRuntimeDeploymentConfiguration >> initialize [
 	workerDeployments := OrderedCollection new
 ]
 
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeployments [
-	^ workerDeployments
-]
-
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeployments: aCollection [
-	workerDeployments := aCollection asOrderedCollection
-]
-
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeploymentForIdentifier: aWorkerIdentifier [
-	^ workerDeployments
-		detect: [ :each | each workerIdentifier = aWorkerIdentifier asString ]
-		ifNone: [ nil ]
-]
-
 { #category : 'validation' }
 CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [
 	| ids |
@@ -41,4 +24,21 @@ CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIde
 			(ids includes: each workerIdentifier)
 				ifTrue: [ aValidationResult addError: 'Duplicate deployment entry for worker ', each workerIdentifier printString, '.' ]
 				ifFalse: [ ids add: each workerIdentifier ] ] ].
+]
+
+{ #category : 'accessing' }
+CRRuntimeDeploymentConfiguration >> workerDeploymentForIdentifier: aWorkerIdentifier [
+	^ workerDeployments
+		detect: [ :each | each workerIdentifier = aWorkerIdentifier asString ]
+		ifNone: [ nil ]
+]
+
+{ #category : 'accessing' }
+CRRuntimeDeploymentConfiguration >> workerDeployments [
+	^ workerDeployments
+]
+
+{ #category : 'accessing' }
+CRRuntimeDeploymentConfiguration >> workerDeployments: aCollection [
+	workerDeployments := aCollection asOrderedCollection
 ]

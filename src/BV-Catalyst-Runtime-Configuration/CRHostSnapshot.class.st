@@ -11,9 +11,12 @@ Class {
 }
 
 { #category : 'accessing' }
-CRHostSnapshot >> hostIdentifier [ ^ hostIdentifier ]
+CRHostSnapshot >> hostIdentifier [ ^ hostIdentifier
+]
+
 { #category : 'accessing' }
-CRHostSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString ]
+CRHostSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString
+]
 
 { #category : 'initialization' }
 CRHostSnapshot >> initialize [
@@ -24,11 +27,17 @@ CRHostSnapshot >> initialize [
 ]
 
 { #category : 'accessing' }
-CRHostSnapshot >> maxProcesses [ ^ maxProcesses ]
-{ #category : 'accessing' }
-CRHostSnapshot >> maxProcesses: anInteger [ maxProcesses := anInteger asInteger ]
+CRHostSnapshot >> maxProcesses [ ^ maxProcesses
+]
 
 { #category : 'accessing' }
-CRHostSnapshot >> runningProcessCount [ ^ runningProcessCount ]
+CRHostSnapshot >> maxProcesses: anInteger [ maxProcesses := anInteger asInteger
+]
+
 { #category : 'accessing' }
-CRHostSnapshot >> runningProcessCount: anInteger [ runningProcessCount := anInteger asInteger ]
+CRHostSnapshot >> runningProcessCount [ ^ runningProcessCount
+]
+
+{ #category : 'accessing' }
+CRHostSnapshot >> runningProcessCount: anInteger [ runningProcessCount := anInteger asInteger
+]
