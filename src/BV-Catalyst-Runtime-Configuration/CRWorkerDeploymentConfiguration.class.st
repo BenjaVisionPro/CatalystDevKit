@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'workerIdentifier',
 		'initialCount',
-		'scalingConfiguration'
+		'scaleConfiguration'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -25,17 +25,17 @@ CRWorkerDeploymentConfiguration >> initialize [
 	super initialize.
 	workerIdentifier := ''.
 	initialCount := 0.
-	scalingConfiguration := nil
+	scaleConfiguration := nil
 ]
 
 { #category : 'accessing' }
-CRWorkerDeploymentConfiguration >> scalingConfiguration [
-	^ scalingConfiguration
+CRWorkerDeploymentConfiguration >> scaleConfiguration [
+	^ scaleConfiguration
 ]
 
 { #category : 'accessing' }
-CRWorkerDeploymentConfiguration >> scalingConfiguration: aCRScalingConfiguration [
-	scalingConfiguration := aCRScalingConfiguration
+CRWorkerDeploymentConfiguration >> scaleConfiguration: aCRScaleConfiguration [
+	scaleConfiguration := aCRScaleConfiguration
 ]
 
 { #category : 'validation' }
@@ -43,7 +43,7 @@ CRWorkerDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIden
 	workerIdentifier isEmpty ifTrue: [ aValidationResult addError: 'Deployment entry must specify workerIdentifier.' ].
 	(knownWorkerIdentifiers includes: workerIdentifier) ifFalse: [ aValidationResult addError: 'Deployment references unknown workerIdentifier ', workerIdentifier printString, '.' ].
 	(initialCount isInteger and: [ initialCount >= 0 ]) ifFalse: [ aValidationResult addError: 'Deployment initialCount for ', workerIdentifier printString, ' must be >= 0.' ].
-	scalingConfiguration ifNotNil: [ scalingConfiguration validateOn: aValidationResult forWorkerIdentifier: workerIdentifier ].
+	scaleConfiguration ifNotNil: [ scaleConfiguration validateOn: aValidationResult forWorkerIdentifier: workerIdentifier ].
 ]
 
 { #category : 'accessing' }
@@ -52,6 +52,6 @@ CRWorkerDeploymentConfiguration >> workerIdentifier [
 ]
 
 { #category : 'accessing' }
-CRWorkerDeploymentConfiguration >> workerIdentifier: aString [
-	workerIdentifier := aString asString
+CRWorkerDeploymentConfiguration >> workerIdentifier: aSymbol [
+	workerIdentifier := aSymbol
 ]

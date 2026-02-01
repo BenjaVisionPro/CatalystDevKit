@@ -16,7 +16,8 @@ CRWorkerSnapshot >> hostIdentifier [ ^ hostIdentifier
 ]
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString
+CRWorkerSnapshot >> hostIdentifier: aSymbol [
+	hostIdentifier := aSymbol
 ]
 
 { #category : 'initialization' }
@@ -49,5 +50,6 @@ CRWorkerSnapshot >> workerIdentifier [ ^ workerIdentifier
 ]
 
 { #category : 'accessing' }
-CRWorkerSnapshot >> workerIdentifier: aString [ workerIdentifier := aString asString
+CRWorkerSnapshot >> workerIdentifier: aSymbol [
+	workerIdentifier := aSymbol
 ]

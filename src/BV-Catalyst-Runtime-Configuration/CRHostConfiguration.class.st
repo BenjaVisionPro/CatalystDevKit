@@ -33,7 +33,8 @@ CRHostConfiguration >> identifier [ ^ identifier
 ]
 
 { #category : 'accessing' }
-CRHostConfiguration >> identifier: aString [ identifier := aString asString
+CRHostConfiguration >> identifier: aSymbol [
+	identifier := aSymbol
 ]
 
 { #category : 'initialization' }

@@ -27,8 +27,8 @@ CRWorkScheduleConfiguration >> identifier [
 ]
 
 { #category : 'accessing' }
-CRWorkScheduleConfiguration >> identifier: anObject [
-	identifier := anObject
+CRWorkScheduleConfiguration >> identifier: aSymbol [
+	identifier := aSymbol
 ]
 
 { #category : 'initialization' }

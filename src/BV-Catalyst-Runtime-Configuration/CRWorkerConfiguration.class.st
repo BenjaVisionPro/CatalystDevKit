@@ -27,8 +27,8 @@ CRWorkerConfiguration >> identifier [
 ]
 
 { #category : 'accessing' }
-CRWorkerConfiguration >> identifier: aString [
-	identifier := aString asString
+CRWorkerConfiguration >> identifier: aSymbol [
+	identifier := aSymbol
 ]
 
 { #category : 'initialization' }

@@ -36,20 +36,20 @@ CRRuntimeConfigurationExamples class >> devLocal [
 		yourself.
 
 	gateway := CRWorkerConfiguration new
-		identifier: 'gateway';
+		identifier: #gateway;
 		displayName: 'Client Gateway';
 		workerClassName: 'CRWorker';
 		schedulerConfiguration: scheduler;
 		yourself.
 
 	sim := CRWorkerConfiguration new
-		identifier: 'simPartition';
+		identifier: #simPartition;
 		displayName: 'Simulation Partition';
 		workerClassName: 'CRWorker';
 		yourself.
 
 	playerView := CRWorkerConfiguration new
-		identifier: 'playerView';
+		identifier: #playerView;
 		displayName: 'Player View';
 		workerClassName: 'CRWorker';
 		yourself.
@@ -58,7 +58,7 @@ CRRuntimeConfigurationExamples class >> devLocal [
 
 	"Topology"
 	host := CRHostConfiguration new
-		identifier: 'local';
+		identifier: #local;
 		displayName: 'Local Host';
 		address: 'localhost';
 		maxProcesses: 6;
@@ -76,9 +76,9 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	"Deployment"
 	deployment := CRRuntimeDeploymentConfiguration new
 		workerDeployments: {
-			(CRWorkerDeploymentConfiguration new workerIdentifier: 'gateway'; initialCount: 1; yourself).
-			(CRWorkerDeploymentConfiguration new workerIdentifier: 'simPartition'; initialCount: 2; yourself).
-			(CRWorkerDeploymentConfiguration new workerIdentifier: 'playerView'; initialCount: 1; yourself)
+			(CRWorkerDeploymentConfiguration new workerIdentifier: #gateway; initialCount: 1; yourself).
+			(CRWorkerDeploymentConfiguration new workerIdentifier: #simPartition; initialCount: 2; yourself).
+			(CRWorkerDeploymentConfiguration new workerIdentifier: #playerView; initialCount: 1; yourself)
 		};
 		yourself.
 
@@ -88,18 +88,24 @@ CRRuntimeConfigurationExamples class >> devLocal [
 ]
 
 { #category : 'examples' }
+CRRuntimeConfigurationExamples class >> devLocalSTON [
+	<gtExample>
+	^ CRRuntimeConfigurationCodec toStringPretty: self devLocal
+]
+
+{ #category : 'examples' }
 CRRuntimeConfigurationExamples class >> testingLocal [
 	<gtExample>
 	| cfg host |
 	cfg := self devLocal copy.	
 	
 	"More processes available"
-	host := cfg topology hostConfigurationNamed: 'local'.
+	host := cfg topology hostConfigurationNamed: #local.
 	host maxProcesses: 12.	
 	
 	"More workers deployed"
-	(cfg deployment workerDeploymentForIdentifier: 'simPartition') initialCount: 6.
-	(cfg deployment workerDeploymentForIdentifier: 'playerView') initialCount: 3.
+	(cfg deployment workerDeploymentForIdentifier: #simPartition) initialCount: 6.
+	(cfg deployment workerDeploymentForIdentifier: #playerView) initialCount: 3.
 
 	^ cfg
 ]

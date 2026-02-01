@@ -15,7 +15,8 @@ CRHostSnapshot >> hostIdentifier [ ^ hostIdentifier
 ]
 
 { #category : 'accessing' }
-CRHostSnapshot >> hostIdentifier: aString [ hostIdentifier := aString asString
+CRHostSnapshot >> hostIdentifier: aSymbol [
+	hostIdentifier := aSymbol
 ]
 
 { #category : 'initialization' }

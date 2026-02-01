@@ -172,7 +172,7 @@ CRRuntimeConfigurationValidatorTests >> test_scaleConfigurationRangeChecks [
 	scale := CRScaleConfiguration new.
 	scale minCount: 5.
 	scale maxCount: 2.	"invalid"
-	d scalingConfiguration: scale.
+	d scaleConfiguration: scale.
 
 	result := self assertInvalid: cfg.
 	self
