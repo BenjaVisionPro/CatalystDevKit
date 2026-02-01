@@ -195,6 +195,18 @@ CRWorkerTests >> test_enqueueAfterStopIsRejected [
 ]
 
 { #category : 'tests' }
+CRWorkerTests >> test_enqueueRejectedWhileShuttingDown [
+	self
+		withRunningWorkerDo: [ :worker :host | 
+			worker stop.
+			self assert: worker status equals: CRStatus shuttingDown.
+
+			self
+				should: [ worker enqueue: (CRBlockUnit on: [  ]) ]
+				raise: CRWorkerNotAcceptingWorkException ]
+]
+
+{ #category : 'tests' }
 CRWorkerTests >> test_example_scaffoldStartsAndStopsWorker [
 	| result |
 	result := self example_scaffoldStartsAndStopsWorker.
@@ -251,10 +263,111 @@ CRWorkerTests >> test_example_workerRejectsEnqueueWhenStopped [
 ]
 
 { #category : 'tests' }
+CRWorkerTests >> test_failureAnnouncementEmittedOncePerFailingUnit [
+	self
+		withRunningWorkerDo: [ :worker :host | 
+			| failures |
+			failures := OrderedCollection new.
+
+			worker announcer
+				when: CRWorkUnitFailedAnnouncement
+				do: [ :ann | failures add: ann ]
+				for: self.
+
+			worker enqueue: (CRBlockUnit on: [ Error signal: 'fail 1' ]).
+			worker enqueue: (CRBlockUnit on: [ Error signal: 'fail 2' ]).
+
+			self
+				waitUntil: [ failures size = 2 ]
+				upToMSecs: 500
+				description: 'waiting for two CRWorkUnitFailedAnnouncement.'.
+
+			self assert: failures size equals: 2 ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_stopConvergesToStopped [
+	| worker host |
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	[ worker stop.
+
+	self
+		waitUntil: [ worker status == CRStatus stopped ]
+		upToMSecs: self stopTimeoutMSecs
+		description: 'waiting for worker to reach stopped after stop. status='
+				, worker status printString.
+
+	self assert: worker status equals: CRStatus stopped ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_stopIsIdempotent [
+	| worker host |
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	[ worker stop.
+	worker stop.
+	worker stop.
+
+	self
+		waitUntil: [ worker status == CRStatus stopped ]
+		upToMSecs: self stopTimeoutMSecs
+		description: 'waiting for worker to reach stopped after repeated stop requests. status='
+				, worker status printString.
+
+	self assert: worker status equals: CRStatus stopped ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_workUnitRunsAtMostOnce [
+	self
+		withRunningWorkerDo: [ :worker :host | 
+			| counter |
+			counter := 0.
+
+			worker enqueue: (CRBlockUnit on: [ counter := counter + 1 ]).
+
+			self
+				waitUntil: [ counter = 1 ]
+				upToMSecs: 500
+				description: 'waiting for unit to run once.'.
+
+			self
+				assertStaysFalse: [ counter > 1 ]
+				upToMSecs: 100
+				description: 'unit executed more than once (regression guard).' ]
+]
+
+{ #category : 'tests' }
 CRWorkerTests >> test_workerBecomesRunningAndAcceptsWork [
 	self
 		withRunningWorkerDo: [ :worker :host | 
 			self
 				assert: worker isAcceptingWork
 				description: 'Expected worker to be accepting work while running.' ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_workerExecutesAWorkUnit [
+	| worker host counter |
+	counter := 0.
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	[ worker enqueue: (CRBlockUnit on: [ counter := counter + 1 ]).
+
+	self
+		waitUntil: [ counter = 1 ]
+		upToMSecs: 500
+		description: 'waiting for worker to execute enqueued CRBlockUnit. status='
+				, worker status printString.
+
+	self assert: counter equals: 1 ]
+		ensure: [ worker stop.
+			host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]
