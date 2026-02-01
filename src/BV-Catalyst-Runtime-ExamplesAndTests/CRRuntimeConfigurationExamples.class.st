@@ -33,7 +33,7 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	heartbeatSchedule := CRWorkScheduleConfiguration new
 			identifier: #heartbeat;
 			scheduleTypeConfiguration: heartbeatType;
-			workUnitClassName: #CRIdleWorkUnit;
+			workUnitClass: #CRIdleWorkUnit;
 			deliveryConfiguration: heartbeatDelivery;
 			yourself.
 
@@ -44,20 +44,20 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	gateway := CRWorkerConfiguration new
 			identifier: #gateway;
 			displayName: 'Client Gateway';
-			workerClassName: #CRWorker;
+			workerClass: #CRWorker;
 			schedulerConfiguration: scheduler;
 			yourself.
 
 	sim := CRWorkerConfiguration new
 			identifier: #simPartition;
 			displayName: 'Simulation Partition';
-			workerClassName: #CRWorker;
+			workerClass: #CRWorker;
 			yourself.
 
 	playerView := CRWorkerConfiguration new
 			identifier: #playerView;
 			displayName: 'Player View';
-			workerClassName: #CRWorker;
+			workerClass: #CRWorker;
 			yourself.
 
 	cfg

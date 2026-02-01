@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'identifier',
 		'scheduleTypeConfiguration',
-		'workUnitClassName',
-		'deliveryConfiguration'
+		'deliveryConfiguration',
+		'workUnitClass'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -36,7 +36,7 @@ CRWorkScheduleConfiguration >> initialize [
 	super initialize.
 	identifier := nil.
 	scheduleTypeConfiguration := nil.
-	workUnitClassName := ''.
+	workUnitClass := ''.
 	deliveryConfiguration := nil
 ]
 
@@ -78,16 +78,15 @@ CRWorkScheduleConfiguration >> validateOn: aValidationResult forWorkerIdentifier
 				forWorkerIdentifier: aWorkerIdentifier
 				scheduleIdentifier: identifier ].
 
-	workUnitClassName isNil
+	workUnitClass isNil
 		ifTrue: [ aValidationResult
 				addError: 'Worker ' , workerLabel , ' schedule ' , scheduleLabel
-						, ' must specify workUnitClassName.' ]
-		ifFalse: [ workUnitClassName isSymbol
+						, ' must specify workUnitClass.' ]
+		ifFalse: [ workUnitClass isSymbol
 				ifFalse: [ aValidationResult
 						addError: 'Worker ' , workerLabel , ' schedule ' , scheduleLabel
-								, ' workUnitClassName must be a Symbol; got '
-								, workUnitClassName printString , ' (' , workUnitClassName class name
-								, ').' ] ].
+								, ' workUnitClass must be a Symbol; got ' , workUnitClass printString
+								, ' (' , workUnitClass class name , ').' ] ].
 
 	deliveryConfiguration isNil
 		ifTrue: [ aValidationResult
@@ -100,11 +99,11 @@ CRWorkScheduleConfiguration >> validateOn: aValidationResult forWorkerIdentifier
 ]
 
 { #category : 'accessing' }
-CRWorkScheduleConfiguration >> workUnitClassName [
-	^ workUnitClassName
+CRWorkScheduleConfiguration >> workUnitClass [
+	^ workUnitClass
 ]
 
 { #category : 'accessing' }
-CRWorkScheduleConfiguration >> workUnitClassName: aSymbol [
-	workUnitClassName := aSymbol
+CRWorkScheduleConfiguration >> workUnitClass: aSymbol [
+	workUnitClass := aSymbol
 ]

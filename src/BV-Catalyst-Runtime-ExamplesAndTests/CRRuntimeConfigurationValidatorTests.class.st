@@ -86,7 +86,7 @@ CRRuntimeConfigurationValidatorTests >> test_duplicateScheduleIdentifierOnWorker
 			scheduleTypeConfiguration: (CRIntervalWorkScheduleTypeConfiguration new
 					intervalMillis: 2000;
 					yourself);
-			workUnitClassName: 'CRIdleWorkUnit';
+			workUnitClass: 'CRIdleWorkUnit';
 			deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
 					overlapBehaviour: #skip;
 					missedBehaviour: #skip;
@@ -109,12 +109,12 @@ CRRuntimeConfigurationValidatorTests >> test_duplicateWorkerIdentifierIsError [
 	w1 := CRWorkerConfiguration new
 			identifier: 'dup';
 			displayName: 'A';
-			workerClassName: 'CRWorker';
+			workerClass: 'CRWorker';
 			yourself.
 	w2 := CRWorkerConfiguration new
 			identifier: 'dup';
 			displayName: 'B';
-			workerClassName: 'CRWorker';
+			workerClass: 'CRWorker';
 			yourself.
 	cfg
 		workers: cfg workers
@@ -172,7 +172,7 @@ CRRuntimeConfigurationValidatorTests >> test_intervalScheduleRequiresPositiveInt
 	schedule := CRWorkScheduleConfiguration new
 			identifier: #badHeartbeat;
 			scheduleTypeConfiguration: scheduleType;
-			workUnitClassName: 'CRIdleWorkUnit';
+			workUnitClass: 'CRIdleWorkUnit';
 			deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
 					overlapBehaviour: #skip;
 					missedBehaviour: #skip;

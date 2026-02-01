@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'identifier',
 		'displayName',
-		'workerClassName',
-		'schedulerConfiguration'
+		'schedulerConfiguration',
+		'workerClass'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -36,7 +36,7 @@ CRWorkerConfiguration >> initialize [
 	super initialize.
 	displayName := ''.
 	identifier := ''.
-	workerClassName := ''.
+	workerClass := ''.
 	schedulerConfiguration := nil
 ]
 
@@ -67,12 +67,12 @@ CRWorkerConfiguration >> validateOn: result [
 	(displayName isNil or: [ displayName asString isEmpty ])
 		ifTrue: [ result addError: 'Worker ' , workerLabel , ' displayName is required.' ].
 
-	workerClassName isNil
-		ifTrue: [ result addError: 'Worker ' , workerLabel , ' workerClassName is required.' ]
-		ifFalse: [ workerClassName isSymbol
+	workerClass isNil
+		ifTrue: [ result addError: 'Worker ' , workerLabel , ' workerClass is required.' ]
+		ifFalse: [ workerClass isSymbol
 				ifFalse: [ result
-						addError: 'Worker ' , workerLabel , ' workerClassName must be a Symbol; got '
-								, workerClassName printString , ' (' , workerClassName class name , ').' ] ].
+						addError: 'Worker ' , workerLabel , ' workerClass must be a Symbol; got '
+								, workerClass printString , ' (' , workerClass class name , ').' ] ].
 
 	schedulerConfiguration
 		ifNotNil: [ schedulerConfiguration
@@ -81,11 +81,11 @@ CRWorkerConfiguration >> validateOn: result [
 ]
 
 { #category : 'accessing' }
-CRWorkerConfiguration >> workerClassName [
-	^ workerClassName
+CRWorkerConfiguration >> workerClass [
+	^ workerClass
 ]
 
 { #category : 'accessing' }
-CRWorkerConfiguration >> workerClassName: aSymbol [
-	workerClassName := aSymbol
+CRWorkerConfiguration >> workerClass: aSymbol [
+	workerClass := aSymbol
 ]
