@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : 'instance creation' }
-CRWorkerRunner class >> worker: aWorker [
+CRWorkerRunner class >> onWorker: aWorker [
 	^ self new
 		worker: aWorker;
 		yourself

@@ -6,11 +6,19 @@ Class {
 		'workers',
 		'runners',
 		'announcer',
-		'status'
+		'status',
+		'configuration',
+		'orchestratorWorker',
+		'orchestratorRunner'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
 }
+
+{ #category : 'orchestration' }
+CRRuntime class >> orchestratorIdentifier [
+	^ #runtimeOrchestrator
+]
 
 { #category : 'workers' }
 CRRuntime >> addWorker: aWorker [
@@ -32,6 +40,55 @@ CRRuntime >> announce: anAnnouncement [
 { #category : 'accessing' }
 CRRuntime >> announcer [
 	^ announcer
+]
+
+{ #category : 'configuration' }
+CRRuntime >> applyConfiguration: aCRRuntimeConfiguration [
+	| validation orchCfg runningOrchClass |
+	validation := aCRRuntimeConfiguration validate.
+	validation isValid
+		ifFalse: [ CRInvalidRuntimeConfigurationException
+				configuration: aCRRuntimeConfiguration
+				validationResult: validation ].
+
+	configuration := aCRRuntimeConfiguration.
+
+	self hasRunningOrchestrator not
+		ifTrue: [ self bootstrapOrchestratorFrom: aCRRuntimeConfiguration ].
+
+	orchCfg := aCRRuntimeConfiguration
+			workerConfigurationNamed: self class orchestratorIdentifier.
+
+	runningOrchClass := orchestratorWorker workerClass.
+	runningOrchClass = orchCfg workerClass
+		ifFalse: [ CRRuntimeOrchestratorClassMismatchException
+				currentClass: runningOrchClass
+				requestedClass: orchCfg workerClass ].
+
+	self enqueueApplyConfigurationUnit: aCRRuntimeConfiguration
+]
+
+{ #category : 'configuration' }
+CRRuntime >> applyConfigurationFromFile: aPath [
+	| cfg |
+	cfg := aPath asFileReference
+			readStreamDo: [ :stream | STON fromStream: stream ].
+
+	self applyConfiguration: cfg
+]
+
+{ #category : 'workers' }
+CRRuntime >> bootstrapOrchestratorFrom: aCRRuntimeConfiguration [
+	| orchCfg |
+	orchCfg := aCRRuntimeConfiguration
+			workerConfigurationNamed: self class orchestratorIdentifier.
+
+	orchestratorWorker := self realiseWorkerFromConfiguration: orchCfg.
+
+	orchestratorRunner := CRWorkerRunner onWorker: orchestratorWorker.
+	orchestratorRunner start.
+
+	self waitForWorkerStarted: orchestratorWorker
 ]
 
 { #category : 'workers' }
@@ -61,6 +118,12 @@ CRRuntime >> ensureRunnerStartedFor: aWorker [
 	^ runner
 ]
 
+{ #category : 'testing' }
+CRRuntime >> hasRunningOrchestrator [
+	^ orchestratorWorker notNil
+		and: [ orchestratorWorker status == CRStatus running ]
+]
+
 { #category : 'initialization' }
 CRRuntime >> initialize [
 	"I initialise my state."
@@ -73,7 +136,7 @@ CRRuntime >> initialize [
 	status := CRStatus stopped
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CRRuntime >> isRunning [
 	"Compatibility predicate. Truth comes from #status."
 

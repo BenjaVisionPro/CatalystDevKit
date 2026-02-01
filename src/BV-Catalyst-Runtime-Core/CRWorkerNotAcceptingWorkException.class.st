@@ -1,6 +1,6 @@
 Class {
 	#name : 'CRWorkerNotAcceptingWorkException',
-	#superclass : 'Exception',
+	#superclass : 'CRException',
 	#instVars : [
 		'worker',
 		'reason',
