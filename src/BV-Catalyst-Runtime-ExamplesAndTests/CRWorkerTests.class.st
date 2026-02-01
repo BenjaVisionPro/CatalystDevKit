@@ -81,6 +81,44 @@ CRWorkerTests >> example_unitRunsExactlyOnce [
 ]
 
 { #category : 'examples' }
+CRWorkerTests >> example_workerAnnouncesFailedWorkUnitAndContinues [ 
+	<gtExample>
+	^ self withRunningWorkerDo: [ :worker :host |
+		| failures counter |
+		failures := OrderedCollection new.
+		counter := 0.
+
+		worker announcer
+			when: CRWorkUnitFailedAnnouncement
+			do: [ :ann | failures add: ann ]
+			for: self.
+
+		"1) enqueue a unit that fails"
+		worker enqueue: (CRBlockUnit on: [ Error signal: 'Intentional test failure.' ]).
+
+		"2) enqueue a unit that must still execute"
+		worker enqueue: (CRBlockUnit on: [ counter := counter + 1 ]).
+
+		"Wait for both conditions: failure observed + success ran"
+		self
+			waitUntil: [ failures notEmpty ]
+			upToMSecs: 500
+			description: 'waiting for CRWorkUnitFailedAnnouncement to be announced. status=', worker status printString.
+
+		self
+			waitUntil: [ counter = 1 ]
+			upToMSecs: 500
+			description: 'waiting for worker to continue after failure and execute next unit. status=', worker status printString.
+
+		Dictionary new
+			at: #failureCount put: failures size;
+			at: #counter put: counter;
+			at: #status put: worker status;
+			yourself
+	]
+]
+
+{ #category : 'examples' }
 CRWorkerTests >> example_workerExecutesAWorkUnit [
 	<gtExample>
 	^ self
@@ -176,6 +214,15 @@ CRWorkerTests >> test_example_stopPreventsNewWorkButDrainsQueue [
 CRWorkerTests >> test_example_unitRunsExactlyOnce [
 	| result |
 	result := self example_unitRunsExactlyOnce.
+	self assert: (result at: #counter) equals: 1
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_workerAnnouncesFailedWorkUnitAndContinues [
+	| result |
+	result := self example_workerAnnouncesFailedWorkUnitAndContinues.
+
+	self assert: (result at: #failureCount) >= 1.
 	self assert: (result at: #counter) equals: 1
 ]
 
