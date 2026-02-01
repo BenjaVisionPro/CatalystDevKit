@@ -29,7 +29,7 @@ CRRuntimeConfiguration >> displayName [
 
 { #category : 'accessing' }
 CRRuntimeConfiguration >> displayName: aString [
-	displayName := aString asString
+	displayName := aString 
 ]
 
 { #category : 'initialization' }

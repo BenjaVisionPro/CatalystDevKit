@@ -17,7 +17,8 @@ CRHostConfiguration >> address [ ^ address
 ]
 
 { #category : 'accessing' }
-CRHostConfiguration >> address: aString [ address := aString asString
+CRHostConfiguration >> address: aString [
+	address := aString
 ]
 
 { #category : 'accessing' }
@@ -25,7 +26,8 @@ CRHostConfiguration >> displayName [ ^ displayName
 ]
 
 { #category : 'accessing' }
-CRHostConfiguration >> displayName: aString [ displayName := aString asString
+CRHostConfiguration >> displayName: aString [
+	displayName := aString
 ]
 
 { #category : 'accessing' }

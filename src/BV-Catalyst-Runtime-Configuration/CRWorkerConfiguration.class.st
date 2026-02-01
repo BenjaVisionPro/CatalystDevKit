@@ -18,7 +18,7 @@ CRWorkerConfiguration >> displayName [
 
 { #category : 'accessing' }
 CRWorkerConfiguration >> displayName: aString [
-	displayName := aString asString
+	displayName := aString
 ]
 
 { #category : 'accessing' }
@@ -67,8 +67,12 @@ CRWorkerConfiguration >> validateOn: result [
 	(displayName isNil or: [ displayName asString isEmpty ])
 		ifTrue: [ result addError: 'Worker ' , workerLabel , ' displayName is required.' ].
 
-	(workerClassName isNil or: [ workerClassName asString isEmpty ])
-		ifTrue: [ result addError: 'Worker ' , workerLabel , ' workerClassName is required.' ].
+	workerClassName isNil
+		ifTrue: [ result addError: 'Worker ' , workerLabel , ' workerClassName is required.' ]
+		ifFalse: [ workerClassName isSymbol
+				ifFalse: [ result
+						addError: 'Worker ' , workerLabel , ' workerClassName must be a Symbol; got '
+								, workerClassName printString , ' (' , workerClassName class name , ').' ] ].
 
 	schedulerConfiguration
 		ifNotNil: [ schedulerConfiguration
@@ -82,6 +86,6 @@ CRWorkerConfiguration >> workerClassName [
 ]
 
 { #category : 'accessing' }
-CRWorkerConfiguration >> workerClassName: aString [
-	workerClassName := aString asString
+CRWorkerConfiguration >> workerClassName: aSymbol [
+	workerClassName := aSymbol
 ]

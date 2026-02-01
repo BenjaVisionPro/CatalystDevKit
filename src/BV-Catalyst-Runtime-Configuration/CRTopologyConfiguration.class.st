@@ -15,7 +15,8 @@ CRTopologyConfiguration >> displayName [ ^ displayName
 ]
 
 { #category : 'accessing' }
-CRTopologyConfiguration >> displayName: aString [ displayName := aString asString
+CRTopologyConfiguration >> displayName: aString [
+	displayName := aString
 ]
 
 { #category : 'accessing' }

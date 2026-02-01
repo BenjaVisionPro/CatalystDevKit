@@ -19,7 +19,8 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	| cfg topology host deployment heartbeatDelivery heartbeatType heartbeatSchedule scheduler gateway sim playerView |
 	cfg := CRRuntimeConfiguration new
 			displayName: 'Dev Local';
-			yourself.	"Workers"
+			yourself.
+
 	heartbeatDelivery := CRWorkScheduleDeliveryConfiguration new
 			overlapBehaviour: #skip;
 			missedBehaviour: #skip;
@@ -32,7 +33,7 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	heartbeatSchedule := CRWorkScheduleConfiguration new
 			identifier: #heartbeat;
 			scheduleTypeConfiguration: heartbeatType;
-			workUnitClassName: 'CRIdleWorkUnit';
+			workUnitClassName: #CRIdleWorkUnit;
 			deliveryConfiguration: heartbeatDelivery;
 			yourself.
 
@@ -43,26 +44,27 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	gateway := CRWorkerConfiguration new
 			identifier: #gateway;
 			displayName: 'Client Gateway';
-			workerClassName: 'CRWorker';
+			workerClassName: #CRWorker;
 			schedulerConfiguration: scheduler;
 			yourself.
 
 	sim := CRWorkerConfiguration new
 			identifier: #simPartition;
 			displayName: 'Simulation Partition';
-			workerClassName: 'CRWorker';
+			workerClassName: #CRWorker;
 			yourself.
 
 	playerView := CRWorkerConfiguration new
 			identifier: #playerView;
 			displayName: 'Player View';
-			workerClassName: 'CRWorker';
+			workerClassName: #CRWorker;
 			yourself.
 
 	cfg
 		workers: {gateway.
 				sim.
-				playerView}.	"Topology"
+				playerView}.
+
 	host := CRHostConfiguration new
 			identifier: #local;
 			displayName: 'Local Host';
@@ -79,7 +81,8 @@ CRRuntimeConfigurationExamples class >> devLocal [
 			placementStrategyConfiguration: CRRoundRobinPlacementStrategyConfiguration new;
 			yourself.
 
-	cfg topology: topology.	"Deployment"
+	cfg topology: topology.
+
 	deployment := CRRuntimeDeploymentConfiguration new
 			workerDeployments: {CRWorkerDeploymentConfiguration new
 						workerIdentifier: #gateway;

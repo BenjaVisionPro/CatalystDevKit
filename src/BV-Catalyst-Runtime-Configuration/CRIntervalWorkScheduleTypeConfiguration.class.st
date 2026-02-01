@@ -25,18 +25,18 @@ CRIntervalWorkScheduleTypeConfiguration >> intervalMillis: anInteger [
 ]
 
 { #category : 'validation' }
-CRIntervalWorkScheduleTypeConfiguration >> validateOn: result forWorkerIdentifier: workerIdentifier scheduleIdentifier: scheduleIdentifier [
+CRIntervalWorkScheduleTypeConfiguration >> validateOn: aValidationResult forWorkerIdentifier: aWorkerIdentifier scheduleIdentifier: aScheduleIdentifier [
 	| workerLabel scheduleLabel |
-	workerLabel := workerIdentifier
+	workerLabel := aWorkerIdentifier
 			ifNil: [ '<nil>' ]
-			ifNotNil: [ workerIdentifier printString ].
+			ifNotNil: [ aWorkerIdentifier printString ].
 
-	scheduleLabel := scheduleIdentifier
+	scheduleLabel := aScheduleIdentifier
 			ifNil: [ '<nil>' ]
-			ifNotNil: [ scheduleIdentifier printString ].
+			ifNotNil: [ aScheduleIdentifier printString ].
 
 	(intervalMillis isInteger and: [ intervalMillis > 0 ])
-		ifFalse: [ result
+		ifFalse: [ aValidationResult
 				addError: 'Worker ' , workerLabel , ' schedule ' , scheduleLabel
 						, ' intervalMillis must be a positive Integer; got '
 						, intervalMillis printString , ' (' , intervalMillis class name , ').' ]
