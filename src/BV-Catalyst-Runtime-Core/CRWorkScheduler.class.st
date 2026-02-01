@@ -16,6 +16,11 @@ CRWorkScheduler >> addSchedule: aSchedule [
 	^ aSchedule
 ]
 
+{ #category : 'time' }
+CRWorkScheduler >> currentMillis [
+	^ Time millisecondClockValue
+]
+
 { #category : 'initialization' }
 CRWorkScheduler >> initialize [
 	super initialize.
@@ -31,14 +36,18 @@ CRWorkScheduler >> isSuspended [
 
 { #category : 'testing' }
 CRWorkScheduler >> millisecondsUntilNextDue [
+	| now |
 	suspended ifTrue: [ ^ 0 ].
-	schedules isEmpty ifTrue: [ ^ SmallInteger maxVal ].
-	^ (schedules collect: [ :each | each millisecondsUntilNextDue ]) min
+	schedules isEmpty ifTrue: [ ^ 0 ].
+
+	now := self currentMillis.
+	^ (schedules collect: [ :each | each millisecondsUntilNextDueAtMillis: now ])
+		min
 ]
 
 { #category : 'running' }
 CRWorkScheduler >> noteCompletedKey: aKey [
-	inFlightByKey at: aKey put: false
+	inFlightByKey removeKey: aKey ifAbsent: [  ]
 ]
 
 { #category : 'running' }
@@ -48,25 +57,21 @@ CRWorkScheduler >> resume [
 
 { #category : 'running' }
 CRWorkScheduler >> scheduleWorkOn: aWorker [
-	"Called by the worker each loop iteration.
-	Phase-locked repeating. Skip if in-flight."
-
+	| now |
 	suspended ifTrue: [ ^ self ].
+	now := self currentMillis.
 
 	schedules
 		do: [ :schedule | 
-			schedule isDueNow
-				ifTrue: [ | boundary key |
-					boundary := schedule currentBoundaryMillis.
-					key := schedule key.
+			| key boundary |
+			(schedule isDueAtMillis: now)
+				ifTrue: [ key := schedule key.
+					boundary := schedule currentBoundaryMillisAtMillis: now.
 
 					(inFlightByKey at: key ifAbsent: [ false ])
-						ifTrue: [  
-						   "Skip this occurrence; still mark handled so we don't retry this boundary."schedule
-								markHandledBoundaryMillis: boundary ]
+						ifTrue: [  "skip - already in flight" ]
 						ifFalse: [ inFlightByKey at: key put: true.
 							schedule markHandledBoundaryMillis: boundary.
-
 							aWorker
 								enqueueScheduled: schedule newWorkUnit
 								scheduleKey: key
