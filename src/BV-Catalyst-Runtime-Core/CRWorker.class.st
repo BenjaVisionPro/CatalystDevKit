@@ -114,7 +114,8 @@ CRWorker >> runLoop [
 	announcer announce: (CRWorkerStartedAnnouncement worker: self).
 
 	[ [ true ]
-		whileTrue: [  
+		whileTrue: [ scheduler scheduleWorkOn: self.
+
 			timeout := self timeoutMillisUntilNextWake.
 			envelope := workQueue next: timeout ifNone: idleEnvelope.
 
@@ -124,6 +125,11 @@ CRWorker >> runLoop [
 				ifFalse: [ self executeWorkUnitInEnvelope: envelope ] ] ]
 		ensure: [ status := CRStatus stopped.
 			announcer announce: (CRWorkerStoppedAnnouncement worker: self) ]
+]
+
+{ #category : 'accessing' }
+CRWorker >> scheduler [
+	^ scheduler
 ]
 
 { #category : 'private - running' }

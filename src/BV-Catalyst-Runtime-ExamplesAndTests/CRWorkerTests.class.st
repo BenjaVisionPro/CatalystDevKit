@@ -371,3 +371,30 @@ CRWorkerTests >> test_workerExecutesAWorkUnit [
 		ensure: [ worker stop.
 			host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_workerExecutesScheduledWorkUnit_atLeastOnce [
+	| worker host schedule counter |
+	counter := 0.
+	worker := self newWorker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+
+	[ schedule := (CRRepeatingSchedule
+			workUnitFactory: [ CRBlockUnit on: [ counter := counter + 1 ] ]
+			key: #heartbeat
+			intervalMillis: 20)
+			scheduledMillis: Time millisecondClockValue;
+			yourself.
+
+	worker scheduler addSchedule: schedule.
+
+	self
+		waitUntil: [ counter >= 1 ]
+		upToMSecs: 500
+		description: 'waiting for scheduled heartbeat unit to execute at least once. status='
+				, worker status printString.
+
+	self assert: counter >= 1 ]
+		ensure: [ worker stop.
+			host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
+]
