@@ -22,6 +22,65 @@ CRWorkerTests >> example_scaffoldStartsAndStopsWorker [
 ]
 
 { #category : 'examples' }
+CRWorkerTests >> example_stopPreventsNewWorkButDrainsQueue [
+	<gtExample>
+	^ self
+		withRunningWorkerDo: [ :worker :host | 
+			| counter rejected |
+			counter := 0.
+			rejected := false.
+
+			worker enqueue: (self newBlockUnit: [ counter := counter + 1 ]).
+			worker enqueue: (self newBlockUnit: [ counter := counter + 1 ]).
+			worker enqueue: (self newBlockUnit: [ counter := counter + 1 ]).
+
+			worker stop.
+
+			[ worker enqueue: (self newBlockUnit: [ counter := counter + 100 ]) ]
+				on: CRWorkerNotAcceptingWorkException
+				do: [ :ex | rejected := true ].
+
+			self
+				waitUntil: [ counter = 3 ]
+				upToMSecs: 500
+				description: 'waiting for already-queued work to drain after stop. status='
+						, worker status printString.
+
+			Dictionary new
+				at: #counter put: counter;
+				at: #rejected put: rejected;
+				at: #status put: worker status;
+				yourself ]
+]
+
+{ #category : 'examples' }
+CRWorkerTests >> example_unitRunsExactlyOnce [
+	<gtExample>
+	^ self
+		withRunningWorkerDo: [ :worker :host | 
+			| counter |
+			counter := 0.
+
+			worker enqueue: (self newBlockUnit: [ counter := counter + 1 ]).
+
+			self
+				waitUntil: [ counter = 1 ]
+				upToMSecs: 500
+				description: 'waiting for unit to run at least once. status='
+						, worker status printString.
+
+			self
+				assertStaysFalse: [ counter > 1 ]
+				upToMSecs: 100
+				description: 'unit ran more than once (counter should stay at 1).'.
+
+			Dictionary new
+				at: #counter put: counter;
+				at: #status put: worker status;
+				yourself ]
+]
+
+{ #category : 'examples' }
 CRWorkerTests >> example_workerExecutesAWorkUnit [
 	<gtExample>
 	^ self
@@ -43,9 +102,112 @@ CRWorkerTests >> example_workerExecutesAWorkUnit [
 				yourself ]
 ]
 
+{ #category : 'examples' }
+CRWorkerTests >> example_workerExecutesUnitsInOrder [
+	<gtExample>
+	^ self
+		withRunningWorkerDo: [ :worker :host | 
+			| results |
+			results := OrderedCollection new.
+
+			worker enqueue: (self newBlockUnit: [ results add: 1 ]).
+			worker enqueue: (self newBlockUnit: [ results add: 2 ]).
+			worker enqueue: (self newBlockUnit: [ results add: 3 ]).
+
+			self
+				waitUntil: [ results size = 3 ]
+				upToMSecs: 500
+				description: 'waiting for 3 enqueued units to execute (FIFO order). status='
+						, worker status printString.
+
+			Dictionary new
+				at: #results put: results asArray;
+				at: #status put: worker status;
+				yourself ]
+]
+
+{ #category : 'examples' }
+CRWorkerTests >> example_workerRejectsEnqueueWhenStopped [
+	<gtExample>
+	| worker |
+	worker := self newWorker.
+
+	^ [ worker enqueue: (self newBlockUnit: [  ]).
+	Dictionary new
+		at: #accepted put: true;
+		at: #status put: worker status;
+		yourself ]
+		on: CRWorkerNotAcceptingWorkException
+		do: [ :ex | 
+			Dictionary new
+				at: #accepted put: false;
+				at: #exceptionClass put: ex class;
+				at: #status put: worker status;
+				yourself ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_enqueueAfterStopIsRejected [
+	self
+		withRunningWorkerDo: [ :worker :host | 
+			worker stop.
+			self
+				should: [ worker enqueue: (self newBlockUnit: [  ]) ]
+				raise: CRWorkerNotAcceptingWorkException ]
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_scaffoldStartsAndStopsWorker [
+	| result |
+	result := self example_scaffoldStartsAndStopsWorker.
+	self assert: (result includesKey: #worker).
+	self assert: (result includesKey: #finalStatus)
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_stopPreventsNewWorkButDrainsQueue [
+	| result |
+	result := self example_stopPreventsNewWorkButDrainsQueue.
+	self assert: (result at: #rejected).
+	self assert: (result at: #counter) equals: 3
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_unitRunsExactlyOnce [
+	| result |
+	result := self example_unitRunsExactlyOnce.
+	self assert: (result at: #counter) equals: 1
+]
+
 { #category : 'tests' }
 CRWorkerTests >> test_example_workerExecutesAWorkUnit [
 	| result |
 	result := self example_workerExecutesAWorkUnit.
 	self assert: (result at: #counter) equals: 1
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_workerExecutesUnitsInOrder [
+	| result |
+	result := self example_workerExecutesUnitsInOrder.
+	self assert: (result at: #results) equals: #(1 2 3)
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_example_workerRejectsEnqueueWhenStopped [
+	| result |
+	result := self example_workerRejectsEnqueueWhenStopped.
+	self deny: (result at: #accepted).
+	self
+		assert: (result at: #exceptionClass)
+		equals: CRWorkerNotAcceptingWorkException
+]
+
+{ #category : 'tests' }
+CRWorkerTests >> test_workerBecomesRunningAndAcceptsWork [
+	self
+		withRunningWorkerDo: [ :worker :host | 
+			self
+				assert: worker isAcceptingWork
+				description: 'Expected worker to be accepting work while running.' ]
 ]

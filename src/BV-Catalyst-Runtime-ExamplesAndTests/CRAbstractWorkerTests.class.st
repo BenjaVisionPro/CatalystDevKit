@@ -9,6 +9,17 @@ Class {
 }
 
 { #category : 'helpers' }
+CRAbstractWorkerTests >> assertStaysFalse: aZeroArgBooleanBlock upToMSecs: timeoutMSecs description: aString [
+	| startTime |
+	startTime := Time millisecondClockValue.
+
+	[ Time millisecondClockValue - startTime < timeoutMSecs ]
+		whileTrue: [ aZeroArgBooleanBlock value
+				ifTrue: [ self error: 'Became true unexpectedly: ' , aString ].
+			(Delay forMilliseconds: 1) wait ]
+]
+
+{ #category : 'helpers' }
 CRAbstractWorkerTests >> hostWorker: aWorker [
 	| host |
 	host := CRWorkerTestHost onWorker: aWorker.
@@ -25,6 +36,11 @@ CRAbstractWorkerTests >> initialize [
 { #category : 'running' }
 CRAbstractWorkerTests >> initializeHosts [
 	hosts := OrderedCollection new
+]
+
+{ #category : 'factory' }
+CRAbstractWorkerTests >> newBlockUnit: aBlock [
+	^ CRBlockUnit on: aBlock
 ]
 
 { #category : 'factory' }
