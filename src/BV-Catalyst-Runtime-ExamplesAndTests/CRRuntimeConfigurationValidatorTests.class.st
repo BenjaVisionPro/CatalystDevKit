@@ -77,7 +77,7 @@ CRRuntimeConfigurationValidatorTests >> test_duplicateScheduleIdentifierOnWorker
 	| cfg worker sched schedule1 schedule2 result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
 
-	worker := cfg workerConfigurationNamed: 'gateway'.
+	worker := cfg workerConfigurationNamed: #gateway.
 	sched := worker schedulerConfiguration.
 
 	schedule1 := sched schedules first.
@@ -98,7 +98,7 @@ CRRuntimeConfigurationValidatorTests >> test_duplicateScheduleIdentifierOnWorker
 	result := self assertInvalid: cfg.
 	self
 		assert: (result errors
-				anySatisfy: [ :e | e includesSubstring: 'Duplicate schedule identifier' ])
+				anySatisfy: [ :e | e asString includesSubstring: 'has duplicate schedule identifier' ])
 ]
 
 { #category : 'tests' }
@@ -162,7 +162,7 @@ CRRuntimeConfigurationValidatorTests >> test_intervalScheduleRequiresPositiveInt
 	| cfg worker sched scheduleType schedule result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
 
-	worker := cfg workerConfigurationNamed: 'gateway'.
+	worker := cfg workerConfigurationNamed: #gateway.
 	sched := worker schedulerConfiguration.
 
 	scheduleType := CRIntervalWorkScheduleTypeConfiguration new
@@ -183,7 +183,8 @@ CRRuntimeConfigurationValidatorTests >> test_intervalScheduleRequiresPositiveInt
 
 	result := self assertInvalid: cfg.
 	self
-		assert: (result errors anySatisfy: [ :e | e includesSubstring: 'intervalMillis > 0' ])
+		assert: (result errors
+				anySatisfy: [ :e | e asString includesSubstring: 'intervalMillis must be a positive Integer' ])
 ]
 
 { #category : 'tests' }
@@ -226,15 +227,19 @@ CRRuntimeConfigurationValidatorTests >> test_scaleConfigurationRangeChecks [
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_scheduleIdentifierMustBeSymbol [
-	| cfg worker sched schedule |
+	| cfg worker sched schedule result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
+
 	worker := cfg workerConfigurationNamed: #gateway.
 	sched := worker schedulerConfiguration.
 	schedule := sched schedules first.
+
 	schedule identifier: 'heartbeat'.	"String on purpose"
+
+	result := self assertInvalid: cfg.
 	self
-		assertInvalid: cfg
-		withErrorContaining: 'Schedule identifier must be a Symbol'
+		assert: (result errors
+				anySatisfy: [ :e | e asString includesSubstring: 'schedule identifier must be a Symbol' ])
 ]
 
 { #category : 'tests' }

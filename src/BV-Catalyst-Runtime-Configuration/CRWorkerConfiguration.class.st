@@ -51,10 +51,29 @@ CRWorkerConfiguration >> schedulerConfiguration: aCRWorkSchedulerConfiguration [
 ]
 
 { #category : 'validation' }
-CRWorkerConfiguration >> validateOn: aValidationResult [
-	identifier isEmpty ifTrue: [ aValidationResult addError: 'Worker identifier is required.' ].
-	workerClassName isEmpty ifTrue: [ aValidationResult addError: 'Worker class name is required for ', identifier printString, '.' ].
-	schedulerConfiguration ifNotNil: [ schedulerConfiguration validateOn: aValidationResult forWorkerIdentifier: identifier ].
+CRWorkerConfiguration >> validateOn: result [
+	| workerLabel |
+	workerLabel := identifier
+			ifNil: [ '<nil>' ]
+			ifNotNil: [ identifier printString ].
+
+	identifier isNil
+		ifTrue: [ result addError: 'Worker identifier is required.' ]
+		ifFalse: [ identifier isSymbol
+				ifFalse: [ result
+						addError: 'Worker identifier must be a Symbol; got ' , identifier printString , ' ('
+								, identifier class name , ').' ] ].
+
+	(displayName isNil or: [ displayName asString isEmpty ])
+		ifTrue: [ result addError: 'Worker ' , workerLabel , ' displayName is required.' ].
+
+	(workerClassName isNil or: [ workerClassName asString isEmpty ])
+		ifTrue: [ result addError: 'Worker ' , workerLabel , ' workerClassName is required.' ].
+
+	schedulerConfiguration
+		ifNotNil: [ schedulerConfiguration
+				validateOn: result
+				forWorkerIdentifier: (identifier isSymbol ifTrue: [ identifier ] ifFalse: [ nil ]) ]
 ]
 
 { #category : 'accessing' }
