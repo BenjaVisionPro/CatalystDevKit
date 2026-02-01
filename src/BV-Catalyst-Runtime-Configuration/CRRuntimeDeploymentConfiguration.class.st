@@ -15,15 +15,14 @@ CRRuntimeDeploymentConfiguration >> initialize [
 ]
 
 { #category : 'validation' }
-CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [
-	| ids |
-	ids := Set new.
-	workerDeployments do: [ :each |
-		each validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers.
-		(each workerIdentifier isEmpty) ifFalse: [
-			(ids includes: each workerIdentifier)
-				ifTrue: [ aValidationResult addError: 'Duplicate deployment entry for worker ', each workerIdentifier printString, '.' ]
-				ifFalse: [ ids add: each workerIdentifier ] ] ].
+CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIds [
+	workerDeployments ifNil: [ ^ self ].	"Uniqueness"
+	(workerDeployments collect: #workerIdentifier) asSet size
+		= workerDeployments size
+		ifFalse: [ aValidationResult addError: 'Duplicate deployment workerIdentifier' ].
+
+	workerDeployments
+		do: [ :each | each validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIds ]
 ]
 
 { #category : 'accessing' }

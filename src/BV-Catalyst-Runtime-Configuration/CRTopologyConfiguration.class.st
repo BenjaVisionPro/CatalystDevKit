@@ -48,14 +48,26 @@ CRTopologyConfiguration >> placementStrategyConfiguration: aCRPlacementStrategyC
 ]
 
 { #category : 'validation' }
-CRTopologyConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [
+CRTopologyConfiguration >> validateOn: result knownWorkerIdentifiers: knownWorkerIds [
 	| hostIds |
+	(displayName isNil or: [ displayName asString isEmpty ])
+		ifTrue: [ result addError: 'Topology configuration displayName is required.' ].
+
+	hosts
+		ifNil: [ ^ result addError: 'Topology configuration must specify hosts.' ].
+	hosts isEmpty
+		ifTrue: [ result addError: 'Topology configuration must specify at least one host.' ].
+
 	hostIds := Set new.
-	hosts do: [ :each |
-		each validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers.
-		(each identifier isEmpty) ifFalse: [
-			(hostIds includes: each identifier)
-				ifTrue: [ aValidationResult addError: 'Duplicate host identifier ', each identifier printString, '.' ]
-				ifFalse: [ hostIds add: each identifier ] ] ].
-	placementStrategyConfiguration ifNil: [ aValidationResult addError: 'Topology must specify a placement strategy configuration.' ].
+	hosts
+		do: [ :each | 
+			each validateOn: result knownWorkerIdentifiers: knownWorkerIds.
+			each identifier isNil
+				ifFalse: [ (hostIds includes: each identifier)
+						ifTrue: [ result
+								addError: 'Duplicate host identifier ' , each identifier printString , '.' ]
+						ifFalse: [ hostIds add: each identifier ] ] ].
+
+	placementStrategyConfiguration
+		ifNil: [ result addError: 'Topology configuration must specify placement strategy.' ]
 ]

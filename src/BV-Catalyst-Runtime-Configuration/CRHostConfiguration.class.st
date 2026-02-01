@@ -56,13 +56,30 @@ CRHostConfiguration >> maxProcesses: anInteger [ maxProcesses := anInteger asInt
 ]
 
 { #category : 'validation' }
-CRHostConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIdentifiers [
-	identifier isEmpty ifTrue: [ aValidationResult addError: 'Host identifier is required.' ].
-	address isEmpty ifTrue: [ aValidationResult addWarning: 'Host ', identifier printString, ' has empty address.' ].
-	(maxProcesses isInteger and: [ maxProcesses >= 0 ]) ifFalse: [ aValidationResult addError: 'Host ', identifier printString, ' maxProcesses must be >= 0.' ].
-	workers do: [ :workerId |
-		(knownWorkerIdentifiers includes: workerId asString)
-			ifFalse: [ aValidationResult addError: 'Host ', identifier printString, ' references unknown worker ', workerId printString, '.' ] ].
+CRHostConfiguration >> validateOn: result knownWorkerIdentifiers: knownWorkerIds [
+	identifier isSymbol
+		ifFalse: [ result addError: 'Host identifier must be a Symbol' ].
+
+	(displayName isNil or: [ displayName asString isEmpty ])
+		ifTrue: [ result addError: 'Host displayName is required.' ].
+
+	(address isNil or: [ address asString isEmpty ])
+		ifTrue: [ result addError: 'Host address is required.' ].
+
+	(maxProcesses isInteger and: [ maxProcesses >= 0 ])
+		ifFalse: [ result addError: 'Host maxProcesses must be a non-negative Integer.' ].
+
+	workers
+		ifNil: [ result addError: 'Host workers is required.'.
+			^ self ].
+
+	(workers allSatisfy: [ :each | each isSymbol ])
+		ifFalse: [ result addError: 'Host workers must be Symbols' ].	"Only do reference checks if types are correct"
+	(workers allSatisfy: [ :each | each isSymbol ])
+		ifTrue: [ workers
+				do: [ :each | 
+					(knownWorkerIds includes: each)
+						ifFalse: [ result addError: 'Host references unknown worker ' , each printString , '.' ] ] ]
 ]
 
 { #category : 'accessing' }

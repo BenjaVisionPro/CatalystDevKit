@@ -6,6 +6,6 @@ Class {
 }
 
 { #category : 'validation' }
-CRWorkScheduleTypeConfiguration >> validateOn: aValidationResult forScheduleIdentifier: aScheduleIdentifier workerIdentifier: aWorkerIdentifier [
+CRWorkScheduleTypeConfiguration >> validateOn: result forWorkerIdentifier: workerIdentifier scheduleIdentifier: scheduleIdentifier [
 	self subclassResponsibility
 ]

@@ -6,81 +6,94 @@ Class {
 }
 
 { #category : 'examples' }
-CRRuntimeConfigurationExamples class >> devLocal [ 
+CRRuntimeConfigurationExamples class >> allRuntimeConfigurations [
+	"Keep this explicit. No clever reflection over <gtExample> methods."
+
+	^ {self devLocal.
+		self testingLocal}
+]
+
+{ #category : 'examples' }
+CRRuntimeConfigurationExamples class >> devLocal [
 	<gtExample>
 	| cfg topology host deployment heartbeatDelivery heartbeatType heartbeatSchedule scheduler gateway sim playerView |
-
 	cfg := CRRuntimeConfiguration new
-		displayName: 'Dev Local';
-		yourself.
-
-	"Workers"
+			displayName: 'Dev Local';
+			yourself.	"Workers"
 	heartbeatDelivery := CRWorkScheduleDeliveryConfiguration new
-		overlapBehaviour: #skip;
-		missedBehaviour: #skip;
-		yourself.
+			overlapBehaviour: #skip;
+			missedBehaviour: #skip;
+			yourself.
 
 	heartbeatType := CRIntervalWorkScheduleTypeConfiguration new
-		intervalMillis: 2000;
-		yourself.
+			intervalMillis: 2000;
+			yourself.
 
 	heartbeatSchedule := CRWorkScheduleConfiguration new
-		identifier: #heartbeat;
-		scheduleTypeConfiguration: heartbeatType;
-		workUnitClassName: 'CRIdleWorkUnit';
-		deliveryConfiguration: heartbeatDelivery;
-		yourself.
+			identifier: #heartbeat;
+			scheduleTypeConfiguration: heartbeatType;
+			workUnitClassName: 'CRIdleWorkUnit';
+			deliveryConfiguration: heartbeatDelivery;
+			yourself.
 
 	scheduler := CRWorkSchedulerConfiguration new
-		schedules: { heartbeatSchedule };
-		yourself.
+			schedules: {heartbeatSchedule};
+			yourself.
 
 	gateway := CRWorkerConfiguration new
-		identifier: #gateway;
-		displayName: 'Client Gateway';
-		workerClassName: 'CRWorker';
-		schedulerConfiguration: scheduler;
-		yourself.
+			identifier: #gateway;
+			displayName: 'Client Gateway';
+			workerClassName: 'CRWorker';
+			schedulerConfiguration: scheduler;
+			yourself.
 
 	sim := CRWorkerConfiguration new
-		identifier: #simPartition;
-		displayName: 'Simulation Partition';
-		workerClassName: 'CRWorker';
-		yourself.
+			identifier: #simPartition;
+			displayName: 'Simulation Partition';
+			workerClassName: 'CRWorker';
+			yourself.
 
 	playerView := CRWorkerConfiguration new
-		identifier: #playerView;
-		displayName: 'Player View';
-		workerClassName: 'CRWorker';
-		yourself.
+			identifier: #playerView;
+			displayName: 'Player View';
+			workerClassName: 'CRWorker';
+			yourself.
 
-	cfg workers: { gateway. sim. playerView }.
-
-	"Topology"
+	cfg
+		workers: {gateway.
+				sim.
+				playerView}.	"Topology"
 	host := CRHostConfiguration new
-		identifier: #local;
-		displayName: 'Local Host';
-		address: 'localhost';
-		maxProcesses: 6;
-		workers: { 'gateway'. 'simPartition'. 'playerView' };
-		yourself.
+			identifier: #local;
+			displayName: 'Local Host';
+			address: 'localhost';
+			maxProcesses: 6;
+			workers: {#gateway.
+					#simPartition.
+					#playerView};
+			yourself.
 
 	topology := CRTopologyConfiguration new
-		displayName: 'Local Topology';
-		hosts: { host };
-		placementStrategyConfiguration: CRRoundRobinPlacementStrategyConfiguration new;
-		yourself.
+			displayName: 'Local Topology';
+			hosts: {host};
+			placementStrategyConfiguration: CRRoundRobinPlacementStrategyConfiguration new;
+			yourself.
 
-	cfg topology: topology.
-
-	"Deployment"
+	cfg topology: topology.	"Deployment"
 	deployment := CRRuntimeDeploymentConfiguration new
-		workerDeployments: {
-			(CRWorkerDeploymentConfiguration new workerIdentifier: #gateway; initialCount: 1; yourself).
-			(CRWorkerDeploymentConfiguration new workerIdentifier: #simPartition; initialCount: 2; yourself).
-			(CRWorkerDeploymentConfiguration new workerIdentifier: #playerView; initialCount: 1; yourself)
-		};
-		yourself.
+			workerDeployments: {CRWorkerDeploymentConfiguration new
+						workerIdentifier: #gateway;
+						initialCount: 1;
+						yourself.
+					CRWorkerDeploymentConfiguration new
+						workerIdentifier: #simPartition;
+						initialCount: 2;
+						yourself.
+					CRWorkerDeploymentConfiguration new
+						workerIdentifier: #playerView;
+						initialCount: 1;
+						yourself};
+			yourself.
 
 	cfg deployment: deployment.
 

@@ -51,16 +51,41 @@ CRWorkScheduleConfiguration >> scheduleTypeConfiguration: aCRWorkScheduleTypeCon
 ]
 
 { #category : 'validation' }
-CRWorkScheduleConfiguration >> validateOn: aValidationResult forWorkerIdentifier: aWorkerIdentifier [
-	(identifier isNil or: [ identifier asString isEmpty ])
-		ifTrue: [ aValidationResult addError: 'Schedule identifier is required on worker ', aWorkerIdentifier printString, '.' ].
-	workUnitClassName isEmpty ifTrue: [ aValidationResult addError: 'Schedule ', identifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify a work unit class name.' ].
-	scheduleTypeConfiguration
-		ifNil: [ aValidationResult addError: 'Schedule ', identifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify a schedule type.' ]
-		ifNotNil: [ scheduleTypeConfiguration validateOn: aValidationResult forScheduleIdentifier: identifier workerIdentifier: aWorkerIdentifier ].
-	deliveryConfiguration
-		ifNil: [ aValidationResult addError: 'Schedule ', identifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify delivery configuration.' ]
-		ifNotNil: [ deliveryConfiguration validateOn: aValidationResult forScheduleIdentifier: identifier workerIdentifier: aWorkerIdentifier ].
+CRWorkScheduleConfiguration >> validateOn: result forWorkerIdentifier: workerIdentifier [
+	| workerLabel |
+	workerLabel := workerIdentifier
+			ifNil: [ '<nil>' ]
+			ifNotNil: [ workerIdentifier printString ].
+
+	identifier isNil
+		ifTrue: [ result addError: 'Worker ' , workerLabel , ' schedule identifier is required.' ]
+		ifFalse: [ identifier isSymbol
+				ifFalse: [ result
+						addError: 'Worker ' , workerLabel , ' schedule identifier must be a Symbol; got '
+								, identifier printString , ' (' , identifier class name , ').' ] ].
+
+	scheduleTypeConfiguration isNil
+		ifTrue: [ result
+				addError: 'Worker ' , workerLabel , ' schedule ' , identifier printString
+						, ' must specify schedule type configuration.' ]
+		ifFalse: [ scheduleTypeConfiguration
+				validateOn: result
+				forWorkerIdentifier: workerIdentifier
+				scheduleIdentifier: identifier ].
+
+	(workUnitClassName isNil or: [ workUnitClassName asString isEmpty ])
+		ifTrue: [ result
+				addError: 'Worker ' , workerLabel , ' schedule ' , identifier printString
+						, ' must specify workUnitClassName.' ].
+
+	deliveryConfiguration isNil
+		ifTrue: [ result
+				addError: 'Worker ' , workerLabel , ' schedule ' , identifier printString
+						, ' must specify delivery configuration.' ]
+		ifFalse: [ deliveryConfiguration
+				validateOn: result
+				forWorkerIdentifier: workerIdentifier
+				scheduleIdentifier: identifier ]
 ]
 
 { #category : 'accessing' }

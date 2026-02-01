@@ -25,6 +25,10 @@ CRDailyTimesWorkScheduleTypeConfiguration >> timesOfDay: aCollection [
 ]
 
 { #category : 'validation' }
-CRDailyTimesWorkScheduleTypeConfiguration >> validateOn: aValidationResult forScheduleIdentifier: aScheduleIdentifier workerIdentifier: aWorkerIdentifier [
-	timesOfDay isEmpty ifTrue: [ aValidationResult addError: 'Daily schedule ', aScheduleIdentifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify at least one time of day.' ].
+CRDailyTimesWorkScheduleTypeConfiguration >> validateOn: result forWorkerIdentifier: workerIdentifier scheduleIdentifier: scheduleIdentifier [
+	timesOfDay isEmpty
+		ifTrue: [ result
+				addError: 'Daily schedule ' , scheduleIdentifier printString , ' on worker '
+						, workerIdentifier printString
+						, ' must specify at least one time of day.' ]
 ]

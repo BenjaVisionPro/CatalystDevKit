@@ -14,6 +14,17 @@ CRRuntimeConfigurationValidatorTests >> assertInvalid: aCRRuntimeConfiguration [
 ]
 
 { #category : 'helpers' }
+CRRuntimeConfigurationValidatorTests >> assertInvalid: aCRRuntimeConfiguration withErrorContaining: aSubstring [
+	| result |
+	result := self validationResultFor: aCRRuntimeConfiguration.
+	self deny: result isValid.
+	self
+		assert: (result errors
+				anySatisfy: [ :each | each asString includesSubstring: aSubstring ]).
+	^ result
+]
+
+{ #category : 'helpers' }
 CRRuntimeConfigurationValidatorTests >> assertValid: aCRRuntimeConfiguration [ 
 	| result |
 	result := aCRRuntimeConfiguration validate.
@@ -28,7 +39,7 @@ CRRuntimeConfigurationValidatorTests >> test_deploymentReferencesUnknownWorkerIs
 	dep := cfg deployment workerDeployments copy.
 	dep
 		add: (CRWorkerDeploymentConfiguration new
-				workerIdentifier: 'ghostWorker';
+				workerIdentifier: #ghostWorkerIdentifier;
 				initialCount: 1;
 				yourself).
 	cfg deployment workerDeployments: dep.
@@ -36,7 +47,29 @@ CRRuntimeConfigurationValidatorTests >> test_deploymentReferencesUnknownWorkerIs
 	result := self assertInvalid: cfg.
 	self
 		assert: (result errors
-				anySatisfy: [ :e | e includesSubstring: 'Deployment references unknown workerIdentifier' ])
+				anySatisfy: [ :e | 
+					e asString
+						includesSubstring: 'Deployment workerIdentifier references unknown worker' ])
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_deploymentWorkerIdentifierMustBeSymbol [
+	| cfg dep |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+	dep := cfg deployment workerDeploymentForIdentifier: #gateway.
+	dep workerIdentifier: 'gateway'.	"String on purpose"
+	self
+		assertInvalid: cfg
+		withErrorContaining: 'Deployment workerIdentifier must be a Symbol'
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_devExample_stonContainsSymbolIdentifiers [
+	| ston |
+	ston := STON toStringPretty: CRRuntimeConfigurationExamples devLocal.
+	self assert: (ston includesSubstring: '#gateway').
+	self assert: (ston includesSubstring: '#local').
+	self assert: (ston includesSubstring: '#heartbeat')
 ]
 
 { #category : 'tests' }
@@ -100,17 +133,28 @@ CRRuntimeConfigurationValidatorTests >> test_exampleDevLocalIsValid [
 ]
 
 { #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_hostIdentifierMustBeSymbol [
+	| cfg host |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+	host := cfg topology hostConfigurationNamed: #local.
+	host identifier: 'local'.
+	self
+		assertInvalid: cfg
+		withErrorContaining: 'Host identifier must be a Symbol'
+]
+
+{ #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_hostReferencesUnknownWorkerIsError [
 	| cfg host result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
 
-	host := cfg topology hostConfigurationNamed: 'local'.
-	host workers: host workers , {'ghostWorker'}.
+	host := cfg topology hostConfigurationNamed: #local.
+	host workers: host workers , {#ghostWorker}.
 
 	result := self assertInvalid: cfg.
 	self
 		assert: (result errors
-				anySatisfy: [ :e | e includesSubstring: 'references unknown worker' ])
+				anySatisfy: [ :e | e asString includesSubstring: 'references unknown worker' ])
 ]
 
 { #category : 'tests' }
@@ -178,4 +222,38 @@ CRRuntimeConfigurationValidatorTests >> test_scaleConfigurationRangeChecks [
 	self
 		assert: (result errors
 				anySatisfy: [ :e | e includesSubstring: 'maxCount must be >= minCount' ])
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_scheduleIdentifierMustBeSymbol [
+	| cfg worker sched schedule |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+	worker := cfg workerConfigurationNamed: #gateway.
+	sched := worker schedulerConfiguration.
+	schedule := sched schedules first.
+	schedule identifier: 'heartbeat'.	"String on purpose"
+	self
+		assertInvalid: cfg
+		withErrorContaining: 'Schedule identifier must be a Symbol'
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_workerIdentifierMustBeSymbol [
+	| cfg worker |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+	worker := cfg workerConfigurationNamed: #gateway.	"use your actual lookup selector"
+	worker identifier: 'gateway'.	"String on purpose"
+	self
+		assertInvalid: cfg
+		withErrorContaining: 'Worker identifier must be a Symbol'
+]
+
+{ #category : 'helpers' }
+CRRuntimeConfigurationValidatorTests >> validationErrorsFor: aRuntimeConfiguration [
+	^ aRuntimeConfiguration validate errors
+]
+
+{ #category : 'helpers' }
+CRRuntimeConfigurationValidatorTests >> validationResultFor: aCRRuntimeConfiguration [
+	^ aCRRuntimeConfiguration validate
 ]

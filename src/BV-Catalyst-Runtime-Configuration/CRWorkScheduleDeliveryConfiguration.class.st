@@ -37,7 +37,23 @@ CRWorkScheduleDeliveryConfiguration >> overlapBehaviour: anObject [
 ]
 
 { #category : 'validation' }
-CRWorkScheduleDeliveryConfiguration >> validateOn: aValidationResult forScheduleIdentifier: aScheduleIdentifier workerIdentifier: aWorkerIdentifier [
-	overlapBehaviour ifNil: [ aValidationResult addError: 'Schedule ', aScheduleIdentifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify overlap behaviour.' ].
-	missedBehaviour ifNil: [ aValidationResult addError: 'Schedule ', aScheduleIdentifier printString, ' on worker ', aWorkerIdentifier printString, ' must specify missed behaviour.' ].
+CRWorkScheduleDeliveryConfiguration >> validateOn: result forWorkerIdentifier: workerIdentifier scheduleIdentifier: scheduleIdentifier [
+	| workerLabel scheduleLabel |
+	workerLabel := workerIdentifier
+			ifNil: [ '<nil>' ]
+			ifNotNil: [ workerIdentifier printString ].
+
+	scheduleLabel := scheduleIdentifier
+			ifNil: [ '<nil>' ]
+			ifNotNil: [ scheduleIdentifier printString ].
+
+	overlapBehaviour isNil
+		ifTrue: [ result
+				addError: 'Worker ' , workerLabel , ' schedule ' , scheduleLabel
+						, ' delivery overlapBehaviour is required.' ].
+
+	missedBehaviour isNil
+		ifTrue: [ result
+				addError: 'Worker ' , workerLabel , ' schedule ' , scheduleLabel
+						, ' delivery missedBehaviour is required.' ]
 ]
