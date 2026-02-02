@@ -36,7 +36,7 @@ CRWorkerTests >> example_stopPreventsNewWorkButDrainsQueue [
 
 			worker stop.
 
-			[ worker enqueue: (self newBlockUnit: [ counter := counter + 100 ]) ]
+			[ worker enqueue: (self newBlockUnit: [ counter := counter + 1 ]) ]
 				on: CRWorkerNotAcceptingWorkException
 				do: [ :ex | rejected := true ].
 
