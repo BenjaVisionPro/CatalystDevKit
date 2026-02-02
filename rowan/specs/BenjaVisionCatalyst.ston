@@ -1,8 +1,14 @@
 RwLoadSpecificationV2 {
+	#specName : 'BenjaVisionCatalyst',
 	#projectName : 'BenjaVisionCatalyst',
+	#gitUrl : 'git@github.com:BenjaVisionPro/CatalystDevKit.git',
+	#revision : 'main',
 	#projectSpecFile : 'rowan/project.ston',
 	#componentNames : [
 		'Runtime'
+	],
+	#customConditionalAttributes : [
+		'v1'
 	],
 	#platformProperties : {
 		'gemstone' : {

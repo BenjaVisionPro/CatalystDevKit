@@ -1,5 +1,6 @@
 RwLoadComponent {
 	#name : 'Runtime',
+	#condition : 'common',
 	#projectNames : [ ],
 	#componentNames : [ ],
 	#projectNames : [ ],
