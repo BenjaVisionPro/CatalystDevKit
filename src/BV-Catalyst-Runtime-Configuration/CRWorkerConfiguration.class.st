@@ -5,7 +5,8 @@ Class {
 		'identifier',
 		'displayName',
 		'schedulerConfiguration',
-		'workerClass'
+		'workerClass',
+		'services'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -48,6 +49,16 @@ CRWorkerConfiguration >> schedulerConfiguration [
 { #category : 'accessing' }
 CRWorkerConfiguration >> schedulerConfiguration: aCRWorkSchedulerConfiguration [
 	schedulerConfiguration := aCRWorkSchedulerConfiguration
+]
+
+{ #category : 'accessing' }
+CRWorkerConfiguration >> services [
+	^ services
+]
+
+{ #category : 'accessing' }
+CRWorkerConfiguration >> services: anObject [
+	services := anObject
 ]
 
 { #category : 'validation' }

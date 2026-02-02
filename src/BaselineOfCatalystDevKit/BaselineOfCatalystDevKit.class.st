@@ -143,6 +143,7 @@ BaselineOfCatalystDevKit >> runtimeBaselineOn: spec [
 		package: 'BV-Catalyst-Runtime-Core'
 			with: [ spec requires: #('BV-Catalyst-Core' 'BV-Catalyst-Runtime-Configuration') ];
 		package: 'BV-Catalyst-Runtime-Configuration';
+		package: 'BV-Catalyst-Runtime-Services';
 		package: 'BV-Catalyst-Runtime-UI'
 			with: [ spec requires: #('BV-Catalyst-Runtime-Core' 'BV-Catalyst-DevKit-Core') ];
 		package: 'BV-Catalyst-Runtime-ExamplesAndTests'

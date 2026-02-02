@@ -6,6 +6,6 @@ Class {
 }
 
 { #category : 'running' }
-CRTestFailingWorkUnit >> executeWorkUnit [
+CRTestFailingWorkUnit >> executeWorkUnitInContext: aCRWorkUnitExecutionContext [
 	self error: 'Intentional test failure.'
 ]

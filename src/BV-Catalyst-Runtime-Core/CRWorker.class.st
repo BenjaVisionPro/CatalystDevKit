@@ -7,7 +7,8 @@ Class {
 		'scheduler',
 		'idleEnvelope',
 		'status',
-		'announcer'
+		'announcer',
+		'services'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
@@ -29,7 +30,7 @@ CRWorker >> displayName [
 CRWorker >> displayName: aString [
 	"I set my display name."
 
-	displayName := aString asString
+	displayName := aString
 ]
 
 { #category : 'queue' }
@@ -58,11 +59,20 @@ CRWorker >> enqueueScheduled: aWorkUnit scheduleKey: aKey boundaryMillis: bounda
 
 { #category : 'private - running' }
 CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [
-	| unit ctx scheduleContext |
+	| unit unitContext execContext scheduleContext requiredServiceClass |
 	unit := aWorkUnitEnvelope workUnit.
-	ctx := aWorkUnitEnvelope context.
+	unitContext := aWorkUnitEnvelope context.
 
-	[ [ unit executeWorkUnit ]
+	execContext := CRWorkUnitExecutionContext
+			worker: self
+			envelope: aWorkUnitEnvelope.
+
+	requiredServiceClass := unit class requiredWorkerServiceClass.
+	requiredServiceClass
+		ifNotNil: [ execContext
+				service: (self services service: requiredServiceClass requiredByWorkUnitClass: unit class) ].
+
+	[ [ unit executeWorkUnitInContext: execContext ]
 		on: Error
 		do: [ :ex | 
 			announcer
@@ -70,9 +80,7 @@ CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [
 						worker: self
 						workUnit: unit
 						exception: ex) ] ]
-		ensure: [  
-			"Scheduler in-flight completion hook."
-			scheduleContext := ctx
+		ensure: [  "Scheduler in-flight completion hook."scheduleContext := unitContext
 					at: CRScheduleContext
 					ifAbsent: [ nil ].
 			scheduleContext ifNotNil: [ scheduler noteCompletedKey: scheduleContext key ] ]
@@ -86,7 +94,7 @@ CRWorker >> initialize [
 	status := CRStatus stopped.
 	announcer := CRAnnouncer new.
 	scheduler := CRWorkScheduler new.
-
+	services := CRServices onWorker: self.
 	idleEnvelope := CRWorkUnitEnvelope onWorkUnit: CRIdleWorkUnit new
 ]
 
@@ -123,13 +131,19 @@ CRWorker >> runLoop [
 				ifTrue: [ self shouldExitAfterIdle ifTrue: [ ^ self ].
 					self yieldExecution ]
 				ifFalse: [ self executeWorkUnitInEnvelope: envelope ] ] ]
-		ensure: [ status := CRStatus stopped.
+		ensure: [ self uninstallAllServices.
+			status := CRStatus stopped.
 			announcer announce: (CRWorkerStoppedAnnouncement worker: self) ]
 ]
 
 { #category : 'accessing' }
 CRWorker >> scheduler [
 	^ scheduler
+]
+
+{ #category : 'accessing' }
+CRWorker >> services [
+	^ services
 ]
 
 { #category : 'private - running' }
@@ -176,6 +190,11 @@ CRWorker >> timeoutMillisUntilNextWake [
 
 	nextDue := scheduler millisecondsUntilNextDue.
 	^ (nextDue min: self minimumIdleMillis) max: 0
+]
+
+{ #category : 'services' }
+CRWorker >> uninstallAllServices [
+	services uninstallAll
 ]
 
 { #category : 'running' }

@@ -6,7 +6,7 @@ Class {
 }
 
 { #category : 'running' }
-CRIdleWorkUnit >> executeWorkUnit [
+CRIdleWorkUnit >> executeWorkUnitInContext: aCRWorkUnitExecutionContext [
 	"Idle is currently a no-op.
 	Future: a clean hook for idle stats/telemetry if we want it."
 

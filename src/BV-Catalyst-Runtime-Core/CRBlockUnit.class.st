@@ -23,7 +23,7 @@ CRBlockUnit >> block: anObject [
 ]
 
 { #category : 'accessing' }
-CRBlockUnit >> executeWorkUnit [
+CRBlockUnit >> executeWorkUnitInContext: aCRWorkUnitExecutionContext [
 	"I run my block."
 
 	block value
