@@ -1,0 +1,12 @@
+RwLoadComponent {
+	#name : 'Runtime',
+	#projectNames : [ ],
+	#componentNames : [ ],
+	#projectNames : [ ],
+	#packageNames : [
+		'BV-Catalyst-Runtime-Core',
+		'BV-Catalyst-Runtime-Configuration',
+		'BV-Catalyst-Runtime-ExamplesAndTests'
+	],
+	#comment : ''
+}

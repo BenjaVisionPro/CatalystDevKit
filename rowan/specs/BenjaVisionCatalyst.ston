@@ -1,0 +1,15 @@
+RwLoadSpecificationV2 {
+	#projectName : 'BenjaVisionCatalyst',
+	#projectSpecFile : 'rowan/project.ston',
+	#componentNames : [
+		'Runtime'
+	],
+	#platformProperties : {
+		'gemstone' : {
+			'allusers' : {
+				#defaultSymbolDictName : 'UserGlobals'
+			}
+		}
+	},
+	#comment : ''
+}
