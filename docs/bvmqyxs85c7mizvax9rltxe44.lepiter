@@ -244,6 +244,43 @@
 					"uidString" : "qrWS1rWDTo+bv9re9A/SOg=="
 				},
 				"code" : "w := CRWorker new.\nw start.\rw"
+			},
+			{
+				"__type" : "gemstoneSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-02T11:33:14.40568+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-02-02T11:33:19.76554+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "221PaGMjRTWHpmFZmre2ag=="
+				},
+				"code" : "1 + 1",
+				"sessionIdentifier" : {
+					"__type" : "gtGemStoneDefaultSessionIdentifier"
+				}
 			}
 		]
 	},

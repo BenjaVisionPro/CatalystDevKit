@@ -236,14 +236,14 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-01-31T20:41:51.34161+11:00"
+						"dateAndTimeString" : "2026-02-01T08:51:12.656897+11:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
 					"uidString" : "qrWS1rWDTo+bv9re9A/SOg=="
 				},
-				"code" : "910 \\\\ 100"
+				"code" : "w := CRWorker new.\nw start.\rw"
 			}
 		]
 	},
