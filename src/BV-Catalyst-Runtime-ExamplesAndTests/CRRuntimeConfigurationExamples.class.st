@@ -1,7 +1,7 @@
 Class {
 	#name : 'CRRuntimeConfigurationExamples',
 	#superclass : 'Object',
-	#category : 'BV-Catalyst-Runtime-ExamplesAndTests-Examples',
+	#category : 'BV-Catalyst-Runtime-ExamplesAndTests',
 	#package : 'BV-Catalyst-Runtime-ExamplesAndTests',
 	#tag : 'Examples'
 }
