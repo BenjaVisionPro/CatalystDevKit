@@ -58,31 +58,36 @@ CRWorker >> enqueueScheduled: aWorkUnit scheduleKey: aKey boundaryMillis: bounda
 ]
 
 { #category : 'private - running' }
-CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [
-	| unit unitContext execContext scheduleContext requiredServiceClass |
+CRWorker >> executeWorkUnitInEnvelope: aWorkUnitEnvelope [ 
+	| unit ctx scheduleContext execContext requiredServiceClass |
 	unit := aWorkUnitEnvelope workUnit.
-	unitContext := aWorkUnitEnvelope context.
+	ctx := aWorkUnitEnvelope context.
 
 	execContext := CRWorkUnitExecutionContext
-			worker: self
-			envelope: aWorkUnitEnvelope.
+		worker: self
+		envelope: aWorkUnitEnvelope.
 
-	requiredServiceClass := unit class requiredWorkerServiceClass.
-	requiredServiceClass
-		ifNotNil: [ execContext
-				service: (self services service: requiredServiceClass requiredByWorkUnitClass: unit class) ].
+	[[
+		requiredServiceClass := unit class requiredWorkerServiceClass.
+		requiredServiceClass ifNotNil: [
+			execContext service: (self services
+				service: requiredServiceClass
+				requiredByWorkUnitClass: unit class) ].
 
-	[ [ unit executeWorkUnitInContext: execContext ]
-		on: Error
-		do: [ :ex | 
+		unit executeWorkUnitInContext: execContext
+	]
+		on: Exception
+		do: [ :ex |
 			announcer
 				announce: (CRWorkUnitFailedAnnouncement
-						worker: self
-						workUnit: unit
-						exception: ex) ] ]
-		ensure: [  "Scheduler in-flight completion hook."scheduleContext := unitContext
-					at: CRScheduleContext
-					ifAbsent: [ nil ].
+					worker: self
+					workUnit: unit
+					exception: ex) ]]
+		ensure: [
+			"Scheduler in-flight completion hook."
+			scheduleContext := ctx
+				at: CRScheduleContext
+				ifAbsent: [ nil ].
 			scheduleContext ifNotNil: [ scheduler noteCompletedKey: scheduleContext key ] ]
 ]
 
