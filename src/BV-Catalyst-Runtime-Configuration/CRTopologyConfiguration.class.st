@@ -21,7 +21,7 @@ CRTopologyConfiguration >> displayName: aString [
 
 { #category : 'accessing' }
 CRTopologyConfiguration >> hostConfigurationNamed: aHostIdentifier [
-	^ hosts detect: [ :each | each identifier = aHostIdentifier asString ] ifNone: [ nil ]
+	^ hosts detect: [ :each | each identifier = aHostIdentifier ] ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }
@@ -63,6 +63,34 @@ CRTopologyConfiguration >> validateOn: result knownWorkerIdentifiers: knownWorke
 	hosts
 		do: [ :each | 
 			each validateOn: result knownWorkerIdentifiers: knownWorkerIds.
+			each identifier isNil
+				ifFalse: [ (hostIds includes: each identifier)
+						ifTrue: [ result
+								addError: 'Duplicate host identifier ' , each identifier printString , '.' ]
+						ifFalse: [ hostIds add: each identifier ] ] ].
+
+	placementStrategyConfiguration
+		ifNil: [ result addError: 'Topology configuration must specify placement strategy.' ]
+]
+
+{ #category : 'validation' }
+CRTopologyConfiguration >> validateOn: result knownWorkerIdentifiers: knownWorkerIds knownServiceIdentifiers: knownServiceIds [
+	| hostIds |
+	(displayName isNil or: [ displayName asString isEmpty ])
+		ifTrue: [ result addError: 'Topology configuration displayName is required.' ].
+
+	hosts
+		ifNil: [ ^ result addError: 'Topology configuration must specify hosts.' ].
+	hosts isEmpty
+		ifTrue: [ result addError: 'Topology configuration must specify at least one host.' ].
+
+	hostIds := Set new.
+	hosts
+		do: [ :each | 
+			each
+				validateOn: result
+				knownWorkerIdentifiers: knownWorkerIds
+				knownServiceIdentifiers: knownServiceIds.
 			each identifier isNil
 				ifFalse: [ (hostIds includes: each identifier)
 						ifTrue: [ result

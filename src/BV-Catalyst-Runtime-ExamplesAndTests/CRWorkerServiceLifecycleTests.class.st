@@ -7,76 +7,73 @@ Class {
 
 { #category : 'tests' }
 CRWorkerServiceLifecycleTests >> test_servicesInstalledOnStartFromServiceConfigurations [
-	self
-		withRunningWorkerDo: [ :worker :host | 
-			| cfg |
-			cfg := CRWorkerServiceConfiguration new
-					identifier: #testService;
-					serviceClass: CRTestWorkerService;
-					configuration: nil;
-					yourself.
+	| worker host cfg |
+	worker := self newWorker.
 
-			worker stop.	"we need to restart with configs applied"
-			worker serviceConfigurations: {cfg} asOrderedCollection.
-			host startWorker: worker.
+	cfg := CRWorkerServiceConfiguration new
+			serviceClass: CRTestWorkerService;
+			configuration: nil;
+			yourself.
 
-			self assert: (worker services hasServiceClass: CRTestWorkerService) ]
+	worker serviceConfigurations: {cfg} asOrderedCollection.
+
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+	[ self assert: (worker services hasServiceClass: CRTestWorkerService) ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]
 
 { #category : 'tests' }
 CRWorkerServiceLifecycleTests >> test_servicesUninstalledEvenIfAUnitFails [
+	| worker host cfg service |
+	worker := self newWorker.
+
+	cfg := CRWorkerServiceConfiguration new
+			serviceClass: CRTestWorkerService;
+			configuration: nil;
+			yourself.
+
+	worker serviceConfigurations: {cfg} asOrderedCollection.
+
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+	[ service := worker services
+			service: CRTestWorkerService
+			requiredByWorkUnitClass: self class.
+
+	worker enqueue: (CRBlockUnit on: [ Error signal: 'boom' ]).
+
 	self
-		withRunningWorkerDo: [ :worker :host | 
-			| cfg service |
-			cfg := CRWorkerServiceConfiguration new
-					identifier: #testService;
-					serviceClass: CRTestWorkerService;
-					configuration: nil;
-					yourself.
+		waitUntil: [ service installCount = 1 ]
+		upToMSecs: 500
+		description: 'waiting for service install.'.
 
-			worker stop.
-			worker serviceConfigurations: {cfg} asOrderedCollection.
-			host startWorker: worker.
+	worker stop.
+	host ensureStoppedUpToMSecs: self stopTimeoutMSecs.
 
-			service := worker services
-					service: CRTestWorkerService
-					requiredByWorkUnitClass: self class.
-
-			worker enqueue: (CRBlockUnit on: [ Error signal: 'boom' ]).
-
-			self
-				waitUntil: [ service installCount = 1 ]
-				upToMSecs: 500
-				description: 'waiting for service install.'.
-
-			worker stop.
-			host waitForWorkerToStop: worker.
-
-			self assert: service uninstallCount equals: 1 ]
+	self assert: service uninstallCount equals: 1 ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]
 
 { #category : 'tests' }
 CRWorkerServiceLifecycleTests >> test_servicesUninstalledOnStop [
-	self
-		withRunningWorkerDo: [ :worker :host | 
-			| cfg service |
-			cfg := CRWorkerServiceConfiguration new
-					identifier: #testService;
-					serviceClass: CRTestWorkerService;
-					configuration: nil;
-					yourself.
+	| worker host cfg service |
+	worker := self newWorker.
 
-			worker stop.
-			worker serviceConfigurations: {cfg} asOrderedCollection.
-			host startWorker: worker.
+	cfg := CRWorkerServiceConfiguration new
+			serviceClass: CRTestWorkerService;
+			configuration: nil;
+			yourself.
 
-			service := worker services
-					service: CRTestWorkerService
-					requiredByWorkUnitClass: self class.
+	worker serviceConfigurations: {cfg} asOrderedCollection.
 
-			worker stop.
-			host waitForWorkerToStop: worker.
+	host := self startWorker: worker andWaitUpToMSecs: self startTimeoutMSecs.
+	[ service := worker services
+			service: CRTestWorkerService
+			requiredByWorkUnitClass: self class.
 
-			self assert: service uninstallCount equals: 1.
-			self deny: (worker services hasServiceClass: CRTestWorkerService) ]
+	worker stop.
+	host ensureStoppedUpToMSecs: self stopTimeoutMSecs.
+
+	self assert: service uninstallCount equals: 1.
+	self deny: (worker services hasServiceClass: CRTestWorkerService) ]
+		ensure: [ host ensureStoppedUpToMSecs: self stopTimeoutMSecs ]
 ]

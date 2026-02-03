@@ -2,7 +2,7 @@ Class {
 	#name : 'CRRuntimeDeploymentConfiguration',
 	#superclass : 'Object',
 	#instVars : [
-		'workerDeployments'
+		'serviceDeployments'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -11,33 +11,27 @@ Class {
 { #category : 'initialization' }
 CRRuntimeDeploymentConfiguration >> initialize [
 	super initialize.
-	workerDeployments := OrderedCollection new
+	serviceDeployments := OrderedCollection new
+]
+
+{ #category : 'accessing' }
+CRRuntimeDeploymentConfiguration >> serviceDeployments [
+	^ serviceDeployments
+]
+
+{ #category : 'accessing' }
+CRRuntimeDeploymentConfiguration >> serviceDeployments: anObject [
+	serviceDeployments := anObject
 ]
 
 { #category : 'validation' }
-CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIds [
-	workerDeployments ifNil: [ ^ self ].	"Uniqueness"
-	(workerDeployments collect: #workerIdentifier) asSet size
-		= workerDeployments size
-		ifFalse: [ aValidationResult addError: 'Duplicate deployment workerIdentifier' ].
+CRRuntimeDeploymentConfiguration >> validateOn: aValidationResult knownServiceIdentifiers: knownServiceIds [
+	serviceDeployments ifNil: [ ^ self ].
 
-	workerDeployments
-		do: [ :each | each validateOn: aValidationResult knownWorkerIdentifiers: knownWorkerIds ]
-]
+	(serviceDeployments collect: #serviceIdentifier) asSet size
+		= serviceDeployments size
+		ifFalse: [ aValidationResult addError: 'Duplicate deployment serviceIdentifier.' ].
 
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeploymentForIdentifier: aWorkerIdentifier [
-	^ workerDeployments
-		detect: [ :each | each workerIdentifier = aWorkerIdentifier asString ]
-		ifNone: [ nil ]
-]
-
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeployments [
-	^ workerDeployments
-]
-
-{ #category : 'accessing' }
-CRRuntimeDeploymentConfiguration >> workerDeployments: aCollection [
-	workerDeployments := aCollection asOrderedCollection
+	serviceDeployments
+		do: [ :each | each validateOn: aValidationResult knownServiceIdentifiers: knownServiceIds ]
 ]

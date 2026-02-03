@@ -6,7 +6,8 @@ Class {
 		'version',
 		'workers',
 		'topology',
-		'deployment'
+		'deployment',
+		'services'
 	],
 	#category : 'BV-Catalyst-Runtime-Configuration',
 	#package : 'BV-Catalyst-Runtime-Configuration'
@@ -38,8 +39,26 @@ CRRuntimeConfiguration >> initialize [
 	displayName := 'Runtime'.
 	version := nil.
 	workers := OrderedCollection new.
+	services := OrderedCollection new.
 	topology := nil.
 	deployment := nil
+]
+
+{ #category : 'accessing' }
+CRRuntimeConfiguration >> serviceConfigurationNamed: aServiceIdentifier [
+	^ services
+		detect: [ :each | each identifier = aServiceIdentifier ]
+		ifNone: [ nil ]
+]
+
+{ #category : 'accessing' }
+CRRuntimeConfiguration >> services [
+	^ services
+]
+
+{ #category : 'accessing' }
+CRRuntimeConfiguration >> services: anObject [
+	services := anObject
 ]
 
 { #category : 'accessing' }
@@ -68,10 +87,8 @@ CRRuntimeConfiguration >> version: anObject [
 ]
 
 { #category : 'accessing' }
-CRRuntimeConfiguration >> workerConfigurationNamed: anIdentifierString [
-	^ workers
-		detect: [ :each | each identifier = anIdentifierString asString ]
-		ifNone: [ nil ]
+CRRuntimeConfiguration >> workerConfigurationNamed: anIdentifier [
+	^ workers detect: [ :each | each identifier = anIdentifier ] ifNone: [ nil ]
 ]
 
 { #category : 'accessing' }

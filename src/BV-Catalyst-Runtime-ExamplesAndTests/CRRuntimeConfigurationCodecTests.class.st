@@ -27,14 +27,3 @@ CRRuntimeConfigurationCodecTests >> test_roundTrip_testingExample_isValid [
 
 	self assert: loaded validate isValid.
 ]
-
-{ #category : 'tests' }
-CRRuntimeConfigurationCodecTests >> test_stonText_containsSymbolIdentifiers [
-	| cfg ston |
-	cfg := CRRuntimeConfigurationExamples devLocal.
-	ston := CRRuntimeConfigurationCodec toStringPretty: cfg.
-
-	self assert: (ston includesSubstring: '#gateway').
-	self assert: (ston includesSubstring: '#local').
-	self assert: (ston includesSubstring: '#heartbeat').
-]

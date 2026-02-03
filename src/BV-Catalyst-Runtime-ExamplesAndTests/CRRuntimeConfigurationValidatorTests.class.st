@@ -32,73 +32,99 @@ CRRuntimeConfigurationValidatorTests >> assertValid: aCRRuntimeConfiguration [
 ]
 
 { #category : 'tests' }
-CRRuntimeConfigurationValidatorTests >> test_deploymentReferencesUnknownWorkerIsError [
+CRRuntimeConfigurationValidatorTests >> test_deploymentReferencesUnknownServiceIsError [
 	| cfg dep result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
 
-	dep := cfg deployment workerDeployments copy.
+	dep := cfg deployment serviceDeployments copy.
 	dep
-		add: (CRWorkerDeploymentConfiguration new
-				workerIdentifier: #ghostWorkerIdentifier;
+		add: (CRServiceDeploymentConfiguration new
+				serviceIdentifier: #ghostServiceIdentifier;
 				initialCount: 1;
 				yourself).
-	cfg deployment workerDeployments: dep.
+	cfg deployment serviceDeployments: dep.
+
+	result := self assertInvalid: cfg.
+	self
+		assert: (result errors
+				anySatisfy: [ :e | e asString includesSubstring: 'references unknown service' ])
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_deploymentServiceIdentifierMustBeSymbol [
+	| cfg dep result |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+
+	dep := cfg deployment serviceDeployments
+			detect: [ :each | each serviceIdentifier = #simPartition ]
+			ifNone: [ self fail: 'devLocal must include service deployment #simPartition.' ].
+
+	dep serviceIdentifier: 'simPartition'.	"String on purpose"
 
 	result := self assertInvalid: cfg.
 	self
 		assert: (result errors
 				anySatisfy: [ :e | 
-					e asString
-						includesSubstring: 'Deployment workerIdentifier references unknown worker' ])
-]
-
-{ #category : 'tests' }
-CRRuntimeConfigurationValidatorTests >> test_deploymentWorkerIdentifierMustBeSymbol [
-	| cfg dep |
-	cfg := CRRuntimeConfigurationExamples devLocal.
-	dep := cfg deployment workerDeploymentForIdentifier: #gateway.
-	dep workerIdentifier: 'gateway'.	"String on purpose"
-	self
-		assertInvalid: cfg
-		withErrorContaining: 'Deployment workerIdentifier must be a Symbol'
+					(e includesSubstring: 'serviceIdentifier')
+						and: [ e includesSubstring: 'must be a Symbol' ] ])
 ]
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_devExample_stonContainsSymbolIdentifiers [
 	| ston |
 	ston := STON toStringPretty: CRRuntimeConfigurationExamples devLocal.
-	self assert: (ston includesSubstring: '#gateway').
+	self assert: (ston includesSubstring: '#playerGateway').
 	self assert: (ston includesSubstring: '#local').
-	self assert: (ston includesSubstring: '#heartbeat')
+	self assert: (ston includesSubstring: '#simPartition')
 ]
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_duplicateScheduleIdentifierOnWorkerIsError [
 	| cfg worker sched schedule1 schedule2 result |
+
 	cfg := CRRuntimeConfigurationExamples devLocal.
 
-	worker := cfg workerConfigurationNamed: #gateway.
-	sched := worker schedulerConfiguration.
+	"Build a worker configuration just for this test."
+	schedule1 := CRWorkScheduleConfiguration new
+		identifier: #heartbeat;
+		scheduleTypeConfiguration: (CRIntervalWorkScheduleTypeConfiguration new
+			intervalMillis: 2000;
+			yourself);
+		workUnitClass: #CRIdleWorkUnit;
+		deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
+			overlapBehaviour: #skip;
+			missedBehaviour: #skip;
+			yourself);
+		yourself.
 
-	schedule1 := sched schedules first.
 	schedule2 := CRWorkScheduleConfiguration new
-			identifier: schedule1 identifier;
-			scheduleTypeConfiguration: (CRIntervalWorkScheduleTypeConfiguration new
-					intervalMillis: 2000;
-					yourself);
-			workUnitClass: 'CRIdleWorkUnit';
-			deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
-					overlapBehaviour: #skip;
-					missedBehaviour: #skip;
-					yourself);
-			yourself.
+		identifier: #heartbeat; "duplicate on purpose"
+		scheduleTypeConfiguration: (CRIntervalWorkScheduleTypeConfiguration new
+			intervalMillis: 2000;
+			yourself);
+		workUnitClass: #CRIdleWorkUnit;
+		deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
+			overlapBehaviour: #skip;
+			missedBehaviour: #skip;
+			yourself);
+		yourself.
 
-	sched schedules: sched schedules , {schedule2}.
+	sched := CRWorkSchedulerConfiguration new
+		schedules: { schedule1. schedule2 };
+		yourself.
+
+	worker := CRWorkerConfiguration new
+		identifier: #gateway;
+		displayName: 'Gateway Worker';
+		workerClass: #CRWorker;
+		schedulerConfiguration: sched;
+		yourself.
+
+	cfg workers: (cfg workers copyWith: worker).
 
 	result := self assertInvalid: cfg.
-	self
-		assert: (result errors
-				anySatisfy: [ :e | e asString includesSubstring: 'has duplicate schedule identifier' ])
+	self assert: (result errors anySatisfy: [ :e |
+		e asString includesSubstring: 'duplicate schedule identifier' ])
 ]
 
 { #category : 'tests' }
@@ -144,6 +170,19 @@ CRRuntimeConfigurationValidatorTests >> test_hostIdentifierMustBeSymbol [
 ]
 
 { #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_hostReferencesUnknownServiceIsError [ 
+	| cfg host result |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+
+	host := cfg topology hostConfigurationNamed: #local.
+	host services: host services , { #ghostService }.
+
+	result := self assertInvalid: cfg.
+	self assert: (result errors anySatisfy: [ :e |
+		e asString includesSubstring: 'references unknown service' ])
+]
+
+{ #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_hostReferencesUnknownWorkerIsError [
 	| cfg host result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
@@ -159,29 +198,19 @@ CRRuntimeConfigurationValidatorTests >> test_hostReferencesUnknownWorkerIsError 
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_intervalScheduleRequiresPositiveIntervalMillis [
-	| cfg worker sched scheduleType schedule result |
-	cfg := CRRuntimeConfigurationExamples devLocal.
-
-	worker := cfg workerConfigurationNamed: #gateway.
-	sched := worker schedulerConfiguration.
+	| result scheduleType |
+	result := CRRuntimeConfigurationValidationResult new.
 
 	scheduleType := CRIntervalWorkScheduleTypeConfiguration new
 			intervalMillis: 0;
 			yourself.
 
-	schedule := CRWorkScheduleConfiguration new
-			identifier: #badHeartbeat;
-			scheduleTypeConfiguration: scheduleType;
-			workUnitClass: 'CRIdleWorkUnit';
-			deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
-					overlapBehaviour: #skip;
-					missedBehaviour: #skip;
-					yourself);
-			yourself.
+	scheduleType
+		validateOn: result
+		forWorkerIdentifier: #gateway
+		scheduleIdentifier: #badHeartbeat.
 
-	sched schedules: sched schedules , {schedule}.
-
-	result := self assertInvalid: cfg.
+	self deny: result isValid.
 	self
 		assert: (result errors
 				anySatisfy: [ :e | e asString includesSubstring: 'intervalMillis must be a positive Integer' ])
@@ -209,31 +238,57 @@ CRRuntimeConfigurationValidatorTests >> test_missingTopologyIsError [
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_scaleConfigurationRangeChecks [
-	| cfg d scale result |
-	cfg := CRRuntimeConfigurationExamples devLocal.
-
-	d := cfg deployment workerDeploymentForIdentifier: 'simPartition'.
+	| cfg dep scale result |
+	cfg := CRRuntimeConfigurationExamples devLocal.	"Make this test independent of devLocal’s contents."
+	dep := CRServiceDeploymentConfiguration new
+			serviceIdentifier: #simPartition;
+			displayName: 'Sim Partitions';
+			targetHostTags: {#local};
+			initialCount: 1;
+			yourself.
 
 	scale := CRScaleConfiguration new.
 	scale minCount: 5.
 	scale maxCount: 2.	"invalid"
-	d scaleConfiguration: scale.
+	dep scaleConfiguration: scale.
+
+	cfg deployment
+		serviceDeployments: (cfg deployment serviceDeployments copyWith: dep).
 
 	result := self assertInvalid: cfg.
 	self
 		assert: (result errors
-				anySatisfy: [ :e | e includesSubstring: 'maxCount must be >= minCount' ])
+				anySatisfy: [ :e | (e includesSubstring: 'maxCount') and: [ e includesSubstring: 'minCount' ] ])
 ]
 
 { #category : 'tests' }
 CRRuntimeConfigurationValidatorTests >> test_scheduleIdentifierMustBeSymbol [
 	| cfg worker sched schedule result |
-	cfg := CRRuntimeConfigurationExamples devLocal.
+	cfg := CRRuntimeConfigurationExamples devLocal.	"Build the minimum worker config needed for this test (no dependency on devLocal contents)."
+	schedule := CRWorkScheduleConfiguration new
+			identifier: #heartbeat;
+			scheduleTypeConfiguration: (CRIntervalWorkScheduleTypeConfiguration new
+					intervalMillis: 2000;
+					yourself);
+			workUnitClass: #CRIdleWorkUnit;
+			deliveryConfiguration: (CRWorkScheduleDeliveryConfiguration new
+					overlapBehaviour: #skip;
+					missedBehaviour: #skip;
+					yourself);
+			yourself.
 
-	worker := cfg workerConfigurationNamed: #gateway.
-	sched := worker schedulerConfiguration.
-	schedule := sched schedules first.
+	sched := CRWorkSchedulerConfiguration new
+			schedules: {schedule};
+			yourself.
 
+	worker := CRWorkerConfiguration new
+			identifier: #gateway;
+			displayName: 'Gateway Worker';
+			workerClass: #CRWorker;
+			schedulerConfiguration: sched;
+			yourself.
+
+	cfg workers: (cfg workers copyWith: worker).	"Now break it on purpose."
 	schedule identifier: 'heartbeat'.	"String on purpose"
 
 	result := self assertInvalid: cfg.
@@ -243,14 +298,79 @@ CRRuntimeConfigurationValidatorTests >> test_scheduleIdentifierMustBeSymbol [
 ]
 
 { #category : 'tests' }
-CRRuntimeConfigurationValidatorTests >> test_workerIdentifierMustBeSymbol [
-	| cfg worker |
+CRRuntimeConfigurationValidatorTests >> test_serviceDeploymentIdentifierMustBeSymbol [
+	| cfg dep result |
 	cfg := CRRuntimeConfigurationExamples devLocal.
-	worker := cfg workerConfigurationNamed: #gateway.	"use your actual lookup selector"
-	worker identifier: 'gateway'.	"String on purpose"
+
+	dep := CRServiceDeploymentConfiguration new
+			serviceIdentifier: 'simPartition';
+			displayName: 'Sim Partitions';
+			targetHostTags: {#local};
+			initialCount: 1;
+			yourself.	"String on purpose"
+
+	cfg deployment
+		serviceDeployments: (cfg deployment serviceDeployments copyWith: dep).
+
+	result := self assertInvalid: cfg.
+	self
+		assert: (result errors
+				anySatisfy: [ :e | 
+					(e includesSubstring: 'serviceIdentifier')
+						and: [ e includesSubstring: 'must be a Symbol' ] ])
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_serviceDeploymentReferencesUnknownServiceIsError [
+	| cfg dep result |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+
+	dep := cfg deployment serviceDeployments copy.
+	dep
+		add: (CRServiceDeploymentConfiguration new
+				serviceIdentifier: #ghostService;
+				displayName: 'Ghost';
+				targetHostTags: {#local};
+				initialCount: 1;
+				yourself).
+	cfg deployment serviceDeployments: dep.
+
+	result := self assertInvalid: cfg.
+	self
+		assert: (result errors
+				anySatisfy: [ :e | e asString includesSubstring: 'Service deployment references unknown service' ])
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_serviceIdentifierMustBeSymbol [
+	| cfg service |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+
+	service := cfg services first.
+	service identifier: 'playerGateway'.	"String on purpose"
+
 	self
 		assertInvalid: cfg
-		withErrorContaining: 'Worker identifier must be a Symbol'
+		withErrorContaining: 'Service identifier must be a Symbol'
+]
+
+{ #category : 'tests' }
+CRRuntimeConfigurationValidatorTests >> test_workerIdentifierMustBeSymbol [
+	| cfg worker result |
+	cfg := CRRuntimeConfigurationExamples devLocal.
+	worker := CRWorkerConfiguration new
+			identifier: #gateway;
+			displayName: 'Gateway Worker';
+			workerClass: #CRWorker;
+			yourself.
+
+	cfg workers: (cfg workers copyWith: worker).	"Break it on purpose."
+	worker identifier: 'gateway'.	"String on purpose"
+
+	result := self assertInvalid: cfg.
+	self
+		assert: (result errors
+				anySatisfy: [ :e | e asString includesSubstring: 'Worker identifier must be a Symbol' ])
 ]
 
 { #category : 'helpers' }

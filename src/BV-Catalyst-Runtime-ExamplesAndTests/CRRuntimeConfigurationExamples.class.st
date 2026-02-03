@@ -17,61 +17,46 @@ CRRuntimeConfigurationExamples class >> allRuntimeConfigurations [
 { #category : 'examples' }
 CRRuntimeConfigurationExamples class >> devLocal [
 	<gtExample>
-	| cfg topology host deployment heartbeatDelivery heartbeatType heartbeatSchedule scheduler gateway sim playerView |
+	| cfg topology host deployment gatewayService simService viewService |
 	cfg := CRRuntimeConfiguration new
 			displayName: 'Dev Local';
 			yourself.
 
-	heartbeatDelivery := CRWorkScheduleDeliveryConfiguration new
-			overlapBehaviour: #skip;
-			missedBehaviour: #skip;
+	gatewayService := CRRuntimeServiceConfiguration new
+			identifier: #playerGateway;
+			displayName: 'Player Gateway';
+			serviceClass: CRTestWorkerService;
+			configuration: nil;
 			yourself.
 
-	heartbeatType := CRIntervalWorkScheduleTypeConfiguration new
-			intervalMillis: 2000;
-			yourself.
-
-	heartbeatSchedule := CRWorkScheduleConfiguration new
-			identifier: #heartbeat;
-			scheduleTypeConfiguration: heartbeatType;
-			workUnitClass: #CRIdleWorkUnit;
-			deliveryConfiguration: heartbeatDelivery;
-			yourself.
-
-	scheduler := CRWorkSchedulerConfiguration new
-			schedules: {heartbeatSchedule};
-			yourself.
-
-	gateway := CRWorkerConfiguration new
-			identifier: #gateway;
-			displayName: 'Client Gateway';
-			workerClass: #CRWorker;
-			schedulerConfiguration: scheduler;
-			yourself.
-
-	sim := CRWorkerConfiguration new
+	simService := CRRuntimeServiceConfiguration new
 			identifier: #simPartition;
 			displayName: 'Simulation Partition';
-			workerClass: #CRWorker;
+			serviceClass: CRTestWorkerServiceB;
+			configuration: nil;
 			yourself.
 
-	playerView := CRWorkerConfiguration new
+	viewService := CRRuntimeServiceConfiguration new
 			identifier: #playerView;
 			displayName: 'Player View';
-			workerClass: #CRWorker;
+			serviceClass: CRTestWorkerServiceC;
+			configuration: nil;
 			yourself.
 
 	cfg
-		workers: {gateway.
-				sim.
-				playerView}.
+		services: {gatewayService.
+				simService.
+				viewService} asOrderedCollection.
+	cfg workers: #().	"Not required for service-first deployment."
 
 	host := CRHostConfiguration new
 			identifier: #local;
 			displayName: 'Local Host';
 			address: 'localhost';
-			maxProcesses: 6;
-			workers: {#gateway.
+			maxProcesses: 200;
+			tags: {#local};
+			workers: #();
+			services: {#playerGateway.
 					#simPartition.
 					#playerView};
 			yourself.
@@ -85,18 +70,24 @@ CRRuntimeConfigurationExamples class >> devLocal [
 	cfg topology: topology.
 
 	deployment := CRRuntimeDeploymentConfiguration new
-			workerDeployments: {CRWorkerDeploymentConfiguration new
-						workerIdentifier: #gateway;
+			serviceDeployments: {CRServiceDeploymentConfiguration new
+						serviceIdentifier: #playerGateway;
+						displayName: 'Gateway Instances';
+						targetHostTags: {#local};
 						initialCount: 1;
 						yourself.
-					CRWorkerDeploymentConfiguration new
-						workerIdentifier: #simPartition;
+					CRServiceDeploymentConfiguration new
+						serviceIdentifier: #simPartition;
+						displayName: 'Sim Instances';
+						targetHostTags: {#local};
 						initialCount: 2;
 						yourself.
-					CRWorkerDeploymentConfiguration new
-						workerIdentifier: #playerView;
+					CRServiceDeploymentConfiguration new
+						serviceIdentifier: #playerView;
+						displayName: 'View Instances';
+						targetHostTags: {#local};
 						initialCount: 1;
-						yourself};
+						yourself} asOrderedCollection;
 			yourself.
 
 	cfg deployment: deployment.
@@ -111,18 +102,20 @@ CRRuntimeConfigurationExamples class >> devLocalSTON [
 ]
 
 { #category : 'examples' }
-CRRuntimeConfigurationExamples class >> testingLocal [
+CRRuntimeConfigurationExamples class >> testingLocal [ 
 	<gtExample>
 	| cfg host |
-	cfg := self devLocal copy.	
-	
+	cfg := self devLocal copy.
+
 	"More processes available"
 	host := cfg topology hostConfigurationNamed: #local.
-	host maxProcesses: 12.	
-	
-	"More workers deployed"
-	(cfg deployment workerDeploymentForIdentifier: #simPartition) initialCount: 6.
-	(cfg deployment workerDeploymentForIdentifier: #playerView) initialCount: 3.
+	host maxProcesses: 400.
+
+	"More services deployed"
+	(cfg deployment serviceDeployments detect: [ :each | each serviceIdentifier = #simPartition ])
+		initialCount: 6.
+	(cfg deployment serviceDeployments detect: [ :each | each serviceIdentifier = #playerView ])
+		initialCount: 3.
 
 	^ cfg
 ]
