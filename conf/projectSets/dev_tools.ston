@@ -4,9 +4,9 @@ GDKProjectSet {
 	#comment : 'Adding J4P, Sparkle and GT IDE support',
 	#loadSpecs : {
 		'RemoteServiceReplication' : {
-			'revision' : 'martin-136PortRange',
+			'revision' : 'main-v2',
 			'gitUrls' : {
-				'origin' : 'https://github.com/feenkcom/RemoteServiceReplication.git'
+				'origin' : 'git@github.com:GemTalk/RemoteServiceReplication.git'
 			}
 		},
 		'RowanClientServicesV3' : {
