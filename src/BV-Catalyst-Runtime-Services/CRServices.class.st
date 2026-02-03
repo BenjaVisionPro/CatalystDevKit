@@ -17,6 +17,11 @@ CRServices class >> onWorker: aCRWorker [
 ]
 
 { #category : 'testing' }
+CRServices >> hasAnyServices [
+	^ byClass isEmpty not
+]
+
+{ #category : 'testing' }
 CRServices >> hasServiceClass: aServiceClass [
 	^ byClass includesKey: aServiceClass
 ]
@@ -74,10 +79,13 @@ CRServices >> serviceOrNil: aServiceClass [
 
 { #category : 'lifecycle' }
 CRServices >> uninstallAll [
-	| services |
-	services := byClass values asArray.
+	| all |
+	byClass ifNil: [ ^ self ].
 
-	services reverseDo: [ :each | each uninstallFromWorker: worker ].
+	all := byClass values asArray.
+
+	all
+		do: [ :each | [ each uninstallFromWorker: worker ] on: Error do: [ :ex | nil ] ].
 
 	byClass removeAll
 ]

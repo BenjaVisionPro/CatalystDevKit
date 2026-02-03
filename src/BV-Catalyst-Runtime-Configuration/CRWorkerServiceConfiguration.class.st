@@ -32,6 +32,13 @@ CRWorkerServiceConfiguration >> configuration: anObject [
 	configuration := anObject
 ]
 
+{ #category : 'validation' }
+CRWorkerServiceConfiguration >> installOnWorker: aCRWorker [
+	aCRWorker services
+		installServiceClass: serviceClass
+		configuration: configuration
+]
+
 { #category : 'accessing' }
 CRWorkerServiceConfiguration >> serviceClass [
 	^ serviceClass

@@ -8,7 +8,8 @@ Class {
 		'idleEnvelope',
 		'status',
 		'announcer',
-		'services'
+		'services',
+		'serviceConfigurations'
 	],
 	#category : 'BV-Catalyst-Runtime-Core',
 	#package : 'BV-Catalyst-Runtime-Core'
@@ -103,6 +104,15 @@ CRWorker >> initialize [
 	idleEnvelope := CRWorkUnitEnvelope onWorkUnit: CRIdleWorkUnit new
 ]
 
+{ #category : 'services' }
+CRWorker >> installConfiguredServices [
+	services hasAnyServices ifTrue: [ ^ self ].
+
+	serviceConfigurations ifNil: [ ^ self ].
+
+	serviceConfigurations do: [ :each | each installOnWorker: self ]
+]
+
 { #category : 'testing' }
 CRWorker >> isAcceptingWork [
 	^ status == CRStatus running
@@ -136,7 +146,7 @@ CRWorker >> runLoop [
 				ifTrue: [ self shouldExitAfterIdle ifTrue: [ ^ self ].
 					self yieldExecution ]
 				ifFalse: [ self executeWorkUnitInEnvelope: envelope ] ] ]
-		ensure: [ self uninstallAllServices.
+		ensure: [ self uninstallServices.
 			status := CRStatus stopped.
 			announcer announce: (CRWorkerStoppedAnnouncement worker: self) ]
 ]
@@ -144,6 +154,11 @@ CRWorker >> runLoop [
 { #category : 'accessing' }
 CRWorker >> scheduler [
 	^ scheduler
+]
+
+{ #category : 'services' }
+CRWorker >> serviceConfigurations: aCollection [
+	serviceConfigurations := aCollection
 ]
 
 { #category : 'accessing' }
@@ -164,6 +179,7 @@ CRWorker >> shouldExitAfterIdle [
 CRWorker >> start [
 	"Block and run the worker loop until shutdown completes."
 
+	self installConfiguredServices.
 	^ self runLoop
 ]
 
@@ -200,6 +216,13 @@ CRWorker >> timeoutMillisUntilNextWake [
 { #category : 'services' }
 CRWorker >> uninstallAllServices [
 	services uninstallAll
+]
+
+{ #category : 'services' }
+CRWorker >> uninstallServices [
+	services ifNil: [ ^ self ].
+
+	[ services uninstallAll ] on: Error do: [ :ex | nil ]
 ]
 
 { #category : 'running' }
