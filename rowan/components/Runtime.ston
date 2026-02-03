@@ -3,8 +3,10 @@ RwLoadComponent {
 	#projectNames : [ ],
 	#componentNames : [ ],
 	#packageNames : [
+		'BV-Catalyst-Runtime-Core',
 		'BV-Catalyst-Runtime-Configuration',
 		'BV-Catalyst-Runtime-Services',
+		'BV-Catalyst-Runtime-ExamplesAndTests',
 		'BV-Catalyst-Runtime-Server-GemStone'
 	],
 	#comment : ''
