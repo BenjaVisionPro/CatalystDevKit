@@ -1,6 +1,6 @@
 RwLoadSpecificationV2 {
-	#specName : 'BenjaVisionCatalyst',
-	#projectName : 'BenjaVisionCatalyst',
+	#specName : 'CatalystDevKit',
+	#projectName : 'CatalystDevKit',
 	#gitUrl : 'git@github.com:BenjaVisionPro/CatalystDevKit.git',
 	#revision : 'main',
 	#projectSpecFile : 'rowan/project.ston',
