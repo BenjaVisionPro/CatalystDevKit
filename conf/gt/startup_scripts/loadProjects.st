@@ -74,4 +74,9 @@ Metacello new
 	baseline: 'CatalystDevKit';
 	load.
 
+Metacello new
+	repository: projectsRoot, '/CatalystRuntime/src';
+	baseline: 'CatalystRuntime';
+	load.
+
 2 seconds wait
