@@ -8,10 +8,10 @@ GDKProjectSet {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystDevKit.git'
 			}
 		},
-		'CatalystConnectGS' : {
+		'CatalystRuntime' : {
 			'revision' : 'main',
 			'gitUrls' : {
-				'origin' : 'git@github.com:BenjaVisionPro/CatalystConnectGS.git'
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystRuntime.git'
 			}
 		},
 		'T2F2T-Conversion' : {

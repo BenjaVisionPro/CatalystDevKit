@@ -6,8 +6,8 @@ install_projects() {
   gitDir="$1"
   : "${gitDir:?gitDir is required}"
 
-  information_banner "Installing BenjaVision Catalyst"
-  installProject.stone "file:${gitDir}/CatalystDevKit/rowan/specs/CatalystDevKit.ston" \
+  information_banner "Installing Catalyst Runtime"
+  installProject.stone "file:${gitDir}/CatalystRuntime/rowan/specs/CatalystRuntime.ston" \
     --projectsHome="${gitDir}" -D
 
   information_banner "Installing T2F2T-Conversion"
