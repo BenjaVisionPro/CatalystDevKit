@@ -128,49 +128,15 @@ BaselineOfCatalystDevKit >> legacyBaselineOn: spec [
 BaselineOfCatalystDevKit >> newArchitectureBaselineOn: spec [
 	"I define the new Catalyst Runtime / Simulator / Ecosystem packages."
 
-	self runtimeBaselineOn: spec.
 	self simulatorBaselineOn: spec.
 	self ecosystemBaselineOn: spec
-]
-
-{ #category : 'baseline' }
-BaselineOfCatalystDevKit >> runtimeBaselineOn: spec [
-	"I define all runtime packages (common + platform-specific) and runtime groups."
-
-	"Runtime (CR*) - common, platform-neutral"
-
-	spec
-		package: 'BV-Catalyst-Runtime-Core'
-			with: [ spec requires: #('BV-Catalyst-Core' 'BV-Catalyst-Runtime-Configuration') ];
-		package: 'BV-Catalyst-Runtime-Configuration';
-		package: 'BV-Catalyst-Runtime-Services';
-		package: 'BV-Catalyst-Runtime-UI'
-			with: [ spec requires: #('BV-Catalyst-Runtime-Core' 'BV-Catalyst-DevKit-Core') ];
-		package: 'BV-Catalyst-Runtime-ExamplesAndTests'
-			with: [ spec requires: #('BV-Catalyst-Runtime-Core') ].
-	spec
-		for: #pharo
-		do: [ spec
-				package: 'BV-Catalyst-Runtime-Server-Pharo'
-				with: [ spec requires: #('BV-Catalyst-Runtime-Core') ] ].
-
-	spec
-		for: #gemstone
-		do: [ spec
-				package: 'BV-Catalyst-Runtime-Server-GemStone'
-				with: [ spec requires: #('BV-Catalyst-Runtime-Core') ] ].
-	spec
-		group: 'runtime' with: #('BV-Catalyst-Runtime-Core');
-		group: 'runtime-tests' with: #('BV-Catalyst-Runtime-ExamplesAndTests')
 ]
 
 { #category : 'baseline' }
 BaselineOfCatalystDevKit >> simulatorBaselineOn: spec [
 	"I define the simulator packages."
 	spec
-		package: 'BV-Catalyst-Simulator-Core'
-			with: [ spec requires: #('BV-Catalyst-Runtime-Core') ];
-
+		package: 'BV-Catalyst-Simulator-Core';
 		package: 'BV-Catalyst-Simulator-Commands'
 			with: [ spec requires: #('BV-Catalyst-Simulator-Core') ];
 
