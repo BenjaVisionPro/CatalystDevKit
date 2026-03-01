@@ -46,6 +46,12 @@ GDKProjectSet {
 				'origin' : 'git@github.com:feenkcom/gtoolkit-remote.git'
 			}
 		},
+		'gt4llm' : {
+			'revision' : 'release',
+			'gitUrls' : {
+				'origin' : 'git@github.com:feenkcom/gt4llm.git'
+			}
+		},
 		'gt4gemstone' : {
 			'revision' : 'release',
 			'gitUrls' : {

@@ -214,10 +214,12 @@ spinner_start() {
 }
 
 spinner_stop() {
-  { kill -9 $spinner_pid && wait; } 2>/dev/null
-  set -m
-  echo -en "\033[2K\r"
-  tput cnorm # reset cursor
+  if [ -n "${spinner_pid:-}" ]; then
+    { kill "$spinner_pid" && wait "$spinner_pid"; } 2>/dev/null || :
+    spinner_pid=
+    printf '\033[2K\r' 2>/dev/null || :
+    tput cnorm 2>/dev/null || : # reset cursor
+  fi
 }
 trap spinner_stop EXIT
 

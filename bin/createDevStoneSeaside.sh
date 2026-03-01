@@ -148,10 +148,10 @@ information_banner "Registering stones directory: ${stonesDir}"
 registerStonesDirectory.solo --registry="$registry" --stonesDirectory="${stonesDir}"
 
 # ---------------------------------------------------------
-# Create the stone (template: default_rowan3)
+# Create the stone (template: default_seaside)
 # ---------------------------------------------------------
-information_banner "Creating stone '${stoneName}' (template: default_rowan3)"
-createStone.solo --registry="$registry" --template=default_rowan3 "$stoneName" "$gemStoneVersion"
+information_banner "Creating stone '${stoneName}' (template: default_seaside)"
+createStone.solo --registry="$registry" --template=default_seaside "$stoneName" "$gemStoneVersion"
 
 # macOS: disable native code (JIT) for this stone
 case "${OSTYPE:-}" in
@@ -184,13 +184,40 @@ cd "${stonesDir}/${stoneName}"
 # Jadeite requirement: turn on unicodeComparisonMode
 enableUnicodeCompares.topaz -lq
 
-# Install Dev Tools (from dev_tools set dir)
-information_banner "Installing dev tools projects from ${gitDir_devtools}"
-install_devtools_projects "${gitDir_devtools}"
 
-# Install User Projects (from projects set dir)
-information_banner "Installing user projects from ${gitDir_projects}"
-install_projects "${gitDir_projects}"
+#
+# ---------------------------------------------------------
+# This is the seaside stone load script.
+# ---------------------------------------------------------
+#
+
+# We need to update a bunch of stuff so that GT works. 
+# At this stage we should have the GT scripts in a known location
+
+gtScriptsDir="${gitDir_devtools}/gt4gemstone/scripts/"
+
+# Update permissions to allow GT and Seaside to coexist
+information_banner "Expand permissions."
+topaz -l -I ${gtScriptsDir}/loginSystemUser.topaz  -S ${gtScriptsDir}/seaside/seaside-permissions.topaz < /dev/zero
+
+# Install Seaside
+information_banner "Install seaside."
+topaz -l -I ${gtScriptsDir}/loginDataCurator.topaz  -S ${gtScriptsDir}/seaside/installSeaside.topaz < /dev/zero
+
+# Install GT Symbol Dict
+information_banner "Add GlamorousToolkitGlobals symbol dictionary."
+topaz -l -I "${gtScriptsDir}/loginDataCurator.topaz"  -S "${gtScriptsDir}/seaside/gt-symbol-dictionary.topaz" < /dev/zero
+information_banner "Patch symbol dictionary."
+"${gtScriptsDir}/seaside/patch-dictionaries.sh"
+
+# Load GT
+export GEMSTONE_WORKSPACE=${projectsRoot}
+export RELEASED_PACKAGE_GEMSTONE_NAME=dev_tools
+information_banner "Load gt4gemstone."
+"${gtScriptsDir}/seaside/inputRelease.sh" -s "${stoneName}"
+
+
+
 
 # Restore working directory
 cd "${workingDirectory}"

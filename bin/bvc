@@ -53,6 +53,25 @@ ensure_init() {
   fi
 }
 
+ensure_default_init() {
+  ensure_init "${DEFAULT_REGISTRY}"
+}
+
+sync_projects_for_registry() {
+  reg="$1"
+  "${SCRIPT_DIR}/pullProjects.sh" --registry="$reg"
+}
+
+j4p_installed() {
+  j4p_dir="$(abs_from_cwd "${J4P_INSTALL_DIR}")"
+  [ -x "${j4p_dir}/pharo-ui" ] || [ -f "${j4p_dir}/pharo-ui" ]
+}
+
+gt_installed() {
+  gt_dir="$(abs_from_cwd "${GT_INSTALL_DIR}")"
+  [ -e "${gt_dir}/${GT_APP_NAME}.image" ]
+}
+
 # ---------------------------------------------------------
 # Commands
 # ---------------------------------------------------------
@@ -80,7 +99,7 @@ cmd_init() {
   exit_0_banner "init complete"
 }
 
-cmd_createDevStone() {
+cmd_catalystStone() {
   # Parse everything first (flags can appear anywhere)
   registryName="${DEFAULT_REGISTRY}"
   gemStoneVersion=""
@@ -114,21 +133,35 @@ cmd_createDevStone() {
   elif [ -n "$stoneName" ] && [ -n "$gemStoneVersion" ]; then
     : # ok
   else
-    error_banner "Invalid arguments to createDevStone."
+    error_banner "Invalid arguments to catalystStone."
     print_help; exit 1
   fi
 
   ensure_init "$registryName"
 
-  "${SCRIPT_DIR}/createDevStone.sh" \
+  "${SCRIPT_DIR}/createDevStoneSeaside.sh" \
     --registry="$registryName" \
     "$stoneName" "$gemStoneVersion"
 
-  exit_0_banner "createDevStone complete"
+  exit_0_banner "catalystStone complete"
 }
 
 cmd_j4p() {
-  # Install/update J4P if needed
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --help|-h) print_help; exit 0 ;;
+      *) error_banner "Unknown option for j4p: $1"; print_help; exit 1 ;;
+    esac
+    shift
+  done
+
+  ensure_default_init
+  if ! j4p_installed; then
+    information_banner "J4P not found locally — syncing project sets before install."
+    sync_projects_for_registry "${DEFAULT_REGISTRY}"
+  fi
+
+  # Install/update J4P if needed.
   "${SCRIPT_DIR}/setupJ4P.sh"
 
   j4p_dir="$(abs_from_cwd "${J4P_INSTALL_DIR}")"
@@ -148,7 +181,21 @@ cmd_j4p() {
   )
 }
 
-cmd_gt() {
+cmd_devkit() {
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --help|-h) print_help; exit 0 ;;
+      *) error_banner "Unknown option for devkit: $1"; print_help; exit 1 ;;
+    esac
+    shift
+  done
+
+  ensure_default_init
+  if ! gt_installed; then
+    information_banner "DevKit not found locally — syncing project sets before install."
+    sync_projects_for_registry "${DEFAULT_REGISTRY}"
+  fi
+
   "${SCRIPT_DIR}/setupGT.sh"
 
   gt_dir="$(abs_from_cwd "${GT_INSTALL_DIR}")"
@@ -186,59 +233,20 @@ cmd_gt() {
   )
 }
 
-cmd_setup() {
-  # Daily setup: ensure GSDevKit + registry, create dev stone, install GT + J4P.
-  # Same arg pattern as createDevStone: [--registry=NAME] [stoneName [gemstoneVersion]]
+cmd_pull() {
   registryName="${DEFAULT_REGISTRY}"
-  gemStoneVersion=""
-  stoneName=""
-
   while [ $# -gt 0 ]; do
     case "$1" in
       --registry=*) registryName=${1#*=} ;;
-      --*)  error_banner "Unknown option: $1"; print_help; exit 1 ;;
-      *)
-        if [ -z "$stoneName" ]; then
-          stoneName="$1"
-        elif [ -z "$gemStoneVersion" ]; then
-          gemStoneVersion="$1"
-        else
-          error_banner "Too many arguments."
-          print_help; exit 1
-        fi
-        ;;
+      --help|-h) print_help; exit 0 ;;
+      *) error_banner "Unknown option for pull: $1"; print_help; exit 1 ;;
     esac
     shift
   done
 
-  # Defaults for omitted args
-  if [ -z "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
-    stoneName="${GEMSTONE_STONE_NAME}"
-    gemStoneVersion="${GEMSTONE_VERSION}"
-  elif [ -n "$stoneName" ] && [ -z "$gemStoneVersion" ]; then
-    gemStoneVersion="${GEMSTONE_VERSION}"
-  elif [ -n "$stoneName" ] && [ -n "$gemStoneVersion" ]; then
-    : # ok
-  else
-    error_banner "Invalid arguments to setup."
-    print_help; exit 1
-  fi
-
-  information_banner "Setup: registry=${registryName} stone=${stoneName} version=${gemStoneVersion}"
-
-  # 1) Ensure environment (GSDevKit + registry)
-  ensure_init "$registryName"
-
-  # 2) Create / verify dev stone
-  "${SCRIPT_DIR}/createDevStone.sh" \
-    --registry="$registryName" \
-     "$stoneName" "$gemStoneVersion"
-
-  # 3) Install GT and J4P (idempotent)
-  "${SCRIPT_DIR}/setupGT.sh"
-  "${SCRIPT_DIR}/setupJ4P.sh"
-
-  exit_0_banner "setup complete"
+  ensure_init "${registryName}"
+  sync_projects_for_registry "${registryName}"
+  exit_0_banner "pull complete"
 }
 
 print_help() {
@@ -250,40 +258,41 @@ Commands:
       Ensure GSDevKit is installed and the registry exists.
       Default registry: ${DEFAULT_REGISTRY}
 
-  createDevStone [--registry=NAME] [stoneName [gemstoneVersion]]
-      Ensure environment is ready, then create a development stone.
+  pull [--registry=NAME]
+      Sync configured project sets using gsDevKit_stones project-set commands.
+      Default registry: ${DEFAULT_REGISTRY}
+
+  catalystStone [--registry=NAME] [stoneName [gemstoneVersion]]
+      Ensure environment is ready, then create a Catalyst development stone.
       Defaults when not provided:
         stone=${GEMSTONE_STONE_NAME}
         version=${GEMSTONE_VERSION}
         registry=${DEFAULT_REGISTRY}
 
   j4p
-      Run setupJ4P.sh (idempotent) and then launch the J4P IDE.
+      Ensure init, install J4P when missing, then launch J4P.
+      On first build, runs 'bvc pull' first.
 
-  gt
-      Run setupGT.sh (idempotent) and then launch Glamorous Toolkit.
-
-  setup [--registry=NAME] [stoneName [gemstoneVersion]]
-      Daily setup: ensure env, create dev stone, install GT and J4P.
-      Uses the same defaults as createDevStone.
+  devkit
+      Ensure init, install GT DevKit when missing, then launch it.
+      On first build, runs 'bvc pull' first.
 
 Examples:
   bvc init
   bvc init --registry=myReg
   bvc init myReg
 
-  bvc createDevStone
-  bvc createDevStone myStone
-  bvc createDevStone myStone 3.7.4.3
-  bvc createDevStone --registry=myReg
-  bvc createDevStone --registry=myReg myStone
-  bvc createDevStone myStone 3.7.4.3 --registry=myReg
+  bvc pull
+
+  bvc catalystStone
+  bvc catalystStone myStone
+  bvc catalystStone myStone 3.7.4.3
+  bvc catalystStone --registry=myReg
+  bvc catalystStone --registry=myReg myStone
+  bvc catalystStone myStone 3.7.4.3 --registry=myReg
 
   bvc j4p
   bvc devkit
-  bvc setup
-  bvc setup myStone
-  bvc setup --registry=myReg myStone 3.7.4.3
 
 Notes:
 - Config precedence: ENV > CWD/*.bvc > \$BVC_CONF_DIR/bvc/bvc_defaults > bundled > safety net.
@@ -304,10 +313,12 @@ fi
 
 case "$cmd" in
   init)            cmd_init "$@" ;;
-  createDevStone)  cmd_createDevStone "$@" ;;
+  pull)            cmd_pull "$@" ;;
+  catalystStone)   cmd_catalystStone "$@" ;;
+  createDevStone)  cmd_catalystStone "$@" ;;
   j4p)             cmd_j4p "$@" ;;
-  devkit)          cmd_gt "$@" ;;
-  setup)           cmd_setup "$@" ;;
+  devkit|gt)       cmd_devkit "$@" ;;
+  setup)           cmd_catalystStone "$@" ;;
   help|--help|-h)  print_help; exit 0 ;;
   *)               error_banner "Unknown command: $cmd"; print_help; exit 1 ;;
 esac
