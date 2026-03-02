@@ -194,14 +194,19 @@ enableUnicodeCompares.topaz -lq
 # We need to update a bunch of stuff so that GT works. 
 # At this stage we should have the GT scripts in a known location
 
-gtScriptsDir="${gitDir_devtools}/gt4gemstone/scripts/"
+gtScriptsDir="${gitDir_devtools}/gt4gemstone/scripts"
+PATH="${stonesDir}/${stoneName}/product/bin:$PATH"
+chmod +x "${gtScriptsDir}/*.sh"
+chmod +x "${gtScriptsDir}/seaside/*.sh"
+
+export STONE=${stoneName}
 
 # Update permissions to allow GT and Seaside to coexist
-information_banner "Expand permissions."
+information_banner "Expand permissions. using ${gtScriptsDir}/loginSystemUser.topaz"
 topaz -l -I ${gtScriptsDir}/loginSystemUser.topaz  -S ${gtScriptsDir}/seaside/seaside-permissions.topaz < /dev/zero
 
 # Install Seaside
-information_banner "Install seaside."
+information_banner "Install seaside. using ${gtScriptsDir}/loginDataCurator.topaz"
 topaz -l -I ${gtScriptsDir}/loginDataCurator.topaz  -S ${gtScriptsDir}/seaside/installSeaside.topaz < /dev/zero
 
 # Install GT Symbol Dict
@@ -213,6 +218,7 @@ information_banner "Patch symbol dictionary."
 # Load GT
 export GEMSTONE_WORKSPACE=${projectsRoot}
 export RELEASED_PACKAGE_GEMSTONE_NAME=dev_tools
+
 information_banner "Load gt4gemstone."
 "${gtScriptsDir}/seaside/inputRelease.sh" -s "${stoneName}"
 
