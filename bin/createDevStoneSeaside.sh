@@ -196,8 +196,8 @@ enableUnicodeCompares.topaz -lq
 
 gtScriptsDir="${gitDir_devtools}/gt4gemstone/scripts"
 PATH="${stonesDir}/${stoneName}/product/bin:$PATH"
-chmod +x "${gtScriptsDir}/*.sh"
-chmod +x "${gtScriptsDir}/seaside/*.sh"
+#chmod +x "${gtScriptsDir}/*.sh"
+#chmod +x "${gtScriptsDir}/seaside/*.sh"
 
 export STONE=${stoneName}
 
@@ -212,13 +212,15 @@ topaz -l -I ${gtScriptsDir}/loginDataCurator.topaz  -S ${gtScriptsDir}/seaside/i
 # Install GT Symbol Dict
 information_banner "Add GlamorousToolkitGlobals symbol dictionary."
 topaz -l -I "${gtScriptsDir}/loginDataCurator.topaz"  -S "${gtScriptsDir}/seaside/gt-symbol-dictionary.topaz" < /dev/zero
+
+# Patch GT Source so it installed in the GT Symbol Dict
+export GEMSTONE_WORKSPACE=${projectsRoot}
+export RELEASED_PACKAGE_GEMSTONE_NAME=dev_tools
+
 information_banner "Patch symbol dictionary."
 "${gtScriptsDir}/seaside/patch-dictionaries.sh"
 
 # Load GT
-export GEMSTONE_WORKSPACE=${projectsRoot}
-export RELEASED_PACKAGE_GEMSTONE_NAME=dev_tools
-
 information_banner "Load gt4gemstone."
 "${gtScriptsDir}/seaside/inputRelease.sh" -s "${stoneName}"
 
