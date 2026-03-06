@@ -13,7 +13,8 @@ Metacello new
 	repository: 'github://svenvc/NeoJSON/repository';
 	baseline: 'NeoJSON';
 	load.
-
+	
+"
 Metacello new
 	baseline:'Seaside3';
 	repository: 'github://SeasideSt/Seaside:master/repository';
@@ -49,6 +50,7 @@ Metacello new
 	repository: 'gitlocal:///opt/git/BenjaVision/CatalystWeb/src';
 	baseline: 'CatalystWeb';
 	load.
+"
 
 Transcript show: 'LOADING CatalystDevKit FROM ', 
 	(projectsRoot ifNil: ['<none>']).
@@ -56,6 +58,11 @@ Transcript show: 'LOADING CatalystDevKit FROM ',
 Metacello new
 	repository: projectsRoot, '/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
+	load.
+
+Metacello new
+	repository: projectsRoot, '/CatalystFoundation/src';
+	baseline: 'CatalystFoundation';
 	load.
 
 Metacello new

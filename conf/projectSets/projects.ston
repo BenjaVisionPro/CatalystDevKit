@@ -8,16 +8,16 @@ GDKProjectSet {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystDevKit.git'
 			}
 		},
+		'CatalystFoundation' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystFoundation.git'
+			}
+		},
 		'CatalystRuntime' : {
 			'revision' : 'main',
 			'gitUrls' : {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystRuntime.git'
-			}
-		},
-		'T2F2T-Conversion' : {
-			'revision' : 'master',
-			'gitUrls' : {
-				'origin' : 'git@github.com:GsDevKit/T2F2T-Conversion.git'
 			}
 		},
 		'GsApplicationTools' : {
