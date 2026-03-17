@@ -3,11 +3,17 @@ RwLoadComponent {
 	#projectNames : [ ],
 	#componentNames : [ ],
 	#packageNames : [
-		'BV-Catalyst-Runtime-Core',
-		'BV-Catalyst-Runtime-Configuration',
-		'BV-Catalyst-Runtime-Services',
-		'BV-Catalyst-Runtime-ExamplesAndTests',
-		'BV-Catalyst-Runtime-Server-GemStone'
+		'BVC-Runtime-Announcements',
+		'BVC-Runtime-Kernel-Core',
+		'BVC-Runtime-Kernel-GemStone',
+		'BVC-Runtime-Worker-Core',
+		'BVC-Runtime-Kernel-GemStone',
+		'BVC-Runtime-Services',
+		'BVC-Runtime-Configuration',
+		'BVC-Runtime-App-Orchestration-Core',
+		'BVC-Runtime-App-Orchestration-Planning',
+		'BVC-Runtime-App-Statistics'
 	],
+
 	#comment : ''
 }

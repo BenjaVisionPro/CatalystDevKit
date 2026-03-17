@@ -5,6 +5,7 @@ RwLoadSpecificationV2 {
 	#revision : 'main',
 	#projectSpecFile : 'rowan/project.ston',
 	#componentNames : [
+		'Foundation',
 		'Runtime'
 	],
 	#customConditionalAttributes : [

@@ -2,6 +2,12 @@ GDKProjectSet {
 	#name : 'bvc',
 	#parentRegistryName : 'jupiter.local',
 	#loadSpecs : {
+		'Gt4FontAwesome' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/Gt4FontAwesome.git'
+			}
+		},
 		'CatalystDevKit' : {
 			'revision' : 'main',
 			'gitUrls' : {

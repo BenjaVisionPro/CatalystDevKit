@@ -52,9 +52,14 @@ Metacello new
 	load.
 "
 
-Transcript show: 'LOADING CatalystDevKit FROM ', 
+Transcript show: 'LOADING User Projects FROM ', 
 	(projectsRoot ifNil: ['<none>']).
 	
+Metacello new
+	repository: projectsRoot, '/Gt4FontAwesome/src';
+	baseline: 'Gt4FontAwesome';
+	load.
+
 Metacello new
 	repository: projectsRoot, '/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
