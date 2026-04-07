@@ -61,6 +61,11 @@ Metacello new
 	load.
 
 Metacello new
+	repository: projectsRoot, '/CatalystTheme/src';
+	baseline: 'CatalystTheme';
+	load.
+
+Metacello new
 	repository: projectsRoot, '/CatalystDevKit/src';
 	baseline: 'CatalystDevKit';
 	load.

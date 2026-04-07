@@ -8,6 +8,12 @@ GDKProjectSet {
 				'origin' : 'git@github.com:BenjaVisionPro/Gt4FontAwesome.git'
 			}
 		},
+		'CatalystTheme' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystTheme.git'
+			}
+		},
 		'CatalystDevKit' : {
 			'revision' : 'main',
 			'gitUrls' : {
