@@ -286,10 +286,10 @@ Examples:
 
   bvc catalystStone
   bvc catalystStone myStone
-  bvc catalystStone myStone 3.7.4.3
+  bvc catalystStone myStone 3.7.5
   bvc catalystStone --registry=myReg
   bvc catalystStone --registry=myReg myStone
-  bvc catalystStone myStone 3.7.4.3 --registry=myReg
+  bvc catalystStone myStone 3.7.5 --registry=myReg
 
   bvc j4p
   bvc devkit
