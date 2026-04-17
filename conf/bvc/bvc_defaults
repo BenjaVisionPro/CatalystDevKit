@@ -25,7 +25,7 @@
 : "${PROJECTS_ROOT:=git_root}"
 
 # GemStone
-: "${GEMSTONE_VERSION:=3.7.4.3}"
+: "${GEMSTONE_VERSION:=3.7.5}"
 : "${GEMSTONE_STONE_NAME:=bvc_dev}"
 
 # GT
