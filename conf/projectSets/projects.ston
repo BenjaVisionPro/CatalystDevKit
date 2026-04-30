@@ -32,6 +32,12 @@ GDKProjectSet {
 				'origin' : 'git@github.com:BenjaVisionPro/CatalystRuntime.git'
 			}
 		},
+		'CatalystProcess' : {
+			'revision' : 'main',
+			'gitUrls' : {
+				'origin' : 'git@github.com:BenjaVisionPro/CatalystProcess.git'
+			}
+		},
 		'GsApplicationTools' : {
 			'revision' : 'JJ_Rowan',
 			'gitUrls' : {
