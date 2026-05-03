@@ -139,7 +139,7 @@ cmd_catalystStone() {
 
   ensure_init "$registryName"
 
-  "${SCRIPT_DIR}/createDevStone.sh" \
+  "${SCRIPT_DIR}/createDevStoneSeaside.sh" \
     --registry="$registryName" \
     "$stoneName" "$gemStoneVersion"
 

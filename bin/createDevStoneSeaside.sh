@@ -196,10 +196,14 @@ enableUnicodeCompares.topaz -lq
 
 gtScriptsDir="${gitDir_devtools}/gt4gemstone/scripts"
 PATH="${stonesDir}/${stoneName}/product/bin:$PATH"
-#chmod +x "${gtScriptsDir}/*.sh"
-#chmod +x "${gtScriptsDir}/seaside/*.sh"
-
 export STONE=${stoneName}
+
+# ensure scripts are executable
+pushd ${gtScriptsDir}
+#chmod 755 ./*.sh
+#chmod 755 ./seaside/*.sh
+#chmod 755 ./release/*.sh
+popd
 
 # Update permissions to allow GT and Seaside to coexist
 information_banner "Expand permissions. using ${gtScriptsDir}/loginSystemUser.topaz"
@@ -209,21 +213,38 @@ topaz -l -I ${gtScriptsDir}/loginSystemUser.topaz  -S ${gtScriptsDir}/seaside/se
 information_banner "Install seaside. using ${gtScriptsDir}/loginDataCurator.topaz"
 topaz -l -I ${gtScriptsDir}/loginDataCurator.topaz  -S ${gtScriptsDir}/seaside/installSeaside.topaz < /dev/zero
 
+
+
+
+#
+# ---------------------------------------------------------
+# Hack together a GT devkit
+# ---------------------------------------------------------
+#
+
+export GEMSTONE_WORKSPACE=${gitDir_devtools}/devkit_workspace
+export RELEASED_PACKAGE_GEMSTONE_NAME="gt4gemstone-3.7"
+gtGsPackageDirectory=${GEMSTONE_WORKSPACE}/${RELEASED_PACKAGE_GEMSTONE_NAME}
+export GT4GEMSTONE_VERSION=dev
+rm -Rf ${GEMSTONE_WORKSPACE}
+mkdir -p ${GEMSTONE_WORKSPACE}
+
+# Package the release
+information_banner "Package GlamorousToolkitGlobals hacky install."
+ROWAN_PROJECTS_HOME=${gitDir_devtools} "${gtScriptsDir}/release/package-release.sh"
+"${gtGsPackageDirectory}/seaside/patch-dictionaries.sh"
+
 # Install GT Symbol Dict
 information_banner "Add GlamorousToolkitGlobals symbol dictionary."
-topaz -l -I "${gtScriptsDir}/loginDataCurator.topaz"  -S "${gtScriptsDir}/seaside/gt-symbol-dictionary.topaz" < /dev/zero
+topaz -l -I "${gtGsPackageDirectory}/loginDataCurator.topaz"  -S "${gtGsPackageDirectory}/seaside/gt-symbol-dictionary.topaz" < /dev/zero
 
-# Patch GT Source so it installed in the GT Symbol Dict
-export GEMSTONE_WORKSPACE=${projectsRoot}
-export RELEASED_PACKAGE_GEMSTONE_NAME=dev_tools
+# Install GT
+information_banner "Install GT"
+"${gtGsPackageDirectory}/seaside/inputRelease.sh" -s "${STONE}"
 
-information_banner "Patch symbol dictionary."
-"${gtScriptsDir}/seaside/patch-dictionaries.sh"
-
-# Load GT
-information_banner "Load gt4gemstone."
-"${gtScriptsDir}/seaside/inputRelease.sh" -s "${stoneName}"
-
+# Patch seaside code for GT compatibility
+echo "Apply Gt/Seaside patches"
+topaz -l -I "${gtGsPackageDirectory}/loginDataCurator.topaz" -S "${gtGsPackageDirectory}/seaside/seaside-gt-patches.topaz" < /dev/zero
 
 
 

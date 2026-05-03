@@ -17,10 +17,10 @@
 		name: 'bvc_dev';
 		host: 'localhost';
 		libraryPath: '/opt/GsDevKit/gemstone/clientlibs' asFileReference;
-		gemstoneVersion: '3.7.4.3';
+		gemstoneVersion: '3.7.5';
 		stone: 'bvc_dev';
 		netldi: 'bvc_dev_ldi';
-		username: 'SystemUser';
+		username: 'DataCurator';
 		password: 'swordfish'.
 	connector
 		notifyNameChanged;
