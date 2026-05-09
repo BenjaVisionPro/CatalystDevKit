@@ -2,13 +2,13 @@
 
 ## Component Model
 
-Catalyst DevKit is built around focused components. Each component owns a specific capability area, implements that capability coherently, and integrates with other Catalyst components through clear model, runtime, communication, or client-facing boundaries.
+[Catalyst DevKit](../../README.md) is built around focused components. Each component owns a specific capability area, implements that capability coherently, and integrates with other Catalyst components through clear model, runtime, communication, or client-facing boundaries.
 
 Component means the Catalyst capability area. Plugin means a client or engine-specific integration package.
 
 ## Component Layers
 
-1. Development layer — Catalyst DevKit.
+1. Development layer — [Catalyst DevKit](../../README.md).
 2. Core platform layer — Catalyst Foundation, Runtime, Model, Connect.
 3. People and social layer — Users, Groups, Presence.
 4. Process and simulation layer — Process, Simulation, Ecosystem.
@@ -17,7 +17,7 @@ Component means the Catalyst capability area. Plugin means a client or engine-sp
 
 ## Confirmed Components
 
-Catalyst DevKit: free development environment with local runtime, inspection, debugging, tooling, and integration.
+[Catalyst DevKit](../../README.md): free development environment with local runtime, inspection, debugging, tooling, and integration.
 
 Catalyst Foundation: base model classes and shared conventions.
 

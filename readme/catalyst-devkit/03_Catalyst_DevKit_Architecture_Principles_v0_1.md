@@ -2,7 +2,7 @@
 
 ## Core Principle
 
-Catalyst DevKit exists to help developers build Catalyst-based games and applications from focused components that work cleanly together.
+[Catalyst DevKit](../../README.md) exists to help developers build Catalyst-based games and applications from focused components that work cleanly together.
 
 Catalyst is not a monolithic engine and not a loose collection of plugins. It is a component platform built around shared model semantics, server-side runtime execution, realtime communication, local development tooling, and scalable deployment.
 

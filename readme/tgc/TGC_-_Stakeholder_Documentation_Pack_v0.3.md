@@ -18,11 +18,11 @@ The game combines embodied multiplayer presence, clean communication, collaborat
 
 ## 3. Documentation Set
 
-1. **TGC — Stakeholder Overview**
-2. **TGC — Experience Pillars**
-3. **TGC — Systems Context Brief**
-4. **TGC — Narrative Systems Brief**
-5. **TGC — Vertical Slice Brief**
+1. **[TGC — Stakeholder Overview](TGC_-_Stakeholder_Overview_v0.2.md)**
+2. **[TGC — Experience Pillars](TGC_-_Experience_Pillars_v0.2.md)**
+3. **[TGC — Systems Context Brief](TGC_-_Systems_Context_Brief_v0.2.md)**
+4. **[TGC — Narrative Systems Brief](TGC_-_Narrative_Systems_Brief_v0.2.md)**
+5. **[TGC — Vertical Slice Brief](TGC_-_Vertical_Slice_Brief_v0.2.md)**
 
 ## 4. Stakeholder Overview
 

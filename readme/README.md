@@ -2,12 +2,9 @@
 
 ## Catalyst DevKit
 
-Catalyst DevKit is the free development environment for building Catalyst-based games and applications.
-
-Read these documents first. They explain the platform architecture, focused component model, runtime and deployment approach, communication foundation, and how Catalyst systems are developed locally and deployed at scale.
+[Catalyst DevKit](../README.md) is the free development environment for building Catalyst-based games and applications. The DevKit documentation should be read first because it explains the platform architecture, focused component model, runtime and deployment approach, communication foundation, and how Catalyst systems are developed locally and deployed at scale.
 
 - [Catalyst DevKit — Stakeholder Documentation Pack v0.1](catalyst-devkit/00_Catalyst_DevKit_Stakeholder_Documentation_Pack_v0_1.md)
-- [Catalyst DevKit — Source Document Audit v0.1](catalyst-devkit/01_Catalyst_DevKit_Source_Document_Audit_v0_1.md)
 - [Catalyst DevKit — Stakeholder Overview v0.1](catalyst-devkit/02_Catalyst_DevKit_Stakeholder_Overview_v0_1.md)
 - [Catalyst DevKit — Architecture Principles v0.1](catalyst-devkit/03_Catalyst_DevKit_Architecture_Principles_v0_1.md)
 - [Catalyst DevKit — Component Map v0.1](catalyst-devkit/04_Catalyst_DevKit_Component_Map_v0_1.md)
@@ -17,9 +14,7 @@ Read these documents first. They explain the platform architecture, focused comp
 
 ## That Game: Catalyst
 
-That Game: Catalyst is the proof implementation for Catalyst.
-
-These documents show how Catalyst components support a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, narrative systems, and long-running world behaviour.
+That Game: Catalyst (TGC) is the proof implementation for Catalyst. The TGC documentation explains the social-world experience, stakeholder positioning, system context, narrative model, and vertical slice that demonstrate how Catalyst components work together in a persistent multiplayer game.
 
 - [TGC Stakeholder Documentation Pack](tgc/README.md)
 - [TGC — Experience Pillars v0.2](tgc/TGC_-_Experience_Pillars_v0.2.md)

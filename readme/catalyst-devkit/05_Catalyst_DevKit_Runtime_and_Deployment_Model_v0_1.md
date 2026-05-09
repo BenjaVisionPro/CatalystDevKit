@@ -6,11 +6,11 @@ Catalyst Runtime is the execution foundation for Catalyst-based games and applic
 
 Catalyst Runtime is the server-side execution environment. All Catalyst components operate on Runtime.
 
-During development, Runtime runs locally inside Catalyst DevKit. During deployment, Runtime runs and scales on GemStone.
+During development, Runtime runs locally inside [Catalyst DevKit](../../README.md). During deployment, Runtime runs and scales on GemStone.
 
 ## Development Model
 
-Catalyst development happens in the free Catalyst DevKit.
+Catalyst development happens in the free [Catalyst DevKit](../../README.md).
 
 The DevKit is built around Pharo/GToolkit and provides local Runtime execution, component execution, model inspection, runtime inspection, debugging, local integration testing, exploratory development, project-specific tooling, component tools/inspectors, and a single-application development environment.
 

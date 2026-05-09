@@ -16,7 +16,7 @@ That experience requires Catalyst support for realtime communication, social pre
 
 | TGC Capability | Primary Catalyst Component | Supporting Components |
 |---|---|---|
-| Local development and tooling | Catalyst DevKit | CF, CR, CM, CC, all components |
+| Local development and tooling | [Catalyst DevKit](../../README.md) | CF, CR, CM, CC, all components |
 | Server-side execution | Catalyst Runtime | CM, CC, CP, CS, CE |
 | Shared persistent state | Catalyst Model | CF, CR, CC |
 | Realtime system messaging | Catalyst Connect | CR, CM, Presence |
@@ -53,7 +53,7 @@ That experience requires Catalyst support for realtime communication, social pre
 
 | Vertical Slice Need | Catalyst Support |
 |---|---|
-| local development | Catalyst DevKit |
+| local development | [Catalyst DevKit](../../README.md) |
 | server-side authority | Catalyst Runtime |
 | persistent local world state | Catalyst Model |
 | realtime messaging | Catalyst Connect / CATP |
@@ -73,6 +73,6 @@ That experience requires Catalyst support for realtime communication, social pre
 
 ## Summary
 
-TGC depends on Catalyst DevKit because it needs focused components that work together without collapsing into a monolithic game-specific implementation.
+TGC depends on [Catalyst DevKit](../../README.md) because it needs focused components that work together without collapsing into a monolithic game-specific implementation.
 
 TGC proves the Catalyst ideals by showing how these components combine into a persistent social-world game where communication, shared presence, world shaping, simulation, economy, and structured processes reinforce each other.

@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Catalyst DevKit is the free development environment developers use to create Catalyst-based games and applications.
+[Catalyst DevKit](../../README.md) is the free development environment developers use to create Catalyst-based games and applications.
 
 It provides a local Pharo/GToolkit runtime, model tooling, inspection, debugging, and component integration so developers can build and run Catalyst systems in one development application.
 
