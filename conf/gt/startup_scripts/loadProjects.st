@@ -3,6 +3,9 @@
 projectsRoot := 'gitlocal://', (OSPlatform current environment at: 'PROJECTS_ROOT').
 
 "Load projects"
+Transcript show: 'LOADING User Projects FROM ', 
+	(projectsRoot ifNil: ['<none>']).
+
 
 Metacello new
 	repository: 'github://svenvc/NeoCSV/repository';
@@ -51,9 +54,6 @@ Metacello new
 	baseline: 'CatalystWeb';
 	load.
 "
-
-Transcript show: 'LOADING User Projects FROM ', 
-	(projectsRoot ifNil: ['<none>']).
 	
 Metacello new
 	repository: projectsRoot, '/Gt4FontAwesome/src';
@@ -74,6 +74,11 @@ Metacello new
 	repository: projectsRoot, '/CatalystFoundation/src';
 	baseline: 'CatalystFoundation';
 	onConflictUseLoaded;
+	load.
+
+Metacello new
+	repository: projectsRoot, '/CatalystProcess/src';
+	baseline: 'CatalystProcess';
 	load.
 
 Metacello new

@@ -11,7 +11,7 @@ GDKProjectSet {
 		},
 		'RowanClientServicesV3' : {
 			'projectName' : 'RowanClientServices',
-			'revision' : 'main374',
+			'revision' : 'main375',
 			'gitUrls' : {
 				'origin' : 'git@github.com:GemTalk/RowanClientServices.git'
 			}
@@ -29,7 +29,7 @@ GDKProjectSet {
 			}
 		},
 		'JadeiteForPharo' : {
-			'revision' : 'main374',
+			'revision' : 'main375',
 			'gitUrls' : {
 				'origin' : 'git@github.com:GemTalk/JadeiteForPharo.git'
 			}

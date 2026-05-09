@@ -231,8 +231,10 @@ mkdir -p ${GEMSTONE_WORKSPACE}
 
 # Package the release
 information_banner "Package GlamorousToolkitGlobals hacky install."
+touch dummy.image
 ROWAN_PROJECTS_HOME=${gitDir_devtools} "${gtScriptsDir}/release/package-release.sh"
 "${gtGsPackageDirectory}/seaside/patch-dictionaries.sh"
+rm dummy.image
 
 # Install GT Symbol Dict
 information_banner "Add GlamorousToolkitGlobals symbol dictionary."
