@@ -4,7 +4,7 @@ Catalyst DevKit is a free development environment for building Catalyst-based ga
 
 It is designed for developers who want to build persistent, social, multiplayer systems without turning every project into a one-off backend, networking stack, object model, and tooling problem.
 
-Catalyst projects are built from focused components. Each component owns one clear area of responsibility, runs on Catalyst Runtime, uses Catalyst Model for distributed persistent state, and integrates through explicit boundaries. Unreal Engine is the first supported game client target, with engine integrations provided through Catalyst UE plugins. The platform is designed so other clients and tools can be added over time.
+Catalyst projects are built from small, focused parts that work together. Each part has a clear job: storing shared world state, running server-side behaviour, moving realtime messages, managing users and groups, coordinating presence, or connecting to a game client. Unreal Engine is the first supported game client, and the platform is designed so other clients and tools can be added over time.
 
 In development, Catalyst DevKit provides a local Pharo/GToolkit environment where components can run together in one application. Developers can inspect models, debug runtime behaviour, test integrations, and build systems locally before deploying to GemStone-backed Runtime environments.
 
