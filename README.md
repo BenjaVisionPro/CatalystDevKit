@@ -6,7 +6,9 @@ It is designed for developers who want to build persistent, social, multiplayer 
 
 Catalyst projects are built from small, focused parts that work together. Each part has a clear job: storing shared world state, running server-side behaviour, moving realtime messages, managing users and groups, coordinating presence, or connecting to a game client. Unreal Engine is the first supported game client, and the platform is designed so other clients and tools can be added over time.
 
-In development, Catalyst DevKit provides a local Pharo/GToolkit environment where components can run together in one application. Developers can inspect models, debug runtime behaviour, test integrations, and build systems locally before deploying to GemStone-backed Runtime environments.
+Catalyst DevKit is where developers build their game backend. It provides a local Pharo/GToolkit environment where the game’s server-side models, behaviours, processes, simulations, and integrations can run together in one application. Developers can inspect live objects, debug runtime behaviour, test integrations, and build locally before deploying to GemStone-backed Runtime environments.
+
+The same environment can also be used to contribute to Catalyst itself, but its first job is helping developers build their own Catalyst-based games and applications.
 
 That Game: Catalyst is included in this documentation as the proof implementation for the Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
 
