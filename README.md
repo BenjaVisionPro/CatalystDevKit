@@ -10,7 +10,7 @@ Catalyst DevKit is where developers build their game backend. It provides a loca
 
 The same environment can also be used to contribute to Catalyst itself, but its first job is helping developers build their own Catalyst-based games and applications.
 
-That Game: Catalyst is included in this documentation as the proof implementation for the Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
+That Game: Catalyst (TGC) is included in this documentation as the proof implementation for the Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
 
 ## What Catalyst DevKit provides
 
