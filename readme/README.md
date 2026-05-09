@@ -1,10 +1,10 @@
 # Documentation Index
 
-This directory contains the stakeholder documentation for Catalyst DevKit and TGC.
-
 ## Catalyst DevKit
 
-Catalyst DevKit is the free development environment for building Catalyst-based games and applications. The DevKit documentation should be read first because it explains the platform architecture, component boundaries, runtime/deployment model, and communication foundation that TGC uses as proof of the Catalyst ideals.
+Catalyst DevKit is the free development environment for building Catalyst-based games and applications.
+
+Read these documents first. They explain the platform architecture, focused component model, runtime and deployment approach, communication foundation, and how Catalyst systems are developed locally and deployed at scale.
 
 - [Catalyst DevKit — Stakeholder Documentation Pack v0.1](catalyst-devkit/00_Catalyst_DevKit_Stakeholder_Documentation_Pack_v0_1.md)
 - [Catalyst DevKit — Source Document Audit v0.1](catalyst-devkit/01_Catalyst_DevKit_Source_Document_Audit_v0_1.md)
@@ -17,7 +17,9 @@ Catalyst DevKit is the free development environment for building Catalyst-based 
 
 ## That Game: Catalyst
 
-That Game: Catalyst is the proof implementation for Catalyst. The TGC documentation explains the social-world experience, stakeholder positioning, system context, narrative model, and vertical slice that demonstrate how Catalyst components work together in a persistent multiplayer game.
+That Game: Catalyst is the proof implementation for Catalyst.
+
+These documents show how Catalyst components support a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, narrative systems, and long-running world behaviour.
 
 - [TGC Stakeholder Documentation Pack](tgc/README.md)
 - [TGC — Experience Pillars v0.2](tgc/TGC_-_Experience_Pillars_v0.2.md)

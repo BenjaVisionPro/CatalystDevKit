@@ -1,22 +1,37 @@
-# Catalyst Documentation
+# Catalyst DevKit
 
-This repository contains stakeholder documentation for **Catalyst DevKit** and **That Game: Catalyst (TGC)**.
+Catalyst DevKit is a free development environment for building Catalyst-based games and applications.
 
-## Project framing
+It is designed for developers who want to build persistent, social, multiplayer systems without turning every project into a one-off backend, networking stack, object model, and tooling problem.
 
-**Catalyst DevKit** is the free development environment developers use to create Catalyst-based games and applications. Catalyst components run on Catalyst Runtime, use Catalyst Model for distributed persistent state, use Catalyst Connect/CATP for realtime system messaging, and integrate with clients through focused plugins or application frameworks.
+Catalyst projects are built from focused components. Each component owns one clear area of responsibility, runs on Catalyst Runtime, uses Catalyst Model for distributed persistent state, and integrates through explicit boundaries. Unreal Engine is the first supported game client target, with engine integrations provided through Catalyst UE plugins. The platform is designed so other clients and tools can be added over time.
 
-**TGC** is a multiplayer social world built around presence, communication, shared agency, and player-shaped civilisation. It is proof of the Catalyst ideals: focused components working together to support persistent social-world gameplay.
+In development, Catalyst DevKit provides a local Pharo/GToolkit environment where components can run together in one application. Developers can inspect models, debug runtime behaviour, test integrations, and build systems locally before deploying to GemStone-backed Runtime environments.
+
+That Game: Catalyst is included in this documentation as the proof implementation for the Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
+
+## What Catalyst DevKit provides
+
+- Local Catalyst Runtime for development
+- Distributed object modelling through Catalyst Model
+- Realtime system messaging through Catalyst Connect and CATP
+- Presence, channel context, and media coordination through Catalyst Presence
+- User and group modelling
+- Process execution for long-running workflows
+- Simulation and ecosystem modelling
+- Persistent landscape and building systems
+- Economy systems
+- Unreal Engine integration points
+- Swift application templates through CatalystApp
+- Inspection, debugging, and development tooling through Pharo/GToolkit
 
 ## Documentation
 
-### Start here
+Start with the DevKit documentation. The TGC documentation comes after it as a concrete example of what the platform is intended to support.
 
-- [Documentation Index](readme/README.md)
+### Catalyst DevKit documentation
 
-### Catalyst DevKit stakeholder documentation
-
-Catalyst DevKit is the developer-facing foundation of the Catalyst platform. These documents describe the component model, runtime and deployment approach, communication model, architecture principles, and how Catalyst capabilities support TGC without being limited to TGC.
+These documents explain the platform architecture, component boundaries, runtime/deployment model, communication model, and how Catalyst capabilities support TGC without being limited to it.
 
 - [Catalyst DevKit — Stakeholder Documentation Pack v0.1](readme/catalyst-devkit/00_Catalyst_DevKit_Stakeholder_Documentation_Pack_v0_1.md)
 - [Catalyst DevKit — Source Document Audit v0.1](readme/catalyst-devkit/01_Catalyst_DevKit_Source_Document_Audit_v0_1.md)
@@ -27,9 +42,9 @@ Catalyst DevKit is the developer-facing foundation of the Catalyst platform. The
 - [Catalyst DevKit — Communication Model v0.1](readme/catalyst-devkit/06_Catalyst_DevKit_Communication_Model_v0_1.md)
 - [Catalyst DevKit — TGC Capability Mapping v0.1](readme/catalyst-devkit/07_Catalyst_DevKit_TGC_Capability_Mapping_v0_1.md)
 
-### That Game: Catalyst stakeholder documentation
+### That Game: Catalyst documentation
 
-That Game: Catalyst is the proof implementation for the Catalyst ideals. These documents describe the TGC player experience, social-world foundation, narrative systems, vertical slice, and stakeholder framing that Catalyst components are intended to support.
+These documents explain the social-world game that proves the Catalyst ideals. They describe the player experience, stakeholder framing, systems context, narrative model, and vertical slice that the Catalyst components are designed to support.
 
 - [TGC Stakeholder Documentation Pack](readme/tgc/README.md)
 - [TGC — Experience Pillars v0.2](readme/tgc/TGC_-_Experience_Pillars_v0.2.md)
@@ -54,10 +69,10 @@ That Game: Catalyst is the proof implementation for the Catalyst ideals. These d
     └── tgc
 ```
 
-## Documentation principles
+## Language and architecture rules
 
 - Use **component** for Catalyst capability areas.
 - Use **plugin** only for client or engine-specific integration packages.
-- Keep stakeholder language direct, technical, and matter-of-fact.
-- Avoid retired terminology unless explicitly writing an audit or migration note.
-- Keep each component focused, complete, and cleanly integrated.
+- Keep component boundaries focused and explicit.
+- Keep authoritative behaviour on Catalyst Runtime unless there is a clear reason not to.
+- Treat TGC as proof of the Catalyst ideals, not as the limit of the platform.
