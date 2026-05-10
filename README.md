@@ -1,16 +1,24 @@
 # Catalyst DevKit
 
-Catalyst DevKit is a free development environment for building Catalyst-based games and applications.
+Catalyst DevKit is for developers who want to build persistent multiplayer games without reinventing the entire backend every time.
 
-It is designed for developers who want to build persistent, social, multiplayer systems without turning every project into a one-off backend, networking stack, object model, and tooling problem.
+Most ambitious multiplayer projects eventually run into the same wall: shared state, server authority, realtime messaging, users, groups, presence, simulation, tooling, deployment, and debugging all become their own projects. Then the game starts competing with its own infrastructure.
 
-Catalyst projects are built from small, focused parts that work together. Each part has a clear job: storing shared world state, running server-side behaviour, moving realtime messages, managing users and groups, coordinating presence, or connecting to a game client. Unreal Engine is the first supported game client, and the platform is designed so other clients and tools can be added over time.
+Catalyst DevKit exists to change that.
 
-Catalyst DevKit is where developers build their game backend. It provides a local Pharo/GToolkit environment where the game’s server-side models, behaviours, processes, simulations, and integrations can run together in one application. Developers can inspect live objects, debug runtime behaviour, test integrations, and build locally before deploying to GemStone-backed Runtime environments.
+It gives you a local development environment where you build your game’s backend, inspect live objects, run server-side behaviour, test integrations, and shape the systems your game depends on before deploying to scale.
 
-The same environment can also be used to contribute to Catalyst itself, but its first job is helping developers build their own Catalyst-based games and applications.
+It is not magic. It is not a shortcut around hard problems. It is a way to face those hard problems with structure instead of panic.
 
-That Game: Catalyst (TGC) is included in this documentation as the proof implementation for the Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
+Catalyst is built from focused parts that do clear jobs and work together: persistent models, runtime execution, realtime messaging, presence, users, groups, processes, simulation, economies, landscapes, buildings, and client integrations.
+
+Start small. Build locally. Inspect everything. Scale when it earns it.
+
+That is the point.
+
+Catalyst DevKit can also be used to contribute to Catalyst itself, but its first job is helping developers build their own Catalyst-backed games and applications.
+
+That Game: Catalyst (TGC) is mentioned here as an exemplar of Catalyst ideals: a persistent multiplayer social world built around presence, communication, shared agency, player-shaped environments, simulation, economy, and long-running world behaviour.
 
 ## What Catalyst DevKit provides
 
@@ -35,7 +43,6 @@ Start with the DevKit documentation. The TGC documentation comes after it as a c
 
 These documents explain the platform architecture, component boundaries, runtime/deployment model, communication model, and how Catalyst capabilities support TGC without being limited to it.
 
-- [Catalyst DevKit — Stakeholder Documentation Pack v0.1](readme/catalyst-devkit/00_Catalyst_DevKit_Stakeholder_Documentation_Pack_v0_1.md)
 - [Catalyst DevKit — Stakeholder Overview v0.1](readme/catalyst-devkit/02_Catalyst_DevKit_Stakeholder_Overview_v0_1.md)
 - [Catalyst DevKit — Architecture Principles v0.1](readme/catalyst-devkit/03_Catalyst_DevKit_Architecture_Principles_v0_1.md)
 - [Catalyst DevKit — Component Map v0.1](readme/catalyst-devkit/04_Catalyst_DevKit_Component_Map_v0_1.md)
@@ -45,9 +52,32 @@ These documents explain the platform architecture, component boundaries, runtime
 
 ### That Game: Catalyst documentation
 
-These documents explain the social-world game that proves the Catalyst ideals. They describe the player experience, stakeholder framing, systems context, narrative model, and vertical slice that the Catalyst components are designed to support.
+That Game: Catalyst is not trying to be another giant checklist of survival, crafting, building, economy, factions, combat, and lore.
 
-- [TGC Stakeholder Documentation Pack](readme/tgc/README.md)
+It has those things. But they are not the point.
+
+The point is people.
+
+TGC is a multiplayer social world built around presence, communication, shared agency, and player-shaped civilisation. It starts from a simple idea: games feel better when being with other people feels natural.
+
+So the foundation is clean directional sound, proximity-aware communication, comfortable social spaces, and systems that give players real reasons to talk, build, explore, trade, argue, organise, repair, discover, and come back.
+
+The world is sci-fi. The systems are ambitious. The mystery is long. The technology underneath is serious.
+
+But the test is simple:
+
+Do players want to stay in the world after the objective is done?
+
+If the answer is yes, we are building the right thing.
+
+TGC is proof of the Catalyst ideals: focused technology supporting a world that feels social, persistent, strange, useful, and worth inhabiting.
+
+No fake revolution. No “metaverse” perfume cloud.
+
+Just a game world where people might actually want to spend time together.
+
+TGC intends to live up to it's byline... A reasonably fun game, that pretty much doesn't suck.
+
 - [TGC — Experience Pillars v0.2](readme/tgc/TGC_-_Experience_Pillars_v0.2.md)
 - [TGC — Narrative Systems Brief v0.2](readme/tgc/TGC_-_Narrative_Systems_Brief_v0.2.md)
 - [TGC — One-Page Executive Summary v0.1](readme/tgc/TGC_-_One-Page_Executive_Summary_v0.1.md)
