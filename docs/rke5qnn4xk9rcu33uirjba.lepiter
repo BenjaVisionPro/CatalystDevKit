@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rTt+11j4S2eXIXfrHLXCaA=="
+					"uidString": "ZH5TV1MiRsqkSkYml/sgTw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Extras\n\nThis is retained project/scratchpad material. It is not part of the main DevKit documentation path.\n"
+				"string": "Catalyst Reflect gives projects tools for understanding, inspecting, and presenting their own structure."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "RL2EXe9LR6q+Y1n+iJmsdg=="
+					"uidString": "1nhwQTk9T/iWKTkQgHLwDg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Macos - Use Touch ID authentication on the terminal\n"
+				"string": "# Catalyst Reflect"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KBsUCvf+SUyIQGCYzyPeXw=="
+					"uidString": "QAZSeXl7Sji+32E3iFdgvA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "If you're sick of typing your password when running ```sudo``` you can enable Touch ID instead.\n"
+				"string": "Catalyst Reflect gives projects tools for understanding, inspecting, and presenting their own structure."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "CnvP/nQmSuCywmDp1ONZzg=="
+					"uidString": "7lo43CiwTj2q46Ge54zRdw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "```bash\nsudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local\nsudo nano /etc/pam.d/sudo_local\n```\n"
+				"string": "## What is Catalyst Reflect"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wSFBos/GSnyuDuezz91+AQ=="
+					"uidString": "cDMeMulnT9eIqwOwsXnTrA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "and follow the instructions inside, uncommenting the last line of the file by removing the # from the start of the line so the file looks like this:\n"
+				"string": "Catalyst Reflect gives projects tools for understanding, inspecting, and presenting their own structure."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,17 +214,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7aQl84wLTmm4spxS9CVMMg=="
+					"uidString": "OZer0B00Ssq1nJYY9C+kUg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "```nano\n# uncomment following line to enable Touch ID for sudo\nauth       sufficient     pam_tid.so\n```\n"
+				"string": "## What problems it solves"
 			},
 			{
 				"__type": "textSnippet",
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zuM+8mf6ScyD/wCWT7ARnw=="
+					"uidString": "hynNvtS1QtexFEUmccbYaA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Scale font size\n"
+				"string": "Use it when reflection is useful for tooling and documentation, not hidden production behaviour."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "J6k1T8X/QaymyMVZ0ZkP8A=="
+					"uidString": "ioElNIxoTtq60eB7YaB5YA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Classes that start with BVC are generic to any game using the BenjaVisionCatalyst DevKits\n"
+				"string": "## How it works"
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pN5g7QSZSTCZRkosgWG7RA=="
+					"uidString": "uoOCSTf8ShOLd4eoaIFVoA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Classes that start with TGC are specific to ThatGameCatalyst\n"
+				"string": "This page is a placeholder for the component's examples, package structure, and recommended usage. The goal is to keep the promise clear before filling in implementation details."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +362,128 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "quzyOOB+Qg2PPDWIW0eOqQ=="
+					"uidString": "q4al5LnNRquHQOVh1elBrw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Surface area to sphere radius\n"
+				"string": "## Commands / configuration / examples"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "bpcVZzH8QIWg5GxJuQimMQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Examples and detailed documentation will be linked here as the component stabilises."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "Ax/6n90hTDiwLX9aPZ6LQg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Notes"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "ph1IR2bGROy1PutHBWvooQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "This is a Catalyst Component, not a plugin. It is part of the Catalyst platform itself."
 			}
 		]
 	},
@@ -384,7 +495,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -395,15 +506,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Extras"
+		"title": "Catalyst Reflect"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "063ebdda-744a-4dbc-b6d1-e21129a82817"
+		"uuid": "e9903f56-9e25-44d1-a0ac-7ac335133c29"
 	}
 }

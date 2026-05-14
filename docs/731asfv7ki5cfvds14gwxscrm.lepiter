@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,54 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MMs5+9qJErD8YhXrF076Fw=="
+					"uidString": "Ff3NWYfoQ7Wr7YRGBXLRbg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# BenjaVision Catalyst DevKit\n\nStart here. The pages below are ordered as a working path: create a project, understand the command line, manage deployments, then explore Catalyst Components.\n"
+				"string": "The canonical documentation map for BenjaVision Catalyst DevKit."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "EbaLwtrSTVasXRPX6XMtyg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# BenjaVision Catalyst DevKit"
 			},
 			{
 				"__type": "textSnippet",
@@ -60,7 +97,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -71,12 +108,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "1tGzh54oIuy1AtKuBNsnFg=="
+								"uidString": "XgilYlz7T1qGJ2rUQfMQwQ=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -97,7 +134,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -108,12 +145,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "oRA0fWJNMO2GdpBKaNpIzA=="
+								"uidString": "pQ14nGNkQPWPEcIfIucmdA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -130,7 +167,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -141,12 +178,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hk1sZYh1TLVl1jzMj+/0CQ=="
+					"uidString": "DsxSxUkhT1qCHgzwnnCiAg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -172,7 +209,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -183,12 +220,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "ywv0PirOMrncabptErkH2g=="
+								"uidString": "ONs9vBbtTZyPYIKlLuEc3A=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -209,7 +246,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -220,12 +257,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "MdZuaOi2QRkJagH0JuIbbg=="
+								"uidString": "laM2PO5FToyzlULo3ZfPnA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -246,7 +283,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -257,12 +294,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "CBgRG0xjIBlvO6aR6xjsiA=="
+								"uidString": "zF/tp3YIRLarsiP0VWTPJw=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -279,7 +316,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -290,12 +327,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "shn8ObeCodcZDY7SQEPlaQ=="
+					"uidString": "34Qu6UgYRMiBcgLt/tAMUg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -321,7 +358,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -332,12 +369,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "EtKraj8z8d/ay9jeY5TC7Q=="
+								"uidString": "CiPiGKj9SueviBfo8b+FDA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -358,7 +395,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -369,12 +406,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "62tr6+lm5uzgX56FhTsr1w=="
+								"uidString": "M2eXwtxtQ6OEn1i+UpfNlw=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -395,7 +432,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -406,12 +443,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "YD2L+1mh4I7PngI4C6ldCQ=="
+								"uidString": "/CGXUxuxReOrzr7OkB4mwA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -432,7 +469,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -443,12 +480,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "r0RHrPdWx83ZX4OfR5ozHg=="
+								"uidString": "uB+l1vqmTdGA/2pwtQUQSA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -469,7 +506,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -480,12 +517,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "PYLDmZT1jbIYPK7WEK4UPA=="
+								"uidString": "IwDAkuQCSAqyXd8M//vQ/Q=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -506,7 +543,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -517,12 +554,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "KORhFO6I3Gx44c8nZEpfBg=="
+								"uidString": "nFc5sc0wR461Bl7M6bhajA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -543,7 +580,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -554,12 +591,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "zDNE4VpR6Gi8UboH3Prv1A=="
+								"uidString": "k7K+i1/DS/2z+80eL6v7uQ=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -580,7 +617,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -591,12 +628,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "fX0DV7d6TtAE80Kwm+c+pQ=="
+								"uidString": "hFRLVWLNRzGhAecH72nq4w=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -617,7 +654,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -628,12 +665,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "GoIfwkiDe9I4eo6/dgTXLw=="
+								"uidString": "Iij18xZiRjaZipkTCiROQg=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -650,7 +687,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -661,12 +698,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NVcQLur4shiKdstsqH7Jkw=="
+					"uidString": "5fqM8RTMTnmUTX/8IYbzoQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -687,7 +724,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -698,12 +735,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "YOOIFwgvoDav//z9+em6tA=="
+					"uidString": "9ky0kNOHSz+mqYOUXtIupw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -729,7 +766,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -740,12 +777,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "GQFf5ecEQqo7dBG5OJiZFQ=="
+								"uidString": "xeY+XyJwQ36OWiq0BQ62/w=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
@@ -762,7 +799,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -773,12 +810,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GYgt7SLgAw46M7EEyrVwlw=="
+					"uidString": "+di0XCp7SGKIGuWSZ2l4Ug=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -804,7 +841,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -815,17 +852,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "6Qpu/a/u/kzDd7zg1X6D/g=="
+								"uidString": "f2agCYR2RPWCQfDwoOmVCw=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:ACF|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: ACF|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -841,7 +878,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -852,17 +889,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "+Jw8L1SFBXaL+GJJcwEwNg=="
+								"uidString": "I+iufAi7T2SEPHZMHKZ4Nw=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Building a Universe|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: Building a Universe|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -878,7 +915,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -889,17 +926,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "wt2hQhOdBeTiO3SoOoib3w=="
+								"uidString": "u2UVZLMASlqsAwy5xe1NFw=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Ecosystems Development Journal|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: Ecosystems Development Journal|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -915,7 +952,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -926,17 +963,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "xtidliCig/q8033qgm847g=="
+								"uidString": "9RYW7nH6TcO/Uv1LXiSY5w=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Extras|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: Extras|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -952,7 +989,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -963,17 +1000,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "Wmxq2mJVqRm8o8yjbBrkrA=="
+								"uidString": "1VgkgmEfT1+owcXt7QRQGA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:GeoNames|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: GeoNames|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -989,7 +1026,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -1000,17 +1037,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "EFEs4+qEi3lfAiuWxNIKkQ=="
+								"uidString": "UEwW0aBWTmicTgE09Jp/NA=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Music Video MetaData|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: Music Video MetaData|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -1026,7 +1063,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -1037,17 +1074,17 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+									"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "Eh/Q525WZuG4B0kKfZGHAw=="
+								"uidString": "UXGEDWu5S7iSZ17eaAsF3Q=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:OtherBarry|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Notes: OtherBarry|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -1059,7 +1096,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -1070,12 +1107,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KMK6aWibJQEFE7n0DtFqRQ=="
+					"uidString": "SdaD9DkaSNCUOn1lkKYVcQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -1092,7 +1129,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -1103,7 +1140,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
 		}
 	},
 	"pageType": {
