@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LKJJKYoWSFmMcBG4yiEoIw=="
+					"uidString": "6fQ9koGLQ9WBKzOlhMMBSg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Deployments are GemStone stones managed by bvc, giving each project a predictable runtime you can start, stop, list, and delete."
+				"string": "Deployments are the runtime environments managed by bvc, from local DevKit runtime work to production GemStone stones."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,12 +66,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "w/7LbFl4Tjeqa4WLGWCVjA=="
+					"uidString": "//PXf3caSEesFZcoF+znrQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "INQGeTvzThCCWA2Ode02+g=="
+					"uidString": "OgXZMQhNQM+F/k4Q26TT7A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Deployments give Catalyst projects a real server runtime without making every developer become a GsDevKit expert first."
+				"string": "Deployments make the runtime model explicit. DevKit Deployment is for local development runtime work. GemStone is the production deployment runtime."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,12 +140,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "fa9Bk1AgTuWbVU+j1CuHcQ=="
+					"uidString": "0RmWKzWsRYih/RaSY0jneA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FX+HMWHgRAWqCEnVJ4rzvA=="
+					"uidString": "ySBlls9pSh+f+sJSXTpNqw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A deployment is a GemStone stone registered through GsDevKit_stones and managed through bvc."
+				"string": "A deployment is a named runtime environment. In development, the runtime can run standalone inside the DevKit. In production, the runtime runs in GemStone as a stone managed through bvc and GsDevKit_stones."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "nvRr5FeiSQmiHfs7nbWCNQ=="
+					"uidString": "3D34wmirTTC3eoMnzYpISA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Jb5zXpKETOKrPmnJ9PFNGg=="
+					"uidString": "C0Zleb5PQ8mLdxAlc1Gtag=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives every project a named runtime. It keeps development and production-like state separate. It makes start, stop, list, and delete explicit. It keeps connector metadata in sync for the DevKit."
+				"string": "It keeps development runtime work and production runtime work visually separate. It gives every runtime a clear name. It makes start, stop, list, and delete explicit. It keeps connector metadata in sync for development tools."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,12 +288,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TEnX7M/vRz2zqdIAZFHw+A=="
+					"uidString": "joZkL4EQTnGRGK0G2vE8pQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "QdaMaShiQJOpTgZBwk32+A=="
+					"uidString": "VdozytjWRTe341Yx0gGFwg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "`bvc start` checks whether a deployment exists. If it exists, bvc starts it. If it does not exist, bvc installs it first, then starts it."
+				"string": "Use DevKit Deployment while shaping the system locally. Use GemStone when the runtime needs the production model: server authority, durable state, transactions, and long-lived object storage."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +362,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tvkYQIyJSlyhqbZV6PIeZw=="
+					"uidString": "dSFJQ7OZQWe0XIDYItdFmQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "When deployments are created or deleted, bvc refreshes the DevKit's `gt4gemstone.properties` connector file if the DevKit exists."
+				"string": "For GemStone deployments, `bvc start` checks whether a deployment exists. If it exists, bvc starts it. If it does not exist, bvc installs it first, then starts it."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +399,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "c8Vu09huRkiXf3eg67YgeQ=="
+					"uidString": "0aqrH2bjRi+0ysIZNeY6NQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,12 +436,46 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lBTxXzmaRZSFWnpHPxcL3w=="
+					"uidString": "D1kRtV0hTx6nIzQN22Fpkg=="
+				},
+				"code": "bvc devkit"
+			},
+			{
+				"__type": "shellCommandSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "4itYJUgDSfqnVdeRq12z4Q=="
 				},
 				"code": "bvc start myproject-dev"
 			},
@@ -459,7 +493,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -470,12 +504,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SY7ssy0bQ2iKM0/k4ElStA=="
+					"uidString": "nPDtJlQfRfmeys2DcjVwxw=="
 				},
 				"code": "bvc start myproject-dev --with-seaside"
 			},
@@ -493,7 +527,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -504,12 +538,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "bqQst0pZT/2dUy3lG4DkfA=="
+					"uidString": "Z1l/yd7LTGSiGkxnW4Lj9g=="
 				},
 				"code": "bvc list"
 			},
@@ -527,7 +561,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -538,12 +572,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "a5C50Vm5ThO4QFUFQBbPSA=="
+					"uidString": "nRbD5epjTS685lEdZBfdXg=="
 				},
 				"code": "bvc stop myproject-dev"
 			},
@@ -561,7 +595,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -572,48 +606,14 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "nDQHYyN4TpaFELbseWcMpA=="
+					"uidString": "s//BEAUkTKKW9RGWHEsDvA=="
 				},
 				"code": "bvc delete myproject-dev"
-			},
-			{
-				"__type": "shellCommandSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "Qtu4cQzcQnCjIEzuIjeg3w=="
-				},
-				"code": "bvc delete myproject-dev --force"
 			},
 			{
 				"__type": "textSnippet",
@@ -629,7 +629,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -640,12 +640,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "L4kGKkYiSlOqrnVgXrpdtA=="
+					"uidString": "JyCZpE72SQWAVtQaUWsnqA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -666,7 +666,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -677,17 +677,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+U1l9UCfRgeehn7f2cD8Dw=="
+					"uidString": "KOq7IuMfQn2bdiNhOe4NMA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "`--with-seaside` is temporary and only matters on first install. Once the deployment exists, the flag has no effect."
+				"string": "`--with-seaside` is temporary and only matters on first install of a GemStone deployment. Once the deployment exists, the flag has no effect."
 			}
 		]
 	},
@@ -699,7 +699,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -710,7 +710,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 		}
 	},
 	"pageType": {

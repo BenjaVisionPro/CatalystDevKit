@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "fNyxY4kmT0S6gRfHfSnyqQ=="
+					"uidString": "qbLWjpQkTfuvY5XDdc7/gw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The Catalyst DevKit is the Glamorous Toolkit workspace built and launched for a project."
+				"string": "DevKit Development is the main Catalyst workspace for building, inspecting, and iterating on a project."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "f1AgVdD8TOili9LMlEIHTw=="
+					"uidString": "/Xg2Y3lqRaqrgUZRAn7AuQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# DevKit"
+				"string": "# DevKit Development"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0wjpbZGLS5+JVluJTsgOwA=="
+					"uidString": "zOs0nwMsTeScq1ytBl2wXQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The DevKit is where you inspect, explore, load, debug, and shape a Catalyst project."
+				"string": "DevKit Development is where you shape a Catalyst project before promoting work into a deployment workflow."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "t0iZql4dSK+t/m+2UxREvw=="
+					"uidString": "sBAdvsP5TjqL5WvQ2mUwNw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is DevKit"
+				"string": "## What is DevKit Development"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lnk1Sfb2R1a3ekfBMc3T3g=="
+					"uidString": "vN2sgyBqT4iMiG++KSpwtQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The DevKit is a project-local Glamorous Toolkit install prepared by bvc. It loads the configured project build scripts and knows about available GemStone deployments."
+				"string": "DevKit Development is a project-local Glamorous Toolkit install prepared by bvc. It loads the configured project build scripts, refreshes GemStone connectors, and gives you the inspection tools needed to understand what the system is doing."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "M9ufjag6TfygjFJ7OBUH3g=="
+					"uidString": "NCTLtJ1CTPm73qm+qbUXlg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "K/NX/tFjRX6Pd7L38Jscpw=="
+					"uidString": "LplitTVuT4iwXFRCL9RYEg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives the project a repeatable tool image. It avoids manual GT setup. It keeps GemStone connectors current. It makes the development environment something the project can recreate."
+				"string": "It gives every project a repeatable development image. It avoids manual GT setup. It keeps GemStone connectors current. It gives developers a fast place to inspect, test, debug, and evolve the system without confusing that workflow with production deployment."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,12 +288,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "2CdAAmW0RUKBoFX9CoY3vg=="
+					"uidString": "PePnVVDZQwirox/s7r6DxA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "aGrbbX4sRwW5BYa3IZymtw=="
+					"uidString": "VarWrQuwSqK9CHeHB9VCqg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "`bvc devkit` builds the DevKit if needed, refreshes GemStone connectors, then launches it."
+				"string": "`bvc devkit` builds the DevKit if needed, refreshes deployment connectors, then launches Glamorous Toolkit. The DevKit is also able to run the Catalyst runtime standalone, but that deployment role is documented separately as DevKit Deployment."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,49 +362,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I0tQn4ohSFKFBr81yAnRDw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "The connector file is written to `devkit/pharo-local/lepiter/gt4gemstone.properties` by default, based on configured deployments."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "4fRCqr5lQ3qFDYsGYICk1Q=="
+					"uidString": "QvKmbSkyThm71NfNA1bCxA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,12 +399,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "t+LQ4+7PQxO+ppzzdQgp8w=="
+					"uidString": "FkLXAxafSymeK6rEs+uIXA=="
 				},
 				"code": "bvc devkit"
 			},
@@ -459,7 +422,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -470,12 +433,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SsQmpdmzTu6N4WJX9MUzSg=="
+					"uidString": "zM8JrEu9T4WmkTmxe4/B3Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -496,7 +459,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -507,12 +470,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6lsdfMX0TKe5LH8K6jejog=="
+					"uidString": "GNpOuQBFRhmI+lS2j7wDXA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -533,7 +496,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -544,17 +507,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rY/NXcrpRBmocBvn8OGaVA=="
+					"uidString": "ttApLLvESl6oSkCUjppQGQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "If deployments change and the DevKit already exists, running `bvc devkit` refreshes the connector file before launch."
+				"string": "Use this page for the tool workflow: building, launching, inspecting, and working in the DevKit. Use DevKit Deployment when you care about the standalone development runtime that runs inside the DevKit."
 			}
 		]
 	},
@@ -566,7 +529,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -577,12 +540,12 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "DevKit"
+		"title": "DevKit Development"
 	},
 	"uid": {
 		"__type": "uuid",

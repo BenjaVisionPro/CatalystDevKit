@@ -39,7 +39,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Jadeite for Pharo gives Catalyst developers a focused GemStone development tool alongside the DevKit."
+				"string": "Jadeite for Pharo is a focused development tool for working directly with GemStone from a Catalyst project."
 			},
 			{
 				"__type": "textSnippet",
@@ -113,7 +113,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Jadeite is useful when you want a more direct GemStone development experience than the broader DevKit workspace."
+				"string": "Jadeite is useful when you want a direct GemStone development experience alongside the broader DevKit workspace."
 			},
 			{
 				"__type": "textSnippet",
@@ -261,7 +261,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives developers another way to inspect and work with GemStone code. It keeps setup reproducible. It avoids making each project document manual Pharo setup steps."
+				"string": "It gives developers another way to inspect and work with GemStone code. It keeps setup reproducible. It complements the DevKit without replacing it."
 			},
 			{
 				"__type": "textSnippet",
