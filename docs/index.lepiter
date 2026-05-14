@@ -81,7 +81,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Core Commands|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Core Commands|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -118,7 +118,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Project Configuration|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Project Configuration|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -151,7 +151,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Quick Start|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Quick Start|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -193,7 +193,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:DevKit|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:DevKit|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -230,7 +230,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Jadeite for Pharo|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Jadeite for Pharo|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -267,7 +267,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:GemStone|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:GemStone|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -300,7 +300,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Deployments|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Deployments|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -342,7 +342,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Connect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -379,7 +379,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Store|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Store|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -416,7 +416,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Users|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Users|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -453,7 +453,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Groups|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -490,7 +490,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Currency|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Currency|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -527,7 +527,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Landform|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Landform|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -564,7 +564,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Architect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Architect|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -601,7 +601,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Reflect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Reflect|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -638,7 +638,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Ecosystems|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Catalyst Ecosystems|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -671,7 +671,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Components|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Catalyst Components|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -708,7 +708,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Plugins|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Catalyst Plugins|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -750,7 +750,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Reference|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Reference|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -783,7 +783,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Troubleshooting|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Troubleshooting|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -825,7 +825,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:ACF|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:ACF|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -862,7 +862,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Building a Universe|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Building a Universe|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -899,7 +899,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Ecosystems Development Journal|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Ecosystems Development Journal|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -936,7 +936,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Extras|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Extras|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -973,7 +973,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:GeoNames|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:GeoNames|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -1010,7 +1010,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Music Video MetaData|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:Music Video MetaData|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -1047,7 +1047,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:OtherBarry|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+							"string": "{{gtPage:OtherBarry|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						}
 					]
 				},
@@ -1080,7 +1080,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Notes|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+				"string": "{{gtPage:Notes|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			}
 		]
 	},

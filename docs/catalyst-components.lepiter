@@ -76,7 +76,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Component index\n\n{{gtPage:Catalyst Connect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Store|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Users|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Groups|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Currency|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Landform|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Architect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Reflect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Ecosystems|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n"
+				"string": "## Component index\n\n{{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Store|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Users|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Currency|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Landform|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Architect|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Reflect|db=731asfxqhyhdr96k6wo9yxnzv}}\n{{gtPage:Catalyst Ecosystems|db=731asfxqhyhdr96k6wo9yxnzv}}\n"
 			},
 			{
 				"__type": "textSnippet",
