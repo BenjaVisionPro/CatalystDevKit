@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,649 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "BRKFT8JHRqK95k/yD5Vfug=="
+					"uidString": "MMs5+9qJErD8YhXrF076Fw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# BenjaVision Catalyst DevKit\n\nCatalyst DevKit is the command line and development environment for building applications with Catalyst.\n\nThe goal is simple: create a project, run the DevKit, manage deployments, and stay focused on the application instead of the plumbing.\n"
+				"string": "# BenjaVision Catalyst DevKit\n\nStart here. The pages below are ordered as a working path: create a project, understand the command line, manage deployments, then explore Catalyst Components.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": [
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "1tGzh54oIuy1AtKuBNsnFg=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Core Commands|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "oRA0fWJNMO2GdpBKaNpIzA=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Project Configuration|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						}
+					]
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "hk1sZYh1TLVl1jzMj+/0CQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Quick Start|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": [
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "ywv0PirOMrncabptErkH2g=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:DevKit|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "MdZuaOi2QRkJagH0JuIbbg=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Jadeite for Pharo|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "CBgRG0xjIBlvO6aR6xjsiA=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:GemStone|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						}
+					]
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "shn8ObeCodcZDY7SQEPlaQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Deployments|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": [
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "EtKraj8z8d/ay9jeY5TC7Q=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Connect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "62tr6+lm5uzgX56FhTsr1w=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Store|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "YD2L+1mh4I7PngI4C6ldCQ=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Users|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "r0RHrPdWx83ZX4OfR5ozHg=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Groups|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "PYLDmZT1jbIYPK7WEK4UPA=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Currency|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "KORhFO6I3Gx44c8nZEpfBg=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Landform|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "zDNE4VpR6Gi8UboH3Prv1A=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Architect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "fX0DV7d6TtAE80Kwm+c+pQ=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Reflect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "GoIfwkiDe9I4eo6/dgTXLw=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Catalyst Ecosystems|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						}
+					]
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "NVcQLur4shiKdstsqH7Jkw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Catalyst Components|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +687,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,23 +698,61 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "V4VmtJSYR0yFXEsKl70IPQ=="
+					"uidString": "YOOIFwgvoDav//z9+em6tA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Documentation index\n\n### Start here\n\n- {{gtPage:Quick Start|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:Core Commands|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:Project Configuration|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n\n### Working with deployments\n\n- {{gtPage:Deployments|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:DevKit|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:Jadeite for Pharo|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:GemStone|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n\n### Catalyst platform\n\n- {{gtPage:Catalyst Components|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Connect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Store|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Users|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Groups|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Currency|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Landform|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Architect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Reflect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Catalyst Ecosystems|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:Catalyst Plugins|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n\n### Support and reference\n\n- {{gtPage:Troubleshooting|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n- {{gtPage:Reference|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n\n### Notes\n\nThese are useful working notes and older material. They are kept out of the main docs path so the core documentation stays clean.\n\n- {{gtPage:Notes|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:ACF|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Building a Universe|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Ecosystems Development Journal|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Extras|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:GeoNames|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:Music Video MetaData|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n  - {{gtPage:OtherBarry|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n"
+				"string": "{{gtPage:Catalyst Plugins|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
 			},
 			{
 				"__type": "textSnippet",
 				"children": {
 					"__type": "snippets",
-					"items": []
+					"items": [
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "GQFf5ecEQqo7dBG5OJiZFQ=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Reference|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						}
+					]
 				},
 				"createEmail": {
 					"__type": "email",
@@ -92,7 +762,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +773,314 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "DxRcchYiRIOlL8dGX4z91A=="
+					"uidString": "GYgt7SLgAw46M7EEyrVwlw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Current shape\n\nUse `bvc` for the normal workflow.\n\nThe documentation is organised by what you are trying to do: start a project, configure it, run the DevKit, manage deployments, then explore Catalyst Components when you are ready.\n\nGemStone and GsDevKit details are still documented, but they are background and reference material. The common path should stay boring. Boring tools are good tools.\n"
+				"string": "{{gtPage:Troubleshooting|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": [
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "6Qpu/a/u/kzDd7zg1X6D/g=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:ACF|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "+Jw8L1SFBXaL+GJJcwEwNg=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Building a Universe|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "wt2hQhOdBeTiO3SoOoib3w=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Ecosystems Development Journal|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "xtidliCig/q8033qgm847g=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Extras|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "Wmxq2mJVqRm8o8yjbBrkrA=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:GeoNames|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "EFEs4+qEi3lfAiuWxNIKkQ=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:Music Video MetaData|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						},
+						{
+							"__type": "textSnippet",
+							"children": {
+								"__type": "snippets",
+								"items": []
+							},
+							"createEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"createTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"editEmail": {
+								"__type": "email",
+								"emailString": "<unknown>"
+							},
+							"editTime": {
+								"__type": "time",
+								"time": {
+									"__type": "dateAndTime",
+									"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+								}
+							},
+							"uid": {
+								"__type": "uid",
+								"uidString": "Eh/Q525WZuG4B0kKfZGHAw=="
+							},
+							"paragraphStyle": {
+								"__type": "textStyle"
+							},
+							"string": "{{gtPage:OtherBarry|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
+						}
+					]
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "KMK6aWibJQEFE7n0DtFqRQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Notes|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}"
 			}
 		]
 	},
@@ -136,7 +1103,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+			"dateAndTimeString": "2026-05-14T14:25:00.000000+10:00"
 		}
 	},
 	"pageType": {
