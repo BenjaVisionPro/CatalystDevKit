@@ -1,0 +1,261 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "W30m5RmARmq3aiUY5d7JFg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# Building a Universe\n\nThis is retained project/scratchpad material. It is not part of the main DevKit documentation path.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "GXfX8OtoTZqcjyqzkH9pQg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "We want to have planets, then a solar system (multiple planets orbiting a star), then a star system (multiple solar systems), the galaxies (multiple star systems)\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "PKYnpIOmS1GwwFCC+l7mgQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Let's start by creating a universe for development.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "dSUkC3QfTcyB9j8XDy681A=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "add a Galaxy\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "9fdM5D1AQt+r1MQPUivTBw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "now for a star system\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "BLfyUz0fRoKZqhTOX4bWhw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "There's no need to specify positioning since\n"
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Building a Universe"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "48d447d2-4989-4621-a4eb-fefd05217160"
+	}
+}

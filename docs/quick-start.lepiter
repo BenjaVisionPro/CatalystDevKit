@@ -1,0 +1,261 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "1A7ZGeiFS2Ss8mBkDNfnzw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# Quick Start\n\nInstall bvc, create a project, launch the DevKit, then start a deployment. That is the happy path.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "/OmvYeSbRamRCK8WI8G+Zg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Install\n\nInstall in the default location:\n\n```sh\ncurl -fsSL https://raw.githubusercontent.com/BenjaVisionPro/bvc/refs/heads/main/bin/install.sh | bash -s\n```\n\nInstall somewhere else:\n\n```sh\ncurl -fsSL https://raw.githubusercontent.com/BenjaVisionPro/bvc/refs/heads/main/bin/install.sh | bash -s -- --prefix \"$HOME/catalyst\"\n```\n\nThe installer clones the bvc repository and adds its `bin` directory to your shell path.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "BdVHp5sQRBeIW6Xul4VStw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Create a project\n\n```sh\nbvc create MyProject\ncd MyProject\n```\n\nThis creates a project directory and initialises it with Catalyst configuration.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "WlMRfc5iTpGoP50toJ5/ag=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Launch the DevKit\n\n```sh\nbvc devkit\n```\n\nThis builds the DevKit if needed, refreshes GemStone connectors, then launches Glamorous Toolkit.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "TKMGBZ6JSBOhrE45FJE9Xw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Start a deployment\n\n```sh\nbvc start myproject-dev --with-seaside\n```\n\nA deployment is a GemStone stone managed by bvc.\n\n`--with-seaside` is a temporary first-install option. It only matters when the deployment is created. If the deployment already exists, the flag has no effect.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "baxxhksvR2WIvPVCuq4c+Q=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Check what exists\n\n```sh\nbvc list\n```\n\nThis lists registered deployments and running stones.\n"
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Quick Start"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "6b360421-67d2-4b64-81e6-f8605cc13f60"
+	}
+}

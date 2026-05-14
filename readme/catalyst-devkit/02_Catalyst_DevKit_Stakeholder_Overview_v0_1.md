@@ -36,7 +36,7 @@ Catalyst Landform provides distributed persistent landscape editing, initially p
 
 Catalyst Architect provides persistent collaborative building.
 
-Catalyst Economy provides currencies, exchanges, wallets, banks, payment systems, auctions, and economic business models.
+Catalyst Economy provides currencies, exchanges, wallets, banks, payment systems, trade, auctions, and economic business models and processes.
 
 CatalystApp provides a Swift application template for Catalyst apps on iOS, macOS, tvOS, and watchOS.
 

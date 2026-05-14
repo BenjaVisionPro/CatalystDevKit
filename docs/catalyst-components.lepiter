@@ -1,0 +1,150 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "ld2bSLWyTbaWcqTS/kg0mA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# Catalyst Components\n\nCatalyst Components are first-party capabilities built for Catalyst projects.\n\nThey are not external integrations. They are pieces of the Catalyst platform that can be used, combined, documented, and extended as the project grows.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "5LQ2SFlLTZWANbr7wVnONg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Component index\n\n{{gtPage:Catalyst Connect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Store|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Users|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Groups|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Currency|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Landform|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Architect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Reflect|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n{{gtPage:Catalyst Ecosystems|db=bb9d96c9-9bd1-0d00-a109-c4d10ab7a977}}\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "Vw911ySXRWGUYNqVjpiN4w=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## How to read these pages\n\nEach component page answers three questions:\n\n- what it is\n- when it is useful\n- what documentation or examples should exist next\n\nThe placeholders are intentionally short. They should make the component easy to recognise without pretending the full docs are finished.\n"
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Catalyst Components"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "d8bc95c9-0365-47f2-b104-a30642988968"
+	}
+}

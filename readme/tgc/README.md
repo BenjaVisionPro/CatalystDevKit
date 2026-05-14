@@ -15,7 +15,3 @@ This archive contains the TGC stakeholder documentation created from the source 
 5. [TGC — Vertical Slice Brief v0.2](TGC_-_Vertical_Slice_Brief_v0.2.md)
 6. [TGC — Stakeholder Documentation Pack v0.3](TGC_-_Stakeholder_Documentation_Pack_v0.3.md)
 7. [TGC — Stakeholder Handoff Note v0.1](TGC_-_Stakeholder_Handoff_Note_v0.1.md)
-
-## Review/audit docs
-1. TGC — Pack Consistency Audit v0.1
-2. TGC — Stakeholder Pack Final Consistency Pass v0.1

@@ -1,0 +1,261 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "WN8y1lmMTHmv3u1MeAyBYQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# Troubleshooting\n\nStart with the simple checks. Most problems are config, path, registry, or permissions issues. Annoying, yes. Mysterious, no.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "xgLwNpS8STKHZiGTdH2z1g=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Check bvc can see deployments\n\n```sh\nbvc list\n```\n\nIf this is wrong, check the registry directly:\n\n```sh\nregistryReport.solo --registry=bvc\n```\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "6viJku8XTayITMYyMqSceQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Check running stones\n\n```sh\ngslist.solo -lc\n```\n\nRegistered and running are different things. A deployment can be registered and not running.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "rz4d3G+jSv2THIFUb/22iQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Refresh DevKit connectors\n\n```sh\nbvc devkit\n```\n\nLaunching the DevKit refreshes `gt4gemstone.properties` before startup.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "p+KwlxcZTvGb/+WLmDnKkw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Script permissions\n\nSome cloned projects may contain shell scripts without execute permissions.\n\nbvc fixes known script directories before invoking them. If a new external script directory is added, add it to the shared permission helper instead of patching one call site.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "8As082RhSHCDM7984oBtHg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Supported platforms\n\nSupported:\n\n- macOS\n- Linux\n- Linux on Windows through WSL\n\nNot supported:\n\n- native Windows shells\n- Git Bash / MSYS / Cygwin as a target runtime\n\nUse WSL on Windows. It is less glamorous, but it works.\n"
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Troubleshooting"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "bb4eddbb-6dfe-4232-96e0-c7e7bff66ebb"
+	}
+}

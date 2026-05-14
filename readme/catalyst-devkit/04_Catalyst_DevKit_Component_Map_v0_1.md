@@ -43,7 +43,7 @@ Catalyst Landform: distributed persistent landscape editing and Unreal/Voxel Plu
 
 Catalyst Architect: persistent collaborative building.
 
-Catalyst Economy: currencies, exchanges, wallets, banks, payment systems, auctions, economic transactions, and auditability.
+Catalyst Economy: currencies, exchanges, wallets, banks, trade, payment systems, auctions, economic transactions, and auditability.
 
 CatalystApp: Swift application template for Catalyst apps on Apple devices.
 

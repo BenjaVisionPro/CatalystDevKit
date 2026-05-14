@@ -1,0 +1,150 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "kUnMShJQRd2hFMt/JKOw4Q=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "# Catalyst Groups\n\nGroups, teams, cohorts, and shared ownership models. Use it when users need to act together rather than alone.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "KGwiuz0nT1CQ+YfWfazhFw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Is this what you are looking for?\n\nUse this component when its domain is part of the application, not just an implementation detail.\n\nIf the project only needs a quick one-off integration, this may not be the right layer yet. If the concept will become part of the product language, it probably is.\n"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "2cQrtzSGSOWOwE+YzFGWIA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Documentation to add\n\n- Overview\n- Core model\n- Common workflows\n- Examples\n- Inspector views and tools\n- Configuration\n- Extension points\n\nKeep examples practical. A good component page should make someone want to try it immediately.\n"
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-05-14T14:00:07.115881+10:00"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Catalyst Groups"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "86865f10-cff5-475f-aae7-49d7e8dbbe3f"
+	}
+}

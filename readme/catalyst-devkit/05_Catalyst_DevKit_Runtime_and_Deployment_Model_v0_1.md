@@ -16,21 +16,20 @@ The DevKit is built around Pharo/GToolkit and provides local Runtime execution, 
 
 ## Deployment Model
 
-Catalyst projects deploy to Catalyst Runtime environments backed by GemStone.
-
-Deployment supports persistent object state, server-side execution, transactional model changes, distributed runtime behaviour, multi-user operation, scaling beyond local development, deployment testing, and large-scale commercial deployment.
+Catalyst projects deploy to Catalyst GemStone Runtime which supports scalling for massive concurrent user bases.
 
 GemStone provides a non-commercial licence suitable for deployment testing. Large-scale deployment uses GemStone’s commercial licence model.
 
 ## Development-To-Deployment Path
 
-1. Model locally using Catalyst Foundation conventions.
-2. Run Catalyst Runtime inside the DevKit.
-3. Load and test required Catalyst components together.
-4. Inspect models, runtime state, component state, and process execution.
-5. Connect clients through Catalyst Connect and component integrations.
-6. Test deployment with GemStone’s non-commercial licence where suitable.
-7. Move to GemStone’s commercial licence model for production scale.
+1. Install Catalyst DevKit and add the bin dirctory to your path
+2. Create your project (bvc )
+3. Build your Catalyst backend from the latest source daily or as needed (bvc build)
+4. Launch your game server (bvc run)
+5. Develop, and test your game live
+6. Save source changes to repo.
+7. Build your deployment environment (bvc )
+8. Many updates can be pushed from the dekkit into production without bringing down the runtime.
 
 ## Runtime Authority
 
