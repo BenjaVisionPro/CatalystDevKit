@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wFsEhOyizZG0EVbbmxszVg=="
+					"uidString": "g+zVRmHH4jgENkOLpf1Hyg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is the Catalyst communication component for realtime, observable, purpose-fit distributed systems."
+				"string": "Catalyst Connect is split into small slices so each layer can stay honest about what it owns."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jduKS2AqZJ1Sh+1ypMW5wA=="
+					"uidString": "OYa29HUZl93vQ2eFaD53ag=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Connect"
+				"string": "# Connect Architecture"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hqiszmjv+ipTAIiUmcSuGA=="
+					"uidString": "jm2MUM0yn0vMMv67ZzKjsg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect gives Catalyst projects a practical communication foundation for realtime systems: explicit connection boundaries, protocol slices, message relevance, and telemetry from the start."
+				"string": "Catalyst Connect is split into small slices so each layer can stay honest about what it owns."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7CRoLAXs6UspK34c7j4Jzw=="
+					"uidString": "VbAFfqakJcrfcQNhug9irA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Connect"
+				"string": "## What is Connect Architecture"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Wo0uCe7c/wA7DcK+aw0b/g=="
+					"uidString": "mJGfK7DUZONFks3ZnjiXoQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is a first-party Catalyst Component for building distributed message systems. It includes the BVCC toolkit model and BVCP, the default protocol design shaped by the PF4P principle: Perfectly Fit Four Purpose."
+				"string": "The architecture splits communication into sockets, transport, codec, router, and endpoints. This keeps platform details, framing, encoding, routing, and application APIs separate."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HiH3aLsO5ZvdzyYr7p6Lzw=="
+					"uidString": "repldnF2Htl0NvDcKrOe7w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "RwhamPSsW6JdRat4y/DMng=="
+					"uidString": "DVdkBIrjUCYeesRb7vN6Kg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives projects a clear way to handle communication when generic transports are close but not precise enough for realtime simulation, multiplayer, live tools, or distributed services."
+				"string": "It prevents socket code from accidentally becoming transport logic."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "w5wyrwY7P/J+aOo+V+JtcQ=="
+					"uidString": "fpZue1RzbTRVpNrVClCUWw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It makes relevance, delivery intent, routing policy, and observability explicit instead of burying them inside custom networking code."
+				"string": "It prevents codecs from owning routing policy."
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,12 +325,86 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SeqNrAsFfBGkastOVmmiEA=="
+					"uidString": "vzdqDdQsec74fV79+PW41Q=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It makes the system easier to port across GemStone, C++ core code, Unreal wrappers, and Swift-based clients."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "n5NRFy1G4nacNnwIKYdCKA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives each layer clear telemetry and failure boundaries."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "gyujZsxNlYF/biRsJg1WrQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -351,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +436,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "u4Ben0yqS3+1IFgrvDUlmQ=="
+					"uidString": "69qcULY+P2FylPx9FJstvQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Connect is organised into slices. Sockets own lifecycle and readiness. Transport owns frames, pacing, reliability, and reassembly. Codec owns message format. Router owns delivery policy. Endpoints expose the application API."
+				"string": "Slice 1 owns socket lifecycle and readiness signals. Slice 2 owns transport framing, pacing, reliability, and reassembly. Slice 3 owns message encoding and decoding. Slice 4 owns routing decisions. Slice 5 owns endpoint-facing APIs."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +473,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "exq82yjL2KUZgyDXXAETXQ=="
+					"uidString": "a1Y9OfaaRSVoYV+8GG324g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +510,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "knw6nQ8Qd8cXrKtTdlhygQ=="
+					"uidString": "sZBj/YHD1Sn91M3v1T8+bQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use these pages as the working documentation set for Catalyst Connect:"
+				"string": "Read the slice pages in order if you are implementing the stack."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,160 +547,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ZnnTuAItSA0u2DHFQIHbEw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Why Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "bO7Geyt90dBss1emoc1dTA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:PF4P|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "E52XPUybBv/yZ6Zxco7rFA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:BVCP Overview|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "xxY8dhYL2iPUipjLHw5hvQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Connect Architecture|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "zL9VP7BNUzi84U43/TSpvA=="
+					"uidString": "4AJs+jQi2XxkpQaBm/xLgA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -647,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -658,12 +584,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "II6X7pbRWImUJIiI2O6Tgw=="
+					"uidString": "p1uOk/0zyL6pS3OlGw7Cqg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -684,7 +610,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -695,49 +621,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0YNdGWzdaOJj/6tR+R8CDg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:BVCP over UDP|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "NmS62bJIHbO2OsAXQ+p3NA=="
+					"uidString": "fBHvZs465SZUGkjdRy4HGQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -758,7 +647,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -769,12 +658,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "fp/enWHWnl67rhTaQioBqg=="
+					"uidString": "XjucLHK3XPD7XnyE/lHwBA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -795,7 +684,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -806,12 +695,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v6dYveIsO8W0O/XQxujU9A=="
+					"uidString": "8lDbk0BQ94BIccKj5NZBfQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -832,7 +721,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -843,49 +732,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "RnRnlunK5gDtVaea1XPL3w=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Security and Pacing|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "0fZ55EFobeD9eUW/2uXlYg=="
+					"uidString": "EpJFm2qYBJp/xsup0tLVfQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -906,7 +758,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -917,17 +769,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tJ1bmVw7n6K4BWSmm+qTFw=="
+					"uidString": "pa6UIoyFNBNFvLCjaI2lzA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is a Catalyst Component, not a plugin. Plugins connect Catalyst to external systems; Components are first-party capabilities inside the Catalyst platform."
+				"string": "The slice model is intentionally boring. Boring boundaries are how the fun parts stay manageable."
 			}
 		]
 	},
@@ -939,7 +791,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -950,15 +802,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+			"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Connect"
+		"title": "Connect Architecture"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "3bdf72eb-a4cd-48a3-9439-2a792b8f1eb7"
+		"uuid": "5b2fc34a-7e5b-41c6-a166-84b10a3f072d"
 	}
 }

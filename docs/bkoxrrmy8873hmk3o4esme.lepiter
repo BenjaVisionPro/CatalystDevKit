@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wFsEhOyizZG0EVbbmxszVg=="
+					"uidString": "re/dMOTYK7K+ocd1ZifKww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is the Catalyst communication component for realtime, observable, purpose-fit distributed systems."
+				"string": "BVCP is the default Catalyst protocol design for timely, observable, mixed-reliability communication."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jduKS2AqZJ1Sh+1ypMW5wA=="
+					"uidString": "XZ6oBfmuU6ocDEruyqafEA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Connect"
+				"string": "# BVCP Overview"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hqiszmjv+ipTAIiUmcSuGA=="
+					"uidString": "7Ei04DZLQmOUS9iXfUvHmA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect gives Catalyst projects a practical communication foundation for realtime systems: explicit connection boundaries, protocol slices, message relevance, and telemetry from the start."
+				"string": "BVCP is the default Catalyst protocol design for timely, observable, mixed-reliability communication."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7CRoLAXs6UspK34c7j4Jzw=="
+					"uidString": "nJuzeYTJGmSFXzBr4yyNCA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Connect"
+				"string": "## What is BVCP"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Wo0uCe7c/wA7DcK+aw0b/g=="
+					"uidString": "+n0JlWmeS377T9D/fQRR3A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is a first-party Catalyst Component for building distributed message systems. It includes the BVCC toolkit model and BVCP, the default protocol design shaped by the PF4P principle: Perfectly Fit Four Purpose."
+				"string": "BVCP, the BenjaVision Catalyst Protocol, is the exemplar protocol built with Catalyst Connect. It is designed for realtime distributed systems that care about latency, relevance, and operational visibility."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HiH3aLsO5ZvdzyYr7p6Lzw=="
+					"uidString": "CyWDWOyH5iNpMvgWZeEd7g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "RwhamPSsW6JdRat4y/DMng=="
+					"uidString": "BC6CxvtIDrXMQzrUt3PXYw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives projects a clear way to handle communication when generic transports are close but not precise enough for realtime simulation, multiplayer, live tools, or distributed services."
+				"string": "It provides message-level relevance windows so expired data does not pollute the system."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "w5wyrwY7P/J+aOo+V+JtcQ=="
+					"uidString": "Zpxt6ag2INsKdAoW8OlxIA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It makes relevance, delivery intent, routing policy, and observability explicit instead of burying them inside custom networking code."
+				"string": "It supports mixed delivery intent: reliable, partial, and unreliable where each makes sense."
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,12 +325,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SeqNrAsFfBGkastOVmmiEA=="
+					"uidString": "b8HFJP/ry+aCrAOkdYq/Aw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives operations and developers telemetry for deadlines, jitter, drops, pacing, and routing decisions."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "790KwAozxZod+0tep2WjLA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -351,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +399,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "u4Ben0yqS3+1IFgrvDUlmQ=="
+					"uidString": "K32P1pUnnEWGc/5xVRRvyw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Connect is organised into slices. Sockets own lifecycle and readiness. Transport owns frames, pacing, reliability, and reassembly. Codec owns message format. Router owns delivery policy. Endpoints expose the application API."
+				"string": "BVCP is framed transport with session streams, message records, priority, deadlines, and optional integrity checks. Transport handles segmentation and reassembly before complete messages reach the codec."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +436,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "exq82yjL2KUZgyDXXAETXQ=="
+					"uidString": "R9L2XSMISSjq9BgETTPHNw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "The protocol is designed to run cleanly over supported drivers, including TCP-style streams and UDP-oriented drivers where appropriate."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "KnrdXp9lulO0uJ2H0wWQYg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +510,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "knw6nQ8Qd8cXrKtTdlhygQ=="
+					"uidString": "pam3GEKez53KINUqykqYqg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use these pages as the working documentation set for Catalyst Connect:"
+				"string": "For most projects, start with BVCP configuration before designing a bespoke protocol."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,197 +547,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ZnnTuAItSA0u2DHFQIHbEw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Why Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "bO7Geyt90dBss1emoc1dTA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:PF4P|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "E52XPUybBv/yZ6Zxco7rFA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:BVCP Overview|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "xxY8dhYL2iPUipjLHw5hvQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Connect Architecture|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "zL9VP7BNUzi84U43/TSpvA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Sockets|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "II6X7pbRWImUJIiI2O6Tgw=="
+					"uidString": "5hNzvCFV9kMrgnV46JjgXg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -684,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -695,12 +584,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0YNdGWzdaOJj/6tR+R8CDg=="
+					"uidString": "E3F4CU0FKMPiwbRrQ+7thw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -721,7 +610,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -732,160 +621,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NmS62bJIHbO2OsAXQ+p3NA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Codec|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fp/enWHWnl67rhTaQioBqg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Router|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "v6dYveIsO8W0O/XQxujU9A=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Endpoints|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "RnRnlunK5gDtVaea1XPL3w=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Security and Pacing|db=731asfxqhyhdr96k6wo9yxnzv}}"
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "0fZ55EFobeD9eUW/2uXlYg=="
+					"uidString": "KhEcdhl30NmzCjJdy9lghw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -906,7 +647,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -917,17 +658,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+						"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tJ1bmVw7n6K4BWSmm+qTFw=="
+					"uidString": "zbn32pCs5aPbiKyq4vdM3A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Connect is a Catalyst Component, not a plugin. Plugins connect Catalyst to external systems; Components are first-party capabilities inside the Catalyst platform."
+				"string": "BVCP is the current protocol direction. Details may evolve as implementation pressure teaches us more."
 			}
 		]
 	},
@@ -939,7 +680,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -950,15 +691,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-16T15:10:00+10:00"
+			"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Connect"
+		"title": "BVCP Overview"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "3bdf72eb-a4cd-48a3-9439-2a792b8f1eb7"
+		"uuid": "c9036a74-be63-4cf6-846c-4ee86dcea70a"
 	}
 }
