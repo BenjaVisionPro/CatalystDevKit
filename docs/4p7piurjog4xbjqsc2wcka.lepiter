@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "e0zvpMa3tg6Kk9s+aiPT9g=="
+					"uidString": "3tB+AfHM96JdLZCIb5NVZA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership, roles, invitations, hierarchies, and shared resources."
+				"string": "Catalyst People starts with real humans, not accounts, sessions, or login records."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0vWeq43EjV+0/uKcj8Usvg=="
+					"uidString": "f6tFFGewumtLuRlsQ0t7BA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# People and Identity"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rZhV4oo6ikg0/Q/mezBX3w=="
+					"uidString": "IEywiHbkzxiu2IHqCXxmWw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, and any other collective identity."
+				"string": "People and Identity explains the core Person model and how it stays separate from accounts, bots, services, and runtime actors."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "S7oQ6PEcvzPIRFJ4e/Xa0w=="
+					"uidString": "VzhQ5gpx6P3YW/1VrJW9rA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is People and Identity"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TVBUIBFrqpxvYAsXp+97nw=="
+					"uidString": "4ax5wuduJTc4eZaewCqBZg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any other structure where people or other actors belong together."
+				"string": "A Person represents a real human identity. It is the anchor for profile information, preferences, relationship history, and person-linked state."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAFeAS0a2EgPDSp2v+XwTw=="
+					"uidString": "AQB8QP98TY/B7azVZ9mEyA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership, roles, invitations, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Accounts, sessions, principals, and credentials are ways a system recognises or acts for someone in a context. They are not the person."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qc349HWdqbka3sQ6CB61iw=="
+					"uidString": "w4ucWt0LnFrLAe3UTqvBlg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v+vbdExXmmyFDFyMKATCqw=="
+					"uidString": "V651V6R96K/J7UGSmugmNg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It prevents projects from treating a login account as the whole human. That matters when a person has multiple accounts, devices, roles, games, services, or deployments."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "z/0WZZNUsNYI5fGVw43bcg=="
+					"uidString": "ofX4vl5ttdHwRIRerpaY3A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, roles, ownership, and shared access differently in every application."
+				"string": "It also makes room for non-human actors. Bots and services can act in a runtime without being modelled as people."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,44 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/MHlq2RE4+WFf8aR+OSt7g=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "They also build on the relationship model, so membership can carry its own history, role changes, strength, responsibility, trust, stress, and status over time."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "2Qy5NEbYJ4fQqjOPHSwHIQ=="
+					"uidString": "XeWAAKvqX5d9tn7eT4cYwQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y8YcQeLPUb05fHeJljUFYg=="
+					"uidString": "nynYCrZ3vNwqcQ8UCadM3A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "Person is the stable identity. Contextual accounts connect a person to a specific application, service, currency system, or deployment."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FeG6SMaCuN/Gku4GIIjwzQ=="
+					"uidString": "NIwFFItgal391aU+pGigIA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and status can change over time. A person may join as a member, become an admin, pause involvement, return later, or leave entirely while the history remains understandable."
+				"string": "Runtime principals represent who or what is acting at a point in time. A principal may act for a person, a bot, a service, or another controlled actor."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Zku1kTT91XFqwQWcfeMIrQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Groups can relate to other groups, people, accounts, projects, ideals, services, and resources. That makes them useful for social systems, organisational structures, and shared application state."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "I3DvMUQkA09l30X5RBsLAg=="
+					"uidString": "E8B9NaySO+LKWAGncfmc1g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPlg4ER+i7na4uvZxLIp0w=="
+					"uidString": "lkkZeIC6NR6xGOuU2wnvcA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show how to create a Person, attach a profile, and connect the person to contextual accounts."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MvzwnS7hDCzqoSbE2ObFjg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fEEhmradgR8PPPO3OzIlgA=="
+					"uidString": "cr1PDYfA32Pvq9p86/gpFQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FcGAhdloQC/CPI4QeaOODw=="
+					"uidString": "op18WJMPu8oyE9mMRgkAmg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Keep the model boring where it should be boring. Person means human. Account means contextual access or value container. Principal means actor in a runtime."
 			}
 		]
 	},
@@ -733,10 +622,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "People and Identity"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "06e630f0-f156-4dfb-9633-9b0616dddd03"
 	}
 }

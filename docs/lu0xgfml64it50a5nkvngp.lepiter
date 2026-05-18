@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "e0zvpMa3tg6Kk9s+aiPT9g=="
+					"uidString": "uUQqjqb0Ebx/yg/xcY/fAw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership, roles, invitations, hierarchies, and shared resources."
+				"string": "Catalyst Groups gives other components collective identity without taking over their domain rules."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0vWeq43EjV+0/uKcj8Usvg=="
+					"uidString": "FyONUsicC1rHUcJqdHQwVQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Groups Integration"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rZhV4oo6ikg0/Q/mezBX3w=="
+					"uidString": "ODgY6I3kibX4kHjEhONtTA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, and any other collective identity."
+				"string": "Groups Integration explains how Groups works with People, Connect, Store, Currency, and application-specific systems."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "S7oQ6PEcvzPIRFJ4e/Xa0w=="
+					"uidString": "Qunlup513Cwo4NRtNYPZQg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Groups Integration"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TVBUIBFrqpxvYAsXp+97nw=="
+					"uidString": "PBiimP+TlOe7x7Sp5t8C1w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any other structure where people or other actors belong together."
+				"string": "Groups is the shared collective identity component. Other components use it when they need teams, organisations, memberships, roles, or group-linked resources."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAFeAS0a2EgPDSp2v+XwTw=="
+					"uidString": "JpThmZBUVTkzsIr326Guqw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership, roles, invitations, hierarchies, shared resources, and relationships to other concepts."
+				"string": "It should integrate cleanly without becoming the whole application."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qc349HWdqbka3sQ6CB61iw=="
+					"uidString": "xdspuXj7kgUyzg7Pcwh2Yw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v+vbdExXmmyFDFyMKATCqw=="
+					"uidString": "ooOPl/m/p/Da4kFGosKQNg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "People provides members and relationship history."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "z/0WZZNUsNYI5fGVw43bcg=="
+					"uidString": "V8g6TEz6FKSQ7LI7VJ8TVQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, roles, ownership, and shared access differently in every application."
+				"string": "Connect provides group communication."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/MHlq2RE4+WFf8aR+OSt7g=="
+					"uidString": "wdcACI3Kx01fjdaudbx1jA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They also build on the relationship model, so membership can carry its own history, role changes, strength, responsibility, trust, stress, and status over time."
+				"string": "Store and Currency provide shared resources and value systems."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "2Qy5NEbYJ4fQqjOPHSwHIQ=="
+					"uidString": "Ox12S/rapHh//i0AbfcYhg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Applications provide domain-specific rules."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "qdtKg1Olf752H1ydHGOLKQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y8YcQeLPUb05fHeJljUFYg=="
+					"uidString": "rFIZUHLGkjC9yxERxZvpKQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "Groups exposes group identity, membership relationships, roles, and resource relationships. Other components reference those concepts and keep ownership of their own data."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FeG6SMaCuN/Gku4GIIjwzQ=="
+					"uidString": "6pqCCNaJp+/9LJXkRyquQQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and status can change over time. A person may join as a member, become an admin, pause involvement, return later, or leave entirely while the history remains understandable."
+				"string": "Integration should be inspectable and explicit so projects can understand why a group has access to something."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Zku1kTT91XFqwQWcfeMIrQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Groups can relate to other groups, people, accounts, projects, ideals, services, and resources. That makes them useful for social systems, organisational structures, and shared application state."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "I3DvMUQkA09l30X5RBsLAg=="
+					"uidString": "fspRHVzJuxXHTPFbQ1qFBQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPlg4ER+i7na4uvZxLIp0w=="
+					"uidString": "zkdL4J8JGAUXD+HnQ4BIwg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Integration examples will be linked from each component as the APIs stabilise."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +626,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MvzwnS7hDCzqoSbE2ObFjg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fEEhmradgR8PPPO3OzIlgA=="
+					"uidString": "XcZPsqXhf2/64clLllvH8Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +663,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FcGAhdloQC/CPI4QeaOODw=="
+					"uidString": "42C5oLSbnUjSLC9SaRm1Mg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Groups should make collaboration easier, not hide authority in a mysterious group soup."
 			}
 		]
 	},
@@ -733,10 +696,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Groups Integration"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "09ca336a-2a1f-4fea-83b0-68d6b210d8bc"
 	}
 }

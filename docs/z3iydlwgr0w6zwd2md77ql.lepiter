@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "e0zvpMa3tg6Kk9s+aiPT9g=="
+					"uidString": "sQxHQaICpsGy3GSqpjG7dw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership, roles, invitations, hierarchies, and shared resources."
+				"string": "Relationship aspects let roles, labels, strength, stress, trust, and status change on their own timelines."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0vWeq43EjV+0/uKcj8Usvg=="
+					"uidString": "mUfzFctM04Lptpu1rFhPTg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Relationship Aspects"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rZhV4oo6ikg0/Q/mezBX3w=="
+					"uidString": "b2qhZmRcZw+kQzPNGqQY1A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, and any other collective identity."
+				"string": "Relationship Aspects is the core pattern for modelling values that change over time without forcing every change into one large phase record."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "S7oQ6PEcvzPIRFJ4e/Xa0w=="
+					"uidString": "XAL7EuC5Mhv48ruV+LSpEQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Relationship Aspects"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TVBUIBFrqpxvYAsXp+97nw=="
+					"uidString": "oQcPOSQf8sYAY4dWB1U3hQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any other structure where people or other actors belong together."
+				"string": "An aspect is one meaningful property of a relationship or one of its ends. Examples include role name, relationship type, status, strength, stress, trust, visibility, responsibility, and commitment."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAFeAS0a2EgPDSp2v+XwTw=="
+					"uidString": "LW6Gtuw+1geH6tsnw5eMjA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership, roles, invitations, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Each aspect has its own history. That means trust can change weekly, role can change once, and visibility can change only when the relationship becomes public."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qc349HWdqbka3sQ6CB61iw=="
+					"uidString": "NxgwwaRxifArZfmFvPgQyg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v+vbdExXmmyFDFyMKATCqw=="
+					"uidString": "NjsI2isMCsVIpj34y+1Msg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It avoids overwriting history with a current value."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "z/0WZZNUsNYI5fGVw43bcg=="
+					"uidString": "F2JI55Cviov3McKK4/iWpw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, roles, ownership, and shared access differently in every application."
+				"string": "It avoids forcing unrelated changes into artificial phases."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/MHlq2RE4+WFf8aR+OSt7g=="
+					"uidString": "WrOtYY2+s/smLRjLURkc3w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They also build on the relationship model, so membership can carry its own history, role changes, strength, responsibility, trust, stress, and status over time."
+				"string": "It lets applications ask both current questions and historical questions."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "2Qy5NEbYJ4fQqjOPHSwHIQ=="
+					"uidString": "Jku9Oki+m0CaMA6jwLcVww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y8YcQeLPUb05fHeJljUFYg=="
+					"uidString": "WLfH7WzM09MMs8GHPd1vvw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "A relationship owns aspect timelines. Each participant end can also own aspect timelines."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FeG6SMaCuN/Gku4GIIjwzQ=="
+					"uidString": "Msg8TT6AUdc6o5G3h4U74Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and status can change over time. A person may join as a member, become an admin, pause involvement, return later, or leave entirely while the history remains understandable."
+				"string": "An aspect value records the value, when it became valid, when it stopped being valid if known, who or what asserted it, and any confidence or source metadata that matters."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Zku1kTT91XFqwQWcfeMIrQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Groups can relate to other groups, people, accounts, projects, ideals, services, and resources. That makes them useful for social systems, organisational structures, and shared application state."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "I3DvMUQkA09l30X5RBsLAg=="
+					"uidString": "nUWFwtf4qs/QzbO9y/DShg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPlg4ER+i7na4uvZxLIp0w=="
+					"uidString": "Bs7mm2BllbGPrCNcnwPKew=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show role history, stress history, and status history on the same relationship."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MvzwnS7hDCzqoSbE2ObFjg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fEEhmradgR8PPPO3OzIlgA=="
+					"uidString": "pqAwLJrokD74hEMEIL85Ww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FcGAhdloQC/CPI4QeaOODw=="
+					"uidString": "szgEl0RsrWMhSuHug5n4VA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Use derived projections for convenience, but keep the temporal aspect history as the source of truth."
 			}
 		]
 	},
@@ -733,10 +659,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Relationship Aspects"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "a189b34d-58c5-4ae4-87cb-0c5e929119c9"
 	}
 }

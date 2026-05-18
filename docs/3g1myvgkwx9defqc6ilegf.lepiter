@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "e0zvpMa3tg6Kk9s+aiPT9g=="
+					"uidString": "cAUrn+yOKk1BdfxCKbo3Fg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership, roles, invitations, hierarchies, and shared resources."
+				"string": "Group communication connects collective identity to channels, presence, announcements, and collaboration."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0vWeq43EjV+0/uKcj8Usvg=="
+					"uidString": "HAcMNdjhjk1aHEPe4tOcOw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Group Communication"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rZhV4oo6ikg0/Q/mezBX3w=="
+					"uidString": "jqJu+UL5KxoN/UnQWV46bQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, and any other collective identity."
+				"string": "Group Communication explains how Groups should integrate with Catalyst Connect without becoming a transport layer."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "S7oQ6PEcvzPIRFJ4e/Xa0w=="
+					"uidString": "X98euBSG+F3RXw0wcmSdbg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Group Communication"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TVBUIBFrqpxvYAsXp+97nw=="
+					"uidString": "LvE60uvF+AQ/34kEDG/XUA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any other structure where people or other actors belong together."
+				"string": "Group communication is the link between a group and the channels, endpoints, or announcements used by its members."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAFeAS0a2EgPDSp2v+XwTw=="
+					"uidString": "WmHn6jb1OCgrYZcIOPkYGg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership, roles, invitations, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Groups defines who belongs and what the channel means. Connect owns the transport."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qc349HWdqbka3sQ6CB61iw=="
+					"uidString": "XNx/n76BVNV2mswlqXyaMg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v+vbdExXmmyFDFyMKATCqw=="
+					"uidString": "8XPqAFqIIq8dykpd67MBSA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It gives teams, parties, organisations, and communities a natural communication surface."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "z/0WZZNUsNYI5fGVw43bcg=="
+					"uidString": "46ZM0waDf9gf7O6MszF4wA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, roles, ownership, and shared access differently in every application."
+				"string": "It keeps channel membership aligned with group membership without mixing group modelling and network transport."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,44 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/MHlq2RE4+WFf8aR+OSt7g=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "They also build on the relationship model, so membership can carry its own history, role changes, strength, responsibility, trust, stress, and status over time."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "2Qy5NEbYJ4fQqjOPHSwHIQ=="
+					"uidString": "3QnNKvAkL5ihnNOt28hd2Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y8YcQeLPUb05fHeJljUFYg=="
+					"uidString": "BqJK7EELyX3CIsN4vSQyDg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "A group can relate to one or more communication channels. Membership and role relationships can help decide who can speak, listen, moderate, or manage channels."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FeG6SMaCuN/Gku4GIIjwzQ=="
+					"uidString": "NlAIUCJhyBbsEBT9KVsKWA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and status can change over time. A person may join as a member, become an admin, pause involvement, return later, or leave entirely while the history remains understandable."
+				"string": "Connect handles sockets, endpoints, routing, and transport-level behaviour."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Zku1kTT91XFqwQWcfeMIrQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Groups can relate to other groups, people, accounts, projects, ideals, services, and resources. That makes them useful for social systems, organisational structures, and shared application state."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "I3DvMUQkA09l30X5RBsLAg=="
+					"uidString": "maSpkj2QqOaykDN61QIyOQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPlg4ER+i7na4uvZxLIp0w=="
+					"uidString": "baGMvWhirFIxavokJPKt8g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show creating a group channel and resolving eligible participants through membership relationships."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MvzwnS7hDCzqoSbE2ObFjg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fEEhmradgR8PPPO3OzIlgA=="
+					"uidString": "0bZZi+c3xcQXtG0hC1S3kg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FcGAhdloQC/CPI4QeaOODw=="
+					"uidString": "ea5u6UItEJauBkDb/Jev/g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Communication policy can be subtle. Keep the model explicit enough that projects can inspect why someone is included or excluded."
 			}
 		]
 	},
@@ -733,10 +622,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Group Communication"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "802edb55-74a7-45c5-9dff-3fb44871805d"
 	}
 }

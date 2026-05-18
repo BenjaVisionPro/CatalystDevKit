@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "e0zvpMa3tg6Kk9s+aiPT9g=="
+					"uidString": "ReRGNkHX9OKu4mmYDivekw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership, roles, invitations, hierarchies, and shared resources."
+				"string": "Relationships are living histories with direction, roles, context, and values that change over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0vWeq43EjV+0/uKcj8Usvg=="
+					"uidString": "NwI4M5PzbZYU5FrM+4wPug=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Relationships"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rZhV4oo6ikg0/Q/mezBX3w=="
+					"uidString": "9y2Q3M6F/neFWDBPAm6t1w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, and any other collective identity."
+				"string": "Relationships explains how Catalyst People models meaningful connections without flattening them into a single current edge."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "S7oQ6PEcvzPIRFJ4e/Xa0w=="
+					"uidString": "QscMBqGvaTDFYhsy9JoO/A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Relationships"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TVBUIBFrqpxvYAsXp+97nw=="
+					"uidString": "jggF9yQ1Y4VY8WUl/smzpA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any other structure where people or other actors belong together."
+				"string": "A relationship describes how things are connected, what that connection means from each side, and how that meaning changes over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAFeAS0a2EgPDSp2v+XwTw=="
+					"uidString": "1nZS4GogEj0LEHqi5Rm/1g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership, roles, invitations, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Relationships can connect people, groups, ideas, ideals, services, accounts, projects, places, resources, and other domain concepts."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qc349HWdqbka3sQ6CB61iw=="
+					"uidString": "szs9iAetjqIQaM1ls9+low=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v+vbdExXmmyFDFyMKATCqw=="
+					"uidString": "OYpZemfe22k7l81/CaGl6w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "Simple links are not enough. A relationship can be directional, have different names at each end, and carry strength, stress, trust, commitment, visibility, and other traits."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "z/0WZZNUsNYI5fGVw43bcg=="
+					"uidString": "1VX0V9bfJtuP561E3uRq5g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, roles, ownership, and shared access differently in every application."
+				"string": "Almost everything about a relationship can change. Some values move quickly, some slowly, and some stay stable for years. Catalyst models those values as independent temporal aspects."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,44 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/MHlq2RE4+WFf8aR+OSt7g=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "They also build on the relationship model, so membership can carry its own history, role changes, strength, responsibility, trust, stress, and status over time."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "2Qy5NEbYJ4fQqjOPHSwHIQ=="
+					"uidString": "PRS1SqgPnXGTClGYM24jOA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y8YcQeLPUb05fHeJljUFYg=="
+					"uidString": "JsWASWep0t0SR3/oejQqHA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "A relationship has identity, participants, context, and aspect timelines."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FeG6SMaCuN/Gku4GIIjwzQ=="
+					"uidString": "zU5Qolt0DsxM1l/pouGdsA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and status can change over time. A person may join as a member, become an admin, pause involvement, return later, or leave entirely while the history remains understandable."
+				"string": "Each participant has an end or perspective. The ends can have different names, such as mentor and mentee, parent and child, member and group, supporter and ideal."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Zku1kTT91XFqwQWcfeMIrQ=="
+					"uidString": "YLyNPZdH1TTaZrrvm9CXsA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups can relate to other groups, people, accounts, projects, ideals, services, and resources. That makes them useful for social systems, organisational structures, and shared application state."
+				"string": "Current state is derived from temporal history. The system can answer what the relationship looks like now while preserving how it changed."
 			},
 			{
 				"__type": "textSnippet",
@@ -552,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I3DvMUQkA09l30X5RBsLAg=="
+					"uidString": "ZhxOW3toHprUXuxIiLi4SA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPlg4ER+i7na4uvZxLIp0w=="
+					"uidString": "mqbPwG/vy2hrf2NeeHQmAg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show person-to-person relationships, membership relationships, and relationships to ideas or ideals."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MvzwnS7hDCzqoSbE2ObFjg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "fEEhmradgR8PPPO3OzIlgA=="
+					"uidString": "O/OKo0U1yrkpl/cz4A8wvA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FcGAhdloQC/CPI4QeaOODw=="
+					"uidString": "XmJQEIHpVRkI3b4tRHqHjQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Do not treat phase as the source of truth. Phase can be a useful summary, but independent aspects let different parts of the relationship change at different speeds."
 			}
 		]
 	},
@@ -733,10 +659,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Relationships"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "8ffd9076-ff62-4638-bd5c-06432de6556d"
 	}
 }

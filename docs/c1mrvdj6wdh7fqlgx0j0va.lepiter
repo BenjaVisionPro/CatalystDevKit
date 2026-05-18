@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,12 +29,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FQTQFE2ESbGfSdxokMgkGQ=="
+					"uidString": "+r8cUUTY/kx0aD7u5eKfNQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,12 +66,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "bjl7JAjuQRSAO1lhvW+u9Q=="
+					"uidString": "L5ip2tYC0SeVxUYoCCAK3Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,12 +103,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "UXTi1XcISmuGWXbHA2qFqA=="
+					"uidString": "+TXenlGFuJHZ3MTfyfmRcQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,12 +140,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "4XgBxslDSduPN2ZArOdwYg=="
+					"uidString": "LzgFUVt88xA4kKRfHtubOQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/npmc+wdRs2Uf7gOrBJ6Nw=="
+					"uidString": "NaZk+0Znyjgu2Ef6s08FFQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Components are first-party capabilities that belong to the Catalyst platform. They may be packages, services, tools, or libraries, but they are not external integrations."
+				"string": "Catalyst Components are first-party capabilities that belong to the Catalyst platform. They are not external integrations; they are the building blocks Catalyst projects can share."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wJZ2vBzCRAm5rbv0zYmcpA=="
+					"uidString": "gkz87b7RKRB7sLP6YdcvjQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Each component should make a common capability understandable, inspectable, and reusable."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "LoQOjJvE3GT5zcIaTG7jtw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "cTQ/kWcpS6uMvWJ3K5FK7A=="
+					"uidString": "lTxFQODzjgrMVqw4GJOg+g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They give projects shared vocabulary and common foundations. They make capability boundaries clear. They let documentation and examples grow around reusable platform pieces."
+				"string": "Components give projects shared vocabulary and common foundations."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,12 +325,86 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "gB/Ki/agRsC6hbG+BR7+lA=="
+					"uidString": "7jfeWg3pTWwErn4BUg/K6Q=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "They reduce the number of times every project has to rebuild identity, groups, communication, stores, currency, landform, reflection, architecture, and simulation support from scratch."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "L9UJ5pP8CkCFU8ZjtKlIFQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "They make capabilities easier to document because each component has a clear home."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "DU28dThEe6azPjIiyf1Suw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -314,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +436,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "QDsPQIpZTEuE2fa0Xvfhrw=="
+					"uidString": "6D816EM6XajWiWnGHocooQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each component gets its own page with a short purpose statement, problems it solves, how it works, examples, and status notes."
+				"string": "Each component gets an overview page and focused subpages for examples and design notes."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,12 +473,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "CzzrAPN5RF2tU10qJbC5xA=="
+					"uidString": "hs7q87kGPbT+IH+81OTCdA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Components may integrate with one another, but each one should own its own domain and avoid becoming a giant everything bucket."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "Cg7IoQLjlAXgU04CHK1ZOw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -388,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +547,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FpZs9J0DTbiMPNr6vfJFow=="
+					"uidString": "MffHBU6sQb4XaIWeTFCd0g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,12 +584,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "v65mlS6BRWyqf6jQaUBFSQ=="
+					"uidString": "UVCIWNDuPoEKdqTEanZT2w=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Catalyst People|db=731asfxqhyhdr96k6wo9yxnzv}} covers human identity and relationships. {{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}} covers collective identity and memberships. {{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}} covers communication."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "iCal9ZpZzvYOEcGcUBm4gw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -462,7 +647,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,17 +658,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7he9B5/xRYGlzqtf2dIp3g=="
+					"uidString": "WL91I6W56iMw1/GPfOkkSg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Plugins are different. Plugins connect Catalyst to external systems like Unreal Engine. Components are Catalyst's own building blocks."
+				"string": "Plugins are different. Plugins connect Catalyst to external systems like Unreal Engine or other runtimes. Components are first-party Catalyst capabilities."
 			}
 		]
 	},
@@ -495,7 +680,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -506,7 +691,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 		}
 	},
 	"pageType": {

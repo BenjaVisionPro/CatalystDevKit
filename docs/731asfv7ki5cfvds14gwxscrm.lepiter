@@ -1016,7 +1016,267 @@
 							"__type": "textSnippet",
 							"children": {
 								"__type": "snippets",
-								"items": []
+								"items": [
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "JGgMxKoiz3GNamaICJ4L4A=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:People and Identity|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "R+EEvvWpc/K1dR56aWCamQ=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Relationships|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "h8Ah2qqS+jN8xhLr3IZLKw=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Relationship Aspects|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "PJyYKWG9oSJPrlT1CPRZcg=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Presence and Sessions|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "LZG53Kr/x9PjbtndjqH4HQ=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Profiles and Preferences|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "zRDDKkgBUMAcJljuDkkG1A=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Contextual Accounts|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "aG6leaTl87GzYralvJS/rA=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:People Integration|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									}
+								]
 							},
 							"createEmail": {
 								"__type": "email",
@@ -1026,7 +1286,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+									"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -1037,23 +1297,283 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+									"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "gUdzlrWBT7qqG9FOD59u4Q=="
+								"uidString": "kj2s/Q/8FUpwVRKBXKqDFg=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Users|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Catalyst People|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
 							"children": {
 								"__type": "snippets",
-								"items": []
+								"items": [
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "Ph+tgJ641+55uHmIYm4nlw=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "a5bpotNjRxIBAXEKfibuQQ=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "kJ0+9UYQXYxDqBeDuuYQRg=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Roles and Invitations|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "vzezt5UOlOvMJz0LZ6lyFA=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Group Hierarchies|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "W9zXEZm+QDnSaRAXcEDDcg=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Group Resources|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "545JEqSLQuI1P1/Nn/mOJQ=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Group Communication|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "/b4wyz5hhgPJRvzPaZi0sA=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Groups Integration|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									}
+								]
 							},
 							"createEmail": {
 								"__type": "email",
@@ -1063,7 +1583,7 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+									"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 								}
 							},
 							"editEmail": {
@@ -1074,12 +1594,12 @@
 								"__type": "time",
 								"time": {
 									"__type": "dateAndTime",
-									"dateAndTimeString": "2026-05-15T09:00:00+10:00"
+									"dateAndTimeString": "2026-05-19T10:00:00+10:00"
 								}
 							},
 							"uid": {
 								"__type": "uid",
-								"uidString": "KmAfmCR3Taa6E0Ehlt8GVg=="
+								"uidString": "l4n2BJkHcvtgjuvbOerdUQ=="
 							},
 							"paragraphStyle": {
 								"__type": "textStyle"
