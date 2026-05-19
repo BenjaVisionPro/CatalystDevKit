@@ -113,7 +113,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Group Resources explains how groups connect to shared assets without becoming the Store, Currency, or permission system."
+				"string": "Group Resources explains how groups connect to shared assets without becoming the Model, Currency, or permission system."
 			},
 			{
 				"__type": "textSnippet",

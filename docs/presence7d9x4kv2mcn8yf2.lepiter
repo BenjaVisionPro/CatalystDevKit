@@ -631,7 +631,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not use Presence as a synonym for online status. If a feature only needs a simple state value, keep it local to the endpoint. Presence is for the richer shared experience."
+				"string": "Use Presence when the project is shaping the shared experience of being together: audience, voice, environment, translation, and presentation working as one system."
 			}
 		]
 	},

@@ -113,7 +113,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups Integration explains how Groups works with People, Connect, Store, Currency, and application-specific systems."
+				"string": "Groups Integration explains how Groups works with People, Connect, Model, Currency, and application-specific systems."
 			},
 			{
 				"__type": "textSnippet",
@@ -372,7 +372,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Store and Currency provide shared resources and value systems."
+				"string": "Model and Currency provide shared resources and value systems."
 			},
 			{
 				"__type": "textSnippet",

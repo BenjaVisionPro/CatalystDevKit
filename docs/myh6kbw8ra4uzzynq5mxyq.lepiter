@@ -113,7 +113,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People Integration explains how People works with Connect, Groups, Store, Currency, deployments, and application-specific models."
+				"string": "People Integration explains how People works with Connect, Groups, Model, Currency, deployments, and application-specific models."
 			},
 			{
 				"__type": "textSnippet",
@@ -372,7 +372,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Store and Currency can relate ownership and value to people without turning People into an inventory or banking system."
+				"string": "Model and Currency can relate ownership and value to people without turning People into an inventory or banking system."
 			},
 			{
 				"__type": "textSnippet",

@@ -1047,7 +1047,7 @@
 							"paragraphStyle": {
 								"__type": "textStyle"
 							},
-							"string": "{{gtPage:Catalyst Store|db=731asfxqhyhdr96k6wo9yxnzv}}"
+							"string": "{{gtPage:Catalyst Model|db=731asfxqhyhdr96k6wo9yxnzv}}"
 						},
 						{
 							"__type": "textSnippet",
@@ -1237,7 +1237,7 @@
 										"paragraphStyle": {
 											"__type": "textStyle"
 										},
-										"string": "{{gtPage:Relationship Aspects|db=731asfxqhyhdr96k6wo9yxnzv}}"
+										"string": "{{gtPage:Temporal Values|db=731asfxqhyhdr96k6wo9yxnzv}}"
 									},
 									{
 										"__type": "textSnippet",

@@ -298,7 +298,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Components keep common application foundations consistent. People, groups, connect, store, currency, landform, reflect, architect, and ecosystems should feel like parts of one platform rather than unrelated packages."
+				"string": "Components keep common application foundations consistent. People, groups, connect, model, currency, landform, reflect, architect, and ecosystems should feel like parts of one platform rather than unrelated packages."
 			},
 			{
 				"__type": "textSnippet",
@@ -335,7 +335,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They also give each concern a clear home. People owns humans, personas, roles, and relationships. Groups owns collective identity and invitations. Connect owns communication. Store owns durable product and ownership models."
+				"string": "They also give each concern a clear home. People owns humans, personas, roles, and relationships. Groups owns collective identity and invitations. Connect owns communication. Model owns durable domain and ownership models."
 			},
 			{
 				"__type": "textSnippet",

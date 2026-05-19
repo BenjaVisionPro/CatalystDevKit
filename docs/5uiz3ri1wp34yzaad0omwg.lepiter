@@ -668,7 +668,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Start with {{gtPage:People and Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Personas|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Relationships|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Relationship Aspects|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Roles|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:KYC and Verification|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Contextual Accounts|db=731asfxqhyhdr96k6wo9yxnzv}}, and {{gtPage:Sessions|db=731asfxqhyhdr96k6wo9yxnzv}}."
+				"string": "Start with {{gtPage:People and Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Personas|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Relationships|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Temporal Values|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Roles|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:KYC and Verification|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Contextual Accounts|db=731asfxqhyhdr96k6wo9yxnzv}}, and {{gtPage:Sessions|db=731asfxqhyhdr96k6wo9yxnzv}}."
 			},
 			{
 				"__type": "textSnippet",

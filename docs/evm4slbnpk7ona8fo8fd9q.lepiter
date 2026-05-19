@@ -446,7 +446,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles are usually relationship aspects. A membership relationship may have a role timeline that moves from member to admin to owner. A romantic relationship may have role labels that change from boyfriend and girlfriend to husband and wife."
+				"string": "Roles often use the temporal-value pattern. A membership relationship may have a role value that moves from member to admin to owner. A romantic relationship may have role labels that change from boyfriend and girlfriend to husband and wife."
 			},
 			{
 				"__type": "textSnippet",

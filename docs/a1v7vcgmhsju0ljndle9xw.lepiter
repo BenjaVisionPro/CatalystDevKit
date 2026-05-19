@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hUNYmBJeROGqhwlyCNtbkw=="
+					"uidString": "XvbSj7i/TyGgyTIQJrJkdQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Store gives projects a consistent foundation for catalogues, ownership, durable product data, and purchasing flows."
+				"string": "Catalyst Model gives projects a consistent place for durable domain models, ownership, catalogues, and long-lived application state."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zwIWPuNpSpaAbxgncki4wg=="
+					"uidString": "vL0182alQf2xby62pcK82Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Store"
+				"string": "# Catalyst Model"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hC4/DGhJRue75uR8OBpJNg=="
+					"uidString": "SXjNP/d6T3mB9ZWUaqCQGw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Store gives projects a consistent foundation for catalogues, ownership, durable product data, and purchasing flows."
+				"string": "Catalyst Model is the component for modelling durable things that matter to an application. It gives projects a shared foundation for state that needs identity, ownership, history, inspection, and clean integration with other Catalyst components."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "4bekW7RlTAuox6gMU0ljCg=="
+					"uidString": "o6BywRDxTXCjQ0IUfvHlOw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Store"
+				"string": "## What is Catalyst Model"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "13sJCapzSBKS9yW3NzCcow=="
+					"uidString": "q/oFVnwWQjO2RavE+DYlwg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Store gives projects a consistent foundation for catalogues, ownership, durable product data, and purchasing flows."
+				"string": "Catalyst Model is the first-party component for durable application models. It can support catalogues, owned things, product-like records, entitlements, persistent state, and other domain objects that should be represented consistently across Catalyst systems."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,12 +214,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lMDMoVLkQze8Z5i/Q92svA=="
+					"uidString": "J5CrNExARg6/yH9MmDnp2Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,17 +251,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XcFJOKAsTMGJrQ0oEMSbqA=="
+					"uidString": "gvU4e0n6Qi2yo0p2KmIj4A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use it when a project needs commerce-like behaviour without inventing the storage and product model from scratch."
+				"string": "It gives projects somewhere clear to put durable domain state without inventing a new modelling layer for every application."
 			},
 			{
 				"__type": "textSnippet",
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,12 +288,86 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "BJWYJx8ZTYSSSVumbwvTkA=="
+					"uidString": "tvitMca/RLu7jY8aAP/6Pg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives other components a consistent way to refer to owned or shared things."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "oKQYxOfQRVyUG9rtwvnKmg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It keeps model concerns separate from People, Groups, Connect, Currency, and application-specific rules."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "LwlKDzOoRkCe157qGIKQ8A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -314,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +399,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "cPK+T0BZTkysY2AImgw4kA=="
+					"uidString": "nTRT3W5WR7qDug4J/285xw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "This page is a placeholder for the component's examples, package structure, and recommended usage. The goal is to keep the promise clear before filling in implementation details."
+				"string": "Catalyst Model provides common patterns for durable entities, ownership relationships, catalogues, and model inspection. Other components can relate to model objects without taking over their meaning."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,12 +436,49 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ANCcNbUoTkigwn6d21p6aA=="
+					"uidString": "HIcdlcjaTJKjSp2o2FkJVA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "A group may be related to a shared model. A person may own or use a model. Currency may attach value to a model. The application still owns the domain rules that make the model meaningful."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "2YJMZmm+TmWqf/BoyXtUnQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -388,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,17 +510,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SiL9RRJ7Q5qeUcZrHtMdsw=="
+					"uidString": "M2gNfc9TRauqTCK1DD8yVg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples and detailed documentation will be linked here as the component stabilises."
+				"string": "Component examples will live here as the Model documentation is developed."
 			},
 			{
 				"__type": "textSnippet",
@@ -425,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,12 +547,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LRB3ytKESZGbm2LgbwLxDg=="
+					"uidString": "d/Fm9elDSUC5A1oXr8z9tw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -462,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,17 +584,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-14T16:30:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "eoxtqLh+QrOkk7VpJM3jtw=="
+					"uidString": "pFre1BbmQW2JfngJ8nQzRQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "This is a Catalyst Component, not a plugin. It is part of the Catalyst platform itself."
+				"string": "Catalyst Model is intentionally broader than commerce: durable model state first, commerce-like behaviour where a project actually needs it."
 			}
 		]
 	},
@@ -511,7 +622,7 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Store"
+		"title": "Catalyst Model"
 	},
 	"uid": {
 		"__type": "uuid",

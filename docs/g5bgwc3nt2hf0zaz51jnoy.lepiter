@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "t0+awUoAQSeZcMi7XmZpgg=="
+					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to identity context without pretending to define social presence."
+				"string": "Sessions connect runtime activity back to the identity context that caused it."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,12 +66,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "G4RI2veWT9WyckCGCvtidg=="
+					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "52g8B9AiRSy6zrT32MwrWw=="
+					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a modest, useful bridge between identity and runtime activity. They tell other components which person, persona, account, device, principal, or endpoint is involved in an interaction."
+				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,12 +140,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "IrW/68MNTmSYjxRC4s2lQw=="
+					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+gTn93fVSkWKjuedDRDoYg=="
+					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime connection or authenticated interaction. It may represent a person using a tool, a persona entering a game, a service operating on behalf of an account, or a device connected to a deployment."
+				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,17 +214,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0rYtRsAOQJGgoLgN1Xz66A=="
+					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions are identity context. They are not social presence. People does not decide whether someone is online, busy, visible, hidden, in a lobby, or available for voice. Those meanings belong to the endpoint, application, or Catalyst Connect."
+				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
 			},
 			{
 				"__type": "textSnippet",
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,12 +251,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "vO6Lv74ORCq8NMX0D37kFg=="
+					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,12 +288,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GNwpMvpBQhqYgtci8hrQIA=="
+					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "y+B8SLOsRoi7t2DDRzd6mw=="
+					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It keeps Person separate from the current connection. A person is still a person when no session exists."
+				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,49 +362,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pLcc7Fo0Tf+vAJQSnSuOIw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "It avoids turning endpoint-specific state into a fake universal model. If an endpoint wants availability, visibility, activity, or social state, it can define those meanings in its own context."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "wAQgE+HjTP+vFxNhaiGNJg=="
+					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +399,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KcaVZx/4QripEUxluW+JcA=="
+					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session records the context of an interaction: the deployment, endpoint, principal, persona, account, device, and person involved where those are known and appropriate."
+				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,49 +436,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "WmN9++WJR1y4JRl/77RqMg=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Other systems can use session context without inheriting a global status model. Catalyst Connect can use sessions as one input to richer presence systems, but presence itself belongs with Connect and the experience it creates."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "tXIiRS0oSASDfLWR0o8s1g=="
+					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -536,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -547,17 +473,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wU8PBvzyQOag75+eQC4Uaw=="
+					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show how a runtime session can be associated with a person, persona, account, principal, and endpoint."
+				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
 			},
 			{
 				"__type": "textSnippet",
@@ -573,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -584,12 +510,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "yBCNHEMnSH+B39TDc9gM/g=="
+					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -610,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -621,17 +547,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "97JpfNGoRmiymJESI1p+5A=="
+					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not use Sessions as a dumping ground for social state. Keep the session factual, and let endpoints or Connect define what that state means to people using the system."
+				"string": "Keep this page focused on identity context. Rich shared experience belongs in Catalyst Connect and Presence."
 			}
 		]
 	},

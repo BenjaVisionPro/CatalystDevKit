@@ -409,7 +409,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A relationship has identity, participants, context, and aspect timelines. The relationship identity can remain stable while the labels, roles, status, strength, and other aspects change."
+				"string": "A relationship has identity, participants, context, and aspect timelines. The relationship identity can remain stable while the labels, roles, status, strength, and other values change."
 			},
 			{
 				"__type": "textSnippet",
@@ -631,7 +631,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not treat phase as the source of truth. A phase can be a useful summary, but independent aspects let different parts of the relationship change at different speeds."
+				"string": "Do not treat phase as the source of truth. A phase can be a useful summary, but independent values let different parts of the relationship change at different speeds."
 			}
 		]
 	},

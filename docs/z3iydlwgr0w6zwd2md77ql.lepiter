@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "uAHLu69Ymz0ei0L7AcJgmg=="
+					"uidString": "V++oJ3piS3OTIpPuBE9l2A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationship aspects let type, role, stress, trust, status, and other values change independently over time."
+				"string": "Temporal Values let ordinary domain values keep their history without turning every model into a timeline model."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "27GsLU25u5zr1jP0gNQ6dQ=="
+					"uidString": "0PjTgPCfR8CXGXL62ogkJQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Relationship Aspects"
+				"string": "# Temporal Values"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "AY9DdBgTFMOI+THGffTBqA=="
+					"uidString": "WDTtpA7wTWCglS6x4iYA1g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationship Aspects is the core pattern for modelling changing relationship values without forcing every change into one large phase record."
+				"string": "Temporal Values are a Foundation pattern for values that change over time. Relationships use them heavily, but the pattern is not owned by relationships."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "8+3jA049p6Jn+iwcw3LCsQ=="
+					"uidString": "GW3ft2XqRm2hFJJ+igtSBw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Relationship Aspects"
+				"string": "## What is Temporal Values"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "BXKQSNMWMkg0FZZeGqmA+w=="
+					"uidString": "nPI4uZnkQsaQLJADr4Wq8A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "An aspect is one meaningful property of a relationship or one of its ends. Examples include relationship type, role name, status, strength, stress, trust, visibility, responsibility, and commitment."
+				"string": "A Temporal Value is a value wrapper for a normal domain value whose changes matter. The object using it can ask for the current value, while the wrapper keeps the history of how that value changed."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,17 +214,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qNZ0+NmyUSc+37ik6/3rzA=="
+					"uidString": "dn17jdCDQ6WSAD2A9wfD3Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each aspect has its own history. Trust can change weekly, role can change twice in ten years, and visibility can change only when a relationship becomes public."
+				"string": "In Catalyst People, roles, trust, stress, relationship type, visibility, and other relationship values can all use this pattern. The same idea can also be used anywhere else a value changes and its history is meaningful."
 			},
 			{
 				"__type": "textSnippet",
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,12 +251,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "j04VSVye0/Al+sSIIXswZw=="
+					"uidString": "6qPjvuu+T2Of5SBXGUEjqQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KrcZJNKzPaMIxXdASVa17A=="
+					"uidString": "zNTM4QJyRV+gQs8BLKn6Ew=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It avoids overwriting history with a current value."
+				"string": "It stops current values from overwriting useful history."
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "xq8C+lk5cElWylOmaKMUyA=="
+					"uidString": "9xsKEXe3R8SIEr6Q6UDabQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It avoids forcing unrelated changes into artificial phases."
+				"string": "It lets slow-changing values and fast-changing values live naturally on the same model."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +362,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "BFxrMr3jbzl16p6mMy1h6w=="
+					"uidString": "KuYrjuAlTECFyRPjsSvNNA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It lets applications ask both current questions and historical questions."
+				"string": "It keeps relationship modelling honest without inventing a special mechanism just for relationships."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +399,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qNEhXowVzSGHF/h/wSZIgA=="
+					"uidString": "2tPJlBRuSlaoz838Jq13eg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +436,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "OkyspN3LbJNYvqPDGbhuzg=="
+					"uidString": "tPGhITWGRUKhNteCqJI6Kw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A relationship owns aspect timelines. Each participant end can also own aspect timelines."
+				"string": "A domain object owns a meaningful value. When that value needs history, it uses the Foundation temporal-value pattern instead of a plain slot. The current value remains easy to ask for. The previous values remain available when the system needs to understand how things changed."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,17 +473,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "cU5d7WIQ6P5MtII6f7s1ZQ=="
+					"uidString": "lnqcWR8+Q9iarBoJYipJug=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "An aspect value records the value, when it became valid, when it stopped being valid if known, who or what asserted it, and any confidence or source metadata that matters."
+				"string": "For example, a membership relationship may currently have the role owner. Earlier it may have been member, then admin. The relationship still asks for its current role, while the temporal value records the path that got there."
 			},
 			{
 				"__type": "textSnippet",
@@ -499,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -510,12 +510,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "edYh+U/ngMo4xjuoQquqNQ=="
+					"uidString": "g2Tpw+8zSsq+4pR6LcAplw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -536,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -547,17 +547,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hwoNdGBITl6DaS68GUjSuQ=="
+					"uidString": "ediuflFjSy66CoG9Z4kBDA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show role history, stress history, status history, and persona-specific relationship presentation on the same relationship."
+				"string": "There are no bvc commands for Temporal Values. They are a modelling pattern used by Catalyst components and application code."
 			},
 			{
 				"__type": "textSnippet",
@@ -573,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -584,12 +584,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SOnyNS7JHiTDcCxzENFxPQ=="
+					"uidString": "RGlETVF/RWOeR7tbbJuedA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -610,7 +610,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -621,17 +621,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jRcYIL/2dTyMrySLlclJFA=="
+					"uidString": "GFRoANOYQ5OyCHlcAk/cWQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use derived projections for convenience, but keep temporal aspect history as the source of truth. Current state is a view, not the model."
+				"string": "The final implementation name may not be TemporalValue. The important idea is the pattern: a normal value with change history, current-value access, and enough context to explain how it moved over time."
 			}
 		]
 	},
@@ -659,7 +659,7 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Relationship Aspects"
+		"title": "Temporal Values"
 	},
 	"uid": {
 		"__type": "uuid",
