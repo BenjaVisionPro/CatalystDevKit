@@ -919,6 +919,43 @@
 											"__type": "time",
 											"time": {
 												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+											}
+										},
+										"editEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"editTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
+												"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+											}
+										},
+										"uid": {
+											"__type": "uid",
+											"uidString": "PnJa58fXThq47mPk7dA7/w=="
+										},
+										"paragraphStyle": {
+											"__type": "textStyle"
+										},
+										"string": "{{gtPage:Presence|db=731asfxqhyhdr96k6wo9yxnzv}}"
+									},
+									{
+										"__type": "textSnippet",
+										"children": {
+											"__type": "snippets",
+											"items": []
+										},
+										"createEmail": {
+											"__type": "email",
+											"emailString": "<unknown>"
+										},
+										"createTime": {
+											"__type": "time",
+											"time": {
+												"__type": "dateAndTime",
 												"dateAndTimeString": "2026-05-16T15:00:00+10:00"
 											}
 										},
@@ -1274,7 +1311,7 @@
 										"paragraphStyle": {
 											"__type": "textStyle"
 										},
-										"string": "{{gtPage:Presence and Sessions|db=731asfxqhyhdr96k6wo9yxnzv}}"
+										"string": "{{gtPage:Sessions|db=731asfxqhyhdr96k6wo9yxnzv}}"
 									},
 									{
 										"__type": "textSnippet",

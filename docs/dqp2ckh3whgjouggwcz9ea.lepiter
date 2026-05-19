@@ -372,7 +372,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Connect is organised into slices. Sockets own lifecycle and readiness. Transport owns frames, pacing, reliability, and reassembly. Codec owns message format. Router owns delivery policy. Endpoints expose the application API."
+				"string": "Connect is organised into slices. Sockets own lifecycle and readiness. Transport owns frames, pacing, reliability, and reassembly. Codec owns message format. Router owns delivery policy. Endpoints expose the application boundary. Presence describes the shared communication experience Connect can help create across people, audiences, and environments."
 			},
 			{
 				"__type": "textSnippet",
@@ -817,6 +817,43 @@
 					"__type": "textStyle"
 				},
 				"string": "{{gtPage:Endpoints|db=731asfxqhyhdr96k6wo9yxnzv}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "HEb8gu+TQUyAql1ZFw2efQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Presence|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",

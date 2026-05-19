@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R5yjtco0hCloBtsunt4gTA=="
+					"uidString": "58580DJjTjeAXQwEuoHjSQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People gives other components a shared identity and relationship layer without taking over their domains."
+				"string": "Presence is the designed feeling of being together in a shared Catalyst environment."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "aehlLEdKZVshU9BLD30Gzw=="
+					"uidString": "umqeyHjHSpyx+/+6TD9BRg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# People Integration"
+				"string": "# Presence"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "quUf5xUhK3x/LRHWvMCkRg=="
+					"uidString": "8puC35M1Ty+IShskxN7eLg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People Integration explains how People works with Connect, Groups, Store, Currency, deployments, and application-specific models."
+				"string": "Presence is not a green dot. It is the work Catalyst does to make people feel present with each other across distance, devices, simulations, and runtime boundaries."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "En3gWhKgZCArjANN+lzr0g=="
+					"uidString": "ISkWPAYBT1ydvCJQTLfK3w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is People Integration"
+				"string": "## What is Presence"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Sk3e4uOI2IjCh67Lq6sSxQ=="
+					"uidString": "m6oEcBHtQNyIsv2QSEqdpw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People is the component other components use when they need to refer to real humans, personas, relationship history, roles, profiles, preferences, or session context."
+				"string": "Presence is a Catalyst Connect concept for shared social experience. It includes voice capture, cleanup, routing, audience selection, spatial mixing, environmental reverberation, echo, filtering, translation, and the presentation choices that make communication feel natural in context."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,17 +214,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "doNpYRfQeIB8/2JXh4wJ/Q=="
+					"uidString": "VCnzYAu0TH+ILwnvayFTjg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It does not replace domain models. It gives them a clean identity surface."
+				"string": "A person may speak once, but each listener may hear a version shaped for their audience, position, environment, language, accessibility needs, and trust boundaries."
 			},
 			{
 				"__type": "textSnippet",
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,12 +251,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EEvR+hN4DbbhrfTZubRGDw=="
+					"uidString": "uCzufd78S3idOjT8Svy+Cg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "JYPmknNiwM3tGhlw5WXjDg=="
+					"uidString": "OJTzUacNS0itgV5PXJT5hw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Connect can identify who is connected without owning identity."
+				"string": "It makes realtime communication feel like people are actually together, not just sending audio packets at each other."
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "RkD9BmAsrWQnqRgme1UeIA=="
+					"uidString": "pp0xIQbrRseF4SDT23M+fg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups can model membership without pretending members are just strings."
+				"string": "It lets the system clean and shape raw voice before distributing it to the people who should hear it."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +362,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "yvR/D+EXBHJEcERuonLsUw=="
+					"uidString": "LEH/Pq2rT3W9jrBeYVSwuw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Store and Currency can relate ownership and value to people without turning People into an inventory or banking system."
+				"string": "It gives applications room for spatial audio, environmental acoustics, voice filtering, translation, and audience-specific presentation without confusing those concerns with identity or sessions."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +399,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "vhqTothT7FDfxI3jbt0d2A=="
+					"uidString": "pDX/Nss3Q9Oy5OECWVYBqw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +436,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "OPizQn6/aj39+jokwKV6Kw=="
+					"uidString": "Gx69nQ6QSxWlsFFnXlLr7w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Other components reference Person, relationships, principals, sessions, or contextual accounts where appropriate."
+				"string": "Catalyst People can provide identity, persona, and session context. Catalyst Connect uses that context with endpoint and environment data to decide who receives communication and how it should be presented."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,17 +473,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Bag6oqNL6Z7qBUKGs6c3wQ=="
+					"uidString": "UXoBncVYS+WusKm6QSUp4Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each component keeps ownership of its own rules, while People keeps the human and relationship model consistent."
+				"string": "Presence may include transport, routing, voice processing, spatialisation, translation, and rendering. The exact experience belongs to the endpoint and application, but Connect gives it a consistent conceptual home."
 			},
 			{
 				"__type": "textSnippet",
@@ -499,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -510,12 +510,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FNflRUwTasgMQSyGr3k0pw=="
+					"uidString": "15BJ2N2BTPKUUNUGeFWRtQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -536,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -547,17 +547,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pz/j0PVP4lZMtDkGBgFK/A=="
+					"uidString": "w2d58GKDQByoiZjrSNI4JA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Integration examples will be linked from each component as the APIs stabilise."
+				"string": "Examples will show presence scenarios for spatial voice, audience routing, voice translation, and environmental audio once those APIs are documented."
 			},
 			{
 				"__type": "textSnippet",
@@ -573,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -584,12 +584,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jn3M1ZTjVOgunDCDICbUpQ=="
+					"uidString": "Kha+cioGRbOOUy3vTtB4EQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -610,7 +610,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -621,17 +621,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "8r7LgTHH3TGRmoej1fHYUQ=="
+					"uidString": "DMVA24JsQmmR1KDbyYSUrw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People should stay foundational, not become a dumping ground. If a rule belongs to another component, keep it there."
+				"string": "Do not use Presence as a synonym for online status. If a feature only needs a simple state value, keep it local to the endpoint. Presence is for the richer shared experience."
 			}
 		]
 	},
@@ -643,7 +643,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -654,15 +654,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T00:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "People Integration"
+		"title": "Presence"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "b6d05412-846a-486d-b8b7-5fa420e48882"
+		"uuid": "f160bbef-00a5-4811-bb46-64c07edf05c6"
 	}
 }
