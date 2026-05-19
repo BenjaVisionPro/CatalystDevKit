@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
+					"uidString": "PNQos02zRqejEp0RKhmWIQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to the identity context that caused it."
+				"string": "The Runtime code map points developers to the main classes behind configuration, topology, execution, orchestration, statistics, and failure evidence."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
+					"uidString": "5nDrF4kZQvmOuVj57km/9Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Sessions"
+				"string": "# Runtime Code Map"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
+					"uidString": "sXr2RiqtRy+dY0gr5M6zXA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
+				"string": "Use this page when you know the runtime concept and need the class names to start reading or debugging."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
+					"uidString": "WMVdk6sJQPSlKZApNgLHgw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Sessions"
+				"string": "## What is Runtime Code Map"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
+					"uidString": "t/TiTdzYRiC3/eH88MDjpQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
+				"string": "The code map is a quick index of the runtime implementation surface. It is not a replacement for examples or tests, but it gets you to the right neighbourhood fast."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,44 +219,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
+					"uidString": "63Ekg1EiS5q+Ex2Fqnnnpg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +256,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
+					"uidString": "WLTskxWfTdeOXmq61B0XRg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives components a safe way to connect runtime actions back to the identity context involved."
+				"string": "It avoids hunting through packages when you already know the runtime concept."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
+					"uidString": "3GuFBEaRTjea13ELEPybNg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
+				"string": "It makes documentation useful while the implementation is still moving quickly."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +330,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
+					"uidString": "Vraa9mrAR4OdveDiEtCU/A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
+					"uidString": "dgN4ujzfR8qY9nO44L7mnA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
+				"string": "Runtime/registry: CRRuntimeRegistry, CRRuntime."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,7 +404,303 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
+					"uidString": "X39i4caiQii5ttfMWxolsw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Topology/snapshot/handles: CRDeploymentTopology, CRDeploymentSnapshot, CRWorkerHandle, CRServiceHandle."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "P46JZ89fSVyJBrLAT8uZdQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Worker execution: CRAbstractWorker, CRWorkUnit, CRWorkUnitEnvelope, CRWorkUnitExecutionContext."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "MF4xLIMtTU+OIAhCqd8vug=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Routing: CRWorkRouter, CRWorkUnitAddress."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "PDIsQJVlSrqrgqKKaloSFA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Services: CRWorkerService, CROrchestrationService, CRStatisticsService."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "ZQm3tj4qQKasgV1Wc7cwBg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Capabilities: CRCapability, CRCapabilityResolver, CROrchestrationCapability, CRStatisticsCapability."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "rauncD/XRH+QlJstBxbfBQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Configuration: CRConfiguration, CRRuntimeConfiguration, CRServiceConfiguration, CROrchestrationConfiguration, CRStatisticsConfiguration, CRTopologyConfiguration, CRHostConfiguration, CRDeploymentConfiguration, CRServiceDeploymentConfiguration, CRScaleConfiguration."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "sihqzBjkQdSxbPtNOQJvQQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Validation and codec: CRRuntimeConfigurationValidator, CRRuntimeConfigurationCodec."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "4zikYkDlSvCewDNudg6e4w=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Failure evidence: CRFailedWorkUnitExecution, CRRingBuffer."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "FIbUyUTaRAGwWera3yCF6w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,12 +737,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
+					"uidString": "XWPlbAE8Q9itJJoiv8ll/Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
+				"string": "Runtime examples and proof tests are part of the design. Start with BVC-Runtime-Examples and BVC-Runtime-Tests-* when you need executable intent."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +774,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
+					"uidString": "glZfGOWfTSuH8sN7/MVhvg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +811,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
+					"uidString": "k0tHDx35QoiLs7TvG5kO7Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep this page focused on identity context that other runtime and application layers can use."
+				"string": "This page should stay current with package and class renames. A stale code map is worse than no map."
 			}
 		]
 	},
@@ -569,7 +828,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -580,15 +839,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Sessions"
+		"title": "Runtime Code Map"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "026c94f9-3c9c-412c-b04d-8aa63e085a52"
+		"uuid": "97af22ad-4296-4f91-8bf0-30dea549db16"
 	}
 }

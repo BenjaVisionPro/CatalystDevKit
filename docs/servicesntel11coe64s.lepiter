@@ -18,7 +18,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -29,17 +29,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "58580DJjTjeAXQwEuoHjSQ=="
+					"uidString": "2X37TrD6SV6v44ayx1sKww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Presence is the designed feeling of being together in a shared Catalyst environment."
+				"string": "Services are lifecycle-managed applications hosted on the runtime fabric."
 			},
 			{
 				"__type": "textSnippet",
@@ -55,7 +55,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -66,17 +66,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "umqeyHjHSpyx+/+6TD9BRg=="
+					"uidString": "0iOMlCgiRXG5rVVUAhDQbA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Presence"
+				"string": "# Services"
 			},
 			{
 				"__type": "textSnippet",
@@ -92,7 +92,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -103,17 +103,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "8puC35M1Ty+IShskxN7eLg=="
+					"uidString": "PmMqD6HeQdik/qK2yojU9g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Presence is not a green dot. It is the work Catalyst does to make people feel present with each other across distance, devices, simulations, and runtime boundaries."
+				"string": "Services are where application behaviour lives. Runtime hosts them, starts them, routes work for them, and gives them explicit capability access."
 			},
 			{
 				"__type": "textSnippet",
@@ -129,7 +129,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -140,17 +140,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ISkWPAYBT1ydvCJQTLfK3w=="
+					"uidString": "vfaDdfpMQRG56oH3UXfnjw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Presence"
+				"string": "## What is Services"
 			},
 			{
 				"__type": "textSnippet",
@@ -166,7 +166,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -177,17 +177,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "m6oEcBHtQNyIsv2QSEqdpw=="
+					"uidString": "Q4UjND2uQa+NPq76sXzUjA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Presence is a Catalyst Connect concept for shared social experience. It includes voice capture, cleanup, routing, audience selection, spatial mixing, environmental reverberation, echo, filtering, translation, and the presentation choices that make communication feel natural in context."
+				"string": "Services are CRWorkerService subclasses. They are installable, lifecycle-managed applications on workers."
 			},
 			{
 				"__type": "textSnippet",
@@ -203,7 +203,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -214,17 +214,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "VCnzYAu0TH+ILwnvayFTjg=="
+					"uidString": "BUqmxTFaS1WAbQBQc/EfEA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A person may speak once, but each listener may hear a version shaped for their audience, position, environment, language, accessibility needs, and trust boundaries."
+				"string": "Service work units can be scoped by serviceClass for routing."
 			},
 			{
 				"__type": "textSnippet",
@@ -240,7 +240,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -251,12 +251,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "uCzufd78S3idOjT8Svy+Cg=="
+					"uidString": "seFWtytsRHGvIzCW18hfIQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -277,7 +277,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -288,17 +288,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "OJTzUacNS0itgV5PXJT5hw=="
+					"uidString": "7PUExUhtSduKQFfEz9jDXQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It makes realtime communication feel like people are actually together, not just sending audio packets at each other."
+				"string": "Services keep application concerns separate from runtime mechanics."
 			},
 			{
 				"__type": "textSnippet",
@@ -314,7 +314,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -325,17 +325,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pp0xIQbrRseF4SDT23M+fg=="
+					"uidString": "XDPMQQZDT2qmhE5ebrMjZw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It lets the system clean and shape raw voice before distributing it to the people who should hear it."
+				"string": "They make orchestration, statistics, and project-specific behaviour installable pieces of the fabric."
 			},
 			{
 				"__type": "textSnippet",
@@ -351,7 +351,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -362,17 +362,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LEH/Pq2rT3W9jrBeYVSwuw=="
+					"uidString": "AL//I9IvSX+Cg9JBBjp3bA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives applications room for spatial audio, environmental acoustics, voice filtering, translation, and audience-specific presentation without confusing those concerns with identity or sessions."
+				"string": "They receive explicit service configuration objects rather than fetching runtime configuration indirectly."
 			},
 			{
 				"__type": "textSnippet",
@@ -388,7 +388,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -399,12 +399,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pDX/Nss3Q9Oy5OECWVYBqw=="
+					"uidString": "qI8jirFMTGmtP/B3oTy6ow=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -425,7 +425,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -436,17 +436,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Gx69nQ6QSxWlsFFnXlLr7w=="
+					"uidString": "AJ0VhtrRRsqvbTebV7GmPA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People can provide identity, persona, and session context. Catalyst Connect uses that context with endpoint and environment data to decide who receives communication and how it should be presented."
+				"string": "Services declare requiredCapabilities. The resolver binds those capabilities into CRServiceContext. Service code accesses authority through serviceContext capability: CapabilityClass."
 			},
 			{
 				"__type": "textSnippet",
@@ -462,7 +462,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -473,49 +473,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "UXoBncVYS+WusKm6QSUp4Q=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Presence may include transport, routing, voice processing, spatialisation, translation, and rendering. The exact experience belongs to the endpoint and application, but Connect gives it a consistent conceptual home."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "15BJ2N2BTPKUUNUGeFWRtQ=="
+					"uidString": "H97C1R7ZQWCx+ChYiy51Gw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -536,7 +499,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -547,17 +510,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "w2d58GKDQByoiZjrSNI4JA=="
+					"uidString": "v80+RcVbTnarLQFAzxr0Tg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show presence scenarios for spatial voice, audience routing, voice translation, and environmental audio once those APIs are documented."
+				"string": "Look at CRWorkerService, CROrchestrationService, CRStatisticsService, CRServiceConfiguration, and CRServiceDeploymentConfiguration."
 			},
 			{
 				"__type": "textSnippet",
@@ -573,7 +536,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -584,12 +547,12 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Kha+cioGRbOOUy3vTtB4EQ=="
+					"uidString": "nLA/XldTQXeSQQtgvF4oRw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -610,7 +573,7 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"editEmail": {
@@ -621,17 +584,17 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 					}
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "DMVA24JsQmmR1KDbyYSUrw=="
+					"uidString": "/6nU3a3DRriG3rXncX3HCA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use Presence when the project is shaping the shared experience of being together: audience, voice, environment, translation, and presentation working as one system."
+				"string": "Services are applications hosted on the fabric. Runtime is not an application."
 			}
 		]
 	},
@@ -643,7 +606,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -654,15 +617,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T00:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Presence"
+		"title": "Services"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "f160bbef-00a5-4811-bb46-64c07edf05c6"
+		"uuid": "1a3e6dfb-77da-47c3-be41-1c2b84fe6792"
 	}
 }

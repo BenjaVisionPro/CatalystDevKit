@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lhLScKr/Rx6mvM4MjR7WyQ=="
+					"uidString": "b48+tp78TzCDjybeJH9abw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Components are first-party building blocks that give projects solid foundations without forcing every team to rebuild the same machinery."
+				"string": "Catalyst Runtime is the execution fabric that keeps Catalyst systems explicit, deterministic, and able to grow without becoming mysterious."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6AsUD36VSty9xDucDCOLRw=="
+					"uidString": "cuaaTE35TcakYWGF7iBbRQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Components"
+				"string": "# Catalyst Runtime"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7NUlOs+9SDOSIgTFpDs58w=="
+					"uidString": "MSSDG1ocSXibc+nDDD/Ulg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Components are the platform pieces that make applications easier to build, run, communicate, model, and extend. Each component has a clear purpose and a clean boundary."
+				"string": "Catalyst Runtime is the foundation under Catalyst applications. You build small services and work units, declare the shape you want, and let the runtime reconcile the running system toward that configuration."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "o5JaLLZ3RZaHWToK+xU6Gw=="
+					"uidString": "HWvPyOhQQQ+xfImiCHU3ow=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Components"
+				"string": "## What is Catalyst Runtime"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R4YuZ4F5TI2UVc0x3tf1pw=="
+					"uidString": "KGPF1ujNQNuuIXueQ+5x1Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A component is a first-party Catalyst capability. It may be a runtime layer, a modelling layer, a communication layer, or an application capability, but it belongs to Catalyst rather than being an integration with another external system."
+				"string": "Catalyst Runtime is a configuration-driven execution fabric. It hosts services, routes work, observes topology, and keeps the actual system moving toward the declared system."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,7 +219,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "IqFJ/BAMRn6KzyLiAqDByQ=="
+					"uidString": "NJyMOhI5SimmlvPmkvMrWQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "The important idea is simple: placement, execution context, ordering, and authority are explicit. Scaling, movement, and deployment shape become configuration changes instead of rewrites."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "76pNhCwQTQ+latslNoZjdw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -256,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "78ajXtx8SFm336wDQHbTYQ=="
+					"uidString": "z0J81CehTPiemM+W/nlaUw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Components give projects a shared foundation for common problems: execution, communication, identity, relationships, groups, modelling, currency, tools, landform generation, and ecosystem simulation."
+				"string": "It gives projects a predictable way to run services and work units across development and production deployments."
 			},
 			{
 				"__type": "textSnippet",
@@ -293,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HN7+V7CVTHO2wqG1a15RdQ=="
+					"uidString": "jXJcesdnRvaCyZZZHV55aQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They let project teams build on known concepts instead of inventing a new user system, runtime model, transport stack, or configuration story every time."
+				"string": "It keeps authority behind explicit capabilities, so services and work units do not discover power by poking around the runtime."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,7 +367,81 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "rKYHFw8IRdW4FkiaZBB+cA=="
+					"uidString": "TOE/PXQeTi2st3Dhy8ALVQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives orchestration a durable model for observing truth, planning work, and confirming completion from topology evidence."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "FO+I8AdQSGe2ddyLSIrOqg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives failures somewhere real to live: durable records on handles, not just announcements flying past in the night."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "dgMovzWtQ1eO7QuzcNGwmg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -367,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hUWz60JBS3yb0jdN4LOcxg=="
+					"uidString": "K1hpWRkzQGu1fK14+FuChA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each component owns a clear part of the platform. Runtime hosts execution. Connect handles communication transport. Model provides domain modelling foundations. People models humans, personas, roles, relationships, and KYC. Groups models collective identity. Other components build on those foundations."
+				"string": "A runtime has configuration, topology, workers, services, capabilities, work units, and snapshots. Configuration describes intent. Topology shows observed truth. Orchestration repeatedly reconciles one toward the other."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +515,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NEkmAI1dTE2rE4c6mb0moQ=="
+					"uidString": "WVNJQtYaSCyq3fFltJY9jQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Workers execute enclosed work units through explicit execution contexts. Services are lifecycle-managed applications hosted by workers. Capabilities provide the authority surface."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "+Cg9bjC0RA6JyEa7wF/vzQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "2w8ewHtcTmG7n7G72NjA7w=="
+					"uidString": "UcnE3nFuTFidP76fcdmpvA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Runtime|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Runtime Overview|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EspmD+DsR0eRGWeSVLVA4g=="
+					"uidString": "/YDEGxwCSciGbRoT9MzdZA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Runtime Configuration|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -515,12 +663,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/EaviN+xTXOq6wuoo42FJQ=="
+					"uidString": "82I/MR0KQB6plVH2wqnz8Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Model|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Work Units|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -552,12 +700,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "9A1Gtv50RO+x+nvlrUPDqg=="
+					"uidString": "14Kjs3h8SOyJzQIdY7ucug=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst People|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Workers|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -589,12 +737,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tRXn2G4GR8+8HRD5O/Z9pw=="
+					"uidString": "aCYlc+CaSyeKfkQkIq8OVA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Services|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -626,12 +774,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R4NN7qVXQximl1OQrzlcSg=="
+					"uidString": "nPigRkU9TyaJcqVsY+i97g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Currency|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Capabilities|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -663,12 +811,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "H9hL1YDzQtirJx3+36ymSQ=="
+					"uidString": "BR1rpl7wSQ+ht69NsDc5fw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Landform|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Topology and Snapshots|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -700,12 +848,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "dM02gqlmRvaIS5wDe0wasA=="
+					"uidString": "R5H0FMiiRB2L4mgYH1K8GA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Architect|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Orchestration and Reconciliation|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -737,12 +885,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "5vz+ruepQnSHMwLNXFUdaA=="
+					"uidString": "SKaEN8IITsiFzfg/VomwUw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Reflect|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Failure Evidence|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -774,12 +922,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "SpEvWDSFRluKMd8ja4N0qg=="
+					"uidString": "/4lft/aeQOyo+0U5O/jFnA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "{{gtPage:Catalyst Ecosystems|db=731asfxqhyhdr96k6wo9yxnzv}}"
+				"string": "{{gtPage:Statistics and Metrics|db=731asfxqhyhdr96k6wo9yxnzv}}"
 			},
 			{
 				"__type": "textSnippet",
@@ -811,7 +959,81 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "iwdgmNEfT8WCCgngdDMzjw=="
+					"uidString": "ayPuAhu2Rr6Ys1FuNKzdUw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Runtime Packaging|db=731asfxqhyhdr96k6wo9yxnzv}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "Z9c+RypCQyKsUETy3CnemA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "{{gtPage:Runtime Code Map|db=731asfxqhyhdr96k6wo9yxnzv}}"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "WGO/9Fh7RWaYX8wLKH5hSQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -848,12 +1070,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0fd9/HVbTFuQSafG5UqeWA=="
+					"uidString": "7ee5FCqvRwy6ZFs5LJ+NGA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use Catalyst Plugins for integrations with external systems. Use Catalyst Components for first-party Catalyst capabilities."
+				"string": "Runtime is not an application. Services are applications hosted on the fabric. Orchestration is also a service, not a special runtime god-object."
 			}
 		]
 	},
@@ -865,7 +1087,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -876,15 +1098,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Components"
+		"title": "Catalyst Runtime"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "0896a6c4-4000-4ca4-8a2f-ebc234a6b77c"
+		"uuid": "db0338f1-da70-4ba8-8081-6bd822422ff9"
 	}
 }

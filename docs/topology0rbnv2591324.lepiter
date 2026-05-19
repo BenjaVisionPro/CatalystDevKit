@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
+					"uidString": "Mrxr5ZpRQXC9xBjTEXY3Ow=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to the identity context that caused it."
+				"string": "Topology records observed runtime truth, while snapshots give deterministic read-only views for routing, planning, and statistics."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
+					"uidString": "f2zzRZK/Q+CVhJWnTUiRHA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Sessions"
+				"string": "# Topology and Snapshots"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
+					"uidString": "1ANzPmfxTrCv45C3MkqMBQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
+				"string": "Topology is how Runtime knows what exists. Snapshots are how services and planners read that truth without mutating it."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
+					"uidString": "kDeYYQ0mTJ+mRFfZmSc9gA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Sessions"
+				"string": "## What is Topology and Snapshots"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
+					"uidString": "lSn6Bc/zSeWH6mm6e3Gd3g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
+				"string": "CRDeploymentTopology is the mutable world model of hosts, workers, and services."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
+					"uidString": "vRTyVjDATW66Oc5+PtDqaw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
+				"string": "CRDeploymentSnapshot is the read-only deterministic view used by routing, planning, query paths, and statistics."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
+					"uidString": "W4UR7YTnQSi7vdSi09ozdA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
+					"uidString": "If1vlNUxSLCNOw296h8Ong=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives components a safe way to connect runtime actions back to the identity context involved."
+				"string": "It gives orchestration evidence to plan from."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
+					"uidString": "xo3rUkH6QGSJI+ppQI6K5Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
+				"string": "It gives routing deterministic candidate order."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
+					"uidString": "lvygpdVFRpyqLzxwcueENg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It prevents consumers from relying on hidden collection order."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "XV/vWzP6RZSt6wFa4/ymaQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
+					"uidString": "v70JqHBvSV6AX2Ee5lriGw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
+				"string": "Workers and services publish handles. Topology observes those handles. Snapshots normalise the view into canonical order so other layers can trust the order they receive."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,7 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
+					"uidString": "pwe+Ml9YRay1X8OroCZlWA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
+					"uidString": "u0ZuXxnpR9Op7vjQRROEiQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
+				"string": "Look at CRDeploymentTopology, CRDeploymentSnapshot, CRWorkerHandle, and CRServiceHandle."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
+					"uidString": "APh4DnFMQTKBQ6Fzi8bEYg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
+					"uidString": "O+bFvFAYT4y9ROq8JpxnAw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep this page focused on identity context that other runtime and application layers can use."
+				"string": "Ordering is owned by topology. Consumers do not fix it up later."
 			}
 		]
 	},
@@ -569,7 +606,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -580,15 +617,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Sessions"
+		"title": "Topology and Snapshots"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "026c94f9-3c9c-412c-b04d-8aa63e085a52"
+		"uuid": "5d75f892-d5f6-44c1-a43d-80c4ccc3529c"
 	}
 }

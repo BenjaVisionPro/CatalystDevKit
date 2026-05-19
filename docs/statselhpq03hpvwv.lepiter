@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
+					"uidString": "oOAkRmgcReW2fvsgsiiUiw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to the identity context that caused it."
+				"string": "Statistics are pull-based views over topology snapshots, with metric meaning carried by metric subclasses."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
+					"uidString": "zzorgQzvTFCRh8RBL/sgHg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Sessions"
+				"string": "# Statistics and Metrics"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
+					"uidString": "NC3tg8AZQvKjYsXkJ1MtIw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
+				"string": "Runtime statistics are designed to be useful without turning the system into a high-volume announcement cannon."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
+					"uidString": "yuMsXSv2RGqJnsdJhl6uSw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Sessions"
+				"string": "## What is Statistics and Metrics"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
+					"uidString": "XB9TiBmIT/GNcCHPHyTnEw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
+				"string": "CRStatisticsService is a normal service configured by CRStatisticsConfiguration. It exposes CRStatisticsCapability."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
+					"uidString": "wL0CQ5ddTa6Vy6IvL+rTCQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
+				"string": "Workers publish statistics on CRWorkerHandle. Services publish statistics on CRServiceHandle."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
+					"uidString": "oxsRK6+fSWi9Pg29ayd2+w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
+					"uidString": "bnWrYBVsS0Ojhg/ytq7gPw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives components a safe way to connect runtime actions back to the identity context involved."
+				"string": "It supports global, per-worker, and per-service views through deterministic snapshot selection."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
+					"uidString": "Y252UraPQcKm6l0rUdisoQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
+				"string": "It keeps statistics pull-based by default."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
+					"uidString": "Gey95JLuRx6PCslfuNk8nQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It gives metrics clear meaning through subclasses such as CRGaugeMetric, CRCounterMetric, CRTimerMetric, and CRStateMetric."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "IY5KxTKfQ3ic4DrbtytU0Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
+					"uidString": "AmbrthFIQxeM2spHzOoZAQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
+				"string": "Stats are read from topology snapshots. Aggregation outputs CRMetricAggregate. Retention and resolution policies are explicit configuration leaves: CRRetentionPolicy, CRRetentionRule, and CRResolutionLadder."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,7 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
+					"uidString": "+UYFtX6VS5epVQ2Ll/BX0w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
+					"uidString": "gqKYg3PPTB+gEKSx6DPhfQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
+				"string": "Look at CRStatisticsService, CRStatisticsConfiguration, CRStatisticsCapability, CRMetricAggregate, and the metric subclasses."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
+					"uidString": "rGvcOOjgT22mqEq9B2wkRQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
+					"uidString": "S5S2AjzFRu+WFoXp5nNXnw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep this page focused on identity context that other runtime and application layers can use."
+				"string": "High-volume broadcast telemetry is treated as a defect unless explicitly throttled and proven."
 			}
 		]
 	},
@@ -569,7 +606,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -580,15 +617,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Sessions"
+		"title": "Statistics and Metrics"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "026c94f9-3c9c-412c-b04d-8aa63e085a52"
+		"uuid": "f555b7f2-a6fb-4c1e-af18-49f5de26d169"
 	}
 }

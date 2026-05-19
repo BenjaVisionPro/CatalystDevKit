@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
+					"uidString": "lITDWsViQ4SrWbwmuY+0KA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to the identity context that caused it."
+				"string": "Orchestration is the normal service that moves observed topology toward configured intent."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
+					"uidString": "nHdCwySDTVWkvTzajTw4eQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Sessions"
+				"string": "# Orchestration and Reconciliation"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
+					"uidString": "Q7ZV2HooQaiUD/HTB/y74g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
+				"string": "Orchestration is Runtime\u2019s reconciliation loop. It observes, plans, schedules, and confirms completion from later topology evidence."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
+					"uidString": "isgFN6keRxaAf7ZSNgvzTw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Sessions"
+				"string": "## What is Orchestration and Reconciliation"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
+					"uidString": "SBqZ+jvzToib1Qnn1H4jxQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
+				"string": "CROrchestrationService reconciles configured shape against observed topology. It is a normal service, not a runtime special case."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,44 +219,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
+					"uidString": "UC5zZBRTQ3y0gFzSFx71Dw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +256,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
+					"uidString": "HxpIsezrQTuKk14k966XJw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives components a safe way to connect runtime actions back to the identity context involved."
+				"string": "It keeps install, uninstall, scale, movement, and cleanup evidence-driven."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
+					"uidString": "Ue2VbDQtQgCZSWyHUuzY7Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
+				"string": "It avoids blocking waits inside reconcile steps and work units."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +330,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
+					"uidString": "oPAja2/bSIG4VyLheAQpLw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It makes time-based policies explicit: expiry, retry, backoff, escalation, and cleanup."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "S5PyoDMRSGGeH1wSgYhJxw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
+					"uidString": "h9DFJtmbTba5TMPUNX4c6A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
+				"string": "Each tick observes snapshot truth in canonical order, ages in-flight intents, plans deterministically from config plus snapshot plus state, emits intents by scheduling work, and confirms completion from later evidence."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,7 +441,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
+					"uidString": "dK/f+TVoRVeLL3uqWdgDqQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "In-flight state lives in orchestration-private CRReconciliationState. Completion only happens when topology evidence matches intent."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "ogx3dDCNR06ao+NOrghz1g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
+					"uidString": "+nybMZg6RR63I+ZE0vs2cA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
+				"string": "Look at CROrchestrationService, CROrchestrationConfiguration, CROrchestrationCapability, and CRReconciliationState."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
+					"uidString": "lEQV5iaoRFm+d49GMguM/A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
+					"uidString": "Bt7h9GogQLyFtQOmi6+/FA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep this page focused on identity context that other runtime and application layers can use."
+				"string": "Runtime boundary bootstrap and shutdown can use bounded waits. Reconciliation steps and work units do not."
 			}
 		]
 	},
@@ -569,7 +606,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -580,15 +617,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Sessions"
+		"title": "Orchestration and Reconciliation"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "026c94f9-3c9c-412c-b04d-8aa63e085a52"
+		"uuid": "56050316-3505-420f-a1ca-5559033bde73"
 	}
 }

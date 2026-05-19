@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "N5n8eZZQT7SOFSPGiVzEdg=="
+					"uidString": "UUhOrFkkT56MgiqioVNEJQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions connect runtime activity back to the identity context that caused it."
+				"string": "Capabilities are explicit authority objects that grant runtime power without hidden discovery."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+MswR14mSGGOvZaC8D+viQ=="
+					"uidString": "pCpN5q9IT++8UCwPYClkEg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Sessions"
+				"string": "# Capabilities"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "kKM58pPMQU+q9vGs7MjCFw=="
+					"uidString": "3zP57gsZQKWSgbaeD1Uidw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Sessions give Catalyst People a factual bridge between identity and runtime activity. They help the system know which person, persona, account, principal, device, endpoint, or deployment is involved in an interaction."
+				"string": "Capabilities are the runtime\u2019s authority surface. They make it clear what a service or work unit is allowed to do."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R97u+kodTS+SMgmsk4qkGQ=="
+					"uidString": "XPb9/CozSu+Kito4i6aBng=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Sessions"
+				"string": "## What is Capabilities"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "R0SZjSM1QBmS6Q0/UWy9cw=="
+					"uidString": "qG/D3kErTDGRuiKFfHF+gA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session is a runtime or authenticated interaction with identity context attached. It may represent a person using a tool, a persona entering a game, a service account performing work, or an endpoint connecting to a deployment."
+				"string": "A capability is an API object granting a specific kind of runtime authority, such as scheduling, orchestration, statistics, runtime control, or query access."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,44 +219,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "I6Eo+5+JRYyiGokujoBuxA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "The useful thing at this level is the identity context: who or what is acting, through which account or persona, from which endpoint, and inside which deployment or application context."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "wEnPeMAoRJO77CbBWcE0NQ=="
+					"uidString": "lzTlMVPWRSOxJg0XDfAXYA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +256,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "awcp6k1WT5iUtfld1tnuCQ=="
+					"uidString": "VDLJTEYwQM2juRRBrbGHAA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives components a safe way to connect runtime actions back to the identity context involved."
+				"string": "It prevents services and work units from discovering power through runtime references."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zKwYqfyfRTeUDDqE0Q0RFA=="
+					"uidString": "LPS9VCXxTQ2o7mGx1ZzSIw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It helps audits, permissions, relationships, and application rules reason about who or what participated in an interaction."
+				"string": "It makes required authority visible in declarations and testable in proof tests."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +330,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tiGHXvyYQRSxRV0IhxUqCw=="
+					"uidString": "Fh+FtVZwQtKDtsUbF+txWg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It keeps runtime seams intentional and minimal."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "1JRhLjJmTNW+QP1gwwUv6g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6aZJStk3RBW/P2bHVFuB9g=="
+					"uidString": "dA4OXwruTiqbXKTAtTa6Ww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A session references the relevant Person, Persona, Account, Principal, Device, Endpoint, and deployment context where those concepts apply. Applications and endpoints can add their own session-specific meaning on top."
+				"string": "Services declare requiredCapabilities and receive them in CRServiceContext. Work units declare class-side requirements and receive them in CRWorkUnitExecutionContext."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,7 +441,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/84U8e8iRdeMuUWmgJlAIQ=="
+					"uidString": "vjlobIOmRyGk6LlDNcImPw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "CRCapabilityResolver grants, denies, and constructs capabilities, including the worker mechanics needed to back them."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T12:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "1bsX0jS/RJ2S0qWo1bjgdA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "s/eA5ejbSHmv8nl3ySQX9Q=="
+					"uidString": "o8s/u33JS6CtKxSGAf+Gww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "There are no direct bvc commands for Sessions. Sessions are created by runtime systems, development tools, applications, and deployments."
+				"string": "Look at CRCapability, CRCapabilityResolver, CROrchestrationCapability, and CRStatisticsCapability."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6Zosxf8HTY+qosy4Ox5P3g=="
+					"uidString": "qjhks6IsSxaRK/w1qQyR1Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "KOQWoZALS6aeS6i71c/cnw=="
+					"uidString": "YTEbY4BGQKKvYlyGHm/VEA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep this page focused on identity context that other runtime and application layers can use."
+				"string": "Undeclared capability access should fail loudly. That is the point."
 			}
 		]
 	},
@@ -569,7 +606,7 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"editEmail": {
@@ -580,15 +617,15 @@
 		"__type": "time",
 		"time": {
 			"__type": "dateAndTime",
-			"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+			"dateAndTimeString": "2026-05-19T12:00:00+10:00"
 		}
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Sessions"
+		"title": "Capabilities"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "026c94f9-3c9c-412c-b04d-8aa63e085a52"
+		"uuid": "bef513c3-7319-4b35-b805-7a437d67abfb"
 	}
 }
