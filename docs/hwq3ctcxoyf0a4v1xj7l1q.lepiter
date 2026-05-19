@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/wx8LXGcwtIyrbfSJ9fYrA=="
+					"uidString": "LeYYNpNY06qi5YYmBc3ZIg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and invitations make group access explicit without hard-coding every group workflow."
+				"string": "Invitations are workflows for proposing, accepting, rejecting, revoking, or expiring group relationships."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "aH2iD049J7oAAZvQObjemA=="
+					"uidString": "Dx8GPPb3x/JJkZZx17x3mw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Roles and Invitations"
+				"string": "# Invitations"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "5Zd4mRbZaxcNl1Uasu2hhw=="
+					"uidString": "NGdqqezibFWqYLR2zXgAww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles and Invitations covers how people join groups, change responsibilities, and receive authority."
+				"string": "Invitations give groups a clear way to propose membership or collaboration without pretending the relationship already exists."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GMtfYerj7dU7L843hLEU4A=="
+					"uidString": "Qo8EcbyLXUIhcffl4yFEfA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Roles and Invitations"
+				"string": "## What is Invitations"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MOR2V/XR4da2KM7kE0fGeg=="
+					"uidString": "qES6JCSSSHcbmbdukEpUEg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "An invitation is an offer to create a membership relationship. A role describes responsibility, capability, or meaning inside the group."
+				"string": "An invitation is an offer or request to create or change a relationship. In Groups, the common case is inviting a person or persona to become a member of a group."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NY1RCijltpNW0SYtsAVGQQ=="
+					"uidString": "atPW2CuuYsUIVU9EjKGqAw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles can be simple, such as owner, admin, member, and guest, or application-specific when the group model needs more detail."
+				"string": "Invitations are process objects. They are not roles. They can lead to a relationship that has roles, status, and history, but the invitation itself is the workflow that gets there."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "fIyp9ybsZ9EmUChdYdx7sw=="
+					"uidString": "CSZ1gSYiKdb9OCUgqkHVWQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,7 +293,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "0jqZ7lpQxz3lhHDGxMVPRA=="
+					"uidString": "nBzv5AYiTygaJh/2uzJxjQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "2DAcocDuX/UIq6KNlW+tLg=="
+					"uidString": "9XBIv5A7QlHqqq2igjXBrA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It lets projects track who invited someone, when they accepted, and how their role changed over time."
+				"string": "It records who invited whom, when, why, under what context, and what happened next."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zRQidr8hVJU+HeMkB0BUKw=="
+					"uidString": "l2klh/sfu6NFrVdHjBdF9w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It prevents group authority from being hidden in random application state."
+				"string": "It lets applications support accept, reject, revoke, expire, request-to-join, and approval flows without hiding the process in random state."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "vyuV/7LvcV3L/6W18afg5g=="
+					"uidString": "aDST9+RGq3FPXa1Q7sv0Aw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MYQ1OsVb2Ry5hN073xhgLQ=="
+					"uidString": "hir5+5DBdcAAxrgRdH+bcQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Invitations create pending relationships. Accepting an invitation activates or changes the membership relationship."
+				"string": "An invitation proposes a relationship or relationship change. Accepting it creates, activates, or updates the target relationship. Rejecting, revoking, or expiring it leaves an audit trail without creating the active membership."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "qa5uMiKY+fxBMe6OaMMO5g=="
+					"uidString": "GKo/iwM8QRplPPnqy3eLxw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles are temporal aspects of membership. A member can become an admin, return to member, become owner, or lose a role while the history remains visible."
+				"string": "The resulting membership relationship can then carry roles, status, responsibility, visibility, and other temporal aspects."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "8sG723lYPi+R6nNJAurTNg=="
+					"uidString": "Pqt/+ndw+QuDRw/2NJiUpA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Nh01f1WrnvK3TZgITbyCNg=="
+					"uidString": "F86YJrD3LpIBipSuxiLpGA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show invite, accept, reject, revoke, and role-change flows."
+				"string": "Examples will show invite, accept, reject, revoke, expire, and request-to-join flows."
 			},
 			{
 				"__type": "textSnippet",
@@ -589,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "T+MNiS/6OOttG51ufK3rMQ=="
+					"uidString": "XB9qAuEnLl4huuhi6ugNVw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -626,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "tUL6Gk8NeC+ps3XxtsL8lA=="
+					"uidString": "f1VCgCFoExoE19/FQzuBog=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep default roles small. Add richer role models when the application actually needs them."
+				"string": "Keep invitations focused on workflow. Roles describe meaning in a relationship; invitations describe how a relationship is proposed or changed."
 			}
 		]
 	},
@@ -659,7 +659,7 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Roles and Invitations"
+		"title": "Invitations"
 	},
 	"uid": {
 		"__type": "uuid",

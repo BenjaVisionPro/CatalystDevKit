@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "8webcI6lZ6f1N0lcTkEIvw=="
+					"uidString": "0MsWKAa2VIsZhC0wp02XCQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Accounts belong to a context: a Catalyst account, game account, currency account, or service account is not the person."
+				"string": "Accounts belong to a context; they are not people and they are not universal identity."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ndbrC0N59bt9vheTM8/28g=="
+					"uidString": "aXczO1xCrGpw96mL7zoDlg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "CI7jreaZcwsGFAomLCeIwg=="
+					"uidString": "G5L1MewRWpo97KsBOUxNng=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Contextual Accounts explains why account modelling belongs to the context that gives the account meaning."
+				"string": "Contextual Accounts explains how Catalyst People relates real people to accounts owned by specific applications, games, services, currencies, or systems."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ltevXyMm5VLh/CrCuhh/Zw=="
+					"uidString": "M1zWeBd/KZHdXL6FlQa/wA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "d38XD8qxEk8M4BUO2GVd1A=="
+					"uidString": "AN3IvqWjmT0iBFewyD369g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "An account is a contextual access, ownership, value, or service container. It only makes sense inside the system that defines it."
+				"string": "An account is a context-specific access, value, or service container. A Catalyst account, ThatGame account, currency account, store account, and in-game service account are different concepts."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Fns2KQl8+JZrhkzHNmR+iw=="
+					"uidString": "rBCXs7XMYcfSB598N3M4wg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A person may have a Catalyst account, game accounts, currency accounts, store accounts, and service accounts. Those are related to the person, but they are not the person."
+				"string": "A person may control or hold many accounts. A bot or service may also use an account. The account still belongs to its context."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "da8tDdM1xS8BD9zbciLwag=="
+					"uidString": "tCi9bbNNk8UODxuqFp4XiQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "3TYUjUymdaVWEuA6cbJanw=="
+					"uidString": "IbINvpqaw9wzxa4ootnJ4w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It avoids building one vague global Account object that tries to mean everything."
+				"string": "It prevents a project from treating one account as the whole person."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "FOg07HkmyeF03+l9bawqng=="
+					"uidString": "I26v793Gs0AS7TZRL7tvRQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It lets each component own the account shape it needs while Catalyst People provides the relationship back to the person."
+				"string": "It lets components define the account shape they actually need instead of forcing every account into one global model."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "IZzMT/ISQjdNm6PT8KYYBg=="
+					"uidString": "BdESRDwz302xL10KPWhkgQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It supports clear relationships between people, personas, bots, services, and the accounts they control or use."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "Aa7BtrFWVeD00hyC0TvoNQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "1v5ob9nXFz8+uYor+fI8sA=="
+					"uidString": "SMOmqgL1854g0XicMi9LIA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each account type belongs to its component or application context. Catalyst People can relate a Person to that account using a relationship with history and meaning."
+				"string": "Accounts connect to people or actors through relationships. The relationship can record holder, operator, owner, delegate, service identity, authority, and history over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hnCVtN1zufvD0uUaKn6I5w=="
+					"uidString": "ZQ9VQHpCDGi9+1yyP7peuQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Runtime principals and sessions decide who or what is currently acting through an account."
+				"string": "A person may have a verified identity, a public game persona, and several contextual accounts without those becoming the same object."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "igvy5gBZ7i0fn03TzBkF8g=="
+					"uidString": "XIOrujCCIeM9yorfevR24A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -515,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hCuMZXA4Q5/D3KCa84tu3A=="
+					"uidString": "rmV8uD4isdj0nZR9plIZtQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show a person linked to a game account, a currency account, and a service account."
+				"string": "Examples will show game accounts, currency accounts, and service accounts linked back to people or actors through relationships."
 			},
 			{
 				"__type": "textSnippet",
@@ -552,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "VItQWCwkFXgib6jCEv+iuQ=="
+					"uidString": "uLmwjPafBTL3mniFDpFc4g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "BHOfp9xbs6pSd42i4fDH6Q=="
+					"uidString": "NyiLlpa3DW7q+6ZyjrqI+g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Account names should say their context. Prefer GameAccount, CurrencyAccount, StoreAccount, or ServiceAccount over a universal Account unless the bounded context is already clear."
+				"string": "If an account only makes sense inside another component, let that component own it. Catalyst People should model the relationship to the account, not swallow every account type in the universe."
 			}
 		]
 	},

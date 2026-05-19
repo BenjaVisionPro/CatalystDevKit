@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jiDFzpzEYgLqUGQJZAaQdA=="
+					"uidString": "GxlebS1gFBUN2vlAT33UPQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership relationships, invitations, hierarchies, communication, and shared resources."
+				"string": "Roles describe what a person, persona, group, or actor means inside a relationship or context."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/QXJObiOJ8IgUUdLOjAk2A=="
+					"uidString": "ugW2punMSz9WrjqUzCaaBQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Roles"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HF31xSx60yBqpLv8fo3txw=="
+					"uidString": "0W0i13OBX2Gta6oITsGJWQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, guilds, and any other collective identity."
+				"string": "Roles give context to participation. They say what someone is doing, what they are responsible for, or what capabilities they have in a relationship, group, system, or runtime."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wQf6q6J1mpJZHo9Ry3ImUw=="
+					"uidString": "1SfVpqXwu8TNLfInn3lO6g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Roles"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "azWBRKH8+NH0gIsSvkVqaQ=="
+					"uidString": "vYlS9aavviBkwkuvStsazg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any structure where people or other actors belong together."
+				"string": "A role is a contextual meaning. Mentor, mentee, owner, member, admin, moderator, husband, wife, treasurer, operator, and service account operator are all examples of roles."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wt/slIcWXe1OjWta2hWA4A=="
+					"uidString": "U/1yO5WA9KNeF+IGx40FpQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership relationships, invitation workflows, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Roles are not invitations. A role describes meaning or capability. An invitation is a workflow for proposing or changing a relationship."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "c+g6JRKmQkHBlZNeNtyBAA=="
+					"uidString": "Td1lilly6rFdBVrBoRaxAw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GzhuqDNCeIvyLeNSrVvvPg=="
+					"uidString": "HyKr7OUsTLaSncvjhQebmw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It gives relationship ends their language. One end can be mentor while the other is mentee. One end can be group while the other is member."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lr3A963yPcTncZiW7RgmyA=="
+					"uidString": "RoyMUYQH0JCHGUE4IGX0lA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, ownership, and shared access differently in every application."
+				"string": "It gives groups and applications a shared way to model responsibility without hiding it in random permission flags."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "dfPXg1BsAHGIpKt+X6D2Sg=="
+					"uidString": "ZkxZrTw0y4f+JlqsiV13TA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They build on the relationship model, so membership can carry its own history, role changes, responsibility, trust, stress, contribution, and status over time."
+				"string": "It allows roles to change over time without losing history."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GI8a9zf+9dy0iw+ymRC46g=="
+					"uidString": "ZqfMKzHFvI+dKQlSAwjnpg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "JR6fwX7/o3UOS8LILtpMFA=="
+					"uidString": "E7W4B37b18S48jJCqa5KgA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "Roles are usually relationship aspects. A membership relationship may have a role timeline that moves from member to admin to owner. A romantic relationship may have role labels that change from boyfriend and girlfriend to husband and wife."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EC4XqEcK7yp+yf+QuSo8jg=="
+					"uidString": "+EXOs5izMsYuujvEbGvj1A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles live in the People relationship model. A group uses roles through membership relationships, but roles themselves are a broader People concept."
+				"string": "Roles can apply to people, personas, groups, bots, services, accounts, or runtime principals depending on context."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ivJm+wXv/ommZCDbF8AzeQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Invitations are group workflows. They propose, accept, reject, revoke, or expire membership relationships."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "1SN1pXDoW39ETqjbz8P38g=="
+					"uidString": "N8sIyigX2sfnaznUvlKb5A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "K76BUVIi6UGyK1fi2iWi0g=="
+					"uidString": "K4yIHGniGLHCWIQFuBI0SA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show roles on relationship ends, roles inside groups, and runtime roles used by principals."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hCRa9+O9a4bgNImLD+/cQw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "autUIel1nQq8T0vFRwLJXw=="
+					"uidString": "nwm4wJIYUY16FEdWkhbKbw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "DqHaYDVM/yiRYdvHAdbK2A=="
+					"uidString": "AAdF6Xnj6+RnUiLImmaqAg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Keep default roles small. Add richer role models when the application actually needs them."
 			}
 		]
 	},
@@ -733,10 +659,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Roles"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "2273d536-b475-43b5-937d-86b0c6f5a06d"
 	}
 }

@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jiDFzpzEYgLqUGQJZAaQdA=="
+					"uidString": "0mcCn7X55Fe5Jrb1uvFVvw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership relationships, invitations, hierarchies, communication, and shared resources."
+				"string": "A persona is the identity a person presents in a specific context."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/QXJObiOJ8IgUUdLOjAk2A=="
+					"uidString": "dsm9SDIyPDel6MX/mekWbQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# Personas"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HF31xSx60yBqpLv8fo3txw=="
+					"uidString": "+yy0CXCfH3D1qAwbmZSM3A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, guilds, and any other collective identity."
+				"string": "Personas let one real person appear appropriately in different applications, games, communities, or services without pretending those identities are separate people."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wQf6q6J1mpJZHo9Ry3ImUw=="
+					"uidString": "6M6+hhpyypfzvm4IBg4h2Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is Personas"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "azWBRKH8+NH0gIsSvkVqaQ=="
+					"uidString": "3uYNE5J/58izNKr6BjAmbg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any structure where people or other actors belong together."
+				"string": "A Persona is a context-specific identity for a Person. It can include a display name, avatar, profile, public description, handle, preferences, and other context-specific presentation details."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wt/slIcWXe1OjWta2hWA4A=="
+					"uidString": "VIm4IRaTx29SpwCBFrzPfA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership relationships, invitation workflows, hierarchies, shared resources, and relationships to other concepts."
+				"string": "Harold Smith may have a ThatGame persona named HarrysConquest, a professional persona named Harold, and an admin persona that uses his verified name. Those are different faces of the same person in different contexts."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "c+g6JRKmQkHBlZNeNtyBAA=="
+					"uidString": "UJLdjy8QD6wz9oVd66o9vg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GzhuqDNCeIvyLeNSrVvvPg=="
+					"uidString": "tesIJ8tQF8+EgeiRZPmpig=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It separates legal or verified identity from public presentation. That matters for privacy, safety, games, communities, and any product where people present differently in different places."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lr3A963yPcTncZiW7RgmyA=="
+					"uidString": "MLQ6nsxJOAc6heOSiR+QwQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, ownership, and shared access differently in every application."
+				"string": "It gives applications a clean way to ask, \u201cWho is this person here?\u201d without losing the deeper link to the real person where the system is allowed to know it."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "dfPXg1BsAHGIpKt+X6D2Sg=="
+					"uidString": "zh622TJBhH1ebJ17V6L2zw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They build on the relationship model, so membership can carry its own history, role changes, responsibility, trust, stress, contribution, and status over time."
+				"string": "It avoids stuffing every display name, avatar, and context-specific profile into Person itself."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GI8a9zf+9dy0iw+ymRC46g=="
+					"uidString": "6Aec/bcdINCti1FzIofqMQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "JR6fwX7/o3UOS8LILtpMFA=="
+					"uidString": "hnlpsdpPxlkmlZf9KUT+uQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "Person is the human. Persona is the contextual identity. A persona belongs to a context such as a game, application, organisation, community, deployment, or service."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EC4XqEcK7yp+yf+QuSo8jg=="
+					"uidString": "b9cm4QZYctPe0Em32Sa1Bw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles live in the People relationship model. A group uses roles through membership relationships, but roles themselves are a broader People concept."
+				"string": "Roles are separate. A persona may be known as HarrysConquest in ThatGame, and that persona may have the role treasurer in a guild. The persona is the contextual identity; the role is the meaning or capability inside a relationship or context."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ivJm+wXv/ommZCDbF8AzeQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Invitations are group workflows. They propose, accept, reject, revoke, or expire membership relationships."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "1SN1pXDoW39ETqjbz8P38g=="
+					"uidString": "3cvRnnXVZcV0TPcPDI9PGw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "K76BUVIi6UGyK1fi2iWi0g=="
+					"uidString": "ll+BrBgFs2nQBG5iIKQWGQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show one person with multiple personas across a game, admin tool, and public community profile."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hCRa9+O9a4bgNImLD+/cQw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "autUIel1nQq8T0vFRwLJXw=="
+					"uidString": "37gpAqvU6M6EC4HZ/jWnFA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "DqHaYDVM/yiRYdvHAdbK2A=="
+					"uidString": "E9KoWB+rnIRD4obWvyofAA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Persona is not a fake person. It is a contextual identity for a real person. Keep that distinction sharp and the rest of the model gets much less cursed."
 			}
 		]
 	},
@@ -733,10 +659,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "Personas"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "1a0eb30d-b500-46b5-8018-7bf4d257fa8f"
 	}
 }

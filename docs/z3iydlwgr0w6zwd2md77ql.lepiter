@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "sQxHQaICpsGy3GSqpjG7dw=="
+					"uidString": "uAHLu69Ymz0ei0L7AcJgmg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationship aspects let roles, labels, strength, stress, trust, and status change on their own timelines."
+				"string": "Relationship aspects let type, role, stress, trust, status, and other values change independently over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "mUfzFctM04Lptpu1rFhPTg=="
+					"uidString": "27GsLU25u5zr1jP0gNQ6dQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "b2qhZmRcZw+kQzPNGqQY1A=="
+					"uidString": "AY9DdBgTFMOI+THGffTBqA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationship Aspects is the core pattern for modelling values that change over time without forcing every change into one large phase record."
+				"string": "Relationship Aspects is the core pattern for modelling changing relationship values without forcing every change into one large phase record."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XAL7EuC5Mhv48ruV+LSpEQ=="
+					"uidString": "8+3jA049p6Jn+iwcw3LCsQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "oQcPOSQf8sYAY4dWB1U3hQ=="
+					"uidString": "BXKQSNMWMkg0FZZeGqmA+w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "An aspect is one meaningful property of a relationship or one of its ends. Examples include role name, relationship type, status, strength, stress, trust, visibility, responsibility, and commitment."
+				"string": "An aspect is one meaningful property of a relationship or one of its ends. Examples include relationship type, role name, status, strength, stress, trust, visibility, responsibility, and commitment."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LW6Gtuw+1geH6tsnw5eMjA=="
+					"uidString": "qNZ0+NmyUSc+37ik6/3rzA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each aspect has its own history. That means trust can change weekly, role can change once, and visibility can change only when the relationship becomes public."
+				"string": "Each aspect has its own history. Trust can change weekly, role can change twice in ten years, and visibility can change only when a relationship becomes public."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NxgwwaRxifArZfmFvPgQyg=="
+					"uidString": "j04VSVye0/Al+sSIIXswZw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,7 +293,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NjsI2isMCsVIpj34y+1Msg=="
+					"uidString": "KrcZJNKzPaMIxXdASVa17A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -330,7 +330,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "F2JI55Cviov3McKK4/iWpw=="
+					"uidString": "xq8C+lk5cElWylOmaKMUyA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -367,7 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "WrOtYY2+s/smLRjLURkc3w=="
+					"uidString": "BFxrMr3jbzl16p6mMy1h6w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Jku9Oki+m0CaMA6jwLcVww=="
+					"uidString": "qNEhXowVzSGHF/h/wSZIgA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,7 +441,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "WLfH7WzM09MMs8GHPd1vvw=="
+					"uidString": "OkyspN3LbJNYvqPDGbhuzg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -478,7 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Msg8TT6AUdc6o5G3h4U74Q=="
+					"uidString": "cU5d7WIQ6P5MtII6f7s1ZQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -515,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "nUWFwtf4qs/QzbO9y/DShg=="
+					"uidString": "edYh+U/ngMo4xjuoQquqNQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Bs7mm2BllbGPrCNcnwPKew=="
+					"uidString": "hwoNdGBITl6DaS68GUjSuQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show role history, stress history, and status history on the same relationship."
+				"string": "Examples will show role history, stress history, status history, and persona-specific relationship presentation on the same relationship."
 			},
 			{
 				"__type": "textSnippet",
@@ -589,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pqAwLJrokD74hEMEIL85Ww=="
+					"uidString": "SOnyNS7JHiTDcCxzENFxPQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -626,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "szgEl0RsrWMhSuHug5n4VA=="
+					"uidString": "jRcYIL/2dTyMrySLlclJFA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use derived projections for convenience, but keep the temporal aspect history as the source of truth."
+				"string": "Use derived projections for convenience, but keep temporal aspect history as the source of truth. Current state is a view, not the model."
 			}
 		]
 	},

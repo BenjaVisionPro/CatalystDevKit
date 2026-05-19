@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+r8cUUTY/kx0aD7u5eKfNQ=="
+					"uidString": "kFMwDe98YjsPaRfrV/gEcA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Components are first-party building blocks for common application capabilities."
+				"string": "Catalyst Components are first-party building blocks for identity, communication, storage, currency, worlds, tooling, and simulation."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "L5ip2tYC0SeVxUYoCCAK3Q=="
+					"uidString": "dAUGtd1XJhnyygMb2WEQXw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "+TXenlGFuJHZ3MTfyfmRcQ=="
+					"uidString": "4MHQjmu5DB9Mtrj16H6n6w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Components save Catalyst projects from rebuilding the same foundations again and again."
+				"string": "Catalyst Components are reusable capabilities that belong to the Catalyst platform. They are designed to give projects solid foundations without forcing every application to rebuild the same machinery."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LzgFUVt88xA4kKRfHtubOQ=="
+					"uidString": "5YlRotKtVJb2AXD6flRBbg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NaZk+0Znyjgu2Ef6s08FFQ=="
+					"uidString": "fgcdVWwc1WBVA3yePtRkeQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Components are first-party capabilities that belong to the Catalyst platform. They are not external integrations; they are the building blocks Catalyst projects can share."
+				"string": "A component is a first-party Catalyst capability. Components can provide domain models, services, tools, storage patterns, communication layers, or runtime support."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "gkz87b7RKRB7sLP6YdcvjQ=="
+					"uidString": "5Twx54mO5ed2JrNoOVwNaQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each component should make a common capability understandable, inspectable, and reusable."
+				"string": "Plugins are different. Plugins connect Catalyst to external systems such as Unreal Engine or another runtime. Components are part of Catalyst itself."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LoQOjJvE3GT5zcIaTG7jtw=="
+					"uidString": "FwUL64TBZ6haoGPMGX68Lw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lTxFQODzjgrMVqw4GJOg+g=="
+					"uidString": "PNNSnsqyY1vpomnMNupc/g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Components give projects shared vocabulary and common foundations."
+				"string": "Components keep common application foundations consistent. People, groups, connect, store, currency, landform, reflect, architect, and ecosystems should feel like parts of one platform rather than unrelated packages."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "7jfeWg3pTWwErn4BUg/K6Q=="
+					"uidString": "kkLBY7UObNlphuKreOL7Zg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They reduce the number of times every project has to rebuild identity, groups, communication, stores, currency, landform, reflection, architecture, and simulation support from scratch."
+				"string": "They also give each concern a clear home. People owns humans, personas, roles, and relationships. Groups owns collective identity and invitations. Connect owns communication. Store owns durable product and ownership models."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,44 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "L9UJ5pP8CkCFU8ZjtKlIFQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "They make capabilities easier to document because each component has a clear home."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "DU28dThEe6azPjIiyf1Suw=="
+					"uidString": "iItTRYmKUGi1nL29OyGGxg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6D816EM6XajWiWnGHocooQ=="
+					"uidString": "icjb/yv5ODt12KpasteVrA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each component gets an overview page and focused subpages for examples and design notes."
+				"string": "Each component gets an overview page and deeper example pages as the implementation matures."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hs7q87kGPbT+IH+81OTCdA=="
+					"uidString": "K5gntOVcaTf0g9fSnJCPyA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Components may integrate with one another, but each one should own its own domain and avoid becoming a giant everything bucket."
+				"string": "The overview pages are intentionally short. They should help a developer decide whether the component is relevant, then point them to examples and implementation docs."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,7 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Cg7IoQLjlAXgU04CHK1ZOw=="
+					"uidString": "Y47yFvtD7mf2MrGHQUrxag=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MffHBU6sQb4XaIWeTFCd0g=="
+					"uidString": "KNmgcB63oqu/GLGpvCTAqA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Use this page as the table of contents for component documentation."
+				"string": "Read {{gtPage:Catalyst People|db=731asfxqhyhdr96k6wo9yxnzv}} for human identity and relationships, {{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}} for collective identity, and {{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}} for communication."
 			},
 			{
 				"__type": "textSnippet",
@@ -589,44 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "UVCIWNDuPoEKdqTEanZT2w=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "{{gtPage:Catalyst People|db=731asfxqhyhdr96k6wo9yxnzv}} covers human identity and relationships. {{gtPage:Catalyst Groups|db=731asfxqhyhdr96k6wo9yxnzv}} covers collective identity and memberships. {{gtPage:Catalyst Connect|db=731asfxqhyhdr96k6wo9yxnzv}} covers communication."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "iCal9ZpZzvYOEcGcUBm4gw=="
+					"uidString": "fibLEHmtgmV6X0AM2eAEAg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -663,12 +589,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "WL91I6W56iMw1/GPfOkkSg=="
+					"uidString": "DN6W7nyJYLAQhELCeQH9NA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Plugins are different. Plugins connect Catalyst to external systems like Unreal Engine or other runtimes. Components are first-party Catalyst capabilities."
+				"string": "The component docs are allowed to be aspirational where the implementation is still forming, but they should stay honest. Excitement is good. Fog machine bullshit is not."
 			}
 		]
 	},

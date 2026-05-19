@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ReRGNkHX9OKu4mmYDivekw=="
+					"uidString": "WTM+MqvCQBpswn1sXiWbXw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationships are living histories with direction, roles, context, and values that change over time."
+				"string": "Relationships are living histories with direction, roles, context, and values that change on independent timelines."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NwI4M5PzbZYU5FrM+4wPug=="
+					"uidString": "+JCHtHib4hjza29KIAp8Cw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,7 +108,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "9y2Q3M6F/neFWDBPAm6t1w=="
+					"uidString": "2uvO9XS0crR5y2bYpRA9SA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "QscMBqGvaTDFYhsy9JoO/A=="
+					"uidString": "7d5WBGjv/xyC7Myyc/aVFA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,7 +182,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jggF9yQ1Y4VY8WUl/smzpA=="
+					"uidString": "I9SPy+qsX/u2VZbkwd76Xw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "1nZS4GogEj0LEHqi5Rm/1g=="
+					"uidString": "4OPmeHEPWIqEMmkWt21/ow=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationships can connect people, groups, ideas, ideals, services, accounts, projects, places, resources, and other domain concepts."
+				"string": "Relationships can connect people, groups, personas, ideas, ideals, services, accounts, projects, places, resources, and other domain concepts."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "szs9iAetjqIQaM1ls9+low=="
+					"uidString": "92eER4nycIuFH0Wf1Fm+4w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "OYpZemfe22k7l81/CaGl6w=="
+					"uidString": "ptOCBCpJmgO9GGxDVs5+1Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Simple links are not enough. A relationship can be directional, have different names at each end, and carry strength, stress, trust, commitment, visibility, and other traits."
+				"string": "Simple links are not enough. A relationship can be directional, have different names at each end, and carry strength, stress, trust, commitment, visibility, and other changing traits."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "1VX0V9bfJtuP561E3uRq5g=="
+					"uidString": "eX28aIXc1aXNqqxekOPUAw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Almost everything about a relationship can change. Some values move quickly, some slowly, and some stay stable for years. Catalyst models those values as independent temporal aspects."
+				"string": "Almost everything about a relationship can change. Roles may shift from boyfriend and girlfriend to husband and wife. Stress may move weekly. Trust may rebuild slowly. Visibility may change once."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "PRS1SqgPnXGTClGYM24jOA=="
+					"uidString": "l/F9CIm4eciSPEuxFChICA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +404,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "JsWASWep0t0SR3/oejQqHA=="
+					"uidString": "ONjuY//wmHYCcvN+5dtm7g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A relationship has identity, participants, context, and aspect timelines."
+				"string": "A relationship has identity, participants, context, and aspect timelines. The relationship identity can remain stable while the labels, roles, status, strength, and other aspects change."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "zU5Qolt0DsxM1l/pouGdsA=="
+					"uidString": "ZZsnc3blIpmmmVyKaBVetw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Each participant has an end or perspective. The ends can have different names, such as mentor and mentee, parent and child, member and group, supporter and ideal."
+				"string": "Each participant has an end. Ends can have different names and meanings, such as mentor and mentee, parent and child, member and group, supporter and ideal, or holder and account."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,7 +478,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "YLyNPZdH1TTaZrrvm9CXsA=="
+					"uidString": "8SIUFP9+FlTyJeaSZVE73w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -515,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ZhxOW3toHprUXuxIiLi4SA=="
+					"uidString": "QTed0VOXiuEWAVRO/aT//w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,7 +552,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "mqbPwG/vy2hrf2NeeHQmAg=="
+					"uidString": "4sG+O68AXIVtEVS8AdLOSA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "O/OKo0U1yrkpl/cz4A8wvA=="
+					"uidString": "Uq65/DcTuDYivLvyFeaWbA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -626,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XmJQEIHpVRkI3b4tRHqHjQ=="
+					"uidString": "JdaJ2ViQ/th4dygeii+ZnA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not treat phase as the source of truth. Phase can be a useful summary, but independent aspects let different parts of the relationship change at different speeds."
+				"string": "Do not treat phase as the source of truth. A phase can be a useful summary, but independent aspects let different parts of the relationship change at different speeds."
 			}
 		]
 	},

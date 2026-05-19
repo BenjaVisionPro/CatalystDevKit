@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "jiDFzpzEYgLqUGQJZAaQdA=="
+					"uidString": "VN4YK2HbjiaY+RfJYc4FmQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity, membership relationships, invitations, hierarchies, communication, and shared resources."
+				"string": "KYC and verification give projects a careful way to model real-world identity confidence when they actually need it."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,12 +71,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "/QXJObiOJ8IgUUdLOjAk2A=="
+					"uidString": "nAqmxuQag4YebFR1cySCOg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "# Catalyst Groups"
+				"string": "# KYC and Verification"
 			},
 			{
 				"__type": "textSnippet",
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "HF31xSx60yBqpLv8fo3txw=="
+					"uidString": "M+zldSheA1atVMaCtN1Lig=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups gives projects a strong foundation for teams, communities, organisations, parties, guilds, and any other collective identity."
+				"string": "KYC and Verification covers how Catalyst People can represent verified identity, jurisdictional checks, and audit history without turning every profile into a sensitive identity record."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,12 +145,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wQf6q6J1mpJZHo9Ry3ImUw=="
+					"uidString": "wDqtHhZiDkBP8k4KOQ1+yA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## What is Catalyst Groups"
+				"string": "## What is KYC and Verification"
 			},
 			{
 				"__type": "textSnippet",
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "azWBRKH8+NH0gIsSvkVqaQ=="
+					"uidString": "9mJCXZCxFFQNsqx8s/ba7g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Groups models collective identity: teams, organisations, parties, crews, communities, households, guilds, admin groups, and any structure where people or other actors belong together."
+				"string": "KYC means Know Your Customer. In Catalyst People, it is a verification layer attached to a Person when an application needs confidence about real-world identity."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wt/slIcWXe1OjWta2hWA4A=="
+					"uidString": "At6cHPELKRoQuYKlFjTy0w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups are not just lists of people. They have identity, membership relationships, invitation workflows, hierarchies, shared resources, and relationships to other concepts."
+				"string": "A project may need to know that a person is verified, age-checked, jurisdictionally allowed, or linked to a verified provider. That does not mean every game persona or public profile should expose legal details."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "c+g6JRKmQkHBlZNeNtyBAA=="
+					"uidString": "fGonzdapz787VGCMz9HuCA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GzhuqDNCeIvyLeNSrVvvPg=="
+					"uidString": "WqGJh0gZQaEYu2D9uxuamA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups give projects a consistent way to let people act together. That might be a temporary party in a game, a company in a simulation, a family account, a guild, or a project team."
+				"string": "It gives regulated or higher-trust systems a place to store verification state, provider references, review dates, expiry dates, and audit history."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lr3A963yPcTncZiW7RgmyA=="
+					"uidString": "GaOekfbrkwVjKZfE/drBVw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They avoid rebuilding membership, invitations, ownership, and shared access differently in every application."
+				"string": "It separates verified identity from contextual identity. Harold Smith can be KYC verified while ThatGame still shows HarrysConquest to other players."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "dfPXg1BsAHGIpKt+X6D2Sg=="
+					"uidString": "Vx5LeZmKgQn1iatYATpuWg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "They build on the relationship model, so membership can carry its own history, role changes, responsibility, trust, stress, contribution, and status over time."
+				"string": "It helps projects avoid mixing sensitive identity material into casual profile, account, or gameplay data."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "GI8a9zf+9dy0iw+ymRC46g=="
+					"uidString": "dW9R1HCVIrfSc2I4xSyEqQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "JR6fwX7/o3UOS8LILtpMFA=="
+					"uidString": "XEmmjX8MXsarEewu8siB7Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A group is a collective identity. Membership is a relationship between a participant and a group, not just an item in an array."
+				"string": "Verification belongs to Person. The verification result can be exposed to contexts as needed, but the underlying evidence and legal identity should remain carefully scoped."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EC4XqEcK7yp+yf+QuSo8jg=="
+					"uidString": "z+dpmXWhlnhVfSWD+4Gcuw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Roles live in the People relationship model. A group uses roles through membership relationships, but roles themselves are a broader People concept."
+				"string": "Verification state should be historical. A person may move from unverified to pending to verified, require review, expire, or fail a check. That history matters."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,44 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ivJm+wXv/ommZCDbF8AzeQ=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Invitations are group workflows. They propose, accept, reject, revoke, or expire membership relationships."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "1SN1pXDoW39ETqjbz8P38g=="
+					"uidString": "fj8x9s4vlM0u40xp1Pvwlw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "K76BUVIi6UGyK1fi2iWi0g=="
+					"uidString": "ofRp74N0+xvE2LIYOYw3Og=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups is a component-level model, so examples will focus on API and model usage rather than bvc commands."
+				"string": "Examples will show verification status, provider references, and context-safe access to verified claims."
 			},
 			{
 				"__type": "textSnippet",
@@ -626,44 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "hCRa9+O9a4bgNImLD+/cQw=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Start with {{gtPage:Groups and Collective Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Membership Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Invitations|db=731asfxqhyhdr96k6wo9yxnzv}} for the core group workflow."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "autUIel1nQq8T0vFRwLJXw=="
+					"uidString": "E6e0fHXVtxPCkYiYzZFkJw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "DqHaYDVM/yiRYdvHAdbK2A=="
+					"uidString": "49MMJDU2Eb/sgGeNg2Mn+A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Groups should not become the chat system, inventory system, currency system, or permission engine. It should model collective identity and membership, then integrate cleanly with the components that own those concerns."
+				"string": "Do not store sensitive identity documents unless the project explicitly needs to and has the legal, security, and operational posture to do it properly."
 			}
 		]
 	},
@@ -733,10 +659,10 @@
 	},
 	"pageType": {
 		"__type": "namedPage",
-		"title": "Catalyst Groups"
+		"title": "KYC and Verification"
 	},
 	"uid": {
 		"__type": "uuid",
-		"uuid": "8f7dadcb-1e3f-4c07-ae5e-e40a45f12c16"
+		"uuid": "00eae2fd-aefa-4979-a0eb-55b09e56d28d"
 	}
 }

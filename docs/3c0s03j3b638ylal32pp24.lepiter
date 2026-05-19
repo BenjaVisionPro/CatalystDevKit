@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "a+YJ01UE8xZRbgufFRQdTg=="
+					"uidString": "Hl9+JBwnOsA6y/MuuR6GTw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Membership is a relationship with history, role, status, responsibility, and meaning over time."
+				"string": "Membership is a relationship with history, status, roles, responsibility, and meaning over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Out63yh0F3ouzPRuFPa6Iw=="
+					"uidString": "eApBWgLsCr6NqjrgQn+MQA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,7 +108,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "pJQPgCbajkyHUS3GrDVQCQ=="
+					"uidString": "tCJ0qE5RUTSYAOjkK+5tYQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "gYqnwB5dSupNH9CNOW9OPQ=="
+					"uidString": "hSXj5Q4TYmauyFMveHbKYg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "VhcjftbeZxkndyeRp6C6UQ=="
+					"uidString": "ERq2N8JGKajVZdZZ4pyQWQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Membership connects a participant to a group. The participant may be a person, bot, service, or another group depending on the application."
+				"string": "Membership connects a participant to a group. The participant may be a person, persona, bot, service, or another group depending on the application."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ZYMxv2OKsB/qkBMG0m1ofA=="
+					"uidString": "mJQ52gT6wpBWAwv0otgdZg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Membership carries state: joined, invited, pending, active, paused, removed, blocked, or left."
+				"string": "Membership carries state: invited, pending, active, paused, removed, blocked, left, or archived."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "eSJqZVLRh5sXr0RL5NlhLw=="
+					"uidString": "k8qjxRipperjV7Xh+vDa9Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,7 +293,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "6WjZu0D9FVsE1J957ZjIyw=="
+					"uidString": "QyX2XR5YtGcJeG3q5DhWug=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "r0OirJUJeZzKT96TooWhJw=="
+					"uidString": "gwoYHO2qPX19v5Oxnoo67A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It gives role changes, status changes, and participation changes somewhere to live."
+				"string": "It gives role changes, status changes, participation changes, and responsibility changes somewhere to live."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "smU7hvHSNr3A0cfz9Cp7sA=="
+					"uidString": "BwNF0tlSvhFJ1QlBt7IoGA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It lets groups understand who belonged, when, in what role, with what authority, and how that changed."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "UYcqidVNRiehfS9lc2T04g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,7 +441,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "YciN3ZrAB//SZegcQyXfZg=="
+					"uidString": "lNmramHtLUlcHFXTQXxB4g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "oJhh2e0UZVgaNyDi0xA7Hw=="
+					"uidString": "l8GhllGz0zc+pRXuIlcSrg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "The membership relationship can have aspect timelines such as role, status, trust, responsibility, contribution, and visibility."
+				"string": "The membership relationship can have aspect timelines such as role, status, trust, responsibility, contribution, visibility, and authority."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,7 +515,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "EPJwiaASIR9pxvmf4Fx0RQ=="
+					"uidString": "sGHasCkV4bHcazuUeDQRHw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "Roles are provided by Catalyst People as contextual relationship meaning. Groups use them to describe membership, but they do not make invitations and roles the same concept."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "0VYCDOqqyvEVhk2Yi32y/Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -515,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "47eDkJHaurlfFyFbypUCHg=="
+					"uidString": "xPOp2Nx+rz2hBiL8G5Qqpw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -552,7 +626,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "TlUsTxBq2WH6Ep7Gbp4eSg=="
+					"uidString": "Si5UpgjWXO4YsWMyZM+00w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +663,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "d8nNWK1F9YgW3F9Qn1Lp/A=="
+					"uidString": "+DvX91PtXiave0BZSnz72g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not delete history just because someone leaves. The group may need to understand previous membership, ownership, audit history, or contribution."
+				"string": "Do not delete history just because someone leaves. The group may need to understand previous membership, ownership, audit history, contribution, or responsibility."
 			}
 		]
 	},

@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "uRVzb+T/Go/8/HMoGBPl4A=="
+					"uidString": "yyV3kfFLOh+2RAVF4Oplaw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People models real humans, their identities, and the relationships that give an application social meaning."
+				"string": "Catalyst People models real people, personas, roles, relationships, and verified identity without confusing humans with accounts or bots."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "LoS81SMEPSxA+SOi9KGGEA=="
+					"uidString": "boVUSATvxckD5Zfw37NDfA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "t2xZAnLk87EVD0inGln65A=="
+					"uidString": "OOzlSntSNp7/Izv3jR9lww=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People gives Catalyst projects a clear, honest model for people and the relationships around them."
+				"string": "Catalyst People gives Catalyst projects a clean model for real humans and the social context around them. It keeps the important distinctions visible: people are humans, personas are contextual identities, roles describe meaning in context, accounts belong to specific systems, and relationships change over time."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "C0woES9sQvxK45UFbP/GJA=="
+					"uidString": "gd+XHnnooCgR32SDsSGq6g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "iYlG6DCtDsCqmIfR5ktLDw=="
+					"uidString": "58PgGOf3Au0GX3H2o5V+/g=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People is the component for modelling real people and the meaningful relationships they have with other people, groups, ideas, services, accounts, and other parts of a Catalyst application."
+				"string": "Catalyst People is the component for modelling people and the meaningful identities and relationships attached to them. It starts with Person as a real human identity, then lets that person appear through different personas in different contexts."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "MGS0bqDWH19GSP33WFX+fw=="
+					"uidString": "mnY/1xOH/chUOIaR2gcl8Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People are humans. Bots, services, and automated processes may act in the system, but they are not people. That distinction keeps identity modelling honest and gives applications a clearer foundation."
+				"string": "A person may be known legally as Harold Smith, verified for KYC, and still appear inside ThatGame as the persona HarrysConquest. That is not a second person. It is one person presenting a contextual identity."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "wHpFWXjzoAKMjSIYbQxeLA=="
+					"uidString": "JIZvMhqOd+Txkq0+CYkFvQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "U5Ynq6uQgq53AIr1KT4Tog=="
+					"uidString": "+/nxF5lHO0awfofDqX9aEQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Applications need to know who a real person is without reducing them to a login record. Catalyst People gives projects a shared model for people, profiles, preferences, presence, and person-linked state."
+				"string": "It stops applications from treating a login account as the whole human. A person can have many accounts, many personas, many roles, and many relationships across different contexts."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "4E5638WGw7CaLNOFQAB/Sw=="
+					"uidString": "/kIoyeYOCqO4GtLpZCZHVw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationships get a proper home. A relationship is not just a connection between two things. It can be directional, have different names at each end, carry meaning and measurements, and change over time."
+				"string": "It gives KYC and verification a proper home. Projects that need real-world identity confidence can model verification status and audit history without forcing every public identity to expose legal details."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,12 +367,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ZuRtaXe9+4eiprb7+aYDZQ=="
+					"uidString": "MvMKufnKFFSErXK/AtgUgg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Accounts are contextual. A Catalyst account, a game account, a currency account, and an in-game service account are not the same thing. Catalyst People links people to those contexts without pretending there is one universal account shape."
+				"string": "It makes relationships first-class. Relationships can be directional, can have different names at each end, and can carry changing aspects such as role, strength, stress, trust, status, visibility, and commitment."
 			},
 			{
 				"__type": "textSnippet",
@@ -404,7 +404,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "msuPRHO6IL30c7d79tEw7g=="
+					"uidString": "Y60H1vEfVAdFdwOf6SnPbg=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It keeps bots and services honest. Bots may act in the system, but they are actors or principals, not people."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "6Nue38E5++DTlMSi42lxzw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -441,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "P9V7/ZfTOB6qp/ikTOXejQ=="
+					"uidString": "VrcjAV/eLdc0Toz6MYg5PQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People starts with Person as the stable human identity. Runtime actors such as principals, bots, services, and sessions can act in the system, but they are modelled separately from the human person."
+				"string": "Person is the stable human anchor. Persona is the identity a person presents in a context. Role is the meaning, responsibility, or capability a participant has in a relationship or context."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,12 +515,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "iOzPSMnNJk1F2rMCZbThJw=="
+					"uidString": "IJagq0OHL2RGTcs0UipPcw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Relationships are first-class. A relationship has identity, participants, context, and temporal aspects. Most values are not fixed fields. Roles, labels, strength, stress, trust, visibility, and status can all change on their own timelines."
+				"string": "Relationships are temporal. Almost every meaningful value can change, and different values change at different speeds. Catalyst People models those values as independent aspect histories, then derives the current view from them."
 			},
 			{
 				"__type": "textSnippet",
@@ -515,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "3bf9TsoB7V7F7jqcc4oBjQ=="
+					"uidString": "LtAjHmL7HmCBatyCsexxzw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Current state is a projection. The system can answer what a relationship looks like now, but the history remains available so applications can understand how it got there."
+				"string": "Accounts are contextual. A Catalyst account, game account, currency account, and service account are different things. People can be linked to accounts without pretending the account is the person."
 			},
 			{
 				"__type": "textSnippet",
@@ -552,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Tk4/yM0HgwgzN65fYBhS2A=="
+					"uidString": "gRbpM6ZyKqr0LfNDmkXUtw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,7 +626,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "WaFvuRJXa8QlKAULcfxtog=="
+					"uidString": "lLZt/wWbwrngmVqPWF0JbQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -626,12 +663,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "mU68HOVjl6Wr6RV6JDnJ5A=="
+					"uidString": "pDxesTv47gbeH8B+iZhzWw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Start with {{gtPage:People and Identity|db=731asfxqhyhdr96k6wo9yxnzv}} for the basic human identity model, then read {{gtPage:Relationships|db=731asfxqhyhdr96k6wo9yxnzv}} for the time-based relationship model."
+				"string": "Start with {{gtPage:People and Identity|db=731asfxqhyhdr96k6wo9yxnzv}}, then read {{gtPage:Personas|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Relationships|db=731asfxqhyhdr96k6wo9yxnzv}}, {{gtPage:Relationship Aspects|db=731asfxqhyhdr96k6wo9yxnzv}}, and {{gtPage:Roles|db=731asfxqhyhdr96k6wo9yxnzv}} for the model that makes People useful."
 			},
 			{
 				"__type": "textSnippet",
@@ -663,7 +700,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "flPRvGnXdGsLQCqn3PVWjw=="
+					"uidString": "hKAj8HixUn0uQLis0qZ2Fw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -700,49 +737,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "Wm3f6p90ph2iSXc2vrKr8w=="
+					"uidString": "rxYixDfqmwlPMrBROOrs6A=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Do not use Person as a synonym for account. A person may have many accounts in many contexts."
-			},
-			{
-				"__type": "textSnippet",
-				"children": {
-					"__type": "snippets",
-					"items": []
-				},
-				"createEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"createTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"editEmail": {
-					"__type": "email",
-					"emailString": "<unknown>"
-				},
-				"editTime": {
-					"__type": "time",
-					"time": {
-						"__type": "dateAndTime",
-						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
-					}
-				},
-				"uid": {
-					"__type": "uid",
-					"uidString": "mxpGHpm7nzcEYWEO3j7dUA=="
-				},
-				"paragraphStyle": {
-					"__type": "textStyle"
-				},
-				"string": "Do not use Person for bots. Bots and services are actors, but they are not people."
+				"string": "Do not use Person as a synonym for account. Do not use Person for bots. Do not flatten personas, roles, and relationships into a single user record unless you want a tiny identity swamp wearing a fake moustache."
 			}
 		]
 	},

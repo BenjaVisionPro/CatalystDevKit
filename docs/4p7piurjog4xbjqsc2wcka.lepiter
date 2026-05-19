@@ -34,12 +34,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "3tB+AfHM96JdLZCIb5NVZA=="
+					"uidString": "OoF3v/l++ZvtiNnLW+yB+w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst People starts with real humans, not accounts, sessions, or login records."
+				"string": "Catalyst People starts with real humans, then layers contextual identity and runtime access around them."
 			},
 			{
 				"__type": "textSnippet",
@@ -71,7 +71,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "f6tFFGewumtLuRlsQ0t7BA=="
+					"uidString": "1s2vaRm9NwXl7dis6fQh3w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -108,12 +108,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "IEywiHbkzxiu2IHqCXxmWw=="
+					"uidString": "r1ej1ApUl+K9Ps8fntGi6w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "People and Identity explains the core Person model and how it stays separate from accounts, bots, services, and runtime actors."
+				"string": "People and Identity explains the core Person model and why it stays separate from accounts, personas, bots, services, sessions, and runtime actors."
 			},
 			{
 				"__type": "textSnippet",
@@ -145,7 +145,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "VzhQ5gpx6P3YW/1VrJW9rA=="
+					"uidString": "sH0m0Gh3ZC8A7fzhNt2ejg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -182,12 +182,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "4ax5wuduJTc4eZaewCqBZg=="
+					"uidString": "jXmHAIY5AECeMa9rHxa/fw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "A Person represents a real human identity. It is the anchor for profile information, preferences, relationship history, and person-linked state."
+				"string": "A Person represents a real human. It is the anchor for legal identity where required, KYC status, relationship history, profiles, preferences, and person-linked state."
 			},
 			{
 				"__type": "textSnippet",
@@ -219,12 +219,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "AQB8QP98TY/B7azVZ9mEyA=="
+					"uidString": "wYTZZvT/7Ws6QAUmlOxixw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Accounts, sessions, principals, and credentials are ways a system recognises or acts for someone in a context. They are not the person."
+				"string": "A person is not the same thing as a username, session, account, profile, bot, or runtime principal. Those are ways a person may appear, authenticate, or act in a context."
 			},
 			{
 				"__type": "textSnippet",
@@ -256,7 +256,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "w4ucWt0LnFrLAe3UTqvBlg=="
+					"uidString": "69wvvG5jMU51wrfmH13vkA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -293,12 +293,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "V651V6R96K/J7UGSmugmNg=="
+					"uidString": "vSl1Jx7x1aeZ4g/AwR1B9Q=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It prevents projects from treating a login account as the whole human. That matters when a person has multiple accounts, devices, roles, games, services, or deployments."
+				"string": "It lets a project understand the human behind multiple accounts, personas, devices, or applications without leaking sensitive identity into places it does not belong."
 			},
 			{
 				"__type": "textSnippet",
@@ -330,12 +330,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "ofX4vl5ttdHwRIRerpaY3A=="
+					"uidString": "fqyQ6iBfFztr/BkCIibBDA=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "It also makes room for non-human actors. Bots and services can act in a runtime without being modelled as people."
+				"string": "It gives verified identity a careful home. Some projects need to know that a real person has been verified. Other projects only need a persona or display name."
 			},
 			{
 				"__type": "textSnippet",
@@ -367,7 +367,44 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "XeWAAKvqX5d9tn7eT4cYwQ=="
+					"uidString": "uZr+YFbIjF9do8IxrH018w=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "It makes room for non-human actors. Bots and services can act in a runtime without pretending they are people."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-05-19T10:00:00+10:00"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "u0Sf+kgQF02w37iXaDeAOQ=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -404,12 +441,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "nynYCrZ3vNwqcQ8UCadM3A=="
+					"uidString": "Hsmh200F+Q0gtyV5WmPA8w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Person is the stable identity. Contextual accounts connect a person to a specific application, service, currency system, or deployment."
+				"string": "Person is stable. Personas, accounts, sessions, and principals are contextual. A principal may act for a person, a bot, a service, or another controlled actor."
 			},
 			{
 				"__type": "textSnippet",
@@ -441,12 +478,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "NIwFFItgal391aU+pGigIA=="
+					"uidString": "PNWaJzq8o+AOZw5wvsqv9w=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Runtime principals represent who or what is acting at a point in time. A principal may act for a person, a bot, a service, or another controlled actor."
+				"string": "Sensitive identity should be scoped carefully. KYC data, legal names, and verification evidence are not casual profile fields."
 			},
 			{
 				"__type": "textSnippet",
@@ -478,7 +515,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "E8B9NaySO+LKWAGncfmc1g=="
+					"uidString": "yLiW61hj/KaHx+hh+6U3tg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -515,12 +552,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "lkkZeIC6NR6xGOuU2wnvcA=="
+					"uidString": "o6v1JYlYcL+H85+G/4VUzw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Examples will show how to create a Person, attach a profile, and connect the person to contextual accounts."
+				"string": "Examples will show how to create a Person, attach personas, record verification status, and connect the person to contextual accounts."
 			},
 			{
 				"__type": "textSnippet",
@@ -552,7 +589,7 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "cr1PDYfA32Pvq9p86/gpFQ=="
+					"uidString": "XdZMna4lbrH40oEE62FjTw=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
@@ -589,12 +626,12 @@
 				},
 				"uid": {
 					"__type": "uid",
-					"uidString": "op18WJMPu8oyE9mMRgkAmg=="
+					"uidString": "2luFcgbCkiigNJXfANtqJg=="
 				},
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Keep the model boring where it should be boring. Person means human. Account means contextual access or value container. Principal means actor in a runtime."
+				"string": "Keep the language boring where it should be boring: Person means human. Persona means contextual identity. Account means contextual access or value container. Principal means actor in a runtime."
 			}
 		]
 	},
