@@ -17,6 +17,16 @@ Metacello new
 	baseline: 'NeoJSON';
 	load.
 	
+Metacello new
+	repository: 'gitlocal:///opt/git/JupiterJones/Bloc/src';
+	baseline: 'Bloc';
+	load.
+	
+Metacello new
+	repository: 'gitlocal:///opt/git/JupiterJones/sparta/src';
+	baseline: 'Sparta';
+	load.
+	
 "
 Metacello new
 	baseline:'Seaside3';
