@@ -30,16 +30,16 @@ BVCDevKitWorldElement >> newThemeButton [
 
 	aThemeDropdown := BrButton new
 		aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonExteriorAptitude
-			+ (BrGlamorousWithExplicitDropdownAptitude new
-				withGainFocusOnShow;
+			+ ((BrGlamorousWithExplicitDropdownAptitude
 				handle: [ BrButton new
 					aptitude: BrGlamorousButtonWithIconAptitude
 						- BrGlamorousButtonWithLabelTooltipAptitude2
 						- BrGlamorousButtonExteriorAptitude;
 					icon: ([ (FontAwesomeIcons icon: #anglesUpDown) size: 16 @ 16 ] asStencil);
 					label: 'Theme';
-					yourself ];
-				content: [ CFThemeChooser new asElement ]);
+					yourself ]
+				content: [ CFThemeChooser new asElement ])
+				withGainFocusOnShow);
 		icon: ([ (FontAwesomeIcons icon: #anglesUpDown) size: 16 @ 16 ] asStencil);
 		label: 'Theme';
 		yourself.
