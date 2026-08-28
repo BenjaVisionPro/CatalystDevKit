@@ -14,35 +14,3 @@ BVCDevKitWorldElement >> defaultHomeElement [
 BVCDevKitWorldElement >> defaultHomeTabIcon [
 	^ BVCDevKitVectorIcons icon: #bvcServer size: 32 @ 32
 ]
-
-{ #category : #'toolbar actions' }
-BVCDevKitWorldElement >> gtWorldThemeActionFor: anAction [
-	<gtWorldAction>
-
-	^ anAction explicit
-		priority: 45;
-		stencil: [ self newThemeButton ]
-]
-
-{ #category : #'private - instance creation' }
-BVCDevKitWorldElement >> newThemeButton [
-	| aThemeDropdown |
-
-	aThemeDropdown := BrButton new
-		aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonExteriorAptitude
-			+ ((BrGlamorousWithExplicitDropdownAptitude
-				handle: [ BrButton new
-					aptitude: BrGlamorousButtonWithIconAptitude
-						- BrGlamorousButtonWithLabelTooltipAptitude2
-						- BrGlamorousButtonExteriorAptitude;
-					icon: ([ (FontAwesomeIcons icon: #anglesUpDown styleName: 'light') size: 16 @ 16 ] asStencil);
-					label: 'Theme';
-					yourself ]
-				content: [ CFThemeChooser new asElement ])
-				withGainFocusOnShow);
-		icon: ([ (FontAwesomeIcons icon: #anglesUpDown styleName: 'light') size: 16 @ 16 ] asStencil);
-		label: 'Theme';
-		yourself.
-
-	^ aThemeDropdown
-]
