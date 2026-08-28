@@ -35,12 +35,12 @@ BVCDevKitWorldElement >> newThemeButton [
 					aptitude: BrGlamorousButtonWithIconAptitude
 						- BrGlamorousButtonWithLabelTooltipAptitude2
 						- BrGlamorousButtonExteriorAptitude;
-					icon: ([ (FontAwesomeIcons icon: #anglesUpDown) size: 16 @ 16 ] asStencil);
+					icon: ([ (FontAwesomeIcons icon: #anglesUpDown styleName: 'light') size: 16 @ 16 ] asStencil);
 					label: 'Theme';
 					yourself ]
 				content: [ CFThemeChooser new asElement ])
 				withGainFocusOnShow);
-		icon: ([ (FontAwesomeIcons icon: #anglesUpDown) size: 16 @ 16 ] asStencil);
+		icon: ([ (FontAwesomeIcons icon: #anglesUpDown styleName: 'light') size: 16 @ 16 ] asStencil);
 		label: 'Theme';
 		yourself.
 
