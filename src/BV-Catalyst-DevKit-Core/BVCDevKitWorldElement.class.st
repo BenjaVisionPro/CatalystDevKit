@@ -20,7 +20,7 @@ BVCDevKitWorldElement >> gtFoundationThemeToggleActionFor: anAction [
 	<gtWorldAction>
 
 	^ anAction explicit
-		priority: 60;
+		priority: 1;
 		stencil: [ CFThemeToggleButton forElement: self ]
 ]
 
@@ -29,6 +29,6 @@ BVCDevKitWorldElement >> gtFoundationThemeChooserActionFor: anAction [
 	<gtWorldAction>
 
 	^ anAction explicit
-		priority: 61;
+		priority: 2;
 		stencil: [ CFThemeChooserButton forElement: self ]
 ]
