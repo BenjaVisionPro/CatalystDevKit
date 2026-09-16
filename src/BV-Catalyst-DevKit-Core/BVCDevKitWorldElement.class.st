@@ -68,9 +68,7 @@ BVCDevKitWorldElement >> newSpotterButton [
 { #category : #'private - instance creation' }
 BVCDevKitWorldElement >> newChatRegistryDropdown [
 	^ GtLWorldChatRegistryDropdown new
-		initializeForWorldElement: self;
-		icon: (FontAwesomeIcons icon: #messageBot);
-		yourself
+		initializeForWorldElement: self
 ]
 
 { #category : #'private - instance creation' }
