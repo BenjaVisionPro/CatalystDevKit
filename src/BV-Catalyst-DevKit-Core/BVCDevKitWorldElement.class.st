@@ -68,8 +68,15 @@ BVCDevKitWorldElement >> newSpotterButton [
 
 { #category : #'private - instance creation' }
 BVCDevKitWorldElement >> newChatRegistryDropdown [
-	^ GtLWorldChatRegistryDropdown new
-		initializeForWorldElement: self
+	| chatDropdown chatButton |
+
+	chatDropdown := GtLWorldChatRegistryDropdown new
+		initializeForWorldElement: self.
+	chatButton := (chatDropdown query // BrButton) result first.
+	chatButton icon: ((FontAwesomeIcons icon: #messageBot)
+		color: chatButton theme button defaultTextForeground).
+
+	^ chatDropdown
 ]
 
 { #category : #'private - instance creation' }
