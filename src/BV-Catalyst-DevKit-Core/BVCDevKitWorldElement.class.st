@@ -39,8 +39,8 @@ BVCDevKitWorldElement >> newSpotterButton [
 
 	spotterDropdown := GtSpotterDropdownButtonStencil new
 		id: GtWorldSpotterSearchElementId;
-		icon: ((FontAwesomeIcons icon: #magnifyingGlass)
-			color: self theme button defaultTextForeground);
+		icon: [ (FontAwesomeIcons icon: #magnifyingGlass)
+			color: self theme button defaultTextForeground ] asStencil;
 		tooltip: 'Search';
 		valuable: [ GtWorldSpotterSearchStart new
 			knowledgeBase: self knowledgeBase ];
