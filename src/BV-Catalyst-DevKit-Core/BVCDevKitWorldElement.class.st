@@ -39,7 +39,8 @@ BVCDevKitWorldElement >> newSpotterButton [
 
 	spotterDropdown := GtSpotterDropdownButtonStencil new
 		id: GtWorldSpotterSearchElementId;
-		icon: (FontAwesomeIcons icon: #magnifyingGlass);
+		icon: ((FontAwesomeIcons icon: #magnifyingGlass)
+			color: self theme button defaultTextForeground);
 		tooltip: 'Search';
 		valuable: [ GtWorldSpotterSearchStart new
 			knowledgeBase: self knowledgeBase ];
@@ -75,7 +76,9 @@ BVCDevKitWorldElement >> newChatRegistryDropdown [
 BVCDevKitWorldElement >> newSubSpaceButton [
 	| menuIcon newSubSpaceDropdown |
 
-	menuIcon := [ FontAwesomeIcons icon: #bars ].
+	menuIcon := [
+		(FontAwesomeIcons icon: #bars)
+			color: self theme button defaultTextForeground ].
 	newSubSpaceDropdown := BrButton new
 		id: GtWorldMenuElementId;
 		aptitude: BrGlamorousButtonWithIconAptitude - BrGlamorousButtonExteriorAptitude
