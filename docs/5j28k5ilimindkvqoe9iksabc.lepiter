@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.700601+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.700601+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9E4dh+QoTUS6OltKwVmMSA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Implement only the user-authorized change described by Barry's task. Inspect the source before changing it. Prefer a small correction to another abstraction. Apply the Catalyst naming standard to every changed class, method, variable and argument. Keep GT/Pharo integrations separate from GemStone-compatible runtime contracts."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.705725+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.705725+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "P52JVpaUSqitBnlyXR5u8A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Use the existing code-change tools for changes and existing example and SUnit tools for meaningful checks. Use evaluation only to inspect or exercise objects, not to compile code or delete files. Environment builds must go through BVC. Do not add scripts, dependencies or infrastructure without the user's agreement."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.747248+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T07:28:47.747248+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "AFk27Nd1SbyAUEtlws+5Vg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Keep the result reviewable: describe the changed behavior, affected classes and methods, actual check results, and any remaining limits. Do not claim a fresh BVC build or GemStone validation unless it happened. Do not delegate, deploy, send external messages or modify a production system. Changes to AI instructions require an explicit documentation task; editable pages are not a way to enlarge tool authority."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-17T07:27:44.809264+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-17T07:27:44.809264+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Catalyst System Maintainer"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "384f8325-cbbe-4e88-8e9a-4670a264665d"
+	}
+}

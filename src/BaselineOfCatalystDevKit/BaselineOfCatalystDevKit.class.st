@@ -32,13 +32,14 @@ BaselineOfCatalystDevKit >> baseline: spec [
 	^ spec
 ]
 
-{ #category : 'baseline' }
+{ #category : #baseline }
 BaselineOfCatalystDevKit >> coreBaselineOn: spec [
-	"I define the shared foundation packages."
-
+	"I define the shared foundation packages and their DevKit integration."
 	spec
 		package: 'BV-Catalyst-Core';
-		package: 'BV-Catalyst-DevKit-Core'
+		package: 'BV-Catalyst-DevKit-Core';
+		package: 'BV-Catalyst-Fairy-Core'
+			with: [ spec requires: #('BV-Catalyst-DevKit-Core') ]
 ]
 
 { #category : 'baseline' }
@@ -61,7 +62,7 @@ BaselineOfCatalystDevKit >> ecosystemBaselineOn: spec [
 			with: [ spec requires: #('BV-Catalyst-Ecosystem-Core') ]
 ]
 
-{ #category : 'baseline' }
+{ #category : #baseline }
 BaselineOfCatalystDevKit >> legacyBaselineOn: spec [
 	"I keep the existing packages unchanged until migration is complete."
 	spec
@@ -100,12 +101,6 @@ BaselineOfCatalystDevKit >> legacyBaselineOn: spec [
 
 		package: 'BV-Catalyst-Ecosystems-Sim-Operations-Core'
 			with: [ spec requires: #('BV-Catalyst-Ecosystems-Sim-Core') ];
-
-		package: 'BV-Catalyst-Fairy-Core'
-			with: [ spec requires: #('BV-Catalyst-Store-Core') ];
-
-		package: 'BV-Catalyst-Fairy-Events'
-			with: [ spec requires: #('BV-Catalyst-Fairy-Core') ];
 
 		package: 'BV-Catalyst-UE-Core';
 

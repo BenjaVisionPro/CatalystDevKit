@@ -35,6 +35,18 @@ That Game: Catalyst (TGC) is mentioned here as an exemplar of Catalyst ideals: a
 - Swift application templates through CatalystApp
 - Inspection, debugging, and development tooling through Pharo/GToolkit
 
+## Catalyst Chat: Barry, the Catalyst Fairy
+
+Select **Catalyst Chat** in GT's existing Chats popup, choose a connection and press **+**. Barry opens with the fairy artwork and discovers the running DevKit's image, platform, registered Catalyst source checkouts and knowledge base.
+
+Use **Instructions** in the chat header or the **Instruction pages** inspector view to open and edit the Catalyst Lepiter pages. The working rules and role instructions are captured afresh for each user message and child task. An instruction edit applies to subsequent work, without changing a child already running.
+
+Barry answers directly or starts a bounded **System Explorer** or **System Maintainer** task through the GT harness. Explorer has source and documentation search. Maintainer also has local code changes, examples, SUnit tests, object evaluation and Lepiter changes. Maintainer tasks require a user request for that change. Children start fresh with the parent's connection and model and have no delegation tool. Requested tools can narrow a role; unsupported models, history forks and invalid page references fail explicitly. Stop propagates to a child; timeout requests a stop and releases subscriptions.
+
+This integration is for the privileged local DevKit. Tool composition is not a sandbox. Production mutation, remote GemStone operations, durable task resume and autonomous background maintenance are outside this release. Runtime and domain packages have no dependency on these GT classes. The abandoned `BVCAI*` experiment and its events package have been removed.
+
+Run `BVCFairyExamples` through GT's existing example tools in the BVC-built DevKit. The examples include the actual popup selection and creation flow, instruction editing and navigation, role boundaries, result validation, cancellation and timeout. Build environments exclusively through BVC.
+
 ## Documentation
 
 Start with the DevKit documentation. The TGC documentation comes after it as a concrete example of what the platform is intended to support.
