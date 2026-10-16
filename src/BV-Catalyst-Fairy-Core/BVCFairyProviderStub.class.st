@@ -41,5 +41,5 @@ BVCFairyProviderStub >> sendMessage: aMessage [
 	self chat addAssistantMessage: (BVCFairyResponseStub new
 		responseModels: (Dictionary new at: 'Markdown' put: (GtLMarkdown content: 'Task complete.'); yourself)).
 	self privateExecutionState: GtLProviderState idle.
-	self chat announcer announce: GtLlmThreadRunIsDoneAnnouncement new
+	self chat announcer announce: GtLThreadRunIsDoneAnnouncement new
 ]
