@@ -224,7 +224,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "For ordinary delegation, omit toolNames so the role supplies its tools. If narrowing is needed, supply a nonempty subset of the available role tools; an empty list is rejected. A failed child returns its actual error and agentExecutionId, and the result's Agent chat view retains the child for inspection. Report the error and reference the child instead of describing every failure as a missing response."
+				"string" : "For ordinary delegation, omit toolNames or supply an empty list so the role supplies its tools. If narrowing is needed, supply a nonempty subset of the available role tools. A failed child returns its actual error and agentExecutionId, and the result's Agent chat view retains the child for inspection. Report the error and reference the child instead of describing every failure as a missing response."
 			}
 		]
 	},

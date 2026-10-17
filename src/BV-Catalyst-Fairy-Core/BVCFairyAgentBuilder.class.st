@@ -40,11 +40,9 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 	(modelName notNil and: [ modelName notEmpty ]) ifTrue: [
 		((aParent provider respondsTo: #modelName) and: [ aParent provider modelName = modelName ])
 			ifFalse: [ ^ anErrorBlock value: (GtLProblemDomainObject new description: 'Catalyst agents use the parent connection and model.') ] ].
-	self request toolNames ifNotNil: [ :names |
-		names ifEmpty: [ ^ anErrorBlock value: (GtLProblemDomainObject new description: 'toolNames must not be empty. Omit it to use the role tools, or supply a nonempty subset.') ].
-		names do: [ :name |
-			(self roleTools anySatisfy: [ :tool | tool name = name ]) ifFalse: [
-				^ anErrorBlock value: (GtLProblemDomainObject new description: 'Tool is outside the Catalyst role: ', name) ] ] ].
+	(self request toolNames ifNil: [ #() ]) do: [ :name |
+		(self roleTools anySatisfy: [ :tool | tool name = name ]) ifFalse: [
+			^ anErrorBlock value: (GtLProblemDomainObject new description: 'Tool is outside the Catalyst role: ', name) ] ].
 	(self request instructionPageReferences ifNil: [ #() ]) do: [ :reference |
 		(self locatePageForReference: reference) ifNil: [
 			^ anErrorBlock value: (GtLProblemDomainObject new description: 'Instruction page or database not found.') ] ].
@@ -58,8 +56,8 @@ BVCFairyAgentBuilder >> createAgentForParent: aParent [
 	| child tools |
 	child := self createNewStandaloneChatFrom: aParent.
 	tools := self roleTools.
-	self request toolNames ifNotNil: [ :names |
-		tools := GtLTools withAll: (tools select: [ :tool | names includes: tool name ]) ].
+	(self request toolNames ifNil: [ #() ]) ifNotEmpty: [ :toolNames |
+		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
 	child tools: tools.
 	aParent devKitContext configureChat: child forRole: self request agentName.
 	(self request instructionPageReferences ifNil: [ #() ]) do: [ :reference |

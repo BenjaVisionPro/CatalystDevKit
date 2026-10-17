@@ -301,17 +301,28 @@ BVCFairyExamples >> instructionsButtonOpensPage [
 ]
 
 { #category : #examples }
-BVCFairyExamples >> emptyToolsAreRejected [
+BVCFairyExamples >> emptyToolsUseRoleDefaults [
 	<gtExample>
-	| parent call result |
-	parent := self parentChat.
-	call := GtLFunctionToolCall new name: 'startAgent';
-		rawArguments: '{"startAgentRequest":{"agentName":"System Explorer","prompt":"Inspect source.","taskDescription":"Inspect source","toolNames":[]}}'.
-	result := BVCFairyAgentTool new performToolCall: call
-		inContext: (GtLToolExecutionContext new currentChat: parent; objectStorage: parent objectStorage).
-	self assert: (result model isKindOf: GtLProblemDomainObject).
-	self assert: (result model description includesSubstring: 'must not be empty').
-	self assert: parent objectStorage objectCount equals: 0.
+	| parent call result child defaultChild |
+	#('System Explorer' 'System Maintainer') do: [ :role |
+		parent := self parentChat.
+		call := GtLFunctionToolCall new name: 'startAgent';
+			rawArguments: (STONJSON toString: { 'startAgentRequest' -> {
+				'agentName' -> role.
+				'prompt' -> 'Inspect source.'.
+				'taskDescription' -> 'Inspect source'.
+				'toolNames' -> #() } asDictionary } asDictionary).
+		result := BVCFairyAgentTool new performToolCall: call
+			inContext: (GtLToolExecutionContext new currentChat: parent; objectStorage: parent objectStorage).
+		self assert: (result model isKindOf: GtLAgentExecutionResult).
+		self assert: result model content content equals: 'Task complete.'.
+		child := result model agentExecution agent.
+		defaultChild := (BVCFairyAgentBuilder forAgentCreationRequest:
+			(self explorerRequest agentName: role)) createAgentForParent: parent.
+		self assert: (child tools items collect: #name) asSet
+			equals: (defaultChild tools items collect: #name) asSet.
+		self assert: child tools items notEmpty.
+		self assert: (child tools items noneSatisfy: [ :tool | tool isKindOf: GtLToolForStartAgent ]) ].
 	^ result
 ]
 
