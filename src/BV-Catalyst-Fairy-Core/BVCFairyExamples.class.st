@@ -400,10 +400,9 @@ BVCFairyExamples >> documentToolsAreReadOnly [
 { #category : #examples }
 BVCFairyExamples >> runtimeDocumentDirectory [
 	<gtExample>
-	| root call result |
-	root := (IceRepository registry detect: [ :repository | repository name = 'CatalystRuntime' ]) repositoryDirectory.
+	| call result |
 	call := GtLFunctionToolCall new name: 'getDirectoryContents';
-		rawArguments: (STONJSON toString: { 'directoryPath' -> (root / 'runtime') fullName } asDictionary).
+		rawArguments: (STONJSON toString: { 'directoryPath' -> 'CatalystRuntime/runtime' } asDictionary).
 	result := BVCFairyDirectoryContentsTool new performToolCall: call.
 	self assert: result model class equals: GtLDirectoryContents.
 	self assert: (result model files anySatisfy: [ :file | file pathString endsWith: 'GT-Release-Implementation-Plan-2026-10-16.md' ]).
@@ -414,9 +413,8 @@ BVCFairyExamples >> runtimeDocumentDirectory [
 { #category : #examples }
 BVCFairyExamples >> readRuntimeReleasePlan [
 	<gtExample>
-	| root path call result contents |
-	root := (IceRepository registry detect: [ :repository | repository name = 'CatalystRuntime' ]) repositoryDirectory.
-	path := (root / 'runtime' / 'GT-Release-Implementation-Plan-2026-10-16.md') fullName.
+	| path call result contents |
+	path := 'CatalystRuntime/runtime/GT-Release-Implementation-Plan-2026-10-16.md'.
 	call := GtLFunctionToolCall new name: 'getFilesContents';
 		rawArguments: (STONJSON toString: { 'filePaths' -> { { 'pathString' -> path } asDictionary } } asDictionary).
 	result := BVCFairyFileContentsTool new performToolCall: call.
@@ -477,8 +475,8 @@ BVCFairyExamples >> symbolicLinksAreOutsideDocumentScope [
 BVCFairyExamples >> mixedDocumentRequestIsRejected [
 	<gtExample>
 	| allowed forbidden call result |
-	allowed := (BVCDevKit iceRepository repositoryDirectory / 'README.md') fullName.
-	forbidden := (BVCDevKit iceRepository repositoryDirectory / '.git' / 'config') fullName.
+	allowed := 'CatalystDevKit/README.md'.
+	forbidden := 'CatalystDevKit/.git/config'.
 	call := GtLFunctionToolCall new name: 'getFilesContents';
 		rawArguments: (STONJSON toString: { 'filePaths' -> {
 			{ 'pathString' -> allowed } asDictionary.
@@ -503,6 +501,8 @@ BVCFairyExamples >> directoryOutsideScopeIsRejected [
 BVCFairyExamples >> documentationContentsOnHomePage [
 	<gtExample>
 	| logicalDatabase databases |
+	self assert: BVCHomeMultiCardGetStartedSection package name equals: 'BV-Catalyst-DevKit-Core'.
+	self assert: (BVCHomeMultiCardGetStartedSection >> #catalystRuntimesCard) package name equals: 'BV-Catalyst-DevKit-Core'.
 	logicalDatabase := LeDatabasesRegistry defaultLogicalDatabase.
 	databases := #('731asfxqhyhdr96k6wo9yxnzv' '760mc3rkot5pkhueq2jxjz5gt')
 		collect: [ :databaseId |
@@ -553,4 +553,36 @@ BVCFairyExamples >> delegatedRequestTools [
 		self assert: parent provider compactionStrategy provider == parent provider.
 		child ].
 	^ children
+]
+
+{ #category : #examples }
+BVCFairyExamples >> documentReferencesUseProjectNames [
+	<gtExample>
+	| context directory file reference call result instructions |
+	context := BVCDevKitContext new.
+	instructions := context instructionString.
+	self assert: (instructions includesSubstring: Smalltalk imageDirectory fullName) not.
+	context repositories do: [ :repository |
+		self assert: (instructions includesSubstring: repository repositoryDirectory fullName) not ].
+	reference := context documentReferenceFor: 'CatalystDevKit/README.md'.
+	self assert: reference notNil.
+	self assert: (context documentPathFor: reference) equals: 'CatalystDevKit/README.md'.
+	self assert: (context documentReferenceFor: reference fullName) isNil.
+	self assert: (context documentReferenceFor: 'CatalystDevKit/../CatalystRuntime/README.md') isNil.
+	self assert: (context documentReferenceFor: 'UnknownProject/README.md') isNil.
+	directory := BVCFairyDirectoryContentsTool new directoryContentsFor: 'CatalystRuntime/runtime'.
+	self assert: directory class equals: GtLDirectoryContents.
+	self assert: directory directoryPath equals: 'CatalystRuntime/runtime'.
+	directory files, directory directories do: [ :entry |
+		self assert: (entry pathString beginsWith: 'CatalystRuntime/').
+		self assert: entry pathString asFileReference isAbsolute not ].
+	file := BVCFairyFileContentsTool new fileContentsFromPathString:
+		(GtLFilePathReference new pathString: 'CatalystRuntime/README.md').
+	self assert: file class equals: GtLFileContentsDomainObject.
+	self assert: file path equals: 'CatalystRuntime/README.md'.
+	call := GtLFunctionToolCall new name: 'getDirectoryContents';
+		rawArguments: (STONJSON toString: { 'directoryPath' -> reference parent fullName } asDictionary).
+	result := BVCFairyDirectoryContentsTool new performToolCall: call.
+	self assert: (result model isKindOf: GtLProblemDomainObject).
+	^ context
 ]

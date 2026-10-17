@@ -7,7 +7,7 @@ Class {
 
 { #category : #accessing }
 BVCFairyFileContentsTool >> description [
-	^ 'Read Markdown documents (.md or .markdown), up to 256 KiB each, under registered Catalyst repository paths in Current DevKit context. Read-only. Hidden paths and symbolic links are excluded. Supply filePaths as an array of objects with an absolute pathString. The whole request is rejected if any path is outside scope. Contents use the standard GT base64 format.'
+	^ 'Read Markdown documents in registered DevKit projects. Supply filePaths with project-relative pathString values, for example CatalystRuntime/runtime/Runtime-Ownership-and-Vocabulary.md. Host filesystem paths are not accepted or returned. Read-only; visible Markdown documents up to 256 KiB only, with no symlinks. A denied reference rejects the whole request. Contents use standard GT base64 encoding.'
 ]
 
 { #category : #private }
@@ -16,17 +16,22 @@ BVCFairyFileContentsTool >> privatePerformToolCall: aToolCall inContext: anExecu
 	context := BVCDevKitContext new.
 	paths := aToolCall arguments at: 'filePaths'.
 	paths do: [ :path |
-		(context allowsDocumentFile: path pathString asFileReference) ifFalse: [
-			^ GtLProblemDomainObject new description: 'Only visible Markdown documents up to 256 KiB in registered Catalyst repositories can be read. Symbolic links are excluded.' ] ].
+		| reference |
+		reference := context documentReferenceFor: path pathString.
+		(reference isNil or: [ (context allowsDocumentFile: reference) not ]) ifTrue: [
+			^ GtLProblemDomainObject new description: 'Only visible Markdown document references in registered DevKit projects can be read. Host paths, hidden paths and symlinks are excluded.' ] ].
 	^ super privatePerformToolCall: aToolCall inContext: anExecutionContext
 ]
 
 { #category : #private }
 BVCFairyFileContentsTool >> fileContentsFromPathString: aPathReference [
-	| reference |
-	reference := aPathReference pathString asFileReference.
-	(BVCDevKitContext new allowsDocumentFile: reference) ifFalse: [
-		^ GtLProblemDomainObject new description: 'File is outside the Catalyst document scope or exceeds 256 KiB.' ].
-	^ super fileContentsFromPathString: (GtLFilePathReference new
-		pathString: reference canonicalize fullName)
+	| context reference contents |
+	context := BVCDevKitContext new.
+	reference := context documentReferenceFor: aPathReference pathString.
+	(reference isNil or: [ (context allowsDocumentFile: reference) not ]) ifTrue: [
+		^ GtLProblemDomainObject new description: 'File is outside the DevKit document scope or exceeds 256 KiB.' ].
+	contents := super fileContentsFromPathString: (GtLFilePathReference new pathString: reference canonicalize fullName).
+	(contents isKindOf: GtLFileContentsDomainObject) ifTrue: [
+		contents path: aPathReference pathString ].
+	^ contents
 ]

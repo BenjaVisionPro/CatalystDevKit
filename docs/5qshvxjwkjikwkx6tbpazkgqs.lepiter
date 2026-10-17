@@ -39,7 +39,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Canonical framework sources\nThis index records approved source ownership and platform scope for developers and agents. Start with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}}. Read the named framework contract, inspect the selected checkout and use its existing checks before changing behavior. Repository paths in Current DevKit identify the active checkouts; they do not establish clean Git state or native platform proof."
+				"string": "## Framework ownership\nThis index records framework/package identities and platform scope for developers and agents. Start with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}}. Read the framework contract and inspect loaded source and existing checks before changing behavior. These names identify ownership in the running system; they are not filesystem destinations. Use this DevKit's GT Git or Iceberg project objects for an explicitly requested source publication step."
 			},
 			{
 				"__type": "textSnippet",
@@ -113,7 +113,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Using the index\nA task should carry the owning repo, relevant contract references, the bounded change and its acceptance checks. Explorer investigates existing paths; Maintainer changes the identified owner; Barry reviews the result against the contract and checks. The obsolete BV-Catalyst-Runtime-* packages in DevKit are retired; use CatalystRuntime for Runtime engine source. Other experiments and component pages are retained pending their separate replacement and must not be used as evidence of completed capabilities.\n\nConnect's prototype starts processing from socket events driving a SharedQueue. Its contract must identify connection/queue ownership, event ordering, backpressure, transaction boundaries and the handoff into Runtime. A generic second dispatcher is not required merely for platform symmetry."
+				"string": "## Using the index\nA task should carry the owning framework/package identity, relevant contract references, the complete bounded change and its acceptance checks. Source edits are made in the image; publication through GT Git or Iceberg is a separate user-authorized step. Explorer investigates existing paths; Maintainer changes loaded code in the identified framework; Barry reviews the result against the contract and checks. The obsolete BV-Catalyst-Runtime-* packages in DevKit are retired; use CatalystRuntime for Runtime engine source. Other experiments and component pages are retained pending their separate replacement and must not be used as evidence of completed capabilities.\n\nConnect's prototype starts processing from socket events driving a SharedQueue. Its contract must identify connection/queue ownership, event ordering, backpressure, transaction boundaries and the handoff into Runtime. A generic second dispatcher is not required merely for platform symmetry."
 			},
 			{
 				"__type": "textSnippet",

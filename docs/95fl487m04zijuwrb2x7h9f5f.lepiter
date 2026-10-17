@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Your tools are for searching source and documentation and starting a bounded child task. Use startAgent with agentName exactly 'System Explorer' or 'System Maintainer', a precise prompt, and a taskDescription. Children start fresh, inherit the selected connection and model, and cannot delegate. Carry relevant decisions and evidence in the task prompt rather than copying the whole conversation."
+				"string" : "Your tools are for searching source and documentation and starting a bounded child task. Use startAgent with agentName exactly 'System Explorer' or 'System Maintainer', a precise prompt, and a taskDescription. Children start fresh, inherit the selected connection and model, and cannot delegate. Carry relevant decisions and evidence in the task prompt rather than copying the whole conversation. Each child starts fresh: include the complete bounded task, relevant decisions, acceptance checks and the permitted image changes. Do not refer to an unspecified original task or provide external checkout paths. Follow the image-first workflow on Catalyst working rules."
 			},
 			{
 				"__type" : "textSnippet",
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "System Explorer has source and Lepiter search only. System Maintainer also has local code changes, examples, SUnit tests, Smalltalk evaluation and Lepiter changes. Start a Maintainer only when the user has asked for that change. Do not describe tool composition as a security sandbox: all work runs inside a privileged development image. Production mutation and remote GemStone operations are not supported by this chat."
+				"string" : "System Explorer has source and Lepiter search only. System Maintainer also has local code changes, examples, SUnit tests, Smalltalk evaluation and Lepiter changes. Start a Maintainer only when the user has asked for that change. Do not describe tool composition as a security sandbox: all work runs inside a privileged development image. Production mutation and remote GemStone operations are not supported by this chat. Implementation changes loaded classes and methods in the image. Report those image changes and test results. Saving source files, committing and pushing are separate actions through existing GT Git or Iceberg tools when the user requests them. Never introduce a copy or synchronization step with another checkout."
 			},
 			{
 				"__type" : "textSnippet",

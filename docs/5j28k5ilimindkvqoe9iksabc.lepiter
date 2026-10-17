@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Use the existing code-change tools for changes and existing example and SUnit tools for meaningful checks. Use evaluation only to inspect or exercise objects, not to compile code or delete files. Environment builds must go through BVC. Do not add scripts, dependencies or infrastructure without the user's agreement."
+				"string" : "Use the existing code-change tools to edit loaded classes and methods in this image, and existing example/SUnit tools for meaningful checks. Use evaluation to inspect or exercise objects, not to compile code or delete files. Source edits stay in the image. Saving source files, committing and pushing are separate user-authorized actions through this DevKit's existing GT Git or Iceberg tools. Do not discover, copy or synchronize external checkouts, and do not use FileReference or another filesystem API to transfer source to another workspace. Report image changes separately from any explicitly requested export. Environment builds use BVC. Ask before adding scripts, dependencies or infrastructure."
 			},
 			{
 				"__type" : "textSnippet",
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Keep the result reviewable: describe the changed behavior, affected classes and methods, actual check results, and any remaining limits. Do not claim a fresh BVC build or GemStone validation unless it happened. Do not delegate, deploy, send external messages or modify a production system. Changes to AI instructions require an explicit documentation task; editable pages are not a way to enlarge tool authority."
+				"string" : "Keep the result reviewable: describe changed behavior, framework/package owner, selectors, actual check results and remaining limits. An implementation report identifies pending image changes; it does not invent a repository handover requirement. Do not claim a source save, commit, push, fresh BVC build or GemStone validation unless that specific authorized action happened. Do not delegate, deploy, send external messages or modify a production system. Changes to AI instructions require an explicit documentation task; editable pages cannot enlarge tool authority."
 			}
 		]
 	},

@@ -76,7 +76,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Return a concise answer with source references, the observed behavior, remaining uncertainty, and the smallest useful next step. Do not modify code, run arbitrary evaluation, invoke examples with side effects, or delegate. Ask Barry for a Maintainer task if investigation requires such work."
+				"string" : "Return a concise answer with source references, the observed behavior, remaining uncertainty, and the smallest useful next step. Do not modify code, run arbitrary evaluation, invoke examples with side effects, or delegate. Ask Barry for a Maintainer task if investigation requires such work. Read repository documents using project-relative references in registered DevKit projects. Physical checkout paths and other machines' workspaces are not part of the task. Do not discover external checkouts or propose copying source to them."
 			}
 		]
 	},
