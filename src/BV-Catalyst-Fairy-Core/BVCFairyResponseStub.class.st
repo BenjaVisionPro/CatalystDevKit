@@ -1,24 +1,27 @@
-"A final response for local Catalyst Fairy harness examples."
+"
+A final response for local Catalyst Fairy harness examples.
+"
 Class {
-	#name : #BVCFairyResponseStub,
-	#superclass : #GtLChatMessage,
+	#name : 'BVCFairyResponseStub',
+	#superclass : 'GtLChatMessage',
 	#instVars : [
 		'responseModels'
 	],
-	#category : #'BV-Catalyst-Fairy-Core'
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyResponseStub >> responseModels [
 	^ responseModels
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyResponseStub >> responseModels: aDictionary [
 	responseModels := aDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyResponseStub >> role [
 	^ 'assistant'
 ]

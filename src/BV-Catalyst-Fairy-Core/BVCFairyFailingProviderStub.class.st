@@ -1,11 +1,14 @@
-"An example provider that fails synchronously to verify delegation diagnostics and cleanup."
+"
+An example provider that fails synchronously to verify delegation diagnostics and cleanup.
+"
 Class {
-	#name : #BVCFairyFailingProviderStub,
-	#superclass : #BVCFairyProviderStub,
-	#category : #'BV-Catalyst-Fairy-Core'
+	#name : 'BVCFairyFailingProviderStub',
+	#superclass : 'BVCFairyProviderStub',
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #execution }
+{ #category : 'execution' }
 BVCFairyFailingProviderStub >> sendMessage: aMessage [
 	self error: 'Expected child provider failure'
 ]

@@ -1,16 +1,19 @@
-"GT directory listing restricted to visible Catalyst documentation."
+"
+GT directory listing restricted to visible Catalyst documentation.
+"
 Class {
-	#name : #BVCFairyDirectoryContentsTool,
-	#superclass : #GtLMagritteToolForDirectoryContents,
-	#category : #'BV-Catalyst-Fairy-Core'
+	#name : 'BVCFairyDirectoryContentsTool',
+	#superclass : 'GtLMagritteToolForDirectoryContents',
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyDirectoryContentsTool >> description [
 	^ 'List visible directories and Markdown documents in registered DevKit projects. Supply directoryPath as a project-relative reference, for example CatalystRuntime/runtime or CatalystDevKit. Host filesystem paths are not accepted or returned. Read-only; hidden paths, symlinks and documents over 256 KiB are excluded. Read returned file references with getFilesContents.'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BVCFairyDirectoryContentsTool >> directoryContentsFor: aProjectPath [
 	| context reference contents |
 	context := BVCDevKitContext new.
@@ -27,7 +30,7 @@ BVCFairyDirectoryContentsTool >> directoryContentsFor: aProjectPath [
 	^ contents
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 BVCFairyDirectoryContentsTool >> privatePerformToolCall: aToolCall inContext: anExecutionContext [
 	^ self directoryContentsFor: (aToolCall arguments
 		at: 'directoryPath'

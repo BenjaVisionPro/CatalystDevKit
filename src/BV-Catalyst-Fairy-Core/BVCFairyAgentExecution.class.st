@@ -1,66 +1,24 @@
-"Links child cancellation and cleanup to its parent and rejects incomplete results."
+"
+Links child cancellation and cleanup to its parent and rejects incomplete results.
+"
 Class {
-	#name : #BVCFairyAgentExecution,
-	#superclass : #GtLAgentExecution,
+	#name : 'BVCFairyAgentExecution',
+	#superclass : 'GtLAgentExecution',
 	#instVars : [
 		'wasCancelled'
 	],
-	#category : #'BV-Catalyst-Fairy-Core'
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #initialization }
-BVCFairyAgentExecution >> initialize [
-	super initialize.
-	wasCancelled := false
-]
-
-{ #category : #execution }
-BVCFairyAgentExecution >> registerTerminationSignal [
-	super registerTerminationSignal.
-	self parentAgent announcer
-		when: GtLChatExecutionStateChanged
-		send: #onParentExecutionStateChanged:
-		to: self.
-	self parentAgent state = GtLProviderState stopping ifTrue: [ self cancel ]
-]
-
-{ #category : #execution }
-BVCFairyAgentExecution >> onParentExecutionStateChanged: anAnnouncement [
-	anAnnouncement state = GtLProviderState stopping ifTrue: [ self cancel ]
-]
-
-{ #category : #execution }
+{ #category : 'execution' }
 BVCFairyAgentExecution >> cancel [
 	wasCancelled := true.
 	self agent stopOngoingExecution.
 	terminationSemaphore signal
 ]
 
-{ #category : #execution }
-BVCFairyAgentExecution >> unsubscribe [
-	self agent announcer unsubscribe: terminationSemaphore.
-	self parentAgent announcer unsubscribe: self
-]
-
-{ #category : #execution }
-BVCFairyAgentExecution >> waitUntilCompletionOrTimeout [
-	^ self waitUntilCompletionOrTimeoutAfter: 1200
-]
-
-{ #category : #execution }
-BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
-	| timedOut |
-	[ timedOut := terminationSemaphore waitTimeoutSeconds: seconds ]
-		ensure: [ self unsubscribe ].
-	wasCancelled ifTrue: [
-		^ self problem: 'The Catalyst agent was cancelled.' ].
-	timedOut ifTrue: [
-		self agent stopOngoingExecution.
-		^ self problem: 'The Catalyst agent timed out; stop was requested.' ].
-	^ nil
-]
-
-{ #category : #execution }
+{ #category : 'execution' }
 BVCFairyAgentExecution >> createAgentResponse [
 	| message content |
 	message := self responseMessage.
@@ -80,12 +38,23 @@ BVCFairyAgentExecution >> createAgentResponse [
 		yourself
 ]
 
-{ #category : #testing }
+{ #category : 'initialization' }
+BVCFairyAgentExecution >> initialize [
+	super initialize.
+	wasCancelled := false
+]
+
+{ #category : 'testing' }
 BVCFairyAgentExecution >> isCancelled [
 	^ wasCancelled
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
+BVCFairyAgentExecution >> onParentExecutionStateChanged: anAnnouncement [
+	anAnnouncement state = GtLProviderState stopping ifTrue: [ self cancel ]
+]
+
+{ #category : 'execution' }
 BVCFairyAgentExecution >> problem: aDescription [
 	^ BVCFairyAgentProblem new
 		description: aDescription;
@@ -93,7 +62,41 @@ BVCFairyAgentExecution >> problem: aDescription [
 		yourself
 ]
 
-{ #category : #execution }
+{ #category : 'execution' }
+BVCFairyAgentExecution >> registerTerminationSignal [
+	super registerTerminationSignal.
+	self parentAgent announcer
+		when: GtLChatExecutionStateChanged
+		send: #onParentExecutionStateChanged:
+		to: self.
+	self parentAgent state = GtLProviderState stopping ifTrue: [ self cancel ]
+]
+
+{ #category : 'execution' }
 BVCFairyAgentExecution >> signalCompletion [
 	terminationSemaphore signal
+]
+
+{ #category : 'execution' }
+BVCFairyAgentExecution >> unsubscribe [
+	self agent announcer unsubscribe: terminationSemaphore.
+	self parentAgent announcer unsubscribe: self
+]
+
+{ #category : 'execution' }
+BVCFairyAgentExecution >> waitUntilCompletionOrTimeout [
+	^ self waitUntilCompletionOrTimeoutAfter: 1200
+]
+
+{ #category : 'execution' }
+BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
+	| timedOut |
+	[ timedOut := terminationSemaphore waitTimeoutSeconds: seconds ]
+		ensure: [ self unsubscribe ].
+	wasCancelled ifTrue: [
+		^ self problem: 'The Catalyst agent was cancelled.' ].
+	timedOut ifTrue: [
+		self agent stopOngoingExecution.
+		^ self problem: 'The Catalyst agent timed out; stop was requested.' ].
+	^ nil
 ]

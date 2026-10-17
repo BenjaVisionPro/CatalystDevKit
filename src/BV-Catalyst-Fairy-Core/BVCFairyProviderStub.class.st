@@ -1,40 +1,38 @@
-"A local provider for Catalyst Fairy examples. Makes no network calls."
+"
+A local provider for Catalyst Fairy examples. Makes no network calls.
+"
 Class {
-	#name : #BVCFairyProviderStub,
-	#superclass : #GtLProvider,
+	#name : 'BVCFairyProviderStub',
+	#superclass : 'GtLProvider',
 	#instVars : [
 		'shouldComplete'
 	],
-	#category : #'BV-Catalyst-Fairy-Core'
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #initialization }
+{ #category : 'creation' }
+BVCFairyProviderStub class >> withDefaultSetup [
+	^ self new
+]
+
+{ #category : 'accessing' }
+BVCFairyProviderStub >> defaultUserMessageClass [
+	^ GtLOpenAIUserMessage
+]
+
+{ #category : 'initialization' }
 BVCFairyProviderStub >> initialize [
 	super initialize.
 	shouldComplete := true
 ]
 
-{ #category : #creation }
-BVCFairyProviderStub class >> withDefaultSetup [
-	^ self new
-]
-
-{ #category : #accessing }
-BVCFairyProviderStub >> defaultUserMessageClass [
-	^ GtLOpenAIUserMessage
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyProviderStub >> modelName [
 	^ 'Local example'
 ]
 
-{ #category : #accessing }
-BVCFairyProviderStub >> shouldComplete: aBoolean [
-	shouldComplete := aBoolean
-]
-
-{ #category : #execution }
+{ #category : 'execution' }
 BVCFairyProviderStub >> sendMessage: aMessage [
 	self privateExecutionState: GtLProviderState running.
 	shouldComplete ifFalse: [ ^ self ].
@@ -42,4 +40,9 @@ BVCFairyProviderStub >> sendMessage: aMessage [
 		responseModels: (Dictionary new at: 'Markdown' put: (GtLMarkdown content: 'Task complete.'); yourself)).
 	self privateExecutionState: GtLProviderState idle.
 	self chat announcer announce: GtLThreadRunIsDoneAnnouncement new
+]
+
+{ #category : 'accessing' }
+BVCFairyProviderStub >> shouldComplete: aBoolean [
+	shouldComplete := aBoolean
 ]

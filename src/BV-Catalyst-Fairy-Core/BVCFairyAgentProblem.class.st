@@ -1,29 +1,32 @@
-"A delegation failure with the original diagnostic and the child execution available for inspection."
+"
+A delegation failure with the original diagnostic and the child execution available for inspection.
+"
 Class {
-	#name : #BVCFairyAgentProblem,
-	#superclass : #GtLProblemDomainObject,
+	#name : 'BVCFairyAgentProblem',
+	#superclass : 'GtLProblemDomainObject',
 	#instVars : [
 		'agentExecution'
 	],
-	#category : #'BV-Catalyst-Fairy-Core'
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyAgentProblem >> agentExecution [
 	^ agentExecution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyAgentProblem >> agentExecution: anExecution [
 	agentExecution := anExecution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyAgentProblem >> agentExecutionId [
 	^ agentExecution ifNotNil: #executionId
 ]
 
-{ #category : #magritte }
+{ #category : 'magritte' }
 BVCFairyAgentProblem >> agentExecutionIdDescription [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -32,7 +35,7 @@ BVCFairyAgentProblem >> agentExecutionIdDescription [
 		beOptional
 ]
 
-{ #category : #views }
+{ #category : 'views' }
 BVCFairyAgentProblem >> gtAgentExecutionFor: aView [
 	<gtView>
 	<gtLlmView>

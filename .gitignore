@@ -36,3 +36,4 @@ github-*.zip
 # BenjaVision Catalyst
 IDE
 *.zip
+/docs/*.bak

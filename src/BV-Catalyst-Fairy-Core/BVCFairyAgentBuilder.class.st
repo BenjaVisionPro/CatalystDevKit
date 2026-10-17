@@ -1,17 +1,37 @@
-"Adapts the GT harness to two bounded Catalyst roles. Rejects unsupported options rather than silently ignoring them."
+"
+Adapts the GT harness to two bounded Catalyst roles. Rejects unsupported options rather than silently ignoring them.
+"
 Class {
-	#name : #BVCFairyAgentBuilder,
-	#superclass : #GtLAgentExecutionBuilder,
-	#category : #'BV-Catalyst-Fairy-Core'
+	#name : 'BVCFairyAgentBuilder',
+	#superclass : 'GtLAgentExecutionBuilder',
+	#category : 'BV-Catalyst-Fairy-Core',
+	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'running' }
+BVCFairyAgentBuilder >> createAgentForParent: aParent [
+	| child tools |
+	child := self createNewStandaloneChatFrom: aParent.
+	(child provider isKindOf: GtLModelProvider) ifTrue: [
+		child provider model copy provider: child provider.
+		child provider compactionStrategy: child provider compactionStrategy copy ].
+	tools := self roleTools.
+	(self request toolNames ifNil: [ #() ]) ifNotEmpty: [ :toolNames |
+		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
+	child tools: tools.
+	aParent devKitContext configureChat: child forRole: self request agentName.
+	(self request instructionPageReferences ifNil: [ #() ]) do: [ :reference |
+		child pageObjectExplanation: (self locatePageForReference: reference) ].
+	^ child
+]
+
+{ #category : 'accessing' }
 BVCFairyAgentBuilder >> request [
 	"Keep the upstream legacy spelling out of the Catalyst API."
 	^ super agentCreationReauest
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BVCFairyAgentBuilder >> roleTools [
 	| tools |
 	tools := BVCDevKitContext readOnlyTools.
@@ -24,7 +44,30 @@ BVCFairyAgentBuilder >> roleTools [
 	^ tools
 ]
 
-{ #category : #validation }
+{ #category : 'running' }
+BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
+	| child execution |
+	self validateForParent: aParent ifErrorDo: [ :problem | self error: problem description ].
+	child := self createAgentForParent: aParent.
+	execution := BVCFairyAgentExecution new
+		agent: child;
+		parentAgent: aParent;
+		initialRequest: self request;
+		yourself.
+	aContext objectStorage ifNotNil: [ :storage |
+		execution executionId: (storage addNewObject: execution) ].
+	execution registerTerminationSignal.
+	[ execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
+	  aParent state = GtLProviderState stopping ifTrue: [ execution cancel ] ]
+		on: Error do: [ :error |
+			child stopOngoingExecution.
+			child ensureReplyMessage.
+			child addErrorMessage: (GtLErrorMessage freeze: error).
+			execution signalCompletion ].
+	^ execution
+]
+
+{ #category : 'validation' }
 BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 	| modelName |
 	#(agentName prompt taskDescription) do: [ :selector |
@@ -49,44 +92,4 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 	aParent state = GtLProviderState stopping ifTrue: [
 		^ anErrorBlock value: (GtLProblemDomainObject new description: 'The parent chat is stopping.') ].
 	^ nil
-]
-
-{ #category : #running }
-BVCFairyAgentBuilder >> createAgentForParent: aParent [
-	| child tools |
-	child := self createNewStandaloneChatFrom: aParent.
-	(child provider isKindOf: GtLModelProvider) ifTrue: [
-		child provider model copy provider: child provider.
-		child provider compactionStrategy: child provider compactionStrategy copy ].
-	tools := self roleTools.
-	(self request toolNames ifNil: [ #() ]) ifNotEmpty: [ :toolNames |
-		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
-	child tools: tools.
-	aParent devKitContext configureChat: child forRole: self request agentName.
-	(self request instructionPageReferences ifNil: [ #() ]) do: [ :reference |
-		child pageObjectExplanation: (self locatePageForReference: reference) ].
-	^ child
-]
-
-{ #category : #running }
-BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
-	| child execution |
-	self validateForParent: aParent ifErrorDo: [ :problem | self error: problem description ].
-	child := self createAgentForParent: aParent.
-	execution := BVCFairyAgentExecution new
-		agent: child;
-		parentAgent: aParent;
-		initialRequest: self request;
-		yourself.
-	aContext objectStorage ifNotNil: [ :storage |
-		execution executionId: (storage addNewObject: execution) ].
-	execution registerTerminationSignal.
-	[ execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
-	  aParent state = GtLProviderState stopping ifTrue: [ execution cancel ] ]
-		on: Error do: [ :error |
-			child stopOngoingExecution.
-			child ensureReplyMessage.
-			child addErrorMessage: (GtLErrorMessage freeze: error).
-			execution signalCompletion ].
-	^ execution
 ]

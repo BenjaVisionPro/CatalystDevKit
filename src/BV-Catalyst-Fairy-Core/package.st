@@ -1,1 +1,1 @@
-Package { #name : #'BV-Catalyst-Fairy-Core' }
+Package { #name : 'BV-Catalyst-Fairy-Core' }
