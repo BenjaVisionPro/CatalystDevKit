@@ -39,7 +39,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "## Development contracts\nStart with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Catalyst framework ownership|db=731asfxqhyhdr96k6wo9yxnzv}}. Runtime's current book is {{gtPage:Catalyst Runtime|db=760mc3rkot5pkhueq2jxjz5gt}}. The other component pages are retained drafts pending source-grounded replacement; their presence is not evidence of completed capabilities."
+				"string": "## Development contracts\nStart with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Catalyst framework ownership|db=731asfxqhyhdr96k6wo9yxnzv}}. Open {{gtPage:Catalyst Runtime|db=731asfxqhyhdr96k6wo9yxnzv}} for the gateway to Runtime's current book. The other component pages are retained drafts pending source-grounded replacement; their presence is not evidence of completed capabilities."
 			},
 			{
 				"__type": "textSnippet",

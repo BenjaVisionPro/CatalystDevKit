@@ -498,3 +498,25 @@ BVCFairyExamples >> directoryOutsideScopeIsRejected [
 	self assert: (result model isKindOf: GtLProblemDomainObject).
 	^ result
 ]
+
+{ #category : #examples }
+BVCFairyExamples >> documentationContentsOnHomePage [
+	<gtExample>
+	| logicalDatabase databases |
+	logicalDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+	databases := #('731asfxqhyhdr96k6wo9yxnzv' '760mc3rkot5pkhueq2jxjz5gt')
+		collect: [ :databaseId |
+			logicalDatabase databaseWithID: databaseId
+				ifNone: [ self error: 'A Catalyst documentation book is not registered: ', databaseId ] ].
+	databases do: [ :database |
+		| pendingNodes |
+		self assert: database tableOfContents notNil.
+		pendingNodes := database tableOfContentsNodes asOrderedCollection.
+		[ pendingNodes isEmpty ] whileFalse: [
+			| node |
+			node := pendingNodes removeFirst.
+			self assert: node page notNil.
+			GtHomeListItemElement new item: node.
+			pendingNodes addAll: node children ] ].
+	^ databases
+]

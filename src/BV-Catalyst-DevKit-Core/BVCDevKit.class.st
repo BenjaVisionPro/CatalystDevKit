@@ -13,14 +13,7 @@ BVCDevKit class >> iceRepository [
 
 { #category : 'accessing' }
 BVCDevKit class >> initializeKnowledgeBase [
-	self iceRepository
-		ifNotNil: [ :aRepository | 
-			| defaultDatabase currentProperties |
-			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
-			currentProperties := defaultDatabase properties.
-			currentProperties
-				addRegisteredDirectory: aRepository repositoryDirectory / 'docs'.
-			defaultDatabase reload ]
+	^ BaselineOfCatalystDevKit loadLepiter
 ]
 
 { #category : 'accessing' }
