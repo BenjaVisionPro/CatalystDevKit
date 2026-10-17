@@ -55,6 +55,8 @@ MCP checkpoint, 17 October 2026: **34 examples passed, with no failures, errors 
 
 ## Documentation
 
+The repo-owned DevKit book starts with **Catalyst working rules** and **Catalyst framework ownership**. Barry and both specialist roles receive these pages automatically. The separate **Catalyst Runtime** book lives in `CatalystRuntime/lepiter`; the existing `BaselineOfCatalystDevKit class >> loadLepiter` registers both books through GT. The four existing Barry instruction page identities are preserved. P0 MCP verification in the existing BVC-built image passed all 34 Barry examples, book discovery/link checks and one real Explorer delegation across both books. The Runtime book records its focused execution results and remaining proof. A fresh BVC rebuild remains a separate checkpoint. Other component documentation remains pending replacement. The obsolete `BV-Catalyst-Runtime-*` source packages have been removed from DevKit; Runtime engine source belongs to CatalystRuntime.
+
 Start with the DevKit documentation. The TGC documentation comes after it as a concrete example of what the platform is intended to support.
 
 ### Catalyst DevKit documentation

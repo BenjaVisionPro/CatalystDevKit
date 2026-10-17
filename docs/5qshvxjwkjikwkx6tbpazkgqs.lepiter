@@ -1,0 +1,187 @@
+{
+	"__schema": "4.1",
+	"__type": "page",
+	"children": {
+		"__type": "snippets",
+		"items": [
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.477Z"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.498Z"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "adobYpJm2E9+IEOVqcx6IQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Canonical framework sources\nThis index records approved source ownership and platform scope for developers and agents. Start with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}}. Read the named framework contract, inspect the selected checkout and use its existing checks before changing behavior. Repository paths in Current DevKit identify the active checkouts; they do not establish clean Git state or native platform proof."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "FiKqGd2oDt6LYc8qICn/VQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "| Framework | Source owner | Platform and current status |\n|---|---|---|\n| Runtime | CatalystRuntime, BVC-Runtime-* packages | GemStone 4.x reference; GT/Pharo release work now. {{gtPage:Catalyst Runtime|db=760mc3rkot5pkhueq2jxjz5gt}} |\n| Foundation models, configuration and Magritte | CatalystFoundation | Shared model/configuration responsibilities have portable boundaries; concrete GT presentation is GT-only. Existing architecture/extension documents remain pending their book replacement. |\n| Atelier and composition | CatalystFoundation | GT editing and presentation; Process owns BPMN-specific semantics. |\n| Motion and Physics | CatalystFoundation, BVC-Motion-* and BVC-Physics-* | Active GT/Pharo UI frameworks. CatalystMotion and CatalystPhysics repos are future extraction destinations. |\n| Process | CatalystProcess | BPMN semantics and execution-environment contracts; Runtime owns execution infrastructure. Older design/runtime paths remain pending a separate review. |\n| Theme | CatalystTheme | GT/Pharo appearance roles and presentation integration. |\n| DevKit and Barry | CatalystDevKit | GT development integration, common guidance and this ownership index. No separate Runtime engine. |\n| Connect | CatalystConnectGS prototype; CatalystConnect Unreal/C++; other bindings require an explicit ownership decision | GemStone reference; GemStone, GT/Pharo, Swift and Unreal C++ versions are intended. Do not infer production support from a prototype. |\n| Connect native support | CatalystConnectLibrary and BVCC_QUIC | Distinct experiments/native interfaces pending the Connect contract decision. CatalystConnect-ServerProto is prototype evidence. |\n| Users, Ground, Currency and other infant components | Current experiments; final component ownership remains to be established | Deferred Runtime consumers. Preserve intent and useful source; do not expand them while Runtime matures. |\n| Web | CatalystWeb | Early implementation; supported direction remains to be established. |"
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "GEmOO276fE8RJjbhrd7CUQ=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Using the index\nA task should carry the owning repo, relevant contract references, the bounded change and its acceptance checks. Explorer investigates existing paths; Maintainer changes the identified owner; Barry reviews the result against the contract and checks. The obsolete BV-Catalyst-Runtime-* packages in DevKit are retired; use CatalystRuntime for Runtime engine source. Other experiments and component pages are retained pending their separate replacement and must not be used as evidence of completed capabilities.\n\nConnect's prototype starts processing from socket events driving a SharedQueue. Its contract must identify connection/queue ownership, event ordering, backpressure, transaction boundaries and the handoff into Runtime. A generic second dispatcher is not required merely for platform symmetry."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "MoMlx11P7cpzYbekg6hJZA=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Documentation authority\nShared principles live on Catalyst working rules. Each framework owns its detailed contracts, implementation map, examples and gaps beside its source. Runtime's book is registered separately from the DevKit book. Keep historical reviews and baselines explicitly historical; do not silently treat a document titled current as current evidence. Existing Word and Markdown material remains in place for this P0 increment. Follow the Runtime book for its current entry point."
+			}
+		]
+	},
+	"createEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"createTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+		}
+	},
+	"editEmail": {
+		"__type": "email",
+		"emailString": "<unknown>"
+	},
+	"editTime": {
+		"__type": "time",
+		"time": {
+			"__type": "dateAndTime",
+			"dateAndTimeString": "2026-10-17T03:55:32.499Z"
+		}
+	},
+	"pageType": {
+		"__type": "namedPage",
+		"title": "Catalyst framework ownership"
+	},
+	"uid": {
+		"__type": "uuid",
+		"uuid": "c44c14b0-634f-4b02-93ca-4fdd5bd00661"
+	}
+}

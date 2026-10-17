@@ -15,7 +15,13 @@ BVCDevKitContext >> knowledgeBase [
 { #category : #accessing }
 BVCDevKitContext >> instructionPageIds [
 	^ #('auvrpe1mgrddsq94kz9x9s17h' '95fl487m04zijuwrb2x7h9f5f'
-		'60rxs4qo0lf0hsyj52dihv4da' '5j28k5ilimindkvqoe9iksabc')
+		'60rxs4qo0lf0hsyj52dihv4da' '5j28k5ilimindkvqoe9iksabc'),
+		{ self frameworkOwnershipPageId }
+]
+
+{ #category : #accessing }
+BVCDevKitContext >> frameworkOwnershipPageId [
+	^ '5qshvxjwkjikwkx6tbpazkgqs'
 ]
 
 { #category : #accessing }
@@ -61,6 +67,7 @@ BVCDevKitContext >> configureChat: aChat forRole: aRoleName [
 	aChat instruction: self instructionString titled: 'Current DevKit'.
 	aChat pageIdExplanation: self instructionPageIds first from: self knowledgeBase.
 	aChat pageIdExplanation: rolePageId from: self knowledgeBase.
+	aChat pageIdExplanation: self frameworkOwnershipPageId from: self knowledgeBase.
 	aRoleName = 'System Maintainer' ifTrue: [
 		aChat
 			gtPageExplanation: 'Rules for Moldable Development for Glamorous Toolkit';

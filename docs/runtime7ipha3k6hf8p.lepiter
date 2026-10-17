@@ -39,7 +39,7 @@
 				"paragraphStyle": {
 					"__type": "textStyle"
 				},
-				"string": "Catalyst Runtime is the execution fabric that keeps Catalyst systems explicit, deterministic, and able to grow without becoming mysterious."
+				"string": "CatalystRuntime owns the Runtime implementation and book. Start with {{gtPage:Catalyst Runtime|db=760mc3rkot5pkhueq2jxjz5gt}}, then {{gtPage:Runtime design contract|db=760mc3rkot5pkhueq2jxjz5gt}} and {{gtPage:Runtime implementation and checks|db=760mc3rkot5pkhueq2jxjz5gt}}. GemStone 4.x is the reference platform; GT/Pharo is the current release. The earlier DevKit Runtime summaries below are retained pending replacement and do not certify implementation or native verification."
 			},
 			{
 				"__type": "textSnippet",

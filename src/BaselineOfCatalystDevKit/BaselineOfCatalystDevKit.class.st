@@ -7,17 +7,19 @@ Class {
 
 { #category : 'knowledge' }
 BaselineOfCatalystDevKit class >> loadLepiter [
-	IceRepository registry  
-		detect: [ :aRepository |
-			aRepository name = 'CatalystDevKit' ]
-		ifFound: [ :aRepository | 
-			| defaultDatabase currentProperties |
-			defaultDatabase := LeDatabasesRegistry defaultLogicalDatabase.
-			currentProperties := defaultDatabase properties.
-			currentProperties addRegisteredDirectory: aRepository repositoryDirectory / 'docs'.
-			defaultDatabase reload ]
-		ifNone: [
-			self inform: 'Repository not found.' ]
+	| logicalDatabase |
+	logicalDatabase := LeDatabasesRegistry defaultLogicalDatabase.
+	{ 'CatalystDevKit' -> 'docs'. 'CatalystRuntime' -> 'lepiter' } do: [ :book |
+		IceRepository registry
+			detect: [ :repository | repository name = book key ]
+			ifFound: [ :repository |
+				| directory |
+				directory := repository repositoryDirectory / book value.
+				(directory / 'lepiter.properties') exists ifTrue: [
+					logicalDatabase properties addRegisteredUrl: directory asLepiterZnUrl ] ]
+			ifNone: [ ] ].
+	logicalDatabase properties save.
+	logicalDatabase reload
 ]
 
 { #category : 'baseline' }

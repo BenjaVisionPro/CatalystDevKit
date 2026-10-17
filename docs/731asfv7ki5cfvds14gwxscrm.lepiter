@@ -18,6 +18,43 @@
 					"__type": "time",
 					"time": {
 						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.501Z"
+					}
+				},
+				"editEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"editTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
+						"dateAndTimeString": "2026-10-17T03:55:32.501Z"
+					}
+				},
+				"uid": {
+					"__type": "uid",
+					"uidString": "VeELuM4DDnX7EKIxzE3DAw=="
+				},
+				"paragraphStyle": {
+					"__type": "textStyle"
+				},
+				"string": "## Development contracts\nStart with {{gtPage:Catalyst working rules|db=731asfxqhyhdr96k6wo9yxnzv}} and {{gtPage:Catalyst framework ownership|db=731asfxqhyhdr96k6wo9yxnzv}}. Runtime's current book is {{gtPage:Catalyst Runtime|db=760mc3rkot5pkhueq2jxjz5gt}}. The other component pages are retained drafts pending source-grounded replacement; their presence is not evidence of completed capabilities."
+			},
+			{
+				"__type": "textSnippet",
+				"children": {
+					"__type": "snippets",
+					"items": []
+				},
+				"createEmail": {
+					"__type": "email",
+					"emailString": "<unknown>"
+				},
+				"createTime": {
+					"__type": "time",
+					"time": {
+						"__type": "dateAndTime",
 						"dateAndTimeString": "2026-05-15T09:00:00+10:00"
 					}
 				},
