@@ -47,6 +47,8 @@ Source development happens in the running image. Saving source files, committing
 
 This integration is for the privileged local DevKit. Tool composition is not a sandbox. Production mutation, remote GemStone operations, durable task resume and autonomous background maintenance are outside this release. Runtime and domain packages have no dependency on these GT classes. The abandoned `BVCAI*` experiment and its events package have been removed.
 
+Attachments use GT's existing file classification, message objects and provider serialization. `composerSendsAttachments` checks the composer path with PNG, PDF and text files, including instruction refresh and outgoing content.
+
 Run `BVCFairyExamples` through GT's existing example tools in the BVC-built DevKit. The examples include the actual popup selection and creation flow, instruction editing and navigation, role boundaries, result validation, cancellation and timeout. Build environments exclusively through BVC.
 
 Repository Markdown is available through GT's existing `getDirectoryContents` and `getFilesContents` formats. Use project-relative references such as `CatalystRuntime/runtime` and `CatalystRuntime/README.md`; host filesystem paths are neither accepted nor returned. These tools list only visible directories and readable Markdown documents; they exclude hidden paths, symlinks and documents over 256 KiB. A mixed request containing any denied file is rejected before reading. Directory omissions do not establish that a file is absent.
