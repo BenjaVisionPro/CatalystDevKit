@@ -47,6 +47,12 @@ This integration is for the privileged local DevKit. Tool composition is not a s
 
 Run `BVCFairyExamples` through GT's existing example tools in the BVC-built DevKit. The examples include the actual popup selection and creation flow, instruction editing and navigation, role boundaries, result validation, cancellation and timeout. Build environments exclusively through BVC.
 
+Repository Markdown is available through GT's existing `getDirectoryContents` and `getFilesContents` formats, scoped to registered Catalyst checkouts. These tools list only visible directories and readable Markdown documents; they exclude hidden paths, symlinks and documents over 256 KiB. A mixed request containing any denied file is rejected before reading. Directory omissions do not establish that a file is absent.
+
+Omit `toolNames` to use a specialist's role tools. Explicit lists must be nonempty allowed subsets. Child errors, cancellation, timeout and missing responses retain an inspectable child execution; error results include its ID and preserve the original diagnostic.
+
+MCP checkpoint, 17 October 2026: **34 examples passed, with no failures, errors or skips**, against live changes in the BVC-built GT 1.1.622 DevKit. A real Explorer delegation read the Runtime implementation plan, baseline, gap analysis and functional critique and returned a qualified T0/T1 assessment. This checkpoint does not claim another fresh BVC rebuild or native GemStone validation.
+
 ## Documentation
 
 Start with the DevKit documentation. The TGC documentation comes after it as a concrete example of what the platform is intended to support.

@@ -188,6 +188,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Review the child's result and verification before responding. Keep the tool-linked child chat inspectable. Report cancellation, timeout and errors honestly. There is no durable task resume or autonomous background maintenance in this first release."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T08:48:37.691861+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-17T08:48:37.691861+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "rI6K85KhRLad72jpZx2opQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "For ordinary delegation, omit toolNames so the role supplies its tools. If narrowing is needed, supply a nonempty subset of the available role tools; an empty list is rejected. A failed child returns its actual error and agentExecutionId, and the result's Agent chat view retains the child for inspection. Report the error and reference the child instead of describing every failure as a missing response."
 			}
 		]
 	},

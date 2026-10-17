@@ -14,7 +14,7 @@ BVCFairyAgentBuilder >> request [
 { #category : #accessing }
 BVCFairyAgentBuilder >> roleTools [
 	| tools |
-	tools := GtLTools gtSearch, GtLTools leSearch.
+	tools := BVCDevKitContext readOnlyTools.
 	self request agentName = 'System Maintainer' ifTrue: [
 		tools addAll: GtLTools gtCodeChange.
 		tools addAll: GtLTools leChange.
@@ -41,6 +41,7 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 		((aParent provider respondsTo: #modelName) and: [ aParent provider modelName = modelName ])
 			ifFalse: [ ^ anErrorBlock value: (GtLProblemDomainObject new description: 'Catalyst agents use the parent connection and model.') ] ].
 	self request toolNames ifNotNil: [ :names |
+		names ifEmpty: [ ^ anErrorBlock value: (GtLProblemDomainObject new description: 'toolNames must not be empty. Omit it to use the role tools, or supply a nonempty subset.') ].
 		names do: [ :name |
 			(self roleTools anySatisfy: [ :tool | tool name = name ]) ifFalse: [
 				^ anErrorBlock value: (GtLProblemDomainObject new description: 'Tool is outside the Catalyst role: ', name) ] ] ].
@@ -81,6 +82,10 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 	execution registerTerminationSignal.
 	[ execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
 	  aParent state = GtLProviderState stopping ifTrue: [ execution cancel ] ]
-		on: Error do: [ :error | child stopOngoingExecution. execution unsubscribe. error pass ].
+		on: Error do: [ :error |
+			child stopOngoingExecution.
+			child ensureReplyMessage.
+			child addErrorMessage: (GtLErrorMessage freeze: error).
+			execution signalCompletion ].
 	^ execution
 ]

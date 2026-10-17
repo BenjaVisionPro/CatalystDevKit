@@ -7,7 +7,7 @@ Class {
 
 { #category : #accessing }
 BVCFairyAgentTool >> description [
-	^ 'Start one bounded Catalyst task and wait for its result. agentName must be "System Explorer" (source and documentation search) or "System Maintainer" (a change explicitly requested by the user). Supply prompt and taskDescription. Children use the current connection and model, start fresh, and cannot delegate. Optional toolNames can only narrow the chosen role. Optional instructionPageReferences must identify existing pages. History forks and model changes are unsupported.'
+	^ 'Start one bounded Catalyst task and wait for its result. agentName must be "System Explorer" (source and documentation search) or "System Maintainer" (a change explicitly requested by the user). Supply prompt and taskDescription. Children use the current connection and model, start fresh, and cannot delegate. Omit toolNames to use the role tools. If supplied, toolNames must be a nonempty subset of those tools. Optional instructionPageReferences must identify existing pages. History forks and model changes are unsupported. Failures include the child execution id for inspection.'
 ]
 
 { #category : #private }

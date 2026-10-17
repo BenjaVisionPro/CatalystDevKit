@@ -15,7 +15,7 @@ BVCFairyChat >> initialize [
 	self
 		withDefaultSummarizers;
 		markdownResponse;
-		tools: (GtLTools gtSearch, GtLTools leSearch).
+		tools: BVCDevKitContext readOnlyTools.
 	self addTool: BVCFairyAgentTool new.
 	self refreshInstructions
 ]
@@ -47,7 +47,7 @@ BVCFairyChat >> gtDisplayOn: aStream [
 
 { #category : #ui }
 BVCFairyChat class >> fairyIcon [
-	^ (Form fromFileNamed: (BVCDevKit iceRepository repositoryDirectory / 'artwork' / 'fairy-icon.png') fullName)
+	^ (Form fromFileNamed: (BVCDevKit iceRepository repositoryDirectory / 'artwork' / 'fairy-icon-transparent.png') fullName)
 		asElement asScalableElement size: 32 @ 48
 ]
 

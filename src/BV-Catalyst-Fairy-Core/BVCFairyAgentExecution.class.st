@@ -53,10 +53,10 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 	[ timedOut := terminationSemaphore waitTimeoutSeconds: seconds ]
 		ensure: [ self unsubscribe ].
 	wasCancelled ifTrue: [
-		^ GtLProblemDomainObject new description: 'The Catalyst agent was cancelled.' ].
+		^ self problem: 'The Catalyst agent was cancelled.' ].
 	timedOut ifTrue: [
 		self agent stopOngoingExecution.
-		^ GtLProblemDomainObject new description: 'The Catalyst agent timed out; stop was requested.' ].
+		^ self problem: 'The Catalyst agent timed out; stop was requested.' ].
 	^ nil
 ]
 
@@ -64,11 +64,13 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 BVCFairyAgentExecution >> createAgentResponse [
 	| message content |
 	message := self responseMessage.
+	(message isKindOf: GtLErrorMessage) ifTrue: [
+		^ self problem: 'Catalyst agent failed: ', message contentText ].
 	(message notNil and: [ message respondsTo: #responseModels ]) ifFalse: [
-		^ GtLProblemDomainObject new description: 'The Catalyst agent did not return a final response.' ].
+		^ self problem: 'The Catalyst agent did not return a final response.' ].
 	content := message responseModels at: 'Markdown' ifAbsent: [ nil ].
 	content ifNil: [
-		^ GtLProblemDomainObject new description: 'The Catalyst agent did not return Markdown content.' ].
+		^ self problem: 'The Catalyst agent did not return Markdown content.' ].
 	^ GtLAgentExecutionResult new
 		agentExecutionId: self executionId;
 		agentExecution: self;
@@ -81,4 +83,17 @@ BVCFairyAgentExecution >> createAgentResponse [
 { #category : #testing }
 BVCFairyAgentExecution >> isCancelled [
 	^ wasCancelled
+]
+
+{ #category : #execution }
+BVCFairyAgentExecution >> problem: aDescription [
+	^ BVCFairyAgentProblem new
+		description: aDescription;
+		agentExecution: self;
+		yourself
+]
+
+{ #category : #execution }
+BVCFairyAgentExecution >> signalCompletion [
+	terminationSemaphore signal
 ]
