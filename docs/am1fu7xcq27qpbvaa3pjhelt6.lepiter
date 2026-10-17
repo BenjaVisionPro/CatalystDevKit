@@ -1,0 +1,190 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.033044+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.033044+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ZDSFXAfnR6m8I4j32nMhcg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Barry window title\nOwner: CatalystDevKit, BV-Catalyst-Fairy-Core (GT/Pharo UI only). Related contract: [[Catalyst framework ownership]], [[Catalyst working rules]], [[Catalyst Fairy]].\n\nCatalyst's world spawn handler gives BVCFairyChat windows the stable title `Barry`, both before and after messages. Ordinary GT chats delegate unchanged to the inherited handler. The only production selector added is {{gtMethod:BVCDevKitWorldElement>>#onGtPhlowObjectToSpawn:}}, an extension owned by BV-Catalyst-Fairy-Core. Existing chat tools, composite tabs and pager construction are reused; no replacement dispatcher or chat tool was added."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.069382+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.069382+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "emTwBAdYRBCYZRchO7eGeg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Inspected path and scope\nThe Add chat button creates a registered chat and fires a GtPhlowObjectToSpawn carrying its default inspector tool. GtLChat>>gtDefaultInspectorTool already names the composite; BVCFairyChat>>gtDisplayOn: already includes Barry. Neither is the missing window title source. GtWorldElement>>onGtPhlowObjectToSpawn: creates a BlSpace with inPager: but supplies no title; BlSpace's default title is empty. The Catalyst subclass now sets the title before using that same pager/showFrom: path. GtWorldTabElement>>createBaseTab: copies BlSpace>>title into the tab label. Opening the resulting space natively propagates the title to the host window.\n\nThe separate GtLWorldRegistrySubscriptionHandler path already sets a display-based title and is unchanged. GtLWorldChatRegistryDropdown>>initialize still forwards the spawn without consuming the original. The upstream duplicate-window issue is intentionally untouched. A BVCFairyChat-only display or tool-name override would not repair the world handler's missing title assignment."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.078309+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.078309+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "yWuKEzR9RLiVlsq/tSbCPg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Current-image checks\nExecuted in SuperGame.image, Pharo13.1.0SNAPSHOT, native BlWinitHost. Final BVCFairyWindowTitleExamples run: 4 successes, 0 failures, 0 errors, 0 skips. Checks cover a newly registered Catalyst chat through world phlow spawn, BlSpace title and tab-label propagation, retained and reopened titles after an offline message, unchanged ordinary GT chat behavior, and the real native host-space title before/after a message. The native example closes its window and checks closure with a 5-second bound. Temporary world tabs and mocked scripter scene children are removed in ensure: blocks; no live provider calls.\n\nExisting popupCreatesCatalystChat also passed (1); GtPhlowChatToolExamples passed all 6 examples with no failures/errors/skips. These are focused checks, not a full DevKit suite. Initial example-authoring runs exposed incorrect test selectors and an incorrect assumption that BlScripterSpace could report closed; corrected before the final green run. BlScripterSpace uses a mocked host and reports open whenever its host exists, so cleanup asserts an empty scene and no host space instead.\n\nExcluded: end-to-end duplicate dropdown-window counts, native title-bar pixels/OS chrome, other platforms, fresh BVC build, source-file save, commit and push. Source changes remain in the image."
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.084836+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T09:13:21.084836+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "QKlY7q0HT46oUtC6Re00lw=="
+				},
+				"exampleSelector" : "nativeChatWindowTitle",
+				"previewHeight" : 200,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "BVCFairyWindowTitleExamples",
+				"codeExpanded" : true,
+				"previewExpanded" : false,
+				"noCode" : false
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T09:12:59.190389+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T09:12:59.190389+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Catalyst Fairy window titles"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "ea921d09-db4f-408b-8995-3af689d040b3"
+	}
+}

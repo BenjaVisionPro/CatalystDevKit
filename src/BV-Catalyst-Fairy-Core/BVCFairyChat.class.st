@@ -95,15 +95,15 @@ BVCFairyChat >> refreshInstructions [
 ]
 
 { #category : 'communication' }
-BVCFairyChat >> sendMessage: aMessage [
-	self refreshInstructions.
-	^ super sendMessage: aMessage
-]
-
-{ #category : 'communication' }
 BVCFairyChat >> sendFiles: fileReferences withMessage: aString [
 	^ self sendWith: [ :message |
 		message markdown: aString.
 		fileReferences do: [ :fileReference |
 			message addWrappedObject: (GtLFileReference fromFileReference: fileReference) ] ]
+]
+
+{ #category : 'communication' }
+BVCFairyChat >> sendMessage: aMessage [
+	self refreshInstructions.
+	^ super sendMessage: aMessage
 ]

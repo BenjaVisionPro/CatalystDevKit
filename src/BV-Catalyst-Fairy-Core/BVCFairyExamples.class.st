@@ -77,6 +77,51 @@ BVCFairyExamples >> completedTask [
 ]
 
 { #category : 'examples' }
+BVCFairyExamples >> composerSendsAttachments [
+	<gtExample>
+	| directory image document text attachments |
+	directory := FileSystem memory root.
+	image := directory / 'diagram.png'.
+	image binaryWriteStreamDo: [ :stream | stream nextPutAll: #[137 80 78 71] ].
+	document := directory / 'notes.pdf'.
+	document writeStreamDo: [ :stream | stream nextPutAll: '%PDF-1.4' ].
+	text := directory / 'notes.md'.
+	text writeStreamDo: [ :stream | stream nextPutAll: 'Attachment evidence' ].
+	attachments := { image. document. text }.
+	{ GtLOpenAIUserMessage. GtLModelUserMessage } do: [ :messageClass |
+		| chat composer instructions message files content |
+		chat := self parentChat.
+		chat userMessageClass: messageClass.
+		instructions := chat instructions.
+		composer := GtLNewMessageViewModel new chat: chat.
+		composer contents: 'Review these attachments.' source: self.
+		attachments do: [ :file | composer attachFile: file ].
+		composer sendMessage.
+		self assert: chat messages size equals: 2.
+		self assert: (chat instructions == instructions) not.
+		self assert: composer contents isEmpty.
+		self assert: composer files isEmpty.
+		message := chat messages first.
+		self assert: message class equals: messageClass.
+		self assert: message inputModels size equals: 4.
+		files := message inputModels allButFirst collect: #targetObject.
+		self assert: (files collect: #class) asArray
+			equals: { GtLImageFile. GtLPdfFile. GtLTextFile }.
+		self assert: (files collect: #fileReference) asArray equals: attachments.
+		content := message contentDataBlock serializeForOpenAI.
+		self assert: (content anySatisfy: [ :part |
+			(part at: 'type') = 'input_image' and: [
+				(part at: 'image_url') = ('data:image/png;base64,', image binaryContents base64Encoded) ] ]).
+		self assert: (content anySatisfy: [ :part |
+			(part at: 'type') = 'input_file' and: [
+				(part at: 'filename') = 'notes.pdf' ] ]).
+		self assert: (content anySatisfy: [ :part |
+			(part at: 'type') = 'input_file' and: [
+				(part at: 'filename') = 'notes.md' ] ]) ].
+	^ attachments
+]
+
+{ #category : 'examples' }
 BVCFairyExamples >> delegatedRequestTools [
 	<gtExample>
 	| parent provider children |
@@ -588,49 +633,4 @@ BVCFairyExamples >> unknownToolsAreRejected [
 		validateForParent: self parentChat ifErrorDo: [ :error | error ].
 	self assert: (problem description includesSubstring: 'notAnAvailableTool').
 	^ problem
-]
-
-{ #category : 'examples' }
-BVCFairyExamples >> composerSendsAttachments [
-	<gtExample>
-	| directory image document text attachments |
-	directory := FileSystem memory root.
-	image := directory / 'diagram.png'.
-	image binaryWriteStreamDo: [ :stream | stream nextPutAll: #[137 80 78 71] ].
-	document := directory / 'notes.pdf'.
-	document writeStreamDo: [ :stream | stream nextPutAll: '%PDF-1.4' ].
-	text := directory / 'notes.md'.
-	text writeStreamDo: [ :stream | stream nextPutAll: 'Attachment evidence' ].
-	attachments := { image. document. text }.
-	{ GtLOpenAIUserMessage. GtLModelUserMessage } do: [ :messageClass |
-		| chat composer instructions message files content |
-		chat := self parentChat.
-		chat userMessageClass: messageClass.
-		instructions := chat instructions.
-		composer := GtLNewMessageViewModel new chat: chat.
-		composer contents: 'Review these attachments.' source: self.
-		attachments do: [ :file | composer attachFile: file ].
-		composer sendMessage.
-		self assert: chat messages size equals: 2.
-		self assert: (chat instructions == instructions) not.
-		self assert: composer contents isEmpty.
-		self assert: composer files isEmpty.
-		message := chat messages first.
-		self assert: message class equals: messageClass.
-		self assert: message inputModels size equals: 4.
-		files := message inputModels allButFirst collect: #targetObject.
-		self assert: (files collect: #class) asArray
-			equals: { GtLImageFile. GtLPdfFile. GtLTextFile }.
-		self assert: (files collect: #fileReference) asArray equals: attachments.
-		content := message contentDataBlock serializeForOpenAI.
-		self assert: (content anySatisfy: [ :part |
-			(part at: 'type') = 'input_image' and: [
-				(part at: 'image_url') = ('data:image/png;base64,', image binaryContents base64Encoded) ] ]).
-		self assert: (content anySatisfy: [ :part |
-			(part at: 'type') = 'input_file' and: [
-				(part at: 'filename') = 'notes.pdf' ] ]).
-		self assert: (content anySatisfy: [ :part |
-			(part at: 'type') = 'input_file' and: [
-				(part at: 'filename') = 'notes.md' ] ]) ].
-	^ attachments
 ]
