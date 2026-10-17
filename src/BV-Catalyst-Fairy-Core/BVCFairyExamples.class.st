@@ -520,3 +520,37 @@ BVCFairyExamples >> documentationContentsOnHomePage [
 			pendingNodes addAll: node children ] ].
 	^ databases
 ]
+
+{ #category : #examples }
+BVCFairyExamples >> delegatedRequestTools [
+	<gtExample>
+	| parent provider children |
+	provider := GtLModelProvider new.
+	provider model name: 'request example'; provider: provider.
+	provider responses.
+	parent := self parentChat provider: provider.
+	children := #('System Explorer' 'System Maintainer') collect: [ :roleName |
+		| child endpoint command context entity toolNames expectedNames |
+		child := (BVCFairyAgentBuilder forAgentCreationRequest:
+			(self explorerRequest agentName: roleName))
+			createAgentForParent: parent.
+		endpoint := child provider model userMessageEndpoint.
+		command := GtLModelApiUserCommand new
+			messages: child messages;
+			instructions: child instructions instructionString;
+			tools: child tools.
+		context := endpoint newContextForModel: child provider model.
+		context command: command; chat: child provider model provider chat.
+		entity := endpoint entityFromContext: context.
+		toolNames := (entity at: 'tools') collect: [ :tool | tool at: 'name' ].
+		expectedNames := child tools items collect: [ :tool | tool name ].
+		self assert: toolNames asSet equals: expectedNames asSet.
+		self assert: (toolNames includes: 'startAgent') not.
+		self assert: child provider model ~~ parent provider model.
+		self assert: child provider model provider == child provider.
+		self assert: child provider compactionStrategy provider == child provider.
+		self assert: parent provider model provider == parent provider.
+		self assert: parent provider compactionStrategy provider == parent provider.
+		child ].
+	^ children
+]

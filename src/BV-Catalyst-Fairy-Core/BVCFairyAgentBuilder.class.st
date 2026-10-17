@@ -55,6 +55,9 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 BVCFairyAgentBuilder >> createAgentForParent: aParent [
 	| child tools |
 	child := self createNewStandaloneChatFrom: aParent.
+	(child provider isKindOf: GtLModelProvider) ifTrue: [
+		child provider model copy provider: child provider.
+		child provider compactionStrategy: child provider compactionStrategy copy ].
 	tools := self roleTools.
 	(self request toolNames ifNil: [ #() ]) ifNotEmpty: [ :toolNames |
 		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
