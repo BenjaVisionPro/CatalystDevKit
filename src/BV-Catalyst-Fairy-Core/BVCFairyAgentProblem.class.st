@@ -5,7 +5,8 @@ Class {
 	#name : 'BVCFairyAgentProblem',
 	#superclass : 'GtLProblemDomainObject',
 	#instVars : [
-		'agentExecution'
+		'agentExecution',
+		'failure'
 	],
 	#category : 'BV-Catalyst-Fairy-Core',
 	#package : 'BV-Catalyst-Fairy-Core'
@@ -45,4 +46,26 @@ BVCFairyAgentProblem >> gtAgentExecutionFor: aView [
 		priority: 10;
 		object: [ agentExecution ];
 		view: #gtViewAgentFor:
+]
+
+{ #category : 'accessing' }
+BVCFairyAgentProblem >> failure [
+	^ failure
+]
+
+{ #category : 'accessing' }
+BVCFairyAgentProblem >> failure: anErrorMessage [
+	failure := anErrorMessage
+]
+
+{ #category : 'views' }
+BVCFairyAgentProblem >> gtFailureFor: aView [
+	<gtView>
+	<gtLlmView>
+	failure ifNil: [ ^ aView empty ].
+	^ aView forward
+		title: 'Failure';
+		priority: 5;
+		object: [ failure ];
+		view: #gtExceptionStackFor:
 ]

@@ -527,7 +527,9 @@ BVCFairyExamples >> parentCancellation [
 BVCFairyExamples >> parentChat [
 	<gtExample>
 	| chat |
-	chat := BVCFairyChat new provider: BVCFairyProviderStub new.
+	chat := BVCFairyChat new
+		continuity: (BVCFairyContinuityStub new database: LeDatabase new);
+		provider: BVCFairyProviderStub new.
 	self assert: chat devKitContext knowledgeBase uuid asString36 equals: '731asfxqhyhdr96k6wo9yxnzv'.
 	self assert: (chat tools anySatisfy: [ :tool | tool name = 'startAgent' ]).
 	self assert: (chat tools items noneSatisfy: [ :tool | tool isKindOf: GtLMagritteToolForSmalltalkCodeEvaluation ]).

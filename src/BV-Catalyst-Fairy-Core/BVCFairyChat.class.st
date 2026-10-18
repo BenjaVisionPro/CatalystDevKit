@@ -8,7 +8,8 @@ Class {
 		'devKitContext',
 		'continuity',
 		'continuityRequestId',
-		'continuityRunning'
+		'continuityRunning',
+		'continuitySubscription'
 	],
 	#category : 'BV-Catalyst-Fairy-Core',
 	#package : 'BV-Catalyst-Fairy-Core'
@@ -78,7 +79,9 @@ BVCFairyChat >> finishContinuity: anOutcome [
 	requestId := continuityRequestId.
 	requestId ifNil: [ ^ self ].
 	[ self continuity recordId: requestId outcome: anOutcome ] ensure: [
-		self announcer unsubscribe: self.
+		continuitySubscription ifNotNil: [
+			self announcer removeSubscription: continuitySubscription.
+			continuitySubscription := nil ].
 		continuityRequestId := nil.
 		continuityRunning := false ]
 ]
@@ -152,7 +155,10 @@ BVCFairyChat >> refreshInstructions [
 	"Create a new snapshot so a running child keeps its own instructions."
 	self instructions: GtLInstructionComposite new.
 	devKitContext configureChat: self forRole: 'Barry'.
-	self instruction: self continuity contextString titled: 'Barry work continuity'
+	self instruction: self continuity contextString titled: 'Barry work continuity'.
+	continuityRequestId ifNotNil: [
+		self instruction: 'Current request ', continuityRequestId, ': initial continuity checkpoint succeeded. This does not verify earlier work or establish crash/rebuild durability.'
+			titled: 'Current request checkpoint' ]
 ]
 
 { #category : 'communication' }
@@ -165,12 +171,27 @@ BVCFairyChat >> sendFiles: fileReferences withMessage: aString [
 
 { #category : 'actions' }
 BVCFairyChat >> sendMessage: aMessage [
-	continuityRequestId ifNotNil: [ self error: 'Barry request still active; no overlapping continuity request is supported.' ].
+	(continuityRequestId notNil or: [ self state ~= GtLProviderState idle ])
+		ifTrue: [ self error: 'Barry request still active; overlapping requests are not supported.' ].
 	continuityRequestId := self continuity startKind: 'root' parentId: nil.
 	continuityRunning := false.
-	self announcer when: GtLChatExecutionStateChanged send: #onContinuityExecutionStateChanged: to: self.
+	continuityRequestId ifNotNil: [
+		continuitySubscription := self announcer
+			when: GtLChatExecutionStateChanged
+			send: #onContinuityExecutionStateChanged:
+			to: self ].
 	[ self refreshInstructions.
 	  ^ super sendMessage: aMessage ] on: Error do: [ :error |
 		self finishContinuity: 'send failed; partial image changes unknown; acceptance unverified'.
 		error pass ]
+]
+
+{ #category : 'views' }
+BVCFairyChat >> gtContinuityFailureFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Continuity failure';
+		priority: 7;
+		object: [ self continuity ];
+		view: #gtLastFailureFor:
 ]

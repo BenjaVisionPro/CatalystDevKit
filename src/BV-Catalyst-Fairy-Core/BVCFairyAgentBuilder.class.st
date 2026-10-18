@@ -57,13 +57,12 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 		yourself.
 	aContext objectStorage ifNotNil: [ :storage |
 		execution executionId: (storage addNewObject: execution) ].
-	"A failed initial checkpoint must prevent child work."
-	execution startContinuity.
 	execution registerTerminationSignal.
-	[ execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
+	[ execution startContinuity.
+	  execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
 	  aParent state = GtLProviderState stopping ifTrue: [ execution cancel ] ]
 		on: Error do: [ :error |
-			child stopOngoingExecution.
+			child state = GtLProviderState idle ifFalse: [ child stopOngoingExecution ].
 			child ensureReplyMessage.
 			child addErrorMessage: (GtLErrorMessage freeze: error).
 			execution signalCompletion ].
@@ -94,5 +93,18 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 			^ anErrorBlock value: (GtLProblemDomainObject new description: 'Instruction page or database not found.') ] ].
 	aParent state = GtLProviderState stopping ifTrue: [
 		^ anErrorBlock value: (GtLProblemDomainObject new description: 'The parent chat is stopping.') ].
+	self request agentName = 'System Maintainer' ifTrue: [
+		(self unfinishedMaintainerFor: aParent) ifNotNil: [ :execution |
+			^ anErrorBlock value: (execution problem: 'A previous Maintainer has not finished stopping. Inspect its execution and partial changes before starting more mutating work.') ] ].
 	^ nil
+]
+
+{ #category : 'validation' }
+BVCFairyAgentBuilder >> unfinishedMaintainerFor: aParent [
+	^ (aParent objectStorage objectIds collect: [ :id | aParent objectStorage objectAt: id ])
+		detect: [ :object |
+			(object isKindOf: BVCFairyAgentExecution)
+				and: [ object initialRequest agentName = 'System Maintainer'
+				and: [ object agent state ~= GtLProviderState idle ] ] ]
+		ifNone: [ nil ]
 ]

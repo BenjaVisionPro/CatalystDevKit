@@ -21,15 +21,19 @@ BVCFairyAgentExecution >> cancel [
 
 { #category : 'execution' }
 BVCFairyAgentExecution >> createAgentResponse [
-	| message content |
+	| message content warning |
 	message := self responseMessage.
 	(message isKindOf: GtLErrorMessage) ifTrue: [
-		^ self problem: 'Catalyst agent failed: ', message contentText ].
+		^ (self problem: 'Catalyst agent failed: ', message contentText)
+			failure: message; yourself ].
 	(message notNil and: [ message respondsTo: #responseModels ]) ifFalse: [
 		^ self problem: 'The Catalyst agent did not return a final response.' ].
 	content := message responseModels at: 'Markdown' ifAbsent: [ nil ].
 	content ifNil: [
 		^ self problem: 'The Catalyst agent did not return Markdown content.' ].
+	warning := self continuityWarning.
+	warning ifNotEmpty: [
+		content := GtLMarkdown content: content content, String cr, String cr, warning ].
 	^ GtLAgentExecutionResult new
 		agentExecutionId: self executionId;
 		agentExecution: self;
@@ -63,7 +67,8 @@ BVCFairyAgentExecution >> onParentExecutionStateChanged: anAnnouncement [
 { #category : 'execution' }
 BVCFairyAgentExecution >> problem: aDescription [
 	^ BVCFairyAgentProblem new
-		description: aDescription;
+		description: aDescription, String cr, self continuityWarning;
+		failure: (self parentAgent ifNotNil: [ :parent | parent continuity lastFailure ]);
 		agentExecution: self;
 		yourself
 ]
@@ -88,7 +93,11 @@ BVCFairyAgentExecution >> signalCompletion [
 
 { #category : 'continuity' }
 BVCFairyAgentExecution >> startContinuity [
-	continuityRequestId := self parentAgent continuity startKind: 'child' parentId: self parentAgent continuityRequestId
+	continuityRequestId := self parentAgent continuity
+		startKind: 'child'
+		parentId: self parentAgent continuityRequestId.
+	(continuityRequestId isNil and: [ self initialRequest agentName = 'System Maintainer' ])
+		ifTrue: [ self error: 'Continuity checkpoint failed; Maintainer work was not started. Read-only diagnosis remains available. Inspect parent continuity lastFailure.' ]
 ]
 
 { #category : 'execution' }
@@ -117,4 +126,13 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 		ifTrue: [ 'child response error; partial image changes unknown; acceptance unverified' ]
 		ifFalse: [ 'child provider finished; task success unknown; acceptance unverified' ]).
 	^ nil
+]
+
+{ #category : 'continuity' }
+BVCFairyAgentExecution >> continuityWarning [
+	| writer |
+	self parentAgent ifNil: [ ^ '' ].
+	writer := self parentAgent continuity.
+	writer isDegraded ifFalse: [ ^ '' ].
+	^ 'Continuity checkpoint failed; the child result is preserved, but its checkpoint is unverified. Do not repeat mutating work. Inspect parent continuity lastFailure and partial state.'
 ]

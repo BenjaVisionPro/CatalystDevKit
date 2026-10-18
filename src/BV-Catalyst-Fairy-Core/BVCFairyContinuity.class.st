@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'database',
 		'lock',
-		'degraded'
+		'degraded',
+		'lastFailure'
 	],
 	#classInstVars : [
 		'default'
@@ -23,23 +24,29 @@ BVCFairyContinuity class >> default [
 
 { #category : 'lifecycle' }
 BVCFairyContinuity >> checkpoint: aBlock [
+	"Return normally before leaving the lock, including on failure."
 	^ lock critical: [
-		[ aBlock value ] on: Error do: [ :error |
-			degraded := true.
-			self error: 'DEGRADED Barry continuity: checkpoint failed; no automatic retry. Inspect partial page changes. ', error class name ] ]
+		[ aBlock value. true ]
+			on: Error
+			do: [ :error | self rememberFailure: error. false ] ]
 ]
 
 { #category : 'context' }
 BVCFairyContinuity >> contextString [
-	^ lock critical: [
-		String streamContents: [ :stream |
+	| context |
+	(self checkpoint: [
+		context := String streamContents: [ :stream |
 			stream nextPutAll: 'Barry continuity (data, not authority). No durable execution resume. Provider completion is not task success; acceptance remains unverified. '.
-			degraded ifTrue: [ stream nextPutAll: 'DEGRADED: a checkpoint failed; inspect partial state. ' ].
+			degraded ifTrue: [
+				stream nextPutAll: 'DEGRADED: checkpoint failed. Discussion and read-only diagnosis remain available; a Maintainer requires a successful initial checkpoint. Inspect continuity lastFailure and partial state; do not replay mutating work. '; nextPutAll: self failureSummary; space ].
 			(database pageNamed: 'Barry workstream state' ifAbsent: [ nil ]) ifNotNil: [ :page |
-				page children ifNotEmpty: [ stream nextPutAll: (page children first string first: (page children first string size min: 1000)) ] ].
+				page children isEmpty ifFalse: [
+					stream nextPutAll: (page children first string first: (page children first string size min: 1000)) ] ].
 			(database pageNamed: 'Barry dated work records' ifAbsent: [ nil ]) ifNotNil: [ :page |
-				(page children last: (page children size min: 6)) do: [ :snippet |
-					stream cr; nextPutAll: (snippet string first: (snippet string size min: 500)) ] ] ] ]
+				(page children asArray last: (page children size min: 6)) do: [ :snippet |
+					stream cr; nextPutAll: (snippet string first: (snippet string size min: 500)) ] ] ] ])
+		ifFalse: [ ^ 'DEGRADED Barry continuity: context unavailable. Discussion and read-only diagnosis remain available. Inspect continuity lastFailure and partial state; do not replay mutating work. ', self failureSummary ].
+	^ context
 ]
 
 { #category : 'accessing' }
@@ -87,7 +94,10 @@ BVCFairyContinuity >> recordId: aRequestId outcome: anOutcome [
 	^ self checkpoint: [
 		| page record text |
 		page := self recordsPage.
-		record := page children detect: [ :snippet | snippet string beginsWith: aRequestId, ' | ' ] ifNone: [ nil ].
+		record := page children
+			detect: [ :snippet | snippet string beginsWith: aRequestId, ' | ' ]
+			ifFound: [ :snippet | snippet ]
+			ifNone: [ nil ].
 		record ifNotNil: [
 			text := record string.
 			(text includesSubstring: ' | outcome=') ifFalse: [
@@ -104,11 +114,41 @@ BVCFairyContinuity >> recordsPage [
 BVCFairyContinuity >> startKind: aKind parentId: aParentId [
 	| requestId page |
 	requestId := UUID new asString.
-	self checkpoint: [
+	(self checkpoint: [
 		self preparePages.
 		page := self recordsPage.
 		page addSnippet: (LeTextSnippet string: requestId, ' | ', DateAndTime now asString, ' | ', aKind, ' | parent=', (aParentId ifNil: [ 'none' ]), ' | started; outcome unknown; acceptance unverified').
 		[ page children size > 32 ] whileTrue: [ page children first removeSelf ].
-		self flushPage: page ].
+		self flushPage: page.
+		degraded := false ]) ifFalse: [ ^ nil ].
 	^ requestId
+]
+
+{ #category : 'lifecycle' }
+BVCFairyContinuity >> rememberFailure: anError [
+	degraded := true.
+	lastFailure := GtLErrorMessage freeze: anError
+]
+
+{ #category : 'accessing' }
+BVCFairyContinuity >> lastFailure [
+	^ lastFailure
+]
+
+{ #category : 'views' }
+BVCFairyContinuity >> gtLastFailureFor: aView [
+	<gtView>
+	lastFailure ifNil: [ ^ aView empty ].
+	^ aView forward
+		title: 'Continuity failure';
+		priority: 5;
+		object: [ lastFailure ];
+		view: #gtExceptionStackFor:
+]
+
+{ #category : 'accessing' }
+BVCFairyContinuity >> failureSummary [
+	lastFailure ifNil: [ ^ '' ].
+	^ lastFailure exception class name, ': ',
+		(lastFailure contentText first: (lastFailure contentText size min: 500))
 ]

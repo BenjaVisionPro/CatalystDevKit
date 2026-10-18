@@ -16,15 +16,27 @@ BVCFairyAgentTool >> description [
 { #category : 'private' }
 BVCFairyAgentTool >> privatePerformToolCall: aToolCall inContext: anExecutionContext [
 	| request parent builder execution executionError |
-	request := aToolCall arguments at: 'startAgentRequest'.
-	parent := anExecutionContext currentChat.
-	(parent isKindOf: BVCFairyChat)
-		ifFalse: [ ^ GtLProblemDomainObject new description: 'Catalyst agents require a Catalyst Chat.' ].
-	builder := BVCFairyAgentBuilder forAgentCreationRequest: request.
-	builder validateForParent: parent ifErrorDo: [ :problem | ^ problem ].
-	execution := builder startFromParentAgent: parent inContext: anExecutionContext.
-	aToolCall at: #innerChat putRuntimeValue: execution agent.
-	executionError := execution waitUntilCompletionOrTimeout.
-	executionError ifNotNil: [ ^ executionError ].
-	^ execution createAgentResponse
+	[
+		request := aToolCall arguments at: 'startAgentRequest'.
+		parent := anExecutionContext currentChat.
+		(parent isKindOf: BVCFairyChat)
+			ifFalse: [ ^ GtLProblemDomainObject new description: 'Catalyst agents require a Catalyst Chat.' ].
+		builder := BVCFairyAgentBuilder forAgentCreationRequest: request.
+		builder validateForParent: parent ifErrorDo: [ :problem | ^ problem ].
+		execution := builder startFromParentAgent: parent inContext: anExecutionContext.
+		aToolCall at: #innerChat putRuntimeValue: execution agent.
+		executionError := execution waitUntilCompletionOrTimeout.
+		executionError ifNotNil: [ ^ executionError ].
+		^ execution createAgentResponse
+	] on: Error do: [ :error |
+		| failure |
+		failure := GtLErrorMessage freeze: error.
+		execution ifNotNil: [
+			[ execution agent stopOngoingExecution. execution unsubscribe ]
+				on: Error do: [ :cleanupError | failure otherException: cleanupError ] ].
+		^ BVCFairyAgentProblem new
+			description: 'Catalyst delegation failed: ', error messageText, '. Partial image changes must be inspected before retrying.';
+			agentExecution: execution;
+			failure: failure;
+			yourself ]
 ]
