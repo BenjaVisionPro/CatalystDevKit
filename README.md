@@ -39,6 +39,8 @@ That Game: Catalyst (TGC) is mentioned here as an exemplar of Catalyst ideals: a
 
 Select **Catalyst Chat** in GT's existing Chats popup, choose a connection and press **+**. Barry opens with the fairy artwork and discovers the running DevKit's image, platform, registered Catalyst projects and knowledge base.
 
+Lepiter object-reference annotations in instructions are preserved as text, including their IDs and fallback labels. Export does not require the referenced live object to exist.
+
 Use **Instructions** in the chat header or the **Instruction pages** inspector view to open and edit the Catalyst Lepiter pages. The working rules and role instructions are captured afresh for each user message and child task. An instruction edit applies to subsequent work, without changing a child already running.
 
 Barry answers directly or starts a bounded **System Explorer** or **System Maintainer** task through the GT harness. Explorer has source and documentation search. Maintainer also has local code changes, examples, SUnit tests, object evaluation and Lepiter changes. Maintainer tasks require a user request for that change. Children start fresh with the parent's connection and model and have no delegation tool. Requested tools can narrow a role; unsupported models, history forks and invalid page references fail explicitly. Stop propagates to a child; timeout requests a stop and releases subscriptions.
