@@ -1,0 +1,267 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.879511+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.879511+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xs9CaDAuSlKWVfLyH0I5Tw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Supported bounded slice\nOwner: CatalystFoundation. Configuration authoring uses Atelier as the single supported flexible editor, not a competing composer. {{gtMethod:CFConfiguration>>#asAtelier}} is the intentional entry. {{gtMethod:CFConfiguration>>#descriptionContainerDetail:}} selects Foundation Detail through the existing Magritte container presentation stencil. Both are GT-only extensions in BVC-Foundation-Config-UI-Core; the portable configuration core gains no UI class dependency. Generic {{gtMethod:CFMaPresentationStencilBuilder>>#buildDefault}} remains unchanged.\n\nReuse: CFAtelierViewModel, CFMaDetailPresentation, CFAtelierInspectorElement and CFMaMemento. No new classes, dispatcher or adapter. The root CFMaMemento owns the authoring transaction; child forms edit through its existing child mementos. When opening a focused inspector, supply that child memento and set the presentation's transactionMemento to the root through inspectObject:memento:presentationDo:. This increment proves that existing explicit seam; it does not add automatic nested navigation or infer a transaction from configuration parent links. Domain parent ownership is unchanged during scalar staging/reset. Relation insertion/removal continues to use existing configuration context hooks; it is not migrated in this increment."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.940595+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.940595+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1R/Jc8kuRx+/iBJU9LWijg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Timeout recovery and image boundary\nBefore this increment: inspected CFConfiguration, Atelier/Magritte entry/build protocols, implementors/senders, examples and registered DevKit working rules/framework ownership. CFConfiguration still had only its parent/root/ancestry/initialization/relation/validation methods and class defaultWithParent:. Its asAtelier override was absent; implementors were Object, CPDefinitions and CPProcess. No configuration-Atelier adapter class appeared in the class-name search. Existing Atelier implementation was retained.\n\nIceberg reported no modified CatalystFoundation packages and an empty working-copy diff against reference 59dd780150d6e655bbd885ccbdbc81ccf1683990. Thus no pending Foundation source change from timed-out execution 7xrikwp1ivqgm9uhv6fggg39c was established; this is not proof it performed no work or that prior saved/reverted work did not occur. No execution history attribution is available. Unrelated pre-existing dirty packages were Sparta-Core, Sparta-Skia, Grease-Tests-Pharo-Core, Grease-Pharo110-Slime-Core, Grease-Tests-Pharo-Slime, Grease-Pharo110-Slime-Portability and Grease-Tests-Core; preserved untouched. Other registered Catalyst repositories reported no modified packages.\n\nPending image selectors: CFConfiguration>>asAtelier and >>descriptionContainerDetail: (extensions owned by BVC-Foundation-Config-UI-Core); CFConfigurationExamples>>configurationOpensAsAtelierWithDetail and >>nestedConfigurationAtelierStagesAndResetsSharedTransaction (BVC-Foundation-Config-Examples). No existing selector replaced. No source export/save, staging, commit, push, build or Runtime activation."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.974887+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:03.974887+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oibWz7QJSwqjadK8qHCZfw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Current-image checks and limits\nPlatform: Pharo13.1.0SNAPSHOT, SuperGame.image. examplesInClassesRun: CFConfigurationExamples, CFAtelierEntryExamples, CFMaDetailPresentationExamples and CFMaPresentationExamples: 98 successes, zero failures/errors/skips. CFMaEmbeddedTransactionExamples and CFMaPhlowNavigationExamples: 12 successes, zero failures/errors/skips. Targeted Process check CPProcessAtelierExamples>>documentRootedSessionCreatesProcessFocusedViewModel: success. Final CFConfigurationExamples rerun after strengthening the entry example to capture Atelier's actual presentation hooks synchronously: 14 successes, zero failures/errors/skips. In total 111 distinct example methods, 125 successful executions across these runs. An earlier version of the new entry example failed because preparedElementForMemento: bypasses Atelier's newFormElement callback composition; the example was corrected to run the actual Atelier entry and synchronously initialize its form. That diagnostic failure is retained in tool evidence, not counted as a passing run.\n\nAcceptance: entry selects Atelier plus Detail; nested scalar edit stays staged, inspector retains child memento identity and explicit root action transaction, root reset restores staged value while preserving domain parent and collection identity; focused regressions pass; this maintained documentation home records the boundary. New examples are executable below. No SUnit suite, whole Process suite, legacy editor/animation suite, interactive visual usability, fresh BVC build or GemStone/native validation was performed. Automated form construction is not interactive usability proof."
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.02756+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.02756+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "k19sM7DjTfuMBvQJ9NbOaw=="
+				},
+				"exampleSelector" : "configurationOpensAsAtelierWithDetail",
+				"previewHeight" : 200,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "CFConfigurationExamples",
+				"codeExpanded" : true,
+				"previewExpanded" : false,
+				"noCode" : false
+			},
+			{
+				"__type" : "exampleSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.124347+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.124347+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "X/5cxuS7Tky02gEm3+hxnA=="
+				},
+				"exampleSelector" : "nestedConfigurationAtelierStagesAndResetsSharedTransaction",
+				"previewHeight" : 200,
+				"previewShowSelector" : "gtViewsFor:",
+				"exampleBehaviorName" : "CFConfigurationExamples",
+				"codeExpanded" : true,
+				"previewExpanded" : false,
+				"noCode" : false
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.220574+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T14:51:04.220574+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "uLf4Cs3kTUCI2oLo+a51cA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Legacy status and next increment\nCFConfigurationEditorElement is a retained legacy independent editor, not the target authoring path. Current class-reference inspection found only CFConfigurationEditorElementExamples>>overlayPreviewIsNotAPlacementAnimationOrigin, >>placementAnimationCombinesAffectedRelationsWithoutDuplicates and >>placementAnimationDoesNotTraverseUnaffectedNestedRelations. Its library discovery/planner/sidebar and animation behavior remain untouched. No literal composer reference was found in the bounded source set CFConfiguration, CFConfigurationExamples, CFAtelierViewModel and CFConfigurationEditorElement; this is not a global legacy cleanup claim. Historical composer terminology denotes Atelier's predecessor, not a second supported destination.\n\nNext increment: design and implement the existing configuration library handoff into Atelier using current palette/relation protocols and the same staged transaction, with focused ownership and reset checks. Palette capture/storage, hierarchy/codec migration and Runtime integration are excluded here. Legacy editor removal requires migrated library/placement/animation consumers, equivalent accepted Atelier coverage and a fresh caller/reference review; do not delete it merely because this entry slice is green. This page is the maintained home for this bounded authoring contract, under the DevKit framework ownership index; no Foundation-specific registered book was available during this increment."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T14:50:35.691509+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T14:50:35.691509+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Foundation configuration authoring in Atelier"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "2abe74d8-5a03-4f3d-956f-582a0928dd82"
+	}
+}
