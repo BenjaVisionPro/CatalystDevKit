@@ -231,6 +231,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Legacy status and next increment\nCFConfigurationEditorElement is a retained legacy independent editor, not the target authoring path. Current class-reference inspection found only CFConfigurationEditorElementExamples>>overlayPreviewIsNotAPlacementAnimationOrigin, >>placementAnimationCombinesAffectedRelationsWithoutDuplicates and >>placementAnimationDoesNotTraverseUnaffectedNestedRelations. Its library discovery/planner/sidebar and animation behavior remain untouched. No literal composer reference was found in the bounded source set CFConfiguration, CFConfigurationExamples, CFAtelierViewModel and CFConfigurationEditorElement; this is not a global legacy cleanup claim. Historical composer terminology denotes Atelier's predecessor, not a second supported destination.\n\nNext increment: design and implement the existing configuration library handoff into Atelier using current palette/relation protocols and the same staged transaction, with focused ownership and reset checks. Palette capture/storage, hierarchy/codec migration and Runtime integration are excluded here. Legacy editor removal requires migrated library/placement/animation consumers, equivalent accepted Atelier coverage and a fresh caller/reference review; do not delete it merely because this entry slice is green. This page is the maintained home for this bounded authoring contract, under the DevKit framework ownership index; no Foundation-specific registered book was available during this increment."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.926527+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.926527+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "QWrelAcpSbShvn/zK+HV4Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Configuration consolidation contract\nSee {{gtPage:Configuration model and composition contract|db=731asfxqhyhdr96k6wo9yxnzv}} for the bounded model contract and blocked retry evidence. Planner discovery/simulation/new-validation-error rejection remain mandatory. Smooth, intent-revealing Motion animation is CORE Atelier behavior, not optional polish. Generic Magritte composition remains the direction; configuration specialises it. Immediate configuration placement parent hooks versus generic CFMaMemento staged relation integration remains the next slice, not completed support. Historical checks above are not post-consolidation verification."
 			}
 		]
 	},

@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.743741+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.743741+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "BuNR2hrHTtO8wR48Xh5AoA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Bounded contract and owners\nCatalystFoundation owns CFConfiguration (BVC-Foundation-Config-Core), generic composition of Magritte-described objects and Atelier GT UI. Configuration specialises generic composition. CatalystRuntime owns CRConfiguration (BVC-Runtime-Configuration), Runtime semantic validation and fail-closed CRConfigurationSnapshot isolation. See {{gtPage:Foundation configuration authoring in Atelier|db=731asfxqhyhdr96k6wo9yxnzv}} (UID 7qwpgbmci583eb5iq84j8io16), {{gtPage:Runtime design contract|db=760mc3rkot5pkhueq2jxjz5gt}} and CatalystRuntime/runtime/Runtime-Ownership-and-Vocabulary.md (read-only evidence).\n\nRequired consolidation: CRConfiguration subclasses CFConfiguration and inherits one parent slot, basic ancestry and initialization. Preserve CR defaultWithParent: dispatch through default (CF uses new), withParent:, first-ancestor search APIs, semantic validation and Runtime snapshot copying. No invented parent-tree restrictions, no substitution of the planner copier for Runtime snapshots. Headless models acquire no GT UI dependencies. CFConfiguration>>asAtelier and >>descriptionContainerDetail: remain extensions owned by BVC-Foundation-Config-UI-Core; after consolidation Runtime configuration inherits these presentation effects in GT.\n\nPlacement discovery, simulation and rejection of newly introduced validation errors MUST remain supported. Smooth, intent-revealing Motion animation is a CORE Atelier requirement, not optional polish. Existing editor/animation paths must not be removed or degraded before accepted equivalent coverage. This bounded model change cannot establish whole Atelier completion.\n\nNext-slice gap: immediate CFConfigurationPlacement relation parent hooks are not integrated with generic CFMaMemento staged relations. Do not represent immediate relation mutation as staged/reset-safe composition. No broad staged-relation integration in this increment."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.870625+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-18T15:58:46.870625+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "wmVCkc21QD6vQ1L+oNgAGg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Retry outcome: blocked by class-change tool, not completed\nInspection before changes found CRConfiguration still directly subclassing CFLabelledObject with local parent and the six duplicate selectors parent, parent:, hasParent, initialize, ancestorConfigurations and rootConfiguration. No attribution of unrelated image changes to the previous failed child is possible. Those selectors and all unrelated code were preserved.\n\nOne signature-change attempt requested CFConfiguration superclass and empty local slots. It failed: DuplicatedSlotName: Slot #'parent' appeared twice in CRConfiguration. Source inspection of GtLClassChangeDataExtractor>>extractVariables proves an empty instanceVariables array means retain current slots, not remove all slots. Consequently the available signature tool cannot express the required atomic removal of the final local slot. Reinspection confirmed superclass CFLabelledObject and local parent remain unchanged. No code selectors/packages changed by this retry. No retry through a temporary slot, direct evaluation mutation, tool implementation edit or new abstraction was attempted; these would expand or risk the bounded change. The previous external-object-space error did not recur.\n\nCurrent-image checks on SuperGame.image / Pharo13.1.0SNAPSHOT: 73 gtExample executions succeeded, zero failures/errors/skips, zero missing classes. Classes: CFConfigurationExamples (all 14, including planner discovery/apply simulation/rejection/stale-plan and Atelier entry/shared transaction reset), CFAtelierEntryExamples, CFConfigurationEditorElementExamples (three animation-origin/traversal checks), CRRuntimeConfigurationExamples, CRRuntimeConfigurationValidatorExamples, CRRuntimeConfigurationCodecExamples, CRRuntimeConfigurationNodeExamples, CRFailureEvidenceConfigurationExamples and CRSnapshotIsolationExamples. These verify the unchanged hierarchy baseline, NOT the proposed consolidation. Inspectable hierarchy/tool/package evidence: {{gtObject:id=xj41c1atudsj5pz4fiosx597|fallbackLabelString='Retry hierarchy and class-change-tool evidence'}}.\n\nExclusions: no post-consolidation hierarchy/default/ancestry check is possible because consolidation did not occur; no SUnit run, full Runtime/Atelier suite, interactive animation/usability proof or GemStone validation. No explicit Runtime activation, startup setting change, source export/save, commit, push, BVC build or external checkout operation. Only this contract page and links were added to registered Lepiter documentation. Next action requires an authorized class-edit facility that can atomically specify zero local slots; do not claim completion from passing baseline examples."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T15:58:06.788142+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-18T15:58:06.788142+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Configuration model and composition contract"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "70ebca79-6c7a-45fd-9670-1c8dc5cbb447"
+	}
+}
