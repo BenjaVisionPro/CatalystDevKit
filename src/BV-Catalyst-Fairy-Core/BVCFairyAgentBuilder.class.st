@@ -8,7 +8,7 @@ Class {
 	#package : 'BV-Catalyst-Fairy-Core'
 }
 
-{ #category : 'running' }
+{ #category : 'building' }
 BVCFairyAgentBuilder >> createAgentForParent: aParent [
 	| child tools |
 	child := self createNewStandaloneChatFrom: aParent.
@@ -20,6 +20,7 @@ BVCFairyAgentBuilder >> createAgentForParent: aParent [
 		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
 	child tools: tools.
 	aParent devKitContext configureChat: child forRole: self request agentName.
+	child instruction: aParent continuity contextString titled: 'Barry work continuity'.
 	(self request instructionPageReferences ifNil: [ #() ]) do: [ :reference |
 		child pageObjectExplanation: (self locatePageForReference: reference) ].
 	^ child
@@ -44,7 +45,7 @@ BVCFairyAgentBuilder >> roleTools [
 	^ tools
 ]
 
-{ #category : 'running' }
+{ #category : 'building' }
 BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 	| child execution |
 	self validateForParent: aParent ifErrorDo: [ :problem | self error: problem description ].
@@ -56,6 +57,8 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 		yourself.
 	aContext objectStorage ifNotNil: [ :storage |
 		execution executionId: (storage addNewObject: execution) ].
+	"A failed initial checkpoint must prevent child work."
+	execution startContinuity.
 	execution registerTerminationSignal.
 	[ execution isCancelled ifFalse: [ child sendMarkdown: self request prompt ].
 	  aParent state = GtLProviderState stopping ifTrue: [ execution cancel ] ]

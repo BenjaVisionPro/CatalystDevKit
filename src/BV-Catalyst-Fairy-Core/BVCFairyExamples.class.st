@@ -481,6 +481,30 @@ BVCFairyExamples >> narrowedTools [
 ]
 
 { #category : 'examples' }
+BVCFairyExamples >> objectReferencesInInstructions [
+	<gtExample>
+	| reference labelledReference source page exported chat instructions |
+	reference := '{{gtObject:id=0000000000000000000000000}}'.
+	labelledReference := '{{gtObject:id=0000000000000000000000001|fallbackLabelString=''Unavailable evidence''}}'.
+	source := 'Before ', reference, ' and ', labelledReference, ' after.'.
+	page := LePage named: 'Object reference instruction example'.
+	page addSnippet: (LeTextSnippet string: source).
+	exported := GtLLepiterContentExporter new
+		strictMode: true;
+		page: page;
+		export.
+	self assert: (exported includesSubstring: source).
+	chat := self parentChat.
+	chat addToExplanationSectionLepiterPage: page.
+	instructions := chat instructions.
+	self assert: (instructions instructionString includesSubstring: source).
+	chat sendMarkdown: 'Check the current instructions.'.
+	self assert: chat messages size equals: 2.
+	self assert: (chat instructions == instructions) not.
+	^ exported
+]
+
+{ #category : 'examples' }
 BVCFairyExamples >> parentCancellation [
 	<gtExample>
 	| parent execution problem |
@@ -633,28 +657,4 @@ BVCFairyExamples >> unknownToolsAreRejected [
 		validateForParent: self parentChat ifErrorDo: [ :error | error ].
 	self assert: (problem description includesSubstring: 'notAnAvailableTool').
 	^ problem
-]
-
-{ #category : 'examples' }
-BVCFairyExamples >> objectReferencesInInstructions [
-	<gtExample>
-	| reference labelledReference source page exported chat instructions |
-	reference := '{{gtObject:id=0000000000000000000000000}}'.
-	labelledReference := '{{gtObject:id=0000000000000000000000001|fallbackLabelString=''Unavailable evidence''}}'.
-	source := 'Before ', reference, ' and ', labelledReference, ' after.'.
-	page := LePage named: 'Object reference instruction example'.
-	page addSnippet: (LeTextSnippet string: source).
-	exported := GtLLepiterContentExporter new
-		strictMode: true;
-		page: page;
-		export.
-	self assert: (exported includesSubstring: source).
-	chat := self parentChat.
-	chat addToExplanationSectionLepiterPage: page.
-	instructions := chat instructions.
-	self assert: (instructions instructionString includesSubstring: source).
-	chat sendMarkdown: 'Check the current instructions.'.
-	self assert: chat messages size equals: 2.
-	self assert: (chat instructions == instructions) not.
-	^ exported
 ]

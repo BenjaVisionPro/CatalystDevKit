@@ -5,7 +5,8 @@ Class {
 	#name : 'BVCFairyAgentExecution',
 	#superclass : 'GtLAgentExecution',
 	#instVars : [
-		'wasCancelled'
+		'wasCancelled',
+		'continuityRequestId'
 	],
 	#category : 'BV-Catalyst-Fairy-Core',
 	#package : 'BV-Catalyst-Fairy-Core'
@@ -50,6 +51,11 @@ BVCFairyAgentExecution >> isCancelled [
 ]
 
 { #category : 'execution' }
+BVCFairyAgentExecution >> onChildExecutionStateChanged: anAnnouncement [
+	anAnnouncement state = GtLProviderState idle ifTrue: [ terminationSemaphore signal ]
+]
+
+{ #category : 'execution' }
 BVCFairyAgentExecution >> onParentExecutionStateChanged: anAnnouncement [
 	anAnnouncement state = GtLProviderState stopping ifTrue: [ self cancel ]
 ]
@@ -62,13 +68,16 @@ BVCFairyAgentExecution >> problem: aDescription [
 		yourself
 ]
 
+{ #category : 'continuity' }
+BVCFairyAgentExecution >> recordContinuity: anOutcome [
+	continuityRequestId ifNotNil: [ self parentAgent continuity recordId: continuityRequestId outcome: anOutcome ]
+]
+
 { #category : 'execution' }
 BVCFairyAgentExecution >> registerTerminationSignal [
-	super registerTerminationSignal.
-	self parentAgent announcer
-		when: GtLChatExecutionStateChanged
-		send: #onParentExecutionStateChanged:
-		to: self.
+	terminationSemaphore := Semaphore new.
+	self agent announcer when: GtLChatExecutionStateChanged send: #onChildExecutionStateChanged: to: self.
+	self parentAgent announcer when: GtLChatExecutionStateChanged send: #onParentExecutionStateChanged: to: self.
 	self parentAgent state = GtLProviderState stopping ifTrue: [ self cancel ]
 ]
 
@@ -77,9 +86,14 @@ BVCFairyAgentExecution >> signalCompletion [
 	terminationSemaphore signal
 ]
 
+{ #category : 'continuity' }
+BVCFairyAgentExecution >> startContinuity [
+	continuityRequestId := self parentAgent continuity startKind: 'child' parentId: self parentAgent continuityRequestId
+]
+
 { #category : 'execution' }
 BVCFairyAgentExecution >> unsubscribe [
-	self agent announcer unsubscribe: terminationSemaphore.
+	self agent announcer unsubscribe: self.
 	self parentAgent announcer unsubscribe: self
 ]
 
@@ -91,12 +105,16 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeout [
 { #category : 'execution' }
 BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 	| timedOut |
-	[ timedOut := terminationSemaphore waitTimeoutSeconds: seconds ]
-		ensure: [ self unsubscribe ].
+	[ timedOut := terminationSemaphore waitTimeoutSeconds: seconds ] ensure: [ self unsubscribe ].
 	wasCancelled ifTrue: [
+		self recordContinuity: 'cancel requested; child cessation and partial image changes unknown; late completion not observed; acceptance unverified'.
 		^ self problem: 'The Catalyst agent was cancelled.' ].
 	timedOut ifTrue: [
 		self agent stopOngoingExecution.
+		self recordContinuity: 'timeout; stop requested; child cessation and partial image changes unknown; late completion not observed; acceptance unverified'.
 		^ self problem: 'The Catalyst agent timed out; stop was requested.' ].
+	self recordContinuity: ((self responseMessage isKindOf: GtLErrorMessage)
+		ifTrue: [ 'child response error; partial image changes unknown; acceptance unverified' ]
+		ifFalse: [ 'child provider finished; task success unknown; acceptance unverified' ]).
 	^ nil
 ]

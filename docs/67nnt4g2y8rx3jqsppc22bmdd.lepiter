@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T08:49:14.681046+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T08:49:14.681046+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "xTyG1OuoTOO/xopsXWv5Aw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "b0f6c052-5800-42ab-a476-d6e8fd365e6b | 2026-10-19T08:49:14.658738+11:00 | child | parent=none | started; outcome unknown; acceptance unverified"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T08:57:01.114365+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T08:57:01.114365+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vDh0Io22QAWYVm4DTEwElQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "4b442810-a38f-4711-8c9e-da3c022feb01 | 2026-10-19T08:57:01.113112+11:00 | root | parent=none | started; outcome unknown; acceptance unverified"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-19T08:49:14.440535+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-19T08:49:14.440535+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Barry dated work records"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "01d0c28e-27fd-4b82-a220-80dd7ea3f068"
+	}
+}
