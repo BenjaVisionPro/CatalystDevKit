@@ -225,6 +225,80 @@
 					"__type" : "textStyle"
 				},
 				"string" : "For ordinary delegation, omit toolNames or supply an empty list so the role supplies its tools. If narrowing is needed, supply a nonempty subset of the available role tools. A failed child returns its actual error and agentExecutionId, and the result's Agent chat view retains the child for inspection. Report the error and reference the child instead of describing every failure as a missing response."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T07:19:14.994981+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T07:19:14.994981+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+ICdIGP2QSacdkQY3/9Q5Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Barry-local Codex connection lifecycle — image implementation\nOwner: CatalystDevKit, BV-Catalyst-Fairy-Core (test doubles and examples in its Examples tag). {{gtClass:BVCFairyCodexClient}} specialises only the fresh-request operation; inherited credentials, request headers/options, OAuth retry, SSE parser and history remain in use. {{gtMethod:BVCFairyChat>>#buildDefaultProvider}} and {{gtMethod:BVCFairyChat>>#provider:}} install through model client:. Other providers and ordinary GT chats are unchanged. Existing Barry client consumers were migrated together through their model client: seam, retaining history and all client slots by identity; root and child providers/models were not replaced. Children inherit the installed shared client through the existing agent builder.\n\nThe request invocation owns its fresh Zinc client and closes it in ensure: after success, error or process unwind. A fully read response keeps the original response/headers, replaces only its consumed entity with text body evidence, and retains the usual parsed result/history. GT request/response views and history export consumers were inspected: they need response contents/serialization rather than a live transport. SSE is still SSE, not JSON; the generic JSON-tree view cannot parse SSE. Old consumed bodies cannot be reconstructed. Partial body-read/network errors retain their original error evidence, not an invented complete body; this change does not add failure records to history.\n\nZinc beOneShot explicitly rejects streaming. Zinc close closes its connection; secure stream close destroys its SSL session and underlying Socket, unregistering its three external semaphores. No GT or Zinc source was edited. Remove this narrowly scoped override and installation methods when upstream Codex provides equivalent guaranteed per-request close/unwind and inspectable materialized body evidence; rerun these examples before removal.\n\nCancellation limit: existing provider stop is cooperative (running state becomes stopping); it does not interrupt an HTTP read. This change closes when that invocation returns/errors/unwinds, not immediately on a UI stop. Process termination unwind is executable-tested. Prompt native read interruption on cooperative cancel remains a gap, not a claimed capability."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T07:19:15.017892+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T07:19:15.017892+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "gHrB529oQVCV1oJ/mHE+KQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Lifecycle verification and one-time completed backlog cleanup\nCurrent SuperGame.image, Pharo13.1.0SNAPSHOT. Final run: BVCFairyCodexExamples 8, BVCFairyExamples 38, BVCFairyWindowTitleExamples 4: 50 successes, zero failures/errors/skips. An earlier test-double setup error (nonexistent ZnResponse class>>notFound) was corrected and the complete suite rerun. Focused examples cover success/body/result identity, network/body-read/parse/missing-terminal/history failure, 401 refresh/retry with each attempt closed, non-401 propagation, process termination unwind, slot/history preservation and root/child installation. Controlled HTTP doubles do not prove native TLS/network failure behavior.\n\n{{gtMethod:BVCFairyCodexExamples>>#repeatedNativeSocketResources}} performs ten real native TCP socket allocations without network connections/model calls, checks the exact three semaphore identities registered, executes controlled post with real Zinc client/stream close, checks handles nil and identities absent, and verifies zero registration growth each iteration. Native resource evidence: {{gtObject:id=876vdn2i18yl9kbqd34h0icyi}}. This is native allocation/release evidence, not a real TLS round trip.\n\nApproved one-time backlog selection was confined to the current shared Barry Codex history, nonnil parsed results, ZnStreamingEntity -> ZnChunkedReadStream with stored atEnd == true -> ZdcSecureSocketStream, nonnil socket handle, identity-deduplicated sockets. No atEnd messages/read/network probes, global socket sweep, GC or limit changes. Underlying secure streams were closed after rechecking eligibility. 337 selected/closed, 337 handles cleared; exactly 1011 selected semaphore identities went from registered to absent; global nonnil external registrations 1041 -> 30; zero cleanup errors. History 367 -> 368 during the cleanup interval because the chat continued naturally; no history entry/result/metadata was removed. Selection and native identity evidence: {{gtObject:id=7xculpl4mj77rgkxmjkfp4v2h}}; cleanup result: {{gtObject:id=6yra6yzchgu7fmaqh3u2daaqn}}. The old client remained active during implementation before migration; this selection is not a claim that no additional pre-installation completions exist.\n\nLive migration evidence: {{gtObject:id=c61wjqlks07j4fz2xeqj5kbjb}} (three Barry roots; their model consumers 1, 1 and 12; old-client model consumers zero, shared histories identical). Naturally occurring post-installation records were passively observed as materialized bodies with parsed results; external registrations remained 60 across observations separated by further natural completions: {{gtObject:id=63c4cd4y0st8xniwrnpbqz1va}} and {{gtObject:id=bzft82grv1lkhfudnh8q3imzn}}. This is bounded observation, not long-run proof. In-flight/pre-installation residual completions were not swept.\n\nRead-only Iceberg diff against CatalystDevKit reference commit inspected: only BV-Catalyst-Fairy-Core changes for BVCFairyChat, BVCFairyCodexClient and its four example/double classes; selector manifest {{gtObject:id=5iwlx4hivbq3waqpqlcemovjb}}. Upstream Codex and Zinc close source re-inspected unchanged. Pending source changes remain in the image; no source save/export, commit/push, BVC build, startup change, GemStone check or external checkout operation. Parent review is required before declaring completion; immediate cooperative-cancel interruption and native TLS failure-path execution remain unverified."
 			}
 		]
 	},

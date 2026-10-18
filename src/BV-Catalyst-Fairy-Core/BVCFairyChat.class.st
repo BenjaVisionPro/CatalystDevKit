@@ -41,6 +41,14 @@ BVCFairyChat >> asElement [
 		yourself
 ]
 
+{ #category : 'initialization' }
+BVCFairyChat >> buildDefaultProvider [
+	| currentProvider |
+	currentProvider := super buildDefaultProvider.
+	self installCodexClientFor: currentProvider.
+	^ currentProvider
+]
+
 { #category : 'accessing' }
 BVCFairyChat >> devKitContext [
 	^ devKitContext
@@ -85,6 +93,19 @@ BVCFairyChat >> initialize [
 		tools: BVCDevKitContext readOnlyTools.
 	self addTool: BVCFairyAgentTool new.
 	self refreshInstructions
+]
+
+{ #category : 'initialization' }
+BVCFairyChat >> installCodexClientFor: aProvider [
+	(aProvider isKindOf: GtLOpenAiCodexProvider) ifFalse: [ ^ self ].
+	aProvider model client class = GtLOpenAiCodexClient ifTrue: [
+		aProvider model client: (BVCFairyCodexClient preservingClient: aProvider model client) ]
+]
+
+{ #category : 'accessing' }
+BVCFairyChat >> provider: aProvider [
+	self installCodexClientFor: aProvider.
+	super provider: aProvider
 ]
 
 { #category : 'instructions' }
