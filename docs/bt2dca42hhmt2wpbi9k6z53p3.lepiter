@@ -140,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T11:18:17.09348+11:00"
+						"dateAndTimeString" : "2026-10-19T15:23:55.112505+11:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Implementation state: image-only changes to BVCFairyContinuity>>contextString and >>preparePages; two new BVCFairyContinuityExamples selectors instructionRefreshRecoversMultipleStateSnippets and instructionRefreshBoundsOversizedState. Existing refreshInstructions remains unchanged and is exercised directly. Missing Barry continuity contract link removed from workbench and initial-page template; shared guidance linked instead."
+				"string" : "Implementation state: reviewed increment is BVCFairyContinuity>>contextString and >>preparePages, plus BVCFairyContinuityExamples>>instructionRefreshRecoversMultipleStateSnippets and >>instructionRefreshBoundsOversizedState. Existing refreshInstructions unchanged. Four selectors now match observed repository HEAD after line-ending normalization; no additional source edit or save needed here. Missing contract link removed in prior increment; shared guidance linked instead."
 			},
 			{
 				"__type" : "textSnippet",
@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T11:18:17.10974+11:00"
+						"dateAndTimeString" : "2026-10-19T15:23:34.569976+11:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Verification: fresh GT example run on SuperGame.image / Pharo13.1.0SNAPSHOT: Continuity 14 + Fairy 39 + Codex 8 + WindowTitle 4 = 65 successes, zero failures/errors/skips. Added checks assert seven distinct fields from multiple snippets in actual fresh chat instructions and oversized-state notice/budget with lifecycle bounds, using isolated volatile books. Parent still must inspect source and evidence before accepting completion."
+				"string" : "Verification: 2026-10-19 current SuperGame.image / Pharo13.1.0SNAPSHOT: 65 GT examples passed (Continuity 14, Fairy 39, Codex 8, titles 4), zero failures/errors/skips. Controlled volatile-book checks exercise fresh instructions. Parent source/example review completed per task handoff; this child inspected prior maintained-book/cessation evidence and current source. Exact child identity, prior Maintainers idle, no retained receiver stacks, successful initial checkpoint verified. Fresh BVC/rebuilt-chat recovery not executed."
 			},
 			{
 				"__type" : "textSnippet",
@@ -214,7 +214,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T11:18:17.11452+11:00"
+						"dateAndTimeString" : "2026-10-19T15:23:42.22495+11:00"
 					}
 				},
 				"uid" : {
@@ -224,7 +224,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Delivery state: loaded image source edits only; these existing Lepiter pages updated normally. No source save/export, stage, commit, push, sync, external checkout, build, dependency, infrastructure, Foundation/Runtime/composition changes. User-reported BVC9097565 publication/rebuild survival is historical evidence, not a new delivery or durability check."
+				"string" : "Delivery state: this child saved no source files and made no source edits/stage/commit/push/export/sync/build. Reconciliation found all four selectors already present in CatalystDevKit HEAD/reference 7a04ff96fdee99dddb8950f67af99b845d42b3d6 (line-ending-normalized equality); owning package patch empty and no source-file Git deltas. Earlier image-only status is superseded by observed repository state, not a publication performed here. Existing Lepiter pages updated only. No external checkout, Foundation/Runtime/composition or infrastructure changes."
 			},
 			{
 				"__type" : "textSnippet",
@@ -288,7 +288,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T11:18:17.124135+11:00"
+						"dateAndTimeString" : "2026-10-19T15:24:08.157373+11:00"
 					}
 				},
 				"uid" : {
@@ -298,7 +298,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Next action: parent Barry inspects the four changed selectors and current run evidence against A1–A5 before accepting this image increment. A later separately user-authorized GT/Iceberg source save followed by BVC rebuild/recovery checkpoint is not executed here."
+				"string" : "Next action: user supplies or opens the existing BVC configuration/startup orchestration for a separate non-disruptive rebuild pinned to verified CatalystDevKit 7a04ff96fdee99dddb8950f67af99b845d42b3d6; then verify fresh-chat seven-field recovery there. Current role exposes no BVC build tool/configuration; scoped Markdown cannot read startup scripts. No build command invented or historical revision built."
 			}
 		]
 	},

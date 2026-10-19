@@ -77,6 +77,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Maintained state recovery — 2026-10-19\nOwner: CatalystDevKit / BV-Catalyst-Fairy-Core. An explicitly authorized maintainer writes semantic facts on [[Barry workstream state]] through normal Lepiter editing; BVCFairyContinuity writes bounded lifecycle facts on [[Barry dated work records]]. No automatic semantic extraction or background maintenance. Top-level state snippets are read in page order by BVCFairyContinuity>>contextString and injected by the existing BVCFairyChat>>refreshInstructions path (also reused by child construction). Keep concise maintained fields before long historical material; nested snippets are not included.\nBudget: complete continuity context at most 8192 characters, state text plus separators at most 4000, lifecycle last six records at most 500 characters each. Oversized state emits an explicit omitted/truncated notice linking its page; total-budget fallback also names both pages. This replaces first-snippet-only recovery, not the chat instruction architecture. Other shared instructions are outside this continuity budget.\nPersistence: the existing image-local writer lock serializes lifecycle checkpoints; normal Lepiter book monitor savePage:/updateEntries owns persistence. These are not atomic multi-page transactions. Failure can leave partial page changes; retained lastFailure/degraded status and the existing successful-initial-checkpoint gate apply. Do not replay mutations or infer task success from provider completion. Normal page saves in this increment are not source publication or crash durability evidence.\nFresh current-image checks: Continuity 14, Fairy 39, Codex 8, WindowTitle 4; all 65 passed, zero failures/errors/skips, SuperGame.image / Pharo13.1.0SNAPSHOT. Continuity checks use isolated volatile books and controlled providers, and assert actual fresh chat instructions. Native socket allocation check is included; native TLS failure, abrupt crash and fresh BVC rebuild/recovery are excluded. User-reported BVC9097565 rebuild/recovery survival and previous 63 passes remain historical, not fresh verification."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T15:25:00.598604+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T15:25:00.598604+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "3n2mPlniTXuYWxjAt2VD0Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Delivery reconciliation — 2026-10-19\nParent source/example review completed per authorized task handoff (not an independent inspection of every parent tool result). Current child re-inspected four selectors and prior child evidence. CatalystDevKit main HEAD/reference is 7a04ff96fdee99dddb8950f67af99b845d42b3d6, comment ‘better fail handling’. All four selectors already exist there and match loaded source after line-ending normalization. Full owning-package MCPatch is empty; source Git deltas absent. Thus no source save is necessary or performed by this child; earlier image-only delivery description is historical. No stage/commit/push/export/sync. Existing unrelated state preserved. Inspected Iceberg scoped updateDiskWorkingCopy: path but did not invoke it for an empty diff.\nFresh checks: 65 successes, zero failures/errors/skips (14 Continuity + 39 Fairy + 8 Codex + 4 titles), SuperGame.image / Pharo13.1.0SNAPSHOT. Controlled volatile-book examples verify actual instructions; native TLS/crash/rebuild excluded. Current role has no BVC build tool or exposed configuration/startup contract. Registered Markdown lists no readable bin documents, which does not prove scripts absent. Baseline loadLepiter registers books, not a rebuild; BVCInstaller installs GemStone tooling, not a supported DevKit rebuild. No shell/export workaround, process termination, build, source editing or infrastructure mutation. See [[Barry workstream state]] for the single next action; fresh BVC recovery remains unexecuted."
 			}
 		]
 	},
