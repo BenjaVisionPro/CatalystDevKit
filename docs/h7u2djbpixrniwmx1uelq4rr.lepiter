@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T08:49:14.212066+11:00"
+						"dateAndTimeString" : "2026-10-19T11:17:29.30942+11:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,44 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Barry continuity index: [[Barry workstream state]], [[Barry dated work records]], [[Barry continuity contract]]. Lifecycle facts only; no execution resume or automatic acceptance verification."
+				"string" : "Barry continuity index: [[Barry workstream state]], [[Barry dated work records]]. Shared guidance: [[Catalyst working rules]] and [[Catalyst Fairy]]. The formerly linked Barry continuity contract page is missing (Barry page search found only these three pages); the dangling link is removed, not replaced by invented authority. Historical index described lifecycle facts only; maintained semantic state now also reaches instruction refresh, without execution resume or automatic acceptance verification."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.058318+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.058318+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "kFmoY1DkSjqv14M4msZaJg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Maintained state recovery — 2026-10-19\nOwner: CatalystDevKit / BV-Catalyst-Fairy-Core. An explicitly authorized maintainer writes semantic facts on [[Barry workstream state]] through normal Lepiter editing; BVCFairyContinuity writes bounded lifecycle facts on [[Barry dated work records]]. No automatic semantic extraction or background maintenance. Top-level state snippets are read in page order by BVCFairyContinuity>>contextString and injected by the existing BVCFairyChat>>refreshInstructions path (also reused by child construction). Keep concise maintained fields before long historical material; nested snippets are not included.\nBudget: complete continuity context at most 8192 characters, state text plus separators at most 4000, lifecycle last six records at most 500 characters each. Oversized state emits an explicit omitted/truncated notice linking its page; total-budget fallback also names both pages. This replaces first-snippet-only recovery, not the chat instruction architecture. Other shared instructions are outside this continuity budget.\nPersistence: the existing image-local writer lock serializes lifecycle checkpoints; normal Lepiter book monitor savePage:/updateEntries owns persistence. These are not atomic multi-page transactions. Failure can leave partial page changes; retained lastFailure/degraded status and the existing successful-initial-checkpoint gate apply. Do not replay mutations or infer task success from provider completion. Normal page saves in this increment are not source publication or crash durability evidence.\nFresh current-image checks: Continuity 14, Fairy 39, Codex 8, WindowTitle 4; all 65 passed, zero failures/errors/skips, SuperGame.image / Pharo13.1.0SNAPSHOT. Continuity checks use isolated volatile books and controlled providers, and assert actual fresh chat instructions. Native socket allocation check is included; native TLS failure, abrupt crash and fresh BVC rebuild/recovery are excluded. User-reported BVC9097565 rebuild/recovery survival and previous 63 passes remain historical, not fresh verification."
 			}
 		]
 	},

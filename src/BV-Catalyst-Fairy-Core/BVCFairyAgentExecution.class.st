@@ -19,6 +19,15 @@ BVCFairyAgentExecution >> cancel [
 	terminationSemaphore signal
 ]
 
+{ #category : 'continuity' }
+BVCFairyAgentExecution >> continuityWarning [
+	| writer |
+	self parentAgent ifNil: [ ^ '' ].
+	writer := self parentAgent continuity.
+	writer isDegraded ifFalse: [ ^ '' ].
+	^ 'Continuity checkpoint failed; the child result is preserved, but its checkpoint is unverified. Do not repeat mutating work. Inspect parent continuity lastFailure and partial state.'
+]
+
 { #category : 'execution' }
 BVCFairyAgentExecution >> createAgentResponse [
 	| message content warning |
@@ -126,13 +135,4 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 		ifTrue: [ 'child response error; partial image changes unknown; acceptance unverified' ]
 		ifFalse: [ 'child provider finished; task success unknown; acceptance unverified' ]).
 	^ nil
-]
-
-{ #category : 'continuity' }
-BVCFairyAgentExecution >> continuityWarning [
-	| writer |
-	self parentAgent ifNil: [ ^ '' ].
-	writer := self parentAgent continuity.
-	writer isDegraded ifFalse: [ ^ '' ].
-	^ 'Continuity checkpoint failed; the child result is preserved, but its checkpoint is unverified. Do not repeat mutating work. Inspect parent continuity lastFailure and partial state.'
 ]

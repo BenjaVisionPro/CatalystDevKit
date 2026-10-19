@@ -87,6 +87,16 @@ BVCFairyChat >> finishContinuity: anOutcome [
 ]
 
 { #category : 'views' }
+BVCFairyChat >> gtContinuityFailureFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'Continuity failure';
+		priority: 7;
+		object: [ self continuity ];
+		view: #gtLastFailureFor:
+]
+
+{ #category : 'views' }
 BVCFairyChat >> gtDevKitContextFor: aView [
 	<gtView>
 	^ aView columnedList
@@ -184,14 +194,4 @@ BVCFairyChat >> sendMessage: aMessage [
 	  ^ super sendMessage: aMessage ] on: Error do: [ :error |
 		self finishContinuity: 'send failed; partial image changes unknown; acceptance unverified'.
 		error pass ]
-]
-
-{ #category : 'views' }
-BVCFairyChat >> gtContinuityFailureFor: aView [
-	<gtView>
-	^ aView forward
-		title: 'Continuity failure';
-		priority: 7;
-		object: [ self continuity ];
-		view: #gtLastFailureFor:
 ]

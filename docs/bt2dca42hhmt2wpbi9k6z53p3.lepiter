@@ -40,6 +40,265 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Active: automatic Barry continuity, initial image slice. Queued: composition/configuration goal, awaiting a bounded authorized task; no composition or Runtime edits here. Source publication/rebuild reported by a user is not executable verification. Fresh BVC rebuild and abrupt-crash preservation unverified. No inferred semantic decisions are recorded."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.079331+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.079331+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9po98zwNSIKDnmwppVC7Fw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Goal: recover maintained multi-snippet semantic continuity automatically during fresh Barry instruction refresh, limited to CatalystDevKit / BV-Catalyst-Fairy-Core. The initial snippet above is historical initial-slice state; no composition/configuration or Runtime work is authorized here."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.090077+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.090077+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Mkg1nokQS8Cu2vWmFoKjrQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Decisions: reuse BVCFairyContinuity>>contextString and existing BVCFairyChat>>refreshInstructions; no new classes, alternate paths, APIs, task resume or automatic semantic extraction. Maintainer explicitly owns semantic page edits; existing writer owns lifecycle checkpoints. Full continuity budget 8192 characters; state including separators 4000; last six lifecycle records 500 each. Omitted/truncated state links this page. Top-level snippets only, in page order."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.09348+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.09348+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "96+LNI/MTYSu+tz05IlgRQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Implementation state: image-only changes to BVCFairyContinuity>>contextString and >>preparePages; two new BVCFairyContinuityExamples selectors instructionRefreshRecoversMultipleStateSnippets and instructionRefreshBoundsOversizedState. Existing refreshInstructions remains unchanged and is exercised directly. Missing Barry continuity contract link removed from workbench and initial-page template; shared guidance linked instead."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.10974+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.10974+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bwF7K/RwQnuv6Q3WuPKf3Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Verification: fresh GT example run on SuperGame.image / Pharo13.1.0SNAPSHOT: Continuity 14 + Fairy 39 + Codex 8 + WindowTitle 4 = 65 successes, zero failures/errors/skips. Added checks assert seven distinct fields from multiple snippets in actual fresh chat instructions and oversized-state notice/budget with lifecycle bounds, using isolated volatile books. Parent still must inspect source and evidence before accepting completion."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.11452+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.11452+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MOt3GcrQTNKuI5hHvxTCXw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Delivery state: loaded image source edits only; these existing Lepiter pages updated normally. No source save/export, stage, commit, push, sync, external checkout, build, dependency, infrastructure, Foundation/Runtime/composition changes. User-reported BVC9097565 publication/rebuild survival is historical evidence, not a new delivery or durability check."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.119257+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.119257+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2boXnOBNTUuN9VPRbxk3xg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Remaining gaps: automatic semantic maintenance absent; human/authorized maintainer must maintain these fields. Nested snippets are not recovered. Truncated context requires reading this page. Abrupt-crash preservation, fresh BVC rebuild/recovery and native GemStone untested. Unknown historical outcomes and original exceptions remain preserved; no rollback or replay was attempted."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.124135+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.124135+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "geKNax6OSkG4THZyeTpnjQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Next action: parent Barry inspects the four changed selectors and current run evidence against A1–A5 before accepting this image increment. A later separately user-authorized GT/Iceberg source save followed by BVC rebuild/recovery checkpoint is not executed here."
 			}
 		]
 	},

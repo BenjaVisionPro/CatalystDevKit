@@ -27,6 +27,21 @@ BVCFairyContinuityExamples >> boundsAndLoad [
 ]
 
 { #category : 'examples' }
+BVCFairyContinuityExamples >> checkpointFailureReleasesLock [
+	<gtExample>
+	| writer entered |
+	writer := BVCFairyContinuityStub new database: LeDatabase new.
+	self assert: (writer checkpoint: [ 1 / 0 ]) not.
+	self assert: writer lastFailure exception class equals: ZeroDivide.
+	entered := false.
+	self assert: (writer checkpoint: [ entered := true ]).
+	self assert: entered.
+	self assert: writer isDegraded.
+	self assert: (writer contextString includesSubstring: 'DEGRADED').
+	^ writer
+]
+
+{ #category : 'examples' }
 BVCFairyContinuityExamples >> childLifecycle [
 	<gtExample>
 	| writer chat execution context |
@@ -40,6 +55,133 @@ BVCFairyContinuityExamples >> childLifecycle [
 	self assert: (execution agent announcer hasSubscriber: execution) not.
 	self assert: (chat announcer hasSubscriber: execution) not.
 	^ execution
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> childResultIncludesCheckpointFailure [
+	<gtExample>
+	| chat writer execution result original |
+	chat := BVCFairyExamples new parentChat.
+	writer := chat continuity.
+	execution := (BVCFairyAgentBuilder forAgentCreationRequest: BVCFairyExamples new explorerRequest)
+		startFromParentAgent: chat
+		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
+	original := execution responseMessage.
+	writer failWrites: true.
+	self assert: execution waitUntilCompletionOrTimeout isNil.
+	result := execution createAgentResponse.
+	self assert: result class equals: GtLAgentExecutionResult.
+	self assert: (result content content includesSubstring: 'Task complete.').
+	self assert: (result content content includesSubstring: 'Continuity checkpoint failed').
+	self assert: execution responseMessage == original.
+	self assert: (original responseModels at: 'Markdown') content equals: 'Task complete.'.
+	self assert: writer lastFailure contentText equals: 'Controlled persistence failure'.
+	self assert: (chat announcer hasSubscriber: execution) not.
+	^ result
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> completionFailurePreservesResponse [
+	<gtExample>
+	| writer chat response otherSubscription |
+	writer := BVCFairyContinuityStub new database: LeDatabase new.
+	chat := BVCFairyExamples new parentChat continuity: writer.
+	otherSubscription := chat announcer
+		when: GtLThreadRunIsDoneAnnouncement do: [ ] for: chat.
+	chat provider shouldComplete: false.
+	chat sendMarkdown: 'Start once'.
+	self assert: chat continuityRequestId notNil.
+	writer failWrites: true.
+	response := BVCFairyResponseStub new responseModels:
+		(Dictionary new at: 'Markdown' put: (GtLMarkdown content: 'Original work result'); yourself).
+	chat addAssistantMessage: response.
+	chat provider privateExecutionState: GtLProviderState idle.
+	self assert: chat allMessages last == response.
+	self assert: writer isDegraded.
+	self assert: writer lastFailure contentText equals: 'Controlled persistence failure'.
+	self assert: chat continuityRequestId isNil.
+	self assert: (chat announcer hasSubscriber: chat).
+	chat announcer removeSubscription: otherSubscription.
+	self assert: (chat announcer hasSubscriber: chat) not.
+	writer failWrites: false.
+	chat provider shouldComplete: true.
+	chat sendMarkdown: 'Continue after repair'.
+	self assert: writer isDegraded not.
+	self assert: (chat allMessages select: #isUserRole) size equals: 2.
+	self assert: writer recordsPage children size equals: 2.
+	self assert: (writer recordsPage children last string includesSubstring: 'provider finished').
+	^ chat
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> contextFailureAllowsChat [
+	<gtExample>
+	| writer chat |
+	writer := BVCFairyContinuityStub new.
+	chat := BVCFairyExamples new parentChat continuity: writer.
+	chat sendMarkdown: 'Diagnose the missing continuity database'.
+	self assert: writer isDegraded.
+	self assert: writer lastFailure exception class equals: MessageNotUnderstood.
+	self assert: (chat instructions instructionString includesSubstring: 'context unavailable').
+	self assert: chat allMessages last class equals: BVCFairyResponseStub.
+	writer database: LeDatabase new.
+	chat sendMarkdown: 'Continue after restoring the database'.
+	self assert: writer isDegraded not.
+	self assert: writer recordsPage children size equals: 1.
+	^ chat
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> degradedContinuityAllowsDiagnosis [
+	<gtExample>
+	| writer chat execution |
+	writer := BVCFairyContinuityStub new database: LeDatabase new; failWrites: true.
+	chat := BVCFairyExamples new parentChat continuity: writer.
+	chat sendMarkdown: 'Diagnose without starting mutating work'.
+	self assert: writer isDegraded.
+	self assert: chat continuityRequestId isNil.
+	self assert: (chat instructions instructionString includesSubstring: 'DEGRADED').
+	execution := (BVCFairyAgentBuilder forAgentCreationRequest: BVCFairyExamples new explorerRequest)
+		startFromParentAgent: chat
+		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
+	self assert: execution waitUntilCompletionOrTimeout isNil.
+	self assert: execution createAgentResponse class equals: GtLAgentExecutionResult.
+	self assert: (execution agent tools anySatisfy: [ :tool | tool name = 'compileMethods' ]) not.
+	self assert: (chat announcer hasSubscriber: execution) not.
+	writer failWrites: false.
+	chat sendMarkdown: 'Continue once checkpoint storage is repaired'.
+	self assert: writer isDegraded not.
+	self assert: (chat instructions instructionString includesSubstring: 'initial continuity checkpoint succeeded').
+	self assert: writer recordsPage children size equals: 1.
+	self assert: (chat allMessages select: #isUserRole) size equals: 2.
+	^ chat
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> delegationExceptionCanRecover [
+	<gtExample>
+	| chat writer context call result problem |
+	chat := BVCFairyExamples new parentChat.
+	writer := chat continuity.
+	context := GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage.
+	"Simulate a broken continuity extension at the delegation boundary."
+	chat continuity: Object new.
+	call := GtLFunctionToolCall new name: 'startAgent';
+		rawArguments: '{"startAgentRequest":{"agentName":"System Explorer","prompt":"Read only.","taskDescription":"Diagnose"}}'.
+	result := BVCFairyAgentTool new performToolCall: call inContext: context.
+	problem := result model.
+	self assert: problem class equals: BVCFairyAgentProblem.
+	self assert: problem failure exception class equals: MessageNotUnderstood.
+	self assert: call result == result.
+	self assert: chat objectStorage objectIds isEmpty.
+	chat continuity: writer.
+	call := GtLFunctionToolCall new name: 'startAgent';
+		rawArguments: '{"startAgentRequest":{"agentName":"System Explorer","prompt":"Read only.","taskDescription":"Continue after repair"}}'.
+	result := BVCFairyAgentTool new performToolCall: call inContext: context.
+	self assert: result model class equals: GtLAgentExecutionResult.
+	self assert: chat objectStorage objectIds size equals: 1.
+	self assert: writer recordsPage children size equals: 1.
+	^ chat
 ]
 
 { #category : 'examples' }
@@ -65,6 +207,48 @@ BVCFairyContinuityExamples >> initialCheckpointFailureBlocksWork [
 	self assert: (writer contextString includesSubstring: 'DEGRADED').
 	self assert: (chat announcer hasSubscriber: execution) not.
 	^ problem
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> instructionRefreshBoundsOversizedState [
+	<gtExample>
+	| writer statePage chat context instructions |
+	writer := BVCFairyContinuityStub new database: LeDatabase new.
+	7 timesRepeat: [ writer startKind: 'root' parentId: nil ].
+	statePage := writer database pageNamed: 'Barry workstream state'.
+	statePage addSnippet: (LeTextSnippet string: (String new: 5000 withAll: $x)).
+	statePage addSnippet: (LeTextSnippet string: 'Controlled omitted tail').
+	chat := BVCFairyChat new continuity: writer; provider: BVCFairyProviderStub new.
+	chat refreshInstructions.
+	context := writer contextString.
+	instructions := chat instructions instructionString.
+	self assert: context size <= 8192.
+	self assert: (instructions includesSubstring: context).
+	self assert: (instructions includesSubstring: '[Omitted/truncated state; read [[Barry workstream state]]').
+	self assert: (context includesSubstring: 'Controlled omitted tail') not.
+	self assert: (context includesSubstring: writer recordsPage children first string) not.
+	(writer recordsPage children asArray last: 6) do: [ :snippet |
+		self assert: (context includesSubstring: snippet string) ].
+	self assert: writer database hasMonitor not.
+	^ chat
+]
+
+{ #category : 'examples' }
+BVCFairyContinuityExamples >> instructionRefreshRecoversMultipleStateSnippets [
+	<gtExample>
+	| writer statePage fields chat instructions |
+	writer := BVCFairyContinuityStub new database: LeDatabase new.
+	statePage := writer database ensurePageNamed: 'Barry workstream state'.
+	fields := #('Goal: controlled recovery goal' 'Decisions: controlled existing path' 'Implementation state: controlled image change' 'Verification: controlled fresh checks' 'Delivery state: controlled unpublished source' 'Remaining gaps: controlled durability gap' 'Next action: controlled parent review').
+	fields do: [ :field | statePage addSnippet: (LeTextSnippet string: field) ].
+	chat := BVCFairyChat new continuity: writer; provider: BVCFairyProviderStub new.
+	chat refreshInstructions.
+	instructions := chat instructions instructionString.
+	fields do: [ :field | self assert: (instructions includesSubstring: field) ].
+	self assert: (instructions includesSubstring: writer contextString).
+	self assert: (instructions includesSubstring: 'Omitted/truncated state') not.
+	self assert: writer database hasMonitor not.
+	^ chat
 ]
 
 { #category : 'examples' }
@@ -103,125 +287,6 @@ BVCFairyContinuityExamples >> rootSendFailure [
 ]
 
 { #category : 'examples' }
-BVCFairyContinuityExamples >> checkpointFailureReleasesLock [
-	<gtExample>
-	| writer entered |
-	writer := BVCFairyContinuityStub new database: LeDatabase new.
-	self assert: (writer checkpoint: [ 1 / 0 ]) not.
-	self assert: writer lastFailure exception class equals: ZeroDivide.
-	entered := false.
-	self assert: (writer checkpoint: [ entered := true ]).
-	self assert: entered.
-	self assert: writer isDegraded.
-	self assert: (writer contextString includesSubstring: 'DEGRADED').
-	^ writer
-]
-
-{ #category : 'examples' }
-BVCFairyContinuityExamples >> completionFailurePreservesResponse [
-	<gtExample>
-	| writer chat response otherSubscription |
-	writer := BVCFairyContinuityStub new database: LeDatabase new.
-	chat := BVCFairyExamples new parentChat continuity: writer.
-	otherSubscription := chat announcer
-		when: GtLThreadRunIsDoneAnnouncement do: [ ] for: chat.
-	chat provider shouldComplete: false.
-	chat sendMarkdown: 'Start once'.
-	self assert: chat continuityRequestId notNil.
-	writer failWrites: true.
-	response := BVCFairyResponseStub new responseModels:
-		(Dictionary new at: 'Markdown' put: (GtLMarkdown content: 'Original work result'); yourself).
-	chat addAssistantMessage: response.
-	chat provider privateExecutionState: GtLProviderState idle.
-	self assert: chat allMessages last == response.
-	self assert: writer isDegraded.
-	self assert: writer lastFailure contentText equals: 'Controlled persistence failure'.
-	self assert: chat continuityRequestId isNil.
-	self assert: (chat announcer hasSubscriber: chat).
-	chat announcer removeSubscription: otherSubscription.
-	self assert: (chat announcer hasSubscriber: chat) not.
-	writer failWrites: false.
-	chat provider shouldComplete: true.
-	chat sendMarkdown: 'Continue after repair'.
-	self assert: writer isDegraded not.
-	self assert: (chat allMessages select: #isUserRole) size equals: 2.
-	self assert: writer recordsPage children size equals: 2.
-	self assert: (writer recordsPage children last string includesSubstring: 'provider finished').
-	^ chat
-]
-
-{ #category : 'examples' }
-BVCFairyContinuityExamples >> degradedContinuityAllowsDiagnosis [
-	<gtExample>
-	| writer chat execution |
-	writer := BVCFairyContinuityStub new database: LeDatabase new; failWrites: true.
-	chat := BVCFairyExamples new parentChat continuity: writer.
-	chat sendMarkdown: 'Diagnose without starting mutating work'.
-	self assert: writer isDegraded.
-	self assert: chat continuityRequestId isNil.
-	self assert: (chat instructions instructionString includesSubstring: 'DEGRADED').
-	execution := (BVCFairyAgentBuilder forAgentCreationRequest: BVCFairyExamples new explorerRequest)
-		startFromParentAgent: chat
-		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
-	self assert: execution waitUntilCompletionOrTimeout isNil.
-	self assert: execution createAgentResponse class equals: GtLAgentExecutionResult.
-	self assert: (execution agent tools anySatisfy: [ :tool | tool name = 'compileMethods' ]) not.
-	self assert: (chat announcer hasSubscriber: execution) not.
-	writer failWrites: false.
-	chat sendMarkdown: 'Continue once checkpoint storage is repaired'.
-	self assert: writer isDegraded not.
-	self assert: (chat instructions instructionString includesSubstring: 'initial continuity checkpoint succeeded').
-	self assert: writer recordsPage children size equals: 1.
-	self assert: (chat allMessages select: #isUserRole) size equals: 2.
-	^ chat
-]
-
-{ #category : 'examples' }
-BVCFairyContinuityExamples >> contextFailureAllowsChat [
-	<gtExample>
-	| writer chat |
-	writer := BVCFairyContinuityStub new.
-	chat := BVCFairyExamples new parentChat continuity: writer.
-	chat sendMarkdown: 'Diagnose the missing continuity database'.
-	self assert: writer isDegraded.
-	self assert: writer lastFailure exception class equals: MessageNotUnderstood.
-	self assert: (chat instructions instructionString includesSubstring: 'context unavailable').
-	self assert: chat allMessages last class equals: BVCFairyResponseStub.
-	writer database: LeDatabase new.
-	chat sendMarkdown: 'Continue after restoring the database'.
-	self assert: writer isDegraded not.
-	self assert: writer recordsPage children size equals: 1.
-	^ chat
-]
-
-{ #category : 'examples' }
-BVCFairyContinuityExamples >> delegationExceptionCanRecover [
-	<gtExample>
-	| chat writer context call result problem |
-	chat := BVCFairyExamples new parentChat.
-	writer := chat continuity.
-	context := GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage.
-	"Simulate a broken continuity extension at the delegation boundary."
-	chat continuity: Object new.
-	call := GtLFunctionToolCall new name: 'startAgent';
-		rawArguments: '{"startAgentRequest":{"agentName":"System Explorer","prompt":"Read only.","taskDescription":"Diagnose"}}'.
-	result := BVCFairyAgentTool new performToolCall: call inContext: context.
-	problem := result model.
-	self assert: problem class equals: BVCFairyAgentProblem.
-	self assert: problem failure exception class equals: MessageNotUnderstood.
-	self assert: call result == result.
-	self assert: chat objectStorage objectIds isEmpty.
-	chat continuity: writer.
-	call := GtLFunctionToolCall new name: 'startAgent';
-		rawArguments: '{"startAgentRequest":{"agentName":"System Explorer","prompt":"Read only.","taskDescription":"Continue after repair"}}'.
-	result := BVCFairyAgentTool new performToolCall: call inContext: context.
-	self assert: result model class equals: GtLAgentExecutionResult.
-	self assert: chat objectStorage objectIds size equals: 1.
-	self assert: writer recordsPage children size equals: 1.
-	^ chat
-]
-
-{ #category : 'examples' }
 BVCFairyContinuityExamples >> timeoutPreservesResultAndBlocksOverlappingMaintainer [
 	<gtExample>
 	| chat writer request execution problem builder nextExecution originalMessages |
@@ -254,27 +319,4 @@ BVCFairyContinuityExamples >> timeoutPreservesResultAndBlocksOverlappingMaintain
 	self assert: execution agent allMessages size equals: originalMessages.
 	self assert: chat objectStorage objectIds size equals: 2.
 	^ chat
-]
-
-{ #category : 'examples' }
-BVCFairyContinuityExamples >> childResultIncludesCheckpointFailure [
-	<gtExample>
-	| chat writer execution result original |
-	chat := BVCFairyExamples new parentChat.
-	writer := chat continuity.
-	execution := (BVCFairyAgentBuilder forAgentCreationRequest: BVCFairyExamples new explorerRequest)
-		startFromParentAgent: chat
-		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
-	original := execution responseMessage.
-	writer failWrites: true.
-	self assert: execution waitUntilCompletionOrTimeout isNil.
-	result := execution createAgentResponse.
-	self assert: result class equals: GtLAgentExecutionResult.
-	self assert: (result content content includesSubstring: 'Task complete.').
-	self assert: (result content content includesSubstring: 'Continuity checkpoint failed').
-	self assert: execution responseMessage == original.
-	self assert: (original responseModels at: 'Markdown') content equals: 'Task complete.'.
-	self assert: writer lastFailure contentText equals: 'Controlled persistence failure'.
-	self assert: (chat announcer hasSubscriber: execution) not.
-	^ result
 ]

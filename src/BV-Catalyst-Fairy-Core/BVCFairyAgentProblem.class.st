@@ -36,6 +36,16 @@ BVCFairyAgentProblem >> agentExecutionIdDescription [
 		beOptional
 ]
 
+{ #category : 'accessing' }
+BVCFairyAgentProblem >> failure [
+	^ failure
+]
+
+{ #category : 'accessing' }
+BVCFairyAgentProblem >> failure: anErrorMessage [
+	failure := anErrorMessage
+]
+
 { #category : 'views' }
 BVCFairyAgentProblem >> gtAgentExecutionFor: aView [
 	<gtView>
@@ -46,16 +56,6 @@ BVCFairyAgentProblem >> gtAgentExecutionFor: aView [
 		priority: 10;
 		object: [ agentExecution ];
 		view: #gtViewAgentFor:
-]
-
-{ #category : 'accessing' }
-BVCFairyAgentProblem >> failure [
-	^ failure
-]
-
-{ #category : 'accessing' }
-BVCFairyAgentProblem >> failure: anErrorMessage [
-	failure := anErrorMessage
 ]
 
 { #category : 'views' }

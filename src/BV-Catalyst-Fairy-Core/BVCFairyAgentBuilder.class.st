@@ -70,6 +70,16 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 ]
 
 { #category : 'validation' }
+BVCFairyAgentBuilder >> unfinishedMaintainerFor: aParent [
+	^ (aParent objectStorage objectIds collect: [ :id | aParent objectStorage objectAt: id ])
+		detect: [ :object |
+			(object isKindOf: BVCFairyAgentExecution)
+				and: [ object initialRequest agentName = 'System Maintainer'
+				and: [ object agent state ~= GtLProviderState idle ] ] ]
+		ifNone: [ nil ]
+]
+
+{ #category : 'validation' }
 BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 	| modelName |
 	#(agentName prompt taskDescription) do: [ :selector |
@@ -97,14 +107,4 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 		(self unfinishedMaintainerFor: aParent) ifNotNil: [ :execution |
 			^ anErrorBlock value: (execution problem: 'A previous Maintainer has not finished stopping. Inspect its execution and partial changes before starting more mutating work.') ] ].
 	^ nil
-]
-
-{ #category : 'validation' }
-BVCFairyAgentBuilder >> unfinishedMaintainerFor: aParent [
-	^ (aParent objectStorage objectIds collect: [ :id | aParent objectStorage objectAt: id ])
-		detect: [ :object |
-			(object isKindOf: BVCFairyAgentExecution)
-				and: [ object initialRequest agentName = 'System Maintainer'
-				and: [ object agent state ~= GtLProviderState idle ] ] ]
-		ifNone: [ nil ]
 ]

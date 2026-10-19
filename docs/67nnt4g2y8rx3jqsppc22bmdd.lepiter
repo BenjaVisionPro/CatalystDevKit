@@ -77,6 +77,228 @@
 					"__type" : "textStyle"
 				},
 				"string" : "4b442810-a38f-4711-8c9e-da3c022feb01 | 2026-10-19T08:57:01.113112+11:00 | root | parent=none | started; outcome unknown; acceptance unverified"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:07:30.664927+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:07:30.664927+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+dc6DKUDRe2WjMKBvQCXYQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "89686948-3aa4-4742-a23c-dc2ff323442e | 2026-10-19T11:07:30.664302+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-19T11:10:26.030273+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:08:51.119119+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:08:51.119119+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nKLJaP4xRw2bQQPHb9/lrw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2164b77e-fa8c-496f-8095-590a6e9eac11 | 2026-10-19T11:08:51.070252+11:00 | child | parent=89686948-3aa4-4742-a23c-dc2ff323442e | started; outcome unknown; acceptance unverified | outcome=child provider finished; task success unknown; acceptance unverified | observed=2026-10-19T11:09:46.532018+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:14:13.599919+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:14:13.599919+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YNxuja9RRUiB/CFsqGssUg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "c20d8b50-7bd1-4fbf-b999-37f575d8b27f | 2026-10-19T11:14:13.598027+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-19T11:21:39.549068+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:14:42.108118+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:14:42.108118+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "eAmJlFKXTX2eYAFSZuB4SQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "1ffedd3f-dd65-4978-a802-1b80cefb63b1 | 2026-10-19T11:14:42.106957+11:00 | child | parent=c20d8b50-7bd1-4fbf-b999-37f575d8b27f | started; outcome unknown; acceptance unverified | outcome=child provider finished; task success unknown; acceptance unverified | observed=2026-10-19T11:20:10.594502+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.132493+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:17.132493+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "E4uJpt1iSzG8F8uBYW47Ow=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2026-10-19 | bounded maintained-state recovery increment | execution 67jxxufzsxfzsgj3c41l76eo4 identified by exact initial prompt/task and parent storage identity; prior 2oay7wg3mxen4cr9lwx9i0v1d idle, all other retained Maintainers idle, no nonterminated process stacks with their execution/chat/provider receivers. Only exact current execution excluded. Initial continuity checkpoint 1ffedd3f-dd65-4978-a802-1b80cefb63b1 present, not degraded, lastFailure nil before edits. No process termination/replay/undo. Original failures retained; three read-only diagnostic evaluation mistakes in this child retained (Processor>>scheduler, Context>>withAllContexts, keyword precedence in objectAt:). Fresh checks: 65 successes, zero failures/errors/skips (14/39/8/4), SuperGame.image / Pharo13.1.0SNAPSHOT. Image-only selectors: BVCFairyContinuity>>contextString, >>preparePages; BVCFairyContinuityExamples>>instructionRefreshRecoversMultipleStateSnippets, >>instructionRefreshBoundsOversizedState. Existing Barry workbench/state/records updated, historical snippets/unknown outcomes unchanged. Parent review pending; see state for one next action and remaining limits."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:27.903259+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-19T11:18:27.903259+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9dHONN7/SPq7IhMRIlmuJA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2026-10-19 | post-edit recovery check | Fresh BVCFairyChat with the actual maintained book's continuity writer, controlled provider, refreshInstructions: all seven Goal/Decisions/Implementation state/Verification/Delivery state/Remaining gaps/Next action fields asserted present in actual instructionString. Evidence in child object ej0fk2s5ws1pw1wr4e8lo5k4l; no message sent or durable execution resumed. Parent review remains next action; persistence across crash/rebuild remains untested."
 			}
 		]
 	},
