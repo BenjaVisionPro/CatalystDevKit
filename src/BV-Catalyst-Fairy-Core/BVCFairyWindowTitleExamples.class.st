@@ -26,6 +26,14 @@ BVCFairyWindowTitleExamples >> chatWindowTitleAfterMessage [
 	^ chat
 ]
 
+{ #category : 'private' }
+BVCFairyWindowTitleExamples >> evaluateOnUIProcess: anExampleBlock [
+	"Dispatch to the active Winit universe, not the retired default universe."
+	^ BVCFairyUIRequest value: anExampleBlock
+		on: BlParallelUniverse winit
+		withinMilliseconds: 2000
+]
+
 { #category : 'examples' }
 BVCFairyWindowTitleExamples >> nativeChatWindowTitle [
 	<gtExample>
@@ -33,33 +41,34 @@ BVCFairyWindowTitleExamples >> nativeChatWindowTitle [
 	chat := BVCFairyExamples new chatFromRegistry.
 	evidence := Dictionary new.
 	waitUntil := [ :condition |
-		| deadline |
-		deadline := Time millisecondClockValue + 5000.
-		[ condition value or: [ Time millisecondClockValue >= deadline ] ]
+		| deadlineMilliseconds |
+		deadlineMilliseconds := Time millisecondClockValue + 5000.
+		[ (self evaluateOnUIProcess: condition) or: [ Time millisecondClockValue >= deadlineMilliseconds ] ]
 			whileFalse: [ (Delay forMilliseconds: 10) wait ].
-		self assert: condition value ].
+		self assert: (self evaluateOnUIProcess: condition) ].
 	self withWorldDo: [ :world :scripter |
 		world phlow spawnObject: chat.
 		windowSpace := world tabs tabs last model.
 		world closeAllTabs.
 		windowSpace root removeFromParent ].
 	[
-		windowSpace show.
+		self evaluateOnUIProcess: [ windowSpace show ].
 		waitUntil value: [ windowSpace hasHostSpace ].
-		self assert: windowSpace hostSpace title asString equals: 'Barry'.
-		evidence at: #initialTitle put: windowSpace hostSpace title asString.
-		chat addMessage: (chat createUserMessage string: 'Offline native window title check').
-		self assert: windowSpace hostSpace title asString equals: 'Barry'.
-		evidence
-			at: #titleAfterMessage put: windowSpace hostSpace title asString;
-			at: #hostClass put: windowSpace host class;
-			at: #platform put: Smalltalk version;
-			at: #chat put: chat
+		self evaluateOnUIProcess: [
+			self assert: windowSpace hostSpace title asString equals: 'Barry'.
+			evidence at: #initialTitle put: windowSpace hostSpace title asString.
+			chat addMessage: (chat createUserMessage string: 'Offline native window title check').
+			self assert: windowSpace hostSpace title asString equals: 'Barry'.
+			evidence
+				at: #titleAfterMessage put: windowSpace hostSpace title asString;
+				at: #hostClass put: windowSpace host class;
+				at: #platform put: Smalltalk version;
+				at: #chat put: chat ]
 	] ensure: [
-		windowSpace close.
+		self evaluateOnUIProcess: [ windowSpace close ].
 		waitUntil value: [ windowSpace isOpened not and: [ windowSpace hasHostSpace not ] ].
-		windowSpace root removeChildren ].
-	evidence at: #windowClosed put: windowSpace isOpened not.
+		self evaluateOnUIProcess: [ windowSpace root removeChildren ] ].
+	evidence at: #windowClosed put: (self evaluateOnUIProcess: [ windowSpace isOpened not ]).
 	^ evidence
 ]
 
@@ -97,15 +106,16 @@ BVCFairyWindowTitleExamples >> ordinaryChatWindowTitleIsUnchanged [
 
 { #category : 'private' }
 BVCFairyWindowTitleExamples >> withWorldDo: anExampleBlock [
-	| world scripter |
-	world := BVCDevKitWorldElement new.
-	scripter := BlScripter new element: world.
-	^ [ anExampleBlock value: world value: scripter ]
-		ensure: [
-			world closeAllTabs.
-			world removeFromParent.
-			scripter space root removeChildren.
-			"BlScripterSpace uses a mocked host and always reports itself open."
-			self assert: scripter space hasHostSpace not.
-			self assert: scripter space root children isEmpty ]
+	^ self evaluateOnUIProcess: [
+		| world scripter |
+		world := BVCDevKitWorldElement new.
+		scripter := BlScripter new element: world.
+		[ anExampleBlock value: world value: scripter ]
+			ensure: [
+				world closeAllTabs.
+				world removeFromParent.
+				scripter space root removeChildren.
+				"BlScripterSpace uses a mocked host and always reports itself open."
+				self assert: scripter space hasHostSpace not.
+				self assert: scripter space root children isEmpty ] ]
 ]

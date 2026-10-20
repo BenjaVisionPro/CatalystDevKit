@@ -16,6 +16,7 @@ Class {
 BVCFairyAgentExecution >> cancel [
 	wasCancelled := true.
 	self agent stopOngoingExecution.
+		BVCFairyUIRequest abandonQueuedForChat: self agent.
 	terminationSemaphore signal
 ]
 
@@ -129,6 +130,7 @@ BVCFairyAgentExecution >> waitUntilCompletionOrTimeoutAfter: seconds [
 		^ self problem: 'The Catalyst agent was cancelled.' ].
 	timedOut ifTrue: [
 		self agent stopOngoingExecution.
+		BVCFairyUIRequest abandonQueuedForChat: self agent.
 		self recordContinuity: 'timeout; stop requested; child cessation and partial image changes unknown; late completion not observed; acceptance unverified'.
 		^ self problem: 'The Catalyst agent timed out; stop was requested.' ].
 	self recordContinuity: ((self responseMessage isKindOf: GtLErrorMessage)

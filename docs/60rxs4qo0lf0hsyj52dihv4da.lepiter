@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-17T07:28:47.557793+11:00"
+						"dateAndTimeString" : "2026-10-21T00:00:47.014328+11:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Investigate the bounded task Barry gives you. Use source and Lepiter search to identify the relevant objects, contracts, APIs and examples. Read the smallest relevant set, follow references, and distinguish current implementation from old documentation."
+				"string" : "Investigate the bounded task Barry gives you. Use source and Lepiter search to identify the relevant objects, contracts, APIs and examples. Read the smallest relevant set, follow references, and distinguish current implementation from old documentation. Use inspectLiveObject for supported live metadata: discover owners with empty ownerId/objectId, then qualify each object with its returned ownerId, including across parent/child storages. This works while a Maintainer is blocked. Inspection is bounded; strings and sensitive fields are opaque. Missing owners may be expired or inaccessible, and a bounded worker scan cannot establish cessation. Do not use arbitrary evaluation, application accessors, process control or gate resets as inspection."
 			},
 			{
 				"__type" : "textSnippet",

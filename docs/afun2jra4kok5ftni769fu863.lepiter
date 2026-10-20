@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:18.631612+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:18.631612+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2beFTfWNQUqdT02R+rDcXA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## First image increment — 2026-10-20\nOwner CatalystDevKit / BV-Catalyst-Fairy-Core, GT/Pharo only. Contract: {{gtPage:Catalyst Fairy|db=731asfxqhyhdr96k6wo9yxnzv}} and user-accepted design: developer right bubbles with Font Awesome user; Barry left documents with transparent fairy; bottom composer; inherited renderer/model/history. This is a first bounded increment, not completion of observability.\n\n{{gtMethod:BVCFairyChat>>#asElement}} now selects {{gtClass:BVCFairyChatElement}} under the unchanged Barry header/instructions action. Generic GtLChat remains unchanged. The subclass selects {{gtClass:BVCFairyDeveloperMessageElement}} and {{gtClass:BVCFairyReplyMessageElement}} only locally via initializeListElement/messageElementClassFor:. Developer bubble uses rounded geometry, translucent fill, FontAwesomeIcons #user, and asymmetric list margins (80 left / 5 right), not right-aligned text. Barry has transparent background, no shadow bubble, and the existing transparent fairy image in its header. Existing content expanders, tool integration, response model views and execution states remain inherited.\n\ninitialize and updateElement retain the existing GtLNewMessageElement and existing newMessageViewModel as a sibling after the scrolling list, excluding that draft from list items. Draft editor is not rebound on message updates. No new transcript/provider/model/client. The former generic list auto-scroll-to-last is deliberately omitted: no forced jumps, but follow-at-bottom behavior remains unimplemented. Existing 300ms BrElementUpdater and renderer subscriptions are reused; no new provider streaming capability is claimed."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:19.370835+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T00:00:50.470761+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "0AAP8FNCT5yhf8TK6CONyA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Evidence and limits\nSuperGame.image / Pharo13.1.0SNAPSHOT. Initial combined run: 55 examples, 52 successes, 1 failure, 2 errors, zero skips. Presentation ID assertion compared Symbol to Bloc ID; corrected example assertion to asBlocElementId. Final focused presentation suite: 4 successes, zero failures/errors/skips. Existing Fairy suite: 39 successes; Codex: 8 successes; window title suite: 2 successes / 2 BrEditorWrongThreadError errors. chatWindowTitleAfterMessage individually rerun and still errors through BrTextStylerAsyncStrategy/BrAsyncElementFuture UI-process assertion. Native title example also errors; these are unresolved, not a green regression claim. No upstream editor fix attempted.\n\nWalkthrough: {{gtMethod:BVCFairyChatElementExamples>>#barryEntryPoint}}. {{gtMethod:BVCFairyChatElementExamples>>#messagePresentations}} constructs/binds both real renderers and lays out a preview. {{gtMethod:BVCFairyChatElementExamples>>#fixedComposerAndDraft}} checks actual sibling hierarchy, draft identity/multiline preservation, and non-overlapping layout at 800x600. History/provider identity is checked by styledConversation. Presentation evidence {{gtObject:id=7pseh1aikdjjfn8bhjmyjwkdz}}; fixed composer {{gtObject:id=bwepsyey5x3szfqagtoqn66yb}}; unresolved title error {{gtObject:id=dkbzkc964ks6bgcn6qkkh35w6}}. These do not prove interactive usability, native window correctness or live provider streaming.\n\nSource manifest: BVCFairyChat>>asElement; BVCFairyChatElement>>initialize, initializeListElement, messageElementClassFor:, updateElement; BVCFairyDeveloperMessageElement>>initialize and class>>newForChatList; BVCFairyReplyMessageElement>>initializeHeaderElement, initializeStyling; BVCFairyChatElementExamples>>styledConversation, barryEntryPoint, fixedComposerAndDraft, messagePresentations. Four new classes; all in BV-Catalyst-Fairy-Core UI/Examples tags. No Foundation/Runtime/Process changes, no Codex ensure-close change, no source save/export/stage/commit/push/sync/build. Prior Foundation partial work remains unverified/preserved.\n\nRecovery repair update: the retained title helper was using the stopped legacy universe. It now dispatches through the active Winit universe with a bounded, cancellation-aware BVCFairyUIRequest. Current presentation examples 4/4 and window-title examples 4/4 pass as part of the 80-example repair run. See [[Catalyst Fairy window titles]] for the recovery path, evidence and limits. Interactive UX features listed below remain unfinished; this update does not claim them complete."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:19.452878+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:19.452878+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "wQdrmyQ2SqWQPHH5gXD3jQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Gate and remaining seams\nExact prior execution 5fi5alspuzq4agiz6174lb08r was found in the same parent's object storage (retained execution {{gtObject:id=20mgz7wp2tb1vhqq98qqq1zie}}, parent storage {{gtObject:id=epfxwhi4howvn7agfkk63q6xs}}). Provider/chat observed idle; no nonterminated process with receiver equal to that execution/chat/provider was found ({{gtObject:id=f10ay7urqmebfhf9nuhik4qww}}). All same-parent prior Maintainers were idle, excluding exact self 2y7gph9q05046umyab5k8t8qj identified by identical task prompt and current tool object storage. Original timeout record and current successful initial checkpoint retained: {{gtObject:id=2u7pr83g0kkp6vapbdqho8kdg}}. Original prior responseMessage nil; prior errors remain in its child object storage, including editor thread/matrix/toolbar/memento failures ({{gtObject:id=2xttbjc2rqh8krnee04mq4n6b}}). No termination/stop/reset/replay/undo performed. Cessation does not verify previous Foundation partial edits.\n\nNext extension seams (not implemented): BVCFairyAgentExecution>>gtViewAgentFor: and BVCFairyAgentProblem for retained child activity; GtLChatExecutionStateChanged for observed phases; provider API calls/tokens views and GtLMessageTokensData for reported usage (unknown is not zero; aggregate without double counting). GtLNewMessageViewModel>>attachFile: and GtLNewMessageElement>>initializeAttachButtonElement already attach via selector; send uses BVCFairyChat>>sendFiles:withMessage:. The inherited send clears draft/files before sending: failure-safe draft retention is still a gap. Window drop, thumbnails/removal/inspection, provider support distinction, live child status/timing, usage integration and follow-at-bottom behavior remain target work. No drop handler or telemetry added.\n\nONE next action: review this increment interactively via barryEntryPoint and diagnose the retained UI-thread title regression before widening to activity/usage/drop."
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-20T15:53:24.906113+11:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2026-10-20T15:53:24.906113+11:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Catalyst Fairy chat presentation"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "dbd7f146-1639-4be5-9e6f-7e4d157059b0"
+	}
+}

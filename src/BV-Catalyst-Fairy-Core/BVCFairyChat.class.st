@@ -9,7 +9,8 @@ Class {
 		'continuity',
 		'continuityRequestId',
 		'continuityRunning',
-		'continuitySubscription'
+		'continuitySubscription',
+		'inspectionId'
 	],
 	#category : 'BV-Catalyst-Fairy-Core',
 	#package : 'BV-Catalyst-Fairy-Core'
@@ -21,7 +22,7 @@ BVCFairyChat class >> fairyIcon [
 		asElement asScalableElement size: 32 @ 48
 ]
 
-{ #category : 'ui' }
+{ #category : 'converting' }
 BVCFairyChat >> asElement [
 	| header |
 	header := BrHorizontalPane new
@@ -41,7 +42,7 @@ BVCFairyChat >> asElement [
 	^ BrVerticalPane new
 		matchParent;
 		addChild: header;
-		addChild: super asElement;
+		addChild: (BVCFairyChatElement new chatViewModel: self asViewModel);
 		yourself
 ]
 
@@ -137,6 +138,12 @@ BVCFairyChat >> initialize [
 	self refreshInstructions
 ]
 
+{ #category : 'accessing' }
+BVCFairyChat >> inspectionId [
+	"Image-local owner identity, independent of changing request IDs."
+	^ inspectionId ifNil: [ inspectionId := UUID new asString ]
+]
+
 { #category : 'initialization' }
 BVCFairyChat >> installCodexClientFor: aProvider [
 	(aProvider isKindOf: GtLOpenAiCodexProvider) ifFalse: [ ^ self ].
@@ -163,6 +170,8 @@ BVCFairyChat >> provider: aProvider [
 { #category : 'actions' }
 BVCFairyChat >> refreshInstructions [
 	"Create a new snapshot so a running child keeps its own instructions."
+	(self tools anySatisfy: [ :tool | tool name = 'inspectLiveObject' ]) ifFalse: [
+		self addTool: (BVCFairyObjectInspectionTool new rootChat: self) ].
 	self instructions: GtLInstructionComposite new.
 	devKitContext configureChat: self forRole: 'Barry'.
 	self instruction: self continuity contextString titled: 'Barry work continuity'.

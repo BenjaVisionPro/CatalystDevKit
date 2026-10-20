@@ -18,6 +18,7 @@ BVCFairyAgentBuilder >> createAgentForParent: aParent [
 	tools := self roleTools.
 	(self request toolNames ifNil: [ #() ]) ifNotEmpty: [ :toolNames |
 		tools := GtLTools withAll: (tools select: [ :tool | toolNames includes: tool name ]) ].
+	tools do: [ :tool | (tool isKindOf: BVCFairyObjectInspectionTool) ifTrue: [ tool rootChat: aParent ] ].
 	child tools: tools.
 	aParent devKitContext configureChat: child forRole: self request agentName.
 	child instruction: aParent continuity contextString titled: 'Barry work continuity'.
@@ -71,12 +72,20 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 
 { #category : 'validation' }
 BVCFairyAgentBuilder >> unfinishedMaintainerFor: aParent [
-	^ (aParent objectStorage objectIds collect: [ :id | aParent objectStorage objectAt: id ])
-		detect: [ :object |
-			(object isKindOf: BVCFairyAgentExecution)
-				and: [ object initialRequest agentName = 'System Maintainer'
-				and: [ object agent state ~= GtLProviderState idle ] ] ]
-		ifNone: [ nil ]
+	| roots |
+	roots := OrderedCollection with: aParent.
+	(GtLChatRegistry current chats select: [ :chat | chat isKindOf: BVCFairyChat ]) do: [ :chat |
+		(roots includes: chat) ifFalse: [ roots add: chat ] ].
+	roots do: [ :root |
+		root objectStorage objectIds do: [ :id |
+			| object |
+			object := root objectStorage objectAt: id.
+			((object isKindOf: BVCFairyAgentExecution) and: [
+				object initialRequest agentName = 'System Maintainer' and: [
+				object agent state ~= GtLProviderState idle
+					or: [ BVCFairyUIRequest hasPendingForChat: object agent ] ] ])
+				ifTrue: [ ^ object ] ] ].
+	^ nil
 ]
 
 { #category : 'validation' }

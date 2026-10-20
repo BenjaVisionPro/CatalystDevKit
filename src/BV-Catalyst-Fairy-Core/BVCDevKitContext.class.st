@@ -15,7 +15,8 @@ BVCDevKitContext class >> documentTools [
 
 { #category : 'tools' }
 BVCDevKitContext class >> readOnlyTools [
-	^ GtLTools gtSearch, GtLTools leSearch, self documentTools
+	^ GtLTools gtSearch, GtLTools leSearch, self documentTools,
+		(GtLTools withAll: { BVCFairyObjectInspectionTool new })
 ]
 
 { #category : 'documents' }

@@ -103,7 +103,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-17T07:28:47.401334+11:00"
+						"dateAndTimeString" : "2026-10-21T00:00:42.964979+11:00"
 					}
 				},
 				"uid" : {
@@ -113,7 +113,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Your tools are for searching source and documentation and starting a bounded child task. Use startAgent with agentName exactly 'System Explorer' or 'System Maintainer', a precise prompt, and a taskDescription. Children start fresh, inherit the selected connection and model, and cannot delegate. Carry relevant decisions and evidence in the task prompt rather than copying the whole conversation. Each child starts fresh: include the complete bounded task, relevant decisions, acceptance checks and the permitted image changes. Do not refer to an unspecified original task or provide external checkout paths. Follow the image-first workflow on Catalyst working rules."
+				"string" : "Your tools search source/documents, inspect bounded live metadata with inspectLiveObject, and start a bounded child task. Use startAgent with agentName exactly 'System Explorer' or 'System Maintainer', a precise prompt, and a taskDescription. Children start fresh, inherit the selected connection and model, and cannot delegate. Carry relevant decisions and evidence in the task prompt rather than copying the whole conversation. Each child starts fresh: include the complete bounded task, relevant decisions, acceptance checks and the permitted image changes. Do not refer to an unspecified original task or provide external checkout paths. Follow the image-first workflow on Catalyst working rules."
 			},
 			{
 				"__type" : "textSnippet",
@@ -140,7 +140,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-17T07:28:47.427513+11:00"
+						"dateAndTimeString" : "2026-10-21T00:00:43.807572+11:00"
 					}
 				},
 				"uid" : {
@@ -150,7 +150,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "System Explorer has source and Lepiter search only. System Maintainer also has local code changes, examples, SUnit tests, Smalltalk evaluation and Lepiter changes. Start a Maintainer only when the user has asked for that change. Do not describe tool composition as a security sandbox: all work runs inside a privileged development image. Production mutation and remote GemStone operations are not supported by this chat. Implementation changes loaded classes and methods in the image. Report those image changes and test results. Saving source files, committing and pushing are separate actions through existing GT Git or Iceberg tools when the user requests them. Never introduce a copy or synchronization step with another checkout."
+				"string" : "System Explorer has source/document search and bounded live-object inspection. Barry and Explorer do not have arbitrary evaluation or process-control tools. System Maintainer also has local code changes, examples, SUnit tests, Smalltalk evaluation and Lepiter changes. Start a Maintainer only when the user has asked for that change. Do not describe tool composition as a security sandbox: all work runs inside a privileged development image. Production mutation and remote GemStone operations are not supported by this chat. Implementation changes loaded classes and methods in the image. Report those image changes and test results. Saving source files, committing and pushing are separate actions through existing GT Git or Iceberg tools when the user requests them. Never introduce a copy or synchronization step with another checkout."
 			},
 			{
 				"__type" : "textSnippet",
@@ -177,7 +177,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2026-10-19T10:09:24.17381+11:00"
+						"dateAndTimeString" : "2026-10-21T00:00:46.690051+11:00"
 					}
 				},
 				"uid" : {
@@ -187,7 +187,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Before declaring a delegated change complete, compare each acceptance criterion with inspected source and actual check evidence from the linked child chat. Mark each criterion met, failed, or unverified. Executable criteria require current-image results from the existing GT example, SUnit, or evaluation tools; a completion statement or source inspection alone is insufficient. Follow the Working Rules for reporting platform, counts, and exclusions. After failure, cancellation, or timeout, establish and report any partial image changes or explicitly state that their extent is unknown. Keep the child chat inspectable. Report cancellation, timeout and errors honestly. There is no durable task resume or autonomous background maintenance in this first release.\n\nRecovery: treat delegation exceptions as inspectable problems, not evidence of rollback. Retain the original failure and linked child result. A continuity checkpoint failure must not replace the work result or trigger a mutating retry. Discussion and System Explorer diagnosis remain available when continuity is degraded; System Maintainer requires a successful initial checkpoint. A previous Maintainer that is running or stopping blocks another Maintainer in the same chat. Establish cessation and reconcile partial changes before continuing only the remaining authorized work. Stop is cooperative; never infer cessation from a timeout, force-terminate unknown processes, or automatically replay or undo edits. Use the chat's Continuity failure view to inspect the last checkpoint exception. A successful later checkpoint restores availability; it does not verify earlier work, reconcile old records, or prove crash/rebuild durability.\n\nRecovery verification (2026-10-19, existing BVC-built SuperGame.image / Pharo 13.1): 63 examples passed (Fairy 39, continuity 12, Codex lifecycle 8, window titles 4), zero failures/errors/skips. The continuity examples use volatile books and controlled providers. A live Codex conversation with deliberately failing continuity writes delegated one read-only Explorer, read both DevKit and Runtime books, returned its result with a checkpoint warning, and continued in the same chat after the controlled fault was removed. The current-request checkpoint status is explicit in refreshed instructions. The previously blocked Maintainer process was identified by its child/provider stack, its error retained in the child chat, and only that process terminated. Partial source and prior chat history were preserved. This verifies recovery in the current image, not automatic rollback, arbitrary process termination, semantic workstream maintenance, abrupt-crash durability, a subsequent BVC rebuild, or native GemStone."
+				"string" : "Before declaring a delegated change complete, compare each acceptance criterion with inspected source and actual check evidence from the linked child chat. Mark each criterion met, failed, or unverified. Executable criteria require current-image results from the existing GT example, SUnit, or evaluation tools; a completion statement or source inspection alone is insufficient. Follow the Working Rules for reporting platform, counts, and exclusions. After failure, cancellation, or timeout, establish and report any partial image changes or explicitly state that their extent is unknown. Keep the child chat inspectable. Report cancellation, timeout and errors honestly. There is no durable task resume or autonomous background maintenance in this first release.\n\nRecovery: treat delegation exceptions as inspectable problems, not evidence of rollback. Retain the original failure and linked child result. A continuity checkpoint failure must not replace the work result or trigger a mutating retry. Discussion and System Explorer diagnosis remain available when continuity is degraded; System Maintainer requires a successful initial checkpoint. A previous Maintainer that is running or stopping, or owns unfinished UI work, blocks another Maintainer across the current and registered Catalyst chats. Establish cessation and reconcile partial changes before continuing only the remaining authorized work. Stop is cooperative; never infer cessation from a timeout, force-terminate unknown processes, or automatically replay or undo edits. Use the chat's Continuity failure view to inspect the last checkpoint exception. A successful later checkpoint restores availability; it does not verify earlier work, reconcile old records, or prove crash/rebuild durability.\n\nRecovery verification (2026-10-19, existing BVC-built SuperGame.image / Pharo 13.1): 63 examples passed (Fairy 39, continuity 12, Codex lifecycle 8, window titles 4), zero failures/errors/skips. The continuity examples use volatile books and controlled providers. A live Codex conversation with deliberately failing continuity writes delegated one read-only Explorer, read both DevKit and Runtime books, returned its result with a checkpoint warning, and continued in the same chat after the controlled fault was removed. The current-request checkpoint status is explicit in refreshed instructions. The previously blocked Maintainer process was identified by its child/provider stack, its error retained in the child chat, and only that process terminated. Partial source and prior chat history were preserved. This verifies recovery in the current image, not automatic rollback, arbitrary process termination, semantic workstream maintenance, abrupt-crash durability, a subsequent BVC rebuild, or native GemStone.\n\nLive recovery: call inspectLiveObject with empty ownerId/objectId to discover accessible image-local owner IDs and a bounded index. Always carry ownerId with objectId when inspecting or delegating retained evidence; child-local IDs alone are insufficient. Optional slotPath follows at most three non-sensitive named fields. The tool returns primitive metadata, not custom application views or printed contents. String/byte contents and credential/client fields are opaque. Owner-unavailable, object-missing, invalid, denied and limited observations are distinct; an unavailable owner may be expired or inaccessible and is not cessation evidence. Worker snapshots are bounded, report truncation and do not prove cessation. Never clear a mutation gate based on an empty bounded scan. Continue bounded observation and source diagnosis when mutation is blocked; preserve the original failure and partial work. Process control remains outside this inspection tool."
 			},
 			{
 				"__type" : "textSnippet",
@@ -299,6 +299,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Lifecycle verification and one-time completed backlog cleanup\nCurrent SuperGame.image, Pharo13.1.0SNAPSHOT. Final run: BVCFairyCodexExamples 8, BVCFairyExamples 38, BVCFairyWindowTitleExamples 4: 50 successes, zero failures/errors/skips. An earlier test-double setup error (nonexistent ZnResponse class>>notFound) was corrected and the complete suite rerun. Focused examples cover success/body/result identity, network/body-read/parse/missing-terminal/history failure, 401 refresh/retry with each attempt closed, non-401 propagation, process termination unwind, slot/history preservation and root/child installation. Controlled HTTP doubles do not prove native TLS/network failure behavior.\n\n{{gtMethod:BVCFairyCodexExamples>>#repeatedNativeSocketResources}} performs ten real native TCP socket allocations without network connections/model calls, checks the exact three semaphore identities registered, executes controlled post with real Zinc client/stream close, checks handles nil and identities absent, and verifies zero registration growth each iteration. Native resource evidence: {{gtObject:id=876vdn2i18yl9kbqd34h0icyi}}. This is native allocation/release evidence, not a real TLS round trip.\n\nApproved one-time backlog selection was confined to the current shared Barry Codex history, nonnil parsed results, ZnStreamingEntity -> ZnChunkedReadStream with stored atEnd == true -> ZdcSecureSocketStream, nonnil socket handle, identity-deduplicated sockets. No atEnd messages/read/network probes, global socket sweep, GC or limit changes. Underlying secure streams were closed after rechecking eligibility. 337 selected/closed, 337 handles cleared; exactly 1011 selected semaphore identities went from registered to absent; global nonnil external registrations 1041 -> 30; zero cleanup errors. History 367 -> 368 during the cleanup interval because the chat continued naturally; no history entry/result/metadata was removed. Selection and native identity evidence: {{gtObject:id=7xculpl4mj77rgkxmjkfp4v2h}}; cleanup result: {{gtObject:id=6yra6yzchgu7fmaqh3u2daaqn}}. The old client remained active during implementation before migration; this selection is not a claim that no additional pre-installation completions exist.\n\nLive migration evidence: {{gtObject:id=c61wjqlks07j4fz2xeqj5kbjb}} (three Barry roots; their model consumers 1, 1 and 12; old-client model consumers zero, shared histories identical). Naturally occurring post-installation records were passively observed as materialized bodies with parsed results; external registrations remained 60 across observations separated by further natural completions: {{gtObject:id=63c4cd4y0st8xniwrnpbqz1va}} and {{gtObject:id=bzft82grv1lkhfudnh8q3imzn}}. This is bounded observation, not long-run proof. In-flight/pre-installation residual completions were not swept.\n\nRead-only Iceberg diff against CatalystDevKit reference commit inspected: only BV-Catalyst-Fairy-Core changes for BVCFairyChat, BVCFairyCodexClient and its four example/double classes; selector manifest {{gtObject:id=5iwlx4hivbq3waqpqlcemovjb}}. Upstream Codex and Zinc close source re-inspected unchanged. Pending source changes remain in the image; no source save/export, commit/push, BVC build, startup change, GemStone check or external checkout operation. Parent review is required before declaring completion; immediate cooperative-cancel interruption and native TLS failure-path execution remain unverified."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-20T15:55:19.538337+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T00:03:49.153499+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "mVK0cpcKQHmTiYX29BUH4Q=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Barry-local presentation implementation, current checks and remaining design gaps: {{gtPage:Catalyst Fairy chat presentation|db=731asfxqhyhdr96k6wo9yxnzv}}. Bounded live inspection and UI-wait recovery are implemented; see {{gtPage:Catalyst Fairy window titles|db=731asfxqhyhdr96k6wo9yxnzv}} for the supported path and current verification. The presentation remains a first increment, not a completed observability or attachment redesign."
 			}
 		]
 	},
