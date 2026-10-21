@@ -116,3 +116,11 @@ TGC intends to live up to it's byline... A reasonably fun game, that pretty much
 - [TGC — Stakeholder Overview v0.2](readme/tgc/TGC_-_Stakeholder_Overview_v0.2.md)
 - [TGC — Systems Context Brief v0.2](readme/tgc/TGC_-_Systems_Context_Brief_v0.2.md)
 - [TGC — Vertical Slice Brief v0.2](readme/tgc/TGC_-_Vertical_Slice_Brief_v0.2.md)
+## Connect ownership
+
+CatalystConnect now owns the GemStone and GT/Pharo reference, CATP contract and
+conformance plan. CatalystConnectCPP and CatalystConnectSwift are the other
+implementations; CatalystConnectPlugin is the Unreal adapter. Implementation
+readiness is tracked in the reference repository. The legacy DevKit
+`BV-Catalyst-Connect-Core` remains a compatibility dependency of Store until a
+separate migration; it does not define CATP or establish network support.
