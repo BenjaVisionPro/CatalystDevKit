@@ -78,6 +78,13 @@ BVCFairyAgentExecution >> createAgentResponse [
 		yourself
 ]
 
+{ #category : 'testing' }
+BVCFairyAgentExecution >> hasLiveMutationOwnership [
+	"A retained record is not a worker. Idle is affirmative provider state, not an unavailable observation. UI requests retain ownership until their own completion."
+	^ self agent state ~= GtLProviderState idle
+		or: [ BVCFairyUIRequest hasPendingForChat: self agent ]
+]
+
 { #category : 'initialization' }
 BVCFairyAgentExecution >> initialize [
 	super initialize.
@@ -87,6 +94,14 @@ BVCFairyAgentExecution >> initialize [
 { #category : 'testing' }
 BVCFairyAgentExecution >> isCancelled [
 	^ wasCancelled
+]
+
+{ #category : 'accessing' }
+BVCFairyAgentExecution >> mutationOwnershipStatus [
+	^ { 'blocksMutation' -> self hasLiveMutationOwnership.
+		'providerState' -> self agent state class name.
+		'pendingUI' -> (BVCFairyUIRequest hasPendingForChat: self agent).
+		'history' -> 'Retained outcomes are evidence, not live ownership. Unavailable observation does not establish cessation.' } asDictionary
 ]
 
 { #category : 'feedback' }

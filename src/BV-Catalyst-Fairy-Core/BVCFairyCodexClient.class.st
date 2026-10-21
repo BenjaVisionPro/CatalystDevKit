@@ -20,6 +20,20 @@ BVCFairyCodexClient class >> preservingClient: aClient [
 ]
 
 { #category : 'requests' }
+BVCFairyCodexClient >> post: aPath withEntity: anEntity [
+	"Only retry the unfinished model generation. The provider has not received
+	this attempt's result, so its tool calls cannot have run."
+	^ [ super post: aPath withEntity: anEntity ]
+		on: BVCFairyInterruptedCodexStream
+		do: [ :interruption |
+			[ super post: aPath withEntity: anEntity ]
+				on: BVCFairyInterruptedCodexStream
+				do: [ :repeatedInterruption |
+					repeatedInterruption messageText: 'Codex response was interrupted again after one automatic retry. Both attempts are retained in request history. Completed tools, child results and image changes remain intact; send a follow-up to continue.'.
+					repeatedInterruption pass ] ]
+]
+
+{ #category : 'requests' }
 BVCFairyCodexClient >> postOnce: aPath withEntity: anEntity [
 	| httpClient responseBody responseText accumulator requestResponse |
 	httpClient := self newStreamingHttpClient.
@@ -28,12 +42,16 @@ BVCFairyCodexClient >> postOnce: aPath withEntity: anEntity [
 		httpClient entity: (ZnEntity json: (NeoJSONWriter toString: anEntity)).
 		responseBody := httpClient post.
 		responseText := self responseStringFrom: responseBody.
-		"Keep the original response and headers, but not its consumed transport stream."
+		"Retain the consumed body before parsing, including explicit stream errors."
 		httpClient response entity: (ZnEntity text: responseText).
-		accumulator := GtLOpenAiCodexSseAccumulator new.
-		accumulator consume: responseText.
 		requestResponse := self addHistoryRequestResponse: httpClient.
-		requestResponse result: accumulator result.
+		accumulator := BVCFairyCodexSseAccumulator new.
+		[
+			accumulator consume: responseText.
+			requestResponse result: accumulator result
+		] on: BVCFairyInterruptedCodexStream do: [ :interruption |
+			interruption requestResponse: requestResponse.
+			interruption pass ].
 		requestResponse
 	] ensure: [ httpClient close ]
 ]

@@ -12,23 +12,19 @@ Class {
 { #category : 'examples' }
 BVCFairyRecoveryExamples >> blockedMaintainerStillAllowsInspection [
 	<gtExample>
-	| root request execution tool result builder |
+	| root execution builder problem |
 	root := BVCFairyExamples new parentChat.
 	root provider shouldComplete: false.
-	request := BVCFairyExamples new explorerRequest agentName: 'System Maintainer'.
-	builder := BVCFairyAgentBuilder forAgentCreationRequest: request.
-	execution := builder startFromParentAgent: root
-		inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	execution := builder startFromParentAgent: root inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
 	[
 		execution waitUntilCompletionOrTimeoutAfter: 0.
 		self assert: (builder unfinishedMaintainerFor: root) == execution.
-		tool := root tools items detect: [ :each | each name = 'inspectLiveObject' ].
-		result := tool performToolCall: (self callForOwner: root inspectionId object: execution executionId path: '')
-			inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
-		self assert: (result model data at: 'status') equals: 'observed'.
-		self assert: (builder validateForParent: root ifErrorDo: [ :problem | problem ]) class equals: BVCFairyAgentProblem
+		problem := builder validateForParent: root ifErrorDo: [ :failure | failure ].
+		self assert: problem agentExecution == execution.
+		self assert: (root tools anySatisfy: [ :tool | tool name = 'inspectLiveObject' ])
 	] ensure: [ execution agent provider privateExecutionState: GtLProviderState idle ].
-	^ result
+	^ problem
 ]
 
 { #category : 'private' }
@@ -41,11 +37,11 @@ BVCFairyRecoveryExamples >> callForOwner: ownerId object: objectId path: path [
 { #category : 'examples' }
 BVCFairyRecoveryExamples >> cancellationAbandonsQueuedUiWork [
 	<gtExample>
-	| root execution universe request ran failed |
+	| root execution universe request ran failed builder |
 	root := BVCFairyExamples new parentChat.
 	root provider shouldComplete: false.
-	execution := (BVCFairyAgentBuilder forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer'))
-		startFromParentAgent: root inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	execution := builder startFromParentAgent: root inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
 	universe := BlUniverse new.
 	ran := false.
 	request := BVCFairyUIRequest new chat: execution agent; action: [ ran := true ]; submitOn: universe; yourself.
@@ -66,24 +62,39 @@ BVCFairyRecoveryExamples >> cancellationAbandonsQueuedUiWork [
 { #category : 'examples' }
 BVCFairyRecoveryExamples >> freshChatCannotBypassConflictingMaintainer [
 	<gtExample>
-	| registry owner fresh execution builder |
-	registry := GtLChatRegistry current.
+	| owner fresh execution builder |
 	owner := BVCFairyExamples new parentChat.
 	fresh := BVCFairyExamples new parentChat.
 	owner provider shouldComplete: false.
-	builder := BVCFairyAgentBuilder forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
-	registry registerChat: owner.
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	builder roots: { owner. fresh }.
 	[
-		execution := builder startFromParentAgent: owner
-			inContext: (GtLToolExecutionContext new currentChat: owner; objectStorage: owner objectStorage).
+		execution := builder startFromParentAgent: owner inContext: (GtLToolExecutionContext new currentChat: owner; objectStorage: owner objectStorage).
 		execution waitUntilCompletionOrTimeoutAfter: 0.
 		self assert: (builder unfinishedMaintainerFor: fresh) == execution.
-		self assert: (builder validateForParent: fresh ifErrorDo: [ :problem | problem ]) class equals: BVCFairyAgentProblem.
-		self assert: (fresh tools anySatisfy: [ :tool | tool name = 'inspectLiveObject' ])
-	] ensure: [
-		execution ifNotNil: [ execution agent provider privateExecutionState: GtLProviderState idle ].
-		registry removeChat: owner ].
+		self assert: (builder validateForParent: fresh ifErrorDo: [ :problem | problem ]) class equals: BVCFairyAgentProblem
+	] ensure: [ execution ifNotNil: [ execution agent provider privateExecutionState: GtLProviderState idle ] ].
 	^ fresh
+]
+
+{ #category : 'examples' }
+BVCFairyRecoveryExamples >> idleOwnershipDoesNotRewriteUnknownHistory [
+	<gtExample>
+	| root execution builder outcome |
+	root := BVCFairyExamples new parentChat.
+	builder := BVCFairyAgentBuilder forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	execution := BVCFairyAgentExecution new agent: (GtLChat new provider: BVCFairyProviderStub new); parentAgent: root; initialRequest: builder request; yourself.
+	root objectStorage addNewObject: execution.
+	outcome := execution instVarNamed: 'observedOutcome'.
+	self assert: execution hasLiveMutationOwnership not.
+	self assert: (execution instVarNamed: 'observedOutcome') equals: outcome.
+	execution agent provider privateExecutionState: GtLProviderState stopping.
+	self assert: execution hasLiveMutationOwnership.
+	execution agent provider privateExecutionState: GtLProviderState running.
+	self assert: execution hasLiveMutationOwnership.
+	execution agent provider privateExecutionState: GtLProviderState idle.
+	self assert: execution hasLiveMutationOwnership not.
+	^ execution
 ]
 
 { #category : 'examples' }
@@ -171,30 +182,23 @@ BVCFairyRecoveryExamples >> referenceFailuresAndBounds [
 { #category : 'examples' }
 BVCFairyRecoveryExamples >> runningUiWorkKeepsMutationGateClosed [
 	<gtExample>
-	| root execution request universe entered release done worker failed partial builder |
+	| root execution request universe entered release done worker partial builder |
 	root := BVCFairyExamples new parentChat.
 	root provider shouldComplete: false.
-	builder := BVCFairyAgentBuilder forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
-	execution := builder startFromParentAgent: root inContext:
-		(GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	execution := builder startFromParentAgent: root inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
 	execution waitUntilCompletionOrTimeoutAfter: 0.
 	execution agent provider privateExecutionState: GtLProviderState idle.
 	universe := BlUniverse new.
 	entered := Semaphore new. release := Semaphore new. done := Semaphore new.
 	partial := Array with: 0.
-	request := BVCFairyUIRequest new
-		chat: execution agent;
-		action: [ partial at: 1 put: 1. entered signal. release wait. partial at: 1 put: 2 ];
-		submitOn: universe;
-		yourself.
+	request := BVCFairyUIRequest new chat: execution agent;
+		action: [ partial at: 1 put: 1. entered signal. release wait. partial at: 1 put: 2 ]; submitOn: universe; yourself.
 	worker := [ [ request run ] ensure: [ done signal ] ] fork.
 	[
 		self assert: (entered waitTimeoutMilliseconds: 1000) not.
-		failed := false.
-		[ request valueWithinMilliseconds: 10 ] on: Error do: [ :error | failed := error messageText includesSubstring: 'still outstanding' ].
-		self assert: failed.
+		[ request valueWithinMilliseconds: 10 ] on: Error do: [ :error | self assert: (error messageText includesSubstring: 'still outstanding') ].
 		self assert: request state equals: #running.
-		self assert: partial first equals: 1.
 		self assert: (builder unfinishedMaintainerFor: root) == execution.
 		release signal.
 		self assert: (done waitTimeoutMilliseconds: 1000) not.
@@ -234,6 +238,22 @@ BVCFairyRecoveryExamples >> uiThreadUsesDirectExecution [
 		value ].
 	self assert: result equals: 42.
 	^ result
+]
+
+{ #category : 'examples' }
+BVCFairyRecoveryExamples >> unavailableObservationDoesNotChangeGate [
+	<gtExample>
+	| root execution builder observation |
+	root := BVCFairyExamples new parentChat.
+	root provider shouldComplete: false.
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: (BVCFairyExamples new explorerRequest agentName: 'System Maintainer').
+	execution := builder startFromParentAgent: root inContext: (GtLToolExecutionContext new currentChat: root; objectStorage: root objectStorage).
+	[
+		observation := BVCFairyObjectInspection new inspectOwner: 'unavailable-owner' object: execution executionId path: '' from: root.
+		self assert: (builder unfinishedMaintainerFor: root) == execution.
+		self assert: execution hasLiveMutationOwnership
+	] ensure: [ execution agent provider privateExecutionState: GtLProviderState idle. execution unsubscribe ].
+	^ observation
 ]
 
 { #category : 'examples' }

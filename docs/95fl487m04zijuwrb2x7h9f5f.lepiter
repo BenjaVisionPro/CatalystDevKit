@@ -336,6 +336,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "Barry-local presentation implementation, current checks and remaining design gaps: {{gtPage:Catalyst Fairy chat presentation|db=731asfxqhyhdr96k6wo9yxnzv}}. Bounded live inspection and UI-wait recovery are implemented; see {{gtPage:Catalyst Fairy window titles|db=731asfxqhyhdr96k6wo9yxnzv}} for the supported path and current verification. The presentation remains a first increment, not a completed observability or attachment redesign."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T06:16:03.609046+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T06:16:03.609046+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "j+9rCRLFSUG+d4UZVrNG9A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Live ownership versus historical records — clarification 2026-10-22\nA lifecycle record with unknown outcome is retained evidence, not itself a live mutation owner. Do not require every past execution to remain resolvable forever. Diagnose the current source guard and identify the execution/provider/process/UI or resource that actually owns unfinished work. Preserve a running/stopping worker or pending Barry UI gate; never clear it from an unavailable owner, timeout or empty bounded scan. Affirmative idle provider state plus supported UI completion and specific process/resource reconciliation can establish that an identified owner no longer blocks; this does not certify its task result, erase historical unknowns/errors, or authorize replay/rollback. When there is no identified current conflicting owner, historical uncertainty alone must not be promoted into a new global gate. Report the remaining evidence gap without inventing cessation.\n\nExecutable gate queries: BVCFairyAgentExecution>>hasLiveMutationOwnership and >>mutationOwnershipStatus; production BVCFairyAgentBuilder>>unfinishedMaintainerFor: still includes registered Barry roots. Examples use explicitly isolated roots, never a production bypass. Barry Codex tool serialization now selects BVCFairyResponsesEndpoint: ready supplied/cached bytes are included; deferred rendering is explicitly unavailable and is not executed. Current implementation manifest, evidence and limits are maintained on [[Catalyst Fairy chat presentation]], section Barry-local progress and gate diagnosis — 2026-10-22. Historical check counts above remain historical."
 			}
 		]
 	},

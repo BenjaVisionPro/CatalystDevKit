@@ -191,9 +191,8 @@ BVCFairyContinuityExamples >> initialCheckpointFailureBlocksWork [
 	writer := BVCFairyContinuityStub new database: LeDatabase new; failWrites: true.
 	chat := BVCFairyExamples new parentChat continuity: writer.
 	request := BVCFairyExamples new explorerRequest agentName: 'System Maintainer'.
-	execution := (BVCFairyAgentBuilder forAgentCreationRequest: request)
-		startFromParentAgent: chat
-		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
+	execution := (BVCFairyAgentBuilderStub forAgentCreationRequest: request)
+		startFromParentAgent: chat inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
 	self assert: execution waitUntilCompletionOrTimeout isNil.
 	problem := execution createAgentResponse.
 	self assert: problem class equals: BVCFairyAgentProblem.
@@ -294,29 +293,28 @@ BVCFairyContinuityExamples >> timeoutPreservesResultAndBlocksOverlappingMaintain
 	writer := chat continuity.
 	request := BVCFairyExamples new explorerRequest agentName: 'System Maintainer'.
 	chat provider shouldComplete: false.
-	builder := BVCFairyAgentBuilder forAgentCreationRequest: request.
-	execution := builder startFromParentAgent: chat
-		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
-	originalMessages := execution agent allMessages size.
-	writer failWrites: true.
-	problem := execution waitUntilCompletionOrTimeoutAfter: 0.
-	self assert: (problem description includesSubstring: 'timed out').
-	self assert: writer isDegraded.
-	self assert: (chat announcer hasSubscriber: execution) not.
-	self assert: (execution agent announcer hasSubscriber: execution) not.
-	problem := builder validateForParent: chat ifErrorDo: [ :failure | failure ].
-	self assert: problem class equals: BVCFairyAgentProblem.
-	self assert: problem agentExecution == execution.
-	"Controlled provider has no background work. Observe late cessation explicitly."
-	execution agent provider privateExecutionState: GtLProviderState idle.
-	self assert: (builder validateForParent: chat ifErrorDo: [ :failure | failure ]) isNil.
-	writer failWrites: false.
-	chat provider shouldComplete: true.
-	nextExecution := builder startFromParentAgent: chat
-		inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
-	self assert: nextExecution waitUntilCompletionOrTimeout isNil.
-	self assert: nextExecution createAgentResponse class equals: GtLAgentExecutionResult.
-	self assert: execution agent allMessages size equals: originalMessages.
-	self assert: chat objectStorage objectIds size equals: 2.
+	builder := BVCFairyAgentBuilderStub forAgentCreationRequest: request.
+	execution := builder startFromParentAgent: chat inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
+	[
+		originalMessages := execution agent allMessages size.
+		writer failWrites: true.
+		problem := execution waitUntilCompletionOrTimeoutAfter: 0.
+		self assert: (problem description includesSubstring: 'timed out').
+		self assert: writer isDegraded.
+		self assert: (chat announcer hasSubscriber: execution) not.
+		self assert: (execution agent announcer hasSubscriber: execution) not.
+		problem := builder validateForParent: chat ifErrorDo: [ :failure | failure ].
+		self assert: problem class equals: BVCFairyAgentProblem.
+		self assert: problem agentExecution == execution.
+		execution agent provider privateExecutionState: GtLProviderState idle.
+		self assert: (builder validateForParent: chat ifErrorDo: [ :failure | failure ]) isNil.
+		writer failWrites: false.
+		chat provider shouldComplete: true.
+		nextExecution := builder startFromParentAgent: chat inContext: (GtLToolExecutionContext new currentChat: chat; objectStorage: chat objectStorage).
+		self assert: nextExecution waitUntilCompletionOrTimeout isNil.
+		self assert: nextExecution createAgentResponse class equals: GtLAgentExecutionResult.
+		self assert: execution agent allMessages size equals: originalMessages.
+		self assert: chat objectStorage objectIds size equals: 2
+	] ensure: [ execution agent provider privateExecutionState: GtLProviderState idle ].
 	^ chat
 ]

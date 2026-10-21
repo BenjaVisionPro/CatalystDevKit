@@ -27,6 +27,15 @@ BVCFairyAgentBuilder >> createAgentForParent: aParent [
 	^ child
 ]
 
+{ #category : 'validation' }
+BVCFairyAgentBuilder >> mutationOwnershipRootsFor: aParent [
+	| roots |
+	roots := OrderedCollection with: aParent.
+	(GtLChatRegistry current chats select: [ :chat | chat isKindOf: BVCFairyChat ]) do: [ :chat |
+		(roots includes: chat) ifFalse: [ roots add: chat ] ].
+	^ roots
+]
+
 { #category : 'accessing' }
 BVCFairyAgentBuilder >> request [
 	"Keep the upstream legacy spelling out of the Catalyst API."
@@ -72,18 +81,12 @@ BVCFairyAgentBuilder >> startFromParentAgent: aParent inContext: aContext [
 
 { #category : 'validation' }
 BVCFairyAgentBuilder >> unfinishedMaintainerFor: aParent [
-	| roots |
-	roots := OrderedCollection with: aParent.
-	(GtLChatRegistry current chats select: [ :chat | chat isKindOf: BVCFairyChat ]) do: [ :chat |
-		(roots includes: chat) ifFalse: [ roots add: chat ] ].
-	roots do: [ :root |
-		root objectStorage objectIds do: [ :id |
+	(self mutationOwnershipRootsFor: aParent) do: [ :root |
+		root objectStorage objectIds do: [ :identifier |
 			| object |
-			object := root objectStorage objectAt: id.
+			object := root objectStorage objectAt: identifier.
 			((object isKindOf: BVCFairyAgentExecution) and: [
-				object initialRequest agentName = 'System Maintainer' and: [
-				object agent state ~= GtLProviderState idle
-					or: [ BVCFairyUIRequest hasPendingForChat: object agent ] ] ])
+				object initialRequest agentName = 'System Maintainer' and: [ object hasLiveMutationOwnership ] ])
 				ifTrue: [ ^ object ] ] ].
 	^ nil
 ]
@@ -114,6 +117,9 @@ BVCFairyAgentBuilder >> validateForParent: aParent ifErrorDo: anErrorBlock [
 		^ anErrorBlock value: (GtLProblemDomainObject new description: 'The parent chat is stopping.') ].
 	self request agentName = 'System Maintainer' ifTrue: [
 		(self unfinishedMaintainerFor: aParent) ifNotNil: [ :execution |
-			^ anErrorBlock value: (execution problem: 'A previous Maintainer has not finished stopping. Inspect its execution and partial changes before starting more mutating work.') ] ].
+			^ anErrorBlock value: (execution problem: 'Maintainer ', execution executionId asString,
+				' retains live mutation ownership: provider ', execution agent state class name,
+				', pending Barry UI: ', (BVCFairyUIRequest hasPendingForChat: execution agent) asString,
+				'. Preserve this owner. Historical unknown outcomes alone do not block a new task; missing observations do not clear live ownership.') ] ].
 	^ nil
 ]

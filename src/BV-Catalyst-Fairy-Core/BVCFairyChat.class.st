@@ -148,7 +148,9 @@ BVCFairyChat >> inspectionId [
 BVCFairyChat >> installCodexClientFor: aProvider [
 	(aProvider isKindOf: GtLOpenAiCodexProvider) ifFalse: [ ^ self ].
 	aProvider model client class = GtLOpenAiCodexClient ifTrue: [
-		aProvider model client: (BVCFairyCodexClient preservingClient: aProvider model client) ]
+		aProvider model client: (BVCFairyCodexClient preservingClient: aProvider model client) ].
+	aProvider model userMessageEndpoint class = GtLOpenAiCodexResponsesEndpoint ifTrue: [
+		aProvider model userMessageEndpoint: BVCFairyResponsesEndpoint new ]
 ]
 
 { #category : 'continuity' }
@@ -167,9 +169,10 @@ BVCFairyChat >> provider: aProvider [
 	super provider: aProvider
 ]
 
-{ #category : 'actions' }
+{ #category : 'instructions' }
 BVCFairyChat >> refreshInstructions [
 	"Create a new snapshot so a running child keeps its own instructions."
+	self provider ifNotNil: [ :currentProvider | self installCodexClientFor: currentProvider ].
 	(self tools anySatisfy: [ :tool | tool name = 'inspectLiveObject' ]) ifFalse: [
 		self addTool: (BVCFairyObjectInspectionTool new rootChat: self) ].
 	self instructions: GtLInstructionComposite new.
