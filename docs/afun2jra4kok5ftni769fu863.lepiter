@@ -114,6 +114,117 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Gate and remaining seams\nExact prior execution 5fi5alspuzq4agiz6174lb08r was found in the same parent's object storage (retained execution {{gtObject:id=20mgz7wp2tb1vhqq98qqq1zie}}, parent storage {{gtObject:id=epfxwhi4howvn7agfkk63q6xs}}). Provider/chat observed idle; no nonterminated process with receiver equal to that execution/chat/provider was found ({{gtObject:id=f10ay7urqmebfhf9nuhik4qww}}). All same-parent prior Maintainers were idle, excluding exact self 2y7gph9q05046umyab5k8t8qj identified by identical task prompt and current tool object storage. Original timeout record and current successful initial checkpoint retained: {{gtObject:id=2u7pr83g0kkp6vapbdqho8kdg}}. Original prior responseMessage nil; prior errors remain in its child object storage, including editor thread/matrix/toolbar/memento failures ({{gtObject:id=2xttbjc2rqh8krnee04mq4n6b}}). No termination/stop/reset/replay/undo performed. Cessation does not verify previous Foundation partial edits.\n\nNext extension seams (not implemented): BVCFairyAgentExecution>>gtViewAgentFor: and BVCFairyAgentProblem for retained child activity; GtLChatExecutionStateChanged for observed phases; provider API calls/tokens views and GtLMessageTokensData for reported usage (unknown is not zero; aggregate without double counting). GtLNewMessageViewModel>>attachFile: and GtLNewMessageElement>>initializeAttachButtonElement already attach via selector; send uses BVCFairyChat>>sendFiles:withMessage:. The inherited send clears draft/files before sending: failure-safe draft retention is still a gap. Window drop, thumbnails/removal/inspection, provider support distinction, live child status/timing, usage integration and follow-at-bottom behavior remain target work. No drop handler or telemetry added.\n\nONE next action: review this increment interactively via barryEntryPoint and diagnose the retained UI-thread title regression before widening to activity/usage/drop."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T15:17:20.880333+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T15:17:20.880333+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MqERq/FZTzeOYEcB5EziCA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Timeout repair gate investigation — 2026-10-21\nImage-only investigation in SuperGame.image / Pharo13.1.0SNAPSHOT; no source selectors changed and no source publication/build. Successful explicit initial continuity checkpoint retained under current child owner c3a28b26-4597-4d85-938d-285525661537/4zp7vkzl5zf7gu5new36kboda, object 2bw3cop75pbdshmmwe4obxuv3. All five other retained same-parent executions were idle with zero exact execution/chat/provider receiver matches in full suspended sender-chain scans (blocq0y885w573ymcrfjv7soq). This establishes observed provider cessation, not completion of UI work.\nConfirmed source seam: GtLImageDataView>>element: (Gt4LlmCore) implicitly invokes BlScripter>>element:, which synchronously pulses until ready; computedImageBytes evaluates that block during serialization. GtLOpenAiResponsesEndpoint>>serializeToolCall: requests mainDataView serialization. GtLImageDataViewExamples currently cover supplied PNG bytes, not busy-element readiness or cleanup. No controlled rendering reproduction was attempted while the mutation gate remained unresolved.\nRetained diagnosis queue 52iyh9svlkmbh7iggkd56s594 remains under diagnosis owner c3a28b26-4597-4d85-938d-285525661537/d0tth5x9grkl51h8xwf6atotl. Current inspection found zero active and nine pending BlPromiseTasks, all executing/uncomputed and labelled Future: Ollama. Their manual promises originate at AsyncPausableSink>>resume:beforeResuming:. Only one current pausable sink matches these promise identities; each task matches that same current sink promise (di7fnfbvo9qjziu7qunf5ams0). Its buffer is AsyncStreamBuffer id 729; stream loading promise is indefinitely pending, execution pending, worker has no current task/process, group ScrollingList; no task/promise/sink receiver frames found (a524km8jppxpl221hlm5oe88s, eouotbhneynhdn2qmwyjl1wyx, 7h47m2o2l3gjodrq3upkwvvny).\nOwnership traced through buffer -> AsyncMapWithCacheStream -> GtLAsyncExecutionMessageStream -> reply view model. That exact view model is retained by BVCFairyReplyMessageElement and other elements beneath original pane 8wxetod9lg3cq4nbkj46zr9w1; its chat uses BVCFairyProviderStub, is idle, and the reply remains created with no finishedAt (2f1zd5fr0gf8iojv3gx8sei37, bso64r1dsw5715d11ya7vm1qg). This is unfinished example UI, not an identified live Ollama request. AsyncStreamBuffer>>stop delegates cooperative stream termination; it does not itself establish promise completion or remove queued tasks. No stop, promise fulfillment/rejection, queue clearing, process termination, replay or rollback performed.\nGate remains closed: retained UI disposition/actual completion has not been reconciled. Existing partial feedback edits and original exception/diagnosis objects remain untouched and unverified. Next bounded decision: explicitly dispose the identified retained example buffer through existing cooperative stop protocol and verify actual worker/promise/task completion, including the repeated registrations, before modifying GT image serialization. Do not treat waiter timeout or absence of receiver frames as cancellation. No normal/busy/cancellation/resource acceptance checks executed in this investigation."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T15:32:13.501319+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T15:32:13.501319+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "KsnCqXhZRUac0FfLwVDQVg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Authorized recovery disposition and bounded image repair — 2026-10-21\nSuperGame.image / Pharo13.1.0SNAPSHOT. Successful initial continuity checkpoint recorded. Ownership/rules reread. Exact original pane and buffer 729 re-proven by reply identity through the stream into five original-pane renderers; provider BVCFairyProviderStub (current evidence 2mv495141gkpyxxxrx8wookk0). Only that buffer received AsyncStreamBuffer>>stop. Stream and chunk promises actually became AsyncFulfilledPromiseState, buffer done, worker nil. Nine original registrations all became computed/queued against that same fulfilled chunk promise (4p2kmaj9kro8nrxy1yo1fzmwi). Their sole owning task queue was identified; its existing runOn: protocol drained only those computed BlPromiseTasks, with no promise mutation or queue clearing. Final retained queue count zero, no definite tasks, buffer done (3m0rs0fsf4cbjqw5wrf4f4elt). Six prior exact executions/chats/providers idle with zero receiver matches across full suspended sender chains of 44 nonterminated processes (21usdtkiwxq7trykqi82tgm9y). Recovery gate reconciled; original exceptions and partial feedback edits preserved.\n\nImage-only repair owner: Gt4LlmCore / Gt4LlmCore-Examples, explicit user scope extension, GT/Pharo only. GtLImageDataView>>element: sets existing BlScripter maxPulseElapsedTime: to one second BEFORE attaching/pulsing; ensures target detachment and removal of its added event filter. This is a cooperative readiness limit, not preemption of a blocked pulse/export. computedImageBytes caches the original BlDevScripterPulseTimeoutError in imageReadinessError; repeated failed serialization does not create new scripters. serializeToLlmPrimiteDataOn: returns a supported JSON/text block describing image unavailability, never a fabricated image. Other failures propagate. imageBytes: resets cached bytes/failure. Class-side fromElement: now reuses the same lazy element rendering path rather than its separate default-ten-minute path; sender search found no pre-existing GtLImageDataView consumer for that factory.\n\nChanged selectors: instance element:, computedImageBytes, imageReadinessError, imageBytes:, serializeToLlmPrimiteDataOn:; class fromElement:. Added one failure-evidence slot, no classes/dispatcher/Bloc changes. Examples added: readyElementSerialization, busyElementSerialization, imageComputationFailurePropagates. Current final bounded execution: these three plus two existing supplied-PNG serialization examples passed via direct example invocation, primitive-only report 8zdgxman9aa6ivs0x48eflpw2. Earlier individual GT runner ready/busy passed; initial ready example had a fixture argument error, preserved as d0bayqdhzddpscfuu5exzezmf, corrected before final checks. Busy check asserts under four seconds, text without image, original error identity over three repeats, detached element, and zero remaining fixture tasks in the original temporary space after explicit fixture-owned dequeue. No arbitrary promise settlement used.\n\nLimits: external cancellation acceptance not executed; no hard guarantee against a blocking individual pulse/export, no generic disposal of resources owned by returned elements. No live-provider/end-to-end endpoint or broad regression suite; no feature acceptance of partial feedback implementation; no GemStone validation. Image readiness errors remain inspectable through imageReadinessError, not serialized as images. No source save/export/stage/commit/push/build/external checkout. Remaining next review: cancellation semantics and endpoint integration under bounded fixtures before claiming complete timeout/cancellation acceptance."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T16:42:18.902109+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T16:42:18.902109+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "R/3wuQKETHGX914qJwJWMw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Ownership/durability review — blocked image slice, 2026-10-21\nOwner sought: CatalystDevKit / BV-Catalyst-Fairy-Core, GT/Pharo only. No source selectors/classes/slots changed by this review. Temporary upstream GtLImageDataView patch and its three examples remain exactly as found; not restored without a verified replacement and exact original baseline. Partial Barry activity/UI work preserved. No save/export/commit/push/build/startup patch or external checkout.\n\nCurrent child owner c3a28b26-4597-4d85-938d-285525661537/a2k6gt1a3l5n94269l4nptrhd. Successful explicit continuity checkpoint and self identification: 6wh6l37o44uk04qgy383vm6fx. Seven prior same-parent executions idle, zero exact execution/chat/provider receiver matches in full sender-chain scans over 44 nonterminated processes: 3t8d9jb20wji08h6i993z6exa. Prior repair child 6s3xmg2ma4k9n9nno75rog1x1 retained reconciliation re-read: its 3m0rs0fsf4cbjqw5wrf4f4elt = zero retained queue tasks/no definite tasks/buffer done; its 21usdtkiwxq7trykqi82tgm9y retains fulfilled stream/chunk promises and nil worker. This review did not repeat stop/drain or mutate promises.\n\nSelection gap: GtLWrappedModel>>computeMainDataView creates GtLDataView new; ProtoObject collection enters GtLDataViewsCollector, whose collect creates GtLDataView empty for each pragma. GtLDataView>>imageData directly constructs GtLImageDataView. Forwarded object views recursively enter the same generic builder. GtLDataViewContext is empty and carries no image factory/policy. Merely subclassing a root data view does not reach those nested images. No supported per-chat recursive builder/image selection hook was demonstrated. Existing model userMessageEndpoint: is a real endpoint-selection seam; however an endpoint-local solution still needs a supported recursive image transformation/factory contract while preserving keys, labels, provenance, caching and text evidence. It has not been implemented or integration-tested. BVCFairyCodexClient handles HTTP lifecycle after serialization, not image construction; no transport workaround added.\n\nRestoration blocker: registered IceRepository lookup for GtLImageDataView package returned nil. Registry contains Catalyst repositories but not Gt4LlmCore's owner. No unregistered checkout discovery performed. Retained prior tool-call history confirms the six changed selectors (instance element:, computedImageBytes, imageBytes:, serializeToLlmPrimiteDataOn:, imageReadinessError; class fromElement:), added imageReadinessError slot and three added examples readyElementSerialization/busyElementSerialization/imageComputationFailurePropagates. Exact original method/class definitions were not recovered against an owning repository baseline in this slice; no guessed rollback.\n\nFocused current execution on SuperGame.image / Pharo13.1.0SNAPSHOT: five existing examples invoked directly, all passed, primitive report 8pawsbm5c1wox1oif16jhrqh9. Includes ready/busy image, cached error/repeats/cleanup, unrelated computation error and two supplied-PNG serialization checks. These validate the temporary patch only, NOT Catalyst ownership or endpoint integration. No broad suite/live model/network/default-ten-minute pulse. External cancel, single blocking pulse/export preemption, generic GT restoration and rebuild persistence remain unverified; actual maintained Barry-local path is unmet.\n\nCandidate upstream dependency: provide a recursively propagated data-view/image factory or serialization policy selected per tool execution/chat, defaulting to current generic GT behavior; retain original readiness error with bounded cooperative rendering and cleanup. Verify normal/busy/repeat/unrelated errors through the real endpoint, then select it only for Barry via existing model endpoint/consumer seam and restore only the exact temporary patch against an exposed original baseline. This is a proposal, not an implemented capability or authority expansion. Separately authorized supported source publication followed by a BVC rebuild remains necessary for rebuild delivery; current temporary changes are image-only."
 			}
 		]
 	},
