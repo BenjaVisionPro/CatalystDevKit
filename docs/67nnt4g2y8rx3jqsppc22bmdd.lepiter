@@ -447,6 +447,413 @@
 					"__type" : "textStyle"
 				},
 				"string" : "2026-10-19 | reconciled-state instruction check | Fresh BVCFairyChat with actual book writer and controlled provider, no model message: all seven complete maintained snippets present in actual instructions, state including separators 3465 characters, total continuity 5867 (limits 4000/8192), not degraded, lastFailure nil. Child evidence 2u6mabcoap8k107ifzttkzsf9. Initial formatting inspection failed after assertions at LeSnippets>>sum:; retained exception b3vn2xov5alw6xfyo4zzvhntf, corrected read-only inspection used children asArray. No mutation replay/undo. BVC orchestration remains the single next action on state page; no build/rebuilt-chat/crash claim."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:16:08.666309+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:16:08.666309+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nU0Pu0ksSpmr13re+m+kLQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "da84f386-a3fc-4ea1-a903-8e2ad888abab | 2026-10-21T12:16:08.664962+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:16:18.62843+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:18:52.147205+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:18:52.147205+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "t77t4rCIQBm9lPpPjCcIAw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "7cb5a32d-8b1c-484f-8fa6-ac41b95b4909 | 2026-10-21T12:18:52.1466+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:19:21.169892+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:22:37.24773+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:22:37.24773+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "0otsiFcgTr2EXHwLu28rCg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "0dc415a1-76b0-477a-b816-e3178f7d873b | 2026-10-21T12:22:37.23931+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:23:45.430463+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:22:44.115461+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:22:44.115461+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8D5jwoEOSxC5yyMzk3/dbg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "7279889b-6b18-45ff-bde8-2d720efc90ca | 2026-10-21T12:22:44.066152+11:00 | child | parent=0dc415a1-76b0-477a-b816-e3178f7d873b | started; outcome unknown; acceptance unverified | outcome=child provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:23:19.767456+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:41:06.778261+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:41:06.778261+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Wfuv5SdwRO6vWyIUsuurZQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2cd52e4b-b0cb-44cb-8275-0a1c03ee366a | 2026-10-21T12:41:06.777192+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:41:22.167193+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:43:08.98237+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:43:08.98237+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ZodZGy7DTmu92bAt/djfRA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "596f96d7-9a3d-4aa3-a784-86488d3c60d3 | 2026-10-21T12:43:08.981619+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:49:54.603771+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:43:19.713195+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T12:43:19.713195+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LqoUMa1ERLSUjzdI1L4z4A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "81c407f4-0808-446c-9fb2-87b19b6cca1d | 2026-10-21T12:43:19.712078+11:00 | child | parent=596f96d7-9a3d-4aa3-a784-86488d3c60d3 | started; outcome unknown; acceptance unverified | outcome=child provider finished; task success unknown; acceptance unverified | observed=2026-10-21T12:49:10.153868+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:20:02.45802+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:20:02.45802+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nYPLamQZQEuJQmX7kFJ8Kw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "23a06ff6-83dc-4f93-9634-56bc9a157170 | 2026-10-21T13:20:02.456352+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T13:41:06.110209+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:20:29.698338+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:20:29.698338+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "aPD1XbTPTZKs9/lv40Hatw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "ef6d377e-45cc-4353-bf24-bdd638ce74dd | 2026-10-21T13:20:29.697069+11:00 | child | parent=23a06ff6-83dc-4f93-9634-56bc9a157170 | started; outcome unknown; acceptance unverified | outcome=timeout; stop requested; child cessation and partial image changes unknown; late completion not observed; acceptance unverified | observed=2026-10-21T13:40:29.759701+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:55:56.679784+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:55:56.679784+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Sbm2vgJgQ4qqDnhfiIstWw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "532f75a1-9567-4f07-b5f3-edacf7603df5 | 2026-10-21T13:55:56.678585+11:00 | root | parent=none | started; outcome unknown; acceptance unverified | outcome=provider finished; task success unknown; acceptance unverified | observed=2026-10-21T14:00:59.37858+11:00"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:56:23.714905+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-21T13:56:23.714905+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "jLg4F+CJSE+tqpQq2TdseA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "2efdb8d4-716f-4f79-a062-d51af4196815 | 2026-10-21T13:56:23.714053+11:00 | child | parent=532f75a1-9567-4f07-b5f3-edacf7603df5 | started; outcome unknown; acceptance unverified | outcome=child provider finished; task success unknown; acceptance unverified | observed=2026-10-21T14:00:18.96816+11:00"
 			}
 		]
 	},
