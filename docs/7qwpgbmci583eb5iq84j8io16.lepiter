@@ -268,6 +268,43 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Configuration consolidation contract\nSee {{gtPage:Configuration model and composition contract|db=731asfxqhyhdr96k6wo9yxnzv}} for the bounded model contract and blocked retry evidence. Planner discovery/simulation/new-validation-error rejection remain mandatory. Smooth, intent-revealing Motion animation is CORE Atelier behavior, not optional polish. Generic Magritte composition remains the direction; configuration specialises it. Immediate configuration placement parent hooks versus generic CFMaMemento staged relation integration remains the next slice, not completed support. Historical checks above are not post-consolidation verification."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.208522+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.208522+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ziW1fSlMRh+vjZghHQ+NFA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## Prototype/target-model sprint status (2026-10-22)\nThe latest user decision replaces in-place Runtime consolidation with identity-preserving prototype rename and a fresh Foundation-derived Runtime base. See {{gtPage:Configuration model and composition contract|db=731asfxqhyhdr96k6wo9yxnzv}} for the maintained decision, exact unavailable-rename-tool blocker, source allocation review and current selected-example evidence. No Foundation/Atelier source changed. Current baseline includes projection, staged root preview/Motion/cancellation/rejection and legacy animation examples; this is not new Runtime model verification. Existing staged relation boundary and Motion requirements remain unchanged."
 			}
 		]
 	},

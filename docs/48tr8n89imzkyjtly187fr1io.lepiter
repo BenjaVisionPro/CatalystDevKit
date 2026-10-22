@@ -77,6 +77,80 @@
 					"__type" : "textStyle"
 				},
 				"string" : "## Retry outcome: blocked by class-change tool, not completed\nInspection before changes found CRConfiguration still directly subclassing CFLabelledObject with local parent and the six duplicate selectors parent, parent:, hasParent, initialize, ancestorConfigurations and rootConfiguration. No attribution of unrelated image changes to the previous failed child is possible. Those selectors and all unrelated code were preserved.\n\nOne signature-change attempt requested CFConfiguration superclass and empty local slots. It failed: DuplicatedSlotName: Slot #'parent' appeared twice in CRConfiguration. Source inspection of GtLClassChangeDataExtractor>>extractVariables proves an empty instanceVariables array means retain current slots, not remove all slots. Consequently the available signature tool cannot express the required atomic removal of the final local slot. Reinspection confirmed superclass CFLabelledObject and local parent remain unchanged. No code selectors/packages changed by this retry. No retry through a temporary slot, direct evaluation mutation, tool implementation edit or new abstraction was attempted; these would expand or risk the bounded change. The previous external-object-space error did not recur.\n\nCurrent-image checks on SuperGame.image / Pharo13.1.0SNAPSHOT: 73 gtExample executions succeeded, zero failures/errors/skips, zero missing classes. Classes: CFConfigurationExamples (all 14, including planner discovery/apply simulation/rejection/stale-plan and Atelier entry/shared transaction reset), CFAtelierEntryExamples, CFConfigurationEditorElementExamples (three animation-origin/traversal checks), CRRuntimeConfigurationExamples, CRRuntimeConfigurationValidatorExamples, CRRuntimeConfigurationCodecExamples, CRRuntimeConfigurationNodeExamples, CRFailureEvidenceConfigurationExamples and CRSnapshotIsolationExamples. These verify the unchanged hierarchy baseline, NOT the proposed consolidation. Inspectable hierarchy/tool/package evidence: {{gtObject:id=xj41c1atudsj5pz4fiosx597|fallbackLabelString='Retry hierarchy and class-change-tool evidence'}}.\n\nExclusions: no post-consolidation hierarchy/default/ancestry check is possible because consolidation did not occur; no SUnit run, full Runtime/Atelier suite, interactive animation/usability proof or GemStone validation. No explicit Runtime activation, startup setting change, source export/save, commit, push, BVC build or external checkout operation. Only this contract page and links were added to registered Lepiter documentation. Next action requires an authorized class-edit facility that can atomically specify zero local slots; do not claim completion from passing baseline examples."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.11427+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.11427+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "0HPOfVJATsqg2atZ/a8/bA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 2026-10-22 prototype/target-model decision — implementation blocked before source edits\nThis user decision supersedes the older in-place consolidation plan above: retain the existing class identity as CRConfigurationPrototype, create a NEW CRConfiguration directly under CFConfiguration with no local parent slot, then deliberately migrate reviewed Runtime subclasses/callers. Do not copy Foundation-owned behavior into the new Runtime base, fix upstream tools, introduce temporary slots, or use evaluation to mutate class identities. Prototype evidence is not a second supported implementation; remaining experimental consumers need an explicit review/removal condition.\n\nExact blocker in this Maintainer child's exposed tool set: there is no class-rename tool. changeClassOrTraitSignature selects an EXISTING targetClassName; GtLClassChangeDataExtractor>>extractTargetClassIfError: resolves that name from globals and supplies no old-name/new-name pair. createClassesAndTraits cannot replace the occupied CRConfiguration name: GtLClassCreationDataExtractor>>extractTargetClassNameIfError: rejects existing globals. Therefore the required first operation cannot safely be expressed. No rename, create, signature change, method compilation/removal, class removal, workaround or automatic rollback was attempted. Source manifest is empty across CatalystFoundation and CatalystRuntime. New target hierarchy and required protocol corrections remain unmet; passing baseline checks do not change that outcome.\n\nInitial checkpoint succeeded: current child continuity ID cff5ab9a-f391-4013-bfe3-b951724649d7, continuity not degraded. Exact active Maintainer is this child, execution 86qaee8aqhxx1dt8mnsha3qon under owner c2211feb-aa08-419a-acbf-fba0b93a4ffb; identity reconciled by finding this run's retained evidence in its own object storage and matching its request. Other retained Maintainers observed idle with no pending Barry UI. No process/gate reset, cancellation or delegation. Inspectable owner for this run's objects: c2211feb-aa08-419a-acbf-fba0b93a4ffb/86qaee8aqhxx1dt8mnsha3qon. Combined source/blocker evidence {{gtObject:id=4awdspvel24j8yzynmsdeuzpu|fallbackLabelString='Prototype sprint blocked source and ownership evidence'}}; ownership {{gtObject:id=cju9j6na68g7e8tmui1lk1iif|fallbackLabelString='Current child checkpoint and exact identity'}}; dispatch scan {{gtObject:id=7gx7orufy573ipi1u6uxf27ye|fallbackLabelString='Required configuration dispatch source scan'}}.\n\nObserved hierarchy remains CRConfiguration under CFLabelledObject, local parent, 15 direct subclasses (including CRFailureEvidenceOverride); CRConfigurationPrototype absent. Zero consumers migrated, zero instances deliberately migrated. Class-reference and literal-search tools returned no CRConfiguration method matches; this does NOT establish no consumers: subclass discovery and dynamic codec construction must also be reviewed. Full instance census, codec-name compatibility and complete string-source consumer review were not completed before the blocker. Do not claim automatic preservation/migration of existing parent values.\n\nBehavior allocation from inspected base source: Foundation already owns parent/parent:/hasParent/initialize/rootConfiguration/ancestorConfigurations and must supply these by inheritance, not copying. Generic nearest-first predicate ancestry search belongs with Foundation ancestry; withParent: is generic construction. Runtime defaultWithParent: must retain self default dispatch (Foundation currently self new); assess default construction collaboration before moving it. Runtime-specific asEffectiveConfiguration, configurationSnapshotUsing:, validateSemanticsOn: remain Runtime responsibilities, distinct from Foundation graph validation and planner projection. Prototype ancestry starts via self parent whereas Foundation currently starts at the slot: preserving accessor overrides requires a Foundation correction and focused check, not a duplicate Runtime method. firstAncestorConfigurationOfClass: currently uses a class predicate and has an identified UI caller CRHostServiceIdentifierAddStencil>>runtimeConfiguration; replacing it requires a domain collaboration, not renaming the predicate. No behavior moved in this blocked run.\n\nRequired production class dispatch is still present: CFConfigurationAsset>>validateMaterializedConfiguration:, CFConfigurationCodec class>>representationFor:/encodeValue:/fromRepresentation:/decodeObject:, CFConfigurationGraphCopier>>copyValue:forDescription:/copyEditingValuesFrom:, CFConfigurationPlanner>>placementsForConfigurationsIn:asset:visited:into:/placementsFor:inMemento:visited:into:, CFConfigurationValidator>>validateMagritteConfigurationsIn:visited:on:. Declared asset/MA relation type validation and unsupported-value rejection are semantic constraints, not permission to silently remove validation. CRConfigurationSnapshot already delegates value-specific native copying through configurationSnapshotUsing: after its bounded built-in handling and rejects unsupported values; it must not become the planner copier. No replacement protocol chosen or implemented without completing caller/collaborator review."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.147276+11:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2026-10-22T11:34:46.147276+11:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "E2KQS1+ZSV+DGSe08Cp7Ww=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### Current execution evidence and acceptance limits for blocked prototype sprint\nSuperGame.image / Pharo13.1.0SNAPSHOT, current examplesInClassesRun: 84 successes, 0 failures, 0 errors, 0 skips, no missing classes. Classes: CFConfigurationExamples, CFAtelierEntryExamples, CFConfigurationEditorElementExamples, CRConfigurationExamples, CRRuntimeConfigurationExamples, CRRuntimeConfigurationValidatorExamples, CRRuntimeConfigurationCodecExamples, CRRuntimeConfigurationNodeExamples, CRFailureEvidenceConfigurationExamples, CRSnapshotIsolationExamples. This includes current projection/staged-root/Atelier library preview Motion cancellation/rejection examples, legacy animation-origin/traversal checks and Runtime snapshot cycle/isolation examples. These are unchanged-hierarchy baseline results, not new-model acceptance. Runner detail and returned objects remain in this linked child chat. Representative results: {{gtObject:id=82hpew2f9jukzxqfty9x34rsq|fallbackLabelString='Current staged-root Motion preview example'}}, {{gtObject:id=1stpreli285li8lfdfklmjund|fallbackLabelString='Current snapshot extension-slot and parent-cycle example'}}.\n\nNo focused examples were added; new hierarchy, default-override dispatch, nearest/no-match ancestry, accessor override and instance parent-value migration acceptance remain unverified. No full Motion/Atelier/SUnit suite, live busy rendering, interactive usability, network/model acceptance, remote GemStone or production mutation. One read-only diagnostic evaluation sent nonexistent GtLChat>>title and raised MessageNotUnderstood; preserved as {{gtObject:id=datk7rd82hzvr9fe1ji1kwzof|fallbackLabelString='Retained diagnostic exception'}}. It was not a test-runner failure and caused no source edit, rollback or replay.\n\nAcceptance: checkpoint/exact-owner reconciliation MET; requested prototype rename/new target/direct inheritance/one inherited parent/no duplicate behavior FAILED (not implemented); deliberate consumer migration and bounded remaining prototype consumers FAILED; required production class-switch removal FAILED; generic behavior allocation/focused examples FAILED as implementation; current existing selected GT checks MET as baseline only; new-model defaults/search/validation/snapshot and parent-value preservation UNVERIFIED. Existing authoring paths retained untouched; no staged relation redesign or Runtime activation. Publication: no source save/export/stage/commit/push/build/external checkout. Only maintained Lepiter contract notes were added. Next action: provide an existing supported class-rename tool in the authorized role; no new tool or infrastructure was implemented."
 			}
 		]
 	},
