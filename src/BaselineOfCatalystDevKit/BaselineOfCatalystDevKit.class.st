@@ -65,15 +65,6 @@ BaselineOfCatalystDevKit >> ecosystemBaselineOn: spec [
 ]
 
 { #category : 'baseline' }
-BaselineOfCatalystDevKit >> landformBoundedEditBaselineOn: spec [
- "GT/Pharo implementation of the portable Sampled contract; native GemStone qualification is separate."
- spec
-  package: 'BVC-Landform-Core' with: [ spec requires: #('BV-Catalyst-Core') ];
-  package: 'BVC-Landform-Examples'
-   with: [ spec requires: #('BVC-Landform-Core' 'BV-Catalyst-Landform-Core') ]
-]
-
-{ #category : 'baseline' }
 BaselineOfCatalystDevKit >> legacyBaselineOn: spec [
 	"I keep the existing packages unchanged until migration is complete."
 	spec
@@ -94,9 +85,6 @@ BaselineOfCatalystDevKit >> legacyBaselineOn: spec [
 
 		package: 'BV-Catalyst-Currency-Core'
 			with: [ spec requires: #('BV-Catalyst-Store-Core') ];
-
-		package: 'BV-Catalyst-Landform-Core'
-			with: [ spec requires: #('BV-Catalyst-Store-Core' 'BVC-Landform-Core') ];
 
 		package: 'BV-Catalyst-Architect-Core'
 			with: [ spec requires: #('BV-Catalyst-Store-Core') ];
@@ -135,8 +123,7 @@ BaselineOfCatalystDevKit >> newArchitectureBaselineOn: spec [
 	"I define the new Catalyst Runtime / Simulator / Ecosystem packages."
 
 	self simulatorBaselineOn: spec.
-	self ecosystemBaselineOn: spec.
-	self landformBoundedEditBaselineOn: spec
+	self ecosystemBaselineOn: spec
 ]
 
 { #category : 'baseline' }
