@@ -4,6 +4,7 @@
 
 [Catalyst DevKit](../README.md) is the free development environment for building Catalyst-based games and applications. The DevKit documentation should be read first because it explains the platform architecture, focused component model, runtime and deployment approach, communication foundation, and how Catalyst systems are developed locally and deployed at scale.
 
+- [Introduction to Catalyst](catalyst-devkit/01_Catalyst_Introduction.md)
 - [Catalyst DevKit — Stakeholder Overview v0.1](catalyst-devkit/02_Catalyst_DevKit_Stakeholder_Overview_v0_1.md)
 - [Catalyst DevKit — Architecture Principles v0.1](catalyst-devkit/03_Catalyst_DevKit_Architecture_Principles_v0_1.md)
 - [Catalyst DevKit — Component Map v0.1](catalyst-devkit/04_Catalyst_DevKit_Component_Map_v0_1.md)

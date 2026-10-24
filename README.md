@@ -71,6 +71,7 @@ Start with the DevKit documentation. The TGC documentation comes after it as a c
 
 These documents explain the platform architecture, component boundaries, runtime/deployment model, communication model, and how Catalyst capabilities support TGC without being limited to it.
 
+- [Introduction to Catalyst](readme/catalyst-devkit/01_Catalyst_Introduction.md)
 - [Catalyst DevKit — Stakeholder Overview v0.1](readme/catalyst-devkit/02_Catalyst_DevKit_Stakeholder_Overview_v0_1.md)
 - [Catalyst DevKit — Architecture Principles v0.1](readme/catalyst-devkit/03_Catalyst_DevKit_Architecture_Principles_v0_1.md)
 - [Catalyst DevKit — Component Map v0.1](readme/catalyst-devkit/04_Catalyst_DevKit_Component_Map_v0_1.md)
