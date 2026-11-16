@@ -23,6 +23,5 @@ BVCDevKitWorld >> initialize [
 
 { #category : 'initialization' }
 BVCDevKitWorld >> updateWorldContent [
-	BVCDevKitWorld allInstances
-		do: [ :aGtWorld | aGtWorld root children first home updateWidget ]
+	worldElement home updateWidget
 ]
