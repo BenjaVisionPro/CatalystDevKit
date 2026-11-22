@@ -2,14 +2,14 @@
 Produces an ACF-ready manifest from portable gear definitions and reference cases.
 "
 Class {
-	#name : 'BVCACFGearExporter',
+	#name : 'CIACFGearExporter',
 	#superclass : 'Object',
 	#category : 'BV-Catalyst-UE-Core',
 	#package : 'BV-Catalyst-UE-Core'
 }
 
 { #category : 'exporting' }
-BVCACFGearExporter >> exportItems: items family: family encounter: encounter reference: cases to: file [
+CIACFGearExporter >> exportItems: items family: family encounter: encounter reference: cases to: file [
 	| document |
 	document := {'schema' -> 'catalyst-acf-gear-v1'.
 			'items' -> (items collect: [ :item | self itemRecordFor: item ]).
@@ -30,7 +30,7 @@ BVCACFGearExporter >> exportItems: items family: family encounter: encounter ref
 ]
 
 { #category : 'exporting' }
-BVCACFGearExporter >> itemRecordFor: item [
+CIACFGearExporter >> itemRecordFor: item [
 	^ {'id' -> item id asString.
 		'name' -> item displayName.
 		'icon' -> item icon.
@@ -43,7 +43,7 @@ BVCACFGearExporter >> itemRecordFor: item [
 ]
 
 { #category : 'exporting' }
-BVCACFGearExporter >> modifierRecordFor: modifier [
+CIACFGearExporter >> modifierRecordFor: modifier [
 	^ {'stat' -> modifier stat asString.
 		'operation' -> modifier operation asString.
 		'magnitude' -> modifier magnitude asFloat.
@@ -53,7 +53,7 @@ BVCACFGearExporter >> modifierRecordFor: modifier [
 ]
 
 { #category : 'exporting' }
-BVCACFGearExporter >> tierRecordFor: tier [
+CIACFGearExporter >> tierRecordFor: tier [
 	^ {'pieces' -> tier pieceCount.
 		'limit' -> tier limit.
 		'trigger'
