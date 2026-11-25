@@ -81,6 +81,37 @@ public:
         return {};
     }
 
+    TArray<FCFMagritteBinding> Related(const std::string& FieldId, int32 Limit) const
+    {
+        TArray<FCFMagritteBinding> Result;
+        for (const auto& Field : Describe().orderedChildren())
+        {
+            if (Field->id == FieldId && Field->isRelation() && Field->isMultiple())
+            {
+                const auto Value = Read(*Field);
+                if (Value.isCollection())
+                {
+                    for (const auto& Element : Value.elements())
+                    {
+                        if (Result.Num() >= Limit)
+                        {
+                            break;
+                        }
+                        if (const auto* Ref = std::get_if<magritte::Value::Reference>(&Element.data))
+                        {
+                            if (auto Object = Find(Graph, Ref->id))
+                            {
+                                Result.Add(MoveTemp(*Object));
+                            }
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        return Result;
+    }
+
 private:
     FCFMagritteBinding(std::shared_ptr<const magritte::Graph> InGraph,
         const magritte::AdaptiveModel& InModel)
