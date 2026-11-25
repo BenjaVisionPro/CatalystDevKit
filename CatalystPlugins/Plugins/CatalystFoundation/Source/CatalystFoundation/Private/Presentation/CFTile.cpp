@@ -2,6 +2,7 @@
 
 #include "Styling/CoreStyle.h"
 #include "Widgets/Layout/SBorder.h"
+#include "Widgets/Layout/SBackgroundBlur.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/SOverlay.h"
 #include "Widgets/SNullWidget.h"
@@ -9,6 +10,11 @@
 UCFTile::UCFTile()
 {
     SetClipping(EWidgetClipping::ClipToBounds);
+}
+
+const UCFTileTheme& UCFTile::GetTileTheme() const
+{
+    return Theme ? *Theme : *GetDefault<UCFTileTheme>();
 }
 
 void UCFTile::SetVisualState(float InFocusProgress, float InOpacity)
@@ -27,6 +33,7 @@ TSharedRef<SWidget> UCFTile::RebuildWidget()
     SAssignNew(Surface, SBorder)
         .BorderImage(Brush)
         .BorderBackgroundColor_Lambda([this] {
+            const auto& Style = GetTileTheme().Style;
             return FSlateColor(FMath::Lerp(Style.Background, Style.FocusedBackground, FocusProgress));
         })
         .Padding(0)
@@ -37,10 +44,10 @@ TSharedRef<SWidget> UCFTile::RebuildWidget()
         auto Box = SNew(SBox)
         [
             SNew(SBorder).Padding(0).BorderImage(Brush)
-            .BorderBackgroundColor_Lambda([this] { return FSlateColor(Style.Border); })
+            .BorderBackgroundColor_Lambda([this] { return FSlateColor(GetTileTheme().Style.Border); })
         ];
         const auto Thickness = TAttribute<FOptionalSize>::CreateLambda([this] {
-            return FOptionalSize(FMath::Max(0.f, Style.Stroke));
+            return FOptionalSize(FMath::Max(0.f, GetTileTheme().Style.Stroke));
         });
         if (bVertical)
         {
@@ -53,7 +60,12 @@ TSharedRef<SWidget> UCFTile::RebuildWidget()
         return Box;
     };
     return SNew(SOverlay)
-        + SOverlay::Slot()[Surface.ToSharedRef()]
+        + SOverlay::Slot()
+        [
+            SNew(SBackgroundBlur).Padding(0)
+            .BlurStrength_Lambda([this] { return FMath::Max(0.f, GetTileTheme().Style.BackdropBlur); })
+            [Surface.ToSharedRef()]
+        ]
         + SOverlay::Slot().VAlign(VAlign_Top)[Edge(false)]
         + SOverlay::Slot().VAlign(VAlign_Bottom)[Edge(false)]
         + SOverlay::Slot().HAlign(HAlign_Left)[Edge(true)]

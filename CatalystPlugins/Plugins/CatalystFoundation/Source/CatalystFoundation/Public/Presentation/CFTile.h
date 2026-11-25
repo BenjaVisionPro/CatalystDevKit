@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Components/ContentWidget.h"
+#include "Engine/DataAsset.h"
 #include "CFTile.generated.h"
 
 USTRUCT(BlueprintType)
@@ -19,6 +20,20 @@ struct CATALYSTFOUNDATION_API FCFTileStyle
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile", meta = (ClampMin = "0.0"))
     float Stroke = 1.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile", meta = (ClampMin = "0.0"))
+    float BackdropBlur = 0.f;
+};
+
+/** Shared defaults for a family of tiles. */
+UCLASS(BlueprintType)
+class CATALYSTFOUNDATION_API UCFTileTheme : public UDataAsset
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Tile")
+    FCFTileStyle Style;
 };
 
 /** Themeable frame shared by native and Widget Blueprint content. */
@@ -31,7 +46,9 @@ public:
     UCFTile();
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile")
-    FCFTileStyle Style;
+    TObjectPtr<UCFTileTheme> Theme;
+
+    virtual const UCFTileTheme& GetTileTheme() const;
 
     UFUNCTION(BlueprintCallable, Category = "Tile")
     void SetVisualState(float InFocusProgress, float InOpacity);
