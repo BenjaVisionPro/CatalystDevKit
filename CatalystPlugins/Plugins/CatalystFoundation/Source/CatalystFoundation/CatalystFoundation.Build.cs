@@ -56,6 +56,7 @@ public class CatalystFoundation : ModuleRules
 			new string[]
 			{
 				"Core",
+                "UMG",
                 "Json",
                 "JsonUtilities",
                 "AssetRegistry",

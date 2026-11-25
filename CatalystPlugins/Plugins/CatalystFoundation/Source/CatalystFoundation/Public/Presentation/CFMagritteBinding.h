@@ -56,6 +56,31 @@ public:
         return {};
     }
 
+    TOptional<FCFMagritteBinding> FirstRelated(const std::string& FieldId) const
+    {
+        for (const auto& Field : Describe().orderedChildren())
+        {
+            if (Field->id == FieldId && Field->isRelation() && Field->isMultiple())
+            {
+                const auto Value = Read(*Field);
+                if (!Value.isCollection())
+                {
+                    break;
+                }
+                const auto Values = Value.elements();
+                if (!Values.empty())
+                {
+                    if (const auto* Ref = std::get_if<magritte::Value::Reference>(&Values.front().data))
+                    {
+                        return Find(Graph, Ref->id);
+                    }
+                }
+                break;
+            }
+        }
+        return {};
+    }
+
 private:
     FCFMagritteBinding(std::shared_ptr<const magritte::Graph> InGraph,
         const magritte::AdaptiveModel& InModel)
