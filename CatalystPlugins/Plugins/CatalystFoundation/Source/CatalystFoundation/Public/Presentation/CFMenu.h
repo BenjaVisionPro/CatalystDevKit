@@ -21,16 +21,16 @@ public:
     float MinimumItemWidth = 92.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout")
-    FMargin ItemPadding = FMargin(9.f, 6.f);
+    FMargin ItemPadding = FMargin(9.f, 3.f);
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout", meta = (ClampMin = "0"))
-    float MinimumItemHeight = 58.f;
+    float MinimumItemHeight = 48.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout", meta = (ClampMin = "0"))
     float IconSize = 24.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout", meta = (ClampMin = "0"))
-    float IconLabelGap = 3.f;
+    float IconLabelGap = 2.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout")
     FVector2D ShoulderKeycapSize = FVector2D(36.f, 24.f);

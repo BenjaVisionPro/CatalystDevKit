@@ -99,7 +99,7 @@ private:
 
 UCFMenuTheme::UCFMenuTheme()
 {
-    LabelFont = FCoreStyle::GetDefaultFontStyle("Regular", 17);
+    LabelFont = FCoreStyle::GetDefaultFontStyle("Regular", 13);
     ShoulderFont = FCoreStyle::GetDefaultFontStyle("Regular", 13);
     SelectedFill = FLinearColor::FromSRGBColor(FColor(74, 20, 140)).CopyWithNewOpacity(.58f);
 }
