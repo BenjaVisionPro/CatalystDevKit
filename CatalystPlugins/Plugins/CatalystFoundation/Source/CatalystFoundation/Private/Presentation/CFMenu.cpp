@@ -101,6 +101,8 @@ UCFMenuTheme::UCFMenuTheme()
 {
     LabelFont = FCoreStyle::GetDefaultFontStyle("Regular", 13);
     ShoulderFont = FCoreStyle::GetDefaultFontStyle("Regular", 13);
+    ActionLabelFont = FCoreStyle::GetDefaultFontStyle("Regular", 15);
+    ActionGlyphFont = FCoreStyle::GetDefaultFontStyle("Regular", 10);
     SelectedFill = FLinearColor::FromSRGBColor(FColor(74, 20, 140)).CopyWithNewOpacity(.58f);
 }
 

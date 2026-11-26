@@ -56,6 +56,9 @@ public class CatalystFoundation : ModuleRules
 			new string[]
 			{
 				"Core",
+                "InputCore",
+                "Slate",
+                "SlateCore",
                 "UMG",
                 "Json",
                 "JsonUtilities",
@@ -67,11 +70,9 @@ public class CatalystFoundation : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+                "ApplicationCore",
 				"CoreUObject",
 				"Engine",
-				"Slate",
-				"SlateCore",
-                "InputCore",
                 "Projects",
 			}
 			);

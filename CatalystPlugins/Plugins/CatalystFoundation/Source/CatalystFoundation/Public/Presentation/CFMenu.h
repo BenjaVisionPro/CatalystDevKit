@@ -48,6 +48,12 @@ public:
     FSlateFontInfo ShoulderFont;
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Appearance")
+    FSlateFontInfo ActionLabelFont;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Appearance")
+    FSlateFontInfo ActionGlyphFont;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Appearance")
     FLinearColor Ink = FLinearColor(0.9f, 0.96f, 0.92f);
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Appearance")
