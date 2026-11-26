@@ -1,11 +1,50 @@
 #include "Presentation/CFTile.h"
 
+#include "Brushes/SlateRoundedBoxBrush.h"
+#include "Rendering/DrawElements.h"
 #include "Styling/CoreStyle.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Widgets/Layout/SBackgroundBlur.h"
-#include "Widgets/Layout/SBox.h"
+#include "Widgets/SLeafWidget.h"
 #include "Widgets/SOverlay.h"
 #include "Widgets/SNullWidget.h"
+
+namespace
+{
+class SCFTileFrame final : public SLeafWidget
+{
+public:
+    SLATE_BEGIN_ARGS(SCFTileFrame) {}
+        SLATE_ATTRIBUTE(FCFTileStyle, Style)
+    SLATE_END_ARGS()
+
+    void Construct(const FArguments& Args)
+    {
+        Style = Args._Style;
+        SetVisibility(EVisibility::HitTestInvisible);
+    }
+
+    FVector2D ComputeDesiredSize(float) const override { return FVector2D::ZeroVector; }
+
+    int32 OnPaint(const FPaintArgs&, const FGeometry& Geometry, const FSlateRect&, FSlateWindowElementList& Elements,
+        int32 Layer, const FWidgetStyle& WidgetStyle, bool) const override
+    {
+        const auto TileStyle = Style.Get();
+        if (TileStyle.Stroke > 0.f)
+        {
+            Brush.OutlineSettings.Width = TileStyle.Stroke;
+            Brush.OutlineSettings.Color = TileStyle.Border * WidgetStyle.GetColorAndOpacityTint();
+            FSlateDrawElement::MakeBox(Elements, Layer, Geometry.ToPaintGeometry(), &Brush,
+                ESlateDrawEffect::NoPixelSnapping, FLinearColor::Transparent);
+        }
+        return Layer;
+    }
+
+private:
+    TAttribute<FCFTileStyle> Style;
+    mutable FSlateRoundedBoxBrush Brush{FLinearColor::Transparent, 0.f, FLinearColor::Transparent, 1.f};
+};
+}
 
 UCFTile::UCFTile()
 {
@@ -39,26 +78,6 @@ TSharedRef<SWidget> UCFTile::RebuildWidget()
         .Padding(0)
         [BuildTileContent()];
 
-    const auto Edge = [this, Brush](bool bVertical)
-    {
-        auto Box = SNew(SBox)
-        [
-            SNew(SBorder).Padding(0).BorderImage(Brush)
-            .BorderBackgroundColor_Lambda([this] { return FSlateColor(GetTileTheme().Style.Border); })
-        ];
-        const auto Thickness = TAttribute<FOptionalSize>::CreateLambda([this] {
-            return FOptionalSize(FMath::Max(0.f, GetTileTheme().Style.Stroke));
-        });
-        if (bVertical)
-        {
-            Box->SetWidthOverride(Thickness);
-        }
-        else
-        {
-            Box->SetHeightOverride(Thickness);
-        }
-        return Box;
-    };
     return SNew(SOverlay)
         + SOverlay::Slot()
         [
@@ -66,10 +85,10 @@ TSharedRef<SWidget> UCFTile::RebuildWidget()
             .BlurStrength_Lambda([this] { return FMath::Max(0.f, GetTileTheme().Style.BackdropBlur); })
             [Surface.ToSharedRef()]
         ]
-        + SOverlay::Slot().VAlign(VAlign_Top)[Edge(false)]
-        + SOverlay::Slot().VAlign(VAlign_Bottom)[Edge(false)]
-        + SOverlay::Slot().HAlign(HAlign_Left)[Edge(true)]
-        + SOverlay::Slot().HAlign(HAlign_Right)[Edge(true)];
+        + SOverlay::Slot()
+        [
+            SNew(SCFTileFrame).Style_Lambda([this] { return GetTileTheme().Style; })
+        ];
 }
 
 TSharedRef<SWidget> UCFTile::BuildTileContent()
