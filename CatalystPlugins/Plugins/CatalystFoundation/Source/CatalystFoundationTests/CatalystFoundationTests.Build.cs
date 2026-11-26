@@ -12,7 +12,7 @@ public class CatalystFoundationTests : ModuleRules
         });
 
         PrivateDependencyModuleNames.AddRange(new string[] {
-            "Core", "CoreUObject", "Engine", "CatalystFoundation"
+            "Core", "CoreUObject", "Engine", "CatalystFoundation", "UMG", "InputCore", "SlateCore"
         });
     }
 }

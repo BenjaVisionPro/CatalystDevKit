@@ -71,6 +71,7 @@ public class CatalystFoundation : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+                "InputCore",
                 "Projects",
 			}
 			);
