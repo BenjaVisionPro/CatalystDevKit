@@ -11,6 +11,7 @@ void UCFSpanGrid::Configure(int32 InColumns, float InRowHeight, float InGap, flo
     float InHeadingHeight, const FMargin& InHeadingPadding, const FSlateFontInfo& InHeadingFont, FLinearColor InHeadingTint)
 {
     RowSpans.Reset();
+    LastFittedBottom = 0.0;
     ClearChildren();
     Row = nullptr;
     Remainder = nullptr;
@@ -43,6 +44,7 @@ void UCFSpanGrid::AddHeading(const FText& Label)
         HeadingBox->SetHeightOverride(HeadingHeight);
         HeadingBox->AddChild(Heading);
         CastChecked<UScrollBoxSlot>(AddChild(HeadingBox))->SetPadding(HeadingPadding);
+        LastFittedBottom = 0.0;
     }
     Row = nullptr;
     Remainder = nullptr;
@@ -55,6 +57,7 @@ void UCFSpanGrid::AddItem(UWidget& Item, int32 ColumnSpan)
     {
         Row = NewObject<UHorizontalBox>(this);
         RowSpans.Add(Row.Get());
+        LastFittedBottom = 0.0;
         auto* RowBox = NewObject<USizeBox>(this);
         RowBox->SetHeightOverride(RowHeight);
         RowBox->AddChild(Row);
@@ -86,6 +89,50 @@ void UCFSpanGrid::AddItem(UWidget& Item, int32 ColumnSpan)
     }
 }
 
+
+double UCFSpanGrid::GetLastRowBottom() const
+{
+    if (RowSpans.IsEmpty())
+    {
+        return 0.0;
+    }
+
+    double Extent = 0.0;
+    double LastRowBottom = 0.0;
+    for (const UWidget* Child : GetAllChildren())
+    {
+        const auto* Box = CastChecked<USizeBox>(Child);
+        const FMargin Padding = CastChecked<UScrollBoxSlot>(Box->Slot)->GetPadding();
+        Extent += Box->GetHeightOverride() + Padding.Top;
+        if (Cast<UHorizontalBox>(Box->GetContent()))
+        {
+            LastRowBottom = Extent;
+        }
+        Extent += Padding.Bottom;
+    }
+    return LastRowBottom;
+}
+
+void UCFSpanGrid::FitLastRowBottom(double Bottom)
+{
+    if (!bFillPanelHeight || RowSpans.IsEmpty() || Bottom <= 0.0 || Bottom == LastFittedBottom)
+    {
+        return;
+    }
+    LastFittedBottom = Bottom;
+
+    const double FittedHeight = RowHeight + (Bottom - GetLastRowBottom()) / RowSpans.Num();
+    if (FittedHeight <= 0.0)
+    {
+        return;
+    }
+
+    RowHeight = FittedHeight;
+    for (const auto& Entry : RowSpans)
+    {
+        CastChecked<USizeBox>(Entry.Key->GetParent())->SetHeightOverride(RowHeight);
+    }
+}
 
 void UCFSpanGrid::ApplyHorizontalProjection(double OutputWidth, TFunctionRef<double(double)> ToLayoutX)
 {

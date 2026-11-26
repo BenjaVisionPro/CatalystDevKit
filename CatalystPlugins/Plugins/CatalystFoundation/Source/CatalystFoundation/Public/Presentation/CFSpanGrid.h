@@ -19,12 +19,18 @@ public:
     void AddHeading(const FText& Label);
     void AddItem(UWidget& Item, int32 ColumnSpan);
 
+    /** Distribute the available height across rows after reserving headings and gaps. */
+    void SetFillPanelHeight(bool bEnabled) { bFillPanelHeight = bEnabled; }
+    void FitLastRowBottom(double Bottom);
+
     /** Arrange the row in the output space, then map its edges back to the grid's layout space. */
     void ApplyHorizontalProjection(double OutputWidth, TFunctionRef<double(double)> ToLayoutX);
 
     int32 GetColumnCount() const { return Columns; }
 
 private:
+    double GetLastRowBottom() const;
+
     UPROPERTY(Transient)
     TObjectPtr<UHorizontalBox> Row;
 
@@ -42,4 +48,6 @@ private:
     float Gap = 0.f;
     float RowGap = 0.f;
     float GroupGap = 0.f;
+    double LastFittedBottom = 0.0;
+    bool bFillPanelHeight = false;
 };
