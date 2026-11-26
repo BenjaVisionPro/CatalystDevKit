@@ -17,7 +17,7 @@ void UCEModelAsset::NormalizePayload()
 {
 	// Intentionally empty: normalization rules TBD.
 	// Example:
-	// Model.Biomes.Sort([](const FCEBiome& A, const FCEBiome& B){ return A.Id < B.Id; });
+	// Model.Biomes.Sort([](const FCEBiome& A, const FCEBiome& B){ return A.Identifier < B.Identifier; });
 }
 
 // ---------------- Validation ----------------
@@ -49,14 +49,14 @@ void UCEModelAsset::CollectValidationMessages(TArray<FCFValidationMessage>& OutM
 	for (int32 i = 0; i < Model.Biomes.Num(); ++i)
 	{
 		const auto& Biome = Model.Biomes[i];
-		if (Biome.Title.IsEmpty())
+		if (Biome.Label.IsEmpty())
 		{
 			OutMessages.Add(FCFValidationMessage::Make(
 				ECFValidationSeverity::Error,
 				TEXT("CE.Biome.MissingName"),
-				NSLOCTEXT("CE", "Val_BiomeMissingName", "Biome is missing a title."),
+				NSLOCTEXT("CE", "Val_BiomeMissingName", "Biome is missing a label."),
 				FText(), FString::Printf(TEXT("/Biomes[%d]"), i),
-				NSLOCTEXT("CE", "Val_BiomeMissingNameFix", "Enter a non-empty title.")));
+				NSLOCTEXT("CE", "Val_BiomeMissingNameFix", "Enter a non-empty label.")));
 		}
 	}
 }

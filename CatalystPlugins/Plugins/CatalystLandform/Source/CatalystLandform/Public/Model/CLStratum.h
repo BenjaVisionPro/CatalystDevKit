@@ -4,7 +4,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Model/CFObjectWithTitleAndComment.h"
+#include "Model/CFObject.h"
 #include "Model/CLTransition.h"
 #include "CLStratum.generated.h"
 
@@ -13,9 +13,12 @@
  * where 0 = inner/core surface, 1 = outer/sky bound.
  */
 USTRUCT(BlueprintType)
-struct CATALYSTLANDFORM_API FCLStratum : public FCFObjectWithTitleAndComment
+struct CATALYSTLANDFORM_API FCLStratum : public FCFLabelledObject
 {
 	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst", meta=(MultiLine=true))
+	FString Comment;
 
 	/** Start/end (inclusive) of this band, in normalized altitude [0..1]. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Landform|Stratum", meta=(ClampMin="0.0", ClampMax="1.0"))

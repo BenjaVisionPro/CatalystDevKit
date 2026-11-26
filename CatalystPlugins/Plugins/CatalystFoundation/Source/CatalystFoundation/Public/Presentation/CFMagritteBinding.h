@@ -37,21 +37,29 @@ public:
         return Model->readUsing(Field);
     }
 
-    TOptional<FCFMagritteBinding> Follow(const std::string& FieldId) const
-    {
-        for (const auto& Field : Describe().orderedChildren())
-        {
-            if (Field->id != FieldId || !Field->isRelation() || Field->isMultiple())
-            {
-                continue;
-            }
+    const std::string& ObjectId() const { return Model->id; }
 
-            const auto Value = Read(*Field);
+    TOptional<FCFMagritteBinding> Follow(const magritte::Description& Field) const
+    {
+        if (Field.isRelation() && !Field.isMultiple())
+        {
+            const auto Value = Read(Field);
             if (const auto* Reference = std::get_if<magritte::Value::Reference>(&Value.data))
             {
                 return Find(Graph, Reference->id);
             }
-            break;
+        }
+        return {};
+    }
+
+    TOptional<FCFMagritteBinding> Follow(const std::string& FieldId) const
+    {
+        for (const auto& Field : Describe().orderedChildren())
+        {
+            if (Field->id == FieldId)
+            {
+                return Follow(*Field);
+            }
         }
         return {};
     }

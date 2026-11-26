@@ -17,6 +17,9 @@ class CATALYSTFOUNDATION_API UCFMenuTheme : public UDataAsset
 public:
     UCFMenuTheme();
 
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu")
+    TMap<FName, FSlateBrush> Icons;
+
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Menu|Layout", meta = (ClampMin = "0"))
     float MinimumItemWidth = 92.f;
 

@@ -4,7 +4,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Model/CFObjectWithTitleAndComment.h"
+#include "Model/CFObject.h"
 #include "Model/CLStratum.h"
 #include "CLStrata.generated.h"
 
@@ -15,7 +15,7 @@ struct CATALYSTLANDFORM_API FCLStratumSample
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Landform|Strata")
-	FGuid StratumId;
+	FString StratumId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Landform|Strata")
 	double WeightN = 0.0;
@@ -23,12 +23,15 @@ struct CATALYSTLANDFORM_API FCLStratumSample
 
 /**
  * A named collection of strata (radial bands).
- * Holds authoring metadata (Title/Comment) via base class.
+ * Inherits its Catalyst identifier and label.
  */
 USTRUCT(BlueprintType)
-struct CATALYSTLANDFORM_API FCLStrata : public FCFObjectWithTitleAndComment
+struct CATALYSTLANDFORM_API FCLStrata : public FCFLabelledObject
 {
 	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst", meta=(MultiLine=true))
+	FString Comment;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Landform|Strata")
 	TArray<FCLStratum> Strata;

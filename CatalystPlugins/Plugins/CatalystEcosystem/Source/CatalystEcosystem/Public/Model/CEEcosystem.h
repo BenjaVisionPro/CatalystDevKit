@@ -5,7 +5,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Model/CFObjectWithTitleAndComment.h"
+#include "Model/CFObject.h"
 #include "CEEcosystem.generated.h"
 
 /**
@@ -13,17 +13,20 @@
  * (e.g., "Earth", "Cattle Farm", "Barren Moon", "Mediterranean Coast").
  */
 USTRUCT(BlueprintType)
-struct CATALYSTECOSYSTEM_API FCEEcosystem : public FCFObjectWithTitleAndComment
+struct CATALYSTECOSYSTEM_API FCEEcosystem : public FCFLabelledObject
 {
 	GENERATED_BODY()
 
-	/** Collections that compose this ecosystem (referenced by Id). */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst", meta=(MultiLine=true))
+	FString Comment;
+
+	/** Collections that compose this ecosystem (referenced by identifier). */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	TArray<FGuid> BiomeIds;
+	TArray<FString> BiomeIds;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	TArray<FGuid> AnimalIds;
+	TArray<FString> AnimalIds;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	TArray<FGuid> ResourceIds;
+	TArray<FString> ResourceIds;
 };

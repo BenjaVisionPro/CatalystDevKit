@@ -5,19 +5,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Model/CFObjectWithTitleAndComment.h"
+#include "Model/CFObject.h"
 #include "CEAnimal.generated.h"
 
 /** A species/animal entry. */
 USTRUCT(BlueprintType)
-struct CATALYSTECOSYSTEM_API FCEAnimal : public FCFObjectWithTitleAndComment
+struct CATALYSTECOSYSTEM_API FCEAnimal : public FCFLabelledObject
 {
 	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Catalyst", meta=(MultiLine=true))
+	FString Comment;
 
 	// Example placeholders for later simulation data
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
 	float TypicalMassKg = 0.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Ecosystem")
-	TArray<FGuid> PreferredBiomeIds;
+	TArray<FString> PreferredBiomeIds;
 };

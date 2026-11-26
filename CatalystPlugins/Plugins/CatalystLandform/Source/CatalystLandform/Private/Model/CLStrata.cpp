@@ -14,7 +14,7 @@ void FCLStrata::Sample(double AltitudeN, const bool bNormalize, TArray<FCLStratu
 		if (W > 0.0)
 		{
 			FCLStratumSample S;
-			S.StratumId = Stratum.Id;   // from FCFAbstractObject base
+			S.StratumId = Stratum.Identifier;
 			S.WeightN   = W;
 			OutSamples.Add(S);
 			Sum += W;
