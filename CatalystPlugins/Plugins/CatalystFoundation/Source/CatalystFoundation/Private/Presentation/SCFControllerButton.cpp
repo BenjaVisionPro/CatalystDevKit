@@ -13,15 +13,30 @@
 
 namespace
 {
+constexpr double RoundCapRadius = 10.5;
+constexpr double HoldRingGap = 2.0;
+constexpr float HoldRingStroke = 3.3f;
+constexpr double HoldRingInset = HoldRingGap + HoldRingStroke;
+constexpr double HoldRingRadius = RoundCapRadius + HoldRingGap + HoldRingStroke * .5;
+
+double CapPadding(bool bHasLabel, bool bRequiresHold)
+{
+    if (bRequiresHold)
+    {
+        return HoldRingInset * 2.0 + (bHasLabel ? 2.0 : 0.0);
+    }
+    return bHasLabel ? 5.0 : 0.0;
+}
+
 bool IsShoulder(const FKey& Key)
 {
     return Key == EKeys::Gamepad_LeftShoulder || Key == EKeys::Gamepad_RightShoulder
         || Key == EKeys::Gamepad_LeftTrigger || Key == EKeys::Gamepad_RightTrigger;
 }
 
-FVector2D CapExtent(const FKey& Key)
+FVector2D CapExtent(const FKey& Key, bool bRequiresHold)
 {
-    return IsShoulder(Key) ? FVector2D(23, 18) : FVector2D(21, 21);
+    return IsShoulder(Key) && !bRequiresHold ? FVector2D(23, 18) : FVector2D(RoundCapRadius * 2.0);
 }
 
 FText DisplayLabel(const FText& Label, const FText& Glyph, ECFControllerPlatform Platform, bool bRequiresHold)
@@ -45,10 +60,10 @@ void DrawHold(const FGeometry& Geometry, FSlateWindowElementList& Elements, int3
         for (int32 Step = 0; Step <= Steps; ++Step)
         {
             const double Angle = Middle + (double(Step) / Steps - .5) * Span * .88;
-            Arc.Add(Center + FVector2D(FMath::Cos(Angle), FMath::Sin(Angle)) * 12.4);
+            Arc.Add(Center + FVector2D(FMath::Cos(Angle), FMath::Sin(Angle)) * HoldRingRadius);
         }
         FSlateDrawElement::MakeLines(Elements, Layer, Geometry.ToPaintGeometry(), Arc,
-            ESlateDrawEffect::NoPixelSnapping, bLit ? Tint : Tint.CopyWithNewOpacity(Tint.A * .42f), true, 3.3f);
+            ESlateDrawEffect::NoPixelSnapping, bLit ? Tint : Tint.CopyWithNewOpacity(Tint.A * .42f), true, HoldRingStroke);
     }
 }
 }
@@ -136,9 +151,9 @@ FVector2D SCFControllerButton::Measure(const FText& Label, const FKey& Key, ECFC
     FVector2D Size = FSlateApplication::Get().GetRenderer()->GetFontMeasureService()->Measure(Text, Style.LabelFont);
     if (Platform != ECFControllerPlatform::Keyboard || bRequiresHold || Label.IsEmpty())
     {
-        const auto CapSize = CapExtent(Key);
-        Size.X += CapSize.X + (Label.IsEmpty() ? (bRequiresHold ? 7.0 : 0.0) : (bRequiresHold ? 9.0 : 5.0));
-        Size.Y = FMath::Max(Size.Y, bRequiresHold ? 32.0 : CapSize.Y);
+        const auto CapSize = CapExtent(Key, bRequiresHold);
+        Size.X += CapSize.X + CapPadding(!Label.IsEmpty(), bRequiresHold);
+        Size.Y = FMath::Max(Size.Y, bRequiresHold ? 36.0 : CapSize.Y);
     }
     return Size;
 }
@@ -163,15 +178,15 @@ int32 SCFControllerButton::Draw(const FGeometry& Geometry, FSlateWindowElementLi
     FVector2D TextOrigin = Origin;
     if (Platform != ECFControllerPlatform::Keyboard || bRequiresHold || Label.IsEmpty())
     {
-        const FVector2D CapSize = CapExtent(Key);
+        const FVector2D CapSize = CapExtent(Key, bRequiresHold);
         const double CapY = Label.IsEmpty() ? 0.0 : (TextSize.Y - CapSize.Y) * .5;
-        const FVector2D CapOrigin = Origin + FVector2D(bRequiresHold ? 3.5 : 0.0, CapY);
-        static const FSlateRoundedBoxBrush RoundCap(FLinearColor::White, 10.5f);
+        const FVector2D CapOrigin = Origin + FVector2D(bRequiresHold ? HoldRingInset : 0.0, CapY);
+        static const FSlateRoundedBoxBrush RoundCap(FLinearColor::White, RoundCapRadius);
         static const FSlateRoundedBoxBrush ShoulderCap(FLinearColor::White, 4.f);
         FLinearColor Fill = Style.CapTint.CopyWithNewOpacity(Style.CapTint.A * Opacity);
         FSlateDrawElement::MakeBox(Elements, Layer,
             Geometry.ToPaintGeometry(CapSize, FSlateLayoutTransform(CapOrigin)),
-            IsShoulder(Key) ? &ShoulderCap : &RoundCap, ESlateDrawEffect::NoPixelSnapping, Fill);
+            IsShoulder(Key) && !bRequiresHold ? &ShoulderCap : &RoundCap, ESlateDrawEffect::NoPixelSnapping, Fill);
         const auto& Font = Glyph.ToString().Len() == 1 && !IsShoulder(Key) ? Style.LabelFont : Style.GlyphFont;
         const FVector2D GlyphSize = FontMeasure->Measure(Glyph, Font);
         DrawText(Glyph, Font, CapOrigin + (CapSize - GlyphSize) * .5, GlyphSize, Style.GlyphTint);
@@ -179,7 +194,7 @@ int32 SCFControllerButton::Draw(const FGeometry& Geometry, FSlateWindowElementLi
         {
             DrawHold(Geometry, Elements, Layer + 2, CapOrigin + CapSize * .5, Fill, Indicator);
         }
-        TextOrigin.X += CapSize.X + (bRequiresHold ? 9.0 : 5.0);
+        TextOrigin.X += CapSize.X + CapPadding(!Label.IsEmpty(), bRequiresHold);
     }
     DrawText(Text, Style.LabelFont, TextOrigin, TextSize, Style.LabelTint);
     return Layer + 2;
@@ -208,7 +223,7 @@ FVector2D SCFControllerButton::ComputeDesiredSize(float) const
 int32 SCFControllerButton::OnPaint(const FPaintArgs&, const FGeometry& Geometry, const FSlateRect&,
     FSlateWindowElementList& Elements, int32 Layer, const FWidgetStyle&, bool bParentEnabled) const
 {
-    return Draw(Geometry, Elements, Layer, FVector2D(0, Hold ? 6.f : 0.f), Label.Get(), GetKey(), GetPlatform(), Style,
+    return Draw(Geometry, Elements, Layer, FVector2D(0, Hold ? 8.f : 0.f), Label.Get(), GetKey(), GetPlatform(), Style,
         bParentEnabled && IsEnabled() && Available.Get(), Hold.IsSet(),
         Hold ? Hold->GetIndicator(FPlatformTime::Seconds()) : FCFControllerHoldIndicator{});
 }
