@@ -1,8 +1,8 @@
 // Copyright © Catalyst
 
-#include "CLVoxelSubsystem.h"
+#include "Voxel/CLVoxelSubsystem.h"
 
-#include "CLVoxelWorldManager.h"
+#include "Voxel/CLVoxelWorldManager.h"
 
 void FCLVoxelSubsystem::LoadFromPrevious(FVoxelSubsystem& InPreviousSubsystem)
 {
@@ -28,7 +28,7 @@ void FCLVoxelSubsystem::Initialize()
 		return;
 	}
 
-	const AVoxelWorld* VoxelWorld = GetConfig().VoxelWorld.Get();
+	const AVoxelWorld* VoxelWorld = GetConfig().VoxelWorld.Resolve();
 	if (!ensure(VoxelWorld))
 	{
 		WorldRuntime.Reset();
@@ -42,7 +42,7 @@ void FCLVoxelSubsystem::Initialize()
 TSharedPtr<const FCLWorldRuntime> FCLVoxelSubsystem::GetWorldRuntime(FVoxelDependencyCollector& DependencyCollector) const
 {
 	const UWorld* World = GetConfig().World.Resolve();
-	const AVoxelWorld* VoxelWorld = GetConfig().VoxelWorld.Get();
+	const AVoxelWorld* VoxelWorld = GetConfig().VoxelWorld.Resolve();
 	if (!World || !VoxelWorld)
 	{
 		return WorldRuntime;

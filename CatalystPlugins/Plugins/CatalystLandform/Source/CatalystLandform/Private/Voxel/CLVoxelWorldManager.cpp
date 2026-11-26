@@ -1,6 +1,6 @@
 // Copyright © Catalyst
 
-#include "CLVoxelWorldManager.h"
+#include "Voxel/CLVoxelWorldManager.h"
 
 #include "VoxelWorld.h"
 #include "VoxelInvalidationCallstack.h"
@@ -10,13 +10,14 @@ void FCLVoxelWorldManager::SetWorldRuntime(const AVoxelWorld& VoxelWorld, TShare
 	VOXEL_FUNCTION_COUNTER();
 	ensure(IsInGameThread());
 
+	const TVoxelObjectPtr<const AVoxelWorld> Key(&VoxelWorld);
 	if (InWorldRuntime)
 	{
-		VoxelWorldToRuntime.Add(const_cast<AVoxelWorld*>(&VoxelWorld), MoveTemp(InWorldRuntime));
+		VoxelWorldToRuntime.FindOrAdd(Key) = MoveTemp(InWorldRuntime);
 	}
 	else
 	{
-		VoxelWorldToRuntime.Remove(const_cast<AVoxelWorld*>(&VoxelWorld));
+		VoxelWorldToRuntime.Remove(Key);
 	}
 
 	FVoxelInvalidationScope Scope("FCLVoxelWorldManager::SetWorldRuntime");
@@ -27,5 +28,5 @@ TSharedPtr<const FCLWorldRuntime> FCLVoxelWorldManager::GetWorldRuntime(const AV
 {
 	ensure(IsInGameThread());
 	DependencyCollector.AddDependency(*Dependency);
-	return VoxelWorldToRuntime.FindRef(const_cast<AVoxelWorld*>(&VoxelWorld));
+	return VoxelWorldToRuntime.FindRef(TVoxelObjectPtr<const AVoxelWorld>(&VoxelWorld));
 }

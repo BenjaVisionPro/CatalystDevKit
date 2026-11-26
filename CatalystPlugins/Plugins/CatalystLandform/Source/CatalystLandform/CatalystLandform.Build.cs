@@ -57,11 +57,7 @@ public class CatalystLandform : ModuleRules
 			}
 			);
 			
-		// HACK: expose Voxel private headers so we can see VoxelStampTree.h
-        // because VoxelLayerBase.h (public) includes it.
-        PrivateIncludePaths.Add(
-            "/Users/jupiter/UnrealEngine/UE_5.6/Engine/Plugins/Marketplace/Voxel/Source/Voxel/Private"
-        );
-        
+		// VoxelLayerBase.h includes VoxelStampTree.h from the Voxel module's private headers.
+		PrivateIncludePaths.Add(System.IO.Path.Combine(GetModuleDirectory("Voxel"), "Private"));
 	}
 }

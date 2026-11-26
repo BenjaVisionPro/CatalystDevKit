@@ -29,8 +29,8 @@ public:
 		return TEXT("World (outer radius + shell height) + shared strata.");
 	}
 
-	const FCLWorld& GetWorld() const { return World; }
-	FCLWorld&       GetWorld()       { return World; }
+	const FCLWorld& GetWorldDefinition() const { return World; }
+	FCLWorld&       GetWorldDefinition()       { return World; }
 
 protected:
 	virtual FString GetPluginNameForPaths() const override { return TEXT("CatalystLandform"); }

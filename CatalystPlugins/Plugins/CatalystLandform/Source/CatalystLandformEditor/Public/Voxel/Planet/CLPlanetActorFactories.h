@@ -5,7 +5,7 @@
 #include "CLPlanetActorFactories.generated.h"
 
 /**
- * Factory that spawns a VoxelStampActor preconfigured with FCLPlanetVolumeStamp.
+ * Factory that spawns a VoxelStampActor preconfigured with FVoxelVolumeGraphStamp.
  * Registered into the Voxel placement category via DEFINE_VOXEL_PLACEABLE_ITEM_FACTORY.
  */
 UCLASS(meta = (VoxelPlaceableItem))

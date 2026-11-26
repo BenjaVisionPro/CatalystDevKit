@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 
 class AVoxelWorld;
-class UCLModelAsset;
+class UCLWorldAsset;
 class UCLVoxelWorldComponent;
 
 namespace CLVoxelWorldEditorActions
@@ -15,6 +15,6 @@ namespace CLVoxelWorldEditorActions
 	// Handler that runs when the menu item is clicked
 	void EnableCatalystLandform_OnSelectedWorlds();
 
-	// Utility: ensure a CLVoxelWorldComponent exists on a world; optionally assign a model
-	UCLVoxelWorldComponent* AddComponentIfMissing(AVoxelWorld& World, UCLModelAsset* OptionalModelAsset, bool bMarkDirty = true);
+	// Utility: ensure a CLVoxelWorldComponent exists on a world; optionally assign a world asset
+	UCLVoxelWorldComponent* AddComponentIfMissing(AVoxelWorld& World, UCLWorldAsset* OptionalWorldAsset, bool bMarkDirty = true);
 }

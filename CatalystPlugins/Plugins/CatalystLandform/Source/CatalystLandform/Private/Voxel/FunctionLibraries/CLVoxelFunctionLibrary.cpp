@@ -2,51 +2,30 @@
 
 #include "Voxel/FunctionLibraries/CLVoxelFunctionLibrary.h"
 
-#include "VoxelGraphQuery.h"
-#include "VoxelBufferAccessor.h"
-
-#include "Runtime/CLWorldGeneratorModel.h"
-#include "Runtime/CLCoordinateSpace.h"
 #include "Kernel/CLGeodesicCoordinateSpace.h"
+#include "VoxelGraphQuery.h"
 
 namespace
 {
 	struct FResolvedContext
 	{
-		double InnerRadiusM   = 1000.0;
-		double WorldHeightM   = 2000.0;
-		int32  CoordSpaceInt  = 0;
-		double SeamBlendWidth = 0.001;
-		uint32 Seed           = 0;
-
 		FTransform LocalToWorld = FTransform::Identity;
-		const ICLCoordinateSpace* Space = nullptr;
+		FCLGeodesicConfig Geodesic{1000.0, 2000.0};
 	};
 
-	static bool ResolveFromQueryOrOverrides(
-		const FVoxelGraphQuery& Query,
-		const double InnerRadiusM_Override,
-		const double WorldHeightM_Override,
-		/*out*/ FResolvedContext& Out)
+	FResolvedContext ResolveContext(const FVoxelGraphQuery& Query, double InnerRadiusM, double WorldHeightM)
 	{
-		if (const auto* Uni = Query->FindParameter<FVoxelGraphParameters::FCLUniforms>())
+		FResolvedContext Result;
+		if (const auto* Uniforms = Query->FindParameter<FVoxelGraphParameters::FCLUniforms>())
 		{
-			Out.LocalToWorld  = Uni->LocalToWorld;
-			Out.InnerRadiusM  = Uni->InnerRadiusM;
-			Out.WorldHeightM  = Uni->WorldHeightM;
-			Out.CoordSpaceInt = Uni->CoordSpaceInt;
-			Out.SeamBlendWidth= Uni->SeamBlendWidth;
-			Out.Seed          = Uni->Seed;
+			Result.LocalToWorld = Uniforms->LocalToWorld;
+			Result.Geodesic = {Uniforms->InnerRadiusM, Uniforms->WorldHeightM};
 		}
-
-		if (InnerRadiusM_Override > 0.0 && WorldHeightM_Override > 0.0)
+		if (InnerRadiusM > 0.0 && WorldHeightM > 0.0)
 		{
-			Out.InnerRadiusM = InnerRadiusM_Override;
-			Out.WorldHeightM = WorldHeightM_Override;
+			Result.Geodesic = {InnerRadiusM, WorldHeightM};
 		}
-
-		Out.Space = &FCLCoordSpaceRegistry::Resolve(static_cast<ECLCoordSpace>(Out.CoordSpaceInt));
-		return (Out.Space != nullptr);
+		return Result;
 	}
 }
 
@@ -64,14 +43,7 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D(
 	TSharedPtr<const FVoxelFloatBuffer>& T_Opt,
 	TSharedPtr<const FVoxelFloatBuffer>& R_M_Opt)
 {
-	FResolvedContext Ctx;
-	if (!ResolveFromQueryOrOverrides(Query, InnerRadiusM_Override, WorldHeightM_Override, Ctx))
-	{
-		Landform2D_M.X.Allocate(0);
-		Landform2D_M.Y.Allocate(0);
-		S_Opt.Reset(); T_Opt.Reset(); R_M_Opt.Reset();
-		return;
-	}
+	const auto Context = ResolveContext(Query, InnerRadiusM_Override, WorldHeightM_Override);
 
 	const int32 Count = Position2D_LocalCM.Num();
 
@@ -95,13 +67,6 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D(
 		return;
 	}
 
-	FCLWorldGeneratorModel Model;
-	Model.InnerRadiusM   = Ctx.InnerRadiusM;
-	Model.WorldHeightM   = Ctx.WorldHeightM;
-	Model.CoordSpace     = static_cast<ECLCoordSpace>(Ctx.CoordSpaceInt);
-	Model.SeamBlendWidth = Ctx.SeamBlendWidth;
-	Model.Seed           = Ctx.Seed;
-
 	TSharedRef<FVoxelFloatBuffer> SRef = MakeShared<FVoxelFloatBuffer>();
 	TSharedRef<FVoxelFloatBuffer> TRef = MakeShared<FVoxelFloatBuffer>();
 	TSharedRef<FVoxelFloatBuffer> RRef = MakeShared<FVoxelFloatBuffer>();
@@ -109,8 +74,6 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D(
 	if (bNeedS) SRef->Allocate(Count);
 	if (bNeedT) TRef->Allocate(Count);
 	if (bNeedR) RRef->Allocate(Count);
-
-	const FCLLocalFrame Frame(Ctx.LocalToWorld);
 
 	for (int32 i = 0; i < Count; i++)
 	{
@@ -120,10 +83,8 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D(
 			0.0);
 
 		double S, T, Rm;
-		FVector2d XYm_ignored;
-		FVector3d Dir_ignored;
-
-		Ctx.Space->LocalXYZToSTRMeters(Model, Frame, Lcm, S, T, Rm, XYm_ignored, Dir_ignored);
+		const FVector3d WorldM = Context.LocalToWorld.TransformPosition(Lcm) * 0.01;
+		FCLGeodesicCoordinateSpace::WorldToSTR(WorldM, Context.Geodesic, S, T, Rm);
 
 		if (bNeedS) SRef->Set(i, static_cast<float>(S));
 		if (bNeedT) TRef->Set(i, static_cast<float>(T));
@@ -178,14 +139,7 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D_Double(
 	FVoxelDoubleBuffer& TOut,
 	FVoxelDoubleBuffer& R_MOut)
 {
-	FResolvedContext Ctx;
-	if (!ResolveFromQueryOrOverrides(Query, InnerRadiusM_Override, WorldHeightM_Override, Ctx))
-	{
-		Landform2D_M.X.Allocate(0);
-		Landform2D_M.Y.Allocate(0);
-		SOut.Allocate(0); TOut.Allocate(0); R_MOut.Allocate(0);
-		return;
-	}
+	const auto Context = ResolveContext(Query, InnerRadiusM_Override, WorldHeightM_Override);
 
 	const int32 Count = Position2D_LocalCM.Num();
 
@@ -201,24 +155,13 @@ void UCLVoxelFunctionLibrary::Position2DToLandform2D_Double(
 	TOut.Allocate(Count);
 	R_MOut.Allocate(Count);
 
-	const FCLLocalFrame Frame(Ctx.LocalToWorld);
-
-	FCLWorldGeneratorModel Model;
-	Model.InnerRadiusM   = Ctx.InnerRadiusM;
-	Model.WorldHeightM   = Ctx.WorldHeightM;
-	Model.CoordSpace     = static_cast<ECLCoordSpace>(Ctx.CoordSpaceInt);
-	Model.SeamBlendWidth = Ctx.SeamBlendWidth;
-	Model.Seed           = Ctx.Seed;
-
 	for (int32 i = 0; i < Count; i++)
 	{
 		const FVector3d Lcm(Position2D_LocalCM.X[i], Position2D_LocalCM.Y[i], 0.0);
 
 		double S, T, Rm;
-		FVector2d XYm_ignored;
-		FVector3d Dir_ignored;
-
-		Ctx.Space->LocalXYZToSTRMeters(Model, Frame, Lcm, S, T, Rm, XYm_ignored, Dir_ignored);
+		const FVector3d WorldM = Context.LocalToWorld.TransformPosition(Lcm) * 0.01;
+		FCLGeodesicCoordinateSpace::WorldToSTR(WorldM, Context.Geodesic, S, T, Rm);
 
 		SOut.Set(i, S);
 		TOut.Set(i, T);

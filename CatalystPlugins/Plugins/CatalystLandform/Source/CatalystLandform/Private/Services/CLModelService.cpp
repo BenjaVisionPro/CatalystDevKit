@@ -9,9 +9,6 @@
 UCLModelService* UCLModelService::Instance()
 {
 	// Best-effort: return the first loaded instance (works in editor/PIE/tools).
-	for (TObjectIterator<UCLModelService> It; It; ++It)
-	{
-		return *It;
-	}
-	return nullptr;
+	TObjectIterator<UCLModelService> It;
+	return It ? *It : nullptr;
 }

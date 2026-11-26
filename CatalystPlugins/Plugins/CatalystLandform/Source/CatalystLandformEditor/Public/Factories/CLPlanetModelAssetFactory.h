@@ -1,7 +1,7 @@
 // ============================================================================
 // Catalyst Landform — Planet Model Asset Factory (Editor)
 // ----------------------------------------------------------------------------
-// Purpose: Minimal factory to instantiate UCLPlanetModelAsset.
+// Purpose: Minimal factory to instantiate UCLWorldAsset.
 // Notes:
 //   - Add(+) placement is handled entirely by UCLAssetDefinition_PlanetModel.
 //   - Factory remains necessary so the engine can instantiate the asset type.

@@ -1,5 +1,5 @@
 #include "AssetDefinitions/CLAssetDefinition_PlanetModel.h"
-#include "Model/CLPlanetModelAsset.h"
+#include "Model/CLWorldAsset.h"
 #include "Toolkits/CLModelEditorToolkit.h"   // per-plugin wrapper
 #include "Log/CFLog.h"
 
@@ -22,8 +22,8 @@ FLinearColor UCLAssetDefinition_PlanetModel::GetAssetColor() const
 
 TSoftClassPtr<UObject> UCLAssetDefinition_PlanetModel::GetAssetClass() const
 {
-	CF_INFO(TEXT("[CLAssetDefinition_PlanetModel] GetAssetClass -> CLPlanetModelAsset"));
-	return UCLPlanetModelAsset::StaticClass();
+	CF_INFO(TEXT("[CLAssetDefinition_PlanetModel] GetAssetClass -> CLWorldAsset"));
+	return UCLWorldAsset::StaticClass();
 }
 
 TConstArrayView<FAssetCategoryPath> UCLAssetDefinition_PlanetModel::GetAssetCategories() const
@@ -56,16 +56,16 @@ EAssetCommandResult UCLAssetDefinition_PlanetModel::OpenAssets(const FAssetOpenA
 	const EToolkitMode::Type Mode =
 		(OpenArgs.ToolkitHost.IsValid() ? EToolkitMode::WorldCentric : EToolkitMode::Standalone);
 
-	const TArray<UCLPlanetModelAsset*> Assets = OpenArgs.LoadObjects<UCLPlanetModelAsset>();
+	const TArray<UCLWorldAsset*> Assets = OpenArgs.LoadObjects<UCLWorldAsset>();
 	CF_INFO(TEXT("[CLAssetDefinition_PlanetModel] Loaded %d object(s)."), Assets.Num());
 
 	if (Assets.Num() == 0)
 	{
-		CF_WARN(TEXT("[CLAssetDefinition_PlanetModel] No assets resolved by LoadObjects<UCLPlanetModelAsset>()."));
+		CF_WARN(TEXT("[CLAssetDefinition_PlanetModel] No assets resolved by LoadObjects<UCLWorldAsset>()."));
 		return EAssetCommandResult::Unhandled;
 	}
 
-	for (UCLPlanetModelAsset* Asset : Assets)
+	for (UCLWorldAsset* Asset : Assets)
 	{
 		if (!Asset)
 		{

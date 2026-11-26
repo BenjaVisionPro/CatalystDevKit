@@ -1,6 +1,6 @@
 #include "Voxel/Components/CLVoxelWorldComponent.h"
 
-#include "CLVoxelWorldManager.h"
+#include "Voxel/CLVoxelWorldManager.h"
 
 #include "VoxelWorld.h"
 #include "Engine/World.h"
@@ -19,7 +19,7 @@ TSharedPtr<const FCLWorldRuntime> UCLVoxelWorldComponent::BuildWorldRuntime() co
 {
 	VOXEL_FUNCTION_COUNTER();
 
-	const UCLPlanetModelAsset* WorldAsset = CLWorldAsset.LoadSynchronous();
+	const UCLWorldAsset* WorldAsset = CLWorldAsset.LoadSynchronous();
 	const UCLStrataAsset* Strata = StrataAsset.LoadSynchronous();
 
 	if (!WorldAsset)
@@ -30,8 +30,8 @@ TSharedPtr<const FCLWorldRuntime> UCLVoxelWorldComponent::BuildWorldRuntime() co
 	TSharedRef<FCLWorldRuntime> Runtime = MakeShared<FCLWorldRuntime>();
 
 	// World band
-	Runtime->InnerRadiusM = WorldAsset->Model.GetInnerRadiusM();
-	Runtime->WorldHeightM = WorldAsset->Model.VoxelWorldHeightM;
+	Runtime->InnerRadiusM = WorldAsset->GetWorldDefinition().GetInnerRadiusM();
+	Runtime->WorldHeightM = WorldAsset->GetWorldDefinition().WorldHeightM;
 
 	// Coord space
 	Runtime->CoordSpace = CoordSpace;

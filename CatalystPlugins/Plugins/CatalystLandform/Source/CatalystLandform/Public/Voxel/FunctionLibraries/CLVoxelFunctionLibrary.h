@@ -7,11 +7,6 @@
 #include "Buffer/VoxelDoubleBuffers.h"
 #include "CLVoxelFunctionLibrary.generated.h"
 
-// Forward decls
-struct FCLWorldGeneratorModel;
-struct FCLLocalFrame;
-struct ICLCoordinateSpace;
-
 /**
  * Graph uniforms available on FVoxelGraphQuery (VPP 2.0p8 pattern).
  * Stored on the query via Query->FindParameter<FVoxelGraphParameters::FCLUniforms>().
@@ -35,7 +30,7 @@ namespace FVoxelGraphParameters
 /**
  * Central Landform coordinate helpers.
  * Static C++ methods used by compute nodes (not exposed as graph nodes).
- * All methods are pure, pass Query explicitly, and delegate math to the pluggable ICLCoordinateSpace.
+ * All methods are pure, pass Query explicitly, and use the Landform geodesic kernel.
  */
 UCLASS()
 class CATALYSTLANDFORM_API UCLVoxelFunctionLibrary : public UVoxelFunctionLibrary

@@ -9,9 +9,6 @@
 UCEModelService* UCEModelService::Instance()
 {
 	// Best-effort: return the first loaded instance (works in editor/PIE/tools).
-	for (TObjectIterator<UCEModelService> It; It; ++It)
-	{
-		return *It;
-	}
-	return nullptr;
+	TObjectIterator<UCEModelService> It;
+	return It ? *It : nullptr;
 }

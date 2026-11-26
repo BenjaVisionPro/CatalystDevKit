@@ -3,7 +3,7 @@
 // ============================================================================
 
 #include "Factories/CLPlanetModelAssetFactory.h"
-#include "Model/CLPlanetModelAsset.h"
+#include "Model/CLWorldAsset.h"
 #include "Log/CFLog.h"
 
 UCLPlanetModelAssetFactory::UCLPlanetModelAssetFactory()
@@ -11,7 +11,7 @@ UCLPlanetModelAssetFactory::UCLPlanetModelAssetFactory()
 	bCreateNew    = true;
 	bEditAfterNew = true;
 
-	SupportedClass = UCLPlanetModelAsset::StaticClass();
+	SupportedClass = UCLWorldAsset::StaticClass();
 
 	CF_INFO(TEXT("[%s] ctor; SupportedClass=%s"),
 		*GetClass()->GetName(),
@@ -37,14 +37,14 @@ UObject* UCLPlanetModelAssetFactory::FactoryCreateNew(
 	UObject* /*Context*/,
 	FFeedbackContext* /*Warn*/)
 {
-	// Respect InClass if it’s a subclass of UCLPlanetModelAsset, otherwise fall back.
-	UClass* TargetClass = InClass ? InClass : UCLPlanetModelAsset::StaticClass();
-	if (!TargetClass->IsChildOf(UCLPlanetModelAsset::StaticClass()))
+	// Respect InClass if it’s a subclass of UCLWorldAsset, otherwise fall back.
+	UClass* TargetClass = InClass ? InClass : UCLWorldAsset::StaticClass();
+	if (!TargetClass->IsChildOf(UCLWorldAsset::StaticClass()))
 	{
-		TargetClass = UCLPlanetModelAsset::StaticClass();
+		TargetClass = UCLWorldAsset::StaticClass();
 	}
 
-	UObject* NewAsset = NewObject<UCLPlanetModelAsset>(
+	UObject* NewAsset = NewObject<UCLWorldAsset>(
 		InParent,
 		TargetClass,
 		Name,

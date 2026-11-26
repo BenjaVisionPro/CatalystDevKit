@@ -2,7 +2,7 @@
 
 #include "VoxelWorld.h"
 #include "Voxel/Components/CLVoxelWorldComponent.h"
-#include "Model/CLModelAsset.h"
+#include "Model/CLWorldAsset.h"
 
 // Editor framework
 #include "ToolMenus.h"
@@ -23,16 +23,16 @@ static const FName CLEntryName   = TEXT("EnableCatalystLandform");
 
 namespace
 {
-	static UCLModelAsset* GetFirstSelectedCLModelAssetInCB()
+	static UCLWorldAsset* GetFirstSelectedCLWorldAssetInCB()
 	{
 		FContentBrowserModule& CB = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
 		TArray<FAssetData> Selected; 
 		CB.Get().GetSelectedAssets(Selected);
 		for (const FAssetData& Asset : Selected)
 		{
-			if (Asset.GetClass() && Asset.GetClass()->IsChildOf(UCLModelAsset::StaticClass()))
+			if (Asset.GetClass() && Asset.GetClass()->IsChildOf(UCLWorldAsset::StaticClass()))
 			{
-				return Cast<UCLModelAsset>(Asset.GetAsset());
+				return Cast<UCLWorldAsset>(Asset.GetAsset());
 			}
 		}
 		return nullptr;
@@ -52,7 +52,7 @@ void CLVoxelWorldEditorActions::RegisterMenus()
 	Section.AddMenuEntry(
 		CLEntryName,
 		LOCTEXT("Enable_Label", "Enable Catalyst Landform"),
-		LOCTEXT("Enable_Tip",   "Add CLVoxelWorldComponent to the selected VoxelWorld(s). If a CLModelAsset is selected in the Content Browser, it will be assigned."),
+		LOCTEXT("Enable_Tip",   "Add CLVoxelWorldComponent to the selected VoxelWorld(s). If a CLWorldAsset is selected in the Content Browser, it will be assigned."),
 		FSlateIcon(),
 		FUIAction(
 			FExecuteAction::CreateStatic(&CLVoxelWorldEditorActions::EnableCatalystLandform_OnSelectedWorlds),
@@ -80,15 +80,16 @@ void CLVoxelWorldEditorActions::UnregisterMenus()
 	}
 }
 
-UCLVoxelWorldComponent* CLVoxelWorldEditorActions::AddComponentIfMissing(AVoxelWorld& World, UCLModelAsset* OptionalModelAsset, bool bMarkDirty)
+UCLVoxelWorldComponent* CLVoxelWorldEditorActions::AddComponentIfMissing(AVoxelWorld& World, UCLWorldAsset* OptionalWorldAsset, bool bMarkDirty)
 {
 	if (UCLVoxelWorldComponent* Existing = World.FindComponentByClass<UCLVoxelWorldComponent>())
 	{
 		// Assign only if not already set
-		if (OptionalModelAsset && !Existing->CLModelAsset.IsValid())
+		if (OptionalWorldAsset && Existing->CLWorldAsset.IsNull())
 		{
 			Existing->Modify();
-			Existing->CLModelAsset = OptionalModelAsset; // TSoftObjectPtr accepts raw*
+			Existing->CLWorldAsset = OptionalWorldAsset;
+			Existing->PublishToVoxelWorldManager();
 		}
 		return Existing;
 	}
@@ -99,14 +100,14 @@ UCLVoxelWorldComponent* CLVoxelWorldEditorActions::AddComponentIfMissing(AVoxelW
 	UCLVoxelWorldComponent* NewComp = NewObject<UCLVoxelWorldComponent>(&World, UCLVoxelWorldComponent::StaticClass(), NAME_None, RF_Transactional);
 	check(NewComp);
 
-	NewComp->RegisterComponent();
-	World.AddInstanceComponent(NewComp);
-
-	if (OptionalModelAsset)
+	if (OptionalWorldAsset)
 	{
 		NewComp->Modify();
-		NewComp->CLModelAsset = OptionalModelAsset;
+		NewComp->CLWorldAsset = OptionalWorldAsset;
 	}
+
+	World.AddInstanceComponent(NewComp);
+	NewComp->RegisterComponent();
 
 	if (bMarkDirty)
 	{
@@ -119,7 +120,7 @@ void CLVoxelWorldEditorActions::EnableCatalystLandform_OnSelectedWorlds()
 {
 	if (!GEditor) return;
 
-	UCLModelAsset* PickedModel = GetFirstSelectedCLModelAssetInCB();
+	UCLWorldAsset* PickedWorldAsset = GetFirstSelectedCLWorldAssetInCB();
 	int32 NumAffected = 0;
 
 	if (USelection* Sel = GEditor->GetSelectedActors())
@@ -128,7 +129,7 @@ void CLVoxelWorldEditorActions::EnableCatalystLandform_OnSelectedWorlds()
 		{
 			if (AVoxelWorld* World = Cast<AVoxelWorld>(*It))
 			{
-				AddComponentIfMissing(*World, PickedModel, /*bMarkDirty*/true);
+				AddComponentIfMissing(*World, PickedWorldAsset, /*bMarkDirty*/true);
 				++NumAffected;
 			}
 		}

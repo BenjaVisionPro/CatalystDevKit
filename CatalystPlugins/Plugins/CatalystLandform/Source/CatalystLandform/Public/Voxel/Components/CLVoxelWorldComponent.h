@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 
-#include "Model/CLPlanetModelAsset.h" // TODO: rename to CLWorld asset
+#include "Model/CLWorldAsset.h"
 #include "Model/CLStrataAsset.h"
 
 #include "Voxel/Runtime/CLEnums.h"
@@ -31,9 +31,9 @@ public:
 
 	// --- Authoring assets ---
 
-	/** World configuration asset (currently named PlanetModel in scaffold). */
+	/** World configuration asset. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Catalyst|Landform")
-	TSoftObjectPtr<UCLPlanetModelAsset> CLWorldAsset;
+	TSoftObjectPtr<UCLWorldAsset> CLWorldAsset;
 
 	/** Shared strata asset used by this world. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Catalyst|Landform")
